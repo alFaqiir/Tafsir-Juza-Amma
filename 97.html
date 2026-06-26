@@ -1,0 +1,1085 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Qadr: Malam Update Sistem Kehidupan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:wght@400;700;900&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(180deg, #000000 0%, #0a0a0a 50%, #1a1a1a 100%);
+            color: #e0e0e0;
+            font-family: 'Lora', serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Animated stars background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(218, 165, 32, 0.1) 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(218, 165, 32, 0.2);
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            font-weight: 900;
+            background: linear-gradient(135deg, #DAA520 0%, #FFD700 50%, #FFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.2;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(218, 165, 32, 0.5)); }
+            50% { filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.8)); }
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #b8860b;
+            font-style: italic;
+            margin-top: 15px;
+            font-weight: 400;
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            color: #daa520;
+            margin-top: 30px;
+            padding: 20px;
+            border-left: 3px solid #daa520;
+            background: rgba(218, 165, 32, 0.05);
+            font-style: italic;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%);
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .info-item {
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border-left: 3px solid #daa520;
+        }
+
+        .info-label {
+            color: #daa520;
+            font-weight: 600;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-value {
+            color: #fff;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        /* Section Styles */
+        .section {
+            margin: 60px 0;
+            padding: 40px;
+            background: rgba(10, 10, 10, 0.6);
+            border-radius: 20px;
+            border: 1px solid rgba(218, 165, 32, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(218, 165, 32, 0.2);
+        }
+
+        .ayat-number {
+            font-size: 3em;
+            color: #daa520;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 2.2em;
+            text-align: center;
+            color: #fff;
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+            border-radius: 15px;
+            line-height: 1.8;
+            direction: rtl;
+            border: 2px solid rgba(218, 165, 32, 0.2);
+        }
+
+        .translation {
+            font-size: 1.2em;
+            text-align: center;
+            color: #c0c0c0;
+            font-style: italic;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #daa520;
+            font-size: 2em;
+            margin: 40px 0 20px 0;
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid rgba(218, 165, 32, 0.3);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #b8860b;
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        h4 {
+            color: #cd853f;
+            font-size: 1.2em;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 20px 0;
+            text-align: justify;
+            font-size: 1.05em;
+            color: #d0d0d0;
+        }
+
+        /* Keyword highlight */
+        .keyword {
+            color: #daa520;
+            font-weight: 600;
+            background: rgba(218, 165, 32, 0.1);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        /* Blockquote/Intisari */
+        blockquote, .intisari {
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(0, 0, 0, 0.5) 100%);
+            border-left: 5px solid #daa520;
+            border-radius: 10px;
+            font-style: italic;
+            color: #f0e68c;
+            font-size: 1.1em;
+            line-height: 1.9;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 20px 0 20px 40px;
+            color: #d0d0d0;
+        }
+
+        li {
+            margin: 15px 0;
+            line-height: 1.8;
+        }
+
+        li strong {
+            color: #daa520;
+        }
+
+        /* Example boxes */
+        .example-box {
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 4px solid #8b4513;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        /* Refleksi section */
+        .refleksi {
+            background: linear-gradient(135deg, rgba(25, 25, 25, 0.9) 0%, rgba(0, 0, 0, 0.9) 100%);
+            padding: 50px;
+            margin: 60px 0;
+            border-radius: 20px;
+            border: 2px solid #daa520;
+            box-shadow: 0 0 50px rgba(218, 165, 32, 0.3);
+        }
+
+        /* Epilog */
+        .epilog {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(139, 69, 19, 0.2) 100%);
+            padding: 60px 40px;
+            margin: 60px 0;
+            border-radius: 20px;
+            border: 2px solid rgba(218, 165, 32, 0.4);
+            text-align: center;
+        }
+
+        .epilog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #daa520;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .epilog p {
+            text-align: left;
+            color: #e0e0e0;
+            margin: 25px 0;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #8b4513 0%, #daa520 100%);
+            padding: 40px;
+            margin: 60px 0;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(218, 165, 32, 0.4);
+        }
+
+        .cta h3 {
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            color: #1a1a1a;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #daa520 0%, #ffd700 100%);
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2em;
+            }
+            
+            .arabic-text {
+                font-size: 1.6em;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+            
+            header {
+                padding: 40px 15px;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection color */
+        ::selection {
+            background: rgba(218, 165, 32, 0.3);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Stars background -->
+    <div class="stars" id="stars"></div>
+    
+    <!-- Scroll progress indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <h1 class="main-title">Al-Qadr</h1>
+            <p class="subtitle">Malam Update Sistem Kehidupan</p>
+            <p class="tagline">Dalam hiruk-pikuk mengejar waktu, ada malam yang membuat semua perhitungan kita jadi tidak relevan.</p>
+        </header>
+
+        <!-- INFORMASI DASAR -->
+        <div class="info-box">
+            <h2>Informasi Dasar</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Nama Surat</div>
+                    <div class="info-value">Al-Qadr</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Arti</div>
+                    <div class="info-value">Kemuliaan</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Surat Ke</div>
+                    <div class="info-value">97</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Jumlah Ayat</div>
+                    <div class="info-value">5 ayat</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Kategori</div>
+                    <div class="info-value">Makkiyah</div>
+                </div>
+            </div>
+            
+            <p style="margin-top: 30px;">Surat ini akan kita bedah dari perspektif <span class="keyword">makna produktivitas sejati dan value of time</span>. Kenapa? Karena di era <em>hustle culture</em> (budaya kerja keras) yang mengagungkan jam kerja panjang dan kesibukan tanpa henti, Al-Qadr datang dengan narasi yang menohok: <strong>bukan soal seberapa lama, tapi seberapa berkualitas</strong>.</p>
+            
+            <p>Surat ini mengajarkan bahwa satu momen yang penuh kesadaran dan kehadiran bisa mengalahkan ribuan hari yang dijalani dalam <em>autopilot</em>. Ini tentang mendefinisikan ulang apa itu "waktu yang berharga" di tengah obsesi kita terhadap produktivitas semu.</p>
+        </div>
+
+        <!-- AYAT 1 -->
+        <div class="section">
+            <div class="ayat-number">AYAT 1</div>
+            
+            <div class="arabic-text">
+                إِنَّآ أَنزَلْنَٰهُ فِى لَيْلَةِ ٱلْقَدْرِ
+            </div>
+            
+            <p class="translation">"Sesungguhnya kami telah menurunkannya (Al-Qur'an) pada Lailatul Qadr."</p>
+
+            <h2>A. ENERGI KATA</h2>
+            
+            <h3>1. أَنزَلْنَٰهُ (Anzalnahu) - "Menurunkan"</h3>
+            <p>Kata <em>anzala</em> bukan sekadar "turun" seperti daun jatuh dari pohon. Ini turun dengan <span class="keyword">maksud, arah, dan tujuan yang jelas</span>. Bayangkan perbedaannya dengan kata <em>nazala</em> (turun biasa) versus <em>anzala</em> (diturunkan dengan sengaja). Ada kehendak Ilahi yang aktif di sini. Seperti paket kurir yang dikirim khusus untukmu, bukan sekadar benda yang jatuh tidak sengaja.</p>
+            
+            <p>Kontras ini penting: Al-Qur'an bukan sekadar "ada", tapi <strong>dikirimkan</strong> di waktu tertentu, ke tempat tertentu, untuk tujuan tertentu. Itu menunjukkan betapa berharganya <em>timing</em> dan momentum dalam sejarah manusia.</p>
+
+            <h3>2. لَيْلَةِ ٱلْقَدْرِ (Lailatul Qadr) - "Malam Kemuliaan"</h3>
+            <p><em>Qadr</em> punya tiga lapisan makna yang saling berkelindan:</p>
+            <ul>
+                <li><strong>Kemuliaan</strong> (honor, nobility)</li>
+                <li><strong>Ketetapan/takdir</strong> (decree, destiny)</li>
+                <li><strong>Ukuran/nilai</strong> (measure, value)</li>
+            </ul>
+            
+            <p>Jadi <em>Lailatul Qadr</em> bukan cuma "malam yang mulia", tapi juga malam di mana <span class="keyword">takdir-takdir ditetapkan</span> dan nilainya <span class="keyword">tidak bisa diukur dengan standar biasa</span>. Malam yang merombak definisi "berharga". Malam yang membuat <em>spreadsheet</em> dan <em>to-do list</em> kita terlihat konyol.</p>
+
+            <h2>B. TAFSIR MENDALAM</h2>
+            
+            <p><strong>Konteks:</strong> Al-Qur'an mulai diturunkan kepada Nabi Muhammad SAW pada malam istimewa di bulan Ramadan. Tapi ayat ini bukan sekadar pencatatan sejarah—ini adalah <span class="keyword">pernyataan filosofis</span> tentang bagaimana Tuhan bekerja dalam sejarah.</p>
+
+            <h4>▌ Filosofi di Balik Ayat:</h4>
+            <p>Ada ironi besar di sini: kitab yang akan menerangi seluruh peradaban manusia diturunkan di <strong>malam</strong>—saat paling gelap. Bukan di siang hari yang terang benderang, bukan di istana megah, bukan dalam upacara publik yang meriah.</p>
+            
+            <p>Ini mengajarkan bahwa <span class="keyword">transformasi terbesar sering datang dari tempat yang paling sunyi</span>. Bahwa kegelapan bisa menjadi latar yang sempurna untuk cahaya yang sejati. Bahwa momentum besar tidak selalu ramai, kadang dia datang dalam bisikan di tengah malam.</p>
+
+            <h4>▌ Relevansi Kekinian:</h4>
+            <p>Kita hidup di zaman yang memuja visibilitas. Instagram stories, LinkedIn updates, Twitter threads—semuanya harus di-<em>share</em>, harus dilihat, harus divalidasi. Produktivitas diukur dari seberapa banyak yang bisa kita tunjukkan kepada dunia: <em>meeting back-to-back</em>, notifikasi yang tidak berhenti, kalender yang penuh warna.</p>
+            
+            <p>Tapi Al-Qadr bertanya: <strong>Berapa banyak dari kesibukan itu yang benar-benar transformatif?</strong></p>
+
+            <h4>Contoh konkret:</h4>
+            
+            <div class="example-box">
+                <p><strong>• Content creator yang burnout:</strong></p>
+                <p>Posting setiap hari, analytics naik-turun, tapi merasa hampa. Lalu suatu malam, dia menulis satu thread dari hati yang paling dalam—tanpa menghitung engagement. Thread itu viral, tapi lebih dari itu: dia menemukan kembali <em>kenapa</em> dia mulai. Satu malam yang mengubah <em>trajectory</em> (lintasan)-nya lebih dari 1000 postingan sebelumnya.</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>• Karyawan yang stuck:</strong></p>
+                <p>Setahun bekerja dengan formula yang sama, rapor bagus tapi jiwa mati. Sampai suatu malam dia tidak bisa tidur, duduk sendirian, bertanya: "Apa yang sebenarnya aku mau?" Dari malam itu, dia mulai membuat keputusan-keputusan kecil yang pada akhirnya mengubah karirnya total. Bukan dari 1000 hari di kantor yang <em>autopilot</em>, tapi dari satu malam kejujuran brutal dengan diri sendiri.</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>• Pasangan yang hampir menyerah:</strong></p>
+                <p>Sudah setahun penuh terapi, buku-buku <em>relationship</em>, usaha yang terukur. Tapi tetap <em>stuck</em>. Sampai satu malam hujan, tanpa rencana, mereka duduk di teras dan bicara dengan cara yang belum pernah mereka lakukan—tanpa defensif, tanpa agenda. Satu percakapan itu menyembuhkan lebih dari 1000 hari mencoba-dengan-keras.</p>
+            </div>
+
+            <p>Ini bukan mengajak kita jadi pemalas. Ini tentang <span class="keyword">kualitas kehadiran versus kuantitas kesibukan</span>. Tentang mengakui bahwa ada momen-momen <em>sacred</em> (suci) dalam hidup kita—momen di mana kita benar-benar hadir, sadar, dan terbuka—yang nilainya mengalahkan bertahun-tahun menjalani hari dengan setengah hati.</p>
+
+            <h2>C. INTISARI</h2>
+            <blockquote class="intisari">
+                Di tengah obsesi kita menghitung hari, mengukur jam, dan mengejar deadline, Al-Qadr berbisik: ada malam yang membuat semua perhitunganmu tidak relevan. Bukan karena perhitungan itu salah, tapi karena ada dimensi lain dari waktu yang tidak bisa ditangkap spreadsheet. Dimensi di mana satu saat kejernihan bisa mengalahkan seribu hari kebingungan. Satu keputusan berani bisa mengalahkan seribu hari bermain aman. Satu percakapan jujur bisa mengalahkan seribu pesan yang dipilih dengan hati-hati. Waktu bukan hanya linear—dia punya kedalaman, intensitas, dan bobot yang berbeda-beda.
+            </blockquote>
+        </div>
+
+        <!-- AYAT 2 -->
+        <div class="section">
+            <div class="ayat-number">AYAT 2</div>
+            
+            <div class="arabic-text">
+                وَمَآ أَدْرَىٰكَ مَا لَيْلَةُ ٱلْقَدْرِ
+            </div>
+            
+            <p class="translation">"Dan tahukah kamu apakah malam kemuliaan itu?"</p>
+
+            <h2>A. ENERGI KATA</h2>
+            
+            <h3>1. أَدْرَىٰكَ (Adraka) - "Membuat kamu tahu/paham"</h3>
+            <p>Ini bukan sekadar <em>'alima</em> (tahu) atau <em>'arafa</em> (mengerti). <em>Adraka</em> punya nuansa <span class="keyword">menangkap sesuatu yang cepat berlalu atau sulit dipahami</span>. Seperti mengejar dan akhirnya memegang sesuatu yang terus bergerak. Ada usaha kognitif dan pengalaman langsung di dalamnya.</p>
+            
+            <p>Tuhan bertanya bukan karena Dia tidak tahu jawabannya, tapi karena Dia tahu kita tidak akan pernah benar-benar bisa menangkap esensinya dengan kata-kata. Ini retorika yang merendahkan hati.</p>
+
+            <h3>2. مَا (Ma) - "Apa/Apakah"</h3>
+            <p>Partikel pertanyaan ini bukan cuma tanya identitas, tapi tanya <span class="keyword">hakikat, esensi, nilai sejati</span>. Seperti perbedaan antara "Siapa dia?" versus "Apa sebenarnya dia?" Yang kedua lebih dalam, lebih filosofis.</p>
+
+            <h2>B. TAFSIR MENDALAM</h2>
+            
+            <h4>▌ Filosofi di Balik Ayat:</h4>
+            <p>Ini adalah <span class="keyword">pertanyaan yang disengaja tidak dijawab secara eksplisit</span>. Tuhan bisa saja langsung bilang: "<em>Lailatul Qadr</em> adalah malam ke-27 Ramadan, dari jam 10 malam sampai subuh." Selesai. Tapi tidak.</p>
+            
+            <p>Kenapa? Karena ada hal-hal dalam kehidupan yang <strong>nilai sejatinya justru terletak pada <em>mystery</em>-nya</strong>. Pada pencarian, bukan penemuan. Pada kerinduan, bukan kepemilikan.</p>
+            
+            <p>Bayangkan jika kita tahu persis kapan malam itu: kita akan ritual di malam itu saja, lalu 364 malam lainnya kita lalui dengan biasa saja. Tapi dengan tidak tahu pasti, <span class="keyword">setiap malam di sepuluh terakhir Ramadan punya potensi</span>. Setiap malam bisa jadi "<em>the one</em>". Jadi kita jaga semuanya.</p>
+
+            <h4>▌ Relevansi Kekinian:</h4>
+            <p>Kita generasi yang paling anti-misteri dalam sejarah. Kita Google segalanya. Kita mau <em>closure</em> di setiap situasi. Kita tidak nyaman dengan ambiguitas. Relationship status harus jelas. Jenjang karir harus terukur. Garis waktu hidup harus sesuai tonggak pencapaian.</p>
+            
+            <p>Tapi kehidupan tidak selalu memberikan <strong>kepastian yang kita inginkan</strong>. Dan justru dalam ketidakpastian itu, ada undangan untuk hadir lebih penuh.</p>
+
+            <h4>Contoh konkret:</h4>
+            
+            <div class="example-box">
+                <p><strong>• Pencari kerja yang obsesif:</strong></p>
+                <p>Dia melamar ke 100 perusahaan, melacak setiap email, ngecek LinkedIn hiring manager, menghitung probabilitas. Lalu datang tawaran dari perusahaan yang bahkan dia tidak ingat pernah lamar—dari koneksi tidak terduga, di waktu yang tidak diprediksi. Momen yang mengubah hidupnya bukan dari 99 aplikasi yang dia kalkulasi, tapi dari satu yang bahkan dia lupakan.</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>• Pencari jodoh yang <em>checklist-driven</em>:</strong></p>
+                <p>Punya kriteria 20 poin, <em>swipe</em> kanan-kiri berdasarkan formula. Lalu bertemu seseorang di situasi paling random—di lift yang macet, di kelas yang salah masuk, di wedding teman yang awalnya dia tidak mau datangi. Bukan dari 1000 profile yang di-<em>screen</em>, tapi dari satu pertemuan yang tidak ada di rencana.</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>• <em>Entrepreneur</em> yang <em>overplan</em>:</strong></p>
+                <p><em>Business plan</em> 50 halaman, meramal untuk 5 tahun, merencanakan strategi A-B-C. Tapi bisnis yang akhirnya berhasil datang dari percakapan spontan dengan orang tak dikenal di kafe, dari ide yang muncul pas dia lagi mandi, dari "<em>what if</em>" yang dia ucapkan tanpa pikir panjang. Terobosannya bukan dari 1000 halaman deck, tapi dari satu pertemuan singkat yang dia buat dalam 10 menit.</p>
+            </div>
+
+            <p>Misteri Lailatul Qadr mengajarkan kita untuk <span class="keyword">tetap hadir dan memberikan yang terbaik bahkan ketika kita tidak tahu ini "the moment" atau bukan</span>. Karena kita tidak akan pernah tahu mana malam yang akan mengubah segalanya—jadi kita perlakukan setiap malam dengan hormat yang sama.</p>
+            
+            <p>Ini bukan ajakan untuk jadi pasif atau tidak <em>planning</em>. Ini tentang <strong>menyeimbangkan kontrol dengan pasrah total</strong>. Tentang berusaha keras sambil melepaskan kebutuhan untuk tahu hasil akhirnya. Tentang jatuh cinta dengan proses, bukan cuma destinasi.</p>
+
+            <h2>C. INTISARI</h2>
+            <blockquote class="intisari">
+                Pertanyaan tanpa jawaban langsung adalah undangan untuk mencari. Tuhan tidak merahasiakan Lailatul Qadr untuk menyiksa kita, tapi untuk mengajak kita hadir lebih penuh di setiap malam. Karena hidup yang indah bukan yang pasti, tapi yang penuh dengan kemungkinan. Bukan yang terprediksi, tapi yang terbuka untuk keajaiban. Ketika kita melepaskan kebutuhan untuk tahu segalanya, kita justru menemukan lebih banyak.
+            </blockquote>
+        </div>
+
+        <!-- AYAT 3 -->
+        <div class="section">
+            <div class="ayat-number">AYAT 3</div>
+            
+            <div class="arabic-text">
+                لَيْلَةُ ٱلْقَدْرِ خَيْرٌۭ مِّنْ أَلْفِ شَهْرٍۢ
+            </div>
+            
+            <p class="translation">"Malam kemuliaan itu lebih baik dari seribu bulan."</p>
+
+            <h2>A. ENERGI KATA</h2>
+            
+            <h3>1. خَيْرٌۭ (Khair) - "Lebih baik"</h3>
+            <p><em>Khair</em> bukan sekadar "bagus" atau "oke". Ini adalah <span class="keyword">kebaikan substansial, nilai intrinsik, benefit sejati</span>. Bukan perbandingan kuantitatif, tapi kualitatif. Seperti membandingkan emas dengan batu—bukan soal mana yang lebih besar, tapi mana yang lebih berharga.</p>
+            
+            <p>Ada nuansa <strong>pilihan dan preferensi Ilahi</strong> di sini. Tuhan sendiri yang bilang "ini lebih baik"—jadi ini bukan opini, ini adalah fakta metaphisik tentang nilai sejati.</p>
+
+            <h3>2. أَلْفِ شَهْرٍۢ (Alfi Syahrin) - "Seribu bulan"</h3>
+            <p>Kenapa seribu bulan? Itu sekitar <strong>83 tahun</strong>—rata-rata umur manusia. Jadi ayat ini sejatinya bilang: satu malam ini bisa lebih berharga dari seluruh hidup seseorang yang dijalani tanpa kesadaran.</p>
+            
+            <p><em>Syahr</em> (bulan) juga adalah unit waktu yang kita pakai untuk mengukur pencapaian: bulan kerja, bulan pertama nikah, bulan puasa. Tapi semua perhitungan itu bisa kalah dengan satu malam yang <em>lived with full presence</em> (dijalani dengan penuh kesadaran).</p>
+
+            <h2>B. TAFSIR MENDALAM</h2>
+            
+            <h4>▌ Filosofi di Balik Ayat:</h4>
+            <p>Ini adalah <span class="keyword">pernyataan paling radikal tentang waktu dalam Al-Qur'an</span>. Bayangkan: 1 malam = 1000 bulan = 30,000 malam biasa. Perbandingan yang melawan logika aritmatika kita.</p>
+            
+            <p>Apa yang membuat satu malam bisa 30,000 kali lebih berharga? <strong>Intensitas spiritual, kualitas kehadiran, dan momentum transformatif</strong>. Ini tentang mengalami waktu secara vertikal (mendalam) versus horizontal (melebar).</p>
+            
+            <p><strong>Analogi sederhana:</strong> Sepuluh menit percakapan dengan orang yang benar-benar mendengarkan kita bisa lebih <em>healing</em> dari 10 tahun dikelilingi orang yang hadir secara fisik tapi tidak secara emosional. Satu pelukan yang tulus bisa lebih menghangatkan dari seribu pesan "<em>thinking of you</em>". Satu keputusan berani bisa lebih mengubah hidup dari seribu hari menunda.</p>
+
+            <h4>▌ Relevansi Kekinian:</h4>
+            <p>Kita hidup di era <em>quantity over quality</em>. Netflix binge-watch 10-episode tapi tidak ingat apa-apa. Scroll 500 posts tapi tidak ada yang menyentuh. Punya 1000 kontak tapi merasa kesepian. Meeting 8 jam tapi tidak ada keputusan.</p>
+            
+            <p>Ada ilusi bahwa <strong>lebih banyak = lebih baik</strong>. <em>More content, more connections, more activities, more everything</em>. Tapi kita lupa bahwa nilai sejati tidak linear dengan kuantitas.</p>
+
+            <h4>Contoh konkret:</h4>
+            
+            <div class="example-box">
+                <p><strong>• Pelajar cerdas tentang belajar:</strong></p>
+                <p>Temannya belajar 12 jam sehari, dia cuma 2 jam—tapi dengan deep focus, tanpa distraksi, dengan metode yang tepat. Saat ujian? Dia yang menang. Bukan karena dia lebih pintar, tapi karena dia tahu <strong>2 jam yang intens mengalahkan 12 jam yang setengah-setengah</strong>. Dia tidak mengukur "waktu belajar", dia mengukur "kualitas pemahaman".</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>• Professional yang berkelanjutan:</strong></p>
+                <p>Koleganya bekerja dengan sangat keras 70 jam seminggu, bangga dengan lencana kehormatan "Saya tak punya kehidupan". Dia kerja 40 jam, tapi setiap meeting dia hadir penuh, setiap tugas dia kerjakan dengan sempurna. Dalam setahun, koleganya <em>burnout</em> dan berhenti. Dia? Naik jabatan karena <strong>output berkualitas selalu mengalahkan kesibukan tanpa arah</strong>.</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>• Orang tua yang hadir:</strong></p>
+                <p>Ada yang spend berjam-jam dengan anak tapi matanya di HP, pikirannya di kerjaan. Ada yang cuma 30 menit sebelum tidur, tapi 30 menit itu full attention—main, dengerin cerita, peluk, ngobrol. Anak yang mana yang merasa "cukup" dicintai? Yang kedua. Karena <strong>anak tidak butuh banyak waktu, mereka butuh waktu yang berkualitas</strong>.</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>• Ibadah yang transformatif:</strong></p>
+                <p>Bisa shalat 5 waktu tapi dalam <em>autopilot</em>—gerakan hadir, hati kemana-mana. Atau shalat dengan khusyuk yang benar-benar mengubah <em>mood</em>, perspektif, dan energi seharian. Yang mana yang lebih "diterima"? Yang mengubah kita. Karena <strong>ibadah bukan soal <em>checklist</em>, tapi soal transformasi</strong>.</p>
+            </div>
+
+            <p>Al-Qadr mengajak kita keluar dari <em>time poverty mindset</em>—perasaan bahwa kita tidak punya cukup waktu. Padahal masalahnya bukan kuantitas waktu, tapi kualitas kehadiran kita. Satu jam yang kita hadiri dengan sepenuh jiwa bisa lebih produktif dari 10 jam yang kita lewatkan dalam distraksi.</p>
+            
+            <p>Ini juga tentang <span class="keyword">mendefinisikan ulang "produktivitas"</span>. Produktivitas sejati bukan tentang seberapa banyak yang masuk <em>to-do list</em>, tapi seberapa banyak yang benar-benar <em>meaningful</em> (berarti). Bukan tentang kerja keras, tapi tentang dampak. Bukan tentang <em>busy</em>, tapi tentang manfaat.</p>
+
+            <h2>C. INTISARI</h2>
+            <blockquote class="intisari">
+                Kalau waktu bisa ditimbang, satu malam yang penuh makna akan lebih berat dari seribu bulan yang kosong. Kita terlalu lama percaya bahwa nilai hidup diukur dari panjangnya usia atau padatnya jadwal. Padahal ada ukuran lain: seberapa dalam kita mengalami setiap momen, seberapa hadir kita dalam setiap percakapan, seberapa sadar kita dalam setiap pilihan. Lailatul Qadr bukan hanya tentang satu malam di Ramadan—dia adalah prinsip hidup: bahwa kualitas selalu, selalu mengalahkan kuantitas.
+            </blockquote>
+        </div>
+
+        <!-- AYAT 4 -->
+        <div class="section">
+            <div class="ayat-number">AYAT 4</div>
+            
+            <div class="arabic-text">
+                تَنَزَّلُ ٱلْمَلَٰٓئِكَةُ وَٱلرُّوحُ فِيهَا بِإِذْنِ رَبِّهِم مِّن كُلِّ أَمْرٍۢ
+            </div>
+            
+            <p class="translation">"Pada malam itu turun para malaikat dan Ruh (Jibril) dengan izin Tuhannya untuk mengatur segala urusan."</p>
+
+            <h2>A. ENERGI KATA</h2>
+            
+            <h3>1. تَنَزَّلُ (Tanazzalu) - "Turun terus-menerus"</h3>
+            <p>Ini bukan <em>nazala</em> (turun sekali jadi) atau <em>anzala</em> (diturunkan), tapi <em>tanazzala</em>—bentuk yang menunjukkan <span class="keyword">proses berkelanjutan, intensif, dari atas ke bawah</span>. Bayangkan hujan yang turun berlimpah, bukan tetesan sesekali. Ada nuansa <em>abundance</em> (berlimpah), <em>generosity</em> (murah hati), dan momentum yang tidak berhenti.</p>
+            
+            <p>Malaikat tidak cuma "lewat", mereka <strong>turun dengan misi penuh, membawa sesuatu, mengatur sesuatu</strong>. Ada aktivitas surgawi yang intense di malam ini.</p>
+
+            <h3>2. ٱلرُّوحُ (Ar-Ruh) - "Ruh/Jibril"</h3>
+            <p>Disebutkan terpisah dari malaikat lain menunjukkan <span class="keyword">posisi istimewa</span>. Jibril bukan malaikat biasa—dia pembawa wahyu, utusan utama. Kehadirannya selalu menandakan momen-momen penting dalam sejarah kenabian.</p>
+            
+            <p><em>Ruh</em> juga bisa dimaknai sebagai "<em>spirit</em>, <em>essence</em> (hakikat), <em>life force</em> (kekuatan hidup)". Ada dimensi spiritual yang datang ke dunia material.</p>
+
+            <h3>3. بِإِذْنِ رَبِّهِم (Bi-idzni Rabbihim) - "Dengan izin Tuhan mereka"</h3>
+            <p>Frasa ini penting: malaikat, seagung apapun, <strong>tidak punya kekuasaan otonom</strong>. Mereka turun "dengan izin", artinya ada orkestrasi Ilahi di balik semua gerakan alam semesta. Tidak ada yang random, semua <em>by design</em>.</p>
+
+            <h3>4. أَمْرٍۢ (Amr) - "Urusan/perintah"</h3>
+            <p>Amr bisa berarti "<em>command</em>" atau "urusan/masalah". Jadi malaikat turun untuk mengatur/menetapkan segala urusan—<span class="keyword">takdir-takdir untuk tahun yang akan datang</span>. Ini malam di mana keputusan dibuat, rencana ditetapkan, nasib ditulis.</p>
+
+            <h2>B. TAFSIR MENDALAM</h2>
+            
+            <h4>▌ Filosofi di Balik Ayat:</h4>
+            <p>Bayangkan alam semesta sebagai perusahaan raksasa. <em>Lailatul Qadr</em> adalah <strong><em>board meeting</em> tahunan paling penting</strong> di mana keputusan-keputusan strategis dibuat. CEO (Allah) mengundang jajaran eksekutif terpercaya (malaikat dan Jibril) untuk menetapkan rencana untuk siklus berikutnya.</p>
+            
+            <p>Tapi ada yang menarik: <em>meeting</em> ini tidak terjadi di ruang tertutup. Dia terjadi <strong>di tengah-tengah kita</strong>. Saat kita shalat, dzikir, berdoa di malam itu, kita berada di tempat yang sama di mana keputusan-keputusan cosmic sedang dibuat.</p>
+            
+            <p>Ini menjelaskan <span class="keyword">kenapa doa di Lailatul Qadr sangat mustajab</span>: karena kita sedang berada di "ruang rapat" di mana takdir sedang ditetapkan. Permintaan kita tidak perlu melalui "manajer-manajer menengah"—kita langsung di tempat di mana keputusan terjadi.</p>
+
+            <h4>▌ Relevansi Kekinian:</h4>
+            <p>Kita sering merasa <strong>tidak berdaya dalam hidup</strong>. Merasa bahwa kehidupan adalah sesuatu yang terjadi "kepada" kita, bukan "oleh" kita. Sistem terlalu besar, peluang terlalu kecil, nasib sudah ditakdirkan. Lalu kita jadi pasif, fatalis, atau sebaliknya—anxious (cemas) dan overthinking (terlalu banyak berfikir) karena merasa harus mengontrol segalanya sendiri.</p>
+            
+            <p>Ayat ini menawarkan jalan tengah: Ada <em>divine order</em> (takdir ditetapkan), tapi kita punya <em>access</em> untuk ikut dalam proses itu (melalui doa dan amal). Kita bukan boneka, tapi juga bukan sendirian. Ada <em>co-creation</em> (kreasi Bersama) antara ikhtiar manusia dan <em>iradat</em> Ilahi.</p>
+
+            <h4>Contoh konkret:</h4>
+            
+            <div class="example-box">
+                <p><strong>• Lulusan baru yang merasa tidak aman:</strong></p>
+                <p>Dia melamar kerja ratusan kali, penolakan demi penolakan yang ia dapat. Merasa dunia tak adil, sistem rusak, peluang tidak ada. Tapi di tengah keputusasaan, dia tetap bangun malam, berdoa dengan sungguh-sungguh di 10 malam terakhir Ramadan, sambil tetap usaha siang harinya. Lalu datang panggilan dari perusahaan yang bahkan dia tidak ingat pernah lamar. <em>Interview</em>-nya jatuh persis di hari yang dia "<em>feeling good</em>". Penawarannya datang di saat dia hampir menyerah. Kebetulan? Atau <strong>dia sedang "hadir" di malam yang tepat, di tempat yang tepat—di mana takdirnya sedang ditulis</strong>?</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>• Pasangan yang berjuang punya anak:</strong></p>
+                <p>Sudah bertahun-tahun mencoba, <em>medical interventions</em>. Mereka bisa saja menyerah. Tapi mereka pilih untuk tetap berdoa, terutama di <em>Lailatul Qadr</em>—bukan karena percaya doa akan "memaksa" Tuhan mengabulkan, tapi karena <strong>doa membuat mereka tetap terhubung dengan harapan, dengan iman, dengan <em>surrender</em> yang sehat</strong>. Hasilnya? Kadang dikabulkan di tahun itu, kadang tidak. Tapi proses berdoa itu sendiri mengubah mereka: dari <em>demanding</em> (menuntut) menjadi <em>trusting</em> (percaya), dari cemas menjadi sabar.</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>• Entrepreneur yang stuck:</strong></p>
+                <p>Bisnisnya stagnan, tidak naik tidak turun. Dia sudah coba semua strategi <em>marketing</em>, ubah strategi, <em>hiring consultant</em> (menyewa konsultan). Tapi tetap <em>stuck</em>. Lalu di <em>Lailatul Qadr</em>, dia tidak minta "omset 10x lipat". Dia minta <em>clarity and guidance</em> (kejelasan dan bimbingan). "Ya Allah, tunjukkan jalan yang terbaik—apakah aku teruskan atau stop?" Beberapa minggu kemudian, ada opportunity yang muncul—bukan yang dia <em>predict</em>, tapi yang membuka pintu baru. Dia menyadari: <strong>dia sedang diatur, dinavigasi, diarahkan—bukan ditinggal sendiri</strong>.</p>
+            </div>
+
+            <p>Kehadiran malaikat di <em>Lailatul Qadr</em> mengingatkan bahwa <span class="keyword">kita tidak sendirian dalam perjuangan hidup</span>. Ada kekuatan kebaikan, <em>divine support system</em>, yang sedang bekerja—bahkan ketika kita tidak merasakannya.</p>
+            
+            <p>Ini mengubah perspektif kita dari "<em>me against the world</em>" menjadi "<em>I'm part of a bigger plan</em>". Dari "aku harus berjuang sendirian" menjadi "ada yang membantuku, bahkan ketika aku tidak tahu".</p>
+
+            <h2>C. INTISARI</h2>
+            <blockquote class="intisari">
+                Malam di mana surga dan bumi bertemu. Di mana keputusan-keputusan besar sedang dibuat, dan kita—manusia kecil dengan doa-doa sederhana—diizinkan hadir di ruangan itu. Ini bukan tentang mendiktekan nasib kita, tapi tentang menyampaikan suara kita di tempat yang tepat, di waktu yang tepat. Tentang percaya bahwa ada sistem yang lebih besar dari kita, tapi kita punya peran di dalamnya. Bahwa takdir bukan penjara, tapi partnership antara usaha kita dan rencana-Nya.
+            </blockquote>
+        </div>
+
+        <!-- AYAT 5 -->
+        <div class="section">
+            <div class="ayat-number">AYAT 5</div>
+            
+            <div class="arabic-text">
+                سَلَٰمٌ هِىَ حَتَّىٰ مَطْلَعِ ٱلْفَجْرِ
+            </div>
+            
+            <p class="translation">"Malam itu penuh kesejahteraan sampai terbit fajar."</p>
+
+            <h2>A. ENERGI KATA</h2>
+            
+            <h3>1. سَلَٰمٌ (Salam) - "Kesejahteraan/kedamaian"</h3>
+            <p><em>Salam</em> adalah root word yang melahirkan <em>Islam</em>, <em>Muslim</em>, <em>taslim</em>. Dia bukan sekadar "<em>peace</em>" dalam arti tidak ada konflik, tapi <strong>keutuhan, kelengkapan, keharmonisan, keamanan, kesejahteraan.</strong></p>
+            
+            <p>Ini adalah <em>state of being</em> di mana semuanya di tempat yang tepat, tidak ada yang kurang, tidak ada yang berlebih. Seperti <em>puzzle</em> yang setiap <em>piece</em>-nya sudah ketemu tempat. Seperti musik yang setiap notanya harmonis.</p>
+            
+            <p>Yang menarik: ayat tidak bilang "ada <em>salam</em> di dalamnya", tapi "<em>salam</em>-lah dia"—seolah malam itu sendiri adalah personifikasi kedamaian. Bukan sekadar mengandung <em>peace</em>, tapi <em>being peace itself</em> (menjadi kedamaian itu sendiri).</p>
+
+            <h3>2. حَتَّىٰ مَطْلَعِ ٱلْفَجْرِ (Hatta matla'il fajr) - "Sampai terbit fajar"</h3>
+            <p><em>Matla'</em> berarti "tempat terbit" atau "saat terbit". Ini menunjukkan <span class="keyword">durasi, kontinuitas, tidak ada jeda</span>. Dari awal malam sampai akhir, <em>salam</em> itu konsisten. Tidak ada drama, tidak ada <em>plot twist</em>, tidak ada pergolakan.</p>
+            
+            <p>Fajar adalah transisi dari kegelapan ke cahaya, dari malam ke siang, dari <em>spiritual retreat</em> ke <em>worldly activities</em>. Dan salam ini bertahan sampai detik terakhir sebelum transisi itu.</p>
+
+            <h2>B. TAFSIR MENDALAM</h2>
+            
+            <h4>▌ Filosofi di Balik Ayat:</h4>
+            <p>Ini adalah <em>closing statement</em> yang sempurna. Setelah bicara tentang kemuliaan, misteri, nilai luar biasa, dan aktivitas surgawi—ayat terakhir justru bicara tentang <em>salam</em>. <em>Peace</em>.</p>
+            
+            <p>Kenapa? Karena <strong>pencarian spiritual yang sejati selalu berakhir pada kedamaian</strong>, bukan keagungan. Bukan tentang seberapa tinggi kita terbang, tapi seberapa tenang kita mendarat. Bukan tentang seberapa banyak yang kita dapat, tapi seberapa puas kita dengan apa yang ada.</p>
+            
+            <p><em>Lailatul Qadr</em> mengajarkan bahwa <span class="keyword">malam yang paling berharga adalah malam yang paling damai</span>. Bukan yang paling produktif, paling <em>achiever</em>, paling <em>happening</em>—tapi yang paling <em>salam</em>.</p>
+            
+            <p>Bayangkan: di malam yang paling istimewa ini, yang terjadi bukan mercon atau festival atau pesta. Yang terjadi adalah ketenangan yang menonjol, keheningan yang transformative, kedamaian yang menyembuhkan.</p>
+
+            <h4>▌ Relevansi Kekinian:</h4>
+            <p>Kita hidup di zaman yang meromantisasi perjuangan. "<em>No pain no gain</em>." "<em>Hustle harder</em> (kerja lebih keras)." "<em>Beast mode</em> (mode binatang)." "<em>Grind never stops</em> (bekerja tanpa henti)" Seolah-olah nilai hidup diukur dari seberapa intense, seberapa kacau, seberapa <em>non-stop</em> kehidupan kita.</p>
+            
+            <p>Kita malu kalau hidup kita "terlalu tenang". Khawatir dibilang tidak ambisi, tidak punya motivasi, tidak penuh semangat. Kita menciptakan drama <em>artificial—scrolling</em> (scroll buatan) berita yang bikin cemas, khawatir hal-hal yang belum terjadi, membandingkan hidup kita dengan <em>highlight reel</em> orang lain—karena bagaimanapun, kita tidak nyaman dengan kedamaian.</p>
+            
+            <p>Padahal, ayat ini menutup surat tentang malam paling mulia dengan satu kata: <strong><em>salam</em></strong>. Bukan "<em>action</em>", bukan "<em>achievement</em>" (pencapaian)—tapi kedamaian.</p>
+
+            <h4>Contoh konkret:</h4>
+            
+            <div class="example-box">
+                <p><strong>• Professional yang akhirnya paham:</strong></p>
+                <p>Dulu dia mengukur "hari yang baik" dari seberapa banyak yang dia selesaikan, seberapa penuh kalendar, seberapa banyak email yang dibalas. Tapi dia selalu lelah, cemas, dan ironisnya—tidak produktif. Sampai dia baca konsep "<em>deep work</em>" dan mencoba: tenang, focus pada satu hal, menepis distraksi, kerja penuh kedamaian. Hasilnya? Lebih banyak yang selesai, kualitas lebih tinggi, dan dia pulang dengan energi, bukan dengan kelelahan. Dia menemukan bahwa <strong>produktivitas sejati lahir dari kedamaian, bukan kekacauan</strong>.</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>• Orang tua yang memilih damai:</strong></p>
+                <p>Tetangganya anaknya les ini-itu, jadwal penuh dari pagi sampai malam, weekend penuh kompetisi dan pencapaian. Dia sempat <em>insecure</em>: "Apa anakku bakal kalah?" Tapi dia pilih berbeda: lebih banyak waktu keluarga yang pelan, lebih banyak main bebas, lebih banyak ngobrol santai. Anaknya tumbuh percaya diri, aman secara emosi, dan ironisnya—perform bagus juga karena dia pembelajar yang bahagia, bukan berprestasi tapi stress. Dia membuktikan bahwa <strong>anak yang tumbuh dalam <em>salam</em> akan lebih berkembang dari anak yang tumbuh dalam tekanan</strong>.</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>• Creator yang <em>sustainable</em>:</strong></p>
+                <p>Temannya posting setiap hari, mengejar viral, stress tentang algorithm, membandingkan angka. Kelelahan dalam 6 bulan. Dia pilih yang berbeda: posting kalau ada yang murni ingin dibagi, fokus pada nilai bukan metrik kesombongan, ngejaga <em>mental health</em>-nya. <em>Growth</em>-nya lebih slow? Mungkin. Tapi dia masih berkarya setelah 5 tahun, masih enjoy prosesnya, masih <em>authentic</em>. Dia memahami bahwa <strong>marathon dimenangkan oleh yang lari dengan <em>peace</em>, bukan yang sprint dengan panik</strong>.</p>
+            </div>
+
+            <div class="example-box">
+                <p><strong>• Pencari spiritual yang menemukan:</strong></p>
+                <p>Dulu dia lompat dari satu pelatihan ke pelatihan lain—retreat meditasi, buku spiritual, mencari guru, mencoba setiap "jalur pintas pencerahan". Melelahkan dan membingungkan. Sampai satu Ramadan, di <em>Lailatul Qadr</em>, dia cuma duduk dan diam. Tidak ada agenda, tidak ada target, cuma hadir dengan damai. Dan di situlah dia merasa paling dekat dengan Tuhan—bukan di <em>workshop</em> mahal atau <em>retreat eksklusif</em>, tapi di keheningan yang sederhana. Dia menyadari: <strong>Tuhan tidak perlu dicari dengan heboh, Dia ditemukan dalam kedamaian</strong>.</p>
+            </div>
+
+            <p>Ayat ini adalah <span class="keyword">slip izin untuk melambat</span>. <em>Permission</em> untuk tidak selalu dalam mode "<em>do more, be more, achieve more</em>". Permission untuk sekadar... menjadi. Dalam kedamaian. Dalam kecukupan. Dalam syukur.</p>
+            
+            <p>Malam yang paling mulia tidak ribut. Dia tenang. Dan di ketenangan itu, ada kekuatan yang tidak dimiliki oleh kekacauan.</p>
+            
+            <p>Sampai terbit fajar—artinya <em>salam</em> ini punya titik akhir. Besok kita akan kembali ke dunia yang <em>busy</em>, <em>demanding</em>, <em>chaotic</em>. Tapi malam ini, dalam durasi yang terbatas ini, kita diizinkan untuk sepenuhnya istirahat dalam damai. Dan <em>rest</em> yang berkualitas ini adalah yang membuat kita siap untuk besok.</p>
+            
+            <p>Seperti atlet yang tahu bahwa "pemulihan adalah bagian dari Latihan". Seperti tanah yang perlu dibiarkan agar subur lagi. Seperti musik yang butuh jeda agar harmonis. <strong><em>Salam</em> bukan kelemahan—dia adalah kebijaksanaan (<em>wisdom</em>)</strong>.</p>
+
+            <h2>C. INTISARI</h2>
+            <blockquote class="intisari">
+                Di penghujung surat yang bicara tentang kemuliaan dan keagungan, Tuhan menutup dengan kata yang paling lembut: salam. Seolah berbisik, "Aku tahu kamu lelah. Aku tahu dunia ini keras. Aku tahu kamu selalu merasa belum cukup. Maka Aku beri kamu malam ini—malam yang tidak menuntut apa-apa selain kehadiranmu. Malam yang tidak mengukurmu dari pencapaianmu. Malam yang hanya ingin kamu merasakan: peace. Kedamaian yang utuh, sampai fajar tiba dan kamu harus kembali lagi ke dunia. Tapi malam ini, istirahatlah. Malam ini, kamu cukup."
+            </blockquote>
+        </div>
+
+        <!-- REFLEKSI PENUTUP -->
+        <div class="refleksi">
+            <h2 style="text-align: center; border: none;">REFLEKSI PENUTUP: Pola & Langkah Nyata</h2>
+
+            <h3>POLA YANG BISA DIAMBIL:</h3>
+
+            <h4>1. Kualitas Mengalahkan Kuantitas—Selalu</h4>
+            <p>Dari ayat "lebih baik dari seribu bulan", kita belajar bahwa hidup yang bermakna bukan diukur dari seberapa panjang atau seberapa banyak, tapi <strong>seberapa dalam dan seberapa hadir</strong> kita menjalaninya.</p>
+            <p><strong>Aplikasi:</strong> Stop mengukur hari dari "seberapa produktif" dan mulai tanya "seberapa berarti?" Stop mengejar "busy" dan mulai mengejar "manfaat". Stop merasa bersalah karena "tidak cukup", dan mulai hargai "aku hadir dengan utuh di momen ini".</p>
+
+            <h4>2. <em>Mystery</em> Bukan Musuh—Dia Adalah Undangan</h4>
+            <p>Dari pertanyaan "dan tahukah kamu apakah malam kemuliaan itu?", kita belajar bahwa <strong>tidak semua hal perlu atau bisa kita kontrol</strong>. Ada ruang untuk surprise, untuk berkah, untuk waktu ilahi yang lebih bijak dari planning kita.</p>
+            <p><strong>Aplikasi:</strong> Stop <em>obsessing</em> untuk tahu dan mengontrol segalanya. Bikin <em>peace</em> dengan ketidakpastian. Percaya pada process bahkan ketika kita tidak bisa melihat hasil. Pasrah bukan menyerah—dia adalah <strong>percaya bahwa ada yang lebih besar dari kita yang sedang mengatur</strong>.</p>
+
+            <h4>3. Ketenangan Adalah Kekuatan, Bukan Kelemahan</h4>
+            <p>Dari penutup "<em>salam</em> sampai terbit fajar", kita belajar bahwa <strong>malam yang paling mulia adalah yang paling damai</strong>. Bahwa istirahat itu produktif. Bahwa lambat itu kuat. Bahwa diam itu sangat dalam.</p>
+            <p><strong>Aplikasi:</strong> Stop meromantisasi budaya kerja keras. Belajar untuk istirahat tanpa merasa bersalah. Buat jarak untuk hening, sunyi. Mengerti bahwa <strong>pemulihan bukan kemewahan tapi kebutuhan</strong>. Bahwa kamu bisa berprestasi tanpa lelah mental, produktif tanpa kacau, sukses tanpa mengorbankan kedamaian.</p>
+
+            <h3 style="margin-top: 50px;">LANGKAH NYATA (ACTIONABLE):</h3>
+
+            <h4>1. Ritual "Lailatul Qadr" dalam Kehidupan Sehari-hari</h4>
+            <p>Kamu tidak perlu tunggu Ramadan untuk menerapkan prinsip <em>Lailatul Qadr</em>. Mulai sekarang:</p>
+            <ul>
+                <li><strong>Pilih satu malam dalam seminggu</strong> untuk "<em>unplug</em>" total—no HP, no laptop, <em>no distraction</em>. Cuma kamu, Tuhan, dan keheningan.</li>
+                <li>Isi malam itu dengan <strong>refleksi, jurnal syukur, doa yang jujur</strong> (bukan sekadar keinginan, tapi percakapan nyata dengan Tuhan).</li>
+                <li>Rasakan perbedaannya: satu malam yang hadir penuh bisa <em>reset</em> seluruh minggu kamu.</li>
+            </ul>
+
+            <h4>2. Audit "Waktu Berkualitas" vs "Waktu Terbuang"</h4>
+            <p>Buat pelacakan sederhana selama seminggu:</p>
+            <ul>
+                <li>Kapan kamu merasa "hadir penuh" dan kapan kamu "<em>autopilot</em>"?</li>
+                <li>Aktivitas mana yang mengisi energi dan mana yang menguras?</li>
+                <li>Relationship mana yang penuh arti dan mana yang kering?</li>
+            </ul>
+            <p>Lalu <strong>desain ulang hidupmu</strong>: kurangi yang <em>autopilot</em> dan <em>draining</em>, tambah yang <em>present</em> dan berenergi. Ingat: bukan soal "aku punya banyak waktu", tapi "aku punya waktu yang berkualitas".</p>
+
+            <h4>3. Practice "Jeda Suci" Sebelum Keputusan Besar</h4>
+            <p>Setiap kali ada titik keputusan—mau terima tawaran kerja, mau menjalin hubungan, mau mulai project baru—jangan langsung memutuskan.</p>
+            <p>Ambil <strong>"jeda suci"</strong>:</p>
+            <ul>
+                <li>Tarik napas, <em>shalat istikharah</em>, refleksi mendalam.</li>
+                <li>Tanya bukan "apa untungnya?" tapi <strong>"apa ini selaras dengan tujuanku? Apa ini membawa kedamaian atau kekacauan? Apa ini dari ego atau dari kebijaksanaan?"</strong></li>
+                <li>Percaya bahwa jawaban yang datang dari kedamaian adalah yang terbaik, meskipun mungkin bukan yang paling "ambisius".</li>
+            </ul>
+
+            <h4>4. Buat "Rutinitas Salam"</h4>
+            <p>Buat rutinitas harian yang khusus untuk menumbuhkan kedamaian:</p>
+            <ul>
+                <li><strong>Pagi:</strong> 5 menit duduk diam sebelum cek HP. Tentukan maksud untuk hari itu bukan dari <em>to-do list</em>, tapi dari "aku mau jadi apa hari ini?" (Sabar/Baik/Hadir?)</li>
+                <li><strong>Siang Hari:</strong> 2 menit Latihan pernapasan saat merasa overwhelmed. Reset.</li>
+                <li><strong>Malam:</strong> 10 menit jurnal rasa syukur—tulis 3 hal yang bikin hari ini "<em>enough</em>", tanpa memedulikan seberapa produktif kamu tadi.</li>
+            </ul>
+
+            <h4>5. Mendefinisikan Ulang "Hari Produktif"</h4>
+            <p>Stop mengukur hari yang baik dari seberapa penuh calendar atau seberapa panjang <em>to-do list</em> yang tercentang.</p>
+            <p>Start mengukur dari:</p>
+            <ul>
+                <li><strong>Apakah saya hadir sepenuhnya di saat-saat penting?</strong> (Quality time dengan keluarga, sesi kerja yang mendalam, percakapan penuh makna)</li>
+                <li><strong>Apakah saya membuat pilihan yang sesuai dengan nilai-nilai saya?</strong> (Bukan cuma mengikuti urgensi atau tekanan eksternal)</li>
+                <li><strong>Apakah aku mengakhiri hari dengan damai?</strong> (Bukan dengan kelelahan atau penyesalan)</li>
+            </ul>
+            <p>Jika jawabannya yes untuk ketiga hal ini, <strong>itu adalah hari yang productive—tanpa peduli seberapa banyak yang "selesai"</strong>.</p>
+
+            <h3 style="margin-top: 50px; text-align: center; color: #ffd700;">CLOSING STATEMENT:</h3>
+            <p style="text-align: center; font-size: 1.2em; color: #f0e68c; font-style: italic;">
+                Lailatul Qadr bukan hanya tentang mencari satu malam di Ramadan. Dia adalah prinsip hidup: bahwa dalam setiap malam, dalam setiap momen, ada potensi untuk kemuliaan—jika kita hadir dengan utuh. Bahwa hidup yang baik bukan yang paling panjang atau paling penuh, tapi yang paling sadar. Dan bahwa di tengah dunia yang mengajarkan kita untuk selalu "more", Tuhan berbisik: "Salam. Peace. You are enough."
+            </p>
+        </div>
+
+        <!-- EPILOG -->
+        <div class="epilog">
+            <h2 class="epilog-title">"Surat untuk Kamu yang Lelah Menghitung"</h2>
+
+            <p>Kamu tahu, aku tahu bagaimana rasanya.</p>
+
+            <p>Rasanya bangun pagi dengan <em>to-do list</em> yang lebih panjang dari kepercayaan diri kamu. Rasanya scrolling LinkedIn dan merasa semua orang ada di tempat yang lebih "maju". Rasanya merayakan ulang tahun dan hitung-hitungan, "Umur segini harusnya sudah dapat apa?" Rasanya berbaring malam-malam dengan pertanyaan yang sama: "Kenapa aku masih di sini?"</p>
+
+            <p>Kita hidup di zaman yang mengajari kita untuk selalu <strong>menghitung</strong>. Menghitung followers, menghitung gaji, menghitung pencapaian, menghitung tahun, menghitung "produktivitas", menghitung berapa lama lagi sampai kita "tiba" di tempat yang bahkan kita tidak yakin itu kemana.</p>
+
+            <p>Dan di tengah obsesi menghitung itu, datang surat kecil 5 ayat ini—<em>Al-Qadr</em>—berbisik sesuatu yang mengganggu semua <em>spreadsheet</em> kita: <strong>"Satu malam bisa lebih berharga dari seribu bulan."</strong></p>
+
+            <p>Tunggu. Apa?</p>
+
+            <p>Tuhan, yang menciptakan waktu, yang mengatur rotasi bumi, yang tahu persis berapa detik umur kita—Tuhan itu sedang bilang: <span class="keyword">kalkulasi kamu tentang waktu itu salah</span>. Bahwa ada matematika lain, ekonomi lain, logika lain yang tidak diajarkan di sekolah atau seminar motivasi.</p>
+
+            <p>Logika di mana <strong>satu percakapan jujur bisa lebih mengubah hidup dari seribu pagi <em>gym</em> yang autopilot</strong>.</p>
+
+            <p>Logika di mana <strong>satu keputusan berani bisa lebih mendefinisikan dari bertahun-tahun bermain aman</strong>.</p>
+
+            <p>Logika di mana <strong>satu malam berdoa dengan air mata bisa lebih transformatif dari seribu hari mengeluh dengan kemarahan</strong>.</p>
+
+            <p style="margin-top: 40px;">Mungkin kamu yang sekarang lagi lelah mental karena merasa hidupmu berjalan terlalu lambat. Semua orang di sekitarmu kayaknya sudah beli rumah, nikah, punya jabatan, punya "stabilitas"—sementara kamu masih di fase "mencari tahu". Dan kamu lelah. Lelah membanding. Lelah merasa tertinggal.</p>
+
+            <p>Atau mungkin kamu yang hidupnya justru terlalu cepat. Calendar penuh, notifikasi non-stop, pertemuan berturut-turut, tapi kamu tidak ingat <strong>kapan terakhir kali kamu bernafas</strong>. Kapan terakhir kali kamu duduk tanpa agenda. Kapan terakhir kali kamu merasa "cukup".</p>
+
+            <p>Atau mungkin kamu yang <em>stuck</em> di tengah-tengah. Tidak terlalu gagal untuk menyerah, tidak terlalu sukses untuk puas. Cuma... jalan di tempat. Hari berganti hari, tapi kamu merasa tidak kemana-mana. Dan kamu mulai bertanya: "Apa hidup cuma ini?"</p>
+
+            <p style="margin-top: 40px; font-weight: 600;">Dengar.</p>
+
+            <p><em>Al-Qadr</em> datang bukan untuk menambahkan tekanan lain—"Kamu harus cari <em>Lailatul Qadr</em>! Kamu harus maksimalkan! Kamu harus productive di bulan Ramadan!"</p>
+
+            <p><strong>Tidak!</strong></p>
+
+            <p>Dia datang untuk memberi kamu <span class="keyword">izin untuk berhenti menghitung</span>.</p>
+
+            <p>Izin untuk percaya bahwa <strong>kehidupan kamu tidak diukur dari seberapa cepat kamu sampai, tapi seberapa hadir kamu dalam perjalanan</strong>.</p>
+
+            <p>Izin untuk tahu bahwa Tuhan tidak pakai penyiar seperti bos kamu. Dia tidak pakai <em>metrics</em> seperti Instagram. Dia tidak pakai garis waktu seperti masyarakat.</p>
+
+            <p><strong>Dia pakai "<em>salam</em>"—kedamaian.</strong></p>
+
+            <p>Malam yang paling mulia, di surat ini, tidak digambarkan dengan prestasi, kembang api, atau perayaan. Dia digambarkan dengan satu kata: <strong><em>peace</em></strong>.</p>
+
+            <p>Seolah Tuhan sedang bilang: "Aku tahu kamu capek. Aku tahu kamu merasa belum cukup. Aku tahu kamu membandingkan diri kamu dengan orang lain setiap hari. Maka Aku kasih kamu ini: satu malam di mana kamu tidak perlu membuktikan apapun. Satu malam di mana kamu boleh hanya... "menjadi". Dalam kedamaian."</p>
+
+            <p style="margin-top: 40px;">Mungkin sekarang bukan Ramadan. Mungkin kamu bahkan tidak tahu kapan <em>Lailatul Qadr</em> tahun ini. Mungkin kamu sudah melewati shalat entah berapa lama. Mungkin kamu merasa "tidak memenuhi syarat" untuk dapat berkah semacam ini.</p>
+
+            <p>Tapi izinkan aku remind kamu:</p>
+
+            <p><strong><em>Lailatul Qadr</em> bukan hadiah untuk yang sempurna. Dia adalah pemberian untuk yang lelah.</strong></p>
+
+            <p>Bukan untuk yang sudah "sampai". Tapi untuk yang masih berjuang.</p>
+
+            <p>Bukan untuk yang hidupnya sudah "beres". Tapi untuk yang masih mencari.</p>
+
+            <p>Dan prinsip-prinsipnya—<span class="keyword">kualitas melebihi kuantitas, hadir melebihi produktivitas, kedamaian melebihi tekanan</span>—itu bukan hanya berlaku di satu malam. Itu adalah cara hidup.</p>
+
+            <p><strong>Mulai sekarang. Mulai dari hari ini. Mulai dari momen ini.</strong></p>
+
+            <p style="margin-top: 40px;">Jadi untuk kamu yang <em>stuck</em> di pekerjaan yang menguras tapi tidak penuh—<strong>ingat: satu keputusan berani untuk ubah strategi bisa lebih mengubah hidup dari 10 tahun bertahan dengan menderita</strong>.</p>
+
+            <p>Untuk kamu yang patah hati dan merasa buang-buang waktu di relationship yang salah—<strong>ingat: satu hari melepaskan dengan ikhlas bisa lebih menyembuhkan dari bertahun-tahun bertahan dengan penyangkalan</strong>.</p>
+
+            <p>Untuk kamu yang <em>insecure</em> tentang pencapaian—<strong>ingat: satu project yang kamu kerjakan dengan antusias bisa lebih berdampak dari 100 project yang kamu kerjakan dengan setengah hati</strong>.</p>
+
+            <p>Untuk kamu yang kewalahan dengan budaya kerja keras—<strong>ingat: satu hari yang kamu jalani dengan <em>peace</em> bisa lebih memulihkan dari seminggu liburan yang penuh tekanan karena kamu tidak bisa memutuskan</strong>.</p>
+
+            <p>Untuk kamu yang merasa hidupmu biasa-biasa saja—<strong>ingat: kehidupan biasa yang dijalani dengan kehadiran yang luar biasa adalah kehidupan yang paling berarti</strong>.</p>
+
+            <p style="margin-top: 40px;">Tuhan tidak butuh kita jadi manusia super.</p>
+
+            <p>Dia cuma mau kita <strong>hadir. Sadar. Penuh syukur</strong>.</p>
+
+            <p>Karena satu momen yang dijalani sepenuhnya, dirasakan sepenuhnya, dihargai sepenuhnya—</p>
+
+            <p><strong>Itu lebih berharga dari seribu momen yang kita lewatkan dalam <em>autopilot</em>.</strong></p>
+
+            <p>Satu percakapan yang jujur lebih dalam dari seribu chat yang dangkal.</p>
+
+            <p>Satu pelukan yang tulus lebih hangat dari seribu <em>like</em> di sosial media.</p>
+
+            <p>Satu doa yang patah lebih sampai dari seribu doa yang hafalan.</p>
+
+            <p>Satu langkah dengan yakin lebih maju dari seribu langkah dengan ragu.</p>
+
+            <p style="margin-top: 40px;">Malam ini, atau besok malam, atau lusa—tidak peduli itu Ramadan atau bukan, tidak peduli kamu shalat atau belum—</p>
+
+            <p>Coba luangkan waktu.</p>
+
+            <p>Matikan HP.</p>
+
+            <p>Duduk sendirian.</p>
+
+            <p>Dan tanya sama diri kamu sendiri:</p>
+
+            <p style="font-style: italic; color: #ffd700;">"Apa yang aku kejar selama ini? Pencapaian atau kedamaian? Validasi atau pemenuhan kebutuhan? <em>Quantity</em> atau <em>quality</em>?"</p>
+
+            <p>Dan jika jawabannya membuat kamu tidak nyaman—<strong>bagus</strong>.</p>
+
+            <p>Karena ketidaknyamanan itu adalah awal perubahan.</p>
+
+            <p>Tidak nyaman itu adalah alarm yang berbunyi: <strong>"Bangunlah. Kamu sedang menjalani definisi sukses orang lain. Kembalilah ke definisimu sendiri."</strong></p>
+
+            <p style="margin-top: 40px;"><em>Al-Qadr</em> adalah reminder bahwa <strong>hidup tidak harus keras untuk berarti</strong>.</p>
+
+            <p>Tidak harus viral untuk berharga.</p>
+
+            <p>Tidak harus luar biasa untuk merasa cukup.</p>
+
+            <p><strong>Kadang, malam yang paling mengubah hidup adalah malam yang paling tenang.</strong></p>
+
+            <p>Kadang, momen yang paling suci adalah momen yang paling sederhana.</p>
+
+            <p>Kadang, keberkahan terbesar datang bukan dalam bentuk pencapaian—</p>
+
+            <p>Tapi dalam bentuk <strong>damai dengan tempatmu berada</strong>.</p>
+
+            <p style="margin-top: 40px; font-size: 1.2em; color: #ffd700;">Jadi berhentilah menghitung.</p>
+
+            <p style="font-size: 1.2em; color: #ffd700;">Berhentilah membanding.</p>
+
+            <p style="font-size: 1.2em; color: #ffd700;">Berhentilah merasa "belum cukup".</p>
+
+            <p style="font-size: 1.3em; font-weight: 600; color: #ffd700; margin-top: 30px;"><strong>Kamu sudah cukup. Persis seperti dirimu. Saat ini.</strong></p>
+
+            <p>Hidupmu tidak perlu sempurna untuk berharga.</p>
+
+            <p>Kamu tidak perlu "sampai" untuk layak menerima kedamaian.</p>
+
+            <p>Kamu boleh lambat tanpa harus merasa bersalah.</p>
+
+            <p>Kamu boleh istirahat tanpa harus merasa malas.</p>
+
+            <p>Kamu boleh hanya menjadi—tanpa harus terus-menerus menjadi.</p>
+
+            <p>Karena terkadang, <strong>menjadi saja sudah cukup</strong>.</p>
+
+            <p>Kehadiran saja sudah cukup.</p>
+
+            <p style="font-size: 1.2em; margin-top: 30px;"><strong>Kamu sudah cukup.</strong></p>
+
+            <p style="margin-top: 50px; font-style: italic; color: #b8860b;">Dan ketika malam itu tiba—entah Lailatul Qadr yang literal atau "Lailatul Qadr" metaforis dalam hidupmu, momen yang mengubah segalanya—</p>
+
+            <p style="font-style: italic; color: #b8860b;">Semoga kamu mengenalinya.</p>
+
+            <p style="font-style: italic; color: #b8860b;">Bukan karena dia datang dengan gemuruh.</p>
+
+            <p style="font-style: italic; color: #b8860b;">Tapi karena dia datang dengan salam.</p>
+
+            <p style="font-style: italic; color: #daa520; font-size: 1.1em; margin-top: 20px;">Kedamaian yang membisikkan: "Selamat datang di rumah. Kamu sudah lama mencari. Tapi semua yang kamu butuhkan, sudah kamu miliki."</p>
+
+            <p style="font-size: 1.3em; font-weight: 600; color: #ffd700; margin-top: 40px; text-align: center;">Salam. Sampai terbit fajar. Sampai kamu siap untuk dunia lagi.</p>
+
+            <p style="font-size: 1.3em; font-weight: 600; color: #ffd700; text-align: center;">Tapi malam ini—istirahatlah, saudaraku. Istirahatlah.</p>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta">
+            <h3>Bagikan Kebaikan Ini</h3>
+            <p>Jika tulisan ini menyentuh hatimu, bagikan kepada mereka yang mungkin membutuhkannya.</p>
+            <p style="margin-top: 20px; font-size: 1.2em;">✨ Karena kadang, satu share bisa jadi "Lailatul Qadr" buat orang lain ✨</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Generate stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 200;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.opacity = Math.random() * 0.5 + 0.3;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Scroll progress indicator
+        function updateScrollIndicator() {
+            const indicator = document.getElementById('scrollIndicator');
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
+            indicator.style.width = scrollPercentage + '%';
+        }
+
+        // Initialize
+        createStars();
+        window.addEventListener('scroll', updateScrollIndicator);
+        updateScrollIndicator();
+
+        // Smooth reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.section, .info-box, .refleksi, .epilog').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

@@ -1,0 +1,1060 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asy-Syams: Terang Itu Bukan Di Luar, Tapi Di Dalam Yang Berani Menyinari</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amber1:  #f7c948;
+    --amber2:  #d4860a;
+    --amber3:  #ffe98a;
+    --amber4:  #8a5200;
+    --solar:   #ff9b0a;
+    --dawn:    #e8521a;
+    --bg:      #080808;
+    --bg2:     #0e0c07;
+    --bg3:     #121008;
+    --card:    #100e08;
+    --border:  #2c2410;
+    --text:    #ecdcb4;
+    --muted:   #8a7a56;
+    --glow:    rgba(215,140,20,.15);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 2;
+    min-height: 100vh;
+  }
+
+  /* ── GOLD GRADIENT TEXT ── */
+  .gold {
+    background: linear-gradient(135deg, var(--amber2) 0%, var(--amber1) 40%, var(--amber3) 58%, var(--solar) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── SUN CORONA ANIMATION ── */
+  @keyframes coronaPulse {
+    0%, 100% { opacity: .18; transform: translateX(-50%) scale(1); }
+    50%       { opacity: .28; transform: translateX(-50%) scale(1.08); }
+  }
+  @keyframes rayRotate {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to   { transform: translateX(-50%) rotate(360deg); }
+  }
+  @keyframes drift { to { background-position: 48px 48px; } }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(32px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  @keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: relative;
+    padding: 90px 40px 80px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% -10%, #1f1500 0%, #0c0900 40%, #080808 80%);
+    border-bottom: 1px solid #2c1e08;
+  }
+
+  /* dot-grid */
+  .header::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle, rgba(215,140,20,.1) 1px, transparent 1px);
+    background-size: 48px 48px;
+    animation: drift 60s linear infinite;
+    pointer-events:none;
+  }
+
+  /* solar corona */
+  .header-sun {
+    position:absolute;
+    top: -140px; left:50%;
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse, rgba(215,140,20,.22) 0%, rgba(230,90,20,.08) 40%, transparent 70%);
+    border-radius:50%;
+    animation: coronaPulse 6s ease-in-out infinite;
+    pointer-events:none;
+  }
+
+  /* sun rays */
+  .header-rays {
+    position:absolute;
+    top: -80px; left:50%;
+    width: 700px; height: 700px;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg, rgba(215,140,20,.04) 10deg, transparent 20deg,
+      transparent 45deg, rgba(215,140,20,.04) 55deg, transparent 65deg,
+      transparent 90deg, rgba(215,140,20,.04) 100deg, transparent 110deg,
+      transparent 135deg, rgba(215,140,20,.04) 145deg, transparent 155deg,
+      transparent 180deg, rgba(215,140,20,.04) 190deg, transparent 200deg,
+      transparent 225deg, rgba(215,140,20,.04) 235deg, transparent 245deg,
+      transparent 270deg, rgba(215,140,20,.04) 280deg, transparent 290deg,
+      transparent 315deg, rgba(215,140,20,.04) 325deg, transparent 335deg
+    );
+    border-radius:50%;
+    animation: rayRotate 90s linear infinite;
+    pointer-events:none;
+  }
+
+  .header-bismillah {
+    font-family: 'Traditional Arabic','Scheherazade New',serif;
+    font-size: 2em;
+    color: var(--amber1);
+    opacity: .55;
+    margin-bottom: 28px;
+    letter-spacing: 4px;
+    position:relative; z-index:1;
+    animation: fadeUp .8s ease both;
+  }
+
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.8em, 6vw, 4.2em);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 4px;
+    position:relative; z-index:1;
+    margin-bottom:10px;
+    animation: fadeUp .9s ease .1s both;
+  }
+
+  .header-sub {
+    font-size: .85em;
+    color: var(--muted);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+    position:relative; z-index:1;
+    margin-bottom: 30px;
+    animation: fadeUp 1s ease .2s both;
+  }
+
+  .divider-solar {
+    width: 160px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--amber2), var(--amber1), var(--solar), var(--amber2), transparent);
+    margin: 22px auto;
+    position:relative; z-index:1;
+  }
+  .divider-solar::before {
+    content: '☀';
+    position:absolute; top:50%; left:50%;
+    transform: translate(-50%,-50%);
+    color: var(--amber1); font-size: .8em;
+    background: var(--bg); padding: 0 8px;
+    opacity: .7;
+  }
+
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.1em, 2.5vw, 1.4em);
+    color: #d4b870;
+    max-width: 700px;
+    margin: 0 auto;
+    position:relative; z-index:1;
+    line-height: 1.75;
+    animation: fadeUp 1s ease .3s both;
+  }
+
+  /* ── SURAT OVERVIEW ── */
+  .surat-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 56px;
+    animation: fadeUp .9s ease .4s both;
+  }
+  .meta-chip {
+    background: linear-gradient(160deg, #141008, #0e0c06);
+    border: 1px solid #2c2010;
+    border-radius: 12px;
+    padding: 18px 20px;
+    text-align: center;
+  }
+  .meta-chip .meta-label {
+    font-size: .72em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber2);
+    font-family: 'Cinzel', serif;
+    margin-bottom: 8px;
+  }
+  .meta-chip .meta-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15em;
+    font-weight: 600;
+    color: var(--amber1);
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 940px; margin: 0 auto; padding: 56px 24px 90px; }
+
+  /* ── PENGANTAR ── */
+  .pengantar {
+    background: linear-gradient(160deg, #141008, #0d0b06);
+    border: 1px solid #2c2010;
+    border-top: 3px solid var(--amber2);
+    border-radius: 0 0 16px 16px;
+    padding: 40px 44px;
+    margin-bottom: 52px;
+  }
+  .pengantar h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--amber2);
+  }
+  .pengantar p {
+    color: #d0bc8c;
+    font-size: 1.02em;
+    text-align: justify;
+  }
+
+  /* ── AYAT SECTION ── */
+  .ayat-section {
+    position: relative;
+    background: linear-gradient(160deg, #131008, #0e0c07);
+    border: 1px solid #2c2010;
+    border-left: 3px solid var(--amber2);
+    border-radius: 16px;
+    padding: 52px 48px;
+    margin-bottom: 56px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .75s ease, transform .75s ease, box-shadow .3s;
+    box-shadow: 0 4px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(200,160,40,.05);
+  }
+  .ayat-section.visible {
+    opacity:1; transform:translateY(0);
+  }
+  .ayat-section:hover {
+    box-shadow: 0 8px 60px rgba(0,0,0,.8), 0 0 0 1px rgba(215,140,20,.1);
+  }
+
+  /* corner ornament */
+  .ayat-section::before {
+    content: '✦';
+    position:absolute; top:20px; right:24px;
+    color: var(--amber2); opacity:.2; font-size:1.3em;
+  }
+
+  /* ── GROUPED AYAT ── */
+  .group-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #1e1600, #2a1e00);
+    border: 1px solid var(--amber4);
+    border-radius: 30px;
+    padding: 6px 18px 6px 10px;
+    margin-bottom: 28px;
+    font-size: .8em;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber1);
+  }
+  .group-label .g-dot {
+    width: 8px; height: 8px;
+    background: var(--solar);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--solar);
+  }
+
+  /* ── AYAT NUMBER ── */
+  .ayat-number {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 32px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .ayat-number .num {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:40px; height:40px;
+    border: 1px solid var(--amber2);
+    border-radius:50%;
+    font-size:.7em;
+    background: linear-gradient(135deg, #201800, #150e00);
+    color: var(--amber1);
+    flex-shrink:0;
+  }
+  /* multiple-ayat badge */
+  .ayat-number .num-range {
+    display:inline-flex; align-items:center; justify-content:center;
+    padding: 0 14px; height:40px;
+    border: 1px solid var(--amber2);
+    border-radius:20px;
+    font-size:.68em;
+    background: linear-gradient(135deg, #201800, #150e00);
+    color: var(--amber1);
+    flex-shrink:0;
+    letter-spacing:1px;
+  }
+
+  h2.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1em;
+    font-weight: 700;
+    margin: 38px 0 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #2c2010;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  h3.sub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 28px 0 10px;
+    display: flex; align-items: center; gap: 12px;
+    font-style: italic;
+  }
+  h3.sub-title::before {
+    content:'';
+    display:inline-block;
+    width:20px; height:2px;
+    background: linear-gradient(to right, var(--solar), var(--amber1));
+    flex-shrink:0;
+  }
+
+  /* ── ARABIC ── */
+  .arabic-wrap {
+    text-align: center;
+    margin: 32px 0 10px;
+    padding: 32px 24px;
+    background: radial-gradient(ellipse at center, #1c1400 0%, #0c0a00 75%);
+    border-radius: 12px;
+    border: 1px solid #322410;
+    position: relative;
+  }
+  .arabic-wrap::before, .arabic-wrap::after {
+    content: '✦';
+    position:absolute; top:50%; transform:translateY(-50%);
+    color: var(--amber2); opacity:.22; font-size:1.1em;
+  }
+  .arabic-wrap::before { left:20px; }
+  .arabic-wrap::after  { right:20px; }
+
+  .arabic {
+    font-family: 'Traditional Arabic','Scheherazade New','KFGQPC Uthmanic Script HAFS',serif;
+    font-size: clamp(2.2em, 5.5vw, 3.4em);
+    line-height: 2;
+    background: linear-gradient(135deg, var(--amber4) 0%, var(--amber1) 35%, var(--amber3) 55%, var(--solar) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    direction: rtl;
+  }
+
+  /* multi-ayat arabic */
+  .arabic.multi {
+    font-size: clamp(1.9em, 4.5vw, 2.8em);
+  }
+
+  .translation {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.05em;
+    margin: 10px 0 32px;
+    line-height: 1.8;
+  }
+
+  /* ── ENERGI KATA CHIP ── */
+  .energi-chip {
+    display: inline-block;
+    background: linear-gradient(135deg, #1e1600 0%, #2c1e00 100%);
+    border: 1px solid var(--amber4);
+    border-left: 3px solid var(--solar);
+    color: var(--amber1);
+    padding: 10px 20px;
+    border-radius: 0 30px 30px 0;
+    font-size: .93em;
+    font-weight: 600;
+    margin: 22px 0 10px;
+    letter-spacing: .5px;
+    font-family: 'Cinzel', serif;
+  }
+
+  /* ── PARAGRAPHS ── */
+  p {
+    margin-bottom: 16px;
+    color: #d4c49e;
+    text-align: justify;
+    font-size: 1.01em;
+  }
+
+  strong { color: var(--amber1); font-weight:600; }
+  em { color: #c8a858; font-style: italic; }
+
+  /* ── RELEVANCE BOX ── */
+  .relevance-box {
+    background: linear-gradient(160deg, #141008, #0e0b06);
+    border-left: 3px solid var(--amber3);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 26px 0;
+  }
+  .relevance-label {
+    font-size: .75em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber2);
+    margin-bottom: 14px;
+    font-family: 'Cinzel', serif;
+  }
+  .relevance-box p:last-child { margin-bottom:0; }
+
+  /* ── APLIKASI LIST ── */
+  .aplikasi-list {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+  }
+  .aplikasi-list li {
+    padding: 10px 0 10px 28px;
+    position: relative;
+    color: #d0bc8c;
+    font-size: .98em;
+    border-bottom: 1px solid #201a0a;
+  }
+  .aplikasi-list li:last-child { border-bottom: none; }
+  .aplikasi-list li::before {
+    content: '→';
+    position: absolute; left: 0;
+    color: var(--solar);
+    font-weight: 700;
+  }
+
+  /* ── INTISARI ── */
+  .intisari {
+    position: relative;
+    background: linear-gradient(160deg, #1c1600, #140f00);
+    border: 1px solid #3c2c10;
+    border-radius: 12px;
+    padding: 32px 36px 28px;
+    margin: 32px 0 0;
+    color: #e4d098;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1em;
+    line-height: 1.9;
+    font-style: italic;
+  }
+  .intisari::before {
+    content: '"';
+    position:absolute; top:-20px; left:28px;
+    font-size:5em; line-height:1;
+    background: linear-gradient(to bottom, var(--amber1), var(--amber2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-family:'Cinzel',serif;
+    font-style: normal;
+  }
+  .intisari-label {
+    font-size: .7em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--amber2);
+    margin-bottom: 14px;
+    font-family: 'Cinzel', serif;
+    font-style: normal;
+  }
+
+  /* ── PENUTUP ── */
+  .penutup {
+    background: linear-gradient(160deg, #110f07, #0c0a05);
+    border: 1px solid #2c2010;
+    border-radius: 16px;
+    padding: 56px 48px;
+    margin-bottom: 52px;
+  }
+
+  .langkah {
+    background: linear-gradient(160deg, #171208, #100d06);
+    border: 1px solid #2c2010;
+    border-left: 3px solid var(--amber2);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 26px;
+    margin: 18px 0;
+    color: #d4c49e;
+    font-size: .98em;
+  }
+  .langkah .lnum {
+    display: block;
+    background: linear-gradient(135deg, var(--solar), var(--amber1));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    font-size: 1em;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .langkah p { margin-bottom:0; font-size:.97em; }
+
+  /* ── POLA HIDUP ── */
+  .pola-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 28px 0;
+  }
+  .pola-card {
+    background: linear-gradient(160deg, #181208, #0f0c05);
+    border: 1px solid #2c2010;
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .pola-card .pola-icon {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .pola-card .pola-title {
+    font-family: 'Cinzel', serif;
+    font-size: .85em;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--amber2);
+    margin-bottom: 8px;
+  }
+  .pola-card p {
+    font-size: .9em;
+    margin-bottom: 0;
+    color: #b8a880;
+    text-align: left;
+  }
+
+  /* ── EPILOG ── */
+  .epilog {
+    background: radial-gradient(ellipse at 50% 0%, #1e1500 0%, #0a0805 55%);
+    border: 1px solid #2c2010;
+    border-top: 2px solid var(--solar);
+    border-radius: 16px;
+    padding: 68px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .epilog::before {
+    content:'';
+    position:absolute; top:0; left:50%;
+    width:600px; height:200px;
+    background: radial-gradient(ellipse, rgba(215,140,20,.12) 0%, transparent 70%);
+    transform:translateX(-50%);
+    pointer-events:none;
+  }
+
+  .epilog .epilog-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.3em, 3vw, 1.9em);
+    font-weight: 700;
+    margin-bottom: 44px;
+    letter-spacing: 2px;
+    position: relative; z-index:1;
+  }
+
+  .epilog p {
+    max-width: 680px; margin: 0 auto 20px;
+    color: #c8b88a;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1em;
+    line-height: 1.8;
+    position: relative; z-index:1;
+  }
+  .epilog p.normal {
+    font-style: normal;
+    font-size: 1.02em;
+    color: #d4c49e;
+  }
+  .epilog p strong {
+    font-style: normal;
+  }
+
+  .epilog .arabic-line {
+    font-family: 'Traditional Arabic','Scheherazade New',serif;
+    font-size: clamp(1.6em, 4vw, 2.6em);
+    direction: rtl;
+    background: linear-gradient(135deg, var(--amber4), var(--amber1), var(--amber3), var(--solar));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin: 30px auto 6px;
+    position: relative; z-index:1;
+  }
+
+  .epilog .latin-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--amber1);
+    font-size: 1.05em;
+    margin-bottom: 20px;
+    display: block;
+    letter-spacing: 1px;
+    position: relative; z-index:1;
+  }
+
+  .epilog .closing {
+    margin-top: 48px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.05em, 2vw, 1.2em);
+    color: #dcc890;
+    line-height: 2;
+    position: relative; z-index:1;
+  }
+  .epilog .closing strong {
+    font-size: 1.1em;
+  }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position:fixed; bottom:30px; right:30px;
+    width:48px; height:48px;
+    background: linear-gradient(135deg, var(--amber4), var(--amber2));
+    color: #0a0800; font-size:1.1em; font-weight:700;
+    border:none; border-radius:50%;
+    cursor:pointer; display:none; align-items:center; justify-content:center;
+    box-shadow: 0 4px 24px rgba(0,0,0,.6), 0 0 0 1px rgba(215,140,20,.2);
+    transition: transform .2s, box-shadow .2s;
+    z-index:999;
+  }
+  #scrollTop:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(215,140,20,.3);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:680px){
+    .header { padding:64px 20px 56px; }
+    .ayat-section, .penutup, .epilog { padding:32px 20px; }
+    .pengantar { padding:28px 20px; }
+    .container { padding:32px 14px 64px; }
+    .surat-meta { grid-template-columns:1fr; }
+    .pola-grid { grid-template-columns:1fr; }
+    .penutup { padding:36px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-sun"></div>
+  <div class="header-rays"></div>
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <h1 class="gold">Asy-Syams</h1>
+  <p class="header-sub">Surat 91 · 15 Ayat · Makkiyyah</p>
+  <div class="divider-solar"></div>
+  <p class="tagline">Terang itu bukan di luar sana yang perlu kita kejar — tapi di dalam diri yang berani kita sinari.</p>
+</div>
+
+<div class="container">
+
+  <!-- SURAT META -->
+  <div class="surat-meta">
+    <div class="meta-chip">
+      <div class="meta-label">Nama</div>
+      <div class="meta-val">الشمس — Matahari</div>
+    </div>
+    <div class="meta-chip">
+      <div class="meta-label">Golongan</div>
+      <div class="meta-val">Makkiyyah · Ke-26 Turun</div>
+    </div>
+    <div class="meta-chip">
+      <div class="meta-label">Tema Besar</div>
+      <div class="meta-val">Jiwa, Pilihan & Kesucian</div>
+    </div>
+  </div>
+
+  <!-- PENGANTAR -->
+  <div class="pengantar">
+    <h2>✦ Pengantar</h2>
+    <p>Surat Asy-Syams adalah surat yang membawa pertanyaan terbesar dalam sejarah manusia: ke mana jiwa ini akan kamu bawa? Allah membuka dengan jejeran sumpah kosmis — matahari, bulan, siang, malam, langit, bumi — semua saksi atas satu drama terpenting: pilihan manusia untuk menyucikan atau mengotori dirinya sendiri.</p>
+    <p>Ini bukan surat tentang ritual. Ini surat tentang watak. Tentang keberanian untuk melihat ke dalam, bukan terus memandang ke luar. Tentang kesadaran bahwa dalam dirimu ada potensi yang sama besarnya dengan kehancuran yang mungkin — dan pilihan ada di tanganmu.</p>
+  </div>
+
+  <!-- ═══════════ AYAT 1–6: SUMPAH KOSMIS ═══════════ -->
+  <div class="ayat-section">
+    <div class="group-label"><span class="g-dot"></span> Kelompok Pertama · Ayat 1–6</div>
+    <div class="ayat-number">
+      <span class="num-range">١ — ٦</span>
+      <span class="gold">Sumpah Para Saksi Semesta</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic multi">
+        وَٱلشَّمۡسِ وَضُحَىٰهَا ١ وَٱلۡقَمَرِ إِذَا تَلَىٰهَا ٢ وَٱلنَّهَارِ إِذَا جَلَّىٰهَا ٣ وَٱلَّيۡلِ إِذَا يَغۡشَىٰهَا ٤ وَٱلسَّمَآءِ وَمَا بَنَىٰهَا ٥ وَٱلۡأَرۡضِ وَمَا طَحَىٰهَا ٦
+      </div>
+    </div>
+    <p class="translation">
+      "Demi matahari dan cahayanya di pagi hari, (1) demi bulan apabila mengiringinya, (2) demi siang apabila menampakkannya, (3) demi malam apabila menutupinya, (4) demi langit dan pembuatannya, (5) demi bumi dan penghamparannya." (6)
+    </p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">وَضُحَىٰهَا — Dhuha: Kemilau Pagi</div>
+    <p>Kata yang dipakai bukan sekadar <em>nur</em> (cahaya) atau <em>dhiya</em> (sinar). <em>Dhuha</em> adalah cahaya pagi yang spesifik — momen ketika matahari baru meninggi, belum membakar, tapi sudah cukup untuk menerangi jalan. Ini adalah simbol potensi yang sedang mekar: belum sempurna, tapi sudah menjanjikan. Dhuha adalah cahaya yang hangat, bukan yang menyengat.</p>
+    <p>Menarik bahwa Allah bersumpah bukan pada terik siang (yang membutakan) atau fajar (yang masih gelap), tapi tepat pada momen peralihan itu — ketika segalanya bisa terlihat dengan jernih tanpa menyilaukan. Ini adalah metafora jiwa yang sedang bertumbuh dengan benar.</p>
+
+    <div class="energi-chip">إِذَا تَلَىٰهَا — Tataa: Mengikut, Beriringan</div>
+    <p><em>Tala</em> bukan sekadar "mengikuti dari belakang." Ini mengandung makna membaca, menelusuri, bahkan belajar dari yang mendahului. Bulan yang <em>tala</em> matahari artinya bulan yang memantulkan cahaya sambil menempati posisinya sendiri dalam orbit yang berbeda. Sebuah simbol indah: kamu tidak harus menjadi matahari untuk bersinar. Kamu bisa menjadi bulan — memancarkan cahaya yang kamu terima, dengan caramu sendiri, pada malam yang membutuhkan terang yang lebih lembut.</p>
+
+    <div class="energi-chip">يَغۡشَىٰهَا — Yaghsya: Menyelimuti Dengan Lembut</div>
+    <p>Malam yang <em>yaghsya</em> bumi bukan malam yang menyerang atau mengancam. <em>Ghasha</em> berasal dari akar yang sama dengan selimut, penutup — sesuatu yang melingkupi dengan tenang. Bayangkan: malam tidak "mematikan" siang, ia hanya menyelimutinya. Ada kehormatan dalam kata ini — seolah kegelapan pun punya cara yang bermartabat untuk hadir.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Allah membuka surat ini dengan tidak kurang dari tujuh sumpah kosmis. Dalam tradisi bahasa Arab, sumpah yang bersambung-sambung seperti ini adalah sinyal: <em>yang akan dibicarakan setelah ini adalah sesuatu yang sangat besar, dan alam semesta menjadi saksinya.</em></p>
+    <p>Perhatikan strukturnya: matahari—bulan, siang—malam, langit—bumi. Semuanya berpasangan. Semuanya melengkapi. Tidak ada yang saling mengalahkan. Malam tidak lebih rendah dari siang. Bulan tidak lebih lemah dari matahari. Setiap unsur punya perannya sendiri dalam simfoni semesta yang lebih besar.</p>
+    <p>Dan semua saksi kosmis itu hadir untuk menyaksikan apa? Untuk menyaksikan manusia dan jiwa yang diberikan padanya — bahwa setiap satu dari kita membawa drama yang sama pentingnya dengan peredaran matahari dan bulan.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup dalam budaya yang membagi dunia secara hitam-putih: sukses atau gagal, produktif atau malas, bersinar atau tertinggal. Tapi Asy-Syams mengajarkan kita bahwa alam semesta sendiri tidak bekerja dengan dikotomi seperti itu. Matahari dan bulan sama-sama diperlukan. Siang dan malam sama-sama fungsional.</p>
+      <p>Berapa banyak dari kita yang terus menyalahkan diri karena kita bukan "matahari" — terang, menonjol, selalu terlihat? Padahal mungkin jiwa kita adalah "bulan" yang bersinar dengan cara berbeda, atau "fajar" yang masih dalam proses meninggi, atau bahkan "malam" yang membawa ketenangan bagi orang-orang yang membutuhkan istirahat dari silau hari.</p>
+      <ul class="aplikasi-list">
+        <li>Hentikan perbandingan yang tidak sepadan. Kamu tidak gagal menjadi matahari — kamu mungkin sedang menjadi bulan dengan sangat baik.</li>
+        <li>Kenali fase hidupmu sekarang: sedang dhuha (mekar), siang (puncak), senja (meredup), atau malam (memulihkan)? Setiap fase punya nilai dan kebutuhan yang berbeda.</li>
+      </ul>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Ketika langit dan bumi, siang dan malam, matahari dan bulan semuanya dipanggil sebagai saksi — itu artinya yang akan dibicarakan tidak main-main. Dan yang mereka saksikan adalah kamu: satu jiwa dengan potensi setara kosmis yang menunggu untuk dipilih jalan hidupnya.
+    </div>
+  </div>
+
+  <!-- ═══════════ AYAT 7–8: JIWA & FITRAH ═══════════ -->
+  <div class="ayat-section">
+    <div class="group-label"><span class="g-dot"></span> Kelompok Kedua · Ayat 7–8</div>
+    <div class="ayat-number">
+      <span class="num-range">٧ — ٨</span>
+      <span class="gold">Jiwa Yang Didesain Tahu</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic multi">
+        وَنَفۡسٖ وَمَا سَوَّىٰهَا ٧ فَأَلۡهَمَهَا فُجُورَهَا وَتَقۡوَىٰهَا ٨
+      </div>
+    </div>
+    <p class="translation">
+      "Demi jiwa serta penyempurnaannya (ciptaannya), (7) maka Allah mengilhamkan kepadanya (jalan) kejahatan dan ketakwaan." (8)
+    </p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">سَوَّىٰهَا — Sawwaha: Menyempurnakan dengan Seimbang</div>
+    <p><em>Sawwa</em> bukan sekadar "membuat". Ini adalah kata yang mengandung makna meratakan, menyeimbangkan, memproposionalkan. Ketika Allah "menyempurnakan" jiwa, bukan berarti jiwa itu langsung sempurna dalam perilakunya — melainkan bahwa jiwa itu dirancang dengan proporsi yang tepat, dengan semua komponen yang diperlukan untuk bisa berkembang atau hancur. Sebuah "starter pack" lengkap untuk menjadi manusia seutuhnya.</p>
+
+    <div class="energi-chip">فَأَلۡهَمَهَا — Fa-alhamaha: Mengilhami Langsung ke Dalam</div>
+    <p>Kata <em>ilham</em> yang kita pakai sehari-hari berasal dari akar ini. Tapi maknanya lebih dalam dari sekadar "inspirasi". <em>Al-hama</em> dalam bahasa Arab juga berarti "menelan" — seolah pengetahuan itu langsung ditelankan ke dalam jiwa, bukan sekadar diletakkan di luarnya. Artinya: pemahaman tentang benar dan salah bukan sesuatu yang kamu pelajari dari luar. Itu sudah ada di dalam. Sudah <em>tertelan</em> ke dalam fitrahmu sejak sebelum kamu lahir.</p>
+
+    <div class="energi-chip">فُجُورَهَا وَتَقۡوَىٰهَا — Kejahatan dan Ketakwaan</div>
+    <p>Perhatikan urutannya: <em>fujur</em> (kejahatan) disebut sebelum <em>taqwa</em> (ketakwaan). Ini bukan berarti kejahatan lebih kuat atau lebih asli. Para ulama menafsirkan ini sebagai teknik bahasa yang menyebut yang inferior dahulu sebelum yang superior — seperti kita bilang "gagal lalu berhasil", bukan "berhasil lalu gagal" — untuk menekankan betapa mulianya taqwa dibandingkan fujur. Sekaligus jujur bahwa potensi keduanya ada dalam diri kita.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Dua ayat ini adalah salah satu pernyataan paling jujur tentang kondisi manusia dalam seluruh Al-Qur'an. Allah tidak mengatakan "Kami ciptakan jiwa yang baik" saja, atau "Kami ciptakan jiwa yang berpotensi jahat" saja. Melainkan: <em>Kami ilhamkan padanya kejahatan dan ketakwaan — keduanya.</em></p>
+    <p>Ini bukan fatalis. Ini pemberdayaan yang sesungguhnya. Karena jiwa yang hanya bisa baik bukanlah jiwa yang punya pilihan. Dan jiwa tanpa pilihan tidak bisa bertumbuh. Kamu tidak istimewa karena tidak pernah tergoda — kamu istimewa karena tergoda tapi memilih yang benar. Atau karena jatuh tapi bangkit kembali.</p>
+    <p>Yang lebih penting lagi: kata <em>alhamaha</em> menunjukkan bahwa kompas moral itu sudah tertanam sejak dalam. Kamu sudah tahu. Di suatu tempat dalam dirimu yang paling dalam, selalu ada yang berbisik mana yang benar. Pertanyaannya bukan apakah kamu tahu — tapi apakah kamu mau dengar.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Di era ketika orang berlomba membangun "personal branding" yang sempurna, ayat ini adalah tamparan jujur: kamu bukan makhluk yang seluruhnya baik. Dan bukan pula yang seluruhnya jahat. Kamu adalah medan pertempuran — dan itu justru yang membuatmu manusia.</p>
+      <p>Budaya media sosial mengajarkan kita untuk menyembunyikan <em>fujur</em> kita dan memamerkan <em>taqwa</em> kita. Tapi jiwa yang sehat bukan yang berhasil menyembunyikan sisinya yang gelap — tapi yang berani mengakui bahwa sisi itu ada, dan memilih setiap hari untuk tidak membiarkan sisi itu memimpin.</p>
+      <ul class="aplikasi-list">
+        <li>Berhenti berpura-pura bahwa dorongan burukmu tidak ada. Mengakui keberadaannya adalah langkah pertama untuk mengelolanya — bukan tanda bahwa kamu buruk.</li>
+        <li>Percayai bisikan batinmu. Sebelum kamu meminta validasi dari siapa pun, tanyakan pada kompas yang sudah Tuhan tanam dalam dirimu sejak lahir: menurutnya, ini benar atau tidak?</li>
+      </ul>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kamu bukan malaikat yang terperangkap dalam tubuh manusia. Kamu adalah manusia — utuh dengan potensi terang dan gelap — dan itulah tepatnya mengapa pilihanmu bermakna. Jiwa yang hanya bisa baik tidak perlu memilih. Jiwa yang memilih baik meski bisa melakukan sebaliknya — itu yang namanya karakter.
+    </div>
+  </div>
+
+  <!-- ═══════════ AYAT 9–10: KLIMAKS ═══════════ -->
+  <div class="ayat-section">
+    <div class="group-label"><span class="g-dot"></span> Kelompok Ketiga · Ayat 9–10</div>
+    <div class="ayat-number">
+      <span class="num-range">٩ — ١٠</span>
+      <span class="gold">Poros Seluruh Sumpah Semesta</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic multi">
+        قَدۡ أَفۡلَحَ مَن زَكَّىٰهَا ٩ وَقَدۡ خَابَ مَن دَسَّىٰهَا ١٠
+      </div>
+    </div>
+    <p class="translation">
+      "Sungguh beruntung orang yang menyucikannya (jiwa itu), (9) dan sungguh rugi orang yang mengotorinya." (10)
+    </p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">أَفۡلَحَ — Aflaha: Beruntung yang Sesungguhnya</div>
+    <p><em>Falah</em> adalah kata yang kaya makna — mencakup keberhasilan, kebahagiaan, keselamatan, dan kemakmuran sekaligus. Ini bukan hanya "berhasil" dalam satu dimensi. Ini adalah kemenangan total. Yang menarik, kata ini juga dipakai oleh petani untuk menggambarkan tanah yang subur setelah dibelah dan disiapkan — keberhasilan yang datang setelah proses, bukan keberhasilan instan.</p>
+    <p><em>Aflaha</em> datang setelah perjuangan. Setelah diri yang dibersihkan, dipangkas, dan dipelihara seperti kebun.</p>
+
+    <div class="energi-chip">زَكَّىٰهَا — Zakkaha: Menyucikan dengan Aktif</div>
+    <p><em>Zaka</em> adalah akar dari <em>zakat</em>. Artinya: tumbuh, bersih, bertambah. Ketika sesuatu <em>dizakka</em>, ia dibersihkan bukan untuk dikurangi, melainkan untuk bertumbuh lebih baik. Ini bukan tentang menghilangkan semua yang "buruk" dari dirimu sekaligus. Ini tentang proses aktif — seperti petani yang terus-menerus memangkas, menyirami, dan menjaga kebunnya agar tetap subur.</p>
+
+    <div class="energi-chip">دَسَّىٰهَا — Dassaha: Mengubur, Memendamkan</div>
+    <p>Ini adalah salah satu kata paling puitis dan kelam dalam Al-Qur'an. <em>Dassa</em> berarti menyembunyikan sesuatu ke dalam tanah — seperti memendam sampah agar tidak terlihat. Jiwa yang <em>dassaha</em> bukan jiwa yang secara aktif melakukan kejahatan besar — tapi jiwa yang terus-menerus <em>menguburkan</em> nuraninya di bawah lapisan pembenaran, distraksi, dan kebiasaan buruk yang dibiarkan.</p>
+    <p>Perhatikan perbedaannya dengan <em>zakkaha</em> yang aktif-positif: <em>zaka</em> adalah tumbuh ke atas, sedangkan <em>dassa</em> adalah menggali ke bawah, memendamkan. Dua arah yang sepenuhnya berlawanan.</p>
+
+    <div class="energi-chip">خَابَ — Khaaba: Rugi yang Menyedihkan</div>
+    <p><em>Khaaba</em> bukan sekadar "gagal". Ini adalah kekalahan yang datang dari harapan yang tidak terpenuhi, dari potensi yang tidak pernah terwujud. Bayangkan petani yang punya lahan subur tapi tidak pernah menanam apa pun — itu adalah <em>khaab</em>. Bukan karena tanahnya buruk, tapi karena tidak ada yang memilih untuk menggarapnya.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Setelah tujuh sumpah kosmis yang panjang dan megah — matahari, bulan, siang, malam, langit, bumi, lalu jiwa — semua itu bermuara pada dua ayat singkat ini. Tujuh bangunan sumpah yang megah, hanya untuk mengantarkan satu pesan: <em>apa yang kamu lakukan dengan jiwamu?</em></p>
+    <p>Ini adalah struktur yang disengaja untuk membuat kita sadar: seluruh alam semesta menjadi saksi atas pilihan yang kita buat terhadap jiwa kita sendiri. Bukan pilihan karir. Bukan pilihan pasangan hidup. Tapi pilihan yang lebih mendasar dari itu: apakah kita akan menyucikan atau mengotori diri kita sendiri?</p>
+    <p>Yang penting dicatat: <em>zakkaha</em> adalah kata kerja aktif yang terus-menerus. Bukan "yang sudah pernah menyucikan dirinya". Tapi "yang terus-menerus menyucikan dirinya". Penyucian jiwa bukan peristiwa sekali jadi — ini adalah praktik harian yang tidak pernah selesai selama masih hidup.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di zaman di mana <em>dassa</em> lebih mudah dari sebelumnya. Ada ribuan cara untuk mengubur nurani: terus-menerus mengonsumsi konten tanpa momen hening, menyibukkan diri agar tidak perlu merenung, membenarkan kebiasaan yang kita sendiri tahu tidak sehat, dan mengikuti arus karena terlalu lelah untuk memilih sendiri.</p>
+      <p>Pertanyaan yang layak direnungkan: seberapa sering dalam sehari kamu mendengar bisikan nuranimu — dan seberapa sering kamu langsung membungkamnya dengan membuka ponsel, mencari distraksi, atau meyakinkan diri bahwa "nanti saja"?</p>
+      <ul class="aplikasi-list">
+        <li>Identifikasi satu kebiasaan yang selama ini kamu "kuburkan" dari kesadaranmu — yang kamu tahu tidak baik, tapi terus kamu biarkan berjalan di bawah tanah. Naikkan ke permukaan. Hadapi.</li>
+        <li>Buat satu ritual <em>zaka</em> harian: bisa semewah meditasi, atau sesederhana lima menit sebelum tidur untuk jujur bertanya pada diri sendiri — "hari ini, ke mana jiwa ini kubawa?"</li>
+      </ul>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Tujuh saksi kosmis hadir hanya untuk menyaksikan satu hal: pilihanmu terhadap jiwamu sendiri. Karena di akhir segala cerita, bukan seberapa jauh kamu telah pergi yang dihitung — tapi seberapa dalam kamu telah menjaga, atau meninggalkan, dirimu yang paling sejati.
+    </div>
+  </div>
+
+  <!-- ═══════════ AYAT 11–15: KISAH TSAMUD ═══════════ -->
+  <div class="ayat-section">
+    <div class="group-label"><span class="g-dot"></span> Kelompok Keempat · Ayat 11–15</div>
+    <div class="ayat-number">
+      <span class="num-range">١١ — ١٥</span>
+      <span class="gold">Cermin yang Ingin Kita Hindari</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic multi">
+        كَذَّبَتۡ ثَمُودُ بِطَغۡوَىٰهَآ ١١ إِذِ ٱنۢبَعَثَ أَشۡقَىٰهَا ١٢ فَقَالَ لَهُمۡ رَسُولُ ٱللَّهِ نَاقَةَ ٱللَّهِ وَسُقۡيَٰهَا ١٣ فَكَذَّبُوهُ فَعَقَرُوهَا فَدَمۡدَمَ عَلَيۡهِمۡ رَبُّهُم بِذَنۢبِهِمۡ فَسَوَّىٰهَا ١٤ وَلَا يَخَافُ عُقۡبَٰهَا ١٥
+      </div>
+    </div>
+    <p class="translation">
+      "Kaum Tsamud mendustakan (rasulnya) karena mereka melampaui batas. (11) Ketika bangkitlah orang yang paling celaka di antara mereka. (12) Lalu rasul Allah berkata kepada mereka, 'Biarkanlah unta betina Allah dan minumannya.' (13) Namun mereka mendustakannya dan menyembelihnya, maka Tuhan mereka membinasakan mereka karena dosa mereka, lalu meratakannya (dengan tanah). (14) Dan Dia (Allah) tidak takut terhadap akibatnya." (15)
+    </p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">بِطَغۡوَىٰهَآ — Bithagwaha: Karena Kelampauan Batas Mereka</div>
+    <p><em>Tughyan</em> — sumber kata <em>taghwa</em> — adalah kondisi ketika seseorang atau kelompok telah jauh melampaui batas, seperti air bah yang meluap dari bendungan. Ini bukan sekadar "berbuat jahat sekali" — ini adalah kondisi jiwa yang sudah terlalu lama dipenuhi dengan <em>dassa</em> hingga kompas moralnya sepenuhnya terkubur.</p>
+    <p>Perhatikan: Tsamud tidak langsung tiba di titik kehancuran. <em>Tughyan</em> adalah akumulasi — lapisan demi lapisan pengabaian nurani — hingga akhirnya satu tindakan destruktif terasa wajar bagi mereka.</p>
+
+    <div class="energi-chip">أَشۡقَىٰهَا — Asqaha: Yang Paling Celaka</div>
+    <p>Bukan "yang terkuat", bukan "yang terpandang", bukan "yang paling berani". Yang diutus untuk melakukan kejahatan itu adalah <em>yang paling celaka</em>. Pilihan kata ini mengajarkan sesuatu yang dalam: orang-orang yang melakukan kerusakan besar bukan karena mereka superior — justru karena mereka adalah mereka yang paling dalam kehilangan diri mereka sendiri.</p>
+
+    <div class="energi-chip">دَمۡدَمَ — Damdama: Menghancurkan Rata Hingga Tanah</div>
+    <p><em>Damdama</em> adalah kata yang berulang bunyi dan maknanya — suara gemuruh yang terus berulang hingga semuanya rata. Ini bukan sekadar kata tentang kehancuran, tapi tentang kehancuran yang menyeluruh dan tuntas. Tidak ada yang tersisa untuk dibanggakan. Tidak ada monumen yang bertahan.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Bagian terakhir surat ini seolah melompat genre — dari refleksi tentang jiwa ke narasi tentang Tsamud. Tapi sebenarnya ini adalah cermin yang ditempatkan dengan sangat hati-hati. Allah menampilkan akhir dari jiwa yang memilih <em>dassa</em> secara kolektif hingga mencapai <em>tughyan</em>.</p>
+    <p>Yang paling mengerikan dari kisah Tsamud bukan kehancurannya — tapi proses sebelumnya. Mereka tidak langsung membunuh unta. Sebelum itu, ada peringatan yang diabaikan. Ada nurani yang dikubur. Ada satu orang yang akhirnya tampil sebagai "yang paling celaka" — tapi ia hanya bisa tampil karena keseluruhan masyarakat sudah lama menyiapkan ladang bagi tindakannya.</p>
+    <p>Ayat 15 menutup dengan pernyataan yang mengejutkan: <em>"Dan Dia tidak takut terhadap akibatnya."</em> Ini bukan tentang kesewenang-wenangan Tuhan. Ini adalah pernyataan keadilan mutlak: ketika hukum sebab-akibat ditegakkan dengan sempurna, tidak ada yang perlu ditakuti sebagai konsekuensinya. Kehancuran Tsamud adalah buah dari pilihan mereka sendiri — bukan tindakan sewenang-wenang dari luar.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Tsamud adalah gambaran tentang apa yang terjadi ketika sebuah komunitas secara kolektif membiarkan jiwa-jiwa individu terus dikubur. Satu orang yang paling celaka berhasil tampil bukan karena dia sendirian — tapi karena lingkungan di sekitarnya sudah lama menormalisasi <em>dassa</em>.</p>
+      <p>Ini adalah alarm bagi kita yang hidup di era "echo chamber" digital: ketika kita hanya terpapar pada suara-suara yang membenarkan apa yang ingin kita dengar, kita secara perlahan menciptakan kondisi Tsamud dalam versi kecil kita — masyarakat yang nurani kolektifnya semakin tumpul.</p>
+      <ul class="aplikasi-list">
+        <li>Perhatikan komunitas tempat kamu berada: apakah norma di dalamnya mendorong pertumbuhan jiwa, atau justru saling membenarkan kemalasan moral satu sama lain?</li>
+        <li>Jadilah "unta" dalam lingkunganmu — hadir sebagai pengingat tentang batas yang tidak boleh dilanggar, meski itu tidak populer.</li>
+      </ul>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kehancuran tidak datang tiba-tiba. Ia adalah panen dari benih-benih pengabaian yang ditanam bertahun-tahun. Tsamud tidak hancur karena satu tindakan — mereka hancur karena terlalu lama membiarkan jiwa mereka ditimbun, satu lapisan demi satu lapisan, sampai tidak ada lagi yang tersisa untuk mendengar.
+    </div>
+  </div>
+
+  <!-- ══════════════ PENUTUP ══════════════ -->
+  <div class="penutup">
+    <h2 class="section-title gold" style="margin-top:0;">Refleksi: Pola yang Bisa Diambil</h2>
+    <p>Surat Asy-Syams memberikan peta yang jelas: ada jiwa yang terus-menerus <em>dizakka</em> dan bertumbuh menuju <em>falah</em>, dan ada jiwa yang terus-menerus <em>didassa</em> hingga berujung pada <em>khaab</em>. Pertanyaannya bukan di mana kamu sekarang — tapi ke arah mana kamu sedang bergerak.</p>
+
+    <div class="pola-grid">
+      <div class="pola-card">
+        <span class="pola-icon">☀️</span>
+        <div class="pola-title">Jiwa yang Dizakka</div>
+        <p>Terus dipangkas dari kebiasaan yang merusak. Aktif mendengar bisikan nurani. Berani mengakui kekurangan. Tumbuh meski lambat.</p>
+      </div>
+      <div class="pola-card">
+        <span class="pola-icon">🌑</span>
+        <div class="pola-title">Jiwa yang Didassa</div>
+        <p>Terus memendamkan kompas moral. Menghindar dari merenung. Menormalisasi yang seharusnya mengkhawatirkan. Berhenti bertumbuh tanpa disadari.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title gold">Langkah Nyata</h2>
+
+    <div class="langkah">
+      <span class="lnum">Langkah 1 — Audit Jiwa Mingguan</span>
+      <p>Setiap akhir pekan, luangkan 15 menit untuk bertanya tiga hal: Apa yang minggu ini aku kubur yang seharusnya aku hadapi? Apa yang aku pelajari tentang diriku? Ke arah mana jiwaku bergerak minggu ini — naik seperti dhuha, atau turun seperti yang dipendam? Tidak perlu jawaban yang sempurna — yang penting adalah keberanian untuk bertanya.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">Langkah 2 — Satu Kebiasaan Zaka</span>
+      <p>Pilih satu kebiasaan kecil yang secara konsisten "menyucikan" energi dan fokusmu. Bisa sholat tepat waktu, bisa 10 menit membaca yang benar-benar bergizi (bukan sekadar scrolling), bisa satu tindakan kebaikan konkret per hari. Yang penting: <em>konsisten</em>, bukan spektakuler. Kebun yang siram sedikit tapi setiap hari lebih subur dari yang disiram banjir sebulan sekali.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">Langkah 3 — Kenali "Asqa" dalam Dirimu</span>
+      <p>Setiap dari kita punya satu sudut jiwa yang paling rentan — satu kelemahan yang kalau dibiarkan akan mengundang tindakan yang paling kita sesali. Bukan untuk dihukum, tapi untuk diawasi dengan penuh kasih sayang. Seperti petani yang tahu bagian mana kebunnya yang paling mudah diserang hama — ia beri perhatian ekstra di sana, bukan menutup mata.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">Langkah 4 — Pilih Saksi yang Baik</span>
+      <p>Kisah Tsamud mengingatkan bahwa kehancuran jiwa sering bersifat kolektif. Perhatikan dengan siapa kamu menghabiskan waktu terbanyak — apakah mereka mendorongmu ke arah <em>zaka</em> atau perlahan mengajakmu ke arah <em>dassa</em>? Kamu tidak perlu meninggalkan semua orang, tapi kamu perlu tahu siapa yang jadi "matahari" dalam lingkunganmu yang membantu jiwamu untuk terang.</p>
+    </div>
+
+    <h2 class="section-title gold">Closing Statement</h2>
+    <div class="langkah" style="border-left-color: var(--solar);">
+      <p style="text-align:center; color:#e0cc90; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1em; line-height:1.9;">
+        Kamu tidak perlu menjadi matahari untuk bersinar.<br>
+        Kamu hanya perlu berhenti menguburkan cahaya yang sudah ada dalam dirimu.<br>
+        <strong style="font-style:normal; color:var(--amber1);">Zakkaha — bersihkan, rawat, tumbuhkan. Setiap hari, satu langkah.</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════ EPILOG ══════════════ -->
+  <div class="epilog">
+    <h2 class="epilog-title gold">Ketika Kamu Merasa Jadi Malam yang Terlalu Panjang</h2>
+
+    <p>Ada malam-malam ketika kamu bertanya — bukan dengan lantang, tapi dalam sunyi yang pekat — apakah masih ada cahaya yang tersisa untuk dirimu. Kamu sudah terlalu lama merasa menjadi sisi gelap dari bulan yang tidak pernah terlihat. Terlalu lama merasa bahwa terang itu milik orang lain, jiwa-jiwa yang entah bagaimana terlahir dengan kompas yang lebih baik dari punyamu.</p>
+
+    <p>Tapi Asy-Syams berkata sesuatu yang berbeda.</p>
+
+    <span class="arabic-line">وَنَفۡسٖ وَمَا سَوَّىٰهَا</span>
+    <span class="latin-line">Wa nafsin wa maa sawwaahaa</span>
+    <p>Demi jiwa — jiwamu — dan cara Tuhan menyempurnakannya. Bukan "sebagian jiwa yang beruntung". Bukan "jiwa pilihan yang layak". Setiap jiwa. Termasuk yang sedang membaca baris ini sekarang, dengan segala sejarahnya yang tidak sempurna.</p>
+
+    <span class="arabic-line">فَأَلۡهَمَهَا فُجُورَهَا وَتَقۡوَىٰهَا</span>
+    <span class="latin-line">Fa-alhamahaa fujuurahaa wa taqwaahaa</span>
+    <p>Kamu sudah tahu. Di dalam dirimu yang paling dalam — lebih dalam dari rasa malu, lebih dalam dari kelelahan, lebih dalam dari semua lapisan yang kamu bangun sebagai pertahanan — ada sesuatu yang masih tahu mana yang benar. Yang masih berbisik meski kamu lama tidak mendengarkannya. Yang tidak pernah benar-benar mati, hanya tertimbun.</p>
+
+    <p>Itu bukan khayalan. Itu adalah desain — ilham Tuhan yang langsung "ditelan" ke dalam jiwamu sebelum kamu lahir.</p>
+
+    <span class="arabic-line">قَدۡ أَفۡلَحَ مَن زَكَّىٰهَا</span>
+    <span class="latin-line">Qad aflaḥa man zakkāhā</span>
+    <p>Sungguh beruntung yang menyucikannya. Bukan yang sudah sempurna. Bukan yang tidak pernah salah. Tapi yang memilih — meski terlambat, meski berkali-kali jatuh — untuk terus-menerus <em>membersihkan</em>. Seperti petani yang kembali ke ladangnya setelah badai, mengangkat yang tumbang, merapikan yang acak, dan mulai lagi.</p>
+
+    <p class="normal">Untuk kamu yang merasa jiwamu sudah terlalu lama dipendam — ini bukan tentang apakah kamu layak untuk kembali terang. Tentang apakah kamu <em>mau</em> memilih untuk mulai hari ini, satu langkah kecil, membersihkan satu sudut yang paling dekat dari dirimu.</p>
+
+    <p class="normal">Untuk kamu yang merasa iri dengan jiwa-jiwa yang tampak lebih bersih dan lebih bersinar — ingat bahwa matahari dan bulan tidak bersaing. Setiap jiwa punya orbit dan fungsinya sendiri. Terangmu tidak harus terlihat sama dengan terang orang lain untuk sama-sama nyatanya.</p>
+
+    <p class="normal">Dan untuk kamu yang sedang di titik terendah, yang merasa sudah terlalu dalam menguburkan dirimu sendiri — Tsamud pun tidak ditinggalkan tanpa peringatan. Selalu ada utusan yang hadir sebelum akhir. Selalu ada tawaran untuk berbalik, sebelum pilihan itu menutup dirinya sendiri. Pertanyaannya hanya: apakah kamu mau dengar?</p>
+
+    <div class="divider-solar" style="margin:44px auto;"></div>
+
+    <div class="closing">
+      Asy-Syams tidak berjanji bahwa jalannya akan mudah.<br>
+      Ia hanya berkata bahwa jalan itu <em>ada</em>.<br><br>
+
+      Bahwa dalam dirimu sudah tertanam semua yang diperlukan<br>
+      untuk <em>aflaha</em> — beruntung, tumbuh, selamat.<br><br>
+
+      Yang perlu kamu lakukan hanyalah berhenti<br>
+      menggali ke bawah untuk mengubur apa yang seharusnya naik,<br>
+      dan mulai <em>zakkaha</em> —<br>
+      membersihkan, merawat, menyinari ke dalam,<br><br>
+
+      <span class="gold" style="-webkit-text-fill-color:unset; background:none; color:var(--amber1);">karena terang yang paling tahan lama<br>bukan yang datang dari luar,<br>tapi yang lahir dari dalam jiwa yang berani dipilih.</span><br><br>
+
+      <strong>Dan selama masih ada napas, masih ada kesempatan untuk memilih.</strong>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.ayat-section').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

@@ -1,0 +1,1218 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Fajr: Level Terakhir Permainan Ini Bukan Kekayaan. Tapi Kepulangan Jiwa.</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dawn1:  #f0c060;
+    --dawn2:  #c8621a;
+    --dawn3:  #ffe090;
+    --dawn4:  #8a3a08;
+    --horizon:#ff8c3a;
+    --bg:     #070610;
+    --bg2:    #0d0b18;
+    --bg3:    #12101e;
+    --card:   #0f0d1a;
+    --border: #211c35;
+    --text:   #e4d8c0;
+    --muted:  #8878a0;
+  }
+
+  @font-face { font-family:'TraditionalArabic'; src:local('Traditional Arabic'); }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    font-family:'Lora', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height:1.9;
+    min-height:100vh;
+  }
+
+  .gold {
+    background: linear-gradient(135deg, var(--dawn2) 0%, var(--dawn1) 40%, var(--dawn3) 58%, var(--dawn2) 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position:relative;
+    padding:90px 40px 80px;
+    text-align:center;
+    overflow:hidden;
+    background: radial-gradient(ellipse at 50% -10%, #2a1800 0%, #070610 65%);
+    border-bottom: 1px solid #221a0a;
+  }
+  .header::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle, rgba(240,192,96,.15) 1px, transparent 1px),
+      radial-gradient(circle, rgba(200,98,26,.08) 1px, transparent 1px);
+    background-size: 60px 60px, 37px 37px;
+    background-position: 0 0, 18px 18px;
+    animation: starDrift 60s linear infinite;
+    pointer-events:none;
+  }
+  .header::after {
+    content:'';
+    position:absolute;
+    bottom:-60px; left:50%; transform:translateX(-50%);
+    width:800px; height:260px;
+    background: radial-gradient(ellipse, rgba(200,98,26,.22) 0%, rgba(255,140,58,.08) 40%, transparent 70%);
+    pointer-events:none;
+  }
+  @keyframes starDrift { to { background-position:60px 60px, 55px 55px; } }
+
+  .horizon-line {
+    position:absolute; bottom:0; left:0; right:0; height:2px;
+    background: linear-gradient(to right, transparent, var(--horizon), var(--dawn1), var(--horizon), transparent);
+    opacity:.5;
+  }
+
+  .header-bismillah {
+    font-family:'Traditional Arabic','TraditionalArabic','Scheherazade New',serif;
+    font-size:2.1em; color:var(--dawn1); opacity:.55;
+    margin-bottom:26px; letter-spacing:4px;
+    position:relative; z-index:1;
+  }
+  .header-eyebrow {
+    font-size:.8em; letter-spacing:4px; text-transform:uppercase;
+    color:var(--muted); position:relative; z-index:1; margin-bottom:12px;
+    font-family:'EB Garamond','Lora',serif;
+  }
+  .header h1 {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.4em,6vw,3.8em); font-weight:700; line-height:1.15;
+    position:relative; z-index:1; margin-bottom:6px;
+  }
+  .header-sub {
+    font-size:.9em; color:var(--muted); letter-spacing:3px; text-transform:uppercase;
+    position:relative; z-index:1; margin-bottom:28px;
+    font-family:'EB Garamond',serif;
+  }
+  .divider-dawn {
+    width:140px; height:2px;
+    background: linear-gradient(to right, transparent, var(--dawn2), var(--dawn1), var(--horizon), var(--dawn2), transparent);
+    margin:22px auto; position:relative; z-index:1;
+  }
+  .tagline {
+    font-family:'EB Garamond','Lora',serif; font-style:italic; font-size:1.25em;
+    color:#c8a870; max-width:700px; margin:0 auto;
+    position:relative; z-index:1; line-height:1.7;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width:940px; margin:0 auto; padding:52px 24px 88px; }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display:flex; align-items:center; gap:16px;
+    margin: 56px 0 0;
+    padding-bottom:20px;
+    border-bottom:1px solid #221c34;
+  }
+  .section-header:first-child { margin-top:0; }
+  .section-label {
+    font-family:'EB Garamond',serif; font-size:.78em; letter-spacing:3px;
+    text-transform:uppercase; color:var(--muted);
+    border:1px solid #2a2440; border-radius:20px;
+    padding:5px 16px; white-space:nowrap;
+  }
+  .section-header h2 {
+    font-family:'Playfair Display',serif; font-size:1.5em; font-weight:700;
+    line-height:1.25;
+  }
+
+  /* ── AYAT CARD ── */
+  .ayat-section {
+    position:relative;
+    background: linear-gradient(160deg, #100e1c, #0c0b16);
+    border:1px solid #221c34;
+    border-left:3px solid var(--dawn2);
+    border-radius:18px;
+    padding:46px 44px;
+    margin-top:28px;
+    box-shadow:0 4px 48px rgba(0,0,0,.7), inset 0 1px 0 rgba(240,192,96,.05);
+    opacity:0; transform:translateY(30px);
+    transition:opacity .75s ease, transform .75s ease, box-shadow .3s;
+  }
+  .ayat-section.visible { opacity:1; transform:translateY(0); }
+  .ayat-section:hover { box-shadow:0 10px 60px rgba(0,0,0,.9), 0 0 0 1px rgba(200,98,26,.14); }
+  .ayat-section::before {
+    content:'✦'; position:absolute; top:20px; right:24px;
+    color:var(--dawn2); opacity:.2; font-size:1.5em;
+  }
+
+  .ayat-num-badge {
+    display:inline-flex; align-items:center; gap:10px;
+    margin-bottom:28px;
+  }
+  .ayat-num-badge .num {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:38px; height:38px;
+    border:1px solid var(--dawn2); border-radius:50%;
+    font-size:.75em; font-family:'EB Garamond',serif;
+    background: linear-gradient(135deg,#1e1000,#0e0800);
+    color:var(--dawn1); flex-shrink:0;
+  }
+  .ayat-num-badge .label {
+    font-family:'Playfair Display',serif; font-size:1.1em; font-weight:700;
+  }
+
+  /* ── SECTION TITLES ── */
+  h3.sec-title {
+    font-family:'Playfair Display',serif; font-size:1.2em; font-weight:700;
+    margin:34px 0 12px; padding-bottom:9px; border-bottom:1px solid #221c34;
+  }
+  h4.sub-title {
+    font-family:'Lora',serif; font-size:1em; font-weight:600;
+    margin:24px 0 8px;
+    display:flex; align-items:center; gap:10px;
+  }
+  h4.sub-title::before {
+    content:''; display:inline-block; width:18px; height:2px;
+    background: linear-gradient(to right, var(--dawn2), var(--dawn1)); flex-shrink:0;
+  }
+
+  /* ── ARABIC ── */
+  .arabic-wrap {
+    text-align:center; margin:30px 0 10px; padding:28px 20px;
+    background: radial-gradient(ellipse at center, #1a1000 0%, #08080f 80%);
+    border-radius:14px; border:1px solid #2e2410; position:relative;
+  }
+  .arabic-wrap::before, .arabic-wrap::after {
+    content:'❦'; position:absolute; top:50%; transform:translateY(-50%);
+    color:var(--dawn2); opacity:.28; font-size:1.3em;
+  }
+  .arabic-wrap::before { left:18px; }
+  .arabic-wrap::after  { right:18px; transform:translateY(-50%) scaleX(-1); }
+
+  .arabic {
+    font-family:'Traditional Arabic','TraditionalArabic','Scheherazade New','KFGQPC Uthmanic Script HAFS',serif;
+    font-size:clamp(2.2em,5.5vw,3.4em); line-height:2.1;
+    background: linear-gradient(135deg, var(--dawn4) 0%, var(--dawn1) 38%, var(--dawn3) 58%, var(--dawn2) 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    direction:rtl;
+  }
+  .arabic.md { font-size:clamp(1.9em,4.5vw,2.8em); }
+
+  .translation {
+    text-align:center; font-style:italic; color:var(--muted); font-size:1.02em;
+    margin:10px 0 30px; font-family:'EB Garamond','Lora',serif; line-height:1.75;
+  }
+
+  /* ── ENERGI CHIP ── */
+  .energi-chip {
+    display:inline-block;
+    background: linear-gradient(135deg, #1c1200, #281c00);
+    border:1px solid var(--dawn4); color:var(--dawn1);
+    padding:7px 20px; border-radius:32px; font-size:.88em;
+    font-weight:600; margin:16px 0 8px; letter-spacing:.5px;
+  }
+
+  /* ── PARAGRAPHS ── */
+  p { margin-bottom:15px; color:#cfc0a0; text-align:justify; font-size:.96em; }
+  strong { color:var(--dawn1); font-weight:600; }
+  em { color:#c8a860; font-style:italic; }
+
+  /* ── RELEVANCE BOX ── */
+  .relevance-box {
+    background: linear-gradient(160deg,#110e1a,#0c0a14);
+    border-left:3px solid var(--dawn3); border-radius:0 10px 10px 0;
+    padding:20px 24px; margin:22px 0;
+  }
+  .relevance-label {
+    font-size:.76em; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--dawn2); margin-bottom:8px; font-family:'Playfair Display',serif;
+  }
+
+  /* ── INTISARI ── */
+  .intisari {
+    position:relative;
+    background: linear-gradient(160deg, #1a1200, #110e00);
+    border:1px solid #3a2a10; border-radius:14px;
+    padding:28px 32px; margin:26px 0 0;
+    color:#e8d098; font-size:.97em; line-height:2;
+    font-family:'EB Garamond','Lora',serif; font-style:italic;
+  }
+  .intisari::before {
+    content:'"'; position:absolute; top:-16px; left:24px;
+    font-size:4em; line-height:1;
+    background: linear-gradient(to bottom, var(--dawn1), var(--dawn2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    font-family:'Playfair Display',serif;
+  }
+  .intisari-label {
+    font-size:.74em; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--dawn2); margin-bottom:10px;
+    font-family:'Playfair Display',serif; font-style:normal;
+  }
+
+  /* ── PENUTUP ── */
+  .penutup {
+    background: linear-gradient(160deg,#0e0c18,#090810);
+    border:1px solid #221c34; border-radius:18px;
+    padding:54px 46px; margin: 56px 0 48px;
+  }
+  .langkah {
+    background: linear-gradient(160deg,#131020,#0d0b18);
+    border:1px solid #221c34; border-left:3px solid var(--dawn2);
+    border-radius:0 10px 10px 0; padding:20px 24px; margin:14px 0;
+    color:#cfc0a0; font-size:.95em;
+  }
+  .langkah .lnum {
+    display:inline-block;
+    background: linear-gradient(135deg, var(--dawn2), var(--dawn1));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    font-weight:700; font-family:'Playfair Display',serif;
+    font-size:1.05em; margin-bottom:4px;
+  }
+  .langkah p { margin-bottom:0; }
+
+  /* ── EPILOG ── */
+  .epilog {
+    background: radial-gradient(ellipse at 50% 0%, #1c1200 0%, #06060f 60%);
+    border:1px solid #221c34; border-top:2px solid var(--dawn2);
+    border-radius:18px; padding:68px 46px; text-align:center;
+  }
+  .epilog .epilog-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.5em,3vw,2.1em); font-weight:700;
+    margin-bottom:40px; line-height:1.3;
+  }
+  .epilog p {
+    max-width:680px; margin:0 auto 18px;
+    color:#c0a878; text-align:center;
+    font-style:italic; font-family:'EB Garamond','Lora',serif;
+    font-size:1.08em; line-height:1.85;
+  }
+  .epilog .arabic-line {
+    font-family:'Traditional Arabic','TraditionalArabic','Scheherazade New',serif;
+    font-size:clamp(1.6em,4vw,2.5em); direction:rtl;
+    background: linear-gradient(135deg,var(--dawn4),var(--dawn1),var(--dawn3),var(--dawn2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    display:block; margin:28px auto 6px; line-height:1.8;
+  }
+  .epilog .latin-line {
+    font-style:italic; color:var(--dawn1); font-size:1.02em;
+    margin-bottom:20px; display:block; font-family:'EB Garamond',serif;
+  }
+  .epilog .closing {
+    margin-top:44px; font-style:normal; font-family:'Playfair Display',serif;
+    font-size:1.1em; color:#e0cc90; line-height:2;
+  }
+
+  .dawn-badge {
+    display:inline-block; border:1px solid #3a2820; border-radius:8px;
+    padding:6px 18px; font-size:.8em; letter-spacing:2px; color:var(--muted);
+    font-family:'EB Garamond',serif; margin-bottom:16px; text-transform:uppercase;
+  }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position:fixed; bottom:28px; right:28px; width:48px; height:48px;
+    background: linear-gradient(135deg,var(--dawn4),var(--dawn2));
+    color:#0a0800; font-size:1.2em; font-weight:700;
+    border:none; border-radius:50%; cursor:pointer;
+    display:none; align-items:center; justify-content:center;
+    box-shadow:0 4px 24px rgba(0,0,0,.6); transition:transform .2s; z-index:999;
+  }
+  #scrollTop:hover { transform:scale(1.1); }
+
+  @media(max-width:640px){
+    .header { padding:64px 20px 54px; }
+    .ayat-section, .penutup, .epilog { padding:32px 18px; }
+    .container { padding:32px 14px 64px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <p class="header-eyebrow">Tafsir Hidup · Seri Surat Al-Quran</p>
+  <h1 class="gold">Al-Fajr</h1>
+  <p class="header-sub">Surat 89 · 30 Ayat · Makkiyah</p>
+  <div class="divider-dawn"></div>
+  <p class="tagline">Level terakhir permainan ini bukan kekayaan, bukan kekuasaan, bukan pujian. Tapi satu hal yang kita paling sering lupakan: kepulangan jiwa yang tenang.</p>
+  <div class="horizon-line"></div>
+</div>
+
+<div class="container">
+
+  <!-- ===== BAGIAN I ===== -->
+  <div class="section-header">
+    <span class="section-label">Bagian I · Ayat 1–5</span>
+    <h2 class="gold">Sumpah Demi Waktu-Waktu yang Kita Abaikan</h2>
+  </div>
+
+  <!-- AYAT 1 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">١</span>
+      <span class="label gold">Ayat Pertama</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">وَٱلۡفَجۡرِ</div>
+    </div>
+    <p class="translation">"Demi fajar."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">الۡفَجۡر — Fajar, Pembelahan</div>
+    <p>Kata <em>fajr</em> berakar dari kata kerja <em>fajara</em>—membelah, merobek, membobol. Bukan sekadar "cahaya pagi yang indah". Ini adalah momen ketika kegelapan <strong>dibelah paksa</strong> oleh terang. Ada kekerasan yang lembut di sana: gelap tidak pergi dengan suka rela, tapi ia dikalahkan.</p>
+    <p>Allah memilih momen ini—bukan matahari terbit yang spektakuler, bukan siang yang gemilang—tapi justru fajar: celah pertama, cahaya paling tipis, momen yang sebagian besar orang lewati dalam tidur. Ini adalah pilihan yang penuh makna: <strong>yang paling agung sering hadir diam-diam, pada waktu yang tidak ada yang menonton.</strong></p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Allah membuka surat yang paling dramatis ini bukan dengan perintah atau larangan—tapi dengan sumpah. Dan dalam tradisi Arab, sumpah adalah alat retorika tertinggi: "Perhatikan ini. Ini lebih penting dari yang kamu kira."</p>
+    <p>Dengan bersumpah demi fajar, Allah sedang berkata: ada sesuatu di dalam momen pembelahan gelap-terang ini yang menyimpan pelajaran tentang seluruh eksistensi. Bahwa setiap hal besar dalam semesta—termasuk kesadaran jiwa—dimulai dari sebuah pembelahan. Bukan perubahan gradual. Tapi keputusan tajam yang memisahkan sebelum dan sesudah.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Ada berapa fajar yang sudah kita lewati? Bukan hitungan kalender—tapi fajar yang benar-benar kita <em>rasakan</em>. Generasi kita adalah generasi yang paling banyak terjaga di malam hari dan paling banyak melewatkan fajar. Bukan karena malas—tapi karena malam dijejali notifikasi, konten, dan kebisingan digital yang tidak pernah berhenti.</p>
+      <p>Fajar yang dilewati bukan hanya soal salat Subuh yang terlewat. Ini tentang sebuah ritme kosmik yang kita putus sambungannya. Ritme yang setiap hari menawarkan satu kesempatan: <em>maukah kamu menjadi orang yang hadir di momen pembelahan?</em></p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Fajar tidak menunggu siapa pun untuk siap. Ia membelah gelap tepat pada waktunya, setiap hari, tanpa gagal. Yang bisa kita pilih hanyalah: apakah kita hadir di sana, atau tidur melewati pembelahan terpenting hari ini.
+    </div>
+  </div>
+
+  <!-- AYAT 2 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٢</span>
+      <span class="label gold">Ayat Kedua</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">وَلَيَالٍ عَشۡرٍ</div>
+    </div>
+    <p class="translation">"Dan demi malam yang sepuluh."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">لَيَالٍ عَشۡرٍ — Sepuluh Malam</div>
+    <p>Para ulama tafsir—Ibnu Abbas, Ibnu Katsir, dan mayoritas mufassir—menyepakati ini merujuk pada <strong>sepuluh malam pertama bulan Dzulhijjah</strong>, yang disebut Rasulullah ﷺ sebagai "hari-hari terbaik di dunia". Ada juga yang menafsirkannya sebagai sepuluh malam terakhir Ramadan. Dalam kedua tafsir, pesannya sama: ada segmen waktu tertentu yang memiliki <em>kerapatan nilai</em> jauh lebih tinggi dari hari-hari biasa.</p>
+    <p>Yang menarik: Allah tidak menyebut nama bulan atau tanggal. Ia menyebut jumlahnya saja—sepuluh—seolah mengisyaratkan bahwa ini bukan soal data kalender, tapi soal <em>apakah kamu tahu momen-momen emas dalam hidupmu sendiri?</em></p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Di antara 365 malam dalam setahun, ada sepuluh malam yang nilainya tidak sebanding dengan sisanya. Ini bukan soal takdir—tapi soal arsitektur waktu yang Allah rancang. Seperti dalam peta kota ada persimpangan strategis yang menentukan arah perjalanan lebih dari ribuan meter jalan biasa.</p>
+    <p>Sumpah demi "sepuluh malam" ini adalah pengingat bahwa waktu tidak diciptakan rata. Ada waktu-waktu yang memiliki gravitasi spiritual yang lebih kuat—dan kita perlu cukup sadar untuk mengenalinya sebelum ia berlalu.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era manajemen waktu—produktivitas, time-blocking, deep work. Tapi semua sistem itu dibangun di atas asumsi bahwa semua waktu setara dan tinggal diisi dengan benar. Al-Fajr menawarkan perspektif berbeda: ada waktu yang secara inherent lebih bermakna, dan tugas kita bukan hanya <em>mengisi</em> waktu—tapi <em>mengenali</em> waktu.</p>
+      <p>Berapa banyak dari kita yang tahu persis kapan sepuluh malam Dzulhijjah? Berapa banyak yang punya rencana berbeda untuk malam-malam itu dibanding malam-malam lainnya? Paradoksnya: kita hafal tanggal promo Harbolnas, tapi tidak hafal kapan malam-malam paling berharga dalam setahun.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Waktu bukan permukaan datar yang tinggal diisi. Ada lembah dan puncak dalam peta waktu—dan orang yang bijak bukan hanya yang produktif setiap hari, tapi yang tahu kapan ia sedang berdiri di puncak.
+    </div>
+  </div>
+
+  <!-- AYAT 3 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٣</span>
+      <span class="label gold">Ayat Ketiga</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">وَٱلشَّفۡعِ وَٱلۡوَتۡرِ</div>
+    </div>
+    <p class="translation">"Dan demi yang genap dan yang ganjil."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">الشَّفۡع — Yang Genap, Berpasangan</div>
+    <p><em>Asy-syaf'u</em> adalah genap—segala sesuatu yang berpasangan, yang memiliki tandingan, yang lengkap dalam dualitas: siang-malam, langit-bumi, laki-laki-perempuan, senang-susah. Seluruh alam semesta diciptakan dalam pasangan sebagai tanda bahwa tidak ada yang berdiri sendiri dalam tatanan ciptaan.</p>
+
+    <div class="energi-chip">الۡوَتۡر — Yang Ganjil, Tunggal</div>
+    <p><em>Al-watr</em> adalah ganjil—yang tidak berpasangan, yang berdiri sendiri, yang tidak butuh pelengkap. Para ulama menafsirkan ini sebagai Allah Yang Esa, atau Hari Arafah (tanggal 9 Dzulhijjah), atau salat witir yang ditutup satu rakaat. Dalam matematika langit, ganjil adalah mahkota—karena menandakan Yang Tidak Bergantung.</p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Ada kedalaman filosofis yang luar biasa dalam pasangan sumpah ini. Allah bersumpah demi <em>keduanya</em>—yang genap dan yang ganjil. Artinya: seluruh tatanan realitas, dari yang berpasangan hingga yang tunggal, dari yang bergantung hingga yang mandiri—semuanya menjadi saksi atas kebenaran yang akan disampaikan surat ini.</p>
+    <p>Ini juga bisa dibaca sebagai kode kosmik: alam semesta bekerja dalam ritme genap-ganjil. Napas masuk dan keluar. Sistol dan diastol. Tidur dan terjaga. Dan di tengah semua ritme berpasangan itu, ada Yang Ganjil—yang tidak ikut dalam ritme, yang tidak memiliki siklus, yang ada sebelum ada dan tetap ada setelah semuanya berakhir.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita sering merasa tidak lengkap ketika sendirian—ketika belum menemukan pasangan, ketika tidak punya komunitas, ketika tidak masuk dalam kelompok manapun. Kita hidup di budaya yang merayakan "genap": pasangan ideal, grup pertemanan yang solid, koneksi profesional yang luas.</p>
+      <p>Sumpah demi yang ganjil adalah pengingat bahwa ada nilai dalam kesendirian yang tidak perlu segera diisi. Ada momen-momen "witir" dalam hidup—ketika kamu berdiri sendirian, tidak berpasangan dengan siapapun, hanya kamu dan Yang Ganjil—dan justru di sana sesuatu yang paling penting terjadi.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Alam semesta bergerak dalam pasangan—tapi yang paling berkuasa di dalamnya adalah Yang Tunggal. Belajar nyaman dengan ganjil, dengan sendirian, dengan tidak-perlu-berpasangan adalah salah satu kematangan jiwa yang paling sulit dan paling berharga.
+    </div>
+  </div>
+
+  <!-- AYAT 4 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٤</span>
+      <span class="label gold">Ayat Keempat</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">وَٱلَّيۡلِ إِذَا يَسۡرِ</div>
+    </div>
+    <p class="translation">"Dan demi malam apabila berlalu."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">إِذَا يَسۡرِ — Ketika Berlalu / Berjalan</div>
+    <p><em>Yasri</em> berasal dari kata <em>sara-yasri</em>—berjalan di malam hari, melangkah dalam gelap. Ini bukan sekadar "malam yang pergi". Ini adalah malam yang <em>berjalan</em>—aktif, bergerak, punya arah. Ada keindahan yang aneh di sini: malam digambarkan seperti musafir yang sedang dalam perjalanan, bukan sekadar kondisi pasif yang menunggu matahari mengusirnya.</p>
+    <p>Sebagian ulama juga membaca ini sebagai "malam yang sudah hampir selesai"—saat-saat paling gelap sebelum fajar, ketika malam "berjalan pergi" dan fajar semakin dekat. Momen yang paling lelah sekaligus paling dekat dengan terang.</p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Mengapa Allah bersumpah demi malam yang <em>sedang berlalu</em>, bukan malam dalam kegelapan penuhnya? Karena ada pelajaran khusus dalam proses perjalanan malam menuju fajar. Ini adalah momen transisi—dan transisi selalu menyimpan kebenaran yang tidak ada di titik awal maupun titik akhir.</p>
+    <p>Malam yang berjalan menuju fajar adalah metafora sempurna untuk kondisi jiwa yang sedang dalam proses: belum sampai, tapi sudah bergerak. Masih gelap, tapi sudah melangkah. Dan Allah bersumpah demi momen itu—bukan demi yang sudah sampai, tapi demi yang sedang dalam perjalanan.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Banyak dari kita sedang berada di fase "malam yang berjalan"—masa-masa yang belum jelas hasilnya, belum terang tujuannya, tapi sudah terlalu jauh untuk kembali ke titik awal. Masa transisi karier. Masa penyembuhan dari luka lama. Masa menunggu yang terasa tidak berujung.</p>
+      <p>Ayat ini adalah pelukan bagi mereka yang sedang di sana: Allah bersumpah demi momen sepertimu. Bukan hanya demi fajar yang sudah tiba, bukan hanya demi malam yang sempurna dalam gelapnya—tapi demi <em>malam yang sedang berjalan menuju terang</em>. Prosesmu itu sakral. Perjalananmu itu diperhatikan.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Allah bersumpah demi malam yang sedang berjalan—bukan yang sudah sampai. Artinya: proses yang belum selesai, perjalanan yang masih gelap, dan jiwa yang sedang bergerak menuju terang—itu semua cukup berharga untuk dijadikan sumpah.
+    </div>
+  </div>
+
+  <!-- AYAT 5 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٥</span>
+      <span class="label gold">Ayat Kelima</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">هَلۡ فِي ذَٰلِكَ قَسَمٌ لِّذِي حِجۡرٍ</div>
+    </div>
+    <p class="translation">"Adakah pada yang demikian itu terdapat sumpah yang dapat diterima bagi orang-orang yang berakal?"</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">ذِي حِجۡرٍ — Orang yang Berakal / Punya Batas</div>
+    <p><em>Hijr</em> dalam bahasa Arab memiliki dua makna yang saling terkait: akal, dan batas/pagar. Orang yang <em>dzii hijr</em> adalah orang yang memiliki akal—tapi secara harfiah juga berarti orang yang memiliki pagar dalam dirinya. Yang tahu batas. Yang tidak semua dorongan nafsunya ia turuti begitu saja. Ada sambungan indah di sini: <strong>akal sejati adalah kemampuan memberi batas pada diri sendiri.</strong></p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Ini adalah pertanyaan retoris yang luar biasa. Setelah empat sumpah megah—fajar, sepuluh malam, genap-ganjil, malam yang berjalan—Allah bertanya: cukupkah ini sebagai sumpah bagi orang yang berakal? Jawabannya tersirat tapi keras: <em>ya, lebih dari cukup.</em> Tapi hanya bagi mereka yang memiliki <em>hijr</em>—akal yang diberi pagar, pikiran yang mau berhenti dan merenungkan.</p>
+    <p>Ini adalah filter pertama surat Al-Fajr: ia tidak berbicara kepada semua orang. Ia berbicara kepada mereka yang mau berhenti dari kesibukan sejenak dan bertanya, <em>apa yang sesungguhnya terjadi di balik semua ini?</em></p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Era informasi tidak otomatis melahirkan era kebijaksanaan. Kita bisa membaca ribuan artikel, menonton ratusan video edukatif, mengikuti puluhan kelas online—dan tetap tidak memiliki <em>hijr</em>. Karena <em>hijr</em> bukan soal volume pengetahuan. Ia soal kemampuan untuk berhenti, diam, dan <em>membiarkan sesuatu benar-benar meresap</em>.</p>
+      <p>Di era scroll tanpa henti, memiliki <em>hijr</em> adalah kemampuan paling langka sekaligus paling mahal. Kemampuan untuk tidak langsung ke konten berikutnya. Kemampuan untuk duduk dengan satu ayat, satu pikiran, satu pertanyaan—cukup lama sampai ia meninggalkan bekas.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Akal sejati bukan kecepatan berpikir—tapi kemampuan berhenti dan memberi batas pada diri sendiri. Di zaman yang merayakan kecepatan, memiliki <em>hijr</em> adalah bentuk perlawanan yang paling diam dan paling kuat.
+    </div>
+  </div>
+
+
+  <!-- ===== BAGIAN II ===== -->
+  <div class="section-header">
+    <span class="section-label">Bagian II · Ayat 6–14</span>
+    <h2 class="gold">Tiga Peradaban yang Tidak Percaya Bisa Hancur</h2>
+  </div>
+
+  <!-- AYAT 6–8 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٦–٨</span>
+      <span class="label gold">Kaum 'Aad & Iram</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic md">أَلَمۡ تَرَ كَيۡفَ فَعَلَ رَبُّكَ بِعَادٍ ۝ إِرَمَ ذَاتِ ٱلۡعِمَادِ ۝ ٱلَّتِي لَمۡ يُخۡلَقۡ مِثۡلُهَا فِي ٱلۡبِلَٰدِ</div>
+    </div>
+    <p class="translation">"Apakah kamu tidak memperhatikan bagaimana Tuhanmu berbuat terhadap kaum 'Aad? (Yaitu) penduduk Iram yang mempunyai bangunan-bangunan yang tinggi, yang belum pernah dibangun (suatu kota) seperti itu di negeri-negeri lain?"</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">إِرَمَ ذَاتِ ٱلۡعِمَاد — Iram Bertiang-Tiang Tinggi</div>
+    <p><em>Al-'imad</em> adalah tiang—tegak, kokoh, menopang. Iram adalah kota legendaris kaum 'Aad yang disebut memiliki tiang-tiang atau menara setinggi yang tidak tertandingi di zamannya. Dalam konteks ini, tiang bukan hanya bangunan—tapi simbol: <strong>kekuatan yang diacungkan ke langit sebagai demonstrasi kepada manusia lain.</strong> Kita membangun tiang bukan hanya untuk menopang atap, tapi untuk mengatakan: <em>lihatlah betapa besarnya kami.</em></p>
+
+    <div class="energi-chip">لَمۡ يُخۡلَقۡ مِثۡلُهَا — Tiada Duanya</div>
+    <p>Pernyataan yang menggetarkan: mereka bukan sekadar kuat, mereka adalah yang paling kuat. Tidak ada yang sebanding. Dan justru penekanan "tiada duanya" inilah yang membuat kehancuran mereka menjadi pelajaran yang paling keras—karena mereka yang merasa tidak tertandingi adalah yang paling tidak siap ketika akhirnya tertandingi.</p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Allah membuka bagian naratif surat ini dengan pertanyaan: <em>"Apakah kamu tidak melihat?"</em> Ini bukan pertanyaan informasi—ini adalah undangan untuk melihat pola. Dan pola yang ditunjukkan adalah: peradaban yang membangun tiang-tiang untuk mendemonstrasikan kehebatan diri, yang merasa berada di puncak yang tidak terjangkau—pada akhirnya diratakan.</p>
+    <p>Kaum 'Aad dikenal dalam tradisi Arab sebagai bangsa raksasa—manusia-manusia fisik yang jauh lebih kuat dari manusia biasa. Kekuatan fisik mereka luar biasa. Arsitektur mereka menakjubkan. Dan semua itu menjadi sumber keyakinan yang keliru: <em>bahwa kekuatan yang terlihat adalah kekuatan yang sesungguhnya.</em></p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Setiap generasi punya versi "Iram bertiang-tiang tinggi" miliknya sendiri. Kita punya gedung pencakar langit yang berlomba memecahkan rekor ketinggian. Kita punya perusahaan teknologi yang valuasinya lebih besar dari GDP banyak negara. Kita punya influencer dengan jangkauan jutaan orang yang terasa tak tergoyahkan.</p>
+      <p>Dan kita juga punya versi personal: karier yang terasa tak tergoyahkan, hubungan yang terasa abadi, reputasi yang terasa terlindungi. Semua itu bisa menjadi "tiang-tiang tinggi"—bukan karena memilikinya salah, tapi karena <em>bergantung padanya sebagai sumber keamanan</em> adalah kesalahan yang sudah berulang kali terbukti.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Tidak ada tiang buatan manusia yang terlalu tinggi untuk tidak bisa runtuh. Yang paling berbahaya bukanlah yang paling tinggi tiangnya—tapi yang paling yakin bahwa tiangnya tidak akan pernah jatuh.
+    </div>
+  </div>
+
+  <!-- AYAT 9–10 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٩–١٠</span>
+      <span class="label gold">Kaum Tsamud</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic md">وَثَمُودَ ٱلَّذِينَ جَابُواْ ٱلصَّخۡرَ بِٱلۡوَادِ ۝ وَفِرۡعَوۡنَ ذِي ٱلۡأَوۡتَادِ</div>
+    </div>
+    <p class="translation">"Dan (terhadap) kaum Tsamud yang memotong batu-batu besar di lembah, dan (terhadap) Fir'aun yang mempunyai pasak-pasak (bangunan yang kokoh)?"</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">جَابُواْ ٱلصَّخۡرَ — Memahat Batu Cadas</div>
+    <p><em>Jabuu</em> berarti memotong, memahat, melubangi. Kaum Tsamud bukan sekadar membangun—mereka <strong>memahat gunung-gunung batu menjadi rumah tinggal.</strong> Ini adalah gambaran tentang kecanggihan teknis yang luar biasa di zamannya. Mereka tidak membangun di atas tanah—mereka masuk ke dalam batu. Teknisi-teknisi jenius yang menguasai material terkeras di bumi. Dan mereka juga hancur.</p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Kontras kaum 'Aad dan Tsamud sangat menarik: 'Aad membangun tinggi ke atas, Tsamud menggali masuk ke dalam batu. Dua arah yang berbeda, dua kehancuran yang sama. Ini adalah pengingat bahwa kehancuran bukan soal <em>cara</em> membangun—tapi soal <em>mengapa</em> membangun dan <em>untuk siapa</em>.</p>
+    <p>Kaum Tsamud menerima mukjizat langsung—unta Allah yang secara ajaib keluar dari batu gunung. Dan mereka memilih untuk menyembelih unta itu. Ini adalah simbol yang dalam: ketika manusia yang berbakat secara teknis menolak tanda-tanda yang melampaui teknis, mereka sedang menegaskan bahwa kemampuan mereka adalah tuhan mereka sendiri.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kaum Tsamud adalah arketipe yang sangat relevan hari ini: orang-orang yang sangat cerdas secara teknis, sangat mampu memecahkan masalah material, tapi secara bersamaan menutup diri dari dimensi yang tidak bisa dipecahkan dengan kecerdasan teknis.</p>
+      <p>Kita punya banyak Tsamud modern: jenius teknologi yang membangun algoritma canggih tapi tidak pernah bertanya tentang dampaknya pada jiwa manusia. Dokter-dokter brilian yang menguasai anatomi tapi tidak pernah duduk dengan pertanyaan tentang kematian. Insinyur keuangan yang membangun sistem derivatif kompleks tapi tidak tahu cara mempertanggungjawabkan dampaknya pada orang nyata.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kemampuan memotong batu tidak memberi kemampuan untuk memotong akibat dari perbuatan. Kejeniusan teknis tanpa kebijaksanaan etis adalah pahat tajam di tangan yang tidak tahu apa yang sedang dipahatnya.
+    </div>
+  </div>
+
+  <!-- AYAT 11–12 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">١١–١٢</span>
+      <span class="label gold">Fir'aun & Pasak-Pasaknya</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic md">وَفِرۡعَوۡنَ ذِي ٱلۡأَوۡتَادِ ۝ ٱلَّذِينَ طَغَوۡاْ فِي ٱلۡبِلَٰدِ</div>
+    </div>
+    <p class="translation">"Dan (terhadap) Fir'aun yang mempunyai pasak-pasak (bangunan yang kokoh), yang berbuat sewenang-wenang dalam negeri."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">ذِي ٱلۡأَوۡتَاد — Pemilik Pasak-Pasak</div>
+    <p><em>Al-awtad</em> adalah pasak—tiang pancang yang menancap ke tanah untuk mengunci sesuatu agar tidak bergerak. Ada dua tafsir menarik: pertama, merujuk pada piramid-piramid Mesir yang tiangnya menancap jauh ke tanah. Kedua—dan ini lebih menggetarkan—merujuk pada cara Fir'aun menyiksa orang: menancapkan pasak ke tangan dan kaki korban sehingga tidak bisa bergerak. <strong>Ia menggunakan alat yang sama untuk membangun istana dan menyiksa manusia.</strong></p>
+
+    <div class="energi-chip">طَغَوۡاْ — Melampaui Batas, Sewenang-Wenang</div>
+    <p><em>Tagha-yathgha</em>: meluap, melampaui batas, seperti air banjir yang melewati tepi sungai. <em>Thughyan</em> adalah kondisi ketika seseorang sudah tidak lagi merasakan batas apapun—karena kekuasaan, karena tidak ada yang berani melarang, atau karena sudah terlalu lama tidak dihukum atas kesewenangan-wenangannya.</p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Fir'aun adalah puncak dari tiga kisah ini—bukan karena ia paling jahat, tapi karena ia paling lengkap dalam kesombongannya. 'Aad sombong atas kekuatan fisik. Tsamud sombong atas kemampuan teknis. Fir'aun sombong atas sistem kekuasaan: ia bukan hanya raja, ia menyatakan dirinya sebagai tuhan.</p>
+    <p><em>"Ana rabbukumul a'la"</em>—akulah tuhanmu yang paling tinggi. Dan kemudian ia tenggelam di Laut Merah. Ironi paling dramatis dalam sejarah: orang yang mengklaim status ilahi, mati dikejar air—elemen paling sederhana dalam ciptaan.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Fir'aun modern tidak selalu duduk di singgasana emas. Ia bisa duduk di kursi direktur, di kantor kepala, di balik akun media sosial dengan jutaan pengikut. Ciri khasnya bukan mahkota—tapi cara ia memperlakukan yang lebih lemah: apakah kekuasaannya digunakan untuk melindungi atau memaku?</p>
+      <p>Dan dalam skala personal: ada sedikit Fir'aun dalam diri kita yang perlu dijaga. Momen ketika kita mulai merasa bahwa aturan yang berlaku untuk orang lain tidak berlaku untuk kita. Momen ketika kita mulai merasionalisasi kesewenang-wenangan atas nama efisiensi, atas nama "sudah terlalu banyak berjasa", atas nama "mereka yang tidak mengerti lebih baik diam".</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Yang membangun piramid dan yang menancap pasak ke tubuh manusia bisa saja orang yang sama. Kekuasaan yang tidak dijaga dengan kesadaran akan berubah dari pelindung menjadi penyiksa—dan transisi itu sering terjadi perlahan, tanpa drama, tanpa pengumuman.
+    </div>
+  </div>
+
+  <!-- AYAT 13–14 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">١٣–١٤</span>
+      <span class="label gold">Cambukan dan Pengawasan</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic md">فَأَكۡثَرُواْ فِيهَا ٱلۡفَسَادَ ۝ فَصَبَّ عَلَيۡهِمۡ رَبُّكَ سَوۡطَ عَذَابٍ ۝ إِنَّ رَبَّكَ لَبِٱلۡمِرۡصَادِ</div>
+    </div>
+    <p class="translation">"...yang berbuat banyak kerusakan dalam negeri, lalu Tuhanmu menimpakan cemeti azab kepada mereka, sesungguhnya Tuhanmu benar-benar mengawasi."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">سَوۡطَ عَذَاب — Cambuk Azab</div>
+    <p><em>Sawt</em> adalah cambuk—alat yang menghukum dengan cepat, tepat sasaran, dan menyakitkan. Pilihan kata ini sangat spesifik: bukan "hujan azab" atau "badai azab"—tapi <em>cambuk</em>. Cambuk bukan penghancuran massal yang tidak terencana. Cambuk adalah respons yang presisi terhadap kesalahan yang presisi. Ini adalah pengingat bahwa azab Allah bukan kemarahan yang meledak sembarangan—ia <strong>tepat, proporsional, dan merespons perbuatan nyata.</strong></p>
+
+    <div class="energi-chip">لَبِٱلۡمِرۡصَاد — Benar-Benar Mengawasi / Menunggu di Jalan</div>
+    <p><em>Al-mirsad</em> berasal dari kata <em>rasada</em>—mengintai, menunggu di jalan, mengawasi dengan seksama. Ini bukan pengawasan pasif seperti kamera CCTV. Ini adalah pengawasan aktif—seperti penjaga yang sudah berdiri di titik strategis, sudah tahu siapa yang akan lewat, sudah siap dengan apa yang akan dilakukan. Ayat penutup bagian ini terasa seperti bisikan yang sangat tenang dan sangat berat: <em>Ia sudah ada di sana. Menunggumu di persimpangan.</em></p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Ayat 14 adalah salah satu ayat paling singkat dan paling berat dalam Al-Quran: <em>Inna rabbaka labil mirsad</em>—hanya enam kata dalam bahasa Arab. Dan ia menutup seluruh rangkaian kisah tiga peradaban dengan satu pernyataan yang tidak butuh elaborasi.</p>
+    <p>Tidak ada yang lolos dari pengawasan ini. Bukan karena Tuhan itu polisi kosmik yang menunggu kesalahan untuk dihukum—tapi karena alam semesta memiliki sistem akuntabilitas yang built-in. Setiap perbuatan menyisakan jejak. Setiap kerusakan meninggalkan akibat. Dan ada yang memegang buku catatan itu dengan sangat teliti.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era yang percaya bahwa cukup tidak tertangkap kamera, tidak viral, tidak ada yang melaporkan—berarti aman. Korupsi yang "rapi" dianggap bukan korupsi. Kebohongan yang "tidak ada yang tahu" dianggap tidak ada. Kekejaman yang dilakukan di ruang tertutup dianggap tidak terjadi.</p>
+      <p><em>Inna rabbaka labil mirsad</em> hadir untuk mengingatkan bahwa ada satu dimensi pengawasan yang tidak bisa dibeli, tidak bisa dimanipulasi, tidak bisa di-spin oleh tim PR manapun. Dan yang lebih menggetarkan: ia tidak terburu-buru. Ia sudah ada di persimpangan, sudah menunggu—bukan dengan panik, tapi dengan ketenangan yang jauh lebih mengintimidasi dari kemarahan manapun.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Lolos dari mata manusia belum pernah sama dengan lolos dari konsekuensi. Ada yang duduk di persimpangan semua jalan—bukan untuk menghukum dengan terburu-buru, tapi untuk memastikan bahwa tidak ada yang benar-benar terlupakan.
+    </div>
+  </div>
+
+
+  <!-- ===== BAGIAN III ===== -->
+  <div class="section-header">
+    <span class="section-label">Bagian III · Ayat 15–20</span>
+    <h2 class="gold">Cara Kita Salah Membaca Tanda-Tanda Tuhan</h2>
+  </div>
+
+  <!-- AYAT 15–16 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">١٥–١٦</span>
+      <span class="label gold">Dua Ujian, Satu Kesalahan</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic md">فَأَمَّا ٱلۡإِنسَٰنُ إِذَا مَا ٱبۡتَلَىٰهُ رَبُّهُۥ فَأَكۡرَمَهُۥ وَنَعَّمَهُۥ فَيَقُولُ رَبِّيٓ أَكۡرَمَنِ ۝ وَأَمَّآ إِذَا مَا ٱبۡتَلَىٰهُ فَقَدَرَ عَلَيۡهِ رِزۡقَهُۥ فَيَقُولُ رَبِّيٓ أَهَٰنَنِ</div>
+    </div>
+    <p class="translation">"Maka adapun manusia, apabila Tuhan mengujinya lalu memuliakannya dan memberinya kesenangan, maka dia berkata, 'Tuhanku telah memuliakanku.' Namun apabila Tuhan mengujinya lalu membatasi rezekinya, maka dia berkata, 'Tuhanku telah menghinakanku.'"</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">ٱبۡتَلَىٰهُ — Mengujinya (Dua Kali)</div>
+    <p>Perhatikan kata ini: ia muncul dua kali—sekali untuk kondisi nikmat, sekali untuk kondisi sempit. <strong>Keduanya disebut sebagai ujian dari sumber yang sama.</strong> Ini bukan kesalahan penulisan. Ini adalah deklarasi teologis yang mengubah segalanya: kenikmatan bukan hadiah, kesulitan bukan hukuman—<em>keduanya adalah ujian</em>. Dan keduanya menuntut respons yang benar.</p>
+
+    <div class="energi-chip">أَكۡرَمَنِ vs أَهَٰنَنِ — Dimuliakan vs Dihinakan</div>
+    <p>Dua kata yang berhadapan. <em>Akramani</em>: Ia memuliakanku. <em>Ahanani</em>: Ia menghinakanku. Dua kesimpulan yang ditarik dari dua kondisi—dan keduanya salah. Bukan karena perasaannya tidak valid, tapi karena <em>variabel yang digunakan untuk menarik kesimpulan itu bukan variabel yang benar.</em></p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Ini adalah analisis psikologis paling tajam dalam Al-Quran tentang cara manusia menafsirkan realitas. Kita punya kecenderungan bawaan yang sangat kuat untuk membaca situasi melalui satu kaca mata sederhana: kondisi baik = dikasihi, kondisi buruk = ditinggalkan.</p>
+    <p>Dan kaca mata ini berbahaya bukan hanya secara teologis—tapi secara psikologis. Karena ia menciptakan manusia yang keimanannya naik-turun mengikuti kondisi rekening bank. Yang merasa dekat dengan Tuhan ketika karier mulus, dan merasa ditinggalkan ketika sakit. Yang spiritualitasnya menjadi termometer kondisi hidup—bukan kompas yang memandu kondisi hidup.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Bayangkan dua orang di usia yang sama. Yang pertama baru naik jabatan, dapat bonus besar, menikah dengan pasangan idaman. Di media sosial ia caption, <em>"Alhamdulillah, Tuhan baik sekali"</em>—dan tanpa sadar, terselip asumsi kecil: <em>ini karena aku lebih baik dari yang lain.</em> Perlahan ia mulai meremehkan yang belum berhasil, dengan cara yang sangat halus.</p>
+      <p>Yang kedua sudah tiga tahun mencoba tanpa hasil. Usahanya gagal, hubungannya retak. Ia diam-diam mulai bertanya: <em>apa yang salah denganku sampai Tuhan seperti tidak mendengar?</em> Dan perlahan ia menarik diri, merasa tidak layak, merasa tidak diperhatikan. Kedua orang ini melakukan kesalahan yang sama: menggunakan kondisi eksternal sebagai alat ukur posisi mereka di hadapan Tuhan.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kekayaan bukan bukti kemuliaan di hadapan Tuhan, dan kemiskinan bukan bukti kehinaan. Menggunakan kondisi hidup sebagai termometer hubungan kita dengan Tuhan adalah kesalahan yang menyebabkan dua jiwa bermasalah sekaligus: yang sombong karena kaya, dan yang putus asa karena miskin.
+    </div>
+  </div>
+
+  <!-- AYAT 17 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">١٧</span>
+      <span class="label gold">Kallaa — Sanggahan Keras</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">كَلَّا ۖ بَل لَّا تُكۡرِمُونَ ٱلۡيَتِيمَ</div>
+    </div>
+    <p class="translation">"Tidak! Bahkan kamu tidak memuliakan anak yatim."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">كَلَّا — Sama Sekali Tidak!</div>
+    <p>Ini adalah kata sanggahan paling tegas dalam Al-Quran. Tidak ada gradasi, tidak ada "sebenarnya ada nuansanya". <em>Kalla</em> berarti: kalian salah total. Fondasi cara pandang kalian keliru dari dasarnya. Ini bukan koreksi halus—ini adalah banting setir penuh.</p>
+
+    <div class="energi-chip">لَّا تُكۡرِمُونَ ٱلۡيَتِيمَ — Tidak Memuliakan Anak Yatim</div>
+    <p>Kata yang dipakai adalah <em>tukrimun</em>—memuliakan, bukan sekadar memberi. Ada perbedaan yang sangat besar antara memberi sesuatu kepada anak yatim (karena kewajiban atau agar terlihat dermawan) dan <em>memuliakan</em> anak yatim (memperlakukannya sebagai manusia yang bermartabat penuh). Al-Fajr menuntut yang kedua.</p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Setelah sanggahan tegas atas cara manusia membaca tanda-tanda, Allah langsung menunjuk tiga bukti konkret dari kekeliruan itu. Yang pertama: perlakuan terhadap anak yatim. Ini bukan kebetulan. Anak yatim adalah kelompok yang paling mudah diabaikan karena tidak punya kekuatan balas—mereka tidak bisa mengancam, tidak bisa memberi keuntungan, tidak bisa memberikan koneksi berguna.</p>
+    <p>Cara seseorang memperlakukan anak yatim adalah cermin paling jujur tentang sistem nilainya yang sesungguhnya. Karena tidak ada motif tersembunyi yang menguntungkan di sana. Hanya pilihan murni: apakah kamu memuliakan yang tidak bisa memberimu apa-apa?</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Anak yatim secara harfiah hanyalah satu kategori. Tapi prinsipnya jauh lebih luas: <em>bagaimana kita memperlakukan mereka yang tidak bisa membalas?</em> Pegawai magang yang tidak punya posisi tawar. Pasien yang bergantung pada dokternya. Konsumen yang tidak punya akses informasi. Orang tua yang sudah tidak produktif secara ekonomi.</p>
+      <p>Di era networking dan "siapa yang kamu kenal", kita dilatih untuk berinvestasi pada hubungan yang memberikan return. Al-Fajr menantang logika itu dengan pertanyaan yang tidak nyaman: apakah nilai seseorang bagimu diukur dari apa yang bisa mereka lakukan untukmu?</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Cara termudah untuk mengetahui sistem nilai seseorang yang sesungguhnya: lihat bagaimana ia memperlakukan orang yang tidak bisa memberinya apa-apa. Di sana, topeng sosial tidak berguna, dan karakter yang asli terlihat.
+    </div>
+  </div>
+
+  <!-- AYAT 18 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">١٨</span>
+      <span class="label gold">Dosa yang Lebih Halus</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">وَلَا تَحَٰٓضُّونَ عَلَىٰ طَعَامِ ٱلۡمِسۡكِينِ</div>
+    </div>
+    <p class="translation">"Dan kamu tidak saling mendorong untuk memberi makan orang miskin."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">تَحَٰضُّون — Saling Mendorong / Mengajak</div>
+    <p>Ini kata yang luar biasa: bukan sekadar <em>tidak memberi makan</em>, tapi <em>tidak saling mendorong untuk memberi makan</em>. <em>Tahaadhdhun</em> mengandung makna mutual—saling mengajak, saling mengingatkan, saling menggerakkan. Dosanya bukan hanya tidak memberi—tapi tidak membangun budaya kepedulian di sekitar kita. <strong>Diam ketika sistem membiarkan orang kelaparan adalah sebuah partisipasi dalam sistem itu.</strong></p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Ayat ini memindahkan tanggung jawab dari individu ke komunitas. Satu orang yang tidak memberi makan orang miskin adalah permasalahan pribadi. Tapi komunitas yang tidak membangun budaya saling mendorong untuk kepedulian—itu adalah masalah peradaban.</p>
+    <p>Ada perbedaan antara tidak melakukan kebaikan dan tidak mendorong kebaikan. Yang pertama adalah kelalaian. Yang kedua adalah normalisasi ketidakpedulian. Dan normalisasi itu jauh lebih berbahaya, karena ia tidak terasa seperti dosa—ia hanya terasa seperti "memang begitu adanya".</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era yang paling mudah untuk <em>terlihat</em> peduli—donasi satu klik, share konten kemanusiaan, hashtag solidaritas. Tapi ayat ini menantang lebih dalam: apakah kita benar-benar membangun ekosistem kepedulian di lingkaran terdekat kita?</p>
+      <p>Di kantor, apakah kita yang paling pertama mengajak kolega untuk peduli pada karyawan yang kesulitan? Di keluarga, apakah ada budaya saling mengingatkan untuk berbagi? Atau kita sibuk dengan optimasi personal—tabungan sendiri, investasi sendiri, kesejahteraan sendiri—sementara tepat di sebelah kita ada yang butuh dorongan sekecil apapun?</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Dosa terbesar bukan selalu yang paling terlihat. Tidak mendorong orang lain untuk berbuat baik adalah cara paling senyap untuk ikut membangun dunia yang lebih dingin—tanpa pernah merasa bersalah sedikit pun.
+    </div>
+  </div>
+
+  <!-- AYAT 19 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">١٩</span>
+      <span class="label gold">Warisan yang Dimakan Sembarangan</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">وَتَأۡكُلُونَ ٱلتُّرَاثَ أَكۡلًا لَّمًّا</div>
+    </div>
+    <p class="translation">"Dan kamu memakan harta warisan dengan cara mencampur baurkan (yang halal dan yang batil)."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">أَكۡلًا لَّمًّا — Melahap Semuanya Tanpa Pilah</div>
+    <p><em>Aklan lamma</em>—melahap habis, menyapu bersih, tanpa membedakan mana yang haknya dan mana yang bukan. <em>Lamma</em> mengandung gambaran yang sangat visual: seseorang yang menyapu meja makan tanpa peduli mana porsinya dan mana porsi orang lain. Ini bukan sekadar tentang warisan dalam konteks hukum waris—ini tentang <strong>ketamakan yang tidak lagi bisa membedakan batas.</strong></p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Dalam konteks Arab klasik, memakan warisan secara sembarangan merujuk pada praktik menguasai harta anak yatim dan janda yang ditinggal mati kepala keluarga—mereka yang tidak punya kekuatan hukum untuk mempertahankan haknya. Tapi maknanya jauh lebih luas: ini tentang relasi antara kekuatan dan hak.</p>
+    <p>Ketika seseorang punya kekuatan lebih—kekuatan hukum, kekuatan sosial, kekuatan ekonomi—ada godaan untuk mengambil lebih dari yang menjadi haknya, hanya karena bisa. Dan ayat ini menamai itu dengan jelas: <em>aklan lamma</em>—melahap tanpa memilah. Itu bukan efisiensi. Itu kerakusan.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Versi modern dari <em>aklan lamma</em> sangat beragam: korporasi yang mengambil keuntungan dari tenaga kerja jauh di bawah nilai yang seharusnya karena mereka tahu para pekerja tidak punya pilihan lain. Pengembang yang mengambil lahan dengan harga jauh di bawah nilai pasar dari komunitas yang tidak paham prosesnya. Atau bahkan dalam skala personal: mengambil kredit dari pekerjaan kolega, mendominasi sumber daya bersama karena posisinya lebih tinggi.</p>
+      <p>Kesamaannya: semua dilakukan bukan karena tidak punya pilihan, tapi karena <em>bisa</em>. Dan "bisa" tidak pernah sama dengan "berhak".</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kemampuan untuk mengambil sesuatu tidak pernah menjadi pembenaran untuk mengambilnya. Ada garis tipis antara hak dan kerakusan—dan garis itu sering pertama kali hilang dalam pikiran, jauh sebelum hilang dalam perbuatan.
+    </div>
+  </div>
+
+  <!-- AYAT 20 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٢٠</span>
+      <span class="label gold">Cinta yang Membutakan</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">وَتُحِبُّونَ ٱلۡمَالَ حُبًّا جَمًّا</div>
+    </div>
+    <p class="translation">"Dan kamu mencintai harta dengan kecintaan yang berlebihan."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">حُبًّا جَمًّا — Cinta yang Meluap, Menggenangi</div>
+    <p><em>Hubban jamma</em>—cinta yang meluap-luap, yang menggenang, yang tidak bisa dibendung. <em>Jamma</em> berasal dari kata yang menggambarkan air yang menggenang penuh dalam wadah—sampai-sampai tidak ada ruang untuk yang lain. Ini bukan sekadar "suka uang"—ini adalah kondisi di mana cinta terhadap harta sudah mengambil ruang yang seharusnya diisi oleh hal lain: keadilan, empati, kepedulian, keberanian untuk melepas.</p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Ayat terakhir dari Bagian III ini adalah akar dari semua masalah yang disebutkan sebelumnya. Tidak memuliakan anak yatim, tidak mendorong kepedulian pada orang miskin, memakan warisan sembarangan—semua itu adalah buah. Akarnya adalah ini: <em>hubban jamma</em>. Cinta pada harta yang sudah menggenangi hati hingga tidak ada ruang untuk yang lain.</p>
+    <p>Yang dipermasalahkan bukan kepemilikan harta—tapi <em>posisi</em> harta dalam hierarki nilai. Ketika harta naik ke posisi yang seharusnya ditempati oleh keadilan, ketika keamanan finansial menjadi tuhan kecil yang mengatur semua keputusan, ketika angka di rekening menjadi satu-satunya bahasa yang dipercaya—di situlah <em>hubban jamma</em> sudah bekerja.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita adalah generasi yang tumbuh dengan literasi finansial sebagai salah satu prioritas—dan itu bagus. Tapi ada versi yang kebablasan: ketika setiap keputusan dalam hidup direduksi menjadi kalkulasi finansial. Apakah menikah menguntungkan secara finansial? Apakah punya anak cost-effective? Apakah berbuat baik ini ada ROI-nya?</p>
+      <p>Ketika logika pasar masuk ke dalam ranah yang tidak seharusnya diatur oleh pasar—persahabatan, pernikahan, pengasuhan, kepedulian sosial—di situlah <em>hubban jamma</em> sudah menggenang hingga meluap ke semua penjuru.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Harta yang baik adalah harta yang kamu miliki. Harta yang berbahaya adalah harta yang memilikimu—yang ruang dalam pikiranmu sudah lebih banyak diisi olehnya daripada oleh hal-hal yang seharusnya jauh lebih penting.
+    </div>
+  </div>
+
+
+  <!-- ===== BAGIAN IV ===== -->
+  <div class="section-header">
+    <span class="section-label">Bagian IV · Ayat 21–26</span>
+    <h2 class="gold">Hari Ketika Semua Kartu Dibuka di Atas Meja</h2>
+  </div>
+
+  <!-- AYAT 21–22 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٢١–٢٢</span>
+      <span class="label gold">Bumi Diratakan, Tuhan Datang</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic md">كَلَّآ إِذَا دُكَّتِ ٱلۡأَرۡضُ دَكًّا دَكًّا ۝ وَجَآءَ رَبُّكَ وَٱلۡمَلَكُ صَفًّا صَفًّا</div>
+    </div>
+    <p class="translation">"Tidak! Apabila bumi diratakan sehancur-hancurnya, dan datanglah Tuhanmu sedang malaikat berbaris-baris."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">دُكَّتِ دَكًّا دَكًّا — Diratakan, Benar-benar Diratakan</div>
+    <p>Pengulangan yang disengaja dan menghantam. <em>Dukkat dakkan dakka.</em> Bukan "diratakan sekali"—tapi diratakan, lagi dan lagi, sampai benar-benar tidak ada yang tersisa. Semua yang pernah kita jadikan tempat bersandar selain Tuhan—gedung megah, rekening penuh, reputasi yang dibangun puluhan tahun—semuanya rata dengan tanah. Tidak ada pengecualian. Tidak ada heritage site yang dilindungi. Tidak ada rekening yang diasuransikan.</p>
+
+    <div class="energi-chip">صَفًّا صَفًّا — Berbaris-Baris</div>
+    <p>Para malaikat datang dalam barisan—teratur, rapi, khidmat. Ini bukan kekacauan. Ini adalah <em>upacara</em>. Hari itu tidak datang dengan panik—ia datang dengan presisi dan keagungan yang membuatnya jauh lebih berat dari sekadar bencana.</p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Kata <em>kalla</em> yang membuka ayat ini adalah satu-satunya <em>kalla</em> yang muncul di bagian ini—dan ia menghubungkan seluruh kritik tentang perilaku manusia (ayat 17–20) dengan gambaran hari pembalasan ini. Artinya: <em>kalian salah dalam cara hidup kalian—dan ada hari ketika semua itu akan dihadapkan.</em></p>
+    <p>Yang paling menghantam dari gambaran ini bukan kehancurannya—tapi kehadiran Tuhan yang datang. Bukan sekadar pengumuman dari kejauhan. Tapi <em>kehadiran</em>. Segala sesuatu yang selama ini kita lakukan dalam keyakinan "tidak ada yang melihat" atau "nanti akan kutangani"—semuanya akan dihadapkan pada kehadiran itu.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era yang paling nyaman untuk menunda. Menunda pertanggungjawaban, menunda percakapan sulit, menunda perubahan yang diperlukan. Teknologi memberi kita ilusi bahwa selalu ada waktu untuk deal dengan konsekuensi nanti.</p>
+      <p>Gambaran bumi yang diratakan bukan untuk menakut-nakuti—tapi untuk mempertegas satu hal yang selalu kita hindari: <em>ada batas dari penundaan</em>. Ada momen ketika "nanti" tidak lagi tersedia. Dan semakin kita memahami itu, semakin kita bisa menjalani hari ini dengan kesadaran yang berbeda.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Yang paling menakutkan bukan kehancurannya—tapi kehadiran-Nya. Karena kehancuran bisa diabaikan, tapi kehadiran tidak bisa. Dan hari itu datang bukan dengan kekacauan, tapi dengan barisan yang rapi dan ketenangan yang lebih berat dari kemarahan manapun.
+    </div>
+  </div>
+
+  <!-- AYAT 23 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٢٣</span>
+      <span class="label gold">Neraka Dihadirkan</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">وَجِاْيٓءَ يَوۡمَئِذٍۢ بِجَهَنَّمَ</div>
+    </div>
+    <p class="translation">"Dan pada hari itu dihadapkan neraka Jahanam."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">جِيٓءَ بِجَهَنَّمَ — Neraka Dibawa Datang</div>
+    <p>Detail yang sangat spesifik: neraka tidak hanya "ada di sana"—ia <em>dibawa datang</em> (<em>jii'a bijannam</em>). Ini mengisyaratkan sebuah adegan yang sangat intens: neraka itu dihadirkan ke hadapan manusia, bukan manusia yang dihadirkan ke hadapan neraka. Dalam hadis, disebutkan neraka dibawa dengan 70.000 tali kekang, tiap tali ditarik 70.000 malaikat. Gambaran tentang sesuatu yang masif, nyata, dan tidak bisa dihindari dengan cara apapun.</p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Ayat yang sangat pendek—hanya enam kata dalam bahasa Arab. Tapi beratnya luar biasa. Karena ia menempatkan neraka bukan sebagai tempat yang jauh dan abstrak, tapi sebagai realitas yang <em>dihadirkan</em>. Dibawa ke hadapan. Nyata di depan mata.</p>
+    <p>Di dunia ini, konsekuensi dari perbuatan sering terasa jauh dan abstrak. Korupsi yang dampaknya terasa puluhan tahun kemudian. Ketidakadilan yang korbannya tidak terlihat langsung. Kerusakan lingkungan yang baru dirasakan generasi berikutnya. Tapi di hari itu—semua yang abstrak menjadi konkret. Semua yang jauh menjadi dekat. Semua yang "nanti" menjadi <em>sekarang</em>.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Salah satu mekanisme pertahanan terkuat manusia adalah abstraksi—membuat konsekuensi menjadi sesuatu yang tidak nyata, tidak terasa, tidak dekat. Ini yang memungkinkan kita melakukan hal-hal yang tahu kita salah: konsekuensinya terasa tidak nyata.</p>
+      <p>Ayat ini melakukan yang sebaliknya: ia membuat konkret. Ia membawa "nanti" menjadi hadir. Dan efeknya, untuk mereka yang mau merenungkan, adalah bahwa pilihan-pilihan hari ini terasa jauh lebih nyata konsekuensinya—bukan untuk menakut-nakuti, tapi untuk mengembalikan bobot pada keputusan-keputusan yang kita ambil terlalu enteng.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Hari itu menghapus semua jarak antara perbuatan dan konsekuensi. Semua yang terasa abstrak menjadi hadir. Semua yang terasa "nanti" menjadi sekarang. Dan satu-satunya yang tidak bisa dipersiapkan di sana adalah apa yang tidak dipersiapkan di sini.
+    </div>
+  </div>
+
+  <!-- AYAT 24 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٢٤</span>
+      <span class="label gold">Kesadaran yang Datang Terlambat</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">يَوۡمَئِذٍ يَتَذَكَّرُ ٱلۡإِنسَٰنُ وَأَنَّىٰ لَهُ ٱلذِّكۡرَىٰ</div>
+    </div>
+    <p class="translation">"Pada hari itu teringatlah manusia, tetapi apa gunanya baginya peringatan itu?"</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">يَتَذَكَّرُ — Tersadar, Mengingat</div>
+    <p><em>Yatadzakkaru</em>—berasal dari akar <em>dzikr</em>: ingat, sadar, hadir sepenuhnya. Di hari itu manusia akhirnya <em>benar-benar</em> sadar—bukan setengah sadar, bukan sadar sambil terdistraksi, tapi tersadar penuh, jernih, tanpa kabut apapun. Semua yang selama ini buram menjadi kristal jelas. Semua yang selama ini dipertanyakan terjawab. Semua yang selama ini diabaikan kini tidak bisa diabaikan lagi.</p>
+
+    <div class="energi-chip">وَأَنَّىٰ لَهُ ٱلذِّكۡرَىٰ — Lalu Apa Gunanya?</div>
+    <p>Pertanyaan paling menyakitkan dalam surat ini. <em>Wa anna lahu adz-dzikra</em>—lalu apa artinya kesadaran itu? Bukan karena Tuhan tidak mau mengampuni. Tapi karena pintu aksi sudah tertutup. <strong>Kesadaran tanpa kemampuan bertindak adalah tragedi—dan tragedi terbesar adalah menyadarinya ketika sudah terlambat.</strong></p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Ini adalah ayat paling berat dalam surat ini—justru bukan karena dramanya, tapi karena kejujurannya. Al-Quran tidak berpura-pura bahwa kesadaran selalu datang tepat waktu. Tidak semua cerita berakhir dengan tobat yang diterima dan perubahan yang terjadi. Ada jiwa yang tersadar di momen yang sudah terlambat—dan Al-Fajr menyebut itu dengan sangat jujur.</p>
+    <p>Pertanyaan <em>"lalu apa gunanya?"</em> bukan ejekan. Itu adalah jeritan paling manusiawi—dan paling kosmis. Dan ia ditulis bukan untuk membuat kita putus asa, tapi untuk membuat kita tersadar <em>sekarang</em>, ketika kesadaran masih bisa mengubah sesuatu.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Para psikolog menyebut <em>deathbed clarity</em>—kejernihan di ranjang kematian. Orang-orang yang sekarat sering tiba-tiba sangat jelas tentang apa yang penting: hubungan yang disia-siakan, waktu yang dihabiskan untuk hal tidak bermakna, penyesalan yang tidak sempat diselesaikan. Kejernihan itu nyata—tapi datang ketika tubuh sudah tidak bisa bertindak.</p>
+      <p>Ayat 24 adalah <em>deathbed clarity</em> versi kosmis. Dan pesannya bukan "kamu akan menyesal"—tapi: <em>kejernihan itu tersedia sekarang, hari ini, sebelum ia menjadi kesadaran yang tanpa guna.</em> Jangan tunggu sampai di sana.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Tersadar terlambat adalah tragedi yang tidak perlu. Setiap hari adalah tawaran untuk sadar lebih awal—sebelum pertanyaan "lalu apa gunanya sekarang?" tidak lagi bisa dijawab dengan apapun selain diam.
+    </div>
+  </div>
+
+  <!-- AYAT 25–26 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٢٥–٢٦</span>
+      <span class="label gold">Azab dan Ikatan yang Tiada Tandingan</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic md">فَيَوۡمَئِذٍ لَّا يُعَذِّبُ عَذَابَهُۥٓ أَحَدٌ ۝ وَلَا يُوثِقُ وَثَاقَهُۥٓ أَحَدٌ</div>
+    </div>
+    <p class="translation">"Maka pada hari itu tidak ada seorang pun yang menyiksa seperti siksaan-Nya, dan tidak ada seorang pun yang mengikat seperti ikatan-Nya."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">لَّا يُعَذِّبُ عَذَابَهُۥٓ أَحَدٌ — Tidak Ada yang Menyiksa Seperti Siksaan-Nya</div>
+    <p>Struktur kalimat ini sangat kuat: <em>tidak ada satu pun</em>. Bukan "tidak ada yang lebih besar"—tapi tidak ada yang setara, tidak ada yang sebanding, tidak ada yang mendekati. Azab itu di luar skala perbandingan manusia. Dan yang membuatnya paling berat bukan intensitasnya—tapi bahwa ia datang dari Yang Maha Tahu, yang tahu persis setiap dimensi dari setiap perbuatan.</p>
+
+    <div class="energi-chip">لَا يُوثِقُ وَثَاقَهُۥٓ — Tidak Ada yang Mengikat Seperti Ikatan-Nya</div>
+    <p><em>Watsaq</em>—tali, ikatan, belenggu. Penggunaan kata ini sangat kontras dengan gambaran Fir'aun yang menggunakan pasak untuk mengikat manusia (ayat 10). Yang dulu mengikat orang lain dengan pasak—kini ia sendiri terikat dengan ikatan yang tidak ada tandingannya.</p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Dua ayat yang sangat pendek ini adalah penutup yang mengunci seluruh bagian kiamat. Setelah semua gambaran—bumi diratakan, malaikat berbaris, neraka dihadirkan, manusia tersadar terlambat—diakhiri dengan pernyataan tentang azab dan ikatan yang tiada tandingan.</p>
+    <p>Tapi perlu dibaca juga dalam konteks kontras: di dunia, manusia sering menggunakan "azab" dan "ikatan" untuk mengontrol satu sama lain—melalui ancaman, paksaan, sistem yang menindas. Semua itu akan tampak kecil di hari itu. Tidak ada tirani manusia yang bisa dibandingkan dengan konsekuensi dari Yang Maha Adil.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Dua ayat ini seharusnya memberi keberanian kepada mereka yang selama ini takut pada "azab" dan "ikatan" manusia—atasan yang menindas, sistem yang tidak adil, kekuasaan yang membungkam. Karena ada konteks yang jauh lebih besar: tidak ada azab manusia yang layak ditakuti melebihi konsekuensi dari mengkhianati kebenaran.</p>
+      <p>Paradoksnya: memahami bahwa ada azab yang jauh lebih besar justru membebaskan—karena ia memperkecil ancaman-ancaman manusia menjadi seukuran aslinya: kecil dan sementara.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Memahami skala azab yang sesungguhnya bukan untuk membuat kita hidup dalam ketakutan—tapi untuk membebaskan kita dari ketakutan yang salah alamat. Tidak ada ancaman manusia yang layak membuat kita mengkhianati kebenaran.
+    </div>
+  </div>
+
+
+  <!-- ===== BAGIAN V ===== -->
+  <div class="section-header">
+    <span class="section-label">Bagian V · Ayat 27–30</span>
+    <h2 class="gold">Panggilan Paling Indah yang Pernah Ada</h2>
+  </div>
+
+  <!-- AYAT 27–28 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٢٧–٢٨</span>
+      <span class="label gold">An-Nafs Al-Muthmainnah</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">يَٰٓأَيَّتُهَا ٱلنَّفۡسُ ٱلۡمُطۡمَئِنَّةُ ۝ ٱرۡجِعِيٓ إِلَىٰ رَبِّكِ رَاضِيَةً مَّرۡضِيَّةً</div>
+    </div>
+    <p class="translation">"Wahai jiwa yang tenang! Kembalilah kepada Tuhanmu dengan hati yang ridha dan diridhai-Nya."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">ٱلنَّفۡسُ ٱلۡمُطۡمَئِنَّةُ — Jiwa yang Tenang</div>
+    <p><em>Muthmainnah</em> berasal dari <em>ithmi'naan</em>—ketenangan yang berakar, bukan sekadar ketenangan permukaan. Kata ini mengandung makna: berat, stabil, tidak mudah terguncang. Seperti batu besar yang sudah menemukan cekungan yang tepat—tidak perlu lagi mencari-cari tempat lain. Ini bukan jiwa yang tidak pernah merasakan badai. Ini adalah jiwa yang sudah melampaui badai dan menemukan tempat berpijaknya. <strong>Bukan ketidakhadiran rasa takut, tapi kehadiran keyakinan yang lebih besar dari rasa takut.</strong></p>
+
+    <div class="energi-chip">ٱرۡجِعِيٓ — Kembalilah</div>
+    <p>Bukan "pergilah ke". Bukan "masuklah ke tempat baru". Tapi <em>irji'i</em>—<strong>kembalilah.</strong> Kata ini menyimpan filosofi yang mengubah segalanya: ini bukan perjalanan menuju tempat asing. Ini adalah pulang. Jiwa yang kembali kepada Tuhan bukan sedang pergi ke wilayah tak dikenal—ia sedang kembali ke asal, ke fitrah, ke tempat yang sebenarnya sudah selalu ia rindukan meskipun tidak selalu tahu cara menamai rindu itu.</p>
+
+    <div class="energi-chip">رَاضِيَةً مَّرۡضِيَّةً — Ridha dan Diridhai</div>
+    <p>Dua arah yang bertemu sekaligus. <em>Radhiyatan</em>: ia ridha—datang dengan penerimaan penuh, tanpa sisa kepahitan, tanpa sisa tuntutan yang belum terselesaikan. <em>Mardhiyyatan</em>: ia diridhai—Tuhan menerimanya. Keduanya terjadi bersama. Ini adalah gambaran tentang sebuah pertemuan yang sudah lama dirindukan oleh <em>kedua pihak.</em></p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Setelah tujuh belas ayat tentang kehancuran, kesalahan, dan konsekuensi—surat ini menutup dengan empat ayat yang terasa seperti angin setelah badai panjang. Dan bentuknya bukan perintah. Bukan daftar syarat. Bentuknya adalah <strong>panggilan</strong>—sapaan langsung, personal, mesra.</p>
+    <p><em>"Wahai jiwa yang tenang!"</em> Allah sedang memanggil seseorang dengan nama yang paling mulia—bukan nama keduniaan, bukan gelar, bukan jabatan. Tapi kondisi jiwa yang paling ia perjuangkan sepanjang hidupnya. Dan panggilan itu adalah jawaban dari seluruh pertanyaan surat ini.</p>
+    <p>Satu detail yang sering terlewat: panggilan ini terjadi <em>di hari kiamat</em>—di tengah semua kengerian yang digambarkan sebelumnya. Artinya: di hari ketika semua orang dalam kepanikan, ada jiwa-jiwa yang dipanggil dengan tenang, dengan mesra, dengan kata "kembalilah". Ketenangan jiwa bukan hanya bermanfaat di dunia—ia adalah tiket masuk ke panggilan paling indah di hari yang paling dramatis.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita adalah generasi paling gelisah dalam sejarah modern. Bukan karena paling banyak ancamannya—tapi karena paling sedikit keheningannya. Kegelisahan kolektif yang kita normalisasi sebagai "memang begini kehidupan modern"—scrolling tanpa tujuan, sibuk tanpa makna, cemas tanpa objek yang jelas.</p>
+      <p><em>Al-nafs al-muthmainnah</em> adalah jawaban untuk kegelisahan itu. Tapi bukan jawaban instan—ia adalah buah dari perjalanan. Dan perjalanan itu dimulai dari pertanyaan sederhana yang diajukan setiap hari: <em>apa yang sesungguhnya sedang aku cari? Dan sudahkah aku mencarinya di tempat yang benar?</em></p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Di ujung semua perjalanan, yang Tuhan panggil bukan gelar atau rekor. Yang dipanggil adalah kondisi jiwa. Dan panggilan itu bukan "masuklah ke tempat asing"—tapi "kembalilah ke tempat yang sudah lama merindukanmu."
+    </div>
+  </div>
+
+  <!-- AYAT 29 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٢٩</span>
+      <span class="label gold">Masuk ke Golongan yang Terpilih</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">فَٱدۡخُلِي فِي عِبَٰدِي</div>
+    </div>
+    <p class="translation">"Maka masuklah ke dalam golongan hamba-hamba-Ku."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">فِي عِبَادِي — Di Antara Hamba-Hamba-Ku</div>
+    <p>Kata <em>'ibadi</em>—hamba-hamba-Ku—dengan ya' mutakallim (kata ganti kepemilikan orang pertama) yang melekat langsung. Bukan sekadar "hamba". Tapi <em>hamba-hamba-Ku</em>—yang dipanggil dengan kepemilikan yang bermartabat. Dalam konteks Al-Quran, <em>'ibad</em> dengan ya' mutakallim ini adalah penghormatan tertinggi—digunakan juga dalam frasa <em>'ibadurrahman</em> (hamba-hamba Ar-Rahman), kelompok yang digambarkan dengan sifat-sifat paling mulia.</p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Masuk ke golongan <em>'ibadi</em> adalah masuk ke sebuah komunitas—bukan kesendirian. Jiwa yang tenang tidak pulang ke kesunyian abadi; ia pulang ke persaudaraan yang paling sejati. Para nabi, para syuhada, orang-orang saleh dari segala zaman dan tempat—semua dalam satu golongan yang sama, yang dipanggil dengan sapaan yang sama oleh Tuhan yang sama.</p>
+    <p>Ada keindahan yang dalam di sini: setelah seluruh perjalanan solo yang penuh pergumulan di dunia—akhirnya ada momen bergabung. Tidak sendirian lagi.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era yang merayakan individualisme—personal branding, personal achievement, personal journey. Dan itu tidak salah. Tapi manusia adalah makhluk yang pada akhirnya merindukan termasuk dalam sesuatu yang lebih besar dari dirinya. Komunitas yang bermakna, golongan yang dipersatukan oleh nilai—bukan sekadar kepentingan.</p>
+      <p><em>Udkhuli fi 'ibadi</em> menawarkan gambaran tentang komunitas akhir yang paling bermakna: bukan komunitas yang dipersatukan oleh kelas sosial, bukan oleh geografi, bukan oleh prestasi—tapi oleh kondisi jiwa yang sama-sama telah berjuang menuju ketenangan.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Perjalanan jiwa yang paling panjang bukan berakhir dalam kesendirian—ia berakhir dalam kepulangan ke sebuah golongan. Di sana, semua yang pernah berjuang sendirian menemukan bahwa mereka tidak pernah benar-benar sendirian.
+    </div>
+  </div>
+
+  <!-- AYAT 30 -->
+  <div class="ayat-section">
+    <div class="ayat-num-badge">
+      <span class="num">٣٠</span>
+      <span class="label gold">Ayat Terakhir — Pintu Terbuka</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">وَٱدۡخُلِي جَنَّتِي</div>
+    </div>
+    <p class="translation">"Dan masuklah ke dalam surga-Ku."</p>
+
+    <h3 class="sec-title gold">Energi Kata</h3>
+    <div class="energi-chip">جَنَّتِي — Surga-Ku</div>
+    <p>Dua kata. Itulah penutup surat yang dimulai dengan gemuruh kosmik—sumpah demi fajar, tiga peradaban hancur, hari kiamat. Dan ia ditutup dengan dua kata yang sangat personal: <em>jannati</em>—surga-<em>Ku</em>. Bukan "surga" yang abstrak. Bukan "tempat yang baik". Tapi surga yang dinisbatkan langsung pada diri-Nya—dengan ya' mutakallim yang sama seperti <em>'ibadi</em> sebelumnya. <strong>Kepemilikan yang bermartabat. Undangan yang personal. Pintu yang dibuka oleh tangan yang paling mulia.</strong></p>
+
+    <h3 class="sec-title gold">Tafsir Mendalam</h3>
+    <p>Al-Fajr membuka dengan fajar—pembelahan gelap oleh terang. Dan ia menutup dengan surga—tujuan akhir dari semua pembelahan itu. Lingkaran naratif yang sempurna. Antara fajar di ayat pertama dan surga di ayat terakhir, ada seluruh drama kehidupan manusia: waktu yang berlalu, peradaban yang hancur, pilihan-pilihan yang dibuat, jiwa yang dirawat atau diabaikan.</p>
+    <p>Dan kata terakhir surat ini bukan peringatan, bukan ancaman, bukan daftar syarat. Kata terakhirnya adalah undangan: <em>udkhuli jannati</em>—<strong>masuklah ke dalam surga-Ku.</strong> Pintu terbuka. Undangan sudah ada. Yang tersisa hanyalah keputusan tentang jiwa macam apa yang kita bawa pulang.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Dua kata penutup surat ini adalah salah satu antitesis paling indah dari semua kegelisahan modern. Di tengah dunia yang menawarkan ribuan destinasi, ribuan definisi sukses, ribuan versi "hidup yang baik"—ada dua kata yang menunjuk satu arah dengan sangat jelas: <em>jannati</em>. Surga-Ku.</p>
+      <p>Dan surga bukan hanya tentang setelah mati. Dalam banyak tradisi tafsir, kondisi <em>al-nafs al-muthmainnah</em>—jiwa yang tenang—sudah merasakan sebagian dari surga itu di dunia. Ketenangan yang tidak bergantung pada kondisi eksternal. Ketenteraman yang tidak bisa dicuri oleh fluktuasi kehidupan. Itu adalah surga yang bisa mulai dihuni sekarang.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Surat yang dibuka dengan pembelahan fajar ditutup dengan pintu surga yang terbuka. Di antara keduanya ada seluruh kehidupan—dan seluruh kehidupan itu pada akhirnya bermuara pada satu pertanyaan: jiwa macam apa yang kita bawa pulang?
+    </div>
+  </div>
+
+
+  <!-- ===== PENUTUP ===== -->
+  <div class="penutup">
+    <h3 class="sec-title gold" style="margin-top:0; font-size:1.4em;">Refleksi: Pola yang Bisa Diambil dari Al-Fajr</h3>
+
+    <div class="langkah">
+      <div class="lnum">1 — Latih Hadir di Waktu-Waktu Agung</div>
+      <p>Tandai kalender dengan waktu-waktu yang memiliki "gravitasi spiritual" tinggi: sepuluh malam Dzulhijjah, sepuluh malam terakhir Ramadan, waktu-waktu fajar. Bukan untuk menjadi lebih religius secara performatif—tapi untuk melatih jiwa mengenali perbedaan antara waktu biasa dan waktu yang menawarkan lebih banyak. Mulai dari satu: putuskan untuk hadir di <em>satu</em> fajar minggu ini dengan benar-benar hadir.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">2 — Audit Kaca Mata Pembaca Tanda</div>
+      <p>Tanyakan pada diri sendiri: ketika hidupmu berjalan lancar, apa yang pertama kali kamu simpulkan? Ketika hidupmu sulit, apa yang muncul tentang posisimu di hadapan Tuhan? Jika jawabannya selalu mengikuti pola "lancar = dikasihi, sulit = ditinggalkan"—kamu sedang menggunakan kaca mata yang sudah terbukti salah. Latih reflexmu untuk selalu bertanya: <em>ini ujian apa?</em> alih-alih <em>ini tanda apa?</em></p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">3 — Tanya Pertanyaan "Untuk Siapa"</div>
+      <p>Kaum 'Aad, Tsamud, dan Fir'aun tidak hancur karena membangun—tapi karena lupa untuk siapa mereka membangun. Terapkan pertanyaan yang sama pada ambisimu: proyek yang sedang dikejar, pengaruh yang sedang dibangun, sumber daya yang sedang dikumpulkan—<em>untuk siapa ini?</em> Bukan untuk membuatmu berhenti membangun, tapi untuk memastikan tiangmu memiliki fondasi yang tidak akan runtuh.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">4 — Periksa Siapa yang Tidak Bisa Membalasmu</div>
+      <p>Sekali seminggu, tanyakan: apakah ada seseorang dalam jangkauanku yang tidak bisa memberiku apa-apa—dan bagaimana aku memperlakukannya? Anak yatim dalam versi modern bisa siapa saja: junior yang tidak punya posisi tawar, orang tua yang sudah tidak produktif, tetangga yang tidak punya koneksi berguna. Cara kita memperlakukan mereka adalah cermin paling jujur tentang nilai kita yang sesungguhnya.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">5 — Rawat Jiwa Menuju Muthmainnah</div>
+      <p><em>Al-nafs al-muthmainnah</em> bukan kondisi yang turun dari langit—ia dibangun dari pilihan-pilihan harian. Pilih satu praktik kecil yang secara konsisten memindahkan kamu dari gelisah ke tenang: mungkin satu dzikr yang benar-benar diresapi bukan hanya dilafalkan, mungkin satu waktu tanpa layar setiap hari, mungkin satu percakapan jujur tentang keadaan jiwa dengan seseorang yang dipercaya. Konsistensi kecil mengalahkan intensitas sesekali dalam membangun kondisi jiwa yang stabil.</p>
+    </div>
+
+    <h3 class="sec-title gold" style="margin-top:40px;">Closing Statement</h3>
+    <p>Al-Fajr adalah surat untuk siapa saja yang pernah bertanya, di malam yang panjang: <em>apa tujuan dari semua ini?</em> Jawabannya tidak ada di papan pencapaian manapun, tidak tercetak di diploma, tidak bisa diukur dengan angka. Jawabannya adalah sebuah panggilan yang menunggu di ujung perjalanan—kepada jiwa yang sudah belajar tenang di tengah badai, yang sudah belajar ridha tanpa kehilangan diri, yang sudah belajar pulang ke satu titik gravitasi yang tidak pernah bergeser.</p>
+    <p>Dan perjalanan menuju panggilan itu tidak dimulai di akhirat. Ia dimulai di fajar hari ini.</p>
+  </div>
+
+  <!-- ===== EPILOG ===== -->
+  <div class="epilog">
+    <div class="dawn-badge">✦ Epilog ✦</div>
+    <h2 class="epilog-title gold">Kepada Jiwa yang Sedang Lelah Berlomba</h2>
+
+    <p>Ada sebuah kelelahan yang tidak bisa disembuhkan dengan liburan.</p>
+
+    <p>Kamu sudah mencoba segalanya. Berganti pekerjaan, berganti kota, berganti rutinitas, berganti lingkaran. Dan sesekali, untuk beberapa hari, terasa lebih baik. Tapi kemudian malam tiba, keheningan datang, dan ada sesuatu di dalam dada yang masih sama: perasaan bahwa ada sesuatu yang belum terpenuhi, ada sesuatu yang hilang di tempat yang tidak kamu tahu cara mencarinya.</p>
+
+    <p>Al-Fajr hadir untuk jiwa seperti itu.</p>
+
+    <span class="arabic-line">وَٱلۡفَجۡرِ</span>
+    <span class="latin-line">Wal-fajri — Demi Fajar</span>
+    <p>Allah bersumpah demi pembelahan. Demi momen ketika gelap benar-benar terputus dan terang benar-benar dimulai. Dan di antara semua yang disampaikannya—tentang peradaban yang hancur, tentang cara kita salah membaca tanda, tentang hari ketika semua kartu dibuka—terselip satu pesan yang tidak pernah berubah: ada waktu-waktu agung yang menunggumu hadir di dalamnya. Ada momen-momen fajar yang setiap hari menawarkan pembelahan baru.</p>
+
+    <p>Kepada kamu yang merasa berhasil tapi hampa: Al-Fajr mengatakan kamu tidak salah merasakan itu. Tiang-tiang tinggi tidak pernah bisa mengisi kekosongan yang bentuknya bukan tiang. Pertanyaannya bukan "kenapa tidak cukup?"—tapi "untuk siapa semua ini dibangun?"</p>
+
+    <p>Kepada kamu yang sedang di titik paling sulit, yang mulai bertanya apakah Tuhan masih memperhatikan: Al-Fajr mengatakan cara membacamu perlu diperbaiki. Kesulitan bukan tanda kehinaan. Ia mungkin adalah ujian yang paling jujur tentang siapa kamu sesungguhnya—dan ada yang menunggumu di persimpangan dengan sangat sabar.</p>
+
+    <p>Kepada kamu yang sudah lama lelah tapi tidak tahu lelah akan apa: Al-Fajr mengatakan kamu mungkin sedang di fase malam yang sedang berjalan—masih gelap, tapi sudah bergerak. Dan Allah bersumpah demi momen itu. Prosesmu itu sakral.</p>
+
+    <span class="arabic-line">يَٰٓأَيَّتُهَا ٱلنَّفۡسُ ٱلۡمُطۡمَئِنَّةُ</span>
+    <span class="latin-line">Ya ayyatuha an-nafs al-muthmainnah — Wahai jiwa yang tenang</span>
+
+    <p>Di ujung surat yang paling dramatis ini, Tuhan tidak memanggil nama. Tidak memanggil gelar. Tidak memeriksa rekam jejak. Yang dipanggil adalah kondisi jiwa. Dan panggilan itu bukan untuk orang suci yang tidak pernah goyah—tapi untuk siapa saja yang memilih, di tengah segala ketidakpastian, untuk tetap bergerak menuju ketenangan.</p>
+
+    <span class="arabic-line">ٱرۡجِعِيٓ إِلَىٰ رَبِّكِ رَاضِيَةً مَّرۡضِيَّةً</span>
+    <span class="latin-line">Irji'i ila rabbiki radhiyatan mardhiyyah — Kembalilah, dengan ridha dan diridhai</span>
+
+    <p>Pulang. Bukan pergi ke tempat asing. Bukan meraih sesuatu yang jauh. Tapi <em>pulang</em>—ke asal, ke fitrah, ke kerinduan paling dalam yang selama ini kamu beri nama lain karena tidak tahu cara menyebutnya dengan benar.</p>
+
+    <span class="arabic-line">وَٱدۡخُلِي جَنَّتِي</span>
+    <span class="latin-line">Wadkhuli jannati — Dan masuklah ke dalam surga-Ku</span>
+
+    <p>Dua kata terakhir surat ini adalah dua kata paling menggembirakan yang pernah ada. Bukan "jika kamu layak." Bukan "setelah kamu membuktikan dirimu." Tapi undangan langsung, personal, dari Yang Memiliki surga itu sendiri: <em>jannati</em>—surga-Ku. Pintunya terbuka. Namamu sudah disebut. Yang tersisa hanyalah perjalanan.</p>
+
+    <div class="divider-dawn" style="margin:48px auto;"></div>
+
+    <p class="closing">
+      Di luar sana ada ribuan suara yang mengklaim tahu level terakhir permainan ini.<br>
+      Ribuan definisi "menang" yang terus berubah setiap musim.<br>
+      Ribuan tiang yang menawarkan diri sebagai tempat bersandar.<br><br>
+      <span style="color:var(--dawn1); font-size:1.05em; display:block; margin:8px 0;">Dan di tengah semua itu, Al-Fajr berbisik dengan sangat tenang:</span>
+      <span style="color:var(--dawn3); font-size:1.12em; display:block; margin:8px 0;">Level terakhir bukan kekayaan. Bukan kekuasaan. Bukan tepuk tangan.</span>
+      Tapi satu panggilan yang sudah menunggumu—<br>
+      kepada jiwa yang telah memilih tenang<br>
+      di dunia yang tidak pernah berhenti berisik.<br><br>
+      <strong style="color:var(--dawn1); font-size:1.15em;">Dan kepulangan itu dimulai dari fajar hari ini.</strong>
+    </p>
+  </div>
+
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold:0.06, rootMargin:'0px 0px -40px 0px' });
+
+  document.querySelectorAll('.ayat-section').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

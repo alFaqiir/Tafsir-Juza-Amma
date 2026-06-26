@@ -1,0 +1,1312 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surat Al-'Alaq — Dari Segumpal Darah Menuju Peradaban</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold-light: #f5d87a;
+    --gold-mid: #c9922a;
+    --gold-dark: #7d5a0e;
+    --gold-glow: rgba(197, 150, 40, 0.35);
+    --cream: #f0e6cc;
+    --bg: #080808;
+    --bg-card: #0f0f0f;
+    --bg-card2: #141414;
+    --text: #d4c5a0;
+    --text-dim: #7a6e56;
+    --divider: rgba(197, 150, 40, 0.2);
+    --red-accent: #8b2222;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Crimson Pro', 'Georgia', serif;
+    font-size: 18px;
+    line-height: 1.85;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── Starfield background ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(120, 80, 10, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 90%, rgba(80, 50, 5, 0.07) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 50%, rgba(10, 8, 3, 0) 0%, #000 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── Decorative lines ─── */
+  .page-border {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border: 1px solid rgba(197, 150, 40, 0.08);
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* ─── Header / Hero ─── */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 80px 40px 60px;
+    border-bottom: 1px solid var(--divider);
+    background: radial-gradient(ellipse at 50% 0%, rgba(180, 130, 20, 0.12) 0%, transparent 70%);
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 200px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-mid), transparent);
+  }
+
+  .surah-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-mid);
+    opacity: 0.8;
+    margin-bottom: 22px;
+  }
+
+  .hero-arabic {
+    font-family: 'Noto Naskh Arabic', 'Traditional Arabic', serif;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    color: var(--gold-light);
+    line-height: 1.5;
+    direction: rtl;
+    margin-bottom: 28px;
+    text-shadow: 0 0 40px rgba(245, 216, 122, 0.25);
+    letter-spacing: 0.03em;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.7rem, 4vw, 3rem);
+    font-weight: 600;
+    background: linear-gradient(135deg, #f5d87a 0%, #e8c55a 30%, #ffffff 55%, #e8c55a 75%, #c9922a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    padding: 0 20px;
+  }
+
+  .hero-tagline {
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    max-width: 640px;
+    margin: 0 auto 10px;
+    font-family: 'Crimson Pro', serif;
+    letter-spacing: 0.01em;
+    border-left: 2px solid var(--gold-dark);
+    padding-left: 18px;
+    text-align: left;
+  }
+
+  /* ─── Nav / TOC ─── */
+  .toc {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8,8,8,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--divider);
+    padding: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .toc-inner {
+    display: inline-flex;
+    gap: 0;
+    padding: 0 20px;
+  }
+
+  .toc a {
+    display: inline-block;
+    padding: 14px 18px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+  }
+
+  .toc a:hover { color: var(--gold-light); }
+
+  /* ─── Layout ─── */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── Angle Pembahasan ─── */
+  .angle-section {
+    padding: 60px 0 40px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold-mid);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold-dark), transparent);
+  }
+
+  .angle-text {
+    font-size: 1.1rem;
+    color: var(--text);
+    line-height: 1.9;
+  }
+
+  /* ─── Ayat sections ─── */
+  .ayat-block {
+    padding: 64px 0 50px;
+    border-bottom: 1px solid var(--divider);
+    position: relative;
+  }
+
+  .ayat-header {
+    text-align: center;
+    margin-bottom: 44px;
+    padding-bottom: 36px;
+    position: relative;
+  }
+
+  .ayat-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-mid), transparent);
+  }
+
+  .ayat-number {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold-mid);
+    background: rgba(197, 150, 40, 0.08);
+    border: 1px solid rgba(197, 150, 40, 0.25);
+    padding: 6px 20px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  .arabic-text {
+    font-family: 'Noto Naskh Arabic', 'Traditional Arabic', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--gold-light);
+    direction: rtl;
+    line-height: 2;
+    margin-bottom: 16px;
+    text-shadow: 0 0 30px rgba(245, 216, 122, 0.15);
+  }
+
+  .translation {
+    font-style: italic;
+    font-size: 0.98rem;
+    color: var(--text-dim);
+    font-family: 'Crimson Pro', serif;
+    padding: 0 30px;
+  }
+
+  /* ─── Sub-sections ─── */
+  .sub-section {
+    margin-bottom: 40px;
+  }
+
+  .sub-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-mid);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sub-title-num {
+    width: 22px; height: 22px;
+    border: 1px solid var(--gold-dark);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    color: var(--gold-mid);
+    flex-shrink: 0;
+  }
+
+  /* ─── Energi Kata ─── */
+  .kata-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(197, 150, 40, 0.12);
+    border-left: 3px solid var(--gold-dark);
+    padding: 22px 26px;
+    margin-bottom: 16px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .kata-arabic {
+    font-family: 'Noto Naskh Arabic', 'Traditional Arabic', serif;
+    font-size: 1.7rem;
+    color: var(--gold-light);
+    direction: rtl;
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+
+  .kata-latin {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--gold-mid);
+    margin-bottom: 12px;
+    font-family: 'Crimson Pro', serif;
+  }
+
+  .kata-desc {
+    font-size: 0.97rem;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* ─── Tafsir ─── */
+  .tafsir-text {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.9;
+    margin-bottom: 18px;
+  }
+
+  .tafsir-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 10px;
+    margin-top: 28px;
+  }
+
+  /* ─── Relevansi ─── */
+  .relevansi-box {
+    background: rgba(197, 150, 40, 0.04);
+    border: 1px solid rgba(197, 150, 40, 0.15);
+    border-radius: 4px;
+    padding: 26px 28px;
+    margin: 24px 0;
+  }
+
+  .relevansi-label {
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gold-mid);
+    margin-bottom: 16px;
+  }
+
+  /* ─── Intisari ─── */
+  .intisari-box {
+    background: linear-gradient(135deg, rgba(120,80,10,0.12), rgba(60,40,5,0.08));
+    border: 1px solid rgba(197, 150, 40, 0.2);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-top: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intisari-box::before {
+    content: '❝';
+    position: absolute;
+    top: 10px; left: 20px;
+    font-size: 3rem;
+    color: var(--gold-dark);
+    opacity: 0.4;
+    line-height: 1;
+    font-family: Georgia, serif;
+  }
+
+  .intisari-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.12rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.85;
+    padding-left: 20px;
+  }
+
+  /* ─── Contoh / List items ─── */
+  .action-list {
+    list-style: none;
+    margin: 12px 0 0;
+  }
+
+  .action-list li {
+    padding: 10px 0 10px 22px;
+    position: relative;
+    border-bottom: 1px solid rgba(197, 150, 40, 0.06);
+    font-size: 0.97rem;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  .action-list li:last-child { border-bottom: none; }
+
+  .action-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    color: var(--gold-dark);
+    font-size: 8px;
+  }
+
+  /* ─── Refleksi Penutup ─── */
+  .refleksi-section {
+    padding: 70px 0;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .refleksi-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 600;
+    background: linear-gradient(135deg, #f5d87a, #e0be55, #fff, #c9922a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 40px;
+    line-height: 1.3;
+  }
+
+  .pola-item {
+    margin-bottom: 32px;
+    padding-left: 24px;
+    border-left: 2px solid rgba(197, 150, 40, 0.25);
+  }
+
+  .pola-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold-mid);
+    margin-bottom: 8px;
+  }
+
+  .langkah-card {
+    background: var(--bg-card2);
+    border: 1px solid rgba(197, 150, 40, 0.1);
+    padding: 24px 26px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+  }
+
+  .langkah-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  /* ─── Epilog ─── */
+  .epilog-section {
+    padding: 70px 0 80px;
+    background: radial-gradient(ellipse at 50% 100%, rgba(120, 80, 10, 0.08) 0%, transparent 60%);
+  }
+
+  .epilog-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 600;
+    background: linear-gradient(135deg, #f5d87a 0%, #ffffff 50%, #c9922a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .epilog-subtitle {
+    text-align: center;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-mid);
+    margin-bottom: 50px;
+  }
+
+  .epilog-chapter {
+    margin-bottom: 52px;
+  }
+
+  .epilog-ch-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--divider);
+  }
+
+  .epilog-text {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.95;
+    margin-bottom: 14px;
+  }
+
+  .surat-ilahi {
+    background: linear-gradient(135deg, rgba(80,50,5,0.2), rgba(40,25,3,0.15));
+    border: 1px solid rgba(197, 150, 40, 0.25);
+    border-radius: 6px;
+    padding: 36px 40px;
+    margin: 30px 0;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--cream);
+    line-height: 2;
+    position: relative;
+  }
+
+  .surat-ilahi::before {
+    content: '✦';
+    position: absolute;
+    top: -10px; left: 50%; transform: translateX(-50%);
+    background: var(--bg);
+    padding: 0 12px;
+    color: var(--gold-mid);
+    font-size: 14px;
+  }
+
+  /* ─── Final closing ─── */
+  .closing-verse {
+    text-align: center;
+    padding: 50px 0 0;
+    border-top: 1px solid var(--divider);
+  }
+
+  .closing-arabic {
+    font-family: 'Noto Naskh Arabic', 'Traditional Arabic', serif;
+    font-size: 2rem;
+    color: var(--gold-light);
+    direction: rtl;
+    line-height: 1.8;
+    margin-bottom: 16px;
+    text-shadow: 0 0 30px rgba(245, 216, 122, 0.2);
+  }
+
+  .closing-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+
+  .wallahu {
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-dark);
+    margin-top: 24px;
+  }
+
+  /* ─── Decorative divider ─── */
+  .ornament {
+    text-align: center;
+    color: var(--gold-dark);
+    font-size: 18px;
+    margin: 36px 0;
+    letter-spacing: 0.4em;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 600px) {
+    .hero { padding: 50px 20px 40px; }
+    .container { padding: 0 20px; }
+    .intisari-box { padding: 22px 20px; }
+    .surat-ilahi { padding: 24px 22px; }
+    .kata-card { padding: 18px 18px; }
+    .toc a { padding: 12px 12px; font-size: 11px; }
+  }
+
+  /* ─── Fade-in animation ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero > * {
+    animation: fadeUp 0.9s ease both;
+  }
+  .hero > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero > *:nth-child(4) { animation-delay: 0.55s; }
+  .hero > *:nth-child(5) { animation-delay: 0.7s; }
+
+  strong { color: var(--cream); }
+  em { color: var(--gold-mid); font-style: italic; }
+</style>
+</head>
+<body>
+<div class="page-border"></div>
+
+<!-- ══════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="surah-number">Surat Ke-96 · Al-Qur'an Al-Karim</div>
+  <div class="hero-arabic">سُورَةُ الْعَلَق</div>
+  <h1 class="hero-title">Dari Segumpal Darah Menuju Peradaban:<br>Kisah Manusia yang Ditakdirkan Mulia</h1>
+  <p class="hero-tagline">Wahyu pertama yang mengubah kegelapan menjadi cahaya — surat yang merevolusi cara pandang manusia terhadap ilmu, kemuliaan, dan tujuan hidupnya.</p>
+</header>
+
+<!-- ══════════════════════════════════════════════
+     NAVIGASI
+══════════════════════════════════════════════ -->
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#angle">Sudut Pandang</a>
+    <a href="#ayat1">Ayat 1</a>
+    <a href="#ayat2">Ayat 2</a>
+    <a href="#ayat3">Ayat 3–4</a>
+    <a href="#ayat5">Ayat 5</a>
+    <a href="#ayat6">Ayat 6–7</a>
+    <a href="#ayat8">Ayat 8–10</a>
+    <a href="#ayat11">Ayat 11–14</a>
+    <a href="#ayat15">Ayat 15–16</a>
+    <a href="#ayat17">Ayat 17–18</a>
+    <a href="#ayat19">Ayat 19</a>
+    <a href="#refleksi">Refleksi</a>
+    <a href="#epilog">Epilog</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════
+     ANGLE PEMBAHASAN
+══════════════════════════════════════════════ -->
+<section class="angle-section" id="angle">
+<div class="container">
+  <div class="section-label">Sudut Pandang Pembahasan</div>
+  <p class="angle-text">
+    Surat Al-'Alaq dibahas dari sudut pandang <strong>perubahan diri dan membaca sebagai kunci pemberdayaan</strong>. Bukan sekadar perintah membaca dalam makna teknis, tetapi panggilan untuk manusia keluar dari ketidaktahuan menuju kesadaran.<br><br>
+    Di era digital yang ironisnya penuh informasi namun minim kebijaksanaan, Al-'Alaq menawarkan peta jalan: bagaimana proses belajar yang sesungguhnya — yang dimulai dengan kerendahan hati (mengakui asal-usul kita dari segumpal darah), didukung oleh Tuhan yang Maha Pemurah ilmu-Nya, dan bermuara pada tanggung jawab untuk tidak sombong dengan pengetahuan yang dimiliki.<br><br>
+    Kaitannya sangat kental dengan kondisi generasi sekarang yang tenggelam dalam tumpukan informasi namun miskin perenungan, banyak membaca tulisan pendek tapi jarang merenungkan makna, serta mudah merasa unggul ketika memiliki akses pengetahuan.
+  </p>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     AYAT 1
+══════════════════════════════════════════════ -->
+<section class="ayat-block" id="ayat1">
+<div class="container">
+  <div class="ayat-header">
+    <div class="ayat-number">Ayat 1</div>
+    <div class="arabic-text">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</div>
+    <div class="translation">"Bacalah dengan (menyebut) nama Tuhanmu yang menciptakan."</div>
+  </div>
+
+  <!-- ENERGI KATA -->
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">1</span>Energi Kata</div>
+    <div class="kata-card">
+      <div class="kata-arabic">اقْرَأْ</div>
+      <div class="kata-latin">Iqra' — Bacalah</div>
+      <div class="kata-desc">
+        Berasal dari akar <em>qa-ra-a</em> (ق-ر-أ) yang berlapis makna: <strong>mengumpulkan</strong> (huruf menjadi kata, kata menjadi makna), <strong>menyampaikan</strong> (membaca dengan lantang), dan <strong>merenungkan</strong> (memahami, bukan sekadar melihat teks). Lebih luas dari <em>talā</em> (membaca teks suci) atau <em>darasa</em> (meneliti) — iqra' mencakup membaca ayat tertulis <em>maupun</em> ayat semesta.
+      </div>
+    </div>
+    <div class="kata-card">
+      <div class="kata-arabic">بِاسْمِ</div>
+      <div class="kata-latin">Bismi — Dengan nama</div>
+      <div class="kata-desc">
+        Falsafah bahwa segala tindakan, termasuk membaca, harus diniatkan kepada yang lebih tinggi. Bukan untuk pamer, bukan untuk ego — tetapi karena kesadaran bahwa kemampuan membaca itu sendiri adalah anugerah yang dititipkan.
+      </div>
+    </div>
+  </div>
+
+  <!-- TAFSIR -->
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">2</span>Tafsir Mendalam</div>
+    <div class="tafsir-sub">Latar Belakang</div>
+    <p class="tafsir-text">Ini adalah wahyu pertama yang turun kepada Nabi Muhammad ﷺ di Gua Hira sekitar tahun 610 M. Beliau dalam kondisi merenung, mencari kebenaran di tengah masyarakat Mekah yang tenggelam dalam kebodohan dan penyembahan berhala. Malaikat Jibril datang dengan perintah yang mengejutkan: "Iqra'!" Nabi menjawab, "Aku tidak bisa membaca." Ini terjadi tiga kali, hingga ayat lengkap turun.</p>
+
+    <div class="tafsir-sub">Falsafah</div>
+    <p class="tafsir-text">Perintah pertama Allah bukanlah "shalatlah" atau "berpuasalah" — tetapi "bacalah." Ini pernyataan yang mengubah segalanya. Allah menempatkan pengetahuan sebagai dasar keberagamaan. Kalimat "dengan nama Tuhanmu" mengajarkan sopan santun ilmu: setiap pencarian pengetahuan harus dilandasi kesadaran rohani. Ilmu tanpa nilai seperti pisau di tangan orang gila.</p>
+
+    <div class="relevansi-box">
+      <div class="relevansi-label">Relevansi Kekinian</div>
+      <p class="tafsir-text">Kita hidup dalam era yang bertolak belakang. Informasi bertebaran di mana-mana — namun kebijaksanaan justru langka. Orang lebih suka menggulir layar daripada membaca, lebih pilih konten 15 detik daripada artikel panjang, lebih tertarik pendapat viral daripada riset mendalam.</p>
+      <ul class="action-list">
+        <li>Mahasiswa yang mengandalkan kecerdasan buatan untuk skripsi tanpa membaca jurnal — hasilnya jadi, tapi tidak ada perubahan cara berpikir.</li>
+        <li>Pekerja yang hadir di pelatihan tapi otaknya di tempat lain — setelah selesai, tidak ada yang berubah.</li>
+        <li>Orang tua yang memberi gawai agar anak diam, tanpa mengajarkan membaca buku atau mengamati alam.</li>
+      </ul>
+    </div>
+
+    <div class="tafsir-sub">Langkah Nyata</div>
+    <ul class="action-list">
+      <li><strong>Ritual Membaca Pagi:</strong> Mulai hari dengan membaca 10 halaman buku, bukan media sosial. Niatkan "Bismillah" agar membaca menjadi ibadah.</li>
+      <li><strong>Puasa Gawai:</strong> Setiap Jumat malam, matikan notifikasi dan baca Al-Qur'an satu juz dengan terjemahan. Catat satu pemahaman paling menyentuh.</li>
+      <li><strong>Alam sebagai Buku:</strong> 15 menit sehari untuk "membaca" alam — amati langit, pepohonan, semut yang berbaris. Inilah iqra' dalam makna yang lebih luas.</li>
+      <li><strong>Ajarkan yang Kamu Pelajari:</strong> Ceritakan kepada teman atau unggah dengan bahasa sendiri — mengajarkan adalah cara terbaik memastikan kita benar-benar memahami.</li>
+    </ul>
+  </div>
+
+  <!-- INTISARI -->
+  <div class="intisari-box">
+    <p class="intisari-text">Perintah "bacalah" bukan tentang kemampuan mengenal huruf, tetapi tentang membuka mata hati terhadap kenyataan yang lebih dalam. Di era informasi yang melimpah ini, tantangan kita bukan lagi akses — tetapi kedalaman. Apakah kita membaca untuk berubah, atau sekadar mengonsumsi?</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     AYAT 2
+══════════════════════════════════════════════ -->
+<section class="ayat-block" id="ayat2">
+<div class="container">
+  <div class="ayat-header">
+    <div class="ayat-number">Ayat 2</div>
+    <div class="arabic-text">خَلَقَ الْإِنْسَانَ مِنْ عَلَقٍ</div>
+    <div class="translation">"Dia telah menciptakan manusia dari segumpal darah."</div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">1</span>Energi Kata</div>
+    <div class="kata-card">
+      <div class="kata-arabic">عَلَقٍ</div>
+      <div class="kata-latin">'Alaq — Segumpal darah / yang menggantung</div>
+      <div class="kata-desc">
+        Dari akar <em>'a-la-qa</em> (ع-ل-ق) yang kaya makna: segumpal darah yang menggumpal (tahap janin awal), sesuatu yang bergantung atau menempel seperti lintah, dan secara kiasan: ketergantungan total manusia kepada Tuhan. Dalam ilmu kandungan modern, 'alaq mengacu pada tahap janin yang menempel di dinding rahim — fase kerentanan absolut.
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">2</span>Tafsir Mendalam</div>
+    <p class="tafsir-text">Setelah perintah "bacalah," Allah langsung mengingatkan manusia tentang asal-usul penciptaannya. Ini adalah titik awal dari kerendahan hati. Setiap kali Allah memerintahkan sesuatu yang "tinggi," Dia mengingatkan kita pada asal-usul yang "rendah." Agar ilmu tidak membuat kita sombong.</p>
+    <div class="relevansi-box">
+      <div class="relevansi-label">Relevansi Kekinian</div>
+      <p class="tafsir-text">Di zaman media sosial ini, sangat mudah bagi kita untuk tertipu oleh gambaran diri sendiri. Kita unggah pencapaian, momen-momen terbaik kehidupan, sertifikat pelatihan — dan perlahan-lahan kita mulai percaya bahwa itulah siapa kita sebenarnya. Kita lupa bahwa di balik semua itu, kita adalah makhluk yang rapuh, yang bisa sakit, bisa gagal, bisa salah.</p>
+      <ul class="action-list">
+        <li>Lulusan baru yang baru dapat gelar sarjana, tiba-tiba merasa lebih pintar dari orang tuanya yang cuma lulusan SMA.</li>
+        <li>Tokoh masyarakat dengan jutaan pengikut yang mulai merasa pendapatnya selalu benar — kritik dianggap kebencian, koreksi dianggap iri.</li>
+        <li>Pekerja sukses yang mulai meremehkan petugas kebersihan — lupa bahwa rezeki adalah titipan, bukan hasil kerja keras semata.</li>
+      </ul>
+    </div>
+    <div class="tafsir-sub">Langkah Nyata</div>
+    <ul class="action-list">
+      <li><strong>Buku Harian Syukur Kesuksesan:</strong> Setiap kali mencapai sesuatu, tulis dulu: "Aku berhasil bukan karena pintarku semata, tapi karena Allah beri kesehatan dan bantuan orang-orang di sekitarku."</li>
+      <li><strong>Hari Pelayanan Rendah Hati:</strong> Sekali sebulan, lakukan pekerjaan yang "rendah" menurut ukuran masyarakat — bersih-bersih, cuci piring, atau bantu pedagang kecil.</li>
+      <li><strong>Rekaman Perjalanan Hidup:</strong> Buat album foto dari masa kecil hingga sekarang. Lihat betapa kita semua dimulai dari yang kecil dan tidak berdaya.</li>
+    </ul>
+  </div>
+
+  <div class="intisari-box">
+    <p class="intisari-text">Tidak peduli setinggi apa kita mendaki, kita berasal dari titik yang sama: lemah, rapuh, bergantung total pada Yang Maha Kuasa. Kemuliaan kita bukan karena kita hebat, tetapi karena Allah memilih untuk memuliakan kita. Setiap kesombongan adalah pengkhianatan terhadap asal-usul kita.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     AYAT 3–4
+══════════════════════════════════════════════ -->
+<section class="ayat-block" id="ayat3">
+<div class="container">
+  <div class="ayat-header">
+    <div class="ayat-number">Ayat 3–4</div>
+    <div class="arabic-text">اقْرَأْ وَرَبُّكَ الْأَكْرَمُ · الَّذِي عَلَّمَ بِالْقَلَمِ</div>
+    <div class="translation">"Bacalah, dan Tuhanmulah Yang Maha Pemurah, yang mengajar (manusia) dengan perantaraan qalam (pena)."</div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">1</span>Energi Kata</div>
+    <div class="kata-card">
+      <div class="kata-arabic">الْأَكْرَمُ</div>
+      <div class="kata-latin">Al-Akram — Yang Maha Pemurah</div>
+      <div class="kata-desc">
+        Bentuk superlative dari <em>karim</em> (mulia, pemurah) — tingkat tertinggi kemurahan yang tak terbatas. Kedermawanan Allah bukan seperti kedermawanan manusia yang terbatas dan pilih-pilih. Dia memberi tanpa diminta, kepada yang bersyukur maupun yang tidak, bahkan sebelum kita tahu apa yang kita butuhkan.
+      </div>
+    </div>
+    <div class="kata-card">
+      <div class="kata-arabic">الْقَلَمِ</div>
+      <div class="kata-latin">Al-Qalam — Pena</div>
+      <div class="kata-desc">
+        Bukan sekadar alat tulis, tetapi lambang penyimpanan dan penyebaran ilmu. Pena adalah teknologi pertama yang memungkinkan manusia melampaui keterbatasan ingatan dan waktu. Dengan pena, pengetahuan bisa diwariskan dari generasi ke generasi. Ini tanda perubahan: dari budaya lisan menuju budaya tulis, dari hafalan menuju pencatatan.
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">2</span>Tafsir Mendalam</div>
+    <p class="tafsir-text">Meskipun kita berasal dari yang rendah, Allah tidak meninggalkan kita di sana. Dia mengangkat kita dengan mengajarkan ilmu. "Yang mengajar dengan pena" berarti Allah menghargai usaha manusia dalam mencari, mencatat, dan menyebarkan pengetahuan. Ada dua tingkat pengajaran Allah: langsung melalui wahyu dan naluri, serta tidak langsung melalui membaca, menulis, dan meneliti.</p>
+    <div class="relevansi-box">
+      <div class="relevansi-label">Relevansi Kekinian</div>
+      <p class="tafsir-text">Kita hidup di era yang ironisnya paling mudah untuk belajar, namun juga paling mudah untuk malas belajar. Semua ilmu ada di ujung jari — kursus daring, YouTube, perpustakaan digital — tetapi kebanyakan kita masih terjebak di konten hiburan yang tidak mendidik.</p>
+    </div>
+    <div class="tafsir-sub">Langkah Nyata</div>
+    <ul class="action-list">
+      <li><strong>Satu Tulisan Setiap Minggu:</strong> Tulis satu artikel tentang apa saja yang kamu pelajari. Tidak perlu sempurna, tidak perlu viral. Yang penting, kamu melatih kemampuan mengolah pemikiran.</li>
+      <li><strong>Rantai Bimbingan:</strong> Jika punya ilmu di bidang tertentu, ajarkan kepada minimal satu orang. Dengan mengajar, kamu akan lebih paham apa yang kamu tahu.</li>
+      <li><strong>Buku Harian Warisan:</strong> Tulis catatan pembelajaran hidup — bukan sekadar curhat, tapi pengalaman yang bisa diwariskan untuk anak-cucu.</li>
+      <li><strong>Syukur atas Akses Ilmu:</strong> Setiap membuka Google atau platform belajar, ucapkan dalam hati: "Alhamdulillah, Allah Al-Akram memberi aku akses ilmu yang bahkan raja-raja zaman dulu tidak punya."</li>
+    </ul>
+  </div>
+
+  <div class="intisari-box">
+    <p class="intisari-text">Allah adalah Yang Maha Pemurah dalam memberikan ilmu. Di era di mana ilmu begitu mudah diakses, tidak memanfaatkannya adalah bentuk tidak mensyukuri nikmat yang halus. Setiap kali kita mencatat ilmu, kita sedang menjadi "pena" Allah untuk mengajarkan generasi berikutnya.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     AYAT 5
+══════════════════════════════════════════════ -->
+<section class="ayat-block" id="ayat5">
+<div class="container">
+  <div class="ayat-header">
+    <div class="ayat-number">Ayat 5</div>
+    <div class="arabic-text">عَلَّمَ الْإِنْسَانَ مَا لَمْ يَعْلَمْ</div>
+    <div class="translation">"Dia mengajar kepada manusia apa yang tidak diketahuinya."</div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">1</span>Energi Kata</div>
+    <div class="kata-card">
+      <div class="kata-arabic">مَا لَمْ يَعْلَمْ</div>
+      <div class="kata-latin">Maa Lam Ya'lam — Apa yang tidak diketahui</div>
+      <div class="kata-desc">
+        Bukan hanya tentang masa lalu, tetapi juga masa depan tanpa batas — Allah terus mengajarkan hal-hal yang belum kita bayangkan. Ayat ini menggunakan bentuk umum: bukan "matematika" atau "astronomi" saja, tapi <em>apa yang tidak kamu tahu</em> — tidak ada batasan pada jenis ilmu yang Allah berikan.
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">2</span>Tafsir Mendalam</div>
+    <p class="tafsir-text">Ayat ini adalah puncak dari Surat Al-'Alaq. Ini adalah janji sekaligus tanggung jawab. Janji bahwa kemungkinan manusia untuk belajar adalah tanpa batas — tidak ada plafon untuk perkembangan akal dan jiwa. Tanggung jawab bahwa jika Allah sudah memberi kemampuan untuk belajar, lalu kita tidak memanfaatkannya, itu adalah pengkhianatan terhadap kodrat kita.</p>
+    <div class="relevansi-box">
+      <div class="relevansi-label">Relevansi Kekinian</div>
+      <p class="tafsir-text">Kita hidup di era di mana belajar tidak pernah berhenti. Dunia kerja berubah cepat. Teknologi yang penting hari ini, bisa jadi usang besok. Dalam konteks ini, ayat "Allah mengajar manusia apa yang tidak diketahuinya" menjadi sangat relevan: kita harus terus belajar, atau kita akan tertinggal.</p>
+    </div>
+    <div class="tafsir-sub">Langkah Nyata</div>
+    <ul class="action-list">
+      <li><strong>Rencana Belajar Sepanjang Hayat:</strong> Setiap tahun, tentukan satu bidang baru yang ingin kamu dalami. Tidak harus terkait pekerjaan.</li>
+      <li><strong>Terima Menjadi Pemula:</strong> Setiap kali belajar sesuatu yang baru, terima bahwa kamu adalah pemula di bidang itu. Ajukan pertanyaan, akui ketidaktahuan.</li>
+      <li><strong>Kegagalan sebagai Pelajaran:</strong> Setiap kali gagal, tanyakan: "Apa yang Allah ajarkan padaku melalui kegagalan ini?" Dengan cara ini, setiap jatuh menjadi anak tangga untuk naik.</li>
+      <li><strong>Belajar Lintas Generasi:</strong> Belajar dari orang yang lebih muda dan lebih tua. Jangan gengsi belajar dari yang lebih junior — Allah bisa mengajar kita melalui siapa saja.</li>
+    </ul>
+  </div>
+
+  <div class="intisari-box">
+    <p class="intisari-text">Tidak ada akhir dari pembelajaran, tidak ada batas dari perkembangan. Yang memalukan bukan tidak tahu, tetapi tidak mau tahu. Di era yang serba cepat ini, mereka yang bertahan bukan yang paling pintar, tetapi yang paling mudah menyesuaikan diri — yang terus belajar, terus berkembang.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     AYAT 6–7
+══════════════════════════════════════════════ -->
+<section class="ayat-block" id="ayat6">
+<div class="container">
+  <div class="ayat-header">
+    <div class="ayat-number">Ayat 6–7</div>
+    <div class="arabic-text">كَلَّا إِنَّ الْإِنْسَانَ لَيَطْغَىٰ · أَن رَّآهُ اسْتَغْنَىٰ</div>
+    <div class="translation">"Sekali-kali tidak! Sesungguhnya manusia benar-benar melampaui batas, karena dia melihat dirinya serba cukup."</div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">1</span>Energi Kata</div>
+    <div class="kata-card">
+      <div class="kata-arabic">كَلَّا</div>
+      <div class="kata-latin">Kalla — Sekali-kali tidak!</div>
+      <div class="kata-desc">Kata penolakan keras dalam bahasa Arab. Bukan sekadar "tidak," tetapi "SEKALI-KALI TIDAK!" dengan penekanan kuat — seperti seseorang yang menarik tanganmu kuat-kuat saat kamu hampir melangkah ke jurang.</div>
+    </div>
+    <div class="kata-card">
+      <div class="kata-arabic">اسْتَغْنَىٰ</div>
+      <div class="kata-latin">Istaghna — Merasa serba cukup</div>
+      <div class="kata-desc">Sikap mental yang berbahaya: merasa tidak butuh Allah, tidak butuh orang lain, tidak butuh bimbingan. Yang dilarang bukan kekayaan atau kesuksesan itu sendiri, melainkan sikap merasa cukup yang membuat kita sombong dan melampaui batas.</div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">2</span>Tafsir Mendalam</div>
+    <p class="tafsir-text">Ini adalah peralihan yang sangat menarik. Lima ayat pertama tentang kemurahan Allah dalam mengajar, lalu tiba-tiba datang peringatan keras: "TIDAK! Manusia itu sombong ketika merasa cukup." Kenapa? Karena <strong>ilmu tanpa kerendahan hati adalah bencana</strong>.</p>
+    <p class="tafsir-text">Kata "melihat dirinya cukup" sangat penting. Bukan "dia cukup," tetapi "dia MELIHAT dirinya cukup." Ini masalah persepsi. Seseorang bisa punya banyak harta tapi tetap rendah hati karena dia tahu bahwa tanpa Allah, dia bukan apa-apa.</p>
+    <div class="relevansi-box">
+      <div class="relevansi-label">Relevansi Kekinian</div>
+      <p class="tafsir-text">Zaman sekarang adalah zaman pamer. Media sosial penuh dengan orang yang ingin menunjukkan bahwa mereka "cukup" — cukup kaya, cukup sukses, cukup bahagia. Padahal di balik layar, banyak yang sebenarnya kosong.</p>
+      <ul class="action-list">
+        <li>Pengusaha muda yang baru setahun berbisnis, sudah meremehkan karyawan. Ketika ditegur, marah karena merasa sudah lebih sukses.</li>
+        <li>Selebgram yang punya jutaan pengikut, mulai merasa pendapatnya adalah kebenaran mutlak.</li>
+        <li>Orang yang baru belajar agama sedikit, lalu merasa lebih suci dari orang lain.</li>
+      </ul>
+    </div>
+    <div class="tafsir-sub">Langkah Nyata</div>
+    <ul class="action-list">
+      <li><strong>Periksa Niat Sebelum Unggah:</strong> Tanya diri sendiri: "Aku unggah ini untuk berbagi atau untuk pamer?"</li>
+      <li><strong>Ritual Syukur, Bukan Pamer:</strong> Setiap kali dapat rezeki, segera sisihkan untuk sedekah dan ucapkan syukur dalam hati — bukan di layar.</li>
+      <li><strong>Terima Kritik dengan Lapang Dada:</strong> Ketika ada yang mengkritik, dengarkan dulu. Mungkin Allah sedang mengirim peringatan melalui orang itu.</li>
+    </ul>
+  </div>
+
+  <div class="intisari-box">
+    <p class="intisari-text">Kesuksesan sejati bukan diukur dari seberapa banyak yang kita punya, tetapi seberapa rendah hati kita di tengah semua yang kita punya. Setiap suka dan pujian di media sosial bisa menjadi racun yang membuat kita melampaui batas.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     AYAT 8–10
+══════════════════════════════════════════════ -->
+<section class="ayat-block" id="ayat8">
+<div class="container">
+  <div class="ayat-header">
+    <div class="ayat-number">Ayat 8–10</div>
+    <div class="arabic-text">إِنَّ إِلَىٰ رَبِّكَ الرُّجْعَىٰ · أَرَأَيْتَ الَّذِي يَنْهَىٰ · عَبْدًا إِذَا صَلَّىٰ</div>
+    <div class="translation">"Sesungguhnya hanya kepada Tuhanmulah kembali(mu). Bagaimana pendapatmu tentang orang yang melarang, seorang hamba ketika dia mengerjakan shalat?"</div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">2</span>Tafsir Mendalam</div>
+    <p class="tafsir-text">Ayat ini turun terkait kejadian ketika Nabi Muhammad ﷺ shalat di dekat Ka'bah. Abu Jahal melihatnya dan berkata dengan sombong: "Bukankah aku sudah melarangmu?" Dia mengancam akan menginjak leher Nabi jika ketahuan shalat lagi.</p>
+    <p class="tafsir-text">Allah seolah berkata: "Kalian sibuk berkuasa di dunia, sibuk melarang ini-itu, tapi ingat — pada akhirnya kalian akan kembali kepada-Ku. Dan di sana, tidak ada yang bisa menolong kalian kecuali amal kalian sendiri."</p>
+    <div class="relevansi-box">
+      <div class="relevansi-label">Relevansi Kekinian</div>
+      <ul class="action-list">
+        <li>Atasan yang melarang karyawan shalat di jam kerja, sambil dia sendiri santai ngopi berjam-jam.</li>
+        <li>Teman yang meremehkan orang yang mulai taat dengan bilang "Sok alim" — tidak suka melihat orang lain berubah karena itu membuat mereka merasa bersalah.</li>
+        <li>Pandangan bahwa orang yang taat beragama itu kolot — membuat banyak orang malu menampakkan ketaatannya.</li>
+      </ul>
+    </div>
+    <div class="tafsir-sub">Langkah Nyata</div>
+    <ul class="action-list">
+      <li><strong>Jangan Halangi Kebaikan Orang:</strong> Jika ada teman yang mulai rajin shalat, dukung dia. Setiap kebaikan yang kita halangi, akan dimintai pertanggungjawaban.</li>
+      <li><strong>Fasilitasi Ibadah di Tempat Kerja:</strong> Jika punya kuasa, sediakan tempat shalat yang layak dan beri kesempatan karyawan untuk beribadah.</li>
+      <li><strong>Jangan Malu Beribadah:</strong> Jika tiba waktu shalat saat berkumpul dengan teman, jangan malu untuk izin shalat. Siapa tahu, keberanianmu menginspirasi orang lain.</li>
+    </ul>
+  </div>
+
+  <div class="intisari-box">
+    <p class="intisari-text">Ujung dari semua perjalanan hidup adalah kembali kepada Allah. Betapa meruginya orang yang tidak cukup dia sendiri tidak berbuat baik — dia juga menghalangi orang lain. Sebaliknya, setiap kebaikan yang kita dukung dan fasilitasi akan menjadi pahala yang terus mengalir.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     AYAT 11–14
+══════════════════════════════════════════════ -->
+<section class="ayat-block" id="ayat11">
+<div class="container">
+  <div class="ayat-header">
+    <div class="ayat-number">Ayat 11–14</div>
+    <div class="arabic-text">أَرَأَيْتَ إِن كَانَ عَلَى الْهُدَىٰ · أَوْ أَمَرَ بِالتَّقْوَىٰ · أَرَأَيْتَ إِن كَذَّبَ وَتَوَلَّىٰ · أَلَمْ يَعْلَم بِأَنَّ اللَّهَ يَرَىٰ</div>
+    <div class="translation">"Bagaimana pendapatmu jika dia berada dalam petunjuk, atau dia menyuruh bertakwa? Bagaimana pendapatmu jika dia mendustakan dan berpaling? Tidakkah dia mengetahui bahwa Allah melihat?"</div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">1</span>Energi Kata</div>
+    <div class="kata-card">
+      <div class="kata-arabic">يَرَىٰ</div>
+      <div class="kata-latin">Yara — Melihat</div>
+      <div class="kata-desc">Bukan sekadar melihat dengan mata, tetapi mengetahui segala yang tampak dan tersembunyi — niat, perasaan, pikiran. Tidak ada yang bisa disembunyikan dari-Nya. Allah melihat niat tersembunyi di balik setiap tindakan, termasuk kesombongan yang kita tutupi dengan kesalehan palsu.</div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">2</span>Tafsir Mendalam</div>
+    <p class="tafsir-text">Ayat-ayat ini adalah pertanyaan yang membungkam. Allah bertanya kepada orang-orang sombong: "Kalau orang yang kamu larang itu sebenarnya ada di jalan yang benar dan mengajak pada ketakwaan, lalu kamu mendustakan dan berpaling — kamu pikir Aku tidak melihat?"</p>
+    <div class="relevansi-box">
+      <div class="relevansi-label">Relevansi Kekinian</div>
+      <ul class="action-list">
+        <li>Netizen yang menghakimi orang lain berdasarkan video 30 detik — padahal tidak tahu konteks lengkapnya.</li>
+        <li>Karena media sosial penuh kepura-puraan, orang jadi tidak percaya pada kebaikan. Lihat orang berbuat baik, langsung dicurigai pencitraan.</li>
+        <li>Orang sibuk menjaga citra di depan manusia, tapi lupa bahwa Allah melihat semua — termasuk niat tersembunyi.</li>
+      </ul>
+    </div>
+    <div class="tafsir-sub">Langkah Nyata</div>
+    <ul class="action-list">
+      <li><strong>Berpikir Baik tentang Orang Lain:</strong> Sebelum menghakimi, berpikirlah baik dulu. Mungkin ada alasan yang tidak kamu tahu.</li>
+      <li><strong>Jangan Sebar Fitnah:</strong> Jika mendengar gosip, jangan langsung percaya dan menyebarkan. Jika tidak yakin, diamlah.</li>
+      <li><strong>Hati-Hati dengan Niat:</strong> Setiap kali berbuat baik, periksa niatmu. Apakah karena Allah atau karena ingin dipuji?</li>
+    </ul>
+  </div>
+
+  <div class="intisari-box">
+    <p class="intisari-text">Allah Maha Melihat. Dia melihat niat tersembunyi, melihat apa yang kita sembunyikan dari orang lain, melihat kesombongan yang kita tutupi dengan kesalehan palsu. Jagalah hati dan niat, karena itulah yang Allah nilai.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     AYAT 15–16
+══════════════════════════════════════════════ -->
+<section class="ayat-block" id="ayat15">
+<div class="container">
+  <div class="ayat-header">
+    <div class="ayat-number">Ayat 15–16</div>
+    <div class="arabic-text">كَلَّا لَئِن لَّمْ يَنتَهِ لَنَسْفَعًا بِالنَّاصِيَةِ · نَاصِيَةٍ كَاذِبَةٍ خَاطِئَةٍ</div>
+    <div class="translation">"Sekali-kali tidak! Sungguh, jika dia tidak berhenti, niscaya Kami tarik ubun-ubunnya — ubun-ubun orang yang mendustakan lagi durhaka."</div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">1</span>Energi Kata</div>
+    <div class="kata-card">
+      <div class="kata-arabic">النَّاصِيَةِ</div>
+      <div class="kata-latin">An-Nashiyah — Ubun-ubun</div>
+      <div class="kata-desc">
+        Bagian depan kepala. Dalam ilmu otak modern, bagian ini (<em>lobus frontal</em>) adalah pusat pengambilan keputusan dan kontrol diri. Penelitian menunjukkan bahwa lobus frontal yang rusak membuat orang kehilangan kemampuan membedakan benar-salah. Ayat ini seolah berkata: ubun-ubun orang sombong itu seolah rusak — tidak bisa lagi membedakan kebenaran, dikuasai oleh ego dan nafsu.
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">2</span>Tafsir Mendalam</div>
+    <p class="tafsir-text">Kenapa ubun-ubun? Karena ubun-ubun adalah simbol kebanggaan dan kehormatan. Orang sombong biasanya angkuh, berjalan dengan kepala terangkat tinggi. Allah akan rendahkan kehormatan palsu itu dengan menyeret ubun-ubunnya seperti penjahat.</p>
+    <div class="relevansi-box">
+      <div class="relevansi-label">Relevansi Kekinian</div>
+      <ul class="action-list">
+        <li>Pejabat korup yang hidup mewah dari uang rakyat, lalu tiba-tiba tertangkap dan diseret di depan kamera. Kehormatannya yang palsu hancur seketika.</li>
+        <li>Tokoh yang sombong dan merendahkan orang lain, lalu tiba-tiba skandalnya terbongkar. Dia yang tadinya diagung-agungkan, sekarang dihina.</li>
+      </ul>
+    </div>
+    <div class="tafsir-sub">Langkah Nyata</div>
+    <ul class="action-list">
+      <li><strong>Cepat Minta Maaf dan Bertobat:</strong> Jika menyadari telah berbuat salah, segera minta maaf dan bertobat. Jangan tunggu sampai Allah "menyeret ubun-ubunmu" dengan cara yang menyakitkan.</li>
+      <li><strong>Rendah Hati di Puncak Kejayaan:</strong> Ketika sedang sukses dan dipuji banyak orang — hati-hati. Ini saat paling rawan untuk sombong. Ingatkan diri: "Ini semua titipan. Bisa hilang kapan saja."</li>
+      <li><strong>Jangan Bangga dengan Dosa:</strong> Ada fenomena aneh: orang bangga dengan dosa atau kesalahannya. Ini sangat berbahaya.</li>
+    </ul>
+  </div>
+
+  <div class="intisari-box">
+    <p class="intisari-text">Allah tidak main-main dengan ancaman-Nya. Kejatuhan bisa terjadi di dunia sebelum akhirat: aib terbongkar, kehilangan semua yang dibanggakan. Sebelum terlambat, kita harus cepat sadar dan bertobat. Allah Maha Penyayang, tapi juga Maha Adil.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     AYAT 17–18
+══════════════════════════════════════════════ -->
+<section class="ayat-block" id="ayat17">
+<div class="container">
+  <div class="ayat-header">
+    <div class="ayat-number">Ayat 17–18</div>
+    <div class="arabic-text">فَلْيَدْعُ نَادِيَهُۥ · سَنَدْعُ ٱلزَّبَانِيَةَ</div>
+    <div class="translation">"Maka biarlah dia memanggil golongannya (untuk menolongnya). Kelak Kami akan memanggil Malaikat Zabaniyah (penjaga neraka)."</div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">2</span>Tafsir Mendalam</div>
+    <p class="tafsir-text">Abu Jahal berkata dengan sombong: "Muhammad mengancamku? Biarlah! Aku akan panggil orang-orangku!" Allah menjawab tantangan itu: "Silakan panggil kelompokmu. Kami akan panggil Malaikat Zabaniyah."</p>
+    <p class="tafsir-text">Ini mengajarkan bahwa semua kekuatan duniawi itu semu. Tidak peduli seberapa banyak pengikut, seberapa besar kekayaan — semua itu tidak ada artinya di hadapan Allah. Ketika ajal tiba, tidak ada yang bisa menolong kecuali amal.</p>
+    <div class="relevansi-box">
+      <div class="relevansi-label">Relevansi Kekinian</div>
+      <ul class="action-list">
+        <li>Penguasa yang merasa aman karena punya banyak pendukung dan pengawal — tapi ketika mati, semua pengikut itu tidak bisa menolongnya dari siksa kubur.</li>
+        <li>Bos atau orang kaya yang biasa memerintah banyak orang — tapi di alam kubur, dia sendirian menghadapi amalnya sendiri.</li>
+      </ul>
+    </div>
+    <div class="tafsir-sub">Langkah Nyata</div>
+    <ul class="action-list">
+      <li><strong>Jangan Andalkan Manusia:</strong> Wajar punya teman dan komunitas yang mendukung, tapi jangan mengandalkan mereka lebih dari Allah.</li>
+      <li><strong>Bangun Amal, Bukan Hanya Nama:</strong> Daripada sibuk membangun reputasi, lebih baik fokus membangun amal shalih.</li>
+      <li><strong>Renungkan Kematian:</strong> Sekali sebulan, bayangkan: "Jika aku mati hari ini, apa yang sudah aku persiapkan? Amal apa yang akan membela aku?"</li>
+    </ul>
+  </div>
+
+  <div class="intisari-box">
+    <p class="intisari-text">Semua kekuatan duniawi — harta, jabatan, pengikut — tidak ada artinya di hadapan Allah. Yang terpenting adalah mempersiapkan amal shalih dan menjaga diri dari kesombongan. Yang berguna di akhirat adalah amal, bukan ketenaran.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     AYAT 19
+══════════════════════════════════════════════ -->
+<section class="ayat-block" id="ayat19">
+<div class="container">
+  <div class="ayat-header">
+    <div class="ayat-number">Ayat 19</div>
+    <div class="arabic-text">كَلَّا لَا تُطِعْهُ وَٱسْجُدْ وَٱقْتَرِب ۩</div>
+    <div class="translation">"Sekali-kali jangan! Janganlah kamu patuh kepadanya; dan sujudlah dan dekatkanlah (dirimu kepada Allah)."</div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">1</span>Energi Kata</div>
+    <div class="kata-card">
+      <div class="kata-arabic">وَاسْجُدْ</div>
+      <div class="kata-latin">Wasjud — Sujudlah</div>
+      <div class="kata-desc">Posisi paling rendah dalam shalat, di mana dahi dan hidung menyentuh tanah. Simbol kerendahan hati tertinggi di hadapan Allah. Yang indah: Allah memerintahkan sujud tepat setelah menyebut tentang orang yang sombong. Seolah Allah berkata: "Mereka sombong? Kamu justru rendah hati. Mereka angkuh? Kamu sujud."</div>
+    </div>
+    <div class="kata-card">
+      <div class="kata-arabic">وَاقْتَرِب</div>
+      <div class="kata-latin">Waqtarib — Dekatkanlah dirimu</div>
+      <div class="kata-desc">Bukan sekadar dekat secara fisik, tetapi dekat secara rohani. Ada hadits: "Saat paling dekat seorang hamba dengan Tuhannya adalah ketika dia sujud." Jadi, sujud bukan hanya ritual, tetapi momen kedekatan spiritual tertinggi.</div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="sub-title"><span class="sub-title-num">2</span>Tafsir Mendalam</div>
+    <p class="tafsir-text">Ayat ini adalah penutup yang sempurna. Setelah semua peringatan tentang kesombongan manusia, Allah memberi solusi: jangan patuhi orang yang sombong, tetapi sujudlah dan dekatlah kepada-Ku. Ini adalah kontras yang sangat jelas:</p>
+    <div class="kata-card" style="background: rgba(197,150,40,0.04);">
+      <div class="kata-desc" style="line-height: 2.2;">
+        Mereka sombong → <strong>Kamu rendah hati</strong><br>
+        Mereka melarang sujud → <strong>Kamu justru tambah sujud</strong><br>
+        Mereka jauh dari Allah → <strong>Kamu dekatkan diri kepada Allah</strong>
+      </div>
+    </div>
+    <div class="relevansi-box">
+      <div class="relevansi-label">Relevansi Kekinian</div>
+      <ul class="action-list">
+        <li>Karyawan yang dilarang shalat oleh atasannya — jangan patuhi. Cari cara untuk tetap shalat meski harus di waktu istirahat.</li>
+        <li>Orang yang diejek karena mulai taat — justru ejekan itu adalah ujian. Semakin mereka ejek, semakin kuat kamu harus bertahan.</li>
+        <li>Lebih takut diejek teman daripada takut melanggar perintah Allah — ini yang harus dibalik.</li>
+      </ul>
+    </div>
+    <div class="tafsir-sub">Langkah Nyata</div>
+    <ul class="action-list">
+      <li><strong>Perbanyak Sujud:</strong> Setiap kali menghadapi masalah atau tekanan — sujudlah. Tambah tahajud, sujud syukur. Dalam sujud, curahkan semua keluh kesahmu kepada Allah.</li>
+      <li><strong>Sujud sebagai Terapi:</strong> Ketika hati gelisah atau beban hidup terasa berat — sujudlah lama. Rasakan dahinya menyentuh sajadah. Bisikkan semua keluh kesahmu.</li>
+      <li><strong>Jangan Patuhi yang Salah:</strong> Jika orang tua, pasangan, atau atasan menyuruhmu melakukan yang salah atau meninggalkan yang wajib — jangan patuhi. Tidak ada ketaatan kepada makhluk dalam bermaksiat kepada Sang Khaliq.</li>
+      <li><strong>Teguh Meski Sendirian:</strong> Mungkin kamu satu-satunya orang di kantor yang shalat — jangan merasa sendirian. Allah bersamamu.</li>
+    </ul>
+  </div>
+
+  <div class="intisari-box">
+    <p class="intisari-text">Sujud adalah senjata terkuat orang beriman — momen ketika kita paling dekat dengan Allah. Tidak ada masalah yang tidak bisa diselesaikan dengan sujud yang khusyuk. Tidak ada tekanan yang tidak bisa diatasi dengan mendekatkan diri kepada Allah. Jadikan sujud sebagai kebiasaan, bukan hanya kewajiban.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     REFLEKSI PENUTUP
+══════════════════════════════════════════════ -->
+<section class="refleksi-section" id="refleksi">
+<div class="container">
+  <div class="section-label">Refleksi Penutup</div>
+  <h2 class="refleksi-title">Pola-Pola yang Bisa Diambil</h2>
+
+  <div class="pola-item">
+    <div class="pola-num">1 · Pola Perubahan: Dari Kegelapan Menuju Cahaya</div>
+    <p class="tafsir-text">Perubahan sejati dimulai dari perubahan cara berpikir. Jika ingin mengubah kondisi masyarakat, mulailah dari pendidikan. Jika ingin mengubah diri sendiri, mulailah dari membaca, belajar, merenung. Tidak ada jalan pintas.</p>
+  </div>
+  <div class="pola-item">
+    <div class="pola-num">2 · Pola Kerendahan Hati: Semakin Tinggi, Semakin Membumi</div>
+    <p class="tafsir-text">Semakin banyak kita tahu, semakin sadar bahwa yang kita tahu sangatlah sedikit. Jika ilmu membuat kita meremehkan orang lain, itu bukan ilmu yang bermanfaat.</p>
+  </div>
+  <div class="pola-item">
+    <div class="pola-num">3 · Pola Kemurahan Ilahi: Allah Lebih Ingin Memberi</div>
+    <p class="tafsir-text">Allah lebih bersemangat mengajari kita daripada kita bersemangat belajar. Masalah kita bukan Allah pelit memberi ilmu, tetapi kita yang malas mencari. Jangan pernah merasa "terlalu bodoh" atau "terlalu tua" untuk memulai.</p>
+  </div>
+  <div class="pola-item">
+    <div class="pola-num">4 · Pola Kesombongan dan Kejatuhan</div>
+    <p class="tafsir-text">Sejarah membuktikan — dari Fir'aun, Qarun, hingga tokoh-tokoh modern — bahwa kesombongan selalu berakhir dengan kehancuran. Di zaman medsos ini kita lihat fenomena yang sama: orang yang kemarin viral karena kesuksesannya, hari ini viral karena kejatuhannya.</p>
+  </div>
+  <div class="pola-item">
+    <div class="pola-num">5 · Pola Perlawanan Terhadap Kebenaran</div>
+    <p class="tafsir-text">Jika kita sedang dalam perjalanan menjadi lebih baik, wajar jika ada yang melarang atau mengejek. Itu bukan tanda kita salah, tapi tanda kita sedang mengancam zona nyaman mereka.</p>
+  </div>
+  <div class="pola-item">
+    <div class="pola-num">6 · Pola Sujud sebagai Obat</div>
+    <p class="tafsir-text">Setiap masalah, setiap tekanan, setiap kesedihan — jawabannya adalah sujud. Riset menunjukkan bahwa sujud menurunkan hormon stres dan meningkatkan ketenangan. Secara rohani, sujud adalah momen kita "mengecas" kembali iman kita.</p>
+  </div>
+
+  <div class="ornament">✦ · ✦ · ✦</div>
+
+  <h2 class="refleksi-title">Langkah Nyata yang Bisa Dilakukan</h2>
+
+  <div class="langkah-card">
+    <div class="langkah-title">1 · Mulai Kebiasaan Membaca Harian</div>
+    <p class="tafsir-text">Komitmen membaca minimal 15 menit setiap hari — bukan menggulir media sosial, tetapi bacaan yang berisi. Jadikan ini ibadah dengan niat "bismillah."</p>
+  </div>
+  <div class="langkah-card">
+    <div class="langkah-title">2 · Catat Pembelajaran dalam Tulisan</div>
+    <p class="tafsir-text">Setiap minggu, tulis satu perenungan dari apa yang kamu pelajari. Bagikan di media sosial setiap Jumat sebagai amal jariyah.</p>
+  </div>
+  <div class="langkah-card">
+    <div class="langkah-title">3 · Bertanya dengan Rendah Hati</div>
+    <p class="tafsir-text">Dalam setiap percakapan, jadilah pendengar yang baik dan ajukan pertanyaan dengan tulus. Anggap setiap orang punya sesuatu yang bisa kamu pelajari.</p>
+  </div>
+  <div class="langkah-card">
+    <div class="langkah-title">4 · Periksa Diri dari Tanda-Tanda Kesombongan</div>
+    <p class="tafsir-text">Setiap minggu, refleksikan: Apakah aku merasa lebih baik dari orang lain? Apakah aku sulit menerima kritik? Apakah aku merasa tidak butuh Allah? Jika "ya," segera bertaubat.</p>
+  </div>
+  <div class="langkah-card">
+    <div class="langkah-title">5 · Jadikan Sujud Rutinitas Harian</div>
+    <p class="tafsir-text">Tambahkan sujud syukur setiap kali dapat rezeki, shalat tahajud minimal 2 rakaat di sepertiga malam, dan shalat dhuha sebagai pembuka hari.</p>
+  </div>
+  <div class="langkah-card">
+    <div class="langkah-title">6 · Wariskan Nilai, Bukan Hanya Harta</div>
+    <p class="tafsir-text">Tulis wasiat rohani: kerendahan hati di tengah kesuksesan, keteguhan dalam kebaikan meski dihalangi, kedekatan dengan Allah melalui sujud. Ajarkan anak-anak bukan hanya dengan kata, tapi dengan contoh nyata.</p>
+  </div>
+
+  <div class="ornament">✦ · ✦ · ✦</div>
+
+  <div class="intisari-box">
+    <p class="intisari-text">Surat Al-'Alaq dimulai dengan perintah membaca dan diakhiri dengan perintah sujud. Ini adalah peta perjalanan rohani yang lengkap: Baca → Ingat asal-usulmu → Sadari kemurahan Allah → Waspadai kesombongan → Teguh meski dihalangi → Sujud dan dekatlah. Mulai hari ini, hidup dengan pola Al-'Alaq.</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     EPILOG
+══════════════════════════════════════════════ -->
+<section class="epilog-section" id="epilog">
+<div class="container">
+  <h2 class="epilog-title">Epilog Surat Al-'Alaq</h2>
+  <p class="epilog-subtitle">Surat untuk Jiwa-Jiwa yang Sedang Berjuang</p>
+
+  <!-- Untuk yang merasa terlambat -->
+  <div class="epilog-chapter">
+    <h3 class="epilog-ch-title">Untuk Kamu yang Merasa Terlambat Belajar</h3>
+    <p class="epilog-text">Kepada kamu yang merasa sudah terlalu tua untuk kembali ke bangku sekolah, kepada kamu yang malu karena baru belajar sesuatu yang orang lain sudah kuasai sejak lama, kepada kamu yang merasa tidak layak berbagi karena ilmumu terlalu dangkal —</p>
+    <p class="epilog-text">Allah tidak memulai wahyu pertama-Nya dengan "Shalatlah." Dia memulai dengan satu kata: <em>"Iqra'. Bacalah."</em></p>
+    <p class="epilog-text">Kamu merasa terlambat? Nabi Muhammad ﷺ menerima wahyu pertama di usia 40 tahun. Dan Nabi sendiri tidak bisa membaca tulisan ketika perintah "Iqra'" pertama kali turun. Allah tidak menuntut kesempurnaan — Dia menuntut <strong>kemauan</strong>.</p>
+
+    <div class="surat-ilahi">
+      Ada seorang nenek berusia 60 tahun yang datang ke guru ngaji. Tangannya gemetar memegang Al-Qur'an. "Ustadz, saya ingin belajar membaca Al-Qur'an. Tapi saya sudah tua. Suara saya serak. Hafalan saya lemah."<br><br>
+      Sang ustadz tersenyum, "Ibu, yang terlambat adalah orang yang berhenti belajar meskipun masih punya waktu. Ibu yang masih mencoba di usia 60 tahun, jauh lebih cepat dari orang 20 tahun yang tidak mau belajar sama sekali."<br><br>
+      Tiga tahun kemudian, nenek itu khatam Al-Qur'an. Tidak secepat anak-anak muda. Tidak hafal sepanjang santri-santri lain. Tapi setiap huruf yang dia baca, dibaca dengan air mata syukur.
+    </div>
+  </div>
+
+  <!-- Untuk yang merasa sudah cukup -->
+  <div class="epilog-chapter">
+    <h3 class="epilog-ch-title">Untuk Kamu yang Merasa Sudah Cukup</h3>
+    <p class="epilog-text">Kepada kamu yang merasa sudah sarjana dan tidak perlu belajar lagi, kepada kamu yang merasa sudah sukses dan tidak butuh nasihat siapapun —</p>
+    <p class="epilog-text">Dengarlah peringatan Allah: "Sesungguhnya manusia benar-benar melampaui batas, karena dia melihat dirinya serba cukup." Kata kuncinya: dia <em>MELIHAT</em> dirinya cukup. Bukan benar-benar cukup, tapi merasa cukup. Ini adalah penyakit persepsi.</p>
+    <p class="epilog-text">Abu Jahal adalah contoh nyata — kaya, berkuasa, dihormati. Tapi kesombongannya membuat dia menutup mata terhadap kebenaran. Sejarah mencatat: dia mati dengan cara yang sangat hina di Perang Badar. Hartanya yang melimpah tidak bisa menyelamatkannya. Pengikutnya yang banyak tidak ada yang bisa menolongnya.</p>
+  </div>
+
+  <!-- Untuk yang dihalangi -->
+  <div class="epilog-chapter">
+    <h3 class="epilog-ch-title">Untuk Kamu yang Dihalangi dari Berbuat Baik</h3>
+    <p class="epilog-text">Kepada kamu yang ingin shalat di kantor tapi ditertawakan, kepada kamu yang ingin berubah menjadi lebih baik tapi selalu ada yang meremehkan, kepada kamu yang lelah berjuang sendirian melawan arus —</p>
+    <p class="epilog-text">Ingat ayat terakhir: "Sekali-kali jangan! Janganlah kamu patuh kepadanya; dan sujudlah dan dekatkanlah dirimu kepada Allah." Ini adalah perintah kepada Nabi ketika Abu Jahal mengancam akan menginjak lehernya. Ancaman kematian. Ancaman kekerasan. Dari orang paling berkuasa di Mekah. Tapi Allah berkata: <strong>SUJUDLAH.</strong></p>
+
+    <div class="surat-ilahi">
+      Ada seorang pemuda yang baru hijrah. Dia mulai shalat lima waktu, berhenti dari maksiat, belajar ngaji. Tapi teman-temannya menjauh. "Sok alim," kata mereka. Keluarganya juga tidak mendukung.<br><br>
+      Suatu malam, dalam sujud tahajudnya, dia menangis. "Ya Allah, aku lelah. Tidak ada yang mendukung."<br><br>
+      Allah tidak menjawab dengan kata-kata. Allah menjawab dengan ketenangan yang tiba-tiba mengalir di hatinya. Lima tahun kemudian, ayahnya yang dulu menentang, kini rajin shalat berjamaah di masjid.<br><br>
+      Bukan pemuda itu yang berubah karena dukungan orang lain. Orang lain yang berubah karena keteguhannya.
+    </div>
+
+    <ul class="action-list" style="margin-top: 24px;">
+      <li>Kebenaran tidak butuh mayoritas untuk menjadi benar. Meskipun seluruh dunia menentangmu, jika kamu di jalan yang benar, tetaplah teguh.</li>
+      <li>Setiap halangan adalah ujian kenaikan pangkat. Semakin berat ujianmu, semakin tinggi derajat yang Allah siapkan untukmu.</li>
+      <li>Sujud adalah senjatamu. Ketika semua pintu tertutup, sujud membuka pintu langit.</li>
+      <li>Suatu hari, mereka akan paham. Mungkin tidak hari ini, mungkin tidak tahun ini. Tapi suatu hari, mereka akan menyesal pernah meremehkanmu.</li>
+    </ul>
+  </div>
+
+  <!-- Surat dari Allah -->
+  <div class="epilog-chapter">
+    <h3 class="epilog-ch-title">Penutup: Surat dari Allah untuk Kamu</h3>
+    <div class="surat-ilahi">
+      "Hamba-Ku yang Kucintai,<br><br>
+      Aku tahu kamu lelah. Aku tahu kamu merasa sendirian. Aku tahu kamu kadang bertanya: apakah perjuanganmu ada artinya?<br><br>
+      Setiap langkah kecilmu, Aku catat. Setiap air mata yang jatuh dalam sujudmu, Aku simpan. Setiap kali kamu memilih berbuat baik meskipun dihalangi, Aku bangga padamu.<br><br>
+      Kamu pikir kamu sendirian? Tidak. Malaikat-malaikat-Ku mengelilingimu, mendoakan kebaikan untukmu.<br><br>
+      Jangan menyerah, hamba-Ku. Jangan mundur, meskipun jalan terasa berat. Jangan berhenti belajar, meskipun kamu merasa lambat. Jangan berhenti berbuat baik, meskipun tidak ada yang menghargai.<br><br>
+      Karena Aku menghargaimu. Karena Aku melihatmu. Karena Aku bersamamu.<br><br>
+      Dan suatu hari nanti, ketika kamu kembali kepada-Ku, Aku akan tunjukkan semua yang telah Aku siapkan untukmu — surga yang tidak pernah terlintas di benakmu, kemuliaan yang tidak pernah kamu bayangkan, kebahagiaan yang tidak pernah ada akhirnya.<br><br>
+      Itu semua untukmu, hamba-Ku. Untuk kamu yang teguh. Untuk kamu yang tidak menyerah. Untuk kamu yang terus sujud dan terus mendekat."
+    </div>
+  </div>
+
+  <!-- Penutup dengan ayat -->
+  <div class="closing-verse">
+    <div class="closing-arabic">اقْرَأْ · وَاسْجُدْ · وَاقْتَرِب</div>
+    <p class="closing-text">Bacalah. Teruslah belajar.<br>Sujudlah. Teruslah merendah.<br>Dekatkanlah dirimu. Teruslah melangkah.</p>
+    <p class="closing-text" style="margin-top: 16px;">Karena di sana, di dalam kesunyian malam, di dalam kerendahan sujud, di dalam ketulusan doa — kamu akan menemukan apa yang selama ini kamu cari: <strong>Kedamaian. Kekuatan. Cinta yang tidak pernah mengecewakan.</strong></p>
+    <p class="wallahu">Wallahu a'lam bishawab · Barakallahu fiikum</p>
+  </div>
+</div>
+</section>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

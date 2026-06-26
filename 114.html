@@ -1,0 +1,1295 @@
+﻿<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AN-NAS: Benteng Mental di Era Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold-1: #f7e16a;
+    --gold-2: #c9960c;
+    --gold-3: #f0c040;
+    --gold-4: #fffbe0;
+    --white: #f5f0e8;
+    --black: #080808;
+    --bg-card: #0f0f0f;
+    --border-glow: rgba(200,155,20,0.3);
+    --text-muted: #9a8866;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #060606;
+    color: var(--white);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+
+  /* === STARS BACKGROUND === */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 20%, rgba(255,230,120,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 10%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 35%, rgba(255,220,80,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 15%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 30% 60%, rgba(255,240,100,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 70%, rgba(255,220,80,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 20% 85%, rgba(255,230,120,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 50%, rgba(255,255,255,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 45%, rgba(255,220,80,0.4) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* === HERO === */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px 80px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(180,130,10,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 30% at 50% 80%, rgba(100,70,0,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-arabic-bg {
+    position: absolute;
+    font-family: 'Traditional Arabic', 'Amiri', serif;
+    font-size: 28vw;
+    color: rgba(200,155,10,0.03);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    white-space: nowrap;
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .hero-surah-number {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-2);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0.8;
+  }
+
+  .hero-arabic {
+    font-family: 'Traditional Arabic', 'Amiri', serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    direction: rtl;
+    color: transparent;
+    background: linear-gradient(135deg, #f7e16a 0%, #c9960c 30%, #f0c040 55%, #fffbe0 75%, #c9960c 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    line-height: 1.2;
+    margin-bottom: 0.4rem;
+    filter: drop-shadow(0 0 30px rgba(200,155,10,0.4));
+    animation: shimmer 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes shimmer {
+    0% { filter: drop-shadow(0 0 20px rgba(200,155,10,0.3)); }
+    100% { filter: drop-shadow(0 0 50px rgba(200,155,10,0.6)); }
+  }
+
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: transparent;
+    background: linear-gradient(135deg, #f7e16a 0%, #ffffff 35%, #f0c040 60%, #fffbe0 80%, #d4a820 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    margin-bottom: 0.6rem;
+    text-shadow: none;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 3vw, 1.6rem);
+    font-weight: 400;
+    color: transparent;
+    background: linear-gradient(90deg, #c9960c, #f7e16a, #c9960c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    letter-spacing: 0.15em;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+  }
+
+  .hero-divider {
+    width: 160px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c9960c, #f7e16a, #c9960c, transparent);
+    margin: 0 auto 2rem;
+  }
+
+  .hero-ornament {
+    font-size: 1.4rem;
+    color: var(--gold-2);
+    opacity: 0.7;
+    margin: 0 0.5rem;
+  }
+
+  .hero-tagline {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: rgba(245,240,232,0.75);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+    padding: 0 20px;
+  }
+
+  .hero-tagline strong {
+    color: var(--gold-3);
+    font-style: normal;
+  }
+
+  /* === SCROLL INDICATOR === */
+  .scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.5;
+    animation: bounce 2.5s ease-in-out infinite;
+  }
+  .scroll-down span {
+    display: block;
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, var(--gold-2));
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); opacity: 0.3; }
+    50% { transform: translateX(-50%) translateY(8px); opacity: 0.6; }
+  }
+
+  /* === MAIN CONTENT === */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* === AYAT CARD === */
+  .ayat-card {
+    background: linear-gradient(135deg, #0d0d0d 0%, #111108 100%);
+    border: 1px solid rgba(200,155,20,0.15);
+    border-radius: 4px;
+    margin-bottom: 3.5rem;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.4s ease;
+  }
+
+  .ayat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,155,20,0.6), transparent);
+  }
+
+  .ayat-card:hover {
+    border-color: rgba(200,155,20,0.35);
+  }
+
+  .ayat-number-band {
+    background: linear-gradient(90deg, rgba(180,130,10,0.12), rgba(100,70,0,0.05));
+    border-bottom: 1px solid rgba(200,155,20,0.12);
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ayat-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    color: var(--gold-2);
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .ayat-content {
+    padding: 36px 36px 40px;
+  }
+
+  /* === ARABIC TEXT === */
+  .arabic-text {
+    font-family: 'Traditional Arabic', 'Amiri', serif;
+    font-size: clamp(2rem, 5.5vw, 3.4rem);
+    direction: rtl;
+    text-align: center;
+    line-height: 1.7;
+    color: transparent;
+    background: linear-gradient(135deg, #f7e16a 10%, #d4a820 45%, #f7e16a 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin: 10px 0 16px;
+    padding: 20px 0;
+    position: relative;
+  }
+
+  .arabic-text::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,155,20,0.5), transparent);
+    margin: 12px auto 0;
+  }
+
+  .translation {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: rgba(245,240,232,0.6);
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 20px;
+  }
+
+  /* === SECTION HEADERS === */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 28px 0 16px;
+  }
+
+  .section-header-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(200,155,20,0.3), transparent);
+  }
+
+  .section-header-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-2);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* === ENERGI KATA === */
+  .kata-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .kata-item {
+    background: rgba(200,155,10,0.04);
+    border-left: 2px solid rgba(200,155,20,0.4);
+    padding: 14px 18px;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .kata-arabic {
+    font-family: 'Traditional Arabic', 'Amiri', serif;
+    font-size: 1.5rem;
+    color: var(--gold-3);
+    direction: rtl;
+    display: inline-block;
+    margin-bottom: 3px;
+  }
+
+  .kata-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    color: var(--gold-2);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-left: 8px;
+  }
+
+  .kata-desc {
+    font-size: 0.97rem;
+    color: rgba(245,240,232,0.75);
+    margin-top: 6px;
+    line-height: 1.75;
+  }
+
+  /* === TAFSIR === */
+  .tafsir-body {
+    font-size: 1rem;
+    color: rgba(245,240,232,0.8);
+    line-height: 1.9;
+  }
+
+  .tafsir-body p { margin-bottom: 1rem; }
+
+  .relevansi-block {
+    background: rgba(200,155,10,0.06);
+    border: 1px solid rgba(200,155,20,0.15);
+    border-radius: 3px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    position: relative;
+  }
+
+  .relevansi-block::before {
+    content: 'RELEVANSI KEKINIAN';
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-2);
+    display: block;
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
+
+  .relevansi-block p {
+    font-size: 0.96rem;
+    color: rgba(245,240,232,0.75);
+    margin: 0;
+    line-height: 1.8;
+  }
+
+  /* === BULLET LIST === */
+  .tafsir-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 16px;
+  }
+
+  .tafsir-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 0.97rem;
+    color: rgba(245,240,232,0.75);
+    margin-bottom: 7px;
+    line-height: 1.7;
+  }
+
+  .tafsir-list li::before {
+    content: '◆';
+    color: var(--gold-2);
+    font-size: 0.5rem;
+    flex-shrink: 0;
+    margin-top: 8px;
+    opacity: 0.7;
+  }
+
+  /* === INTISARI === */
+  .intisari-block {
+    text-align: center;
+    padding: 24px 20px 10px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(200,155,20,0.1);
+  }
+
+  .intisari-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--gold-2);
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .intisari-quote {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+    color: var(--gold-4);
+    line-height: 1.7;
+    position: relative;
+    display: inline-block;
+    max-width: 640px;
+  }
+
+  .intisari-quote::before {
+    content: '\201C';
+    font-size: 4rem;
+    color: rgba(200,155,20,0.15);
+    position: absolute;
+    left: -20px;
+    top: -15px;
+    font-style: normal;
+    line-height: 1;
+  }
+
+  /* === REFLEKSI SECTION === */
+  .refleksi-section {
+    background: linear-gradient(135deg, #0d0d0d, #0a0a06);
+    border: 1px solid rgba(200,155,20,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 3.5rem;
+    position: relative;
+  }
+
+  .refleksi-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #c9960c, #f7e16a, #c9960c, transparent);
+  }
+
+  .refleksi-header {
+    background: linear-gradient(90deg, rgba(180,130,10,0.15), rgba(100,70,0,0.05));
+    padding: 20px 36px;
+    border-bottom: 1px solid rgba(200,155,20,0.12);
+  }
+
+  .refleksi-header h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 700;
+    color: transparent;
+    background: linear-gradient(90deg, #f7e16a, #ffffff, #f0c040);
+    -webkit-background-clip: text;
+    background-clip: text;
+    letter-spacing: 0.12em;
+  }
+
+  .refleksi-body {
+    padding: 36px;
+  }
+
+  .framework-layer {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+
+  .layer-number {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: transparent;
+    background: linear-gradient(135deg, #c9960c, #f7e16a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 36px;
+    margin-top: 4px;
+  }
+
+  .layer-content h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: var(--gold-3);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .layer-content p, .layer-content li {
+    font-size: 0.97rem;
+    color: rgba(245,240,232,0.75);
+    line-height: 1.75;
+  }
+
+  /* === ACTION CARDS === */
+  .action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .action-card {
+    background: rgba(200,155,10,0.04);
+    border: 1px solid rgba(200,155,20,0.15);
+    border-radius: 3px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .action-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(200,155,20,0.5), transparent);
+  }
+
+  .action-card-time {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-2);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.8;
+    display: block;
+  }
+
+  .action-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .action-card ul li {
+    font-size: 0.92rem;
+    color: rgba(245,240,232,0.75);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(200,155,20,0.06);
+    line-height: 1.65;
+    display: flex;
+    gap: 8px;
+  }
+
+  .action-card ul li:last-child { border-bottom: none; }
+
+  .action-card ul li::before {
+    content: '→';
+    color: var(--gold-2);
+    flex-shrink: 0;
+    opacity: 0.6;
+    font-size: 0.85rem;
+    margin-top: 1px;
+  }
+
+  /* === EPILOG === */
+  .epilog-section {
+    position: relative;
+    padding: 60px 36px;
+    text-align: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #080808, #0c0c06);
+    border: 1px solid rgba(200,155,20,0.15);
+    border-radius: 4px;
+    margin-bottom: 3.5rem;
+  }
+
+  .epilog-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(180,130,10,0.06), transparent);
+  }
+
+  .epilog-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-2);
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .epilog-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    font-weight: 700;
+    color: transparent;
+    background: linear-gradient(135deg, #f7e16a 0%, #ffffff 40%, #f0c040 70%, #fffbe0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .epilog-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #c9960c, transparent);
+    margin: 20px auto;
+  }
+
+  .epilog-body {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto;
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: rgba(245,240,232,0.75);
+    line-height: 2;
+    text-align: left;
+  }
+
+  .epilog-body p { margin-bottom: 1.2rem; }
+
+  .epilog-stanza {
+    font-style: italic;
+    color: rgba(245,240,232,0.65);
+    border-left: 1px solid rgba(200,155,20,0.25);
+    padding-left: 20px;
+    margin: 20px 0;
+  }
+
+  .epilog-stanza p { margin-bottom: 0.3rem; }
+
+  .epilog-highlight {
+    color: var(--gold-3);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .epilog-strong {
+    color: var(--white);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .epilog-arabic-inline {
+    font-family: 'Traditional Arabic', 'Amiri', serif;
+    font-size: 1.4rem;
+    direction: rtl;
+    display: block;
+    text-align: right;
+    color: var(--gold-3);
+    margin: 8px 0;
+    opacity: 0.9;
+  }
+
+  .epilog-close {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(200,155,20,0.15);
+    text-align: center;
+  }
+
+  .epilog-close p {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(245,240,232,0.7);
+    margin-bottom: 6px;
+  }
+
+  .epilog-close .final-line {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--gold-3);
+    letter-spacing: 0.1em;
+    font-style: normal;
+  }
+
+  /* === FOOTER === */
+  footer {
+    text-align: center;
+    padding: 40px 20px 60px;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,155,20,0.4), transparent);
+    margin: 0 auto 24px;
+  }
+
+  .footer-arabic {
+    font-family: 'Traditional Arabic', 'Amiri', serif;
+    font-size: 2rem;
+    direction: rtl;
+    color: transparent;
+    background: linear-gradient(135deg, #c9960c, #f7e16a, #c9960c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: block;
+    margin-bottom: 12px;
+    opacity: 0.7;
+  }
+
+  .footer-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: rgba(245,240,232,0.3);
+    text-transform: uppercase;
+  }
+
+  /* === SUB HEADERS IN TAFSIR === */
+  .sub-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    color: var(--gold-2);
+    letter-spacing: 0.15em;
+    margin: 16px 0 8px;
+    opacity: 0.8;
+    display: block;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 600px) {
+    .ayat-content { padding: 24px 20px 28px; }
+    .refleksi-body { padding: 24px 20px; }
+    .epilog-section { padding: 40px 20px; }
+    .action-grid { grid-template-columns: 1fr; }
+    .framework-layer { flex-direction: column; gap: 6px; }
+    .layer-number { font-size: 1.4rem; }
+  }
+
+  /* Fade in animation */
+  .ayat-card, .refleksi-section, .epilog-section {
+    animation: fadeUp 0.7s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-arabic-bg" aria-hidden="true">النَّاس</div>
+
+  <p class="hero-surah-number">Surah 114 • Al-Quran Al-Karim</p>
+
+  <div class="hero-arabic">النَّاس</div>
+
+  <h1 class="hero-title">AN-NAS</h1>
+  <p class="hero-subtitle">BENTENG MENTAL DI ERA DIGITAL</p>
+
+  <div class="hero-divider"></div>
+  <span class="hero-ornament">✦</span>
+
+  <p class="hero-tagline">
+    Ketika dunia membombardir pikiranmu dengan ribuan bisikan setiap detik,<br>
+    <strong>siapa yang benar-benar mengendalikan kepalamu?</strong>
+  </p>
+
+  <div class="scroll-down"><span></span></div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main>
+
+  <!-- AYAT 1 -->
+  <article class="ayat-card">
+    <div class="ayat-number-band">
+      <span class="ayat-label">Ayat 1</span>
+    </div>
+    <div class="ayat-content">
+
+      <div class="arabic-text">قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ</div>
+      <p class="translation">"Katakanlah: Aku berlindung kepada Tuhan (yang memelihara dan menguasai) manusia."</p>
+
+      <!-- Energi Kata -->
+      <div class="section-header">
+        <span class="section-header-title">Energi Kata</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <div class="kata-grid">
+        <div class="kata-item">
+          <span class="kata-arabic">أَعُوذُ</span>
+          <span class="kata-label">A'ūdzu — Berlindung</span>
+          <p class="kata-desc">Bukan sekadar menghindar atau lari. Kata ini mengandung makna mencari perlindungan aktif dengan kesadaran penuh. Seperti ketika kamu mematikan notifikasi media sosial bukan karena takut, tapi karena sadar butuh ruang mental yang sehat. Ini adalah tindakan sadar untuk memilih kedamaian.</p>
+        </div>
+        <div class="kata-item">
+          <span class="kata-arabic">رَبِّ</span>
+          <span class="kata-label">Rabbi — Tuhan yang Memelihara</span>
+          <p class="kata-desc">Bukan sekadar pencipta yang jauh di sana. Rabbi adalah pemelihara yang terus menerus hadir, seperti sistem operasi yang terus menjaga keamanan perangkatmu. Allah tidak hanya menciptakan kita lalu pergi—Dia terus memelihara, memperbaiki, menyeimbangkan.</p>
+        </div>
+        <div class="kata-item">
+          <span class="kata-arabic">ٱلنَّاسِ</span>
+          <span class="kata-label">An-Nās — Manusia</span>
+          <p class="kata-desc">Kata ini diulang tiga kali di surat ini. Bukan kebetulan. Ini pengingat bahwa kita bicara tentang dimensi kemanusiaan yang paling rentan: pikiran, hati, dan jiwa. Setiap manusia, tanpa kecuali.</p>
+        </div>
+      </div>
+
+      <!-- Tafsir -->
+      <div class="section-header">
+        <span class="section-header-title">Tafsir Mendalam</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <div class="tafsir-body">
+        <p>Ayat pembuka ini seperti menekan tombol "safe mode" di kehidupanmu. Ini bukan tentang kelemahan, justru tentang kekuatan untuk mengakui bahwa kita butuh pertolongan.</p>
+        <p>Bayangkan kamu sedang scroll media sosial. Dalam lima menit, kamu sudah:</p>
+        <ul class="tafsir-list">
+          <li>Membandingkan hidupmu dengan 20 orang lain</li>
+          <li>Merasa kurang berhasil karena melihat kesuksesan orang</li>
+          <li>Khawatir tentang masa depan tanpa alasan jelas</li>
+          <li>Marah karena berita politik</li>
+          <li>Iri melihat liburan teman</li>
+        </ul>
+        <p>Siapa yang memasukkan semua itu ke kepalamu? Algoritma? Konten kreator? Atau bisikan halus yang membuat kamu terus scroll meski tahu itu tidak sehat?</p>
+        <p>Ayat ini mengajarkan langkah pertama: <em>sadar dan pilih perlindungan</em>. Bukan paranoid, tapi aware. Seperti kamu pasang antivirus bukan karena sudah terkena, tapi karena preventif.</p>
+
+        <div class="relevansi-block">
+          <p>Di era kita terpapar 10.000+ pesan setiap hari—mental health crisis bukan lagi wacana, tapi realitas. Kecemasan, burnout, FOMO, depresi. Ayat ini adalah protokol keamanan mental yang ditawarkan 1400+ tahun lalu. Pertanyaannya: apakah kamu sudah mengaktifkan protokol ini hari ini?</p>
+        </div>
+      </div>
+
+      <div class="intisari-block">
+        <span class="intisari-label">Intisari</span>
+        <p class="intisari-quote">Mengakui butuh perlindungan bukan kelemahan, tapi wisdom pertama dalam menjaga kesehatan jiwa.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- AYAT 2 -->
+  <article class="ayat-card">
+    <div class="ayat-number-band">
+      <span class="ayat-label">Ayat 2</span>
+    </div>
+    <div class="ayat-content">
+
+      <div class="arabic-text">مَلِكِ ٱلنَّاسِ</div>
+      <p class="translation">"Raja (yang menguasai) manusia."</p>
+
+      <div class="section-header">
+        <span class="section-header-title">Energi Kata</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <div class="kata-grid">
+        <div class="kata-item">
+          <span class="kata-arabic">مَلِكِ</span>
+          <span class="kata-label">Maliki — Raja yang Berkuasa Penuh</span>
+          <p class="kata-desc">Bukan raja simbolis atau raja konstitusional. Ini raja dengan otoritas mutlak, yang keputusannya final. Dalam konteks modern: siapa yang punya "admin access" ke sistemmu? Allah. Bukan bosmu, bukan pengikutmu, bukan bahkan dirimu sendiri.</p>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <span class="section-header-title">Tafsir Mendalam</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <div class="tafsir-body">
+        <p>Ayat ini tentang hierarki otoritas. Di kehidupan modern, kita punya banyak "raja" tidak resmi:</p>
+        <ul class="tafsir-list">
+          <li>Atasan yang menentukan karir dan harga diri</li>
+          <li>Algoritma yang menentukan konten yang kita lihat</li>
+          <li>Influencer yang menentukan apa yang "keren"</li>
+          <li>Tekanan sosial yang menentukan standar hidup</li>
+        </ul>
+        <p>Tapi siapa raja yang sebenarnya? Yang punya keputusan akhir atas hidupmu?</p>
+        <p>Ini bukan tentang fatalisme. Ini tentang perspektif kuasa. Ketika kamu tahu siapa yang berkuasa sesungguhnya, kamu tidak lagi menjadi budak dari otoritas-otoritas palsu itu.</p>
+        <p><strong style="color: var(--gold-3);">Contoh konkret:</strong> Kamu gagal wawancara kerja. Dua perspektif berbeda:</p>
+        <ul class="tafsir-list">
+          <li><em>Tanpa kesadaran ini:</em> "Hidupku hancur. Aku gagal. Mereka tidak menghargaiku."</li>
+          <li><em>Dengan kesadaran ini:</em> "Ini bukan akhir. Ada Raja yang mengatur. Mungkin ada jalan yang lebih baik."</li>
+        </ul>
+
+        <div class="relevansi-block">
+          <p>Kita hidup di era cancel culture dan validasi sosial. Satu kesalahan bisa viral. Satu unggahan bisa membalik hidup. Ayat ini pengingat: mereka bukan raja-mu. Validasi mereka bukan segalanya. Ada Raja yang lebih tinggi yang melihat gambaran besar.</p>
+        </div>
+      </div>
+
+      <div class="intisari-block">
+        <span class="intisari-label">Intisari</span>
+        <p class="intisari-quote">Ketika kamu tahu siapa raja sejatinya, kamu berhenti menjadi budak opini manusia.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- AYAT 3 -->
+  <article class="ayat-card">
+    <div class="ayat-number-band">
+      <span class="ayat-label">Ayat 3</span>
+    </div>
+    <div class="ayat-content">
+
+      <div class="arabic-text">إِلَٰهِ ٱلنَّاسِ</div>
+      <p class="translation">"Sembahan (yang berhak disembah oleh) manusia."</p>
+
+      <div class="section-header">
+        <span class="section-header-title">Energi Kata</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <div class="kata-grid">
+        <div class="kata-item">
+          <span class="kata-arabic">إِلَٰهِ</span>
+          <span class="kata-label">Ilāhi — Yang Berhak Disembah</span>
+          <p class="kata-desc">Bukan sekadar yang disembah, tapi yang BERHAK disembah. Ada perbedaan besar. Banyak yang disembah tapi tidak berhak. Uang, status, likes, pengikut—semua itu kita "sembah" dengan waktu, energi, dan perhatian kita tanpa sadar.</p>
+        </div>
+        <div class="kata-item">
+          <span class="kata-arabic">ٱلنَّاسِ</span>
+          <span class="kata-label">An-Nās — Pengulangan Ketiga</span>
+          <p class="kata-desc">Tiga kali. Trinitas penekanan. Pemelihara-mu, Raja-mu, Sembahan-mu. Satu paket lengkap identitas dan orientasi hidup yang ditawarkan dalam satu surat pendek.</p>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <span class="section-header-title">Tafsir Mendalam</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <div class="tafsir-body">
+        <p>Ayat ini adalah pertanyaan paling jujur yang bisa diajukan kepada diri sendiri: <em>Apa yang sebenarnya kamu sembah?</em></p>
+        <p>Sembah bukan cuma sujud di sajadah. Sembah adalah kemana kamu memberikan waktu, energi, dan prioritas tertinggimu. Mari kita jujur:</p>
+        <ul class="tafsir-list">
+          <li>Berapa jam sehari kamu di media sosial vs berapa menit untuk refleksi spiritual?</li>
+          <li>Berapa banyak energi mental untuk memikirkan penilaian orang vs untuk kedamaian batin?</li>
+          <li>Seberapa panik kamu kalau wifi mati vs seberapa panik kalau melewatkan ibadah?</li>
+        </ul>
+        <p>Jawaban atas pertanyaan-pertanyaan itu menunjukkan apa yang sebenarnya kamu sembah. Ayat ini tidak menghakimi—ayat ini menyadarkan.</p>
+
+        <div class="relevansi-block">
+          <p>Budaya hustle mengajarkan kita menyembah produktivitas. Budaya diet mengajarkan menyembah penampilan. Kapitalisme mengajarkan menyembah akumulasi. Media sosial mengajarkan menyembah validasi. Ayat ini adalah pemeriksaan realitas: apakah yang kamu sembah benar-benar layak menerima hidupmu?</p>
+        </div>
+      </div>
+
+      <div class="intisari-block">
+        <span class="intisari-label">Intisari</span>
+        <p class="intisari-quote">Kehidupan adalah tentang memilih apa yang layak menerima waktu terbaikmu—dan spoiler: bukan angka di layar.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- AYAT 4 -->
+  <article class="ayat-card">
+    <div class="ayat-number-band">
+      <span class="ayat-label">Ayat 4</span>
+    </div>
+    <div class="ayat-content">
+
+      <div class="arabic-text">مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ</div>
+      <p class="translation">"Dari kejahatan (bisikan) syaitan yang biasa bersembunyi."</p>
+
+      <div class="section-header">
+        <span class="section-header-title">Energi Kata</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <div class="kata-grid">
+        <div class="kata-item">
+          <span class="kata-arabic">ٱلْوَسْوَاسِ</span>
+          <span class="kata-label">Al-Waswās — Si Pembisik</span>
+          <p class="kata-desc">Dari kata "waswasa" yang berarti suara lembut, halus, hampir tidak terdengar. Bukan teriakan. Bukan ancaman terang-terangan. Tapi bisikan halus yang terdengar seperti suara kita sendiri. Seperti kritik batin yang beracun tapi kedengarannya "masuk akal".</p>
+        </div>
+        <div class="kata-item">
+          <span class="kata-arabic">ٱلْخَنَّاسِ</span>
+          <span class="kata-label">Al-Khannās — Yang Bersembunyi</span>
+          <p class="kata-desc">Menunjukkan karakteristik muncul-hilang-muncul lagi. Seperti overthinking yang muncul jam 2 pagi. Atau keraguan diri yang tiba-tiba hadir tepat saat kamu hendak mengambil keputusan besar dalam hidupmu.</p>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <span class="section-header-title">Tafsir Mendalam</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <div class="tafsir-body">
+        <p>Ini ayat yang paling terasa di kehidupan sehari-hari. Coba kenali pola bisikannya:</p>
+
+        <span class="sub-label">Di tempat kerja:</span>
+        <ul class="tafsir-list">
+          <li>"Kamu tidak secakap mereka." — Padahal kemampuanmu oke</li>
+          <li>"Ngapain mencoba, ujungnya pasti gagal." — Padahal belum mulai</li>
+        </ul>
+
+        <span class="sub-label">Dalam hubungan:</span>
+        <ul class="tafsir-list">
+          <li>"Dia pasti tidak setia." — Tanpa bukti apapun</li>
+          <li>"Kamu tidak cukup untuknya." — Sabotase diri sendiri</li>
+        </ul>
+
+        <p>Perhatikan polanya: selalu terdengar logis, selalu datang di timing yang tepat, selalu menyamar sebagai "pemikiran kita sendiri". Yang paling berbahaya: waswas tidak datang dengan tanda-tanda jelas. Ia datang berkemas sebagai "realisme" atau bahkan "perawatan diri".</p>
+
+        <div class="relevansi-block">
+          <p>Kesadaran mental health itu penting. Tapi kadang kita tidak bisa membedakan mana suara krisis dan mana suara kebijaksanaan. Ayat ini mengajarkan: ada musuh internal yang tugasnya adalah membuat kamu meragukan dirimu sendiri. Mengenali pola ini adalah langkah pertama untuk melawan.</p>
+        </div>
+      </div>
+
+      <div class="intisari-block">
+        <span class="intisari-label">Intisari</span>
+        <p class="intisari-quote">Tidak semua suara di kepalamu adalah kamu—beberapa adalah musuh yang sangat paham cara menyamar.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- AYAT 5-6 -->
+  <article class="ayat-card">
+    <div class="ayat-number-band">
+      <span class="ayat-label">Ayat 5 — 6</span>
+    </div>
+    <div class="ayat-content">
+
+      <div class="arabic-text">ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ ٱلنَّاسِ<br>مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ</div>
+      <p class="translation">"Yang membisikkan (kejahatan) ke dalam dada manusia, dari (golongan) jin dan manusia."</p>
+
+      <div class="section-header">
+        <span class="section-header-title">Energi Kata</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <div class="kata-grid">
+        <div class="kata-item">
+          <span class="kata-arabic">يُوَسْوِسُ</span>
+          <span class="kata-label">Yuwaswisu — Membisikkan Terus Menerus</span>
+          <p class="kata-desc">Bentuk kata kerja yang menunjukkan kontinuitas. Ini bukan sekali bisik lalu pergi. Ini operasi 24 jam penuh. Terus-menerus. Persisten. Seperti notifikasi yang tidak pernah berhenti datang.</p>
+        </div>
+        <div class="kata-item">
+          <span class="kata-arabic">صُدُورِ</span>
+          <span class="kata-label">Ṣudūri — Dada / Hati</span>
+          <p class="kata-desc">Bukan ke telinga, tapi ke dada. Tempat di mana perasaan dan pikiran bertemu. Tempat paling dalam dari pengambilan keputusan. Titik nol dari niat dan tekad.</p>
+        </div>
+        <div class="kata-item">
+          <span class="kata-arabic">مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ</span>
+          <span class="kata-label">Minal-jinnati wan-nās — Jin dan Manusia</span>
+          <p class="kata-desc">Pengungkapan mengejutkan. Bukan hanya iblis. Manusia juga bisa menjadi pembisik. Teman beracun, orang manipulatif, gulungan konten negatif, propaganda, berita palsu—semua itu adalah bisikan yang datang dari sesama manusia.</p>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <span class="section-header-title">Tafsir Mendalam</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <div class="tafsir-body">
+        <p>Ayat penutup ini adalah pengungkapan besar: bisikan jahat bisa datang dari mana saja.</p>
+
+        <span class="sub-label">Dari Manusia (Dimensi Nyata):</span>
+        <ul class="tafsir-list">
+          <li>Budaya hustle beracun: "Kalau kamu tidak kerja 24/7, kamu pecundang."</li>
+          <li>Standar kecantikan: "Kamu harus kurus/putih/tinggi untuk diterima."</li>
+          <li>Tekanan teman: "Semua orang melakukan ini, kenapa kamu berbeda?"</li>
+          <li>Manipulasi: "Kalau kamu sayang aku, kamu harus..."</li>
+        </ul>
+
+        <p>Yang paling menyedihkan: kadang pembisik paling berbahaya adalah orang terdekat kita. Dan yang paling mengejutkan: <em>kadang kita sendiri adalah pembisik bagi orang lain</em>. Komentar kita yang menghakimi, gosip kita, standar tidak realistis yang kita sebarkan ke media sosial.</p>
+
+        <p>Mari refleksikan:</p>
+        <ul class="tafsir-list">
+          <li>Apakah lingkunganmu membuatmu jadi versi terbaik dirimu, atau justru meracuni pikiranmu?</li>
+          <li>Apakah konten yang kamu konsumsi memberdayakan, atau justru membuat cemas?</li>
+          <li>Apakah kamu, tanpa sadar, menjadi pembisik negatif bagi orang lain?</li>
+        </ul>
+
+        <div class="relevansi-block">
+          <p>Era digital adalah era bisikan massal. Iklan membisikkan "kamu kurang". Algoritma membisikkan "lihat ini, lihat itu" sampai kamu lupa waktu. Yang paling berbahaya: semua bisikan itu dikemas sebagai "informasi", "hiburan", atau bahkan "edukasi". Ayat ini adalah panduan utama untuk memeriksa apa dan siapa yang kamu izinkan berbisik ke dalam hatimu.</p>
+        </div>
+      </div>
+
+      <div class="intisari-block">
+        <span class="intisari-label">Intisari</span>
+        <p class="intisari-quote">Jaga gerbang hatimu ketat-ketat—karena tidak semua yang masuk membawa kebaikan, meski terlihat sangat familiar.</p>
+      </div>
+    </div>
+  </article>
+
+  <!-- REFLEKSI -->
+  <section class="refleksi-section">
+    <div class="refleksi-header">
+      <h2>REFLEKSI: DARI KESADARAN KE TINDAKAN</h2>
+    </div>
+    <div class="refleksi-body">
+
+      <div class="section-header" style="margin-top:0;">
+        <span class="section-header-title">Pola yang Bisa Diambil</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <p style="font-size:0.97rem; color:rgba(245,240,232,0.75); margin-bottom:20px; line-height:1.8;">Surat An-Nas memberikan kita kerangka tiga lapis perlindungan:</p>
+
+      <div class="framework-layer">
+        <div class="layer-number">1</div>
+        <div class="layer-content">
+          <h4>LAPISAN SPIRITUAL (Ayat 1–3)</h4>
+          <p>Berlindung kepada Allah, mengakui ada kuasa yang lebih tinggi, menyerahkan kecemasan pada-Nya, membangun orientasi hidup yang jelas dan tidak goyah.</p>
+        </div>
+      </div>
+
+      <div class="framework-layer">
+        <div class="layer-number">2</div>
+        <div class="layer-content">
+          <h4>LAPISAN MENTAL (Ayat 4)</h4>
+          <p>Sadar ada musuh internal, mengenali pola bisikan negatif, tidak mudah percaya semua pikiran yang datang sebagai "suara sendiri".</p>
+        </div>
+      </div>
+
+      <div class="framework-layer">
+        <div class="layer-number">3</div>
+        <div class="layer-content">
+          <h4>LAPISAN LINGKUNGAN (Ayat 5–6)</h4>
+          <p>Memeriksa lingkaran pergaulan dan konten yang dikonsumsi, menetapkan batasan dengan orang-orang beracun, memilah apa yang boleh masuk ke dalam pikiran.</p>
+        </div>
+      </div>
+
+      <div class="section-header" style="margin-top: 32px;">
+        <span class="section-header-title">Langkah Nyata</span>
+        <div class="section-header-line"></div>
+      </div>
+
+      <div class="action-grid">
+        <div class="action-card">
+          <span class="action-card-time">Minggu Ini</span>
+          <ul>
+            <li>Baca An-Nas setiap pagi sebagai "pasang pelindung mental" untuk hari itu</li>
+            <li>Catat 3 pikiran negatif yang muncul hari ini—ini suara saya atau bisikan?</li>
+            <li>Unfollow 5 akun yang membuat kamu membanding-bandingkan diri</li>
+          </ul>
+        </div>
+        <div class="action-card">
+          <span class="action-card-time">Bulan Ini</span>
+          <ul>
+            <li>Periksa 1–2 hubungan yang terasa beracun, tetapkan batasan yang sehat</li>
+            <li>Ciptakan 30 menit sehari tanpa gadget untuk hening dan refleksi</li>
+            <li>Ganti konten negatif dengan podcast, buku, atau konten yang membangun</li>
+          </ul>
+        </div>
+        <div class="action-card">
+          <span class="action-card-time">Tahun Ini</span>
+          <ul>
+            <li>Cari mentor spiritual atau pendamping profesional untuk menyelami pola pikir lebih dalam</li>
+            <li>Bergabung dengan komunitas yang mendukung pertumbuhan</li>
+            <li>Jadilah sumber bisikan positif bagi orang lain—putus rantai itu</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EPILOG -->
+  <section class="epilog-section">
+    <span class="epilog-eyebrow">Epilog Puitis</span>
+    <h2 class="epilog-title">SURAT UNTUK JIWA YANG LELAH BERJAGA</h2>
+    <div class="epilog-divider"></div>
+
+    <div class="epilog-body">
+
+      <div class="epilog-stanza">
+        <p>Ada senja yang tidak tampak di horizon.</p>
+        <p>Ada malam yang terjadi di siang bolong.</p>
+        <p>Ada kegelapan yang tidak membutuhkan matinya matahari—</p>
+        <p>Cukup dengan bisikan halus yang terus menerus,</p>
+        <p>Hingga terang pun terasa redup.</p>
+      </div>
+
+      <p>Kamu berjalan di dunia yang ramai, dikelilingi jutaan suara, tapi yang paling kamu dengar adalah yang berbisik di dalam:</p>
+
+      <div class="epilog-stanza">
+        <p><span class="epilog-highlight">"Kamu tidak cukup."</span></p>
+        <p><span class="epilog-highlight">"Mereka lebih baik."</span></p>
+        <p><span class="epilog-highlight">"Kamu akan gagal."</span></p>
+        <p><span class="epilog-highlight">"Tidak ada yang peduli."</span></p>
+      </div>
+
+      <p>Dan kadang bisikan itu begitu halusnya, hingga kamu pikir itu suaramu sendiri. Hingga kamu pikir itu kebenaranmu. Hingga kamu lupa bahwa ada musuh yang tugasnya adalah mencuri kedamaianmu.</p>
+
+      <p>Di tengah hiruk pikuk dunia yang menjual kecemasan dalam kemasan cantik, di tengah algoritma yang mengukur nilai dirimu dengan angka di layar—ada enam ayat. Sederhana. Ringkas. Tapi mengandung senjata paling ampuh: <span class="epilog-strong">KESADARAN.</span></p>
+
+      <p>Kesadaran bahwa ada yang lebih besar dari kecemasanmu. Kesadaran bahwa ada Raja sejati di balik semua raja palsu. Kesadaran bahwa tidak semua yang berbisik layak didengar. Kesadaran bahwa kamu boleh meminta perlindungan—dan itu bukan kekalahan, tapi kebijaksanaan.</p>
+
+      <p>Surat An-Nas tidak mengubah dunia. Dunia tetap keras. Bisikan tetap datang. Tapi surat ini mengubah responsmu terhadap dunia:</p>
+
+      <div class="epilog-stanza">
+        <p>Dari reaktif menjadi <span class="epilog-strong">reflektif</span>.</p>
+        <p>Dari panik menjadi <span class="epilog-strong">tenang</span>.</p>
+        <p>Dari dikuasai menjadi <span class="epilog-strong">berdaulat</span>.</p>
+      </div>
+
+      <p>Setiap pagi, ketika kamu membaca enam ayat ini, kamu sedang membangun benteng. Bukan benteng dari batu yang menutupmu dari dunia, tapi benteng dari kesadaran yang menjernihkan pandanganmu tentang dunia. Kamu sedang mengatakan:</p>
+
+      <div class="epilog-stanza">
+        <span class="epilog-arabic-inline">قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ</span>
+        <span class="epilog-arabic-inline">مَلِكِ ٱلنَّاسِ</span>
+        <span class="epilog-arabic-inline">إِلَٰهِ ٱلنَّاسِ</span>
+      </div>
+
+      <p>Dan mungkin hari ini kamu masih kalah. Mungkin bisikan itu masih lebih keras dari doa. Tapi ingatlah: benteng tidak dibangun dalam sehari. Jiwa yang tangguh tidak terbentuk dalam sekali lindung. Kedamaian adalah latihan—setiap hari, setiap bisikan, setiap pilihan.</p>
+
+      <p>Ada Pemelihara yang tidak pernah tidur. Ada Raja yang tidak pernah lengah. Ada Sembahan yang tidak pernah mengingkari. Dan Dia tahu setiap pertarungan yang kamu hadapi di jam 2 pagi. Dia tahu setiap kali kamu hampir menyerah tapi memilih bertahan.</p>
+
+      <div class="epilog-close">
+        <p>Kamu bukan pikiran-pikiran burukmu.</p>
+        <p>Kamu bukan bisikan-bisikan itu.</p>
+        <p class="final-line">Kamu adalah jiwa yang dilindungi oleh Tuhan semesta alam.</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="footer-arabic">النَّاس</span>
+  <p class="footer-text">Semoga tafsir ini bermanfaat untuk perjalanan spiritualmu</p>
+</footer>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</body>
+</html>

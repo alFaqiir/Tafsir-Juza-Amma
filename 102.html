@@ -1,0 +1,1610 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tafsir At-Takatsur — Dikejar Angka, Dilupakan Makna</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #8B6914;
+    --gold-glow: rgba(201,168,76,0.15);
+    --gold-glow-strong: rgba(201,168,76,0.3);
+    --black: #000000;
+    --black-deep: #050505;
+    --black-card: #0A0A0A;
+    --black-lift: #111111;
+    --black-border: #1A1A1A;
+    --white: #F5F0E8;
+    --white-dim: #C8BFA8;
+    --white-muted: #7A7060;
+    --green-soft: #1B3A2A;
+    --green-accent: #2D6A4F;
+    --cream: #FFF8E7;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black-deep);
+    color: var(--white);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+
+  /* ===== NOISE TEXTURE OVERLAY ===== */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+  /* ===== PROGRESS BAR ===== */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-light));
+    width: 0%;
+    z-index: 1000;
+    transition: width 0.1s;
+    box-shadow: 0 0 8px var(--gold);
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.95), transparent);
+    backdrop-filter: blur(4px);
+  }
+
+  .nav-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-decoration: none;
+    opacity: 0.85;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--white-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+    text-transform: uppercase;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 120px 40px 80px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(27,58,42,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 50% at 80% 20%, rgba(201,168,76,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 80%);
+    pointer-events: none;
+  }
+
+  .hero-ornament-top, .hero-ornament-bottom {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    color: var(--gold-dim);
+    opacity: 0.5;
+    font-family: 'Cinzel', serif;
+  }
+  .hero-ornament-top { top: 100px; letter-spacing: 0.6em; }
+  .hero-ornament-bottom { bottom: 60px; letter-spacing: 0.6em; }
+
+  .hero-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.45em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s 0.2s forwards;
+  }
+
+  .hero-arabic {
+    font-family: 'Traditional Arabic', 'Noto Naskh Arabic', 'Amiri', serif;
+    font-size: clamp(64px, 12vw, 110px);
+    color: var(--gold);
+    line-height: 1.1;
+    text-shadow:
+      0 0 60px rgba(201,168,76,0.4),
+      0 0 120px rgba(201,168,76,0.15);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1.2s 0.5s forwards;
+    direction: rtl;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(26px, 5vw, 48px);
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 1s 0.8s forwards;
+  }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-style: italic;
+    color: var(--white-dim);
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 1s 1s forwards;
+  }
+
+  .hero-line {
+    width: 180px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 40px;
+    opacity: 0;
+    animation: fadeIn 1.5s 1.2s forwards;
+  }
+
+  .hero-tagline {
+    font-family: 'Lora', serif;
+    font-size: clamp(14px, 1.8vw, 18px);
+    font-style: italic;
+    color: var(--white-muted);
+    max-width: 560px;
+    margin: 0 auto 56px;
+    opacity: 0;
+    animation: fadeUp 1s 1.3s forwards;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s 1.5s forwards;
+  }
+
+  .meta-item {
+    text-align: center;
+  }
+
+  .meta-num {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+
+  .meta-label {
+    font-family: 'Lora', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--white-muted);
+    text-transform: uppercase;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .meta-sep {
+    width: 1px;
+    background: var(--black-border);
+    align-self: stretch;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeIn 2s 2.5s forwards;
+  }
+
+  .scroll-hint span {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--white-muted);
+    text-transform: uppercase;
+  }
+
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+    transform: rotate(45deg);
+    animation: bounce 2s infinite;
+  }
+
+  /* ===== MAIN CONTAINER ===== */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== SECTION ===== */
+  .section {
+    padding: 100px 0;
+    border-top: 1px solid var(--black-border);
+    position: relative;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-dim), transparent);
+    max-width: 120px;
+  }
+
+  /* ===== PEMBUKA ===== */
+  .intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.25;
+    margin-bottom: 32px;
+  }
+
+  .intro-body {
+    font-size: 17px;
+    color: var(--white-dim);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .intro-body em {
+    color: var(--white);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .intro-body strong {
+    color: var(--gold-light);
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  /* ===== AYAT BLOCK ===== */
+  .ayat-block {
+    padding: 100px 0;
+    border-top: 1px solid var(--black-border);
+    position: relative;
+  }
+
+  .ayat-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -40px; right: -40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim) 30%, var(--gold-dim) 70%, transparent);
+    opacity: 0.4;
+  }
+
+  .ayat-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .ayat-number {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .ayat-title-wrap {
+    flex: 1;
+  }
+
+  .ayat-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .ayat-arabic-text {
+    font-family: 'Traditional Arabic', 'Noto Naskh Arabic', 'Amiri', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    color: var(--gold);
+    direction: rtl;
+    line-height: 1.6;
+    text-shadow: 0 0 30px rgba(201,168,76,0.25);
+  }
+
+  /* ===== ENERGI KATA ===== */
+  .energi-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .energi-label::before {
+    content: '✦';
+    font-size: 8px;
+  }
+
+  .keyword-card {
+    background: var(--black-card);
+    border: 1px solid var(--black-border);
+    border-left: 3px solid var(--gold-dim);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .keyword-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--gold-glow) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .keyword-card:hover {
+    border-left-color: var(--gold);
+    transform: translateX(4px);
+  }
+
+  .keyword-card:hover::before { opacity: 1; }
+
+  .kw-arabic {
+    font-family: 'Traditional Arabic', 'Noto Naskh Arabic', 'Amiri', serif;
+    font-size: 36px;
+    color: var(--gold);
+    direction: rtl;
+    display: block;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px rgba(201,168,76,0.3);
+  }
+
+  .kw-root {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--white-muted);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .kw-row {
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .kw-row strong {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .kw-nuance {
+    color: var(--white-dim);
+    font-style: italic;
+  }
+
+  /* ===== TAFSIR SECTION ===== */
+  .tafsir-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 48px 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .tafsir-label::before { content: '✦'; font-size: 8px; }
+
+  .tafsir-body {
+    font-size: 17px;
+    color: var(--white-dim);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+
+  .tafsir-body strong { color: var(--white); font-weight: 600; }
+  .tafsir-body em { color: var(--gold-light); font-style: italic; }
+
+  /* ===== RELEVANSI BOX ===== */
+  .relevansi-header {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--green-accent);
+    text-transform: uppercase;
+    margin: 40px 0 20px;
+    padding-left: 16px;
+    border-left: 2px solid var(--green-accent);
+  }
+
+  /* ===== CONTOH ===== */
+  .contoh-block {
+    background: var(--black-lift);
+    border: 1px solid var(--black-border);
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .contoh-num {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
+    display: block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .contoh-text {
+    font-size: 16px;
+    color: var(--white-dim);
+    line-height: 1.85;
+  }
+
+  /* ===== REFLEKSI INSET ===== */
+  .refleksi-inset {
+    background: linear-gradient(135deg, rgba(27,58,42,0.3), rgba(27,58,42,0.1));
+    border: 1px solid rgba(45,106,79,0.4);
+    padding: 28px 32px;
+    margin: 36px 0;
+    position: relative;
+  }
+
+  .refleksi-inset::before {
+    content: '?';
+    position: absolute;
+    top: -14px;
+    left: 28px;
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    color: var(--green-accent);
+    background: var(--black-deep);
+    padding: 0 10px;
+  }
+
+  .refleksi-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--green-accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .refleksi-text {
+    font-style: italic;
+    font-size: 16px;
+    color: var(--white-dim);
+    line-height: 1.8;
+  }
+
+  /* ===== INTISARI ===== */
+  .intisari-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.45em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 48px 0 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .intisari-label::before { content: '✦'; font-size: 8px; }
+
+  .quote-block {
+    position: relative;
+    padding: 32px 40px;
+    margin-bottom: 20px;
+    border: 1px solid var(--black-border);
+    background: var(--black-card);
+    overflow: hidden;
+  }
+
+  .quote-block::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    color: var(--gold);
+    opacity: 0.08;
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    line-height: 1;
+  }
+
+  .quote-block::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-dim));
+    opacity: 0.5;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(15px, 2vw, 18px);
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.75;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 60px 0;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  }
+
+  .divider-gem {
+    color: var(--gold);
+    font-size: 14px;
+    opacity: 0.6;
+  }
+
+  /* ===== REFLEKSI PENUTUP ===== */
+  .penutup-section {
+    padding: 100px 0;
+    border-top: 1px solid var(--black-border);
+    position: relative;
+  }
+
+  .penutup-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -40px; right: -40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+    opacity: 0.6;
+  }
+
+  .langkah-card {
+    background: var(--black-card);
+    border: 1px solid var(--black-border);
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 20px;
+    transition: border-color 0.3s;
+  }
+
+  .langkah-card:hover {
+    border-color: var(--gold-dim);
+  }
+
+  .langkah-num {
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    color: var(--gold);
+    opacity: 0.3;
+    font-weight: 700;
+    flex-shrink: 0;
+    line-height: 1;
+    padding-top: 4px;
+  }
+
+  .langkah-content strong {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .langkah-content p {
+    font-size: 16px;
+    color: var(--white-dim);
+    line-height: 1.8;
+  }
+
+  .closing-box {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.03));
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 48px 52px;
+    margin-top: 60px;
+    text-align: center;
+    position: relative;
+  }
+
+  .closing-box::before, .closing-box::after {
+    content: '✦';
+    position: absolute;
+    color: var(--gold);
+    opacity: 0.3;
+    font-size: 20px;
+  }
+
+  .closing-box::before { top: 16px; left: 20px; }
+  .closing-box::after { bottom: 16px; right: 20px; }
+
+  .closing-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(15px, 2vw, 19px);
+    font-style: italic;
+    color: var(--white-dim);
+    line-height: 1.85;
+  }
+
+  /* ===== EPILOG ===== */
+  .epilog-section {
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .epilog-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 30%, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .epilog-title-small {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.6em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .epilog-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 700;
+    font-style: italic;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 64px;
+    line-height: 1.2;
+    text-shadow: 0 0 40px rgba(201,168,76,0.2);
+  }
+
+  .epilog-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 64px;
+  }
+
+  .epilog-para {
+    font-size: clamp(16px, 2vw, 18px);
+    color: var(--white-dim);
+    line-height: 1.95;
+    margin-bottom: 28px;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .epilog-para.center {
+    text-align: center;
+    font-style: italic;
+  }
+
+  .epilog-para strong {
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .epilog-para em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .epilog-salutation {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: var(--gold-light);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .epilog-sub {
+    font-size: 16px;
+    font-style: italic;
+    color: var(--white-muted);
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .epilog-quote-big {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-style: italic;
+    color: var(--gold);
+    text-align: center;
+    line-height: 1.5;
+    margin: 60px auto;
+    max-width: 600px;
+    position: relative;
+    padding: 40px 20px;
+  }
+
+  .epilog-quote-big::before, .epilog-quote-big::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .epilog-quote-big::before { top: 0; }
+  .epilog-quote-big::after { bottom: 0; }
+
+  .epilog-harapan {
+    font-size: 17px;
+    font-style: italic;
+    color: var(--white-dim);
+    text-align: center;
+    line-height: 2;
+    margin-bottom: 12px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 60px 40px;
+    text-align: center;
+    border-top: 1px solid var(--black-border);
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-arabic {
+    font-family: 'Traditional Arabic', 'Noto Naskh Arabic', 'Amiri', serif;
+    font-size: 42px;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 16px;
+    text-shadow: 0 0 20px rgba(201,168,76,0.2);
+    direction: rtl;
+  }
+
+  .footer-text {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--white-muted);
+    text-transform: uppercase;
+  }
+
+  .footer-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    margin: 20px auto;
+  }
+
+  /* ===== DOWNLOAD BUTTON ===== */
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    margin-top: 24px;
+  }
+
+  .download-btn:hover {
+    background: var(--gold);
+    color: var(--black);
+    box-shadow: 0 0 30px rgba(201,168,76,0.3);
+  }
+
+  .download-btn svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  /* ===== STICKY AYAT INDICATOR ===== */
+  #ayat-indicator {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 400;
+  }
+
+  .ayat-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--white-muted);
+    transition: all 0.3s;
+    cursor: pointer;
+    opacity: 0.4;
+  }
+
+  .ayat-dot.active {
+    background: var(--gold);
+    opacity: 1;
+    box-shadow: 0 0 6px var(--gold);
+    transform: scale(1.4);
+  }
+
+  /* ===== ANIMATE ON SCROLL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ===== KEYFRAMES ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(5px); }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .container { padding: 0 24px; }
+    .hero { padding: 100px 24px 80px; }
+    .ayat-header { flex-direction: column; gap: 12px; }
+    #ayat-indicator { display: none; }
+    .closing-box { padding: 32px 28px; }
+    .epilog-para { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">At-Takatsur</a>
+  <ul class="nav-links">
+    <li><a href="#pembuka">Pembuka</a></li>
+    <li><a href="#ayat-1">Ayat 1–2</a></li>
+    <li><a href="#ayat-3">Ayat 3–4</a></li>
+    <li><a href="#ayat-5">Ayat 5–6</a></li>
+    <li><a href="#ayat-7">Ayat 7–8</a></li>
+    <li><a href="#penutup">Penutup</a></li>
+    <li><a href="#epilog">Epilog</a></li>
+  </ul>
+</nav>
+
+<!-- AYAT INDICATOR -->
+<div id="ayat-indicator">
+  <div class="ayat-dot active" onclick="scrollToAyat(0)" title="Hero"></div>
+  <div class="ayat-dot" onclick="scrollToAyat(1)" title="Pembuka"></div>
+  <div class="ayat-dot" onclick="scrollToAyat(2)" title="Ayat 1-2"></div>
+  <div class="ayat-dot" onclick="scrollToAyat(3)" title="Ayat 3-4"></div>
+  <div class="ayat-dot" onclick="scrollToAyat(4)" title="Ayat 5-6"></div>
+  <div class="ayat-dot" onclick="scrollToAyat(5)" title="Ayat 7-8"></div>
+  <div class="ayat-dot" onclick="scrollToAyat(6)" title="Penutup"></div>
+  <div class="ayat-dot" onclick="scrollToAyat(7)" title="Epilog"></div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-ornament-top">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <p class="hero-label">Tafsir Mendalam · Surat ke-102 · Makkiyah · 8 Ayat</p>
+  <div class="hero-arabic">التَّكَاثُر</div>
+  <h1 class="hero-title">At-Takatsur</h1>
+  <p class="hero-subtitle">Dikejar Angka, Dilupakan Makna</p>
+  <div class="hero-line"></div>
+  <p class="hero-tagline">Bermegah-megahan telah melalaikan kalian — sampai kalian masuk ke dalam kubur.</p>
+
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-num">102</span>
+      <span class="meta-label">Nomor Surat</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="meta-num">8</span>
+      <span class="meta-label">Jumlah Ayat</span>
+    </div>
+    <div class="meta-sep"></div>
+    <div class="meta-item">
+      <span class="meta-num">مكية</span>
+      <span class="meta-label">Turun di Makkah</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Gulir ke bawah</span>
+    <div class="scroll-arrow"></div>
+  </div>
+
+  <div class="hero-ornament-bottom">· &nbsp; · &nbsp; ·</div>
+</section>
+
+<!-- PEMBUKA -->
+<section class="section" id="pembuka">
+  <div class="container">
+    <p class="section-label reveal">Pembuka</p>
+    <h2 class="intro-title reveal">Ketika Hidup Jadi Lomba Kepemilikan</h2>
+
+    <div class="divider reveal"><div class="divider-line"></div><div class="divider-gem">✦</div><div class="divider-line"></div></div>
+
+    <p class="intro-body reveal">Ada sebuah pertanyaan sederhana yang mungkin tidak sempat kita renungkan di tengah kesibukan hari-hari: <em>seberapa sering kita menghitung apa yang kita punya, dibanding memaknai apa yang kita jalani?</em></p>
+
+    <p class="intro-body reveal">Surat At-Takatsur hadir bukan sebagai teguran keras yang menyudutkan, melainkan sebagai <strong>cermin bening</strong> yang memperlihatkan pola tersembunyi dalam cara kita menjalani hidup. Surat yang hanya terdiri dari delapan ayat ini menyimpan kedalaman yang luar biasa — sebuah diagnosis tentang penyakit jiwa yang paling merata di zaman ini.</p>
+
+    <p class="intro-body reveal">Penyakit itu bernama: <em>takatsur</em>. Bermegah-megahan. Berlomba dalam mengumpulkan.</p>
+
+    <p class="intro-body reveal">Bukan berarti memiliki sesuatu itu buruk. Bukan pula bahwa mencapai prestasi itu tercela. Yang sedang disorot surat ini adalah sesuatu yang jauh lebih halus dan lebih dalam: ketika angka dan pencapaian mulai mendikte kita, bukan sebaliknya. Ketika <em>'lebih banyak'</em> menjadi tujuan akhir, bukan sekadar jalan menuju sesuatu yang lebih bermakna.</p>
+
+    <p class="intro-body reveal">Mari kita berjalan bersama melalui setiap ayatnya — dengan pikiran terbuka dan hati yang siap berefleksi.</p>
+  </div>
+</section>
+
+<!-- ======================== AYAT 1-2 ======================== -->
+<div class="ayat-block" id="ayat-1">
+  <div class="container">
+    <div class="ayat-header reveal">
+      <span class="ayat-number">Ayat 1 — 2</span>
+      <div class="ayat-title-wrap">
+        <h2 class="ayat-title">Akar Kelalaian</h2>
+        <div class="ayat-arabic-text">أَلْهَاكُمُ التَّكَاثُرُ &nbsp;•&nbsp; حَتَّىٰ زُرْتُمُ الْمَقَابِرَ</div>
+      </div>
+    </div>
+
+    <!-- ENERGI KATA -->
+    <p class="energi-label reveal">Energi Kata</p>
+
+    <div class="keyword-card reveal">
+      <span class="kw-arabic">أَلْهَاكُمْ</span>
+      <span class="kw-root">Akar: ل–هـ–و (Lahā) &nbsp;·&nbsp; Melalaikan</span>
+      <div class="kw-row"><strong>Makna:</strong> Melalaikan, membuat lupa, menyibukkan hingga abai terhadap hal yang lebih penting</div>
+      <div class="kw-row kw-nuance"><strong>Nuansa:</strong> Kata ini bukan sekadar 'lupa biasa'. Ia menggambarkan kondisi jiwa yang terhisap habis oleh sesuatu — seperti seseorang yang asyik bermain hingga tidak dengar suara adzan.</div>
+    </div>
+
+    <div class="keyword-card reveal">
+      <span class="kw-arabic">التَّكَاثُر</span>
+      <span class="kw-root">Akar: ك–ث–ر (Kathura) &nbsp;·&nbsp; Berlomba Memperbanyak</span>
+      <div class="kw-row"><strong>Makna:</strong> Berlomba dalam memperbanyak — harta, anak, pengikut, prestasi, bahkan kenangan</div>
+      <div class="kw-row kw-nuance"><strong>Nuansa:</strong> Awalan 'ta-' menunjukkan perbuatan yang dilakukan secara kompetitif dan timbal balik. Bukan sekadar 'banyak', tapi 'saling berlomba memperbanyak' — ada unsur ego dan perbandingan di sana.</div>
+    </div>
+
+    <div class="keyword-card reveal">
+      <span class="kw-arabic">زُرْتُمُ الْمَقَابِر</span>
+      <span class="kw-root">Akar: ز–ر–ر (Zāra) &nbsp;·&nbsp; Kunjungan Terakhir</span>
+      <div class="kw-row"><strong>Makna:</strong> Kalian mengunjungi kubur</div>
+      <div class="kw-row kw-nuance"><strong>Nuansa:</strong> Diksi 'ziarah' mengandung ironi mendalam: biasanya orang berkunjung lalu pulang. Namun berkunjung ke kubur adalah kunjungan tanpa kepulangan. Seolah Al-Qur'an berkata: kalian baru tersadar saat sudah tak ada jalan balik.</div>
+    </div>
+
+    <!-- TAFSIR MENDALAM -->
+    <p class="tafsir-label reveal">Tafsir Mendalam</p>
+
+    <p class="tafsir-body reveal">Dua ayat pembuka ini adalah satu kalimat yang menghujam. Terjemahannya sederhana: <em>"Bermegah-megahan telah melalaikan kalian, sampai kalian masuk ke dalam kubur."</em> Namun makna yang terkandung di dalamnya berlapis-lapis.</p>
+
+    <p class="tafsir-body reveal">Para ulama tafsir mencatat bahwa ayat ini turun ketika dua klan besar di Makkah, Bani Abdi Manaf dan Bani Sahm, saling berbangga soal jumlah keluarga dan keturunan. Ketika jumlah yang hidup habis dihitung, mereka sampai menghitung kuburan. Inilah puncak absurditas takatsur: <strong>kebanggaan atas hal yang sudah tiada.</strong></p>
+
+    <p class="tafsir-body reveal">Namun konteks historis ini hanyalah pintu masuk. Pesan surat ini melampaui satu peristiwa dan menyentuh satu pola perilaku manusia yang terus berulang di setiap zaman.</p>
+
+    <p class="relevansi-header reveal">Relevansi Kekinian</p>
+
+    <p class="tafsir-body reveal">Pernahkah kalian membuka media sosial pagi hari, dan dalam waktu kurang dari dua menit sudah merasa tertinggal? Teman mengumumkan promosi jabatan. Seseorang pamer apartemen baru. Dan tiba-tiba, tanpa disadari, kita sudah menghitung diri sendiri: <em>saya punya apa?</em></p>
+
+    <p class="tafsir-body reveal">Inilah takatsur dalam wajah modern. Ia tidak selalu hadir sebagai keserakahan kasar. Ia hadir sebagai kecemasan halus. Sebagai pertanyaan yang terus bergema: <em>sudah cukupkah aku?</em></p>
+
+    <div class="contoh-block reveal">
+      <span class="contoh-num">✦ Contoh Pertama</span>
+      <p class="contoh-text">Generasi muda hari ini tumbuh dalam ekosistem yang mengukur nilai seseorang lewat angka: jumlah pengikut, indeks prestasi, gaji bulanan, usia pencapaian. Seorang mahasiswa bisa merasa gagal hanya karena teman seangkatannya sudah magang di perusahaan bergengsi. Padahal 'magang di perusahaan bergengsi' itu sendiri belum tentu bermakna apa-apa bagi perjalanan hidupnya.</p>
+    </div>
+
+    <div class="contoh-block reveal">
+      <span class="contoh-num">✦ Contoh Kedua</span>
+      <p class="contoh-text">Seorang kepala keluarga yang bekerja lembur tujuh hari seminggu untuk membeli rumah yang lebih besar — bukan karena keluarganya butuh ruangan lebih, tapi karena saudara iparnya baru membeli rumah di perumahan elite. Ia melalaikan waktu bersama anak-anaknya demi mengejar standar yang diciptakan orang lain. Ini bukan ambisi. Ini takatsur.</p>
+    </div>
+
+    <div class="refleksi-inset reveal">
+      <p class="refleksi-title">Pertanyaan Reflektif</p>
+      <p class="refleksi-text">Apa yang sedang kita kejar hari ini — dan siapa yang menentukan bahwa itu layak untuk dikejar? Apakah kita yang memilih tujuan itu dengan sadar, atau kita hanya sedang mengikuti aliran arus perbandingan yang tidak pernah berhenti?</p>
+    </div>
+
+    <!-- INTISARI -->
+    <p class="intisari-label reveal">Intisari</p>
+
+    <div class="quote-block reveal">
+      <p class="quote-text">Takatsur bukan hanya tentang keserakahan. Ia tentang bagaimana angka dan perbandingan bisa mencuri perhatian kita dari hal yang benar-benar penting.</p>
+    </div>
+
+    <div class="quote-block reveal">
+      <p class="quote-text">Kita baru 'sadar' saat masuk kubur — kalimat ini bukan ancaman. Ia adalah pengingat bahwa waktu kita terbatas, dan pilihan tentang 'apa yang layak diisi dalam waktu itu' perlu dibuat dengan sungguh-sungguh.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== AYAT 3-4 ======================== -->
+<div class="ayat-block" id="ayat-3">
+  <div class="container">
+    <div class="ayat-header reveal">
+      <span class="ayat-number">Ayat 3 — 4</span>
+      <div class="ayat-title-wrap">
+        <h2 class="ayat-title">Peringatan Berlapis</h2>
+        <div class="ayat-arabic-text">كَلَّا سَوْفَ تَعْلَمُونَ &nbsp;•&nbsp; ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ</div>
+      </div>
+    </div>
+
+    <p class="energi-label reveal">Energi Kata</p>
+
+    <div class="keyword-card reveal">
+      <span class="kw-arabic">كَلَّا</span>
+      <span class="kw-root">Partikel Penolakan Keras</span>
+      <div class="kw-row"><strong>Makna:</strong> Sekali-kali tidak! Berhentilah! Cukup sudah!</div>
+      <div class="kw-row kw-nuance"><strong>Nuansa:</strong> Kata 'kalla' dalam Al-Qur'an tidak pernah hadir untuk sekedar menolak. Ia adalah sinyal bahaya — bahwa kondisi yang sedang terjadi sangat serius dan harus segera dihentikan.</div>
+    </div>
+
+    <div class="keyword-card reveal">
+      <span class="kw-arabic">سَوْفَ تَعْلَمُون</span>
+      <span class="kw-root">Akar: ع–ل–م ('Alima) &nbsp;·&nbsp; Kepastian Mendatang</span>
+      <div class="kw-row"><strong>Makna:</strong> Kalian akan segera mengetahui — dengan 'sauf' yang menunjukkan kepastian waktu dekat</div>
+      <div class="kw-row kw-nuance"><strong>Nuansa:</strong> Penggunaan 'saufa' bukan ancaman samar. Ia adalah pernyataan tentang kepastian yang tidak bisa dihindari. Dan yang lebih menggetarkan: ia diulang DUA KALI — seolah Allah memberi kesempatan untuk mendengar, lalu menegaskan sekali lagi.</div>
+    </div>
+
+    <p class="tafsir-label reveal">Tafsir Mendalam</p>
+
+    <p class="tafsir-body reveal">Pengulangan 'kalla saufa ta'lamun' dua kali berturut-turut bukan pengulangan yang sia-sia. Dalam tradisi sastra Arab, pengulangan seperti ini disebut <em>taukid</em> — penekanan bertingkat yang semakin meningkat intensitasnya.</p>
+
+    <p class="tafsir-body reveal">Beberapa ulama menafsirkan pengulangan ini sebagai dua fase kesadaran: yang pertama adalah kesadaran saat menghadapi kematian, dan yang kedua adalah kesadaran di akhirat saat tidak ada lagi yang bisa dilakukan. <strong>Verifikasi pertama masih memberi ruang untuk menyesal. Verifikasi kedua sudah tidak ada lagi ruang untuk itu.</strong></p>
+
+    <p class="tafsir-body reveal">Ada pelajaran pedagogis yang dalam di sini: Al-Qur'an tidak hanya memberikan satu kali peringatan lalu langsung menjatuhkan hukuman. Ia memberi pengulangan — seolah memberikan kesempatan kepada hati yang keras untuk setidaknya mendengar di putaran kedua.</p>
+
+    <p class="relevansi-header reveal">Relevansi Kekinian</p>
+
+    <div class="contoh-block reveal">
+      <span class="contoh-num">✦ Contoh Pertama</span>
+      <p class="contoh-text">Kebanyakan orang tahu bahwa hidup itu singkat. Kita hafal quotes tentang kematian. Tapi pengetahuan itu belum tentu mengubah perilaku kita. Kita masih memilih menonton serial televisi empat jam ketimbang menghabiskan waktu bermakna bersama orang tua yang sudah tua. Kita 'tahu' tapi belum 'benar-benar tahu'.</p>
+    </div>
+
+    <div class="contoh-block reveal">
+      <span class="contoh-num">✦ Contoh Kedua</span>
+      <p class="contoh-text">Seorang eksekutif muda yang sudah tahu bahwa kesehatannya terganggu akibat stres kerja, namun tetap menolak untuk memperlambat langkah karena takut tertinggal dari kompetitor. Ia 'akan segera mengetahui' — ketika tubuhnya akhirnya memaksanya berhenti dengan cara yang jauh lebih keras.</p>
+    </div>
+
+    <p class="tafsir-body reveal">Peringatan ganda ini mengajarkan satu hal penting: <strong>jangan tunggu kesadaran datang lewat bencana.</strong> Saufa ta'lamun — kalian akan tahu. Pertanyaannya adalah: ingin tahu sekarang dengan pilihan, atau nanti tanpa pilihan?</p>
+
+    <p class="intisari-label reveal">Intisari</p>
+
+    <div class="quote-block reveal">
+      <p class="quote-text">Ada dua jenis pengetahuan: yang kita pilih untuk tahu sebelum terlambat, dan yang dipaksakan kepada kita saat semua pilihan sudah habis.</p>
+    </div>
+
+    <div class="quote-block reveal">
+      <p class="quote-text">Peringatan yang diulang dua kali bukan tanda kelemahan — itu tanda kasih sayang yang tidak menyerah pada satu penolakan.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== AYAT 5-6 ======================== -->
+<div class="ayat-block" id="ayat-5">
+  <div class="container">
+    <div class="ayat-header reveal">
+      <span class="ayat-number">Ayat 5 — 6</span>
+      <div class="ayat-title-wrap">
+        <h2 class="ayat-title">Dua Tingkat Keyakinan</h2>
+        <div class="ayat-arabic-text">كَلَّا لَوْ تَعْلَمُونَ عِلْمَ الْيَقِينِ &nbsp;•&nbsp; لَتَرَوُنَّ الْجَحِيمَ</div>
+      </div>
+    </div>
+
+    <p class="energi-label reveal">Energi Kata</p>
+
+    <div class="keyword-card reveal">
+      <span class="kw-arabic">عِلْمَ الْيَقِين</span>
+      <span class="kw-root">Akar: ي–ق–ن (Yaqana) &nbsp;·&nbsp; Ilmu Keyakinan Sejati</span>
+      <div class="kw-row"><strong>Makna:</strong> Ilmu keyakinan — pengetahuan yang sudah meresap ke tulang, bukan sekadar informasi kepala</div>
+      <div class="kw-row kw-nuance"><strong>Nuansa:</strong> Para ulama mengkategorikan keyakinan dalam tiga tingkatan: 'ilm al-yaqin (tahu secara intelektual), 'ain al-yaqin (melihat dengan mata), dan haqq al-yaqin (merasakan dengan segenap diri). Ayat ini menyebut tingkatan pertama yang sering kita lewatkan.</div>
+    </div>
+
+    <div class="keyword-card reveal">
+      <span class="kw-arabic">الْجَحِيم</span>
+      <span class="kw-root">Akar: ج–ح–م (Jahama) &nbsp;·&nbsp; Api yang Menyala Hebat</span>
+      <div class="kw-row"><strong>Makna:</strong> Neraka — secara spesifik api yang sangat panas menyala</div>
+      <div class="kw-row kw-nuance"><strong>Nuansa:</strong> Dari sekian banyak nama neraka dalam Al-Qur'an, 'Jahim' menekankan intensitas panas yang luar biasa — digunakan untuk menggambarkan akibat dari pilihan yang secara sadar mengabaikan peringatan.</div>
+    </div>
+
+    <p class="tafsir-label reveal">Tafsir Mendalam</p>
+
+    <p class="tafsir-body reveal">Ayat kelima memperkenalkan kondisional yang tidak terpenuhi: <em>'Seandainya kalian mengetahui dengan pengetahuan yang sebenarnya'</em> — mengimplikasikan bahwa kebanyakan manusia hidup dengan pengetahuan yang dangkal tentang realitas yang sesungguhnya.</p>
+
+    <p class="tafsir-body reveal">Ada gap yang sangat lebar antara 'mengetahui' dan 'benar-benar mengetahui'. Seseorang bisa hafal teori gizi tapi tetap makan dengan sembrono. Bisa paham teori parenting tapi tetap berteriak pada anak-anaknya. <strong>Pengetahuan intelektual belum tentu menjadi pengetahuan yang mengubah perilaku.</strong></p>
+
+    <p class="relevansi-header reveal">Relevansi Kekinian</p>
+
+    <div class="contoh-block reveal">
+      <span class="contoh-num">✦ Contoh Pertama</span>
+      <p class="contoh-text">Seorang mahasiswa bisa menghabiskan sepuluh menit membaca artikel tentang perubahan iklim, lalu menutup tab dan kembali bermain gim. Pengetahuannya bertambah, tapi pengetahuan itu tidak mengubah cara ia hidup. 'Ilm al-yaqin' yang sejati akan membuat seseorang tidak bisa kembali ke pola lama begitu saja setelah mengetahui sesuatu yang penting.</p>
+    </div>
+
+    <div class="contoh-block reveal">
+      <span class="contoh-num">✦ Contoh Kedua</span>
+      <p class="contoh-text">Seorang ibu yang tahu betapa berharganya masa kecil anak — ia sudah membaca artikelnya, sudah menonton videonya — namun tetap sibuk dengan ponsel saat anak bercerita. Pengetahuannya ada di kepala, tapi belum sampai ke hati, belum sampai ke tangan.</p>
+    </div>
+
+    <div class="refleksi-inset reveal">
+      <p class="refleksi-title">Renungan</p>
+      <p class="refleksi-text">Pengetahuan yang sesungguhnya bukan yang membuat kita lebih pintar berdebat, tapi yang membuat kita tidak bisa lagi bersikap seolah tidak tahu.</p>
+    </div>
+
+    <p class="intisari-label reveal">Intisari</p>
+
+    <div class="quote-block reveal">
+      <p class="quote-text">Ada jarak yang sangat jauh antara 'tahu di kepala' dan 'tahu di jiwa'. Yang pertama bisa diraih dengan membaca. Yang kedua hanya datang dengan sungguh-sungguh merenungkan.</p>
+    </div>
+
+    <div class="quote-block reveal">
+      <p class="quote-text">Kesenjangan antara pengetahuan dan tindakan adalah salah satu wabah paling serius zaman ini — dan surat ini menyebutnya dengan nama yang tepat.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== AYAT 7-8 ======================== -->
+<div class="ayat-block" id="ayat-7">
+  <div class="container">
+    <div class="ayat-header reveal">
+      <span class="ayat-number">Ayat 7 — 8</span>
+      <div class="ayat-title-wrap">
+        <h2 class="ayat-title">Keyakinan Tertinggi & Pertanyaan Terakhir</h2>
+        <div class="ayat-arabic-text">ثُمَّ لَتَرَوُنَّهَا عَيْنَ الْيَقِينِ &nbsp;•&nbsp; ثُمَّ لَتُسْأَلُنَّ يَوْمَئِذٍ عَنِ النَّعِيمِ</div>
+      </div>
+    </div>
+
+    <p class="energi-label reveal">Energi Kata</p>
+
+    <div class="keyword-card reveal">
+      <span class="kw-arabic">عَيْنَ الْيَقِين</span>
+      <span class="kw-root">Akar: ع–ي–ن ('Ayna) &nbsp;·&nbsp; Keyakinan Melalui Penglihatan Langsung</span>
+      <div class="kw-row"><strong>Makna:</strong> Keyakinan melalui penglihatan langsung — 'ain berarti mata, sumber, inti</div>
+      <div class="kw-row kw-nuance"><strong>Nuansa:</strong> Inilah tingkatan kedua keyakinan. Beda antara membaca deskripsi lautan dengan berdiri di tepinya dan merasakan ombak menerpa kaki. Momen di mana tidak ada lagi ruang untuk ragu.</div>
+    </div>
+
+    <div class="keyword-card reveal">
+      <span class="kw-arabic">النَّعِيم</span>
+      <span class="kw-root">Akar: ن–ع–م (Na'ima) &nbsp;·&nbsp; Kenikmatan Menyeluruh</span>
+      <div class="kw-row"><strong>Makna:</strong> Kenikmatan — dalam bentuk definitif (al-na'im) yang mencakup seluruh kategori nikmat</div>
+      <div class="kw-row kw-nuance"><strong>Nuansa:</strong> Kata ini mencakup segalanya: kesehatan, waktu luang, akal sehat, udara yang dihirup, rasa aman, makanan yang dimakan, hubungan yang dimiliki. Bukan hanya kemewahan material, tapi setiap bentuk kebaikan yang diterima dalam hidup.</div>
+    </div>
+
+    <p class="tafsir-label reveal">Tafsir Mendalam — Ayat 7</p>
+
+    <p class="tafsir-body reveal">Kata sambung 'tsumma' (kemudian) di awal ayat ini menunjukkan eskalasi, bukan sekadar urutan waktu. Setelah 'ilm al-yaqin', ada 'ain al-yaqin' — momen di mana pengetahuan tidak lagi bisa diperdebatkan karena ia hadir secara nyata di hadapan mata.</p>
+
+    <p class="tafsir-body reveal">Ada sesuatu yang sangat manusiawi di sini. Kita adalah makhluk yang butuh pengalaman langsung untuk benar-benar percaya. Kita lebih mudah tergerak melihat satu orang kelaparan di depan mata ketimbang mendengar statistik jutaan orang kelaparan di dunia. <em>'Ain al-yaqin</em> berbicara kepada kelemahan sekaligus kekuatan kita sebagai manusia.</p>
+
+    <div class="contoh-block reveal">
+      <span class="contoh-num">✦ Contoh Pertama</span>
+      <p class="contoh-text">Banyak orang muda yang tidak memikirkan kesehatan sampai mereka atau orang dekat mereka sakit serius. Baru setelah benar-benar melihat dengan 'ain al-yaqin' — dokter menunjukkan hasil laboratorium, merasakan sendiri betapa susahnya bernapas — barulah kesadaran itu hadir dan mengubah gaya hidup.</p>
+    </div>
+
+    <div class="contoh-block reveal">
+      <span class="contoh-num">✦ Contoh Kedua</span>
+      <p class="contoh-text">Seorang eksekutif yang terus mengabaikan keluarganya demi karier baru 'melihat' ketika anaknya berkata, 'Ayah tidak pernah ada' — dan kata-kata itu bukan informasi baru, tapi momen 'ain al-yaqin' yang akhirnya menembus dinding kesibukan.</p>
+    </div>
+
+    <p class="tafsir-label reveal">Tafsir Mendalam — Ayat 8</p>
+
+    <p class="tafsir-body reveal">Ayat penutup ini adalah puncak dari keseluruhan surat. Setelah menggambarkan penyakit takatsur, memberikan peringatan berlapis, dan menghadapkan kita pada dua tingkat keyakinan, surat ini menutup dengan satu pertanyaan yang akan menggema selamanya:</p>
+
+    <div class="quote-block reveal" style="margin: 32px 0;">
+      <p class="quote-text" style="font-size: 20px; color: var(--gold);">Apa yang sudah kalian lakukan dengan semua yang telah diberikan kepada kalian?</p>
+    </div>
+
+    <p class="tafsir-body reveal">Nabi Muhammad SAW dalam beberapa riwayat menyebutkan bahwa termasuk yang akan ditanyakan adalah nikmat berupa air dingin yang segar dan keteduhan. Hal-hal yang kita anggap paling sepele pun termasuk dalam hitungan ini. Ini bukan untuk menakut-nakuti, tapi untuk menyadarkan: <strong>betapa banyak yang sudah kita terima, dan betapa perlu kita memikirkan bagaimana kita menggunakannya.</strong></p>
+
+    <div class="contoh-block reveal">
+      <span class="contoh-num">✦ Contoh Pertama</span>
+      <p class="contoh-text">Kita diberikan akses ke hampir seluruh pengetahuan manusia lewat sebuah kotak kecil di saku. Apa yang kita lakukan dengan itu? Apakah ia membuat kita lebih bijak, lebih baik, lebih berguna bagi sesama? Atau ia hanya menjadi alat untuk membandingkan diri dan memuaskan keingintahuan sesaat?</p>
+    </div>
+
+    <div class="contoh-block reveal">
+      <span class="contoh-num">✦ Contoh Kedua</span>
+      <p class="contoh-text">Kita diberikan waktu — 24 jam yang sama untuk semua orang. Seorang profesional muda yang menghabiskan tiga jam sehari di media sosial dalam setahun sudah membuang lebih dari 1.000 jam. Pertanyaannya bukan apakah media sosial itu buruk, tapi: apakah penggunaan kita terhadap nikmat waktu ini adalah yang terbaik yang bisa kita tawarkan?</p>
+    </div>
+
+    <div class="refleksi-inset reveal">
+      <p class="refleksi-title">Pertanyaan yang Layak Dibawa Tidur</p>
+      <p class="refleksi-text">Hari ini saya menerima apa? Waktu, kesehatan, akal, hubungan, rezeki. Dan hari ini, apa yang sudah saya lakukan dengan semua itu?</p>
+    </div>
+
+    <p class="intisari-label reveal">Intisari</p>
+
+    <div class="quote-block reveal">
+      <p class="quote-text">Pertanggungjawaban atas kenikmatan bukan hukuman — ia adalah undangan untuk hidup dengan penuh kesadaran, menghargai setiap hal yang ada.</p>
+    </div>
+
+    <div class="quote-block reveal">
+      <p class="quote-text">Yang akan ditanya bukan hanya apa yang kita punya, tapi apa yang kita perbuat dengan apa yang kita punya.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== REFLEKSI PENUTUP ======================== -->
+<section class="penutup-section" id="penutup">
+  <div class="container">
+    <p class="section-label reveal">Refleksi Penutup</p>
+    <h2 class="intro-title reveal">Pola yang Bisa Kita Ambil</h2>
+
+    <div class="divider reveal"><div class="divider-line"></div><div class="divider-gem">✦</div><div class="divider-line"></div></div>
+
+    <p class="tafsir-body reveal">Surat At-Takatsur bukan sekadar kumpulan peringatan. Ia adalah peta lengkap tentang sebuah perangkap jiwa — dan cara keluarnya.</p>
+
+    <p class="tafsir-body reveal"><strong>Pertama,</strong> takatsur bekerja secara bertahap. Ia mulai dari perbandingan kecil, lalu menjadi kebiasaan berpikir, lalu menjadi cara kita mengukur diri dan orang lain, hingga akhirnya menjadi mesin yang menjalankan hidup kita tanpa kita sadari.</p>
+
+    <p class="tafsir-body reveal"><strong>Kedua,</strong> solusinya bukan asketisme atau melarikan diri dari dunia. Yang diminta adalah kesadaran: bahwa semua yang kita punya adalah titipan, bukan mahkota; amanah, bukan tujuan.</p>
+
+    <p class="tafsir-body reveal"><strong>Ketiga,</strong> ada hierarki pengetahuan yang perlu kita tempuh: dari sekadar tahu informasi, menuju melihat realitas secara langsung, menuju merasakannya dengan segenap jiwa. Semakin dalam pengetahuan kita tentang hakikat hidup, semakin kecil kemungkinan kita terseret arus takatsur.</p>
+
+    <div class="divider reveal"><div class="divider-line"></div><div class="divider-gem">◆</div><div class="divider-line"></div></div>
+
+    <p class="section-label reveal">Langkah Nyata</p>
+
+    <div class="langkah-card reveal">
+      <span class="langkah-num">01</span>
+      <div class="langkah-content">
+        <strong>Audit Mingguan Na'im</strong>
+        <p>Setiap akhir pekan, luangkan sepuluh menit untuk menuliskan tiga nikmat yang kamu terima minggu ini — di luar hal-hal besar yang sudah biasa disyukuri. Latihan ini memindahkan fokus dari 'apa yang belum saya punya' ke 'apa yang sudah saya punya dan sudah saya gunakan'.</p>
+      </div>
+    </div>
+
+    <div class="langkah-card reveal">
+      <span class="langkah-num">02</span>
+      <div class="langkah-content">
+        <strong>Filter "Siapa yang Menentukan Ini Penting?"</strong>
+        <p>Setiap kali kamu merasa harus mengejar sesuatu karena melihat orang lain punya hal itu, tanyakan: siapa yang menentukan bahwa ini penting untuk hidupku? Jika jawabannya adalah 'orang lain' atau 'standar yang tidak jelas dari mana asalnya', beri jeda sebelum berlari.</p>
+      </div>
+    </div>
+
+    <div class="langkah-card reveal">
+      <span class="langkah-num">03</span>
+      <div class="langkah-content">
+        <strong>Hadirkan 'Ain al-Yaqin Harian</strong>
+        <p>Setiap malam sebelum tidur, luangkan dua menit untuk benar-benar merasakan bahwa hidup ini akan berakhir, dan hari ini adalah satu hari yang tidak akan kembali. Bukan untuk bersedih, tapi untuk memilih esok hari dengan lebih sadar.</p>
+      </div>
+    </div>
+
+    <div class="closing-box reveal">
+      <p class="closing-text">Surat At-Takatsur adalah surat tentang fokus. Kita hanya punya satu kehidupan, dan kehidupan itu adalah satu titik kecil di antara dua ketiadaan. Di titik kecil itulah kita memilih: apakah kita mengisinya dengan menghitung dan membandingkan, atau dengan benar-benar hidup, benar-benar merasakan, dan benar-benar memberikan yang terbaik dari diri kita. Pilihan itu adalah satu-satunya yang benar-benar milik kita.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== EPILOG ======================== -->
+<section class="epilog-section" id="epilog">
+  <div class="epilog-bg"></div>
+  <div class="container">
+    <p class="epilog-title-small reveal">Epilog</p>
+    <h2 class="epilog-title reveal">Surat Kepada Diri yang Sedang Berlari</h2>
+    <div class="epilog-divider reveal"></div>
+
+    <p class="epilog-salutation reveal">Kepada kamu yang membaca ini malam ini —</p>
+    <p class="epilog-sub reveal">atau pagi hari, atau di tengah-tengah istirahat yang singkat,</p>
+
+    <p class="epilog-para reveal">Aku tahu kamu lelah. Bukan lelah biasa — lelah yang aneh. Lelah meski tidak banyak bergerak. Lelah yang datang bukan dari pekerjaan keras, tapi dari perbandingan yang tidak pernah selesai. Dari scrolling tanpa tujuan yang tiba-tiba membuat kamu merasa hidup kamu kurang — kurang sukses, kurang menarik, kurang jauh, kurang cukup.</p>
+
+    <p class="epilog-para reveal">Itu bukan salahmu sepenuhnya. Kita tumbuh di dalam sistem yang mengukur nilai manusia dengan angka. IPK, gaji, jumlah followers, usia saat mencapai sesuatu. Dan tanpa sadar, kita belajar bahwa cukup adalah musuh, bahwa berhenti sejenak adalah kekalahan, bahwa syukur yang terlalu dalam adalah hambatan kemajuan.</p>
+
+    <p class="epilog-para reveal">Lalu hadirlah teguran tua dari langit, dalam delapan baris pendek yang dituliskan empat belas abad lalu:</p>
+
+    <div class="epilog-quote-big reveal">
+      أَلْهَاكُمُ التَّكَاثُرُ<br>
+      <span style="font-family: 'Lora', serif; font-size: 18px; color: var(--white-dim);">Bermegah-megahan telah melalaikan kalian.</span>
+    </div>
+
+    <p class="epilog-para reveal">Bukan 'mungkin melalaikan'. Bukan 'bisa jadi melalaikan'. Tapi <em>telah melalaikan.</em> Sebuah diagnosa yang tidak meminta persetujuanmu untuk menjadi benar.</p>
+
+    <div class="divider reveal"><div class="divider-line"></div><div class="divider-gem">✦</div><div class="divider-line"></div></div>
+
+    <p class="epilog-para reveal"><strong>Untuk kamu yang merasa hidup adalah lomba yang tidak pernah ada garis finishnya —</strong> ketahuilah bahwa Al-Qur'an sudah melihat polamu ribuan tahun sebelum kamu lahir, sudah memahami kelelahan itu, sudah tahu betapa kerasnya tekanan itu. Dan ia tidak menghakimi. Ia hanya berkata: <em>berhentilah sebentar. Lihatlah ke dalam. Tanyakan apa yang benar-benar kamu kejar.</em></p>
+
+    <p class="epilog-para reveal"><strong>Untuk kamu yang sedang berjuang membuktikan diri —</strong> kepada orangtua, kepada pasangan, kepada dirimu sendiri — kenikmatan yang paling dalam bukanlah saat kamu akhirnya 'cukup' di mata orang lain. Kenikmatan yang paling dalam adalah saat kamu bisa melihat hidupmu dan berkata dengan jujur: <em>aku sudah menggunakan apa yang diberikan kepadaku dengan sebaik yang aku bisa.</em></p>
+
+    <p class="epilog-para reveal"><strong>Untuk kamu yang sudah tahu semua ini tapi masih sulit berubah —</strong> Al-Qur'an mengulangi peringatannya dua kali. Bukan karena kamu bodoh. Tapi karena hati manusia memang butuh waktu untuk melunak. Dan setiap kali kamu kembali pada kesadaran ini — meskipun sudah ribuan kali terlupa — itu bukan kegagalan. Itu adalah manusia yang sedang belajar menjadi manusia.</p>
+
+    <div class="divider reveal"><div class="divider-line"></div><div class="divider-gem">◆</div><div class="divider-line"></div></div>
+
+    <p class="epilog-para center reveal" style="font-size: 20px; color: var(--white);">Hidup bukan lomba yang harus kamu menangkan.</p>
+    <p class="epilog-para center reveal">Ia adalah perjalanan yang harus kamu jalani — dengan sadar, dengan rasa syukur, dengan pertanyaan yang tepat.</p>
+
+    <p class="epilog-para center reveal">Dan pertanyaan terpenting itu hanya satu:</p>
+
+    <div class="epilog-quote-big reveal" style="font-size: clamp(22px, 3.5vw, 32px);">
+      "Hari ini, sudahkah aku benar-benar hidup?"
+    </div>
+
+    <p class="epilog-harapan reveal">Semoga surat tua ini menjadi pelita kecil di tengah riuhnya zaman.</p>
+    <p class="epilog-harapan reveal">Semoga kita semua menemukan jalan pulang —</p>
+    <p class="epilog-harapan reveal" style="color: var(--gold);">dari menghitung, menuju memaknai.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-arabic">التَّكَاثُر</span>
+  <div class="footer-line"></div>
+  <p class="footer-text">Tafsir At-Takatsur · Dikejar Angka, Dilupakan Makna</p>
+  <p class="footer-text" style="margin-top: 8px; font-size: 10px; opacity: 0.5;">Surat ke-102 · Makkiyah · 8 Ayat</p>
+  <br>
+  <a class="download-btn" id="downloadBtn" href="#" onclick="downloadPage(event)">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+    </svg>
+    Unduh Halaman Ini (HTML)
+  </a>
+</footer>
+
+<script>
+  // ===== PROGRESS BAR =====
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    document.getElementById('progress-bar').style.width = progress + '%';
+
+    // Update ayat dots
+    updateDots();
+  });
+
+  // ===== REVEAL ON SCROLL =====
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // ===== AYAT DOTS =====
+  const sections = [
+    document.getElementById('hero'),
+    document.getElementById('pembuka'),
+    document.getElementById('ayat-1'),
+    document.getElementById('ayat-3'),
+    document.getElementById('ayat-5'),
+    document.getElementById('ayat-7'),
+    document.getElementById('penutup'),
+    document.getElementById('epilog'),
+  ];
+
+  const dots = document.querySelectorAll('.ayat-dot');
+
+  function updateDots() {
+    const scrollY = window.scrollY + window.innerHeight / 2;
+    let active = 0;
+    sections.forEach((s, i) => {
+      if (s && s.offsetTop <= scrollY) active = i;
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === active));
+  }
+
+  function scrollToAyat(i) {
+    if (sections[i]) sections[i].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ===== STAGGER KEYWORD CARDS =====
+  document.querySelectorAll('.keyword-card').forEach((card, i) => {
+    card.style.transitionDelay = (i % 3 * 0.08) + 's';
+  });
+
+  // ===== DOWNLOAD PAGE =====
+  function downloadPage(e) {
+    e.preventDefault();
+    const html = document.documentElement.outerHTML;
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'tafsir-at-takatsur.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  // ===== SMOOTH STAGGER ON LOAD =====
+  window.addEventListener('load', () => {
+    reveals.forEach((el, i) => {
+      if (el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('visible');
+      }
+    });
+  });
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

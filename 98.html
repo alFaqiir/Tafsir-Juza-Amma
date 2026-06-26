@@ -1,0 +1,1277 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tafsir Al-Bayyinah — Kehidupan sebagai Bukti</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:        #B8860B;
+    --gold-light:  #D4AF37;
+    --gold-pale:   #F5E6C8;
+    --green-deep:  #1A3C2E;
+    --green-mid:   #2D6A4F;
+    --green-light: #52B788;
+    --green-pale:  #E8F5EE;
+    --cream:       #FDF8F0;
+    --cream-dark:  #F2EAD8;
+    --warm-gray:   #6B6560;
+    --near-black:  #1C1C1C;
+    --blue-soft:   #2C4A6E;
+    --white:       #FFFFFF;
+    --ink:         #2A2118;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9999; opacity: 0.4;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream-dark); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(253,248,240,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184,134,11,0.25);
+    z-index: 100;
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    color: var(--green-deep);
+    letter-spacing: 0.06em;
+  }
+  .nav-links {
+    display: flex; gap: 1.6rem; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── COVER ── */
+  #cover {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(26,60,46,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(184,134,11,0.06) 0%, transparent 60%),
+      var(--cream);
+    position: relative; overflow: hidden;
+  }
+  #cover::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), var(--green-light), var(--gold-light), transparent);
+  }
+  .cover-ornament {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: var(--green-deep);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.2s forwards;
+  }
+  .cover-label {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.4s forwards;
+  }
+  .cover-arabic {
+    font-family: 'Amiri', serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    color: var(--green-deep);
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+  }
+  .cover-latin {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--green-mid);
+    font-style: italic;
+    margin-bottom: 0.4rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.8s forwards;
+  }
+  .cover-meta {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s 1s forwards;
+  }
+  .cover-divider {
+    width: 160px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+    margin: 0 auto 3rem;
+    opacity: 0;
+    animation: fadeUp 1s 1.1s forwards;
+  }
+  .cover-title-main {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--near-black);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
+  }
+  .cover-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-style: italic;
+    color: var(--warm-gray);
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 4rem;
+    opacity: 0;
+    animation: fadeUp 1s 1.4s forwards;
+  }
+  .cover-quote {
+    max-width: 600px;
+    padding: 1.5rem 2rem;
+    border-left: 3px solid var(--gold);
+    background: rgba(245,230,200,0.3);
+    text-align: left;
+    opacity: 0;
+    animation: fadeUp 1s 1.6s forwards;
+  }
+  .cover-quote p {
+    font-style: italic;
+    color: var(--blue-soft);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+  .cover-quote cite {
+    display: block;
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--warm-gray);
+    font-style: normal;
+    letter-spacing: 0.1em;
+  }
+  .scroll-hint {
+    position: absolute; bottom: 2rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    opacity: 0; animation: fadeUp 1s 2s forwards;
+  }
+  .scroll-hint span { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--warm-gray); text-transform: uppercase; }
+  .scroll-arrow {
+    width: 24px; height: 24px;
+    border-right: 1.5px solid var(--gold);
+    border-bottom: 1.5px solid var(--gold);
+    transform: rotate(45deg);
+    animation: bounce 2s infinite;
+  }
+
+  /* ── MAIN CONTAINER ── */
+  .book {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+  }
+
+  /* ── CHAPTER HEADER ── */
+  .chapter-header {
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-bottom: 3rem;
+    background: var(--green-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .chapter-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 30px,
+      rgba(255,255,255,0.02) 30px,
+      rgba(255,255,255,0.02) 31px
+    );
+  }
+  .chapter-header .ch-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--green-light);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    font-family: 'Crimson Pro', serif;
+  }
+  .chapter-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--white);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .chapter-header .ch-sub {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.55);
+    font-style: italic;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .divider {
+    display: flex; align-items: center; gap: 1rem;
+    margin: 3rem 0;
+  }
+  .divider::before, .divider::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-light));
+  }
+  .divider::after { background: linear-gradient(90deg, var(--gold-light), transparent); }
+  .divider-gem {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ── PROSE ── */
+  .prose p {
+    margin-bottom: 1.1rem;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .prose p:first-child { font-size: 1.15rem; }
+
+  /* ── AYAT BLOCK ── */
+  .ayat-block {
+    margin: 2rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(26,60,46,0.08);
+  }
+  .ayat-arabic {
+    background: var(--green-pale);
+    padding: 1.5rem 2rem;
+    text-align: right;
+    direction: rtl;
+  }
+  .ayat-number {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    width: 28px; height: 28px;
+    background: var(--gold);
+    color: white;
+    font-family: 'Amiri', serif;
+    font-size: 0.8rem;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    float: left;
+    direction: ltr;
+  }
+  .ayat-text {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    line-height: 2.2;
+    color: var(--green-deep);
+    font-weight: 700;
+  }
+  .ayat-terjemah {
+    background: white;
+    padding: 1rem 2rem;
+    border-top: 1px solid rgba(82,183,136,0.2);
+  }
+  .ayat-terjemah p {
+    font-style: italic;
+    color: var(--warm-gray);
+    font-size: 0.95rem;
+    text-align: center;
+    margin: 0;
+  }
+
+  /* ── KEYWORD ENTRY ── */
+  .keyword-entry {
+    margin: 2rem 0;
+    padding: 1.8rem 2rem;
+    background: white;
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 1px 12px rgba(0,0,0,0.05);
+    border-radius: 0 4px 4px 0;
+  }
+  .keyword-head {
+    display: flex; align-items: baseline; gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--cream-dark);
+  }
+  .keyword-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 2rem;
+    color: var(--green-deep);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .keyword-latin {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .keyword-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0.3rem 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+  .keyword-label {
+    font-family: 'Crimson Pro', serif;
+    font-weight: 600;
+    color: var(--blue-soft);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding-top: 0.1rem;
+  }
+  .keyword-value { color: var(--near-black); }
+  .keyword-value.nuance { font-style: italic; color: var(--warm-gray); }
+
+  /* ── SUBHEADING ── */
+  .sub-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    color: var(--green-deep);
+    font-weight: 700;
+    margin: 2.5rem 0 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--green-pale);
+  }
+  .mini-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--green-mid);
+    font-weight: 600;
+    font-style: italic;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  /* ── RELEVANCE BOX ── */
+  .relevance-box {
+    background: linear-gradient(135deg, rgba(26,60,46,0.04), rgba(184,134,11,0.04));
+    border: 1px solid rgba(184,134,11,0.2);
+    border-radius: 4px;
+    padding: 1.5rem 1.8rem;
+    margin: 1.5rem 0;
+  }
+  .relevance-box .rel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+
+  /* ── EXAMPLE CARD ── */
+  .example-card {
+    margin: 1.2rem 0;
+    padding: 1.2rem 1.5rem;
+    background: white;
+    border-radius: 4px;
+    border-top: 3px solid var(--gold);
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+  }
+  .example-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--near-black);
+    margin-bottom: 0.5rem;
+  }
+  .example-number {
+    color: var(--gold);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: 'Crimson Pro', serif;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .example-card p { font-size: 0.95rem; color: var(--near-black); margin: 0; }
+
+  /* ── INTISARI ── */
+  .intisari-list {
+    counter-reset: intisari;
+    list-style: none;
+    padding: 0;
+  }
+  .intisari-list li {
+    counter-increment: intisari;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--cream-dark);
+    align-items: start;
+  }
+  .intisari-list li:last-child { border-bottom: none; }
+  .intisari-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gold-light);
+    font-weight: 900;
+    line-height: 1;
+    text-align: right;
+  }
+  .intisari-text {
+    font-size: 1.05rem;
+    color: var(--near-black);
+    line-height: 1.7;
+    padding-top: 0.2rem;
+  }
+
+  /* ── ACTIONABLE ── */
+  .action-card {
+    margin: 1.5rem 0;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 1.2rem;
+    padding: 1.5rem;
+    background: var(--green-pale);
+    border-radius: 4px;
+    border-left: 4px solid var(--green-mid);
+  }
+  .action-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--green-mid);
+    font-weight: 700;
+    text-align: center;
+    padding-top: 0.2rem;
+  }
+  .action-num span {
+    display: block;
+    font-size: 1.8rem;
+    letter-spacing: 0;
+    color: var(--green-deep);
+  }
+  .action-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 0.4rem;
+  }
+  .action-body { font-size: 0.95rem; color: var(--near-black); font-style: italic; }
+
+  /* ── CLOSING STATEMENT ── */
+  .closing-statement {
+    margin: 3rem 0;
+    padding: 2.5rem 3rem;
+    background: var(--green-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .closing-statement::before {
+    content: '\201C';
+    position: absolute; top: -1rem; left: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+  }
+  .closing-statement p {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.88);
+    font-style: italic;
+    position: relative;
+    text-align: justify;
+  }
+  .closing-statement .arabic-inline {
+    font-family: 'Amiri', serif;
+    font-size: 1.3rem;
+    color: var(--gold-light);
+    font-style: normal;
+  }
+
+  /* ── PATTERN BOX ── */
+  .pattern-list {
+    list-style: none; padding: 0;
+  }
+  .pattern-list li {
+    padding: 0.6rem 0 0.6rem 1.8rem;
+    position: relative;
+    border-bottom: 1px solid rgba(184,134,11,0.1);
+    font-size: 0.97rem;
+  }
+  .pattern-list li::before {
+    content: '◆';
+    position: absolute; left: 0;
+    color: var(--gold);
+    font-size: 0.5rem;
+    top: 1rem;
+  }
+
+  /* ── EPILOG ── */
+  #epilog {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(26,60,46,0.12), transparent 60%),
+      var(--cream);
+    padding: 5rem 0;
+  }
+  .epilog-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--green-deep);
+    text-align: center;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 3rem;
+    max-width: 640px;
+    margin-left: auto; margin-right: auto;
+  }
+  .epilog-block {
+    margin-bottom: 2rem;
+  }
+  .epilog-opening {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--near-black);
+    margin-bottom: 0.6rem;
+  }
+  .epilog-body {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--near-black);
+    text-align: justify;
+  }
+  .epilog-calling {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue-soft);
+    margin-bottom: 0.4rem;
+    font-style: italic;
+  }
+  .epilog-response {
+    font-size: 1rem;
+    color: var(--near-black);
+    font-style: italic;
+    line-height: 1.9;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(184,134,11,0.3);
+  }
+  .epilog-climax {
+    text-align: center;
+    padding: 3rem 0 2rem;
+  }
+  .epilog-climax .line1, .epilog-climax .line2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: 700;
+    color: var(--green-deep);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .epilog-climax .line3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  .epilog-final {
+    font-style: italic;
+    color: var(--warm-gray);
+    font-size: 1.05rem;
+  }
+  .final-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 2rem;
+    color: var(--green-deep);
+    font-weight: 700;
+    text-align: center;
+    display: block;
+    margin: 2rem 0 0.5rem;
+  }
+  .final-terjemah {
+    text-align: center;
+    font-style: italic;
+    color: var(--warm-gray);
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+  .final-source {
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: rgba(107,101,96,0.6);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--green-deep);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50%       { transform: rotate(45deg) translateY(6px); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .book { padding: 3rem 1.2rem; }
+    .keyword-row { grid-template-columns: 1fr; }
+    .action-card { grid-template-columns: 1fr; }
+    .action-num { text-align: left; }
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .closing-statement { padding: 1.8rem; }
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: white;
+    border: 1px solid var(--cream-dark);
+    padding: 2rem;
+    margin-bottom: 3rem;
+    border-radius: 2px;
+  }
+  .toc h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .toc ol { list-style: none; padding: 0; counter-reset: toc; }
+  .toc ol li {
+    counter-increment: toc;
+    display: flex; align-items: baseline; gap: 0.8rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px dotted rgba(184,134,11,0.2);
+  }
+  .toc ol li:last-child { border-bottom: none; }
+  .toc ol li::before {
+    content: counter(toc, upper-roman);
+    font-family: 'Playfair Display', serif;
+    font-size: 0.75rem;
+    color: var(--gold-light);
+    min-width: 1.8rem;
+    text-align: right;
+  }
+  .toc ol li a {
+    color: var(--near-black);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+  .toc ol li a:hover { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">سُوْرَةُ الْبَيِّنَةِ — Tafsir Mendalam</span>
+  <ul class="nav-links">
+    <li><a href="#teks">Teks Surah</a></li>
+    <li><a href="#energi-kata">Energi Kata</a></li>
+    <li><a href="#tafsir">Tafsir</a></li>
+    <li><a href="#intisari">Intisari</a></li>
+    <li><a href="#refleksi">Refleksi</a></li>
+    <li><a href="#epilog">Epilog</a></li>
+  </ul>
+</nav>
+
+<!-- COVER -->
+<section id="cover">
+  <div class="cover-ornament">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+  <div class="cover-label">Tafsir Mendalam</div>
+  <div class="cover-arabic">سُوْرَةُ الْبَيِّنَةِ</div>
+  <div class="cover-latin">Surah Al-Bayyinah</div>
+  <div class="cover-meta">Surah ke-98 &nbsp;·&nbsp; 8 Ayat &nbsp;·&nbsp; Madaniyyah</div>
+  <div class="cover-divider"></div>
+  <div class="cover-title-main">Kehidupan sebagai Bukti</div>
+  <div class="cover-tagline">Saat Kebenaran Sudah Nyata,<br>Tapi Manusia Tetap Memilih Buta</div>
+  <div class="cover-quote">
+    <p>«Mereka tidak akan berpecah-belah melainkan setelah datangnya ilmu kepada mereka, karena kedengkian di antara mereka.»</p>
+    <cite>— Al-Bayyinah: 4 —</cite>
+  </div>
+  <div class="scroll-hint">
+    <span>Mulai Membaca</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- MAIN BOOK -->
+<main class="book">
+
+  <!-- PENGANTAR -->
+  <section id="pengantar" class="reveal">
+    <div class="chapter-header">
+      <div class="ch-label">Pembuka</div>
+      <h2>Pengantar</h2>
+      <div class="ch-sub">Mengenal Surat yang Mengurai Misteri Keengganan Manusia</div>
+    </div>
+    <div class="prose">
+      <p>Surah Al-Bayyinah turun di Madinah, menjadi surat ke-98 dalam urutan mushaf. Namanya diambil dari kata <em>al-bayyinah</em> yang muncul di ayat pertama — sebuah kata yang pada permukaannya tampak sederhana: bukti yang nyata, keterangan yang jelas. Namun justru di sini paradoks besar kehidupan manusia tersimpan.</p>
+      <p>Mengapa manusia yang sudah melihat kebenaran masih juga memilih untuk menolaknya? Mengapa semakin banyak ilmu yang datang, semakin dalam pula perpecahan terjadi? Surah ini tidak hanya menjawab pertanyaan teologis — ia berbicara tentang psikologi manusia yang paling dalam: tentang ego, tentang arogansi pengetahuan, tentang penyakit hati yang disebut Al-Quran dengan satu kata menusuk — <em>hasad</em> (kedengkian).</p>
+      <p>Tafsir ini ditulis dengan keyakinan bahwa wahyu Allah tidak pernah usang. Setiap ayat yang diturunkan empat belas abad lalu menyentuh realitas hari ini dengan presisi yang mengagumkan. Bukan sekadar teks sejarah — melainkan cermin yang jujur bagi kita semua.</p>
+    </div>
+    <div class="toc">
+      <h3>Daftar Isi</h3>
+      <ol>
+        <li><a href="#teks">Teks Lengkap Surah Al-Bayyinah</a></li>
+        <li><a href="#energi-kata">Energi Kata — Bedah Kosakata</a></li>
+        <li><a href="#tafsir">Tafsir Mendalam per Ayat</a></li>
+        <li><a href="#intisari">Intisari — Sepuluh Kalimat Inti</a></li>
+        <li><a href="#refleksi">Refleksi Penutup & Langkah Nyata</a></li>
+        <li><a href="#epilog">Epilog — Surat kepada Pembaca</a></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-gem"></div></div>
+
+  <!-- TEKS SURAH -->
+  <section id="teks" class="reveal">
+    <div class="chapter-header">
+      <div class="ch-label">Teks Surah</div>
+      <h2>Surah Al-Bayyinah</h2>
+      <div class="ch-sub">Bacaan Lengkap dengan Terjemahan</div>
+    </div>
+
+    <div class="ayat-block">
+      <div class="ayat-arabic">
+        <span class="ayat-number">١</span>
+        <span class="ayat-text">لَمْ يَكُنِ الَّذِينَ كَفَرُوا مِنْ أَهْلِ الْكِتَابِ وَالْمُشْرِكِينَ مُنفَكِّينَ حَتَّىٰ تَأْتِيَهُمُ الْبَيِّنَةُ</span>
+      </div>
+      <div class="ayat-terjemah"><p>Orang-orang kafir dari golongan Ahli Kitab dan orang-orang musyrik tidak akan meninggalkan (agama mereka) sampai datang kepada mereka bukti yang nyata.</p></div>
+    </div>
+
+    <div class="ayat-block">
+      <div class="ayat-arabic">
+        <span class="ayat-number">٢</span>
+        <span class="ayat-text">رَسُولٌ مِّنَ اللَّهِ يَتْلُو صُحُفًا مُّطَهَّرَةً</span>
+      </div>
+      <div class="ayat-terjemah"><p>Yaitu seorang rasul dari Allah (Muhammad) yang membacakan lembaran-lembaran yang disucikan (Al-Quran),</p></div>
+    </div>
+
+    <div class="ayat-block">
+      <div class="ayat-arabic">
+        <span class="ayat-number">٣</span>
+        <span class="ayat-text">فِيهَا كُتُبٌ قَيِّمَةٌ</span>
+      </div>
+      <div class="ayat-terjemah"><p>di dalamnya terdapat (isi) kitab-kitab yang lurus.</p></div>
+    </div>
+
+    <div class="ayat-block">
+      <div class="ayat-arabic">
+        <span class="ayat-number">٤</span>
+        <span class="ayat-text">وَمَا تَفَرَّقَ الَّذِينَ أُوتُوا الْكِتَابَ إِلَّا مِن بَعْدِ مَا جَاءَتْهُمُ الْبَيِّنَةُ</span>
+      </div>
+      <div class="ayat-terjemah"><p>Dan tidaklah berpecah-belah orang-orang yang diberi Kitab kecuali setelah datang kepada mereka bukti yang nyata.</p></div>
+    </div>
+
+    <div class="ayat-block">
+      <div class="ayat-arabic">
+        <span class="ayat-number">٥</span>
+        <span class="ayat-text">وَمَا أُمِرُوا إِلَّا لِيَعْبُدُوا اللَّهَ مُخْلِصِينَ لَهُ الدِّينَ حُنَفَاءَ وَيُقِيمُوا الصَّلَاةَ وَيُؤْتُوا الزَّكَاةَ ۚ وَذَٰلِكَ دِينُ الْقَيِّمَةِ</span>
+      </div>
+      <div class="ayat-terjemah"><p>Padahal mereka hanya diperintah menyembah Allah dengan ikhlas menaati-Nya semata-mata karena (menjalankan) agama, dan juga agar melaksanakan shalat dan menunaikan zakat; dan yang demikian itulah agama yang lurus.</p></div>
+    </div>
+
+    <div class="ayat-block">
+      <div class="ayat-arabic">
+        <span class="ayat-number">٦</span>
+        <span class="ayat-text">إِنَّ الَّذِينَ كَفَرُوا مِنْ أَهْلِ الْكِتَابِ وَالْمُشْرِكِينَ فِي نَارِ جَهَنَّمَ خَالِدِينَ فِيهَا ۚ أُولَٰئِكَ هُمْ شَرُّ الْبَرِيَّةِ</span>
+      </div>
+      <div class="ayat-terjemah"><p>Sesungguhnya orang-orang kafir dari golongan Ahli Kitab dan orang-orang musyrik (akan masuk) ke neraka Jahanam; mereka kekal di dalamnya selama-lamanya. Mereka itu adalah seburuk-buruk makhluk.</p></div>
+    </div>
+
+    <div class="ayat-block">
+      <div class="ayat-arabic">
+        <span class="ayat-number">٧</span>
+        <span class="ayat-text">إِنَّ الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ أُولَٰئِكَ هُمْ خَيْرُ الْبَرِيَّةِ</span>
+      </div>
+      <div class="ayat-terjemah"><p>Sesungguhnya orang-orang yang beriman dan mengerjakan kebajikan, mereka itu adalah sebaik-baik makhluk.</p></div>
+    </div>
+
+    <div class="ayat-block">
+      <div class="ayat-arabic">
+        <span class="ayat-number">٨</span>
+        <span class="ayat-text">جَزَاؤُهُمْ عِندَ رَبِّهِمْ جَنَّاتُ عَدْنٍ تَجْرِي مِن تَحْتِهَا الْأَنْهَارُ خَالِدِينَ فِيهَا أَبَدًا ۖ رَّضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ ۚ ذَٰلِكَ لِمَنْ خَشِيَ رَبَّهُ</span>
+      </div>
+      <div class="ayat-terjemah"><p>Balasan mereka di sisi Tuhan mereka adalah surga 'Adn yang mengalir di bawahnya sungai-sungai; mereka kekal di dalamnya selama-lamanya. Allah ridha terhadap mereka dan mereka pun ridha kepada-Nya. Yang demikian itu adalah (balasan) bagi orang yang takut kepada Tuhannya.</p></div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-gem"></div></div>
+
+  <!-- ENERGI KATA -->
+  <section id="energi-kata" class="reveal">
+    <div class="chapter-header">
+      <div class="ch-label">Bab I</div>
+      <h2>Energi Kata</h2>
+      <div class="ch-sub">Membedah Kata-Kata yang Membawa Jagad Makna</div>
+    </div>
+    <div class="prose">
+      <p>Bahasa Arab adalah bahasa yang hidup dalam lapisannya. Setiap kata memiliki akar, setiap akar menyimpan cerita, dan setiap perbandingan mengungkap nuansa yang tidak bisa digantikan begitu saja. Berikut adalah kata-kata kunci yang menjadi tulang punggung Surah Al-Bayyinah.</p>
+    </div>
+
+    <div class="keyword-entry">
+      <div class="keyword-head">
+        <span class="keyword-arabic">الْبَيِّنَةُ</span>
+        <span class="keyword-latin">Al-Bayyinah</span>
+      </div>
+      <div class="keyword-row"><span class="keyword-label">Akar Kata</span><span class="keyword-value">Dari akar <em>b-y-n</em> (ب-ي-ن): 'terpisah', 'jelas', 'tersingkap'. Satu rumpun dengan <em>bain</em> (antara) dan <em>tabyin</em> (penjelasan).</span></div>
+      <div class="keyword-row"><span class="keyword-label">Makna Inti</span><span class="keyword-value">Bukti yang begitu terang sehingga tidak lagi butuh interpretasi; keterangan yang menjadikan kabut menjadi siang bolong.</span></div>
+      <div class="keyword-row"><span class="keyword-label">Nuansa</span><span class="keyword-value nuance">Berbeda dari <em>hujjah</em> (argumentasi logis) atau <em>dalil</em> (petunjuk), al-bayyinah adalah kejelasan yang bersifat inderawi dan empiris — sesuatu yang bisa dilihat, didengar, dirasakan. Kehadiran Nabi bukan sekadar argumen — melainkan realitas yang bisa disaksikan.</span></div>
+      <div class="keyword-row"><span class="keyword-label">vs. Sinonim</span><span class="keyword-value"><em>Hujjah</em> perlu proses berpikir. <em>Dalil</em> mengarahkan. <em>Burhan</em> membuktikan. Tapi bayyinah melampaui semua ini: bukti yang membuat orang tidak punya alasan lagi untuk tidak melihat.</span></div>
+    </div>
+
+    <div class="keyword-entry">
+      <div class="keyword-head">
+        <span class="keyword-arabic">مُنفَكِّينَ</span>
+        <span class="keyword-latin">Munfakkiin</span>
+      </div>
+      <div class="keyword-row"><span class="keyword-label">Akar Kata</span><span class="keyword-value">Dari akar <em>f-k-k</em> (ف-ك-ك): melepas ikatan, memutus belenggu, membuka sesuatu yang terkunci.</span></div>
+      <div class="keyword-row"><span class="keyword-label">Makna Inti</span><span class="keyword-value">Melepaskan diri dari sesuatu yang sebelumnya mengikat erat; berpisah dari keadaan yang sudah lama ditempati.</span></div>
+      <div class="keyword-row"><span class="keyword-label">Nuansa</span><span class="keyword-value nuance">Kekafiran bukan sekadar keyakinan, melainkan belenggu. Munfakkiin (jamak aktif) menyatakan bahwa mereka tidak mampu 'bergerak lepas' — bukan karena tidak ada jalan, tapi karena ikatan itu begitu kuat.</span></div>
+      <div class="keyword-row"><span class="keyword-label">vs. Sinonim</span><span class="keyword-value"><em>Taarik</em> (yang meninggalkan) — netral. <em>Mutakhallis</em> (yang membebaskan diri) — aktif berjuang. Tapi <em>munfakkin</em> mengisyaratkan simpul yang sudah bertahun-tahun mengeras.</span></div>
+    </div>
+
+    <div class="keyword-entry">
+      <div class="keyword-head">
+        <span class="keyword-arabic">مُخْلِصِينَ</span>
+        <span class="keyword-latin">Mukhlisiin</span>
+      </div>
+      <div class="keyword-row"><span class="keyword-label">Akar Kata</span><span class="keyword-value">Dari akar <em>kh-l-s</em> (خ-ل-ص): murni, bersih dari campuran, selamat dari sesuatu. <em>Khalasha</em> berarti terbebas, seperti emas yang dilebur dan dimurnikan.</span></div>
+      <div class="keyword-row"><span class="keyword-label">Makna Inti</span><span class="keyword-value">Menjadikan sesuatu murni tanpa niat lain yang tersembunyi; beribadah hanya untuk Allah tanpa campuran riya atau agenda tersembunyi.</span></div>
+      <div class="keyword-row"><span class="keyword-label">Nuansa</span><span class="keyword-value nuance">Gambaran visual proses pemurnian logam: emas yang dicampur tanah liat harus dibakar. Ikhlas bukan sekadar niat baik — ia adalah proses pembakaran ego yang menyakitkan namun menghasilkan kemurnian sejati.</span></div>
+      <div class="keyword-row"><span class="keyword-label">vs. Sinonim</span><span class="keyword-value"><em>Shadiq</em> (jujur) berbicara tentang kejujuran verbal. <em>Mukhlis</em> mencakup hati. Tapi <em>mukhlishiin</em> bermakna proses aktif yang terus-menerus memurnikan diri dari niat yang mencemari.</span></div>
+    </div>
+
+    <div class="keyword-entry">
+      <div class="keyword-head">
+        <span class="keyword-arabic">حُنَفَاءَ</span>
+        <span class="keyword-latin">Hunafaa'</span>
+      </div>
+      <div class="keyword-row"><span class="keyword-label">Akar Kata</span><span class="keyword-value">Dari akar <em>h-n-f</em> (ح-ن-ف): condong, miring ke satu sisi. Awalnya bermakna fisik — berjalan dengan condong ke satu arah.</span></div>
+      <div class="keyword-row"><span class="keyword-label">Makna Inti</span><span class="keyword-value">Berpaling dari segala sesuatu selain Allah dan condong sepenuhnya menuju kebenaran; agama Ibrahim yang murni dari segala kemusyrikan.</span></div>
+      <div class="keyword-row"><span class="keyword-label">Nuansa</span><span class="keyword-value nuance">Ironi leksikal yang indah: kata ini berasal dari makna 'pincang' tapi dalam Al-Quran menjadi pujian tertinggi. Seorang hanif dengan sengaja 'condong' seluruh hidupnya hanya kepada Allah — penyerahan diri yang aktif dan penuh pilihan.</span></div>
+      <div class="keyword-row"><span class="keyword-label">vs. Sinonim</span><span class="keyword-value"><em>Muslim</em> (yang menyerah) — umum. <em>Mu'min</em> (yang beriman) — kepercayaan hati. Tapi <em>hanif</em> menyimpan dimensi sejarah mereka yang hatinya tidak bisa puas dengan kebohongan kepercayaan populer zamannya.</span></div>
+    </div>
+
+    <div class="keyword-entry">
+      <div class="keyword-head">
+        <span class="keyword-arabic">الْبَرِيَّةِ</span>
+        <span class="keyword-latin">Al-Barriyyah</span>
+      </div>
+      <div class="keyword-row"><span class="keyword-label">Akar Kata</span><span class="keyword-value">Dua pendapat: dari <em>b-r-'</em> (menciptakan) → semua ciptaan; atau dari <em>b-r-r</em> (daratan) → penghuni bumi. Keduanya membawa cakupan yang sangat luas.</span></div>
+      <div class="keyword-row"><span class="keyword-label">Makna Inti</span><span class="keyword-value">Seluruh makhluk yang diciptakan; semua yang ada di alam semesta ini. Lebih luas dari <em>insan</em> (manusia) atau <em>ummah</em> (umat).</span></div>
+      <div class="keyword-row"><span class="keyword-label">Nuansa</span><span class="keyword-value nuance">Al-Quran menempatkan manusia dalam spektrum kosmis — bukan sekadar baik-buruk di antara sesama manusia, melainkan dalam konteks seluruh ciptaan Allah termasuk malaikat dan jin. Potensi manusia yang luar biasa sekaligus kemungkinan kejatuhannya yang paling dalam.</span></div>
+      <div class="keyword-row"><span class="keyword-label">vs. Sinonim</span><span class="keyword-value"><em>Insan</em> (manusia), <em>nas</em> (orang-orang), <em>khalq</em> (ciptaan). Tapi <em>barriyyah</em> membawa konotasi kosmis menggetarkan: manusia beriman mengungguli malaikat dalam nilai kepatuhannya yang sadar dan berpilihan.</span></div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-gem"></div></div>
+
+  <!-- TAFSIR MENDALAM -->
+  <section id="tafsir" class="reveal">
+    <div class="chapter-header">
+      <div class="ch-label">Bab II</div>
+      <h2>Tafsir Mendalam</h2>
+      <div class="ch-sub">Filosofi di Balik Setiap Ayat</div>
+    </div>
+
+    <!-- AYAT 1-2 -->
+    <h3 class="sub-heading">Ayat 1–2 &mdash; Paradoks Penantian</h3>
+    <p class="mini-heading">Ketika Harapan dan Kenyataan Bertabrakan</p>
+    <div class="prose">
+      <p>Ayat pertama membuka dengan pernyataan yang tampak sederhana namun menyimpan kedalaman psikologis: orang-orang kafir dari Ahli Kitab dan kaum musyrik tidak akan melepaskan diri (<em>munfakkiin</em>) dari kekafiran mereka sampai datang kepada mereka al-bayyinah.</p>
+    </div>
+    <p class="mini-heading">Konteks Historis</p>
+    <div class="prose">
+      <p>Sebelum kedatangan Nabi Muhammad saw., sebagian Ahli Kitab — ulama Yahudi dan Nasrani di Madinah dan sekitarnya — sebenarnya menantikan kedatangan seorang nabi baru. Mereka tahu dari kitab mereka. Mereka bahkan menggunakannya sebagai ancaman kepada orang Arab pagan: "Nanti akan datang nabi, dan kami akan mengikutinya, lalu kami akan mengalahkan kalian." Tapi ketika nabi itu benar-benar datang dan ternyata bukan dari keturunan mereka, mereka menolak.</p>
+    </div>
+    <p class="mini-heading">Filosofi: Menunggu Kebenaran dalam Format yang Kita Inginkan</p>
+    <div class="prose">
+      <p>Inilah paradoks pertama surah ini: mereka menantikan sesuatu, tapi ketika ia datang dalam bentuk yang berbeda dari ekspektasi, mereka menolaknya. Ini bukan masalah kurangnya bukti — <em>bayyinah</em> sudah datang. Masalahnya adalah ego yang sudah membentuk 'gambar kebenaran' di kepala mereka, dan ketika realitas tidak sesuai gambar itu, mereka menyebutnya palsu.</p>
+      <p>Al-Quran menggunakan kata <em>munfakkiin</em> — seolah mengatakan: selama bayyinah belum datang, ada alasan untuk menunggu. Tapi setelah ia datang? Tidak ada alasan lagi. Keengganan setelah itu adalah pilihan sadar, bukan ketidaktahuan.</p>
+    </div>
+    <div class="relevance-box">
+      <div class="rel-title">✦ Relevansi Kekinian</div>
+      <p style="font-size:0.95rem;margin-bottom:1rem;">Kita hidup di era yang paling banjir informasi dalam sejarah manusia, namun juga di era yang paling dalam penyangkalannya.</p>
+      <div class="example-card">
+        <span class="example-number">Contoh 1</span>
+        <div class="example-title">Penyangkalan di Era Digital</div>
+        <p>Seorang pemuda menolak nasihat untuk tidak berpacaran bebas. Ia sudah tahu dampaknya — sudah baca artikel, sudah lihat teman yang hancur hubungannya. Tapi ia tetap melanjutkan. Bukan karena tidak tahu, tapi karena 'bayyinah' yang ada tidak sesuai dengan apa yang ingin ia lakukan. Penolakan bukan karena tidak ada bukti — tapi karena bukti itu mengancam kenyamanan yang sudah dibangun.</p>
+      </div>
+      <div class="example-card">
+        <span class="example-number">Contoh 2</span>
+        <div class="example-title">Ilmuwan yang Menolak Fakta</div>
+        <p>Seorang peneliti yang sudah puluhan tahun menganut teori tertentu, ketika menemukan data yang bertentangan dengan teorinya, cenderung mencari cara mendiskreditkan data tersebut daripada mengubah teorinya. Fenomena ini dalam psikologi disebut <em>cognitive dissonance</em> — dan Al-Quran menyebutnya 1400 tahun lebih awal dengan kata <em>munfakkiin</em>.</p>
+      </div>
+    </div>
+
+    <div class="divider"><div class="divider-gem"></div></div>
+
+    <!-- AYAT 3-4 -->
+    <h3 class="sub-heading">Ayat 3–4 &mdash; Kitab yang Lurus dan Dosa yang Paling Aneh</h3>
+    <div class="prose">
+      <p>Ayat 4 menjatuhkan pernyataan yang paling menghantam logika biasa: mereka tidak berpecah-belah kecuali <em>setelah</em> datangnya bayyinah.</p>
+    </div>
+    <p class="mini-heading">Filosofi: Ilmu yang Memecah Belah</p>
+    <div class="prose">
+      <p>Ini adalah ayat yang paling relevan dengan krisis intelektual modern. Logika awam berkata: lebih banyak ilmu = lebih sedikit konflik. Tapi Al-Quran berkata sebaliknya: perpecahan terjadi justru setelah ilmu datang. Mengapa?</p>
+      <p>Karena ilmu tanpa akhlak adalah senjata. Seseorang yang tahu kebenaran tapi memilih ego akan menggunakan ilmunya untuk menang dalam argumen, bukan untuk bersatu. Ia akan memilih tafsir yang menguntungkan kelompoknya, menyerang tafsir lawan, dan membangun dinding antara 'kita' dan 'mereka' dengan bata-bata ayat suci.</p>
+      <p>Al-Quran menyebut akar dari ini: <em>hasad</em> — kedengkian. Bukan sekadar 'tidak suka' — hasad adalah ketidakmampuan menerima bahwa kebenaran bisa ada pada orang lain, terutama jika orang itu bukan dari kelompok kita.</p>
+    </div>
+    <div class="relevance-box">
+      <div class="rel-title">✦ Relevansi Kekinian</div>
+      <div class="example-card">
+        <span class="example-number">Contoh 3</span>
+        <div class="example-title">Media Sosial dan Perang Tafsir</div>
+        <p>Di era media sosial, umat Islam memiliki akses ke ribuan hadis, fatwa, dan tafsir dalam genggaman. Tapi akses ini tidak membuat persatuan — justru semakin banyak perpecahan. Kelompok A menshare ayat untuk menyerang kelompok B, kelompok B membalas. Ilmu yang mestinya cahaya digunakan sebagai peluru. Inilah yang digambarkan ayat 4 dengan tepat.</p>
+      </div>
+      <div class="example-card">
+        <span class="example-number">Contoh 4</span>
+        <div class="example-title">Generasi yang Tahu tapi Tidak Mau Tahu</div>
+        <p>Generasi Z adalah generasi yang paling berpendidikan dalam sejarah, namun survei demi survei menunjukkan krisis makna yang mendalam. Mereka tahu tentang kerusakan lingkungan tapi tetap berperilaku konsumtif. Mereka tahu tentang agama tapi menganggapnya 'bukan untuk mereka'. Bukan karena tidak ada bayyinah — tapi karena ada sesuatu yang memblokir transformasi: ego, tren, atau rasa takut berbeda.</p>
+      </div>
+    </div>
+
+    <div class="divider"><div class="divider-gem"></div></div>
+
+    <!-- AYAT 5 -->
+    <h3 class="sub-heading">Ayat 5 &mdash; Tiga Pilar: Ikhlas, Shalat, Zakat</h3>
+    <p class="mini-heading">Filosofi: Kesederhanaan yang Menjernihkan</p>
+    <div class="prose">
+      <p>Setelah memaparkan kompleksitas penolakan manusia, Al-Quran berkata: sebenarnya, perintahnya sangat sederhana. Tiga hal yang disebut — ikhlas beribadah, menegakkan shalat, dan menunaikan zakat — bukan tiga hal terpisah. Mereka adalah satu sistem koheren: keikhlasan menjernihkan motivasi (dimensi vertikal), shalat menjaga hubungan itu tetap hidup (rutinitas vertikal), dan zakat membuktikan keimanan dalam tindakan nyata (dimensi horizontal dengan sesama).</p>
+      <p>Kata <em>hunafa'</em> yang digunakan merujuk pada agama Ibrahim — menegaskan bahwa ini bukan ajaran baru. Fitrah manusia sudah tahu jalan ini. Yang menghalangi adalah lapisan demi lapisan kepentingan, ego, dan tradisi yang menumpuk di atas fitrah.</p>
+    </div>
+    <div class="relevance-box">
+      <div class="rel-title">✦ Relevansi Kekinian</div>
+      <div class="example-card">
+        <span class="example-number">Contoh 5</span>
+        <div class="example-title">Ikhlas di Era Eksposur</div>
+        <p>Ketika seorang Muslim memposting foto sedekah, foto shalat di masjid megah, atau foto saat umrah — pertanyaan yang diajukan ayat ini sangat tepat: untuk siapa semua ini? Bukan larangan berbagi kebaikan, tapi undangan untuk bertanya jujur: apakah ikhlas itu masih ada ketika tidak ada yang melihat? <em>Dina qayyimah</em> — agama yang lurus — dimulai dari jawaban jujur atas pertanyaan itu.</p>
+      </div>
+      <div class="example-card">
+        <span class="example-number">Contoh 6</span>
+        <div class="example-title">Zakat sebagai Terapi Sosial</div>
+        <p>Di kota-kota besar Indonesia, ketimpangan semakin lebar. Zakat bukan sekadar kewajiban ritual — ia adalah mekanisme redistribusi yang jika dijalankan benar, bisa menjadi solusi nyata. Generasi yang bingung 'apa kontribusi nyata agama untuk masalah sosial?' perlu melihat zakat bukan sebagai pajak spiritual, melainkan sebagai desain ekonomi yang jauh lebih manusiawi dari sistem kapitalis manapun.</p>
+      </div>
+    </div>
+
+    <div class="divider"><div class="divider-gem"></div></div>
+
+    <!-- AYAT 6-7 -->
+    <h3 class="sub-heading">Ayat 6–7 &mdash; Puncak Tangga dan Dasar Jurang</h3>
+    <p class="mini-heading">Filosofi: Manusia adalah Makhluk yang Paling Ekstrem</p>
+    <div class="prose">
+      <p>Tidak ada makhluk lain yang mendapat label sepolaritas ini. Malaikat tidak disebut 'sebaik-baik makhluk' dalam konteks ini — karena mereka tidak punya kemungkinan untuk menjadi buruk. Hewan tidak disebut 'seburuk-buruk makhluk' — karena mereka tidak punya pilihan sadar. Manusia adalah satu-satunya makhluk yang bisa mencapai puncak atau dasar — dan itulah yang membuatnya luar biasa sekaligus berbahaya.</p>
+      <p>Ayat 6 menggunakan pola <em>إِنَّ</em> (inna) yang menunjukkan penegasan kuat. Dan label 'seburuk-buruk makhluk' diberikan bukan kepada pembunuh kelas kakap — melainkan kepada mereka yang tahu kebenaran lalu menolaknya. Penolakan yang sadar jauh lebih berat dari kejahatan yang lahir dari kebodohan.</p>
+      <p>Namun label ini bukan kutukan permanen — ia adalah peringatan tentang arah. Seseorang yang hari ini menolak kebenaran masih bisa berbalik. Setiap hari masih hidup adalah kesempatan untuk berpindah dari spektrum bawah ke atas.</p>
+    </div>
+
+    <div class="divider"><div class="divider-gem"></div></div>
+
+    <!-- AYAT 8 -->
+    <h3 class="sub-heading">Ayat 8 &mdash; Ridha yang Timbal Balik</h3>
+    <p class="mini-heading">Filosofi: Puncak Hubungan dengan Allah</p>
+    <div class="prose">
+      <p>Setelah memaparkan semua drama penolakan dan konsekuensinya, Al-Quran menutup dengan gambaran yang begitu indah: surga 'Adn mengalir sungai-sungai di bawahnya, dan di sana — Allah ridha kepada mereka, dan mereka pun ridha kepada Allah.</p>
+      <p>Perhatikan urutannya: Allah ridha kepada mereka terlebih dahulu, lalu mereka ridha kepada Allah. Ridha manusia kepada Allah adalah respons terhadap ridha Allah yang lebih dahulu. Tidak ada manusia yang bisa sampai pada kondisi 'ridha kepada Allah' tanpa terlebih dahulu menerima kasih sayang-Nya.</p>
+      <p>Lalu ditutup dengan: <em>dzaalika liman khashiya rabbah</em> — itu semua bagi orang yang <em>khashya</em> kepada Tuhannya. Kata <em>khashiya</em> berbeda dari <em>khafa</em> (takut) biasa. Ia mengandung campuran rasa takut, kagum, dan cinta yang mendalam — seperti perasaan seorang anak kepada ayah yang sangat ia hormati sekaligus ia kasihi.</p>
+    </div>
+    <div class="relevance-box">
+      <div class="rel-title">✦ Relevansi Kekinian</div>
+      <div class="example-card">
+        <span class="example-number">Contoh 7</span>
+        <div class="example-title">Mengejar Validasi yang Tepat</div>
+        <p>Generasi yang tumbuh dengan media sosial adalah generasi yang paling lapar validasi. Berapa banyak like? Berapa followers? Al-Bayyinah 8 tidak mengutuk kerinduan akan pengakuan ini — ia justru mengarahkannya: ada satu pengakuan yang tidak akan pernah mengecewakan, tidak akan hilang ketika tren berganti. Yaitu: <em>radhiyallahu 'anhum</em> — Allah ridha kepada mereka.</p>
+      </div>
+      <div class="example-card">
+        <span class="example-number">Contoh 8</span>
+        <div class="example-title">Khashya sebagai Kualitas Hidup</div>
+        <p>Khashya bukan sekadar takut neraka — ia adalah kesadaran akan kehadiran Allah yang menghasilkan ketenangan paradoks. Orang yang benar-benar khashya tidak mudah panik oleh krisis ekonomi, tidak hancur oleh penolakan, tidak gila karena pujian. Ia sudah menemukan pusat gravitasinya — apa yang oleh psikologi modern disebut <em>secure attachment</em>, tapi versi yang tidak bisa diputus oleh apapun di dunia.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-gem"></div></div>
+
+  <!-- INTISARI -->
+  <section id="intisari" class="reveal">
+    <div class="chapter-header">
+      <div class="ch-label">Bab III</div>
+      <h2>Intisari</h2>
+      <div class="ch-sub">Sepuluh Kalimat yang Menangkap Jiwa Surah</div>
+    </div>
+    <div class="prose">
+      <p>Berikut adalah inti dari Surah Al-Bayyinah dalam sepuluh pernyataan yang berdiri sendiri — bisa dibaca terpisah, dipetik sebagai renungan harian, atau dijadikan bahan refleksi.</p>
+    </div>
+    <ol class="intisari-list">
+      <li><span class="intisari-num">01</span><span class="intisari-text">Kebenaran tidak pernah absen dari pandangan manusia — yang absen adalah kemauan untuk melihatnya.</span></li>
+      <li><span class="intisari-num">02</span><span class="intisari-text">Penolakan setelah datangnya bukti bukan lagi soal ketidaktahuan; ia adalah pilihan yang disadari.</span></li>
+      <li><span class="intisari-num">03</span><span class="intisari-text">Semakin banyak ilmu yang dimiliki tanpa keikhlasan, semakin besar potensi perpecahan yang dihasilkan.</span></li>
+      <li><span class="intisari-num">04</span><span class="intisari-text">Hasad — kedengkian — adalah sumber perpecahan yang paling berbahaya karena ia bersembunyi di balik argumen agama.</span></li>
+      <li><span class="intisari-num">05</span><span class="intisari-text">Inti agama tidak pernah rumit: ikhlas, shalat, zakat — tiga pilar yang saling menopang kehidupan yang bermakna.</span></li>
+      <li><span class="intisari-num">06</span><span class="intisari-text">Manusia adalah makhluk yang paling ekstrem: mampu menjadi sebaik-baik makhluk, sekaligus seburuk-buruknya.</span></li>
+      <li><span class="intisari-num">07</span><span class="intisari-text">Kualitas seseorang bukan ditentukan oleh apa yang ia ketahui, tapi oleh apa yang ia lakukan dengan apa yang ia ketahui.</span></li>
+      <li><span class="intisari-num">08</span><span class="intisari-text">Ridha Allah bukan hadiah yang datang tiba-tiba; ia adalah buah yang hanya tumbuh setelah musim yang panjang.</span></li>
+      <li><span class="intisari-num">09</span><span class="intisari-text">Setiap manusia sedang berjalan menuju salah satu ujung spektrum — dan setiap hari adalah kesempatan untuk memilih arah.</span></li>
+      <li><span class="intisari-num">10</span><span class="intisari-text">Al-Bayyinah mengajarkan bahwa masalah manusia bukan kurangnya petunjuk — melainkan kurangnya kejujuran dengan diri sendiri.</span></li>
+    </ol>
+  </section>
+
+  <div class="divider"><div class="divider-gem"></div></div>
+
+  <!-- REFLEKSI -->
+  <section id="refleksi" class="reveal">
+    <div class="chapter-header">
+      <div class="ch-label">Bab IV</div>
+      <h2>Refleksi Penutup</h2>
+      <div class="ch-sub">Pola, Langkah Nyata, dan Closing Statement</div>
+    </div>
+
+    <h3 class="sub-heading">Pola yang Bisa Diambil</h3>
+    <div class="prose">
+      <p>Surah Al-Bayyinah mengidentifikasi sebuah pola yang berulang dalam sejarah manusia: siklus antara ketersediaan bayyinah dan respons manusia terhadapnya. Siklus ini berlaku di setiap generasi, termasuk generasi kita.</p>
+    </div>
+    <ul class="pattern-list">
+      <li>Bayyinah selalu ada — dalam bentuk wahyu, dalam kejadian alam, dalam hati nurani, dalam kehidupan orang-orang shalih di sekitar kita.</li>
+      <li>Hambatan terbesar bukan ketiadaan bukti, melainkan ego (<em>munfakkiin</em>), kedengkian (<em>hasad</em>), dan nafsu yang ingin dipertahankan.</li>
+      <li>Solusinya tidak kompleks: ikhlas + shalat + zakat. Tiga tindakan yang membersihkan motivasi, menjaga koneksi, dan membuktikan iman.</li>
+      <li>Tujuan akhirnya bukan surga saja — melainkan ridha yang timbal balik antara hamba dan Rabb-nya.</li>
+    </ul>
+
+    <h3 class="sub-heading" style="margin-top:2.5rem;">Dua Langkah Nyata</h3>
+
+    <div class="action-card">
+      <div class="action-num">Langkah <span>1</span></div>
+      <div>
+        <div class="action-title">Audit Keikhlasan Mingguan</div>
+        <p class="action-body">Setiap akhir pekan, luangkan 10 menit untuk menulis jujur: apa yang saya lakukan minggu ini yang benar-benar ikhlas? Apa yang saya lakukan karena ingin dilihat orang? Bukan untuk menghukum diri, tapi untuk mengenal diri. Mulailah dari satu amal kecil yang dilakukan tanpa sepengetahuan siapapun — sekecil apapun. Itu benih dari khairul barriyyah dalam diri Anda.</p>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-num">Langkah <span>2</span></div>
+      <div>
+        <div class="action-title">Praktik 'Menunda Penolakan'</div>
+        <p class="action-body">Ketika Anda mendengar kebenaran yang tidak nyaman — dari ceramah, dari artikel, dari teman yang lebih shalih — latihlah diri untuk tidak langsung menolak. Tunggu 24 jam. Tanyakan dengan jujur: apakah saya menolak ini karena ia salah, atau karena ia mengancam kenyamanan saya? Praktik sederhana ini adalah latihan melawan munfakkiin dalam diri.</p>
+      </div>
+    </div>
+
+    <div class="closing-statement">
+      <p>Al-Bayyinah adalah surat tentang kita — semua kita. Tentang betapa dekatnya kita dengan kebenaran dan betapa lihai kita menghindarinya. Tentang betapa seringnya kita berdalih 'belum cukup tahu' padahal sebenarnya 'belum cukup mau'. Tentang perpecahan yang kita ciptakan dengan senjata ilmu yang seharusnya menyatukan. Tentang betapa sederhananya yang diminta dari kita: murni, sambung, dan beri. Dan tentang puncak yang menanti mereka yang bertahan: ridha yang datang dari dua arah — dari Allah kepadamu, dan dari hatimu kepada-Nya. Sampai di sana, tidak ada lagi yang kurang. Tidak ada lagi yang perlu ditakuti. Tidak ada lagi yang perlu dikejar. Hanya kehadiran yang penuh, damai yang sempurna, dan nama yang disebut di hadapan seluruh makhluk: <span class="arabic-inline">خَيْرُ الْبَرِيَّةِ</span> — sebaik-baik makhluk.</p>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-gem"></div></div>
+
+</main>
+
+<!-- EPILOG -->
+<section id="epilog">
+  <div class="book">
+    <div class="chapter-header reveal">
+      <div class="ch-label">Epilog</div>
+      <h2>Penutup dalam Bahasa Jiwa</h2>
+      <div class="ch-sub">Puisi Prosa untuk Setiap Pembaca</div>
+    </div>
+
+    <div class="epilog-title reveal">Surat kepada Mata yang Tahu<br>Tapi Memilih Tidak Melihat</div>
+
+    <div class="epilog-block reveal">
+      <div class="epilog-opening">Kamu sudah tahu.</div>
+      <p class="epilog-body">Jauh sebelum kamu membuka halaman ini, sebelum ada kata yang tertulis, sebelum ada yang menjelaskan — kamu sudah tahu. Ada suara di dalam dada yang tidak bisa kamu diam-diamkan sepenuhnya. Suara yang berkata: ini bukan jalan yang benar. Suara yang berkata: kamu lebih dari ini. Suara yang berkata: pulanglah.</p>
+    </div>
+
+    <div class="epilog-block reveal">
+      <div class="epilog-opening" style="color:var(--warm-gray);">Tapi ada juga suara yang lain.</div>
+      <p class="epilog-body" style="font-style:italic;color:var(--warm-gray);">Suara yang lebih keras, lebih akrab, lebih terlatih sejak lama. Suara yang berkata: nanti saja. Suara yang berkata: kamu tidak siap. Suara yang berkata: lihat dulu orang-orang itu, mereka yang mengaku beragama tapi saling menyerang — apakah kamu mau jadi bagian dari kekacauan itu? Dan kamu mendengarkan suara kedua itu, bukan karena ia benar, tapi karena ia lebih mudah.</p>
+    </div>
+
+    <div class="epilog-block reveal">
+      <div class="epilog-opening" style="color:var(--green-deep);">Al-Bayyinah tahu tentang kamu.</div>
+      <p class="epilog-body">Ia tidak diturunkan untuk orang-orang yang tidak pernah melihat kebenaran. Ia diturunkan untuk mereka yang sudah melihat, sudah tahu, sudah merasakan getarannya di dada — tapi masih ragu untuk melangkah. Surah ini tidak menyalahkanmu atas keraguanmu. Ia hanya mengingatkan: berlama-lama dalam keraguan setelah bayyinah datang bukan lagi kerendahan hati — ia adalah pilihan yang diam-diam.</p>
+    </div>
+
+    <div class="epilog-block reveal">
+      <div class="epilog-calling">Untuk kamu yang lelah dengan perpecahan —</div>
+      <p class="epilog-response">yang melihat orang-orang berargumen menggunakan ayat-ayat suci sebagai peluru, yang bingung mana kebenaran di antara keriuhan itu — surah ini berkata: perpecahan itu sudah diprediksi. Ia bukan bukti bahwa agamanya salah; ia adalah bukti bahwa manusia membawa hasad ke dalam agama yang seharusnya menyembuhkan hasad. Jangan tinggalkan samudra karena ada orang-orang yang bertengkar di tepinya.</p>
+    </div>
+
+    <div class="epilog-block reveal">
+      <div class="epilog-calling">Untuk kamu yang merasa tidak cukup baik —</div>
+      <p class="epilog-response">yang melihat kata-kata seperti 'khairul barriyyah' dan merasa itu terlalu jauh, terlalu tinggi, bukan untuk orang seperti kamu — dengarkan ini: al-Quran tidak menyebut khairul barriyyah sebagai gelar hanya untuk para nabi atau wali. Ia menyebutkannya sebagai konsekuensi dari dua hal: iman dan amal shalih. Bukan kesempurnaan. Bukan tanpa dosa. Bukan tanpa perjuangan. Iman yang terus diperbaharui dan amal yang terus diperjuangkan — sekecil apapun, selemah apapun.</p>
+    </div>
+
+    <div class="epilog-block reveal">
+      <div class="epilog-calling">Untuk kamu yang sudah lama di jalan ini tapi mulai lelah —</div>
+      <p class="epilog-response" style="font-style:italic;">yang shalat sudah bertahun-tahun tapi masih bertanya-tanya mengapa hati belum setenang yang dijanjikan — ayat terakhir surah ini adalah untukmu. <em>Radhiyallahu 'anhum wa radhu 'anh</em>. Allah ridha kepada mereka, dan mereka ridha kepada Allah. Ridha itu bukan hadiah yang datang di awal perjalanan. Ia adalah buah yang hanya tumbuh setelah musim yang panjang. Teruskan menanam.</p>
+    </div>
+
+    <div class="epilog-block reveal">
+      <div class="epilog-calling" style="color:var(--gold);">Dan untuk kita semua —</div>
+      <p class="epilog-response" style="border-left-color:rgba(184,134,11,0.5);">yang hidup di zaman yang paling banyak informasinya dan paling lapar maknanya, yang paling terhubung secara digital dan paling kesepian secara jiwa, yang paling banyak tahu dan paling jarang bertindak sesuai apa yang diketahui — Al-Bayyinah adalah cermin. Bukan untuk menghukum kita. Tapi untuk mengingatkan bahwa kita sedang berdiri di persimpangan yang sudah berdiri sejak manusia pertama: di satu sisi, nyaman dalam kebutaan yang dipilih; di sisi lain, perjalanan yang tidak selalu mudah tapi berujung pada satu-satunya ridha yang tidak akan pernah mengecewakan.</p>
+    </div>
+
+    <div class="epilog-climax reveal">
+      <span class="line1">Pilihlah melihat.</span>
+      <span class="line2">Pilihlah melangkah.</span>
+      <span class="line3">Pilihlah menjadi — sebaik-baik makhluk.</span>
+      <p class="epilog-final">Bayyinah sudah datang. Kini giliran kita.</p>
+    </div>
+
+    <div class="divider reveal"><div class="divider-gem"></div></div>
+
+    <div class="reveal" style="text-align:center;padding:2rem 0 3rem;">
+      <span class="final-arabic">رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ</span>
+      <p class="final-terjemah">«Allah ridha kepada mereka, dan mereka pun ridha kepada Allah.»</p>
+      <p class="final-source">— Al-Bayyinah: 8 —</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Tafsir Mendalam Surah Al-Bayyinah &nbsp;·&nbsp; Kehidupan sebagai Bukti &nbsp;·&nbsp; سُوْرَةُ الْبَيِّنَةِ</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Smooth active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

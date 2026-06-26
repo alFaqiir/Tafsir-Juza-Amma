@@ -1,0 +1,802 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Balad: Jalan Terjal Menuju Versi Terbaik Dirimu</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold1: #f5d67b;
+    --gold2: #c9922a;
+    --gold3: #fff0a0;
+    --gold4: #a0620a;
+    --bg:    #0a0a0a;
+    --bg2:   #111111;
+    --bg3:   #161616;
+    --card:  #131313;
+    --border:#2a2218;
+    --text:  #e8dcc8;
+    --muted: #9a8a6a;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+
+  .gold {
+    background: linear-gradient(135deg, var(--gold2) 0%, var(--gold1) 45%, var(--gold3) 60%, var(--gold2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: relative;
+    padding: 80px 40px 70px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, #1c1400 0%, #0a0a0a 70%);
+    border-bottom: 1px solid #2a2010;
+  }
+  .header::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle, rgba(197,147,42,.12) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: drift 40s linear infinite;
+    pointer-events:none;
+  }
+  .header::after {
+    content:'';
+    position:absolute;
+    top:-80px; left:50%; transform:translateX(-50%);
+    width:600px; height:300px;
+    background: radial-gradient(ellipse, rgba(180,130,30,.18) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  @keyframes drift { to { background-position: 40px 40px; } }
+
+  .header-bismillah {
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    font-size: 2em;
+    color: var(--gold1);
+    opacity: .6;
+    margin-bottom: 24px;
+    letter-spacing: 4px;
+    position: relative; z-index:1;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2em, 5vw, 3.4em);
+    font-weight: 700;
+    line-height: 1.2;
+    position: relative; z-index:1;
+    margin-bottom: 8px;
+  }
+  .header-sub {
+    font-size: 1em;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative; z-index:1;
+    margin-bottom: 28px;
+  }
+  .divider-gold {
+    width: 120px; height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold2), var(--gold1), var(--gold2), transparent);
+    margin: 20px auto;
+    position:relative; z-index:1;
+  }
+  .tagline {
+    font-style: italic;
+    font-size: 1.15em;
+    color: #c8b888;
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative; z-index:1;
+    line-height: 1.7;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 920px; margin: 0 auto; padding: 50px 24px 80px; }
+
+  /* ── AYAT SECTION ── */
+  .ayat-section {
+    position: relative;
+    background: linear-gradient(160deg, #161410, #111010);
+    border: 1px solid #2a2010;
+    border-left: 3px solid var(--gold2);
+    border-radius: 16px;
+    padding: 48px 44px;
+    margin-bottom: 52px;
+    box-shadow: 0 4px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(200,160,50,.06);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s ease, transform .7s ease, box-shadow .3s;
+  }
+  .ayat-section.visible { opacity:1; transform:translateY(0); }
+  .ayat-section:hover { box-shadow: 0 8px 50px rgba(0,0,0,.8), 0 0 0 1px rgba(197,147,42,.12); }
+  .ayat-section::before {
+    content: '✦';
+    position:absolute; top:18px; right:22px;
+    color: var(--gold2); opacity:.25; font-size:1.4em;
+  }
+
+  /* ── AYAT GROUP (beberapa ayat digabung) ── */
+  .ayat-group-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #1e1600, #2a1e00);
+    border: 1px solid var(--gold4);
+    border-radius: 30px;
+    padding: 6px 18px;
+    font-size: .82em;
+    color: var(--gold1);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .ayat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6em;
+    font-weight: 700;
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .ayat-number span.num {
+    display:inline-block;
+    width:38px; height:38px; line-height:36px; text-align:center;
+    border: 1px solid var(--gold2);
+    border-radius:50%;
+    font-size:.75em;
+    background: linear-gradient(135deg,#1e1600,#130e00);
+    color: var(--gold1);
+    flex-shrink:0;
+  }
+  .ayat-number span.num-range {
+    display:inline-flex; align-items:center; justify-content:center;
+    padding: 0 14px;
+    height:38px;
+    border: 1px solid var(--gold2);
+    border-radius:20px;
+    font-size:.72em;
+    background: linear-gradient(135deg,#1e1600,#130e00);
+    color: var(--gold1);
+    flex-shrink:0;
+    letter-spacing: 1px;
+  }
+
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35em;
+    font-weight: 700;
+    margin: 36px 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2a2010;
+  }
+
+  h3.sub-title {
+    font-family: 'Lora', serif;
+    font-size: 1.05em;
+    font-weight: 600;
+    margin: 28px 0 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h3.sub-title::before {
+    content:'';
+    display:inline-block;
+    width:18px; height:2px;
+    background: linear-gradient(to right, var(--gold2), var(--gold1));
+    flex-shrink:0;
+  }
+
+  /* ── ARABIC ── */
+  .arabic-wrap {
+    text-align: center;
+    margin: 32px 0 10px;
+    padding: 28px 20px;
+    background: radial-gradient(ellipse at center, #1a1300 0%, #0d0d0d 80%);
+    border-radius: 12px;
+    border: 1px solid #2e2010;
+    position:relative;
+  }
+  .arabic-wrap::before, .arabic-wrap::after {
+    content:'❧';
+    position:absolute; top:50%; transform:translateY(-50%);
+    color:var(--gold2); opacity:.3; font-size:1.2em;
+  }
+  .arabic-wrap::before { left:18px; }
+  .arabic-wrap::after  { right:18px; transform:translateY(-50%) scaleX(-1); }
+
+  .arabic {
+    font-family: 'Traditional Arabic', 'Scheherazade New', 'KFGQPC Uthmanic Script HAFS', serif;
+    font-size: clamp(2.2em, 5.5vw, 3.2em);
+    line-height: 2;
+    background: linear-gradient(135deg, var(--gold4) 0%, var(--gold1) 40%, var(--gold3) 60%, var(--gold2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    direction: rtl;
+  }
+  .arabic.arabic-small {
+    font-size: clamp(1.7em, 4vw, 2.5em);
+  }
+
+  .translation {
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.05em;
+    margin: 10px 0 32px;
+  }
+
+  /* ── ENERGI KATA CHIP ── */
+  .energi-chip {
+    display: inline-block;
+    background: linear-gradient(135deg, #1e1600 0%, #2a1e00 100%);
+    border: 1px solid var(--gold4);
+    color: var(--gold1);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: .95em;
+    font-weight: 600;
+    margin: 18px 0 10px;
+    letter-spacing:.5px;
+  }
+
+  /* ── PARAGRAPHS ── */
+  p {
+    margin-bottom: 16px;
+    color: #d4c49e;
+    text-align: justify;
+    font-size: .97em;
+  }
+  strong { color: var(--gold1); font-weight:600; }
+  em { color: #c8b478; font-style: italic; }
+
+  /* ── RELEVANCE BOX ── */
+  .relevance-box {
+    background: linear-gradient(160deg,#13100a,#0e0c08);
+    border-left: 3px solid var(--gold3);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .relevance-label {
+    font-size:.8em;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gold2);
+    margin-bottom:10px;
+    font-family:'Playfair Display',serif;
+  }
+
+  /* ── INTISARI ── */
+  .intisari {
+    position:relative;
+    background: linear-gradient(160deg, #1a1400, #130f00);
+    border: 1px solid #3a2a10;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 28px 0 0;
+    color: #e0cc90;
+    font-size: .98em;
+    line-height: 1.95;
+  }
+  .intisari::before {
+    content: '"';
+    position:absolute; top:-16px; left:24px;
+    font-size:4em; line-height:1;
+    background: linear-gradient(to bottom, var(--gold1), var(--gold2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-family:'Playfair Display',serif;
+  }
+  .intisari-label {
+    font-size:.75em; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--gold2); margin-bottom:12px;
+    font-family:'Playfair Display',serif;
+  }
+
+  /* ── PENUTUP ── */
+  .penutup {
+    background: linear-gradient(160deg,#0f0d08,#0a0a08);
+    border: 1px solid #2a2010;
+    border-radius: 16px;
+    padding: 52px 44px;
+    margin-bottom: 48px;
+  }
+
+  .langkah {
+    background: linear-gradient(160deg,#151208,#0e0c06);
+    border: 1px solid #2a2010;
+    border-left: 3px solid var(--gold2);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 24px;
+    margin: 16px 0;
+    color: #d4c49e;
+    font-size:.96em;
+  }
+  .langkah .lnum {
+    display:inline-block;
+    background: linear-gradient(135deg, var(--gold2), var(--gold1));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-weight:700; font-family:'Playfair Display',serif;
+    font-size:1.1em; margin-bottom:4px;
+  }
+  .langkah p { margin-bottom:0; }
+
+  /* ── EPILOG ── */
+  .epilog {
+    background: radial-gradient(ellipse at 50% 0%, #1a1200 0%, #080808 60%);
+    border: 1px solid #2a2010;
+    border-top: 2px solid var(--gold2);
+    border-radius: 16px;
+    padding: 60px 44px;
+    text-align: center;
+  }
+  .epilog .epilog-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.4em,3vw,2em);
+    font-weight:700;
+    margin-bottom:40px;
+  }
+  .epilog p {
+    max-width:680px; margin:0 auto 18px;
+    color:#c8b888; text-align:center; font-style:italic;
+  }
+  .epilog p.left-align {
+    text-align: left;
+    font-style: normal;
+    color: #d4c49e;
+  }
+  .epilog .arabic-line {
+    font-family: 'Traditional Arabic','Scheherazade New',serif;
+    font-size:clamp(1.6em,4vw,2.4em);
+    direction:rtl;
+    background: linear-gradient(135deg,var(--gold4),var(--gold1),var(--gold3),var(--gold2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    display:block; margin:28px auto 6px;
+  }
+  .epilog .latin-line {
+    font-style:italic; color:var(--gold1); font-size:1.05em;
+    margin-bottom:20px; display:block;
+  }
+  .epilog .closing {
+    margin-top:40px; font-style:normal;
+    font-family:'Playfair Display',serif;
+    font-size:1.1em; color:#e0cc90;
+    line-height:2;
+  }
+
+  /* ── STRUGGLE CARDS ── */
+  .struggle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .struggle-card {
+    background: linear-gradient(160deg,#131008,#0d0b06);
+    border: 1px solid #2a2010;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+  }
+  .struggle-card .sc-label {
+    font-size:.75em; letter-spacing:2px; text-transform:uppercase;
+    color:var(--gold2); margin-bottom:8px;
+    font-family:'Playfair Display',serif;
+  }
+  .struggle-card p {
+    font-size:.9em; margin-bottom:0; text-align:left;
+    color:#c0b090;
+  }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position:fixed; bottom:28px; right:28px;
+    width:46px; height:46px;
+    background: linear-gradient(135deg,var(--gold4),var(--gold2));
+    color:#0a0800; font-size:1.2em; font-weight:700;
+    border:none; border-radius:50%;
+    cursor:pointer; display:none; align-items:center; justify-content:center;
+    box-shadow:0 4px 20px rgba(0,0,0,.5);
+    transition:transform .2s;
+    z-index:999;
+  }
+  #scrollTop:hover { transform:scale(1.1); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:640px){
+    .header { padding:60px 20px 50px; }
+    .ayat-section, .penutup, .epilog { padding:32px 20px; }
+    .container { padding:30px 14px 60px; }
+    .struggle-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <h1 class="gold">Al-Balad</h1>
+  <p class="header-sub">Surat 90 · 20 Ayat · Makkiyah</p>
+  <div class="divider-gold"></div>
+  <p class="tagline">Hidup tidak pernah dirancang untuk mudah — dan surat ini justru merayakan kenyataan itu sebagai sebuah kemuliaan.</p>
+</div>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════════
+       BLOK I — AYAT 1–4: SUMPAH DAN FITRAH
+  ══════════════════════════════════════════ -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num-range">١ — ٤</span>
+      <span class="gold">Ayat 1–4 · Sumpah Pembuka</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic arabic-small">
+        لَآ أُقۡسِمُ بِهَـٰذَا ٱلۡبَلَدِ ۝ وَأَنتَ حِلٌّۢ بِهَـٰذَا ٱلۡبَلَدِ ۝ وَوَالِدٍۢ وَمَا وَلَدَ ۝ لَقَدۡ خَلَقۡنَا ٱلۡإِنسَـٰنَ فِى كَبَدٍ
+      </div>
+    </div>
+    <p class="translation">"Sungguh, Aku bersumpah dengan negeri ini (Mekah), dan engkau (Muhammad) bertempat di negeri ini; dan demi ayah beserta anaknya — sungguh, Kami telah menciptakan manusia dalam keadaan susah payah."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">لَآ أُقۡسِمُ — Aku Bersumpah dengan Penekanan</div>
+    <p>Dalam tradisi bahasa Arab klasik, <em>lā uqsimu</em> bukan sekadar sumpah biasa—ia adalah sumpah yang diucapkan dengan penuh kesadaran, seolah berkata: "Perkara ini sudah teramat jelas, tapi aku tetap bersumpah agar kamu sungguh-sungguh menyimaknya." Ini bukan ragu, ini penegasan yang mengguncang. Ketika seseorang yang otoritasnya tak terbatas memilih bersumpah, itu berarti apa yang akan disampaikan berikutnya bukan informasi biasa.</p>
+
+    <div class="energi-chip">كَبَد — Kabad: Susah Payah yang Mulia</div>
+    <p>Inilah kata kunci seluruh surat ini. <em>Kabad</em> berasal dari kata yang merujuk pada hati bagian dalam — organ yang menanggung beban paling berat dalam tubuh. Secara harfiah: sesuatu yang harus diperjuangkan dengan segala daya. Bukan sekadar "susah", tapi susah yang mengandung potensi, seperti tanah yang keras yang kalau digarap dengan gigih akan menghasilkan panen terbaik.</p>
+    <p>Perhatikan: Allah tidak berkata "Kami menciptakan manusia untuk menderita." Dia berkata "Kami menciptakan manusia <em>dalam</em> kabad." Manusia adalah makhluk yang dilahirkan di tengah-tengah perjuangan — dan itu bukan cacat desain, itu adalah arsitektur yang disengaja.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Bayangkan seseorang yang paling kamu hormati — katakanlah mentor, orang tua, atau guru terbaik yang pernah ada dalam hidupmu — tiba-tiba menatapmu dan berkata: "Aku perlu kamu benar-benar mendengar ini." Begitulah rasanya pembukaan surat ini. Allah bersumpah dengan negeri Mekah yang mulia, dengan kehadiran Nabi di dalamnya, dengan rantai generasi manusia yang sambung-menyambung — lalu menyampaikan satu fakta yang mengubah segalanya: <em>manusia diciptakan dalam keadaan susah payah.</em></p>
+    <p>Ini bukan kabar buruk. Ini adalah pembebasan dari ilusi. Selama ini kita tumbuh dengan narasi bahwa hidup yang "benar" adalah hidup yang mulus. Bahwa kesulitan adalah tanda bahwa kamu salah jalan, salah pilih, atau kurang beruntung. Bahwa orang-orang sukses entah bagaimana menemukan jalan pintas yang kamu belum temukan.</p>
+    <p>Al-Balad menampar ilusi itu sejak ayat pertama. Tidak ada jalan pintas. Tidak ada yang istimewa karena hidupnya susah — karena semua orang memang diciptakan untuk menghadapi <em>kabad</em>. Yang membedakan manusia bukan ada-tidaknya kesulitan, melainkan apa yang mereka lakukan dengan kesulitan itu.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era yang menjual mimpi tentang "hidup mudah". Konten viral tentang <em>passive income</em> yang terkesan tanpa usaha. Cerita sukses yang selalu dimulai dari ide cemerlang dan diakhiri dengan pencapaian spektakuler — tanpa menampilkan bertahun-tahun kegagalan di antaranya. Produk-produk yang menjanjikan: "Hasil maksimal dengan usaha minimal."</p>
+      <p>Akibatnya, ketika kita menghadapi kesulitan yang nyata — bayar cicilan yang mencekik, hubungan yang rumit, karir yang stagnan, kesehatan yang tidak bisa dikontrol — kita tidak hanya merasa susah. Kita merasa <em>gagal</em>. Seolah kesulitan itu adalah bukti bahwa kita tidak cukup pintar, tidak cukup rajin, atau tidak cukup beruntung untuk "menghack" sistem.</p>
+      <p>Ayat ini datang sebagai koreksi paling mendasar: <strong>kabad adalah fitrah, bukan kutukan.</strong> Kamu tidak sedang mengalami glitch dalam hidupmu — kamu sedang menjalani desain aslinya.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kesulitan bukan tanda bahwa hidupmu salah arah — ia adalah bukti bahwa hidupmu sedang berjalan sesuai rancangan. Yang membedakan manusia bukan siapa yang terhindar dari beban, melainkan siapa yang memilih untuk menanggungnya dengan bermartabat.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       BLOK II — AYAT 5–7: KESOMBONGAN DAN ILUSI
+  ══════════════════════════════════════════ -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num-range">٥ — ٧</span>
+      <span class="gold">Ayat 5–7 · Jebakan Kesombongan</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic arabic-small">
+        أَيَحۡسَبُ أَن لَّن يَقۡدِرَ عَلَيۡهِ أَحَدٌ ۝ يَقُولُ أَهۡلَكۡتُ مَالًا لُّبَدًا ۝ أَيَحۡسَبُ أَن لَّمۡ يَرَهُۥٓ أَحَدٌ
+      </div>
+    </div>
+    <p class="translation">"Apakah dia mengira bahwa tidak ada seorang pun yang berkuasa atasnya? Dia berkata, 'Aku telah menghabiskan harta yang banyak.' Apakah dia mengira bahwa tidak ada yang melihatnya?"</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">أَيَحۡسَبُ — Apakah Dia Menyangka?</div>
+    <p>Pertanyaan retoris ini bukan sekadar sindiran — ini adalah undangan untuk introspeksi yang mendesak. <em>Yahsabu</em> berasal dari akar kata yang berarti menghitung, memperkirakan, berasumsi. Dalam konteks ini: apakah manusia begitu terlena oleh kalkulasinya sendiri sampai lupa bahwa ada yang mengawasi kalkulasi itu?</p>
+    <p>Kata ini diulang dua kali dalam satu napas (ayat 5 dan 7) — ritme yang terasa seperti dua tamparan lembut yang mengingatkan: pertama, kamu tidak benar-benar tak terkalahkan; kedua, kamu tidak benar-benar tidak terlihat.</p>
+
+    <div class="energi-chip">مَالًا لُّبَدًا — Harta yang Berlimpah</div>
+    <p><em>Lubadā</em> menggambarkan sesuatu yang berlapis-lapis, menumpuk, saling menggelayut seperti daun-daun lebat di pohon. Ini bukan sekadar "banyak" — ini adalah kekayaan yang memabukkan, yang membuat pemiliknya merasa bahwa kehebatannya terukur dari seberapa besar yang sudah dia habiskan. Harta menjadi bukti eksistensi, bukan instrumen kebaikan.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Ini adalah potret manusia yang sudah tersesat dalam kesuksesannya sendiri. Dia sudah menaklukkan banyak hal — mungkin karir, mungkin harta, mungkin pengaruh — dan tanpa sadar mulai membangun narasi bahwa dia adalah pengecualian dari hukum alam semesta. Bahwa aturan berlaku untuk orang lain, bukan untuknya.</p>
+    <p>Ada sesuatu yang mencolok dalam cara ayat 6 menggambarkan sikapnya: <em>"Aku telah menghabiskan harta yang banyak."</em> Bukan "aku telah membantu banyak orang" atau "aku telah menciptakan banyak hal." Tapi: aku telah <em>menghabiskan</em>. Seolah ukuran kehebatan adalah seberapa banyak yang bisa dihancurkan, dikonsumsi, dibuang — bukan seberapa banyak yang bisa diberi atau dibangun.</p>
+    <p>Ini adalah kritik yang sangat kontemporer. Dalam budaya flexing dan pamer konsumsi, standar keberhasilan seringkali diukur bukan dari apa yang kamu punya, tapi dari apa yang kamu bisa habiskan tanpa berkedip.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita mengenal versi modern dari manusia dalam ayat ini. Dia bukan selalu orang yang brengsek secara terang-terangan — seringkali dia adalah kita sendiri di momen-momen tertentu. Saat kita merasa punya hak untuk bersikap semena-mena karena sudah berkorban banyak. Saat kita mengukur kontribusi kita dengan nominal, bukan dengan dampak. Saat kita merasa bahwa posisi kita sekarang adalah bukti bahwa kita lebih layak dari orang lain.</p>
+      <p>Ada juga bentuk yang lebih halus: kita berderma, berkontribusi, atau berbuat baik — tapi dengan harapan dilihat. Kita berbagi pencapaian, bukan untuk menginspirasi, tapi untuk membuktikan. <em>Ayat 7</em> adalah pengingat yang pelan tapi menohok: semua yang kamu sembunyikan dan semua yang kamu pamerkan — dua-duanya tercatat. Yang terlihat oleh orang lain tidak selalu sama dengan yang tercatat.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kesombongan paling berbahaya bukan yang ditampilkan dengan keras, melainkan yang dibenarkan secara diam-diam dalam hati: "Aku sudah berkorban banyak, jadi aku berhak." Sementara langit mencatat bukan seberapa banyak yang kamu keluarkan, tapi dari mana keluarnya — dari tangan atau dari hati.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       BLOK III — AYAT 8–10: KARUNIA YANG DILUPAKAN
+  ══════════════════════════════════════════ -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num-range">٨ — ١٠</span>
+      <span class="gold">Ayat 8–10 · Modal yang Sudah Diberikan</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic arabic-small">
+        أَلَمۡ نَجۡعَل لَّهُۥ عَيۡنَيۡنِ ۝ وَلِسَانًا وَشَفَتَيۡنِ ۝ وَهَدَيۡنَـٰهُ ٱلنَّجۡدَيۡنِ
+      </div>
+    </div>
+    <p class="translation">"Bukankah Kami telah menjadikan untuknya dua mata? Dan lidah serta dua bibir? Dan Kami telah menunjukkan kepadanya dua jalan (kebaikan dan kejahatan)."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">أَلَمۡ نَجۡعَل — Bukankah Telah Kami Berikan?</div>
+    <p>Tiga pertanyaan beruntun dalam nada yang lembut tapi menggugah. Bukan pertanyaan ujian, melainkan pertanyaan pengingat. Seperti seseorang yang dengan sabar mengingatkan temannya yang panik: "Hei — kamu sudah punya semua yang kamu butuhkan. Ingat tidak?" Tiga pertanyaan ini adalah inventaris modal dasar manusia yang sering dilupakan justru karena terlalu ada.</p>
+
+    <div class="energi-chip">ٱلنَّجۡدَيۡنِ — Dua Jalan Terjal</div>
+    <p>Ini kata yang luar biasa. <em>Najd</em> berarti dataran tinggi yang terjal dan sulit didaki — bukan sekadar persimpangan datar. Pilihan antara kebaikan dan kejahatan tidak digambarkan sebagai "dua jalan yang nyaman" atau "kanan dan kiri yang setara". Keduanya <em>terjal</em>. Keduanya menuntut usaha. Tidak ada versi hidup yang benar-benar mudah — bahkan jalan yang salah pun ada harganya. Yang berbeda hanya ke mana terjal itu membawa kita.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Setelah melukis gambaran manusia yang sombong dan lalai, Al-Balad tiba-tiba berbelok ke nada yang lebih lembut dan hampir mesra. Seolah berkata: sebelum menilaimu, izinkan Aku mengingatkanmu betapa banyak yang sudah Aku berikan.</p>
+    <p>Dua mata. Satu lidah dengan dua bibir. Dan petunjuk ke dua jalan. Kesederhanaan daftar ini bisa menipu — karena kenyataannya, tiga hal ini adalah seluruh peralatan dasar untuk menjadi manusia yang bermartabat. Mata untuk melihat dan menyaksikan. Lidah dan bibir untuk bersuara, membela, mengucapkan kebenaran. Dan akal yang bisa membedakan mana yang membawa naik dan mana yang membawa jatuh.</p>
+    <p>Tidak ada manusia yang dilahirkan tanpa modal. Yang berbeda adalah apakah modal itu digunakan, dan ke arah mana.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era kelimpahan informasi — tapi juga era kelumpuhan pilihan. Terlalu banyak opsi membuat kita bingung. Terlalu banyak perbandingan membuat kita merasa kurang. Sebelum bertanya "apa lagi yang aku butuhkan untuk bisa mulai?", coba inventarisasi ulang: apa yang sudah ada?</p>
+      <p>Kamu punya mata untuk membaca situasi dan manusia. Kamu punya suara untuk mengungkapkan yang benar ketika semua orang diam. Dan kamu punya kapasitas untuk tahu mana yang benar dan mana yang salah — bahkan di tengah kerumitan. Tiga modal itu, kalau benar-benar digunakan secara penuh, lebih dari cukup untuk memulai perjalanan naik.</p>
+      <p>Pertanyaan reflektifnya: seberapa banyak kapasitas yang kamu sudah miliki tapi belum berani kamu gunakan?</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kamu tidak kekurangan modal — kamu mungkin hanya belum berani menginventarisnya. Mata untuk melihat yang tak terlihat orang lain. Suara untuk mengucapkan yang tak berani diucapkan siapapun. Dan hati nurani yang tahu bedanya, bahkan saat kepalamu sedang bingung.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       BLOK IV — AYAT 11–16: AQABAH — PENDAKIAN BESAR
+  ══════════════════════════════════════════ -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num-range">١١ — ١٦</span>
+      <span class="gold">Ayat 11–16 · Aqabah: Pendakian yang Menentukan</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic arabic-small">
+        فَلَا ٱقۡتَحَمَ ٱلۡعَقَبَةَ ۝ وَمَآ أَدۡرَىٰكَ مَا ٱلۡعَقَبَةُ ۝ فَكُّ رَقَبَةٍ ۝ أَوۡ إِطۡعَـٰمٌۭ فِى يَوۡمٍۢ ذِى مَسۡغَبَةٍۢ ۝ يَتِيمًۭا ذَا مَقۡرَبَةٍ ۝ أَوۡ مِسۡكِينًۭا ذَا مَتۡرَبَةٍ
+      </div>
+    </div>
+    <p class="translation">"Namun dia tidak menempuh jalan yang mendaki dan sukar itu. Tahukah kamu apakah jalan yang mendaki lagi sukar itu? (Yaitu) memerdekakan budak, atau memberi makan pada hari kelaparan, kepada anak yatim yang ada hubungan kerabat, atau kepada orang miskin yang sangat melarat."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">ٱلۡعَقَبَة — Al-Aqabah: Tanjakan Curam yang Menentukan</div>
+    <p>Kata ini adalah jantung dari seluruh surat. <em>Aqabah</em> secara harfiah berarti tanjakan yang curam, jalan sempit di lereng gunung yang hanya bisa dilalui dengan susah payah. Dalam sejarah Arab, aqabah adalah jalur gunung yang terkenal berbahaya — kamu tidak bisa melewatinya sambil bersantai. Kamu harus memilih untuk mendaki, mengerahkan tenaga, dan menanggung ketidaknyamanan.</p>
+    <p>Tapi perhatikan bagaimana Allah mendeskripsikan isinya: bukan ibadah ritual, bukan amalan yang terlihat saleh. Yang mengisi <em>aqabah</em> adalah tindakan-tindakan sosial yang menuntut pengorbanan nyata — membebaskan yang terkekang, memberi makan yang lapar, menjangkau yang paling rentan di sekitar kita.</p>
+
+    <div class="energi-chip">فَكُّ رَقَبَة — Melepaskan Leher (dari Belenggu)</div>
+    <p><em>Fakku raqabah</em> secara harfiah berarti melepas ikatan di leher — gambaran memerdekakan budak. Dalam konteks modern, ini meluas jauh lebih luas: melepaskan siapa pun dari sistem yang mengeksploitasi, memperbudak, atau mengungkung potensi mereka. Apakah itu sistem, hubungan, kemiskinan, atau ketidakadilan — siapa pun yang terlibat dalam memutus rantai itu sedang menaiki <em>aqabah</em>.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Ini adalah momen paling dramatis dalam Al-Balad. Setelah memaparkan modal yang dimiliki manusia (ayat 8-10), Allah mengungkapkan bahwa ada satu tanjakan besar yang menjadi ujian nyata: apakah kamu akan menggunakan semua modal itu untuk mendaki?</p>
+    <p>Dan yang mengejutkan — jawaban atas pertanyaan "apakah dia mendaki aqabah?" adalah: <em>tidak</em>. "Namun dia tidak menempuh jalan yang mendaki itu." Ini bukan hanya tentang orang sombong di ayat sebelumnya. Ini tentang kecenderungan umum manusia untuk <em>tahu</em> jalan yang benar, tapi memilih yang lebih mudah.</p>
+    <p>Lalu, seolah paham bahwa kita akan bertanya "jalan yang mendaki itu seperti apa?", Allah langsung menjelaskan. Dan jawabannya bukan meditasi di gua, bukan ritual panjang, bukan pencapaian spiritual yang muluk. Aqabah adalah: membebaskan yang terbelenggu. Memberi makan yang kelaparan. Mendekati yang paling rentan, bukan yang paling menguntungkan.</p>
+    <p>Kedalaman spiritual diukur bukan dari seberapa tinggi kamu naik ke langit dalam doamu, tapi dari seberapa dalam kamu turun ke realita orang-orang yang paling membutuhkan.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Aqabah hadir dalam banyak bentuk di zaman sekarang. Itu adalah momen ketika kamu tahu bahwa karyawanmu diperlakukan tidak adil oleh sistem, dan kamu punya pilihan untuk diam atau bicara. Itu adalah ketika seseorang di sekitarmu sedang tenggelam dalam utang atau keputusasaan, dan kamu punya sedikit kemampuan lebih untuk membantu. Itu adalah ketika kamu bisa menggunakan suara, platform, atau posisimu untuk membela yang lemah — tapi kamu tahu itu akan mengorbankan kenyamananmu.</p>
+      <p>Aqabah juga bisa lebih dekat dan lebih kecil: meminta maaf duluan padahal kamu tidak sepenuhnya salah. Mengunjungi saudara yang sulit. Menyisihkan waktu untuk orang tua di tengah jadwal yang padat. Memilih jujur ketika bohong jauh lebih mudah.</p>
+      <p>Ukuran aqabahmu mungkin berbeda-beda. Tapi arahnya selalu sama: menuju yang lebih susah, yang lebih bermartabat, yang lebih menguras diri — karena di sanalah pertumbuhan yang sesungguhnya terjadi.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Aqabah bukan undangan untuk menderita — ia adalah undangan untuk memilih siapa kamu di saat memilih itu terasa mahal. Kebaikan yang tidak menguras apa-apa dari dirimu mungkin belum benar-benar bermakna. Yang benar-benar mendakinya adalah mereka yang tetap memberi meski persediaan mereka sendiri hampir habis.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       BLOK V — AYAT 17–20: DUA GOLONGAN, DUA AKHIR
+  ══════════════════════════════════════════ -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num-range">١٧ — ٢٠</span>
+      <span class="gold">Ayat 17–20 · Dua Golongan, Dua Akhir</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic arabic-small">
+        ثُمَّ كَانَ مِنَ ٱلَّذِينَ ءَامَنُواْ وَتَوَاصَوۡاْ بِٱلصَّبۡرِ وَتَوَاصَوۡاْ بِٱلۡمَرۡحَمَةِ ۝ أُوْلَـٰٓئِكَ أَصۡحَـٰبُ ٱلۡمَيۡمَنَةِ ۝ وَٱلَّذِينَ كَفَرُواْ بِـَٔايَـٰتِنَا هُمۡ أَصۡحَـٰبُ ٱلۡمَشۡـَٔمَةِ ۝ عَلَيۡهِمۡ نَارٌ مُّؤۡصَدَةٌ
+      </div>
+    </div>
+    <p class="translation">"Kemudian dia termasuk orang-orang yang beriman dan saling berpesan untuk bersabar dan saling berpesan untuk berkasih sayang. Mereka itulah golongan kanan. Dan orang-orang yang mengingkari ayat-ayat Kami, mereka itulah golongan kiri. Mereka diliputi api yang ditutup rapat."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">تَوَاصَوۡاْ — Saling Berpesan (Bukan Hanya Menerima)</div>
+    <p>Ini kata yang sering terlewat padahal sangat kaya. <em>Tawāshaw</em> bukan sekadar "menjadi sabar" atau "menjadi penyayang". Ini adalah tindakan aktif dan resiprokal — saling mewariskan, saling mengingatkan, saling menguatkan. Artinya: kebaikan sejati bukan hanya soal apa yang kamu miliki, tapi apakah kamu menularkannya. Apakah lingkaranmu ikut terangkat bersamamu.</p>
+
+    <div class="energi-chip">ٱلۡمَرۡحَمَة — Al-Marhamah: Kasih Sayang yang Bertindak</div>
+    <p><em>Marhamah</em> berbeda dari sekadar <em>rahmah</em> (kasih sayang sebagai perasaan). Ia adalah kasih sayang yang bergerak, yang menuntut respons, yang tidak bisa tinggal diam melihat penderitaan. Ini adalah belas kasih yang turun dari hati ke tangan. Satu kata ini menghubungkan seluruh surat: aqabah yang dideskripsikan sebelumnya adalah <em>marhamah</em> yang diwujudkan.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Al-Balad menutup dengan kontras yang tajam: dua golongan manusia yang merespons semua kesadaran sebelumnya dengan cara yang berlawanan. Golongan pertama — mereka yang beriman dan membangun komunitas yang saling menopang dalam kesabaran dan kasih sayang. Golongan kedua — mereka yang menolak dan memilih jalan yang menutup diri.</p>
+    <p>Yang menarik adalah bagaimana "golongan kanan" dalam ayat ini tidak digambarkan sebagai orang-orang yang sempurna atau yang tidak pernah jatuh. Mereka digambarkan sebagai orang-orang yang <em>saling</em> menguatkan. Iman tidak dilakukan sendiri. Kesabaran tidak ditanggung sendiri. Kasih sayang tidak dimonopoli sendiri. Kata kunci adalah komunitas — dan pesan yang terus diwariskan dari satu tangan ke tangan berikutnya.</p>
+    <p>Penutup surat ini adalah penutup yang dingin dan jujur. Api yang "ditutup rapat" bukan hanya gambaran siksaan — ini adalah metafora tentang ketertutupan itu sendiri. Hati yang menutup diri dari kebenaran, dari empati, dari tanggung jawab — adalah hati yang sudah mulai membangun penjara sendiri jauh sebelum apapun yang lain.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Di era individualisme yang semakin kuat, ada tekanan untuk menjadikan pertumbuhan spiritual sebagai perjalanan soliter — meditasi sendirian, jurnal sendirian, "healing" yang bersifat sangat privat. Tidak ada yang salah dengan keheningan personal. Tapi Al-Balad mengingatkan bahwa tahap paling matang dari keimanan adalah ketika kamu mulai <em>mewariskan</em> apa yang kamu pelajari kepada orang-orang di sekitarmu.</p>
+      <p>Apakah lingkaran pergaulanmu menjadi lebih sabaran karena kehadiranmu? Apakah teman-temanmu menjadi lebih peka dan lebih pemaaf karena dekat denganmu? Atau kamu sedang menumpuk pencapaian spiritual untuk dirimu sendiri, sementara orang-orang terdekatmu tidak merasakan manfaatnya sama sekali?</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Iman yang matang tidak berakhir pada dirimu. Ia menular. Ia mewariskan. Golongan kanan bukan mereka yang paling sedikit jatuh — melainkan mereka yang paling banyak membantu orang lain bangkit. Kasih sayang yang hanya tersimpan dalam hati, belum selesai menjadi dirinya sendiri.
+    </div>
+  </div>
+
+  <!-- PENUTUP -->
+  <div class="penutup">
+    <h2 class="section-title gold" style="margin-top:0;">Refleksi: Pola yang Bisa Diambil</h2>
+
+    <div class="langkah">
+      <div class="lnum">Pola 1 — Ubah Cara Membaca Kesulitan</div>
+      <p>Setiap kali kamu menghadapi hambatan yang terasa tidak adil, coba ganti pertanyaan dari "Kenapa ini terjadi padaku?" menjadi "Ini adalah <em>kabad</em> yang seperti apa — dan apa yang bisa aku pelajari darinya?" Bukan karena kamu harus suka menderita, tapi karena manusia yang sudah menerima bahwa susah adalah bagian dari rancangan tidak akan menghabiskan energinya untuk menolak kenyataan. Energi itu bisa dipakai untuk mendaki.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">Pola 2 — Temukan Aqabahmu yang Paling Dekat</div>
+      <p>Aqabah tidak harus megah. Dalam jangkauan terdekatmu sekarang: siapa yang terkekang dan bisa kamu bantu bebaskan? Siapa yang kelaparan — bukan hanya secara fisik, tapi kelaparan perhatian, pengakuan, kesempatan? Sering kali aqabah kita yang paling mendesak adalah yang paling kita abaikan karena terasa terlalu biasa. Mulai dari satu langkah konkret minggu ini.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">Pola 3 — Audit Modal yang Sudah Ada</div>
+      <p>Sebelum mengeluh tentang apa yang tidak kamu miliki, lakukan inventarisasi jujur: apa yang sudah ada tapi belum digunakan sepenuhnya? Kemampuan yang kamu remehkan. Akses yang kamu anggap wajar. Suara yang kamu simpan karena takut tidak didengar. Al-Balad mengingatkan bahwa Allah sudah membekali — pertanyaannya bukan soal modal, tapi soal keberanian untuk memakainya.</p>
+    </div>
+
+    <h2 class="section-title gold">Langkah Nyata</h2>
+
+    <div class="langkah">
+      <div class="lnum">Langkah 1 — Jurnal Aqabah Mingguan</div>
+      <p>Setiap akhir pekan, tuliskan satu hal yang kamu <em>hindari</em> minggu ini padahal kamu tahu itu benar. Bukan untuk menghukum diri — tapi untuk mengenali pola. Sering kali kita tidak sadar sudah berulang kali menghindari tanjakan yang sama. Mengenali polanya adalah langkah pertama untuk mengubahnya.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">Langkah 2 — Satu Tindakan <em>Tawāshaw</em> per Pekan</div>
+      <p>Pilih satu orang di lingkaran terdekatmu yang membutuhkan pengingat — tentang kesabaran, tentang harapan, tentang kemampuan mereka yang mungkin sedang mereka ragukan. Kirim pesan, ajak bicara, atau cukup hadir. Iman yang diwariskan tidak selalu butuh ceramah. Kadang cukup satu kalimat yang tepat di waktu yang tepat.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">Langkah 3 — Uji Penyebab Kesulitanmu</div>
+      <p>Setiap kali kamu menghadapi hambatan besar, tanyakan: apakah ini <em>kabad</em> yang memang harus ditanggung sebagai bagian dari pertumbuhan — atau ini akibat dari pilihan yang bisa diubah? Membedakan keduanya adalah kematangan. Tidak semua kesulitan harus dipertahankan demi terlihat kuat. Tapi tidak semua kesulitan pula layak dihindari demi terasa nyaman.</p>
+    </div>
+  </div>
+
+  <!-- EPILOG -->
+  <div class="epilog">
+    <h2 class="epilog-title gold">Tanjakan yang Tidak Ada Jalan Pintasnya</h2>
+
+    <p>Ada momen-momen dalam hidup ketika kamu berdiri di bawah sebuah tanjakan dan kamu tahu — kamu benar-benar tahu — bahwa jalan satu-satunya adalah ke atas. Tidak ada jalan melingkar yang lebih mudah. Tidak ada lift. Tidak ada siapapun yang bisa mendaki menggantikanmu.</p>
+
+    <p>Kamu mungkin sedang ada di tanjakan itu sekarang. Atau baru saja melewatinya dan masih merasakan lelah di paha dan napas di dada. Atau melihatnya dari kejauhan dan sudah mulai mencari alasan untuk tidak mendekatinya.</p>
+
+    <div class="struggle-grid">
+      <div class="struggle-card">
+        <div class="sc-label">✦ Jika kamu sedang kelelahan</div>
+        <p>Mungkin kamu sudah lama mendaki dan tidak tahu kapan akan sampai. Al-Balad tidak berjanji bahwa tanjakan itu pendek. Tapi ia berjanji bahwa kamu tidak dirancang untuk lemah — kamu dirancang untuk <em>kabad</em>, dan kabad mengandung ketangguhan yang tidak kamu sadari sebelum kamu harus memakainya.</p>
+      </div>
+      <div class="struggle-card">
+        <div class="sc-label">✦ Jika kamu merasa sendirian</div>
+        <p>Golongan kanan bukan soloer. Mereka saling berpesan, saling mewariskan, saling menguatkan. Apakah kamu sudah membiarkan seseorang menemanimu mendaki? Atau sudah sekian lama kamu menanggung berat ini sendiri karena merasa tidak seharusnya meminta?</p>
+      </div>
+      <div class="struggle-card">
+        <div class="sc-label">✦ Jika kamu merasa tidak cukup</div>
+        <p>Kamu sudah diberi dua mata, lidah dan dua bibir, dan petunjuk ke dua jalan. Bukan karena kamu hebat — tapi karena itu memang yang dibutuhkan untuk memulai. Mulai bukan setelah cukup siap. Mulai dengan apa yang sudah ada.</p>
+      </div>
+      <div class="struggle-card">
+        <div class="sc-label">✦ Jika kamu sedang ragu untuk memberi</div>
+        <p>Aqabah menunggu. Dan ia tidak akan terasa lebih ringan hanya dengan menundanya. Yang berubah bukan beratnya — yang berubah adalah kamu, setelah memilih mendaki meskipun berat.</p>
+      </div>
+    </div>
+
+    <span class="arabic-line">لَقَدۡ خَلَقۡنَا ٱلۡإِنسَـٰنَ فِى كَبَدٍ</span>
+    <span class="latin-line">Laqad khalaqnal insāna fī kabad</span>
+
+    <p>Sungguh, Kami menciptakan manusia dalam keadaan susah payah.</p>
+    <p>Bukan kutukan. Bukan kelalaian. Bukan hukuman.</p>
+    <p>Sebuah rancangan. Sebuah kehormatan. Sebuah undangan untuk menjadi sesuatu yang lebih dari sekadar nyaman.</p>
+
+    <div class="divider-gold" style="margin:40px auto;"></div>
+
+    <p class="closing">
+      Di dunia yang menjual kenyamanan sebagai tujuan tertinggi,<br>
+      Al-Balad adalah pengingat yang menyejukkan sekaligus menantang:<br><br>
+      <span class="gold" style="-webkit-text-fill-color:unset; background:none; color:var(--gold1);">kamu tidak diciptakan untuk mudah — kamu diciptakan untuk bermakna.</span><br><br>
+      Dan makna selalu ada di ujung tanjakan,<br>
+      di tangan yang diulurkan ke yang paling membutuhkan,<br>
+      di kata yang diucapkan di saat diam jauh lebih nyaman,<br>
+      di kasih sayang yang tetap diberikan meski sudah hampir habis.<br><br>
+      <strong style="color:var(--gold1); font-size:1.1em;">Tanjanganmu sedang menunggumu. Dan kamu lebih siap dari yang kamu kira.</strong>
+    </p>
+  </div>
+
+</div><!-- /container -->
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.ayat-section').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

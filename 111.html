@@ -1,0 +1,813 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Al-Lahab: Dihukum Sebelum Kalah, Dimatikan Sebelum Mati</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #e8e8e8;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            text-align: center;
+            padding: 60px 20px 80px;
+            background: linear-gradient(180deg, #1a0000 0%, #000 100%);
+            border-bottom: 2px solid #ff4500;
+            margin-bottom: 60px;
+        }
+
+        .arabic-title {
+            font-size: 3em;
+            color: #ff6b35;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
+        }
+
+        .main-title {
+            font-size: 2.5em;
+            color: #ff6b35;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #ffa07a;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .tagline {
+            font-size: 1.2em;
+            color: #ddd;
+            font-style: italic;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            border-left: 3px solid #ff6b35;
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        /* Section Styles */
+        .section {
+            margin: 60px 0;
+            padding: 40px 30px;
+            background: rgba(20, 20, 20, 0.6);
+            border-radius: 10px;
+            border-left: 5px solid #ff6b35;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #ff6b35;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Ayat Styles */
+        .ayat-container {
+            margin: 50px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #1a0a00 0%, #0a0000 100%);
+            border-radius: 15px;
+            border: 2px solid #ff4500;
+            box-shadow: 0 10px 40px rgba(255, 69, 0, 0.3);
+        }
+
+        .ayat-number {
+            color: #ff6b35;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ayat-arabic {
+            font-size: 2.5em;
+            color: #ffa07a;
+            text-align: center;
+            margin: 30px 0;
+            line-height: 2;
+            text-shadow: 0 0 15px rgba(255, 160, 122, 0.4);
+        }
+
+        .ayat-translation {
+            font-size: 1.3em;
+            color: #ddd;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(255, 107, 53, 0.05);
+            border-radius: 8px;
+        }
+
+        .subsection-title {
+            font-size: 1.5em;
+            color: #ff8c42;
+            margin: 35px 0 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Energy Word Styles */
+        .energy-word {
+            margin: 25px 0;
+            padding: 25px;
+            background: rgba(255, 107, 53, 0.08);
+            border-left: 4px solid #ff6b35;
+            border-radius: 8px;
+        }
+
+        .word-arabic {
+            font-size: 1.8em;
+            color: #ff8c42;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .word-meaning {
+            color: #ffa07a;
+            font-style: italic;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        /* Example Styles */
+        .example {
+            margin: 25px 0;
+            padding: 25px;
+            background: rgba(40, 20, 10, 0.6);
+            border-left: 4px solid #ff4500;
+            border-radius: 8px;
+        }
+
+        .example-title {
+            color: #ff8c42;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        /* Intisari Styles */
+        .intisari {
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #2a1a0a 0%, #1a0a00 100%);
+            border-radius: 10px;
+            border: 2px solid #ff6b35;
+            font-size: 1.15em;
+            font-style: italic;
+            color: #ffd9b3;
+            line-height: 1.9;
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.2);
+        }
+
+        /* Reflection Styles */
+        .reflection-section {
+            margin: 60px 0;
+            padding: 50px 40px;
+            background: linear-gradient(135deg, #1a0000 0%, #000 100%);
+            border-radius: 15px;
+            border: 3px solid #ff4500;
+        }
+
+        .pola-list, .langkah-list {
+            margin: 30px 0;
+        }
+
+        .pola-item, .langkah-item {
+            margin: 25px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .pola-item:before, .langkah-item:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #ff6b35;
+            font-size: 1.5em;
+        }
+
+        .pola-title, .langkah-title {
+            color: #ff8c42;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        /* Epilog Styles */
+        .epilog {
+            margin: 60px 0;
+            padding: 50px 40px;
+            background: linear-gradient(180deg, #0a0000 0%, #1a0000 50%, #0a0000 100%);
+            border-radius: 15px;
+            border-top: 3px solid #ff6b35;
+            border-bottom: 3px solid #ff6b35;
+        }
+
+        .epilog-title {
+            font-size: 2em;
+            color: #ff6b35;
+            text-align: center;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .epilog p {
+            margin: 20px 0;
+            font-size: 1.1em;
+            line-height: 2;
+        }
+
+        .epilog-highlight {
+            color: #ffa07a;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .epilog-end {
+            text-align: center;
+            font-size: 1.3em;
+            color: #ff8c42;
+            font-weight: bold;
+            margin: 40px 0 20px;
+            letter-spacing: 2px;
+        }
+
+        .closing {
+            text-align: center;
+            font-size: 1.2em;
+            color: #ddd;
+            font-style: italic;
+            margin-top: 30px;
+        }
+
+        /* Paragraph Styles */
+        p {
+            margin: 20px 0;
+            text-align: justify;
+        }
+
+        strong {
+            color: #ff8c42;
+        }
+
+        em {
+            color: #ffa07a;
+        }
+
+        /* Scroll Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .arabic-title {
+                font-size: 2em;
+            }
+            
+            .main-title {
+                font-size: 1.8em;
+            }
+            
+            .subtitle {
+                font-size: 1.1em;
+            }
+            
+            .ayat-arabic {
+                font-size: 1.8em;
+            }
+            
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .section, .ayat-container {
+                padding: 25px 20px;
+            }
+        }
+
+        /* Glow Effect */
+        .glow {
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.6),
+                         0 0 20px rgba(255, 107, 53, 0.4),
+                         0 0 30px rgba(255, 107, 53, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="arabic-title glow">اللَّهَبُ</div>
+        <h1 class="main-title">SURAT AL-LAHAB</h1>
+        <div class="subtitle">Dihukum Sebelum Kalah, Dimatikan Sebelum Mati</div>
+        <div class="tagline">
+            Bukan tentang siapa yang menang atau kalah—tapi tentang pilihan yang sudah memilih jatuhnya sendiri sebelum waktu membuktikan.
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section fade-in">
+            <h2 class="section-title">Pembukaan: Suara dari Balik Tirai Kepastian</h2>
+            <p>Ada momen dalam sejarah ketika Tuhan tidak lagi menunggu. Tidak lagi memberi peluang. Tidak lagi menawarkan jalan keluar.</p>
+            
+            <p>Surat Al-Lahab adalah salah satu momen langka itu—sebuah surat pendek yang turun dengan kepastian mutlak tentang nasib seseorang <em>sebelum</em> orang itu meninggal. Abu Lahab, paman Nabi Muhammad ﷺ sekaligus musuh bebuyutannya, divonis di dalam Al-Qur'an dengan nama aslinya. Bukan dengan sindiran. Bukan dengan kiasan. Tapi dengan terang-terangan: <em>"Binasalah kedua tangan Abu Lahab, dan binasalah dia."</em></p>
+            
+            <p>Ini bukan soal dendam ilahi. Ini tentang sebuah pintu yang sudah terkunci dari dalam—oleh tangan yang menguncinya sendiri.</p>
+            
+            <p>Pertanyaannya: <strong>apa yang membuat seseorang sampai di titik di mana Tuhan sendiri tidak lagi memberinya pilihan?</strong></p>
+        </div>
+
+        <!-- AYAT 1 -->
+        <div class="ayat-container fade-in">
+            <div class="ayat-number">Ayat 1</div>
+            <div class="ayat-arabic">تَبَّتْ يَدَآ أَبِى لَهَبٍ وَتَبَّ</div>
+            <div class="ayat-translation">"Binasalah kedua tangan Abu Lahab, dan binasalah dia."</div>
+            
+            <h3 class="subsection-title">Energi Kata</h3>
+            
+            <div class="energy-word">
+                <div class="word-arabic">تَبَّتْ (tabbat)</div>
+                <div class="word-meaning">Binasa, rugi total, terputus tanpa harapan</div>
+                <p>Kata "tabba" bukan sekadar "kalah" atau "celaka". Ini adalah kehancuran yang menyeluruh—seperti benang yang putus hingga tidak bisa disambung lagi. Bukan hanya gagal, tapi <em>kehilangan esensi keberhasilannya</em>.</p>
+                <p>Bandingkan dengan kata "halaka" (هلك) yang berarti musnah secara fisik. Sementara "tabba" lebih tentang <em>kehilangan makna</em>, kehilangan tujuan, kehilangan hasil dari segala usaha. Seperti orang yang membangun istana di atas pasir—kerja kerasnya ada, tapi fondasinya nihil.</p>
+            </div>
+            
+            <div class="energy-word">
+                <div class="word-arabic">يَدَا (yadaa)</div>
+                <div class="word-meaning">Kedua tangan</div>
+                <p>Kenapa tangan? Karena tangan adalah simbol usaha, karya, dan kekuasaan. Abu Lahab adalah orang kaya, berpengaruh, punya posisi sosial tinggi di Mekah. Tangannya adalah simbol dari semua yang dia miliki dan yang dia perjuangkan.</p>
+                <p>Dengan menyebut "kedua tangan", Al-Qur'an menyasar <em>semua yang dia kerjakan</em>—bukan hanya orangnya, tapi juga warisannya, pengaruhnya, dan semua usahanya melawan kebenaran.</p>
+            </div>
+            
+            <div class="energy-word">
+                <div class="word-arabic">أَبِى لَهَبٍ (Abu Lahab)</div>
+                <div class="word-meaning">Bapak Api</div>
+                <p>Nama aslinya adalah Abdul Uzza. Tapi dia diberi julukan "Abu Lahab" (Bapak Api) karena wajahnya yang merah bersemu, atau sikapnya yang panas dan keras. Al-Qur'an memilih menyebutnya dengan julukan ini—sebuah ironi tajam, karena dia yang dijuluki "Bapak Api" akan menjadi bahan bakar api neraka itu sendiri.</p>
+            </div>
+            
+            <h3 class="subsection-title">Tafsir Mendalam</h3>
+            <p>Ayat ini turun sebagai respons langsung terhadap permusuhan Abu Lahab terhadap Islam. Ketika Nabi Muhammad ﷺ pertama kali menyampaikan dakwah secara terbuka di Bukit Shafa, Abu Lahab-lah yang berdiri dan berteriak, <em>"Celakalah kamu! Apakah untuk ini kamu mengumpulkan kami?"</em></p>
+            
+            <p>Bukan hanya menolak—dia memalukan, merendahkan, dan secara aktif menghalangi orang lain untuk mendengar. Dia mengikuti Rasulullah ke pasar-pasar, ke pertemuan-pertemuan, dan setiap kali ada yang mau mendengar, Abu Lahab akan berteriak, <em>"Jangan percaya dia! Dia penipu! Dia gila!"</em></p>
+            
+            <p>Ini bukan diskusi teologis. Ini sabotase sistematis.</p>
+            
+            <p><strong>Filosofi di Balik Ayat:</strong></p>
+            <p>Ada perbedaan antara <em>menolak kebenaran karena belum tahu</em> dan <em>menolak kebenaran sambil memastikan orang lain juga tidak tahu</em>. Abu Lahab ada di kategori kedua. Dia tidak hanya menutup pintu untuk dirinya sendiri—dia mengunci pintu itu dan membuang kuncinya agar tidak ada yang bisa masuk.</p>
+            
+            <p>Ketika seseorang sampai di titik di mana dia <em>aktif menghalangi orang lain dari kebenaran</em>, maka dia sudah melampaui batas yang bahkan Tuhan tidak lagi memberinya ruang untuk bertobat.</p>
+            
+            <p><strong>Relevansi Kekinian:</strong></p>
+            <p>Pernah nggak kalian bertemu dengan orang yang bukan hanya tidak percaya pada kebaikan, tapi juga <em>berusaha meyakinkan orang lain bahwa kebaikan itu palsu</em>?</p>
+            
+            <div class="example">
+                <div class="example-title">Contoh 1: Toxic influencer di media sosial</div>
+                <p>Bayangkan seseorang yang punya banyak pengikut, tapi setiap kali ada gerakan sosial positif—kampanye lingkungan, gerakan anti-bullying, edukasi kesehatan mental—dia selalu bilang, <em>"Itu cuma pencitraan. Jangan naif. Semua orang cuma cari duit."</em></p>
+                <p>Dia tidak hanya tidak ikut serta—dia meracuni persepsi ribuan orang agar mereka juga tidak ikut serta. Tangannya (pengaruhnya) menjadi alat penghancur, bukan pembangunan.</p>
+            </div>
+            
+            <div class="example">
+                <div class="example-title">Contoh 2: Orang yang menggagalkan perubahan di lingkungan kerja</div>
+                <p>Ada rekan kerja yang selalu bilang, <em>"Percuma berharap perusahaan akan berubah. Mereka nggak peduli sama kita."</em> Setiap ada inisiatif perbaikan, dia yang paling keras menentang—bukan karena idenya buruk, tapi karena dia sudah terlalu nyaman dengan keluhan tanpa solusi.</p>
+                <p>Dia tidak ingin maju. Dan dia tidak ingin orang lain maju juga.</p>
+            </div>
+            
+            <div class="intisari">
+                Kehancuran sejati bukan ketika kita jatuh—tapi ketika kita memilih menjadi alasan orang lain tidak pernah mencoba berdiri. Abu Lahab dihukum bukan karena dia menolak Islam, tapi karena dia memastikan orang lain juga tidak punya kesempatan untuk mendengar kebenaran.
+            </div>
+        </div>
+
+        <!-- AYAT 2 -->
+        <div class="ayat-container fade-in">
+            <div class="ayat-number">Ayat 2</div>
+            <div class="ayat-arabic">مَآ أَغْنَىٰ عَنْهُ مَالُهُۥ وَمَا كَسَبَ</div>
+            <div class="ayat-translation">"Tidak berguna baginya hartanya dan apa yang dia usahakan."</div>
+            
+            <h3 class="subsection-title">Energi Kata</h3>
+            
+            <div class="energy-word">
+                <div class="word-arabic">مَا أَغْنَىٰ (maa aghnaa)</div>
+                <div class="word-meaning">Tidak memberi manfaat, tidak melindungi</div>
+                <p>Kata "aghnaa" berasal dari "ghina" yang artinya kecukupan atau kekayaan. Tapi dalam konteks ini, digunakan dalam bentuk negatif: <em>tidak memberikan kekayaan</em> dalam arti yang sesungguhnya—yaitu ketenangan, keselamatan, atau perlindungan dari azab.</p>
+                <p>Ini ironi yang menohok: orang yang punya segalanya ternyata tidak punya apa-apa di saat yang paling penting.</p>
+            </div>
+            
+            <div class="energy-word">
+                <div class="word-arabic">مَالُهُ (maaluhu)</div>
+                <div class="word-meaning">Hartanya</div>
+                <p>Abu Lahab adalah salah satu orang terkaya di Mekah. Hartanya bukan hanya emas dan properti, tapi juga jaringan bisnis, pengaruh politik, dan status sosial.</p>
+            </div>
+            
+            <div class="energy-word">
+                <div class="word-arabic">وَمَا كَسَبَ (wa maa kasaba)</div>
+                <div class="word-meaning">Dan apa yang dia usahakan</div>
+                <p>Ini lebih luas dari sekadar harta. "Kasaba" merujuk pada <em>hasil dari usaha</em>—bisa berupa anak, keturunan, reputasi, prestasi, atau warisan nama. Semua yang seseorang bangun dalam hidupnya.</p>
+            </div>
+            
+            <h3 class="subsection-title">Tafsir Mendalam</h3>
+            <p>Ayat ini adalah tamparan keras untuk semua yang dibanggakan manusia dalam hidup. Abu Lahab punya segalanya yang dianggap "sukses" oleh standar dunia: kaya, berpengaruh, punya keluarga besar, dihormati di masyarakat.</p>
+            
+            <p>Tapi di hadapan kematian dan perhitungan akhirat? Semua itu <em>tidak berarti apa-apa</em>.</p>
+            
+            <p><strong>Filosofi di Balik Ayat:</strong></p>
+            <p>Kita sering mengukur hidup dengan akumulasi: seberapa banyak yang kita miliki, seberapa tinggi yang kita capai, seberapa luas pengaruh kita. Tapi Al-Qur'an mengingatkan: <em>semua itu hanya relevan jika dibangun di atas fondasi yang benar</em>.</p>
+            
+            <p>Kalau fondasinya salah—jika tujuan hidup kita adalah menentang kebenaran, menghalangi kebaikan, merusak peluang orang lain—maka semua pencapaian kita hanyalah <em>akumulasi dari kehampaan</em>.</p>
+            
+            <p><strong>Relevansi Kekinian:</strong></p>
+            <p>Berapa banyak dari kita yang menghabiskan hidup mengejar kesuksesan, tapi lupa bertanya: <em>kesuksesan untuk apa?</em></p>
+            
+            <div class="example">
+                <div class="example-title">Contoh 1: Hustle culture yang toksik</div>
+                <p>Zaman sekarang, kita diajari untuk <em>grind</em> tanpa henti. Kerja 12 jam sehari, 7 hari seminggu, tidur 4 jam, bangun jam 4 pagi. Semua demi "sukses". Tapi sukses yang seperti apa?</p>
+                <p>Kalau pada akhirnya, kesuksesan itu membuat kita kehilangan keluarga, kehilangan kesehatan mental, kehilangan empati terhadap orang lain—apakah itu benar-benar sukses? Atau hanya versi modern dari "hartanya tidak berguna baginya"?</p>
+            </div>
+            
+            <div class="example">
+                <div class="example-title">Contoh 2: Influencer yang jatuh karena skandal</div>
+                <p>Bayangkan seseorang yang membangun karier dengan jutaan followers, endorsement ratusan juta, rumah mewah, mobil sport. Tapi kemudian terbongkar: semua itu dibangun di atas kebohongan, manipulasi, dan memanfaatkan orang lain.</p>
+                <p>Ketika skandal pecah, semua yang dia bangun runtuh dalam semalam. Follower unfollow. Brand menarik kontrak. Reputasi hancur. Dan yang tersisa hanyalah pertanyaan: <em>"Untuk apa semua ini?"</em></p>
+            </div>
+            
+            <div class="intisari">
+                Kesuksesan tanpa makna adalah kegagalan yang tertunda. Harta, tahta, dan pengaruh hanya berharga jika digunakan untuk hal yang melampaui ego kita sendiri. Abu Lahab punya segalanya—tapi kehilangan satu-satunya hal yang benar-benar penting: tujuan yang benar.
+            </div>
+        </div>
+
+        <!-- AYAT 3 -->
+        <div class="ayat-container fade-in">
+            <div class="ayat-number">Ayat 3</div>
+            <div class="ayat-arabic">سَيَصْلَىٰ نَارًا ذَاتَ لَهَبٍ</div>
+            <div class="ayat-translation">"Dia akan masuk ke dalam api yang berkobar-kobar."</div>
+            
+            <h3 class="subsection-title">Energi Kata</h3>
+            
+            <div class="energy-word">
+                <div class="word-arabic">سَيَصْلَىٰ (sa-yashlaa)</div>
+                <div class="word-meaning">Akan merasakan panasnya</div>
+                <p>Kata "shalaa" bukan sekadar "masuk" ke dalam api. Ini tentang <em>merasakan panasnya secara langsung</em>, terbakar, tersiksa oleh apinya. Ada unsur pengalaman yang intens dan menyakitkan di dalamnya.</p>
+            </div>
+            
+            <div class="energy-word">
+                <div class="word-arabic">نَارًا ذَاتَ لَهَبٍ (naaran dzaata lahabin)</div>
+                <div class="word-meaning">Api yang berkobar-kobar</div>
+                <p>"Lahab" berasal dari kata yang sama dengan nama "Abu Lahab". Ini adalah ironi puncak: orang yang dijuluki "Bapak Api" akan menjadi santapan api itu sendiri. Api yang dia sebarkan dalam bentuk permusuhan dan kebencian akan menjadi api yang membakarnya.</p>
+            </div>
+            
+            <h3 class="subsection-title">Tafsir Mendalam</h3>
+            <p>Ayat ini adalah kulminasi dari dua ayat sebelumnya. Setelah menyatakan kehancuran usahanya dan ketidakbergunaan hartanya, kini datang konsekuensi akhir: azab yang nyata.</p>
+            
+            <p><strong>Filosofi di Balik Ayat:</strong></p>
+            <p>Ada hukum spiritual yang berlaku di alam semesta ini: <em>apa yang kita sebarkan, itulah yang akan kembali kepada kita</em>. Abu Lahab menyebarkan api permusuhan, kebencian, dan penghalang kebenaran. Maka api itulah yang akan menyelimutinya.</p>
+            
+            <p>Ini bukan hanya azab—ini adalah cerminan dari esensi pilihannya sendiri.</p>
+            
+            <p><strong>Relevansi Kekinian:</strong></p>
+            
+            <div class="example">
+                <div class="example-title">Contoh 1: Cancel culture yang membakar diri sendiri</div>
+                <p>Ada orang yang sangat gemar "membakar" orang lain di media sosial—membongkar skandal, menyebarkan hate, memicu drama. Tapi suatu hari, mereka sendiri yang terbongkar. Screenshot lama mereka muncul. Tweet bermasalah dari 5 tahun lalu di-unearth.</p>
+                <p>Dan publik yang dulu mereka adu untuk menyerang orang lain, kini berbalik menyerang mereka. Api yang mereka sebarkan akhirnya membakar diri mereka sendiri.</p>
+            </div>
+            
+            <div class="example">
+                <div class="example-title">Contoh 2: Pemimpin yang membangun kekuasaan dengan ketakutan</div>
+                <p>Ada pemimpin—bisa di perusahaan, organisasi, atau bahkan dalam keluarga—yang memerintah dengan ancaman dan intimidasi. Mereka menyebarkan atmosfer tegang dan mencekam.</p>
+                <p>Tapi suatu hari, kekuasaan mereka berakhir. Dan apa yang tersisa? Tidak ada yang menghormati mereka. Tidak ada yang peduli. Mereka terisolasi, sendirian, terbakar oleh kehampaan yang mereka ciptakan sendiri.</p>
+            </div>
+            
+            <div class="intisari">
+                Api yang kita sebarkan tidak pernah hilang—ia hanya menunggu waktu untuk kembali mengelilingi kita. Energi negatif, kebencian, dan permusuhan yang kita lemparkan ke dunia akan menjadi penjara kita sendiri. Abu Lahab adalah bukti: kita tidak dihukum oleh Tuhan—kita dihukum oleh pilihan kita sendiri.
+            </div>
+        </div>
+
+        <!-- AYAT 4 -->
+        <div class="ayat-container fade-in">
+            <div class="ayat-number">Ayat 4</div>
+            <div class="ayat-arabic">وَٱمْرَأَتُهُۥ حَمَّالَةَ ٱلْحَطَبِ</div>
+            <div class="ayat-translation">"Dan istrinya, si pembawa kayu bakar."</div>
+            
+            <h3 class="subsection-title">Energi Kata</h3>
+            
+            <div class="energy-word">
+                <div class="word-arabic">ٱمْرَأَتُهُ (imra'atuhu)</div>
+                <div class="word-meaning">Istrinya</div>
+                <p>Istri Abu Lahab adalah Ummu Jamil, saudara perempuan Abu Sufyan (yang nantinya masuk Islam). Dia bukan hanya pendukung pasif—dia adalah <em>partner aktif</em> dalam permusuhan terhadap Nabi Muhammad ﷺ.</p>
+            </div>
+            
+            <div class="energy-word">
+                <div class="word-arabic">حَمَّالَةَ ٱلْحَطَبِ (hammaalatal-hathobi)</div>
+                <div class="word-meaning">Pembawa kayu bakar</div>
+                <p>Ini bukan pekerjaan harfiah. Ummu Jamil adalah wanita bangsawan, dia tidak bekerja sebagai pengangkut kayu. Frasa ini adalah metafora untuk <em>perannya sebagai penyebar fitnah dan konflik</em>—dia membawa "kayu bakar" yang menyulut api permusuhan.</p>
+                <p>Ada juga riwayat yang menyebut bahwa Ummu Jamil sering menyebarkan duri-duri di jalan yang dilalui Nabi Muhammad ﷺ di malam hari—secara harfiah membawa "kayu berduri" untuk menyakiti.</p>
+            </div>
+            
+            <h3 class="subsection-title">Tafsir Mendalam</h3>
+            <p>Ayat ini mengingatkan kita bahwa <em>kejahatan kolektif lebih destruktif dari kejahatan individual</em>. Abu Lahab buruk, tapi Ummu Jamil membuatnya lebih buruk lagi dengan mendukung, menyulut, dan memperkuat kebenciannya.</p>
+            
+            <p><strong>Filosofi di Balik Ayat:</strong></p>
+            <p>Ada dua jenis orang jahat: yang melakukan kejahatan, dan yang <em>memfasilitasi</em> kejahatan orang lain. Kadang, yang kedua lebih berbahaya—karena mereka memungkinkan kejahatan itu berlangsung terus-menerus.</p>
+            
+            <p>Ummu Jamil tidak hanya diam. Dia aktif menyebarkan gosip, fitnah, dan mencemarkan nama baik Rasulullah. Dalam istilah modern, dia adalah <em>amplifier</em> dari toxicity suaminya.</p>
+            
+            <p><strong>Relevansi Kekinian:</strong></p>
+            
+            <div class="example">
+                <div class="example-title">Contoh 1: Pasangan yang saling toxic</div>
+                <p>Pernah lihat pasangan yang saling memperkuat sisi terburuk mereka? Misalnya, satu orang punya masalah dengan kemarahan, dan pasangannya bukannya menenangkan, malah ikut-ikutan marah dan menyalahkan pihak lain.</p>
+                <p>Atau satu orang suka bergosip dan merusak reputasi orang lain, dan pasangannya bukannya mengingatkan, malah ikut menyebarkan. Mereka menjadi <em>pembawa kayu bakar</em> satu sama lain—saling menyulut api yang seharusnya dipadamkan.</p>
+            </div>
+            
+            <div class="example">
+                <div class="example-title">Contoh 2: Circle pertemanan yang negatif</div>
+                <p>Ada lingkaran pertemanan yang fungsinya hanya satu: mengeluh dan menyalahkan. Setiap kumpul, yang dibahas hanya hal negatif—bos yang menyebalkan, tetangga yang nyebelin, teman yang gak supportive.</p>
+                <p>Bukannya saling menguatkan untuk berubah atau move on, mereka saling memvalidasi keluhan masing-masing. Dan akhirnya, tidak ada yang tumbuh. Semua stuck di tempat yang sama, membawa kayu bakar untuk api kekecewaan mereka sendiri.</p>
+            </div>
+            
+            <div class="intisari">
+                Kita tidak hanya bertanggung jawab atas tindakan kita sendiri, tapi juga atas energi yang kita amplifikasi dari orang lain. Jadi partner dalam kebaikan, bukan partner dalam kehancuran. Ummu Jamil tidak dihukum karena dia istri Abu Lahab—dia dihukum karena dia memilih menjadi mesin penguat dari toxicity-nya.
+            </div>
+        </div>
+
+        <!-- AYAT 5 -->
+        <div class="ayat-container fade-in">
+            <div class="ayat-number">Ayat 5</div>
+            <div class="ayat-arabic">فِى جِيدِهَا حَبْلٌۭ مِّن مَّسَدٍۭ</div>
+            <div class="ayat-translation">"Di lehernya ada tali dari sabut."</div>
+            
+            <h3 class="subsection-title">Energi Kata</h3>
+            
+            <div class="energy-word">
+                <div class="word-arabic">جِيدِهَا (jiidiha)</div>
+                <div class="word-meaning">Lehernya</div>
+                <p>Leher adalah simbol keanggunan dan kebanggaan—terutama bagi wanita bangsawan seperti Ummu Jamil yang sering memakai kalung mahal. Menyebut "leher" di sini adalah ironi: leher yang dulunya dihiasi perhiasan, kini akan dililit tali azab.</p>
+            </div>
+            
+            <div class="energy-word">
+                <div class="word-arabic">حَبْلٌ (hablun)</div>
+                <div class="word-meaning">Tali</div>
+                <p>Bukan tali biasa—tapi tali yang mengikat, mencekik, menyiksa.</p>
+            </div>
+            
+            <div class="energy-word">
+                <div class="word-arabic">مِّن مَّسَدٍ (min masad)</div>
+                <div class="word-meaning">Dari sabut/serat kasar</div>
+                <p>Masad adalah serat kasar dari pohon kurma atau tumbuhan berduri. Bukan tali halus—tapi tali yang kasar, mencederai, menyakitkan. Ini adalah kebalikan total dari perhiasan yang biasa dia pakai.</p>
+            </div>
+            
+            <h3 class="subsection-title">Tafsir Mendalam</h3>
+            <p>Ayat ini adalah penutup yang dramatis. Ummu Jamil, yang dulunya sombong dengan perhiasan dan statusnya, akan mengalami penghinaan paling dalam: lehernya yang dulunya dihiasi emas, kini dililit tali sabut yang kasar dan menyakitkan di neraka.</p>
+            
+            <p><strong>Filosofi di Balik Ayat:</strong></p>
+            <p>Apa yang kita banggakan di dunia sering kali menjadi titik kelemahan kita di akhirat. Ummu Jamil bangga dengan kecantikan, perhiasan, dan status sosialnya. Tapi semua itu menjadi bagian dari hukumannya—karena dia menggunakan semua itu untuk menyombongkan diri dan merendahkan orang lain.</p>
+            
+            <p><strong>Relevansi Kekinian:</strong></p>
+            
+            <div class="example">
+                <div class="example-title">Contoh 1: Status sosial yang jadi belenggu</div>
+                <p>Berapa banyak orang yang hidup dalam "penjara perhiasan"? Mereka kerja keras bukan untuk kebahagiaan, tapi untuk <em>terlihat</em> bahagia di Instagram. Beli barang mewah bukan karena butuh, tapi karena takut dianggap "kurang" oleh orang lain.</p>
+                <p>Leher mereka sudah terikat—bukan dengan tali sabut, tapi dengan ekspektasi sosial, standar kecantikan, dan obsesi terhadap validasi. Dan mereka tidak sadar bahwa mereka sudah tidak bebas lagi.</p>
+            </div>
+            
+            <div class="example">
+                <div class="example-title">Contoh 2: Image yang jadi beban</div>
+                <p>Ada orang yang begitu terobsesi dengan reputasi mereka, sampai mereka tidak bisa jujur tentang siapa mereka sebenarnya. Mereka takut terlihat lemah, takut terlihat salah, takut kehilangan "image" yang sudah mereka bangun.</p>
+                <p>Akhirnya, mereka hidup dalam topeng. Dan topeng itu menjadi tali yang mencekik mereka sendiri—karena mereka tidak pernah bisa bernapas dengan bebas, tidak pernah bisa jadi diri sendiri.</p>
+            </div>
+            
+            <div class="intisari">
+                Hal yang paling kita banggakan sering kali menjadi hal yang paling memenjarakan kita. Ummu Jamil diikat oleh tali sabut—kita diikat oleh ekspektasi, obsesi, dan ego kita sendiri. Kebebasan sejati dimulai ketika kita melepaskan semua belenggu yang tidak perlu itu.
+            </div>
+        </div>
+
+        <!-- REFLEKSI PENUTUP -->
+        <div class="reflection-section fade-in">
+            <h2 class="section-title">Refleksi Penutup</h2>
+            
+            <h3 class="subsection-title">Pola yang Bisa Diambil:</h3>
+            <div class="pola-list">
+                <div class="pola-item">
+                    <div class="pola-title">Pilihan memiliki konsekuensi yang lebih besar dari yang kita kira.</div>
+                    <p>Abu Lahab dan istrinya tidak hanya memilih untuk menolak kebenaran—mereka aktif menghalangi orang lain dari kebenaran. Pilihan mereka melampaui diri mereka sendiri, dan konsekuensinya pun melampaui apa yang bisa mereka bayangkan.</p>
+                </div>
+                
+                <div class="pola-item">
+                    <div class="pola-title">Kesuksesan dunia tanpa makna adalah kegagalan yang tertunda.</div>
+                    <p>Harta, status, dan pengaruh Abu Lahab tidak menyelamatkannya dari kehancuran. Karena semua itu dibangun di atas fondasi yang salah: ego, kebencian, dan penolakan terhadap kebenaran.</p>
+                </div>
+                
+                <div class="pola-item">
+                    <div class="pola-title">Kita tidak dihukum oleh Tuhan—kita dihukum oleh pilihan kita sendiri.</div>
+                    <p>Api yang mengelilingi Abu Lahab dan Ummu Jamil adalah api yang mereka sebarkan sendiri. Energi negatif, permusuhan, dan kebencian yang mereka lemparkan ke dunia akhirnya kembali mengelilingi mereka.</p>
+                </div>
+            </div>
+            
+            <h3 class="subsection-title">Langkah Nyata:</h3>
+            <div class="langkah-list">
+                <div class="langkah-item">
+                    <div class="langkah-title">Evaluasi energi yang kita sebarkan.</div>
+                    <p>Tanyakan pada diri sendiri: Apakah kata-kata, tindakan, dan pengaruh saya membuat orang lain lebih baik, atau lebih buruk? Apakah saya menjadi <em>pembuka jalan</em> bagi kebaikan, atau <em>penghalang</em> bagi kebenaran?</p>
+                </div>
+                
+                <div class="langkah-item">
+                    <div class="langkah-title">Ukur kesuksesan dengan makna, bukan akumulasi.</div>
+                    <p>Jangan hanya tanya, "Seberapa banyak yang saya miliki?" Tapi tanyakan, "Untuk apa semua ini? Apakah yang saya bangun akan melampaui saya sendiri? Apakah ini akan memberi manfaat setelah saya tiada?"</p>
+                </div>
+                
+                <div class="langkah-item">
+                    <div class="langkah-title">Bebaskan diri dari belenggu yang tidak perlu.</div>
+                    <p>Identifikasi "tali sabut" dalam hidup kita—ekspektasi sosial, obsesi terhadap validasi, ego yang membuat kita tidak bisa jujur. Dan mulai lepaskan, satu per satu.</p>
+                </div>
+            </div>
+            
+            <h3 class="subsection-title">Closing Statement</h3>
+            <div class="intisari">
+                Surat Al-Lahab bukan hanya tentang seorang paman Nabi yang jahat. Ini adalah cermin bagi kita semua: tentang apa yang terjadi ketika kita membiarkan ego, kebencian, dan obsesi dunia mengunci pintu hati kita. Tentang apa yang terjadi ketika kita lebih memilih memadamkan cahaya orang lain daripada menyalakan cahaya dalam diri kita sendiri.
+                <br><br>
+                Kita semua punya pilihan. Dan pilihan itu, mau tidak mau, akan menentukan api apa yang akan kita rasakan nanti: api penyesalan yang membakar, atau cahaya kebenaran yang menerangi.
+            </div>
+        </div>
+
+        <!-- EPILOG -->
+        <div class="epilog fade-in">
+            <h2 class="epilog-title">Tangan Yang Memilih Apinya Sendiri</h2>
+            
+            <p>Ada tangan yang membangun,<br>
+            dan ada tangan yang merobohkan.<br>
+            Ada tangan yang membuka pintu,<br>
+            dan ada tangan yang mengunci—lalu membuang kuncinya ke jurang.</p>
+            
+            <p>Abu Lahab punya tangan yang kuat.<br>
+            Tangan yang bisa memberi.<br>
+            Tangan yang bisa melindungi.<br>
+            Tapi dia memilih menggunakan tangannya untuk melempar batu,<br>
+            untuk menutup telinga orang lain,<br>
+            untuk memadamkan lilin yang baru saja dinyalakan.</p>
+            
+            <p>Dan ketika kematian datang mengetuk pintu,<br>
+            ketika harta dan tahta tidak lagi berarti,<br>
+            ketika semua topeng kejatuhan,<br>
+            yang tersisa hanyalah pertanyaan:<br>
+            <span class="epilog-highlight">Untuk apa semua ini?</span></p>
+            
+            <p>Kamu yang membaca ini—<br>
+            mungkin kamu tidak seperti Abu Lahab.<br>
+            Mungkin kamu tidak punya kekayaan berlimpah.<br>
+            Mungkin kamu tidak punya pengaruh besar.<br>
+            Tapi kamu punya tangan.<br>
+            Kamu punya kata-kata.<br>
+            Kamu punya pilihan.</p>
+            
+            <p>Setiap hari, kamu memilih:<br>
+            Apakah hari ini aku akan menjadi alasan seseorang tersenyum,<br>
+            atau alasan seseorang menangis?<br>
+            Apakah hari ini aku akan membuka jalan,<br>
+            atau menutup peluang?<br>
+            Apakah hari ini aku akan menjadi cahaya,<br>
+            atau bayangan yang menutupi cahaya orang lain?</p>
+            
+            <p>Ummu Jamil membawa kayu bakar.<br>
+            Pertanyaannya: apa yang <em>kamu</em> bawa?<br>
+            Apakah kamu membawa kayu untuk api kebencian,<br>
+            atau kamu membawa air untuk memadamkan konflik?<br>
+            Apakah kamu menjadi tali yang mengikat orang lain dalam kesedihan,<br>
+            atau tali yang menarik mereka keluar dari jurang?</p>
+            
+            <p>Ini bukan soal sempurna.<br>
+            Ini soal arah.<br>
+            Ini bukan soal tidak pernah salah.<br>
+            Ini soal tidak <em>bersikeras</em> pada kesalahan.</p>
+            
+            <p>Abu Lahab dihukum bukan karena dia salah—<br>
+            dia dihukum karena dia menolak untuk memperbaiki kesalahan,<br>
+            dan memastikan orang lain juga terperosok ke dalam kesalahan yang sama.</p>
+            
+            <p>Jadi, kalau hari ini kamu merasa berat,<br>
+            kalau kamu merasa dunia tidak adil,<br>
+            kalau kamu merasa seperti tidak ada yang peduli—<br>
+            ingatlah:<br>
+            <span class="epilog-highlight">kamu tidak sendirian dalam pergumulan ini.</span></p>
+            
+            <p>Tapi jangan biarkan luka itu menjadi alasan untuk melukai.<br>
+            Jangan biarkan kekecewaan menjadi dalih untuk mengecewakan.<br>
+            Jangan biarkan api yang membakar dirimu menjadi api yang kamu sebarkan ke orang lain.</p>
+            
+            <p>Karena pada akhirnya,<br>
+            kita tidak akan dikenang dari seberapa banyak yang kita miliki,<br>
+            tapi dari seberapa banyak yang kita berikan.<br>
+            Tidak dari seberapa tinggi kita berdiri,<br>
+            tapi dari seberapa sering kita mengulurkan tangan untuk menarik orang lain berdiri.</p>
+            
+            <p>Surat Al-Lahab adalah pengingat:<br>
+            <span class="epilog-highlight">Pilihan kita hari ini akan menjadi takdir kita esok.</span><br>
+            Dan takdir itu bukan sesuatu yang dipaksakan dari luar—<br>
+            takdir itu adalah hasil dari akumulasi pilihan-pilihan kecil yang kita buat setiap hari.</p>
+            
+            <p>Jadi, pilihlah dengan bijak.<br>
+            Pilihlah dengan hati.<br>
+            Pilihlah untuk menjadi cahaya,<br>
+            bukan api yang membakar.</p>
+            
+            <p>Karena dunia sudah cukup gelap.<br>
+            Yang dibutuhkan sekarang bukan lebih banyak api—<br>
+            tapi lebih banyak orang yang berani menyalakan lilin,<br>
+            meski angin terus menerpa.</p>
+            
+            <p>Dan kamu—<br>
+            kamu bisa menjadi salah satu dari mereka.</p>
+            
+            <div class="epilog-end">MULAI HARI INI.<br>
+            MULAI DARI SINI.<br>
+            MULAI DARI PILIHAN KECIL YANG HANYA KAMU YANG TAHU.</div>
+            
+            <div class="intisari">
+                Karena Tuhan tidak meminta kita untuk sempurna—<br>
+                Dia hanya meminta kita untuk mencoba.
+            </div>
+            
+            <div class="closing">
+                <strong>Wallahu a'lam bishawab.</strong><br>
+                <em>Dan Allah lebih mengetahui yang benar.</em>
+            </div>
+        </div>
+    </div>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</body>
+</html>

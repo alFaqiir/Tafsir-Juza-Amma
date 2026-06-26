@@ -1,0 +1,872 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Infithar: Ketika Semesta Membuka Catatanmu</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --v1: #b8a0e8;    /* violet terang */
+    --v2: #7a4fc2;    /* violet tengah */
+    --v3: #e0d4ff;    /* violet pucat */
+    --v4: #3d1f80;    /* violet gelap */
+    --gold: #d4af70;
+    --gold-light: #f0d898;
+    --bg:    #07060f;
+    --bg2:   #0d0b1a;
+    --bg3:   #120f22;
+    --card:  #0f0d1e;
+    --border:#221a3a;
+    --text:  #ddd8f0;
+    --muted: #8878b0;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.95;
+    min-height: 100vh;
+  }
+
+  /* ── GRADIENT TEXT ── */
+  .violet {
+    background: linear-gradient(135deg, var(--v2) 0%, var(--v1) 45%, var(--v3) 65%, var(--v2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gold-text {
+    background: linear-gradient(135deg, #a07830 0%, var(--gold) 45%, var(--gold-light) 65%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: relative;
+    padding: 88px 40px 76px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, #1a0e3a 0%, #07060f 72%);
+    border-bottom: 1px solid #1e1640;
+  }
+
+  /* bintang-bintang runtuh */
+  .header::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle, rgba(140,100,230,.16) 1px, transparent 1px),
+      radial-gradient(circle, rgba(180,140,255,.08) 1.5px, transparent 1.5px);
+    background-size: 52px 52px, 31px 31px;
+    background-position: 0 0, 15px 15px;
+    animation: starfall 55s linear infinite;
+    pointer-events:none;
+  }
+
+  /* glow ungu atas */
+  .header::after {
+    content:'';
+    position:absolute;
+    top:-60px; left:50%; transform:translateX(-50%);
+    width:700px; height:340px;
+    background: radial-gradient(ellipse, rgba(100,60,200,.22) 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  @keyframes starfall { to { background-position: 52px 52px, 46px 46px; } }
+
+  .header-bismillah {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 2.1em;
+    color: var(--v1);
+    opacity: .55;
+    margin-bottom: 26px;
+    letter-spacing: 5px;
+    position: relative; z-index:1;
+  }
+
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.3em, 5.5vw, 3.6em);
+    font-weight: 700;
+    line-height: 1.15;
+    position: relative; z-index:1;
+    margin-bottom: 10px;
+    letter-spacing: .03em;
+  }
+
+  .header-sub {
+    font-family: 'Cinzel', serif;
+    font-size: .85em;
+    color: var(--muted);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    position: relative; z-index:1;
+    margin-bottom: 30px;
+  }
+
+  .divider {
+    width: 140px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--v2), var(--v1), var(--v2), transparent);
+    margin: 22px auto;
+    position:relative; z-index:1;
+  }
+
+  .tagline {
+    font-style: italic;
+    font-size: 1.17em;
+    color: #b8a8d8;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative; z-index:1;
+    line-height: 1.75;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 940px; margin: 0 auto; padding: 54px 24px 90px; }
+
+  /* ── AYAT SECTION ── */
+  .ayat-section {
+    position: relative;
+    background: linear-gradient(160deg, #100e20, #0c0a18);
+    border: 1px solid #1e1840;
+    border-left: 3px solid var(--v2);
+    border-radius: 18px;
+    padding: 50px 46px;
+    margin-bottom: 56px;
+    box-shadow: 0 4px 44px rgba(0,0,0,.65), inset 0 1px 0 rgba(140,100,230,.06);
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity .75s ease, transform .75s ease, box-shadow .3s;
+  }
+  .ayat-section.visible { opacity:1; transform:translateY(0); }
+  .ayat-section:hover { box-shadow: 0 10px 60px rgba(0,0,0,.9), 0 0 0 1px rgba(120,80,210,.15); }
+
+  .ayat-section::before {
+    content: '✦';
+    position:absolute; top:20px; right:24px;
+    color: var(--v2); opacity:.3; font-size:1.4em;
+  }
+
+  /* kelompok ayat (beberapa ayat dijadikan satu blok) */
+  .ayat-group-label {
+    font-family: 'Cinzel', serif;
+    font-size: .78em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--v2);
+    margin-bottom: 18px;
+    opacity: .8;
+  }
+
+  /* ── NOMOR AYAT ── */
+  .ayat-number {
+    font-family: 'Cinzel', serif;
+    font-size: 1.55em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .ayat-number .num-badge {
+    display:inline-block;
+    width:40px; height:40px; line-height:38px; text-align:center;
+    border: 1px solid var(--v2);
+    border-radius:50%;
+    font-size:.72em;
+    background: linear-gradient(135deg,#160f30,#0d0820);
+    color: var(--v1);
+    flex-shrink:0;
+    font-family:'Cinzel',serif;
+  }
+  .ayat-number .num-range {
+    display:inline-block;
+    padding: 0 18px;
+    height:40px; line-height:38px;
+    border: 1px solid var(--v2);
+    border-radius:20px;
+    font-size:.7em;
+    background: linear-gradient(135deg,#160f30,#0d0820);
+    color: var(--v1);
+    flex-shrink:0;
+    letter-spacing:1px;
+  }
+
+  /* ── JUDUL SEKSI ── */
+  h2.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin: 38px 0 16px;
+    padding-bottom: 11px;
+    border-bottom: 1px solid #1e1840;
+    letter-spacing: .04em;
+  }
+
+  h3.sub-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.07em;
+    font-weight: 600;
+    margin: 28px 0 11px;
+    display: flex; align-items: center; gap: 11px;
+    color: #c8b8e8;
+  }
+  h3.sub-title::before {
+    content:'';
+    display:inline-block;
+    width:20px; height:1px;
+    background: linear-gradient(to right, var(--v2), var(--v1));
+    flex-shrink:0;
+  }
+
+  /* ── ARABIK ── */
+  .arabic-wrap {
+    text-align: center;
+    margin: 34px 0 12px;
+    padding: 30px 24px;
+    background: radial-gradient(ellipse at center, #160e30 0%, #0a0818 80%);
+    border-radius: 14px;
+    border: 1px solid #251e48;
+    position:relative;
+  }
+  .arabic-wrap::before, .arabic-wrap::after {
+    content:'✧';
+    position:absolute; top:50%; transform:translateY(-50%);
+    color:var(--v2); opacity:.25; font-size:1.1em;
+  }
+  .arabic-wrap::before { left:20px; }
+  .arabic-wrap::after  { right:20px; }
+
+  .arabic {
+    font-family: 'Amiri', 'Traditional Arabic', 'Scheherazade New', serif;
+    font-size: clamp(2.3em, 5.5vw, 3.4em);
+    line-height: 2.1;
+    background: linear-gradient(135deg, var(--v4) 0%, var(--v2) 30%, var(--v1) 55%, var(--v3) 75%, var(--v2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    direction: rtl;
+  }
+
+  /* arabik multi-baris (group ayat) */
+  .arabic.multi {
+    font-size: clamp(1.9em, 4.5vw, 2.8em);
+    line-height: 2.3;
+  }
+
+  .translation {
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.04em;
+    margin: 10px 0 34px;
+    line-height: 1.75;
+  }
+
+  /* nomor kecil di dalam blok arabik */
+  .ayat-inline-num {
+    font-family:'Cinzel',serif;
+    font-size:.6em;
+    color: var(--v2);
+    vertical-align: super;
+    margin-right: 4px;
+    direction: ltr;
+    display: inline-block;
+  }
+
+  /* ── ENERGI KATA CHIP ── */
+  .energi-chip {
+    display: inline-block;
+    background: linear-gradient(135deg, #180f34 0%, #22184a 100%);
+    border: 1px solid var(--v4);
+    color: var(--v1);
+    padding: 8px 22px;
+    border-radius: 30px;
+    font-size: .93em;
+    font-weight: 600;
+    margin: 18px 0 11px;
+    letter-spacing:.4px;
+    font-family:'EB Garamond',serif;
+  }
+
+  /* ── PARAGRAF ── */
+  p {
+    margin-bottom: 17px;
+    color: #ccc2e8;
+    text-align: justify;
+    font-size: .98em;
+  }
+
+  strong { color: var(--v1); font-weight:600; }
+  em { color: #b8a8d0; font-style: italic; }
+
+  /* ── KOTAK RELEVANSI ── */
+  .relevance-box {
+    background: linear-gradient(160deg,#100c22,#0c0a18);
+    border-left: 3px solid var(--v3);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 26px;
+    margin: 26px 0;
+  }
+  .relevance-label {
+    font-family:'Cinzel',serif;
+    font-size:.76em;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--v1);
+    margin-bottom:12px;
+    opacity:.85;
+  }
+
+  /* ── INTISARI ── */
+  .intisari {
+    position:relative;
+    background: linear-gradient(160deg, #170f30, #100c24);
+    border: 1px solid #2e2458;
+    border-radius: 14px;
+    padding: 30px 34px;
+    margin: 30px 0 0;
+    color: #d8d0f0;
+    font-size: .98em;
+    line-height: 2;
+  }
+  .intisari::before {
+    content: '"';
+    position:absolute; top:-18px; left:26px;
+    font-size:4.5em; line-height:1;
+    background: linear-gradient(to bottom, var(--v1), var(--v2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-family:'Cinzel',serif;
+  }
+  .intisari-label {
+    font-family:'Cinzel',serif;
+    font-size:.73em; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--v2); margin-bottom:13px;
+    opacity:.9;
+  }
+
+  /* ── PENUTUP ── */
+  .penutup {
+    background: linear-gradient(160deg,#0e0c1e,#090818);
+    border: 1px solid #1e1840;
+    border-radius: 18px;
+    padding: 54px 46px;
+    margin-bottom: 50px;
+  }
+
+  .langkah {
+    background: linear-gradient(160deg,#130f24,#0e0b1c);
+    border: 1px solid #1e1840;
+    border-left: 3px solid var(--v2);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 26px;
+    margin: 18px 0;
+    color: #ccc2e8;
+    font-size:.96em;
+  }
+  .langkah .lnum {
+    display:inline-block;
+    background: linear-gradient(135deg, var(--v2), var(--v1));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-weight:700; font-family:'Cinzel',serif;
+    font-size:1.05em; margin-bottom:6px;
+  }
+  .langkah p { margin-bottom:0; }
+
+  /* ── EPILOG ── */
+  .epilog {
+    background: radial-gradient(ellipse at 50% 0%, #1a0e36 0%, #07060f 60%);
+    border: 1px solid #1e1840;
+    border-top: 2px solid var(--v2);
+    border-radius: 18px;
+    padding: 64px 46px;
+    text-align: center;
+  }
+  .epilog .epilog-title {
+    font-family:'Cinzel',serif;
+    font-size:clamp(1.35em,3vw,2em);
+    font-weight:700;
+    margin-bottom: 12px;
+    letter-spacing:.03em;
+  }
+  .epilog .epilog-sub {
+    font-style:italic;
+    color: var(--muted);
+    font-size:.95em;
+    margin-bottom:44px;
+  }
+  .epilog p {
+    max-width:680px; margin:0 auto 20px;
+    color:#b8aad8; text-align:center; font-style:italic;
+    font-size:1.02em;
+  }
+  .epilog .arabic-line {
+    font-family: 'Amiri','Traditional Arabic','Scheherazade New',serif;
+    font-size:clamp(1.6em,4vw,2.5em);
+    direction:rtl;
+    background: linear-gradient(135deg,var(--v4),var(--v2),var(--v1),var(--v3),var(--v2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    display:block; margin:30px auto 6px;
+  }
+  .epilog .latin-line {
+    font-style:italic; color:var(--v1); font-size:1.02em;
+    margin-bottom:22px; display:block;
+    opacity:.85;
+  }
+  .epilog .archetype {
+    background: linear-gradient(160deg,#120e24,#0d0a1c);
+    border: 1px solid #1e1840;
+    border-radius: 12px;
+    padding: 24px 30px;
+    margin: 18px auto;
+    max-width: 620px;
+    text-align: left;
+    font-style: normal;
+    color: #c8c0e0;
+    font-size:.97em;
+    line-height:1.9;
+  }
+  .archetype-label {
+    font-family:'Cinzel',serif;
+    font-size:.73em;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--v2);
+    margin-bottom:10px;
+    display:block;
+    opacity:.85;
+  }
+  .epilog .closing {
+    margin-top:48px; font-style:normal;
+    font-family:'EB Garamond',serif;
+    font-size:1.13em; color:#d8d0f0;
+    line-height:2;
+  }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position:fixed; bottom:28px; right:28px;
+    width:48px; height:48px;
+    background: linear-gradient(135deg,var(--v4),var(--v2));
+    color:#e8e0ff; font-size:1.1em; font-weight:700;
+    border:none; border-radius:50%;
+    cursor:pointer; display:none; align-items:center; justify-content:center;
+    box-shadow:0 4px 24px rgba(0,0,0,.6);
+    transition:transform .2s;
+    z-index:999;
+  }
+  #scrollTop:hover { transform:scale(1.1); }
+
+  @media(max-width:640px){
+    .header { padding:64px 20px 52px; }
+    .ayat-section, .penutup, .epilog { padding:30px 18px; }
+    .container { padding:28px 14px 64px; }
+    .epilog .archetype { padding:18px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <h1 class="violet">Al-Infithar</h1>
+  <p class="header-sub">Surat 82 · 19 Ayat · Makkiyah</p>
+  <div class="divider"></div>
+  <p class="tagline">Ketika langit retak, lautan meluap, dan buku catatanmu dibuka — ternyata selama ini ada yang menyimpan semua yang kamu kira tidak ada yang melihat.</p>
+</div>
+
+<div class="container">
+
+  <!-- ═══════════════════════════════════ KELOMPOK 1: AYAT 1–5 ═══════ -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num-range">Ayat 1 – 5</span>
+      <span class="violet">Semesta yang Runtuh Teratur</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic multi" dir="rtl">
+        إِذَا ٱلسَّمَآءُ ٱنفَطَرَتۡ ﴿١﴾
+        وَإِذَا ٱلۡكَوَاكِبُ ٱنتَثَرَتۡ ﴿٢﴾
+        وَإِذَا ٱلۡبِحَارُ فُجِّرَتۡ ﴿٣﴾
+        وَإِذَا ٱلۡقُبُورُ بُعۡثِرَتۡ ﴿٤﴾
+        عَلِمَتۡ نَفۡسٞ مَّا قَدَّمَتۡ وَأَخَّرَتۡ ﴿٥﴾
+      </div>
+    </div>
+    <p class="translation">
+      "Apabila langit terbelah, (1) dan apabila bintang-bintang jatuh berserakan, (2) dan apabila lautan diluapkan, (3) dan apabila kuburan-kuburan dibongkar, (4) maka setiap jiwa akan mengetahui apa yang telah dikerjakannya dan yang dilalaikannya." (5)
+    </p>
+
+    <h2 class="section-title violet">Energi Kata</h2>
+
+    <div class="energi-chip">ٱنفَطَرَتۡ — Infatarat (Terbelah)</div>
+    <p>Akar katanya adalah <em>fatara</em> — membelah dengan paksa dari dalam, seperti biji yang memecah cangkangnya. Bukan sekadar retak kecil, tapi pembelahan yang mengubah struktur. Bandingkan dengan <em>insyaqqa</em> (terbelah di surah Al-Insyiqaq) yang lebih berkonotasi merekah horizontal — sementara <em>infatarat</em> mengesankan sesuatu yang selama ini menjadi atap, wadah, batas, tiba-tiba tidak lagi bisa mempertahankan bentuknya.</p>
+    <p>Langit dalam kosmologi Arab adalah simbol keteraturan yang paling mutlak. Terbelahnya langit bukan hanya peristiwa fisik — ini adalah metafora bahwa seluruh sistem yang dianggap permanen, tak tergoyahkan, dan "sudah pasti begini terus" ternyata memiliki batas waktu pemakaian.</p>
+
+    <div class="energi-chip">ٱنتَثَرَتۡ — Intatsarat (Berhamburan)</div>
+    <p>Bintang-bintang tidak sekadar padam atau jatuh satu per satu — mereka <em>berhamburan seperti taburan</em>, seperti manik-manik kalung yang talinya putus. Kata ini mengandung gambaran yang sangat visual: sesuatu yang selama ribuan tahun berdiri sebagai penanda arah, sebagai ketakjuban malam, sebagai navigasi pelaut — semuanya kehilangan posisinya sekaligus. Tidak ada yang tersisa sebagai referensi.</p>
+
+    <div class="energi-chip">مَّا قَدَّمَتۡ وَأَخَّرَتۡ — Apa yang Didahulukan dan yang Dilalaikan</div>
+    <p>Inilah ujung dari semua gambaran kosmis itu. <em>Qaddamat</em> (apa yang dikedepankan, diprioritaskan, dikerjakan) vs <em>akhkharat</em> (apa yang ditunda, diletakkan belakang, dilalaikan). Keduanya dicatat. Bukan hanya apa yang kita lakukan — tetapi apa yang sebenarnya <em>bisa</em> kita lakukan, tapi kita pilih untuk menunda.</p>
+
+    <h2 class="section-title violet">Tafsir Mendalam</h2>
+    <p>Lima ayat pembuka ini bergerak dengan logika sebab-akibat yang sangat dramatis. Empat peristiwa kosmis — langit terbelah, bintang berhamburan, lautan meluap, kuburan terbongkar — semua dirangkai dengan kata <em>idzaa</em> (apabila), membentuk satu kondisi besar yang mengarah ke satu akibat: <strong>setiap jiwa akan mengetahui catatannya.</strong></p>
+    <p>Strukturnya seolah berkata: bahkan jika semua sistem yang kamu anggap permanen harus runtuh, bahkan jika semua yang kamu jadikan patokan harus lenyap, bahkan jika batas antara yang hidup dan yang mati harus dihapus — semua itu dilakukan demi satu tujuan: supaya tidak ada satu pun jiwa yang bisa berkata, "Aku tidak tahu."</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era di mana kita sangat terbiasa <em>mengelola penampilan</em>. Ada versi diri yang kamu tampilkan di LinkedIn — profesional, berhasil, penuh pencapaian. Ada versi untuk keluarga besar — sopan, mapan, tidak ada masalah. Ada versi untuk teman dekat — lebih jujur, tapi tetap ada lapisan yang disembunyikan. Dan ada versi yang hanya kamu tahu sendiri — di jam-jam dini hari ketika tidak ada yang melihat.</p>
+      <p>Ayat-ayat ini bukan menakut-nakuti. Mereka menyampaikan sesuatu yang justru membebaskan: <strong>sistem kategorisasi versi diri itu suatu hari akan tidak relevan.</strong> Bukan karena kamu akan dihukum atas setiap kelemahan — tapi karena pada akhirnya, satu-satunya versi yang tersisa adalah versi yang <em>nyata</em>.</p>
+      <p>Bayangkan kamu memakai berbagai topeng selama bertahun-tahun — topeng untuk mencuri perhatian, topeng untuk menghindari konflik, topeng untuk terlihat baik-baik saja. Ayat ini menggambarkan momen ketika semua topeng itu tidak lagi muat. Bukan karena diambil paksa, tapi karena konteks yang membuat topeng itu berguna sudah tidak ada.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Semesta tidak perlu roboh untuk mengajarkan satu pelajaran ini: yang kita tunda itu juga dicatat. Bukan hanya kesalahan yang kita lakukan — tetapi kebaikan yang sebenarnya bisa kita lakukan, tapi kita pilih untuk menunggu waktu yang "lebih tepat" yang tak pernah benar-benar datang. Hari pertanggungjawaban bukan hanya soal dosa yang dikerjakan, tapi juga tentang potensi yang dibiarkan tidur.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ AYAT 6–8 ═══════════════════ -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num-range">Ayat 6 – 8</span>
+      <span class="violet">Pertanyaan yang Membalikkan Dunia</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic multi" dir="rtl">
+        يَٰٓأَيُّهَا ٱلۡإِنسَٰنُ مَا غَرَّكَ بِرَبِّكَ ٱلۡكَرِيمِ ﴿٦﴾
+        ٱلَّذِي خَلَقَكَ فَسَوَّىٰكَ فَعَدَلَكَ ﴿٧﴾
+        فِيٓ أَيِّ صُورَةٖ مَّا شَآءَ رَكَّبَكَ ﴿٨﴾
+      </div>
+    </div>
+    <p class="translation">
+      "Wahai manusia! Apakah yang telah memperdayamu (sehingga kamu lalai) tentang Tuhanmu Yang Mahamulia? (6) Yang telah menciptakanmu lalu menyempurnakanmu dan menjadikanmu seimbang, (7) dalam bentuk apa pun yang dikehendaki-Nya, Dia menyusun (tubuh)mu." (8)
+    </p>
+
+    <h2 class="section-title violet">Energi Kata</h2>
+
+    <div class="energi-chip">مَا غَرَّكَ — Maa Gharraka (Apakah yang Memperdayamu?)</div>
+    <p>Ini bukan pertanyaan retoris yang dingin. <em>Gharra</em> berasal dari akar yang berarti: menipu dengan cara yang menarik, membuai dengan ilusi yang menyenangkan. Seperti tipuan yang berhasil bukan karena kasar, tapi karena terasa nyaman — seperti tertidur dalam ruangan hangat tanpa menyadari api kecil di sudut ruang.</p>
+    <p>Pertanyaan ini ditujukan langsung kepada manusia, bukan tentang manusia. Dan target pertanyaannya bukan: "mengapa kamu jahat?" — melainkan: <em>"apa yang begitu berhasil membuat kamu lupa?"</em> Ada perbedaan besar antara kedua pertanyaan itu. Yang pertama menuduh. Yang kedua menggali.</p>
+
+    <div class="energi-chip">ٱلۡكَرِيمِ — Al-Kariim (Yang Mahamulia)</div>
+    <p>Ini pilihan kata yang sangat disengaja. Dari semua nama Allah yang bisa dipilih — Yang Mahakuasa, Yang Maha Mengetahui, Yang Maha Mengadili — ayat ini memilih <em>Al-Kariim</em>: Yang Maha Dermawan, Yang Maha Mulia dalam memberi. Seolah pertanyaannya bukan sekadar "mengapa kamu lupa pada Allah?" tapi lebih spesifik: "Mengapa kamu lupa pada Allah yang selama ini sudah sangat baik padamu?"</p>
+    <p>Ini bukan tuduhan — ini adalah pengingat yang menyentuh sisi paling manusiawi dalam diri kita: rasa terima kasih yang tertunda.</p>
+
+    <div class="energi-chip">فَسَوَّىٰكَ فَعَدَلَكَ — Sawwaaka-Adalah (Menyempurnakan-Menyeimbangkan)</div>
+    <p><em>Sawwa</em> artinya menjadikan sesuatu rata, sempurna, proporsional — tidak ada yang berlebih atau kurang. <em>Adala</em> artinya menegakkan keseimbangan, seperti neraca yang dikalibrasi dengan teliti. Dua kata ini berurutan menggambarkan presisi yang luar biasa dalam penciptaan manusia: bukan hanya "ada", tapi <em>tepat seperti yang seharusnya ada</em>.</p>
+
+    <h2 class="section-title violet">Tafsir Mendalam</h2>
+    <p>Setelah membuka dengan gambaran kosmis yang megah di ayat 1–5, surah ini tiba-tiba berpindah ke sesuatu yang sangat personal: pertanyaan langsung ke setiap individu. Dan pertanyaannya bukan tentang dosa besar atau kejahatan nyata — tapi tentang sesuatu yang jauh lebih umum dan jauh lebih berbahaya: <strong>kelalaian yang nyaman</strong>.</p>
+    <p>Manusia tidak selalu lupa pada Tuhan karena membenci-Nya. Lebih sering, kita lupa karena terlalu sibuk, terlalu aman, terlalu nyaman. Kehidupan berjalan baik — dan justru di situlah bahaya terbesarnya. Kita lupa ketika tidak ada yang menekan.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Ada dua pola yang sangat umum di zaman sekarang. <strong>Pertama:</strong> orang yang sangat religius di masa krisis — ketika sakit, ketika gagal, ketika kehilangan — tapi perlahan kembali ke mode "autopilot" begitu keadaan membaik. Bukan karena munafik, tapi karena kemudahan hidup terasa seperti tanda bahwa "semuanya baik-baik saja, tidak perlu intensif lagi".</p>
+      <p><strong>Kedua:</strong> orang yang merasa sudah cukup baik — tidak pernah berbuat kejahatan besar, tidak menyakiti orang secara serius, membayar zakat, salat sesekali. "Saya kan orang baik." Pertanyaan <em>maa gharraka</em> justru paling tajam menghantam tipe kedua ini: bukan karena mereka jahat, tapi karena rasa aman palsu itulah yang paling lihai menipu.</p>
+      <p>Dan ayat berikutnya memberikan konteks yang menyentil: Yang kamu lupakan itu adalah Tuhan yang <em>sudah membentukmu dengan sangat teliti</em>. Tubuhmu, cara berpikirmu, kemampuanmu — semua itu bukan kebetulan evolusi atau nasib baik. Ada tangan yang menyusun, ada kehendak yang menyeimbangkan. Dan kamu lupa kepada-Nya justru dengan kapasitas yang Dia berikan.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kelalaian terbesar manusia bukan lahir dari kebencian — tapi dari kenyamanan. Kita tidak lupa kepada yang membuat kita menderita; kita lupa kepada yang membuat hidup kita berjalan baik. Pertanyaan "apakah yang memperdayamu?" adalah cermin yang paling jujur: bukan menunjuk pada dosa terbesarmu, tapi pada kenikmatan paling halus yang pelan-pelan menggeser pusat gravitasi hatimu.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ AYAT 9–12 ══════════════════ -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num-range">Ayat 9 – 12</span>
+      <span class="violet">Para Pencatat yang Tidak Pernah Absen</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic multi" dir="rtl">
+        كَلَّا بَلۡ تُكَذِّبُونَ بِٱلدِّينِ ﴿٩﴾
+        وَإِنَّ عَلَيۡكُمۡ لَحَٰفِظِينَ ﴿١٠﴾
+        كِرَامٗا كَٰتِبِينَ ﴿١١﴾
+        يَعۡلَمُونَ مَا تَفۡعَلُونَ ﴿١٢﴾
+      </div>
+    </div>
+    <p class="translation">
+      "Sekali-kali jangan begitu! Bahkan kamu mendustakan hari pembalasan. (9) Padahal sesungguhnya bagi kamu ada (malaikat-malaikat) yang mengawasi (pekerjaanmu), (10) yang mulia (di sisi Allah) dan mencatat (pekerjaan-pekerjaanmu itu), (11) mereka mengetahui apa yang kamu kerjakan." (12)
+    </p>
+
+    <h2 class="section-title violet">Energi Kata</h2>
+
+    <div class="energi-chip">كَلَّا — Kallaa (Sekali-kali Tidak!)</div>
+    <p>Ini adalah kata penghenti yang sangat keras dalam bahasa Arab — jauh lebih kuat dari sekadar "tidak". <em>Kallaa</em> dipakai untuk menghentikan sebuah asumsi atau pola pikir yang menyesatkan, seperti seseorang yang dengan tegas memegang bahu temannya dan berkata: "Berhenti. Kamu salah besar dalam cara berpikirmu ini."</p>
+    <p>Kata ini muncul setelah pertanyaan tentang apa yang memperdaya manusia — seolah memberikan diagnosis: akar dari kelalaian itu adalah <em>tidak percaya pada adanya pertanggungjawaban</em>. Bukan sekadar lupa — tapi menolak menerima bahwa ada konsekuensi.</p>
+
+    <div class="energi-chip">حَٰفِظِينَ كِرَامٗا كَٰتِبِينَ — Para Penjaga yang Mulia dan Mencatat</div>
+    <p>Tiga kata ini membentuk gambaran yang sangat spesifik. <em>Haafiziin</em> (para penjaga/pengawas) menunjukkan kehadiran yang terus-menerus. <em>Kiiraam</em> (yang mulia) — ini bukan sekadar keterangan identitas, ini penekanan bahwa mereka bukan pencatat mesin yang tak peduli; mereka entitas bermartabat tinggi yang diberi tugas mulia. <em>Kaatibiin</em> (para pencatat) — aktif, real-time, tidak ada jedanya.</p>
+    <p>Gabungan ketiganya: ada kesaksian yang terus-menerus, dilakukan oleh entitas bermartabat, secara aktif tanpa jeda.</p>
+
+    <h2 class="section-title violet">Tafsir Mendalam</h2>
+    <p>Inilah salah satu ayat yang paling sering disalahpahami sebagai "ancaman pengawasan". Padahal, jika dibaca lebih dalam, ini adalah sesuatu yang berbeda: <strong>jaminan bahwa tidak ada yang sia-sia.</strong></p>
+    <p>Bayangkan kamu pernah melakukan kebaikan yang tidak ada yang tahu. Membantu seseorang diam-diam. Menahan diri dari kejahatan padahal tidak ada yang melihat. Berdoa di tengah malam sendirian. Menangis dalam sepi karena menyesal atas kesalahan lama. Semua itu — yang paling sunyi, yang paling tersembunyi, yang bahkan kamu sendiri hampir lupa — semuanya <em>ada catatannya</em>.</p>
+    <p>Ini bukan Big Brother yang mengintai. Ini adalah saksi setia yang memastikan bahwa setiap upayamu memiliki bobot, setiap ketulusanmu tidak menguap begitu saja.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era yang sangat terobsesi dengan <em>visibilitas</em>. Kebaikan yang tidak didokumentasikan terasa setengah nyata. Prestasi yang tidak diketahui orang serasa belum terjadi. Bahkan penderitaan pun sering perlu diceritakan agar terasa valid — "kalau tidak ada yang tahu aku susah, berarti susahku tidak penting."</p>
+      <p>Ayat ini memberikan perspektif yang membebaskan dari tirani visibilitas itu. <strong>Ada sistem pencatatan yang tidak butuh likes, tidak butuh penonton, tidak butuh validasi sosial.</strong> Kamu bisa melakukan kebaikan yang tidak ada yang tahu — dan ia tetap tercatat, dengan kualitas pencatatan yang jauh melebihi memori siapa pun.</p>
+      <p>Di sisi lain, ini juga berarti: dosa kecil yang "tidak ada yang lihat" pun masuk dalam catatan. Bukan untuk menakut-nakuti, tapi untuk menghapus ilusi bahwa ada wilayah "tidak terpantau" dalam hidup — dan dengan begitu, mendorong konsistensi antara perilaku saat ada orang dan saat sendirian.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kebaikanmu yang paling sunyi adalah yang paling terjaga. Para malaikat pencatat bukan penjara pengawasan — mereka adalah jaminan bahwa tidak ada ketulusan yang menguap tanpa jejak. Di dunia yang mengukur segalanya dari seberapa banyak yang menyaksikan, ada kabar baik ini: yang paling berharga justru yang paling tidak terlihat oleh mata manusia.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ AYAT 13–16 ══════════════════ -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num-range">Ayat 13 – 16</span>
+      <span class="violet">Dua Jalan, Dua Akhir yang Nyata</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic multi" dir="rtl">
+        إِنَّ ٱلۡأَبۡرَارَ لَفِي نَعِيمٖ ﴿١٣﴾
+        وَإِنَّ ٱلۡفُجَّارَ لَفِي جَحِيمٖ ﴿١٤﴾
+        يَصۡلَوۡنَهَا يَوۡمَ ٱلدِّينِ ﴿١٥﴾
+        وَمَا هُمۡ عَنۡهَا بِغَآئِبِينَ ﴿١٦﴾
+      </div>
+    </div>
+    <p class="translation">
+      "Sesungguhnya orang-orang yang berbakti benar-benar berada dalam (surga yang penuh) kenikmatan, (13) dan sesungguhnya orang-orang yang durhaka benar-benar berada dalam neraka. (14) Mereka masuk ke dalamnya pada hari pembalasan. (15) Dan mereka tidak mungkin keluar dari sana." (16)
+    </p>
+
+    <h2 class="section-title violet">Energi Kata</h2>
+
+    <div class="energi-chip">ٱلۡأَبۡرَارَ — Al-Abraar (Orang-orang yang Berbakti)</div>
+    <p>Akar katanya <em>birr</em> — kebaikan yang luas, komprehensif, dan tulus. Bukan hanya satu jenis amal, bukan hanya satu ritual. <em>Birr</em> mencakup segala bentuk kebaikan yang lahir dari dalam, bukan yang dipaksakan oleh pandangan orang lain. Bandingkan dengan <em>taqwa</em> yang lebih berkonotasi "keterpeliharaan dari keburukan" — sementara <em>birr</em> adalah keaktifan menuju kebaikan.</p>
+    <p>Menarik bahwa kata ini tidak merujuk pada "yang paling saleh" atau "yang paling banyak ibadahnya" — tapi pada mereka yang hidupnya memiliki orientasi yang benar dan konsisten.</p>
+
+    <div class="energi-chip">ٱلۡفُجَّارَ — Al-Fujjaar (Orang-orang yang Durhaka)</div>
+    <p><em>Fujjaar</em> dari akar <em>fajara</em> — membelah, menembus batas, keluar dari yang seharusnya. Gambaran yang sangat kuat: bukan sekadar "orang jahat" dalam arti moral umum, tapi orang yang secara aktif menerobos batas-batas yang telah ditetapkan, yang dengan sengaja melanggar struktur yang ada.</p>
+    <p>Ini bukan tentang orang yang sesekali melakukan kesalahan — itu sifat semua manusia. Ini tentang orientasi hidup: apakah hidup kita secara keseluruhan bergerak menuju kebaikan, atau secara sistematis menjauh dari batas-batas yang ada?</p>
+
+    <div class="energi-chip">بِغَآئِبِينَ — Bighaa'ibiin (Tidak Akan Absen/Meninggalkan)</div>
+    <p>Kata terakhir di kelompok ini sangat kuat: <em>ghaa'ib</em> adalah yang tidak hadir, yang absen, yang tidak ada. Frasa "mereka tidak mungkin menjadi orang yang absen dari sana" berarti: tidak ada cara untuk menghindar, tidak ada pintu keluar rahasia. Sebuah pernyataan tentang kepastian, bukan kekejaman.</p>
+
+    <h2 class="section-title violet">Tafsir Mendalam</h2>
+    <p>Empat ayat ini terasa seperti pernyataan verdik yang sederhana dan langsung. Tidak ada basa-basi, tidak ada gradasi abu-abu yang panjang. Tapi kesederhanaan ini bukan oversimplifikasi — ini adalah cara Al-Qur'an menyampaikan sesuatu yang sering kita butuhkan: <strong>kepastian tentang konsekuensi.</strong></p>
+    <p>Kita hidup di era moral yang sangat relatif. Segalanya tergantung perspektif. Segalanya bisa dikontekstualisasikan. Segalanya bisa dijustifikasi dengan narasi yang cukup panjang. Dan ada kebenaran dalam nuansa — tapi ada bahaya juga ketika nuansa dijadikan alasan untuk tidak pernah benar-benar mengambil sikap.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Perhatikan apa yang dipakai: bukan "orang berdosa" dan "orang sempurna" — tapi <em>abraar</em> (yang berbakti/baik secara konsisten) dan <em>fujjaar</em> (yang melanggar batas secara sistematis). Ini bicara soal <strong>pola hidup</strong>, bukan satu momen keputusan.</p>
+      <p>Kita sering terjebak dalam logika yang terlalu hitam-putih: "Aku pernah berbuat dosa besar, jadi aku sudah masuk kategori fujjaar." Atau sebaliknya: "Aku tidak pernah berbuat jahat besar, jadi aku pasti termasuk abraar." Keduanya terlalu sederhana. Pertanyaan yang lebih jujur adalah: <em>ke arah mana hidupmu bergerak secara keseluruhan?</em> Bukan satu titik, tapi arah trayektori.</p>
+      <p>Seseorang yang pernah jatuh dalam dosa besar tapi kemudian dengan tekun memperbaiki arah hidupnya — trayektorinya adalah trayektori abraar. Seseorang yang tidak pernah melakukan kejahatan dramatis tapi seluruh hidupnya dibangun di atas penipuan kecil yang konsisten, manipulasi yang teratur, dan pengabaian sistematis terhadap hak orang lain — trayektorinya bisa jadi trayektori fujjaar.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Hidup bukan tentang satu keputusan besar yang menentukan segalanya — tapi tentang ribuan keputusan kecil yang bersama-sama membentuk trayektori. Abraar dan fujjaar bukan label yang ditempel di dahi sejak lahir; itu adalah arah yang dipilih setiap hari, dalam setiap momen kecil ketika tidak ada yang melihat, ketika tidak ada yang menghitung, ketika hanya hati yang tahu.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ AYAT 17–19 ══════════════════ -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num-range">Ayat 17 – 19</span>
+      <span class="violet">Hari Ketika Semua Sistem Dinonaktifkan</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic multi" dir="rtl">
+        وَمَآ أَدۡرَىٰكَ مَا يَوۡمُ ٱلدِّينِ ﴿١٧﴾
+        ثُمَّ مَآ أَدۡرَىٰكَ مَا يَوۡمُ ٱلدِّينِ ﴿١٨﴾
+        يَوۡمَ لَا تَمۡلِكُ نَفۡسٞ لِّنَفۡسٖ شَيۡـٔٗا وَٱلۡأَمۡرُ يَوۡمَئِذٖ لِّلَّهِ ﴿١٩﴾
+      </div>
+    </div>
+    <p class="translation">
+      "Dan tahukah kamu apakah hari pembalasan itu? (17) Sekali lagi, tahukah kamu apakah hari pembalasan itu? (18) (Yaitu) hari (ketika) seseorang tidak berdaya sedikit pun untuk menolong orang lain. Dan segala urusan pada hari itu dalam kekuasaan Allah." (19)
+    </p>
+
+    <h2 class="section-title violet">Energi Kata</h2>
+
+    <div class="energi-chip">وَمَآ أَدۡرَىٰكَ — Wa maa adraaka (Tahukah Kamu?)</div>
+    <p>Formula ini dalam Al-Qur'an selalu digunakan untuk hal-hal yang melampaui kapasitas pemahaman manusia biasa. <em>Adraa</em> berasal dari akar yang berarti "mengetahui dengan benar-benar paham dari dalam", bukan sekadar tahu secara informasi. Pertanyaan ini bukan menguji pengetahuanmu — ia menyatakan bahwa tidak ada referensi dalam pengalamanmu yang cukup untuk benar-benar membayangkan ini.</p>
+    <p>Dan kemudian pertanyaan itu diulang — dua kali berturut-turut. Pengulangan dalam retorika Arab bukan karena lupa atau tidak efisien. Pengulangan adalah cara menekan makna ke dalam lapisan pemahaman yang berbeda. Kali pertama menyentuh intelekmu. Kali kedua menyentuh perasaanmu.</p>
+
+    <div class="energi-chip">لَا تَمۡلِكُ نَفۡسٞ لِّنَفۡسٖ شَيۡـٔٗا — Tidak Seorang pun Berkuasa atas Orang Lain Sedikit pun</div>
+    <p>Ini adalah pernyataan yang mengguncang seluruh sistem sosial yang kita kenal. <em>Tamlik</em> dari <em>malaka</em> — memiliki, menguasai, berkuasa atas sesuatu. Tidak ada satu jiwa pun yang memiliki kemampuan untuk melakukan apa pun bagi jiwa lain. Bukan karena tidak mau, tapi karena sistem yang selama ini memungkinkan itu — uang, koneksi, kekuasaan, pengaruh, kasih sayang — semua sistem itu dinonaktifkan.</p>
+
+    <h2 class="section-title violet">Tafsir Mendalam</h2>
+    <p>Surah ini ditutup dengan pernyataan yang paling telanjang dan paling keras sekaligus: pada hari itu, semua sistem bantuan antar-manusia mati. Ini bukan tentang Tuhan yang tidak peduli atau tidak mengizinkan tolong-menolong — ini tentang satu hari di mana satu-satunya otoritas yang tersisa adalah otoritas-Nya.</p>
+    <p>Sepanjang hidupmu, ada banyak sistem yang bisa kamu andalkan ketika dalam kesulitan. Keluarga yang bisa menutup kekuranganmu. Uang yang bisa membeli jalan keluar. Nama besar yang bisa membuka pintu. Koneksi yang bisa menggerakkan keputusan. Semua sistem itu bukan buruk dalam dirinya sendiri — masalahnya adalah ketika kita mulai memperlakukannya sebagai jaring pengaman terakhir, sumber keselamatan tertinggi.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Ada satu pertanyaan yang sangat umum di kalangan generasi sekarang: <em>"Untuk apa aku susah payah beribadah kalau toh orang-orang jahat yang sukses?"</em> Atau dalam versi lain: <em>"Percuma berbuat baik, yang penting punya koneksi yang tepat."</em></p>
+      <p>Ayat terakhir ini menjawab kegelisahan itu dengan cara yang paling definitif: ada satu hari di mana semua koneksi, semua modal sosial, semua sistem privilege yang bekerja di dunia — semuanya tidak berlaku. Bukan karena dunia ini tidak nyata, tapi karena dunia ini bukan final.</p>
+      <p>Ini juga bicara kepada mereka yang terlalu menggantungkan keselamatannya pada orang lain. "Nanti ada Papa yang urus." "Nanti ada suami yang tanggung." "Nanti ada kelompok kita yang saling jaga." Semua itu boleh dan baik — tapi ayat ini mengingatkan bahwa ada satu hal yang tidak bisa diwakilkan, tidak bisa diurus oleh siapa pun: pertanggungjawabanmu sendiri, atas hidupmu sendiri.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Ada satu hari ketika semua sistem yang selama ini memungkinkan manusia saling menolong, saling menutupi, saling memindahkan beban — semuanya dinonaktifkan serentak. Bukan sebagai hukuman, tapi sebagai kejelasan: agar setiap jiwa berdiri dengan catatannya sendiri, tanpa bisa dipindahtangankan, tanpa bisa diwakili. Dan dalam kejelasan yang mungkin menyeramkan itu, ada satu kepastian yang membebaskan: segala urusan pada hari itu hanya di tangan-Nya — bukan di tangan siapa pun yang pernah mengecewakanmu.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ PENUTUP ═══════════════════ -->
+  <div class="penutup">
+    <h2 class="section-title violet" style="margin-top:0;">Refleksi: Pola yang Bisa Diambil</h2>
+
+    <div class="langkah">
+      <div class="lnum">1 — Audit Kelalaian yang Nyaman</div>
+      <p>Ambil waktu sejenak dan tanyakan pada diri sendiri: <em>Apa yang selama ini membuat aku lupa?</em> Bukan dalam arti lupa secara harfiah — tapi lupa sebagai pusat gravitasi kehidupan. Apakah itu kesibukan? Kenyamanan? Merasa sudah cukup baik? Diagnosa yang jujur di sini adalah langkah pertama yang paling penting. Tidak perlu langsung mengubah semuanya — cukup mulai dengan menamai ilusinya.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">2 — Periksa Trayektori, Bukan Titik</div>
+      <p>Alih-alih bertanya "apakah aku orang baik atau orang jahat?" — tanyakan: <em>ke arah mana hidupku bergerak secara keseluruhan?</em> Apakah keputusan-keputusanku yang kecil, sehari-hari, yang tidak ada yang melihat, membentuk seseorang yang semakin dekat atau semakin jauh dari nilai-nilai yang aku percayai? Trayektori bisa diubah kapan saja — tapi harus dilihat dulu dengan jujur.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">3 — Rawat Kebaikan yang Tidak Ada yang Tahu</div>
+      <p>Pilih satu bentuk kebaikan yang benar-benar tidak perlu diketahui siapa pun. Bukan untuk pamer ketulusan — justru sebaliknya: sebagai latihan memutus ketergantungan pada validasi. Bayar seseorang diam-diam. Bantu tanpa meninggalkan jejak. Tahan diri dari sesuatu yang buruk padahal tidak ada yang melihat. Jadikan ini latihan rutin. Semakin sering kamu berbuat baik tanpa penonton, semakin kuat integritas batinmu.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">4 — Bereskan Catatan yang Tertunda</div>
+      <p>Al-Infithar mengingatkan bahwa yang ditunda juga dicatat. Ada satu hal yang selama ini kamu tahu harus dilakukan tapi terus ditunda? Minta maaf yang belum terucap. Hak orang yang belum ditunaikan. Hubungan yang perlu diperbaiki. Niat yang selalu "nanti". Pilih satu — hanya satu — dan selesaikan. Bukan karena hari kiamat sudah dekat dalam pengertian harfiah, tapi karena tidak ada waktu yang lebih baik dari sekarang untuk mengurangi catatan yang menggantung.</p>
+    </div>
+
+    <h2 class="section-title violet">Langkah Nyata</h2>
+
+    <div class="langkah">
+      <div class="lnum">Praktik Harian — Momen Sadar Sebelum Tidur</div>
+      <p>Sebelum tidur, luangkan dua menit. Tanyakan tiga hal: <em>Apa yang aku lakukan hari ini yang aku tidak malu jika dicatat?</em> — <em>Apa yang aku lakukan yang ingin aku perbaiki besok?</em> — <em>Apakah ada yang aku tunda hari ini yang seharusnya aku lakukan?</em> Bukan untuk menghukum diri, tapi untuk melatih kesadaran bahwa setiap hari memiliki catatannya sendiri, dan setiap hari juga membuka lembaran baru.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">Praktik Mingguan — Identifikasi Satu Ketergantungan yang Perlu Digeser</div>
+      <p>Setiap pekan, tanyakan: <em>Kepada siapa atau apa aku paling sering meminta ketenangan, pembenaran, atau kebahagiaan?</em> Bukan untuk melepaskan semua sistem dukungan manusiawi — tapi untuk memeriksa apakah ada sesuatu yang sudah menduduki tempat yang seharusnya menjadi milik Yang Mahamulia. Jika ada, lakukan satu langkah kecil untuk menggeser hierarki itu.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ EPILOG ════════════════════ -->
+  <div class="epilog">
+    <h2 class="epilog-title violet">Ketika Langit Retak, Kamu Masih di Sini</h2>
+    <p class="epilog-sub">— dan itu berarti waktumu belum habis</p>
+
+    <p>Kamu membaca surah tentang langit yang terbelah, bintang yang berhamburan, lautan yang meluap, dan kubur yang terbongkar — dan kamu masih di sini, masih bernapas, masih memiliki hari esok yang belum tercatat.</p>
+
+    <p>Ada sesuatu yang sangat penting dalam jeda itu: selama semua itu belum terjadi, kamu masih punya waktu untuk memilih arah trayektorimu.</p>
+
+    <div class="divider" style="margin: 36px auto;"></div>
+
+    <div class="archetype">
+      <span class="archetype-label">✦ Untuk mereka yang merasa catatannya sudah terlalu buruk</span>
+      Kamu tidak membaca surah ini terlambat. Fakta bahwa kamu masih bisa membacanya artinya lembaran barumu belum ditutup. Al-Infithar berbicara tentang hari ketika catatan dibuka — tapi hari itu bukan hari ini. Hari ini adalah hari ketika kamu masih bisa menambahkan baris baru yang berbeda. Satu kebaikan yang tulus hari ini lebih berharga dari seribu penyesalan yang hanya berhenti sebagai perasaan.
+    </div>
+
+    <div class="archetype">
+      <span class="archetype-label">✦ Untuk mereka yang merasa sudah cukup baik dan tidak perlu khawatir</span>
+      Pertanyaan <em>maa gharraka</em> paling sering datang bukan untuk yang paling berdosa — tapi untuk yang paling nyaman. Keamanan yang kamu rasakan bisa jadi anugerah, bisa jadi ujian. Bukan saatnya panik, tapi mungkin saatnya bertanya dengan jujur: apakah kenyamananku ini membuat aku tumbuh, atau membuat aku berhenti?
+    </div>
+
+    <div class="archetype">
+      <span class="archetype-label">✦ Untuk mereka yang merasa kebaikannya tidak pernah dilihat siapa pun</span>
+      Semua kebaikan yang kamu lakukan dalam sunyi — semua yang tidak mendapat tepuk tangan, tidak mendapat balasan yang setimpal, tidak mendapat pengakuan yang layak — semua itu ada dalam catatan para penjaga yang mulia. Tidak ada yang terlewat. Tidak ada yang menguap. Sistem pencatatannya tidak butuh koneksi internet dan tidak pernah down.
+    </div>
+
+    <div class="archetype">
+      <span class="archetype-label">✦ Untuk mereka yang kelelahan menanggung beban sendirian karena orang-orang yang seharusnya membantu tidak hadir</span>
+      Ada hari ketika tidak seorang pun bisa membantu siapa pun. Tapi hari itu juga adalah hari ketika semua urusan ada di tangan-Nya — bukan di tangan manusia yang pernah mengecewakan, membiarkan, atau meninggalkanmu. Ketidakmampuan manusia untuk membantumu bukanlah cerminan dari nilaimu di hadapan-Nya.
+    </div>
+
+    <div class="divider" style="margin: 42px auto;"></div>
+
+    <span class="arabic-line">يَوۡمَ لَا تَمۡلِكُ نَفۡسٞ لِّنَفۡسٖ شَيۡـٔٗا وَٱلۡأَمۡرُ يَوۡمَئِذٖ لِّلَّهِ</span>
+    <span class="latin-line">Yauma laa tamliku nafsun li nafsin syai'an wal amru yaumaidzin lillaah</span>
+
+    <p>Hari ketika semua sistem lain dinonaktifkan — dan yang tersisa hanya Dia.<br>Mungkin justru itu kabar paling baik yang bisa ada.</p>
+
+    <p class="closing">
+      Karena langit yang retak tidak pernah runtuh tanpa tujuan.<br>
+      Karena bintang yang jatuh berhamburan bukan awal dari kegelapan abadi —<br>
+      tapi pengumuman dari cahaya yang berbeda.<br><br>
+      <span class="violet" style="-webkit-text-fill-color:unset; background:none; color:var(--v1);">Dan semua yang kamu lakukan dalam sunyi, dalam tulus, dalam sepi —</span><br>
+      sudah lama ada catatannya.<br><br>
+      <strong style="color:var(--v1); font-size:1.08em;">Selama nafasmu masih ada, trayektorimu belum final.</strong>
+    </p>
+  </div>
+
+</div><!-- /container -->
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.ayat-section').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

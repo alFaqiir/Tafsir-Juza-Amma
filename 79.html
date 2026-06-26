@@ -1,0 +1,1584 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An-Nazi'at: Saat Sistem Kehidupan Melakukan Logout Paksa</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: #07070d;
+    color: #d8d6e8;
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+
+  .gold {
+    background: linear-gradient(135deg, #6b46c1 0%, #9d7bea 35%, #7dd3fc 55%, #c4b5fd 75%, #6b46c1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header {
+    position: relative;
+    padding: 80px 40px 70px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, #1a1030 0%, #07070d 70%);
+    border-bottom: 1px solid #221a3a;
+  }
+  .header::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle, rgba(125,211,252,.10) 1px, transparent 1px);
+    background-size: 42px 42px;
+    animation: drift 45s linear infinite;
+    pointer-events:none;
+  }
+  .header::after {
+    content:'';
+    position:absolute;
+    top:-90px; left:50%; transform:translateX(-50%);
+    width:640px; height:320px;
+    background: radial-gradient(ellipse, rgba(107,70,193,.25) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  @keyframes drift { to { background-position: 42px 42px; } }
+
+  .header-bismillah {
+    font-family: 'Amiri', serif;
+    font-size: 2em;
+    color: #a78bfa;
+    opacity: .65;
+    margin-bottom: 24px;
+    letter-spacing: 4px;
+    position: relative; z-index:1;
+  }
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.2em, 5vw, 3.4em);
+    font-weight: 700;
+    line-height: 1.2;
+    position: relative; z-index:1;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .header-sub {
+    font-size: 1em;
+    color: #8a82b0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative; z-index:1;
+    margin-bottom: 28px;
+  }
+  .divider-gold {
+    width: 120px; height: 2px;
+    background: linear-gradient(to right, transparent, #6b46c1, #7dd3fc, #6b46c1, transparent);
+    margin: 20px auto;
+    position:relative; z-index:1;
+  }
+  .tagline {
+    font-style: italic;
+    font-size: 1.15em;
+    color: #b8aede;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative; z-index:1;
+    line-height: 1.7;
+  }
+
+  .container { max-width: 920px; margin: 0 auto; padding: 50px 24px 80px; }
+
+  .bagian-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.3em, 3vw, 1.7em);
+    font-weight: 700;
+    text-align: center;
+    margin: 70px 0 36px;
+    padding-bottom: 16px;
+    position: relative;
+    color: #cdbdfa;
+  }
+  .bagian-title:first-of-type { margin-top: 10px; }
+  .bagian-title::after {
+    content:'';
+    position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+    width:80px; height:2px;
+    background: linear-gradient(to right, transparent, #7dd3fc, transparent);
+  }
+  .bagian-sub {
+    text-align:center;
+    color:#766f96;
+    font-style: italic;
+    font-size: .95em;
+    margin: -28px 0 36px;
+  }
+
+  .ayat-section {
+    position: relative;
+    background: linear-gradient(160deg, #100c1e, #0b0a16);
+    border: 1px solid #221a3a;
+    border-left: 3px solid #6b46c1;
+    border-radius: 16px;
+    padding: 44px 42px;
+    margin-bottom: 44px;
+    box-shadow: 0 4px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(125,211,252,.05);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s ease, transform .7s ease, box-shadow .3s;
+  }
+  .ayat-section.visible { opacity:1; transform:translateY(0); }
+  .ayat-section:hover { box-shadow: 0 8px 50px rgba(0,0,0,.8), 0 0 0 1px rgba(125,211,252,.12); }
+  .ayat-section::before {
+    content: '✦';
+    position:absolute; top:18px; right:22px;
+    color: #7dd3fc; opacity:.3; font-size:1.3em;
+  }
+
+  .ayat-number {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4em;
+    font-weight: 700;
+    margin-bottom: 26px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .ayat-number span.num {
+    display:inline-block;
+    width:38px; height:38px; line-height:36px; text-align:center;
+    border: 1px solid #6b46c1;
+    border-radius:50%;
+    font-size:.7em;
+    background: linear-gradient(135deg,#1a1230,#0d0a18);
+    color: #a78bfa;
+    flex-shrink:0;
+  }
+
+  h2.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin: 32px 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #221a3a;
+    letter-spacing: .5px;
+  }
+
+  .arabic-wrap {
+    text-align: center;
+    margin: 28px 0 10px;
+    padding: 26px 20px;
+    background: radial-gradient(ellipse at center, #160f28 0%, #0b0a14 80%);
+    border-radius: 12px;
+    border: 1px solid #251c3f;
+    position:relative;
+  }
+  .arabic-wrap::before, .arabic-wrap::after {
+    content:'❖';
+    position:absolute; top:50%; transform:translateY(-50%);
+    color:#6b46c1; opacity:.35; font-size:1.1em;
+  }
+  .arabic-wrap::before { left:18px; }
+  .arabic-wrap::after  { right:18px; }
+
+  .arabic {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.6em, 4vw, 2.3em);
+    line-height: 2;
+    background: linear-gradient(135deg, #6b46c1 0%, #9d7bea 40%, #7dd3fc 65%, #c4b5fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    direction: rtl;
+  }
+
+  .translation {
+    text-align: center;
+    font-style: italic;
+    color: #8a82b0;
+    font-size: 1.02em;
+    margin: 10px 0 28px;
+  }
+
+  .energi-chip {
+    display: inline-block;
+    background: linear-gradient(135deg, #1a1230 0%, #221a3a 100%);
+    border: 1px solid #4c3a8a;
+    color: #a78bfa;
+    padding: 7px 18px;
+    border-radius: 30px;
+    font-size: .92em;
+    font-weight: 600;
+    margin: 16px 0 10px;
+    letter-spacing:.3px;
+  }
+
+  p {
+    margin-bottom: 15px;
+    color: #c4c0da;
+    text-align: justify;
+    font-size: .96em;
+  }
+  strong { color: #a78bfa; font-weight:600; }
+  em { color: #9d96c4; font-style: italic; }
+
+  .relevance-box {
+    background: linear-gradient(160deg,#0f0c1c,#0a0916);
+    border-left: 3px solid #7dd3fc;
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    margin: 20px 0;
+  }
+  .relevance-label {
+    font-size:.78em;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#7dd3fc;
+    margin-bottom:10px;
+    font-family:'Cinzel',serif;
+  }
+
+  .intisari {
+    position:relative;
+    background: linear-gradient(160deg, #150f28, #0e0c1c);
+    border: 1px solid #2e2350;
+    border-radius: 12px;
+    padding: 26px 30px;
+    margin: 26px 0 0;
+    color: #cdc4ee;
+    font-size: .96em;
+    line-height: 1.9;
+  }
+  .intisari::before {
+    content: '"';
+    position:absolute; top:-16px; left:24px;
+    font-size:4em; line-height:1;
+    background: linear-gradient(to bottom, #9d7bea, #6b46c1);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-family:'Cinzel',serif;
+  }
+  .intisari-label {
+    font-size:.74em; letter-spacing:2.5px; text-transform:uppercase;
+    color:#7dd3fc; margin-bottom:12px;
+    font-family:'Cinzel',serif;
+  }
+
+  .penutup {
+    background: linear-gradient(160deg,#0c0a16,#08070f);
+    border: 1px solid #221a3a;
+    border-radius: 16px;
+    padding: 50px 42px;
+    margin-bottom: 48px;
+  }
+  .langkah {
+    background: linear-gradient(160deg,#110d20,#0c0a18);
+    border: 1px solid #221a3a;
+    border-left: 3px solid #6b46c1;
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    margin: 16px 0;
+    color: #c4c0da;
+    font-size:.95em;
+  }
+  .langkah .lnum {
+    display:inline-block;
+    background: linear-gradient(135deg, #6b46c1, #7dd3fc);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-weight:700; font-family:'Cinzel',serif;
+    font-size:1.05em; margin-bottom:4px;
+  }
+  .langkah p { margin-bottom:0; }
+
+  .epilog {
+    background: radial-gradient(ellipse at 50% 0%, #190f30 0%, #07060e 60%);
+    border: 1px solid #221a3a;
+    border-top: 2px solid #6b46c1;
+    border-radius: 16px;
+    padding: 56px 42px;
+    text-align: center;
+  }
+  .epilog .epilog-title {
+    font-family:'Cinzel',serif;
+    font-size:clamp(1.3em,3vw,1.9em);
+    font-weight:700;
+    margin-bottom:36px;
+  }
+  .epilog p {
+    max-width:660px; margin:0 auto 18px;
+    color:#b8aede; text-align:center; font-style:italic;
+  }
+  .epilog .voice-label {
+    display:block; max-width:660px; margin:34px auto 8px;
+    font-family:'Cinzel',serif; font-size:.82em; letter-spacing:2px;
+    text-transform:uppercase; color:#7dd3fc; font-style:normal;
+  }
+  .epilog .arabic-line {
+    font-family: 'Amiri', serif;
+    font-size:clamp(1.4em,3.4vw,2em);
+    direction:rtl;
+    background: linear-gradient(135deg,#6b46c1,#9d7bea,#7dd3fc,#c4b5fd);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    display:block; margin:26px auto 6px;
+  }
+  .epilog .latin-line {
+    font-style:italic; color:#a78bfa; font-size:1em;
+    margin-bottom:18px; display:block;
+  }
+  .epilog .closing {
+    margin-top:38px; font-style:normal;
+    font-family:'Cinzel',serif;
+    font-size:1.05em; color:#cdc4ee;
+    line-height:1.9;
+  }
+
+  #scrollTop {
+    position:fixed; bottom:28px; right:28px;
+    width:46px; height:46px;
+    background: linear-gradient(135deg,#6b46c1,#7dd3fc);
+    color:#07070d; font-size:1.2em; font-weight:700;
+    border:none; border-radius:50%;
+    cursor:pointer; display:none; align-items:center; justify-content:center;
+    box-shadow:0 4px 20px rgba(0,0,0,.5);
+    transition:transform .2s;
+    z-index:999;
+  }
+  #scrollTop:hover { transform:scale(1.1); }
+
+  @media(max-width:640px){
+    .header { padding:60px 20px 50px; }
+    .ayat-section, .penutup, .epilog { padding:30px 20px; }
+    .container { padding:30px 14px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <h1 class="gold">An-Nazi'at</h1>
+  <p class="header-sub">Surat 79 · 46 Ayat</p>
+  <div class="divider-gold"></div>
+  <p class="tagline">Saat Sistem Kehidupan Melakukan Logout Paksa — sebuah pengingat bahwa setiap akun yang sedang kamu mainkan ini, cepat atau lambat, akan ditarik paksa dari servernya. Pertanyaannya bukan "kapan", tapi: data apa yang akan tersisa di riwayatmu?</p>
+</div>
+
+<div class="container">
+
+<!-- BAGIAN I -->
+<h2 class="bagian-title gold">Bagian I — Lima Sumpah Kosmik</h2>
+<p class="bagian-sub">Sebelum bicara kematian, Allah bersumpah demi para "petugas sistem" yang bekerja tanpa pernah terlihat</p>
+
+<!-- AYAT 1 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">١</span><span class="gold">Ayat Pertama</span></div>
+  <div class="arabic-wrap"><div class="arabic">وَالنَّازِعَاتِ غَرْقًا</div></div>
+  <p class="translation">"Demi (malaikat) yang mencabut (nyawa) dengan keras."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">النَّازِعَاتِ — Yang Mencabut</div>
+  <p>Akar kata <em>naza'a</em> berarti mencabut, menarik paksa sesuatu yang menempel erat — seperti mencabut akar pohon dari tanah, bukan sekadar memetik daun. Ini bukan proses lembut. Ini gambaran tentang nyawa yang ditarik keluar dari raga yang sudah terlanjur lengket dengannya, dari kebiasaan, dari kemelekatan, dari "akun" yang sudah dipakai bertahun-tahun.</p>
+  <div class="energi-chip">غَرْقًا — Dengan Keras / Sampai Tenggelam</div>
+  <p>Kata ini biasanya dipakai untuk menggambarkan penyelam yang menyelam sangat dalam, atau busur panah yang ditarik sampai mentok. Maknanya: proses pencabutan ini dilakukan sepenuh-penuhnya, tanpa sisa, untuk jiwa-jiwa yang selama hidupnya menolak untuk dicabut dari kemelekatan dunia.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Ayat pembuka ini langsung melempar kita ke ruang yang jarang kita pikirkan: ada "petugas" yang bekerja di balik layar kehidupan dan kematian, dan mereka bekerja sesuai dengan bagaimana kita hidup. Sebagian ulama menafsirkan ini sebagai malaikat yang mencabut nyawa orang-orang yang menolak kebenaran — proses yang berat karena jiwa itu sendiri yang melawan, menggenggam erat dunia yang harus dilepaskannya.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering menyamakan diri kita dengan akun media sosial, jabatan, atau pencapaian — sampai lupa bahwa semua itu hanyalah sesi <em>login</em> sementara. Ketika sesi itu harus berakhir, yang menentukan apakah "logout"-nya terasa berat atau ringan adalah seberapa erat kita menggenggam hal-hal yang sebenarnya bukan milik kita selamanya.</p>
+    <p>Aplikasi praktis: pertama, coba latihan kecil setiap malam — tanya diri, "Hari ini, apa yang aku genggam terlalu erat?" Kedua, mulai praktikkan "detasemen sehat": menikmati sesuatu tanpa menjadikannya identitas, sehingga ketika ia diambil — pekerjaan, status, bahkan kesehatan — kamu tidak runtuh bersamanya.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Yang membuat perpisahan terasa kasar bukanlah perpisahan itu sendiri, tapi seberapa keras kita menolak melepaskan apa yang memang harus dilepaskan.
+  </div>
+</div>
+
+<!-- AYAT 2 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٢</span><span class="gold">Ayat Kedua</span></div>
+  <div class="arabic-wrap"><div class="arabic">وَالنَّاشِطَاتِ نَشْطًا</div></div>
+  <p class="translation">"Dan (malaikat) yang mencabut (nyawa) dengan lemah lembut."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">النَّاشِطَاتِ — Yang Melepas dengan Mudah</div>
+  <p><em>Nasyatha</em> aslinya menggambarkan tali yang dilepas dari ikatan unta dengan sekali tarik ringan, tanpa perlawanan. Ini kontras total dengan ayat pertama — proses yang sama (pencabutan nyawa), tapi dengan kualitas yang berbeda sepenuhnya: lancar, mudah, hampir tanpa terasa.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Allah meletakkan dua nasib bersisian: ada jiwa yang dicabut dengan keras karena seumur hidup menolak melepaskan dunia, dan ada jiwa yang dicabut dengan lembut karena selama hidupnya sudah berlatih melepaskan. Kontras ini bukan kebetulan — ini adalah cermin dari bagaimana kita menjalani hidup, dipantulkan kembali pada saat hidup itu berakhir.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Pernah dengar orang yang wafat dengan tenang, seolah hanya tertidur, dikelilingi kedamaian — dan ada juga yang prosesnya penuh pergolakan? Bukan kebetulan. Ini soal bagaimana hati dilatih sepanjang hidup untuk menerima ketidakpastian dan kehilangan kecil sehari-hari.</p>
+    <p>Aplikasi praktis: latih dirimu menerima hal-hal kecil yang hilang — koneksi internet yang putus, rencana yang berubah, barang yang rusak — tanpa kepanikan berlebihan. Kedua, biasakan kalimat "semua ini titipan" setiap kali kamu mendapat sesuatu yang berharga, agar hatimu tidak pernah benar-benar lupa bahwa segalanya bersifat sementara.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Kelembutan di ujung kehidupan bukan keberuntungan acak — ia adalah hasil panen dari benih kerelaan yang ditanam setiap hari.
+  </div>
+</div>
+
+<!-- AYAT 3 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٣</span><span class="gold">Ayat Ketiga</span></div>
+  <div class="arabic-wrap"><div class="arabic">وَالسَّابِحَاتِ سَبْحًا</div></div>
+  <p class="translation">"Dan (malaikat) yang turun dari langit dengan cepat."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">السَّابِحَاتِ — Yang Berenang / Meluncur</div>
+  <p>Dari akar <em>sabaha</em>, yang berarti berenang — gerakan yang mengalir, lentur, tidak kaku, mampu menavigasi ruang yang sulit (air, atau dalam konteks ini, dimensi langit) dengan kelincahan penuh. Malaikat digambarkan "berenang" turun membawa wahyu dan ketetapan, gerakan yang penuh kendali meski kecepatannya tinggi.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Jika dua ayat sebelumnya bicara soal pencabutan nyawa, ayat ini mulai membuka makna lain: malaikat-malaikat yang bergerak menjalankan tugas-tugas Allah di alam semesta, turun-naik dengan kelincahan yang tidak pernah kita saksikan. ini mengingatkan bahwa ada lapisan realitas yang sibuk bekerja, sementara kita seringkali hanya sibuk dengan layar ponsel kita.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita hidup dengan ilusi bahwa hanya yang terlihat dan terukur yang nyata — notifikasi, statistik, angka di dashboard. Ayat ini menampar ilusi itu: ada "infrastruktur" alam semesta yang bekerja jauh melampaui radar persepsi kita.</p>
+    <p>Aplikasi praktis: luangkan lima menit sehari untuk diam tanpa gawai, menyadari bahwa hidupmu bukan satu-satunya hal yang sedang "berjalan" di alam semesta ini. Kedua, gunakan momen ini untuk merendahkan ego — kamu bukan pusat dari segala sistem yang berjalan.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Dunia yang kamu lihat di layar hanyalah satu lapisan tipis dari realitas yang jauh lebih sibuk dan luas dari yang pernah kamu bayangkan.
+  </div>
+</div>
+
+<!-- AYAT 4 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٤</span><span class="gold">Ayat Keempat</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَالسَّابِقَاتِ سَبْقًا</div></div>
+  <p class="translation">"Dan (malaikat) yang mendahului dengan kencang."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">السَّابِقَاتِ — Yang Berlomba Mendahului</div>
+  <p>Dari <em>sabaqa</em>, "mendahului" atau "memenangkan perlombaan". Ada nuansa kompetisi positif di sini — para malaikat ini bersegera, saling mendahului dalam menjalankan perintah Allah, tidak ada penundaan, tidak ada negosiasi, tidak ada "nanti dulu".</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Bandingkan kecepatan dan ketaatan malaikat ini dengan kebiasaan kita menunda. Malaikat tidak pernah bertanya "apa untungnya buat aku?" sebelum bergerak menjalankan perintah. Ketaatan mereka instan, total, tanpa drama internal.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Generasi sekarang akrab dengan istilah "prokrastinasi" — menunda sholat sampai notifikasi terakhir dibalas, menunda kebaikan sampai "mood-nya pas". Ayat ini menyodorkan model lain: bersegera dalam kebaikan adalah bentuk cinta, bukan beban.</p>
+    <p>Aplikasi praktis: terapkan aturan "lima menit pertama" — saat azan, niat baik, atau dorongan menolong muncul, bergeraklah dalam lima menit pertama sebelum logika menunda-nunda sempat bekerja. Kedua, jadikan kecepatan merespons panggilan kebaikan sebagai indikator kesehatan spiritualmu, bukan hanya kuantitas ibadah.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Kecepatan dalam kebaikan bukan soal terburu-buru, tapi soal tidak memberi ruang bagi keraguan untuk membatalkan niat baik.
+  </div>
+</div>
+
+<!-- AYAT 5 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٥</span><span class="gold">Ayat Kelima</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَالْمُدَبِّرَاتِ أَمْرًا</div></div>
+  <p class="translation">"Dan (malaikat) yang mengatur urusan (dunia)."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">الْمُدَبِّرَاتِ — Yang Mengatur</div>
+  <p>Dari <em>dabbara</em>, yang berarti mengatur, mengelola, merencanakan dengan teliti — akar kata yang sama dengan "dubur" (belakang), menyiratkan makna "memikirkan akibat sesuatu sampai ke ujungnya". Malaikat-malaikat ini bukan sekadar kurir pesan, tapi pengelola tatanan kosmik yang memastikan segalanya berjalan sesuai rencana Allah.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Lima sumpah ini menutup dengan gambaran sistem yang sangat rapi: ada yang mencabut, ada yang melepas dengan lembut, ada yang bergerak cepat, ada yang berlomba taat, dan ada yang mengelola keseluruhan urusan. Ini adalah birokrasi langit yang sempurna — tidak ada chaos, tidak ada miskomunikasi, tidak ada "server down".</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Di tengah hidup yang terasa kacau — deadline bertabrakan, rencana berantakan, hubungan tidak menentu — ayat ini adalah pengingat bahwa di balik kekacauan yang kita rasakan, ada sistem yang sangat rapi sedang bekerja, hanya saja kita tidak punya akses untuk melihat dashboard-nya.</p>
+    <p>Aplikasi praktis: saat rencana berantakan, latih kalimat batin "ini bukan chaos, ini bagian dari pengaturan yang aku belum bisa lihat polanya". Kedua, kurangi kebutuhan untuk mengontrol segala detail — serahkan ruang ketidakpastian kepada Yang Maha Mengatur, sambil tetap berikhtiar maksimal di bagianmu.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Yang terlihat kacau di matamu mungkin hanya satu baris kode dari sistem yang jauh lebih besar dan lebih rapi dari yang bisa kamu bayangkan.
+  </div>
+</div>
+
+<!-- BAGIAN II -->
+<h2 class="bagian-title gold">Bagian II — Hari Guncangan dan Penolakan Manusia</h2>
+<p class="bagian-sub">Ketika "server" alam semesta menerima perintah shutdown — dan manusia yang dulu meragukannya kini ketakutan</p>
+
+<!-- AYAT 6 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٦</span><span class="gold">Ayat Keenam</span></div>
+  <div class="arabic-wrap"><div class="arabic">يَوْمَ تَرْجُفُ الرَّاجِفَةُ</div></div>
+  <p class="translation">"(Sungguh, akan terjadi) hari ketika tiupan pertama mengguncang alam."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">الرَّاجِفَةُ — Guncangan Pertama</div>
+  <p>Dari <em>rajafa</em>, gemetar atau berguncang hebat — kata yang sama dipakai untuk gempa bumi besar. Ini adalah tiupan sangkakala pertama yang mengguncang seluruh struktur alam semesta, momen ketika segala hukum fisika yang kita anggap permanen tiba-tiba runtuh.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Setelah lima sumpah tentang petugas-petugas tak terlihat yang bekerja rapi, kini Allah membuka tirai tentang tujuan dari semua sumpah itu: hari ketika seluruh sistem alam semesta menerima perintah "shutdown". Gunung-gunung yang kita anggap simbol keabadian akan berguncang seperti kapas.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita membangun hidup di atas asumsi bahwa "besok masih ada" — karir lima tahun ke depan, cicilan tiga puluh tahun, rencana pensiun. Ayat ini tidak menyuruh kita berhenti merencanakan, tapi mengingatkan: rencanakan dengan kesadaran bahwa fondasi yang kamu pijak ini bisa diguncang kapan saja.</p>
+    <p>Aplikasi praktis: setiap kali membuat rencana jangka panjang, sisipkan kalimat "insya Allah" bukan sebagai formalitas, tapi sebagai kesadaran nyata. Kedua, jangan tunda permintaan maaf atau ungkapan sayang ke orang terdekat — karena "guncangan kecil" versi pribadi (sakit mendadak, kecelakaan, kehilangan) bisa datang jauh sebelum kiamat besar.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Segala sesuatu yang terasa permanen dalam hidupmu sebenarnya sedang menunggu giliran untuk diguncang — pertanyaannya, apa yang sudah kamu siapkan sebelum giliran itu tiba?
+  </div>
+</div>
+
+<!-- AYAT 7 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٧</span><span class="gold">Ayat Ketujuh</span></div>
+  <div class="arabic-wrap"><div class="arabic">تَتْبَعُهَا الرَّادِفَةُ</div></div>
+  <p class="translation">"Tiupan kedua mengiringinya."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">الرَّادِفَةُ — Yang Mengiringi / Susulan</div>
+  <p>Dari <em>radifa</em>, mengikuti dari belakang tanpa jeda berarti. Tiupan kedua ini datang sebagai kelanjutan langsung dari tiupan pertama — fase kebangkitan setelah fase kehancuran. Tidak ada celah panjang untuk "bernapas" di antara dua peristiwa kosmik ini.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Para mufasir menjelaskan tiupan pertama adalah kehancuran total alam semesta, dan tiupan kedua adalah kebangkitan seluruh makhluk untuk dihisab. Dua peristiwa ini berurutan rapat — sebuah pengingat bahwa "kematian sistem" bukanlah akhir, melainkan transisi menuju sesi pertanggungjawaban.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Banyak orang hidup seolah kematian adalah "game over" final — padahal sebenarnya lebih mirip restart menuju babak final yang sesungguhnya. Cara pandang ini mengubah segalanya: bagaimana kamu bekerja, berinteraksi, dan menggunakan waktu.</p>
+    <p>Aplikasi praktis: setiap mengambil keputusan besar, tanyakan "apakah ini akan terasa baik diingat saat aku 'login' kembali di kehidupan berikutnya?" Kedua, hindari pola pikir "yang penting sekarang enak" — karena tiupan kedua membuktikan bahwa konsekuensi selalu mengiringi tanpa jeda.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Kematian bukan titik akhir cerita — ia hanya jeda singkat sebelum babak pertanggungjawaban dimulai.
+  </div>
+</div>
+
+<!-- AYAT 8 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٨</span><span class="gold">Ayat Kedelapan</span></div>
+  <div class="arabic-wrap"><div class="arabic">قُلُوبٌ يَوْمَئِذٍ وَاجِفَةٌ</div></div>
+  <p class="translation">"Hati manusia pada hari itu sangat takut."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">وَاجِفَةٌ — Berdebar Ketakutan</div>
+  <p>Dari <em>wajafa</em>, berdebar kencang karena ketakutan luar biasa — bukan debar romantis, tapi debar kepanikan yang membuat seluruh tubuh bereaksi. Ini hati yang sebelumnya tenang-tenang saja meremehkan peringatan, kini berguncang karena menyaksikan apa yang dulu mereka sangkal.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Inilah konsekuensi emosional dari guncangan kosmik: hati-hati yang dulu keras kepala terhadap peringatan kini gemetar tak terkendali. Ironisnya, hati yang sama ini mungkin dulu tertawa ketika mendengar ayat-ayat tentang akhirat, menganggapnya dongeng masa lalu.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kecemasan eksistensial sebenarnya bukan hal asing bagi generasi sekarang — banyak yang merasa cemas tanpa tahu sebabnya, scrolling tanpa henti untuk lari dari keheningan yang memaksa mereka berpikir tentang makna hidup. Ayat ini menyodorkan akar dari kecemasan terdalam: ketidaksiapan menghadapi pertanggungjawaban.</p>
+    <p>Aplikasi praktis: alih-alih lari dari kecemasan dengan distraksi tanpa henti, coba duduk sejenak dan tanyakan "apa yang sebenarnya aku takutkan?" — seringkali jawabannya berkaitan dengan hal-hal yang belum diselesaikan secara spiritual. Kedua, jadikan rasa takut yang sehat ini sebagai bahan bakar untuk memperbaiki diri sekarang, bukan menunggu sampai hati benar-benar berdebar di hari itu.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Hati yang tenang hari ini karena lalai berbeda jauh dari hati yang tenang karena sudah siap — dan kamu hanya akan tahu bedanya di hari ketika semua topeng dilepas.
+  </div>
+</div>
+
+<!-- AYAT 9 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٩</span><span class="gold">Ayat Kesembilan</span></div>
+  <div class="arabic-wrap"><div class="arabic">أَبْصَارُهَا خَاشِعَةٌ</div></div>
+  <p class="translation">"Pandangannya tunduk."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">خَاشِعَةٌ — Tunduk / Merendah</div>
+  <p>Dari akar yang sama dengan <em>khusyu'</em> — kata yang biasanya kita pakai untuk menggambarkan kekhusyukan dalam sholat, di sini dipakai dalam konteks yang menyayat: mata yang dulu memandang dunia dengan sombong dan menantang, kini menunduk tak berdaya.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Ada ironi yang tajam di sini: kata "khusyu'" yang seharusnya menjadi tujuan ibadah kita — ketundukan yang lahir dari cinta dan kesadaran — di hari itu justru muncul dalam bentuk paling pahit: ketundukan yang lahir dari keterpaksaan dan penyesalan. Mata yang tidak pernah mau "tunduk" di dunia, akhirnya tunduk juga, hanya saja terlambat.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Berapa banyak dari kita yang berjalan dengan kepala tegak penuh percaya diri di media sosial, memamerkan pencapaian, meremehkan nasihat — padahal di balik layar, hidupnya rapuh? Ayat ini bertanya: maukah kamu memilih ketundukan yang tenang sekarang, atau menunggu ketundukan yang dipaksakan nanti?</p>
+    <p>Aplikasi praktis: latih kerendahan hati secara sadar — dalam sholat, dalam interaksi sosial, dalam menerima kritik. Kedua, perhatikan kapan ego mulai "mengangkat dagu" dalam interaksi sehari-hari, dan secara sengaja pilih untuk menundukkannya lebih dulu sebelum keadaan yang memaksanya.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Ada dua jenis ketundukan: yang kau pilih sendiri sebagai bentuk cinta, dan yang dipaksakan padamu sebagai bentuk penyesalan. Pilihlah sebelum pilihan itu diambil darimu.
+  </div>
+</div>
+
+<!-- AYAT 10 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">١٠</span><span class="gold">Ayat Kesepuluh</span></div>
+  <div class="arabic-wrap"><div class="arabic">يَقُولُونَ أَئِنَّا لَمَرْدُودُونَ فِي الْحَافِرَةِ</div></div>
+  <p class="translation">"Mereka berkata, 'Apakah kami akan dikembalikan ke kehidupan semula?'"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">الْحَافِرَةِ — Kehidupan Semula</div>
+  <p>Secara harfiah berarti "jejak yang digali" atau "kembali ke titik awal" — ungkapan idiom Arab kuno untuk kembali ke kondisi sebelumnya. Ini adalah suara keraguan orang-orang yang dulu mempertanyakan kebangkitan dengan nada mengejek, kini diputar ulang sebagai catatan ironis di hari pembuktian.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Ayat ini menampilkan flashback — kutipan ucapan orang-orang yang dulu di dunia mempertanyakan kebangkitan dengan nada sinis: "masa iya kita dihidupkan lagi?" Pertanyaan yang dulu dilontarkan sebagai bentuk penolakan kini terngiang kembali di hari ketika jawabannya sudah terlalu jelas di depan mata mereka.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Skeptisisme terhadap hal-hal yang tidak bisa dibuktikan secara empiris adalah ciri khas zaman ini — "kalau belum kelihatan, ya belum tentu ada". Ayat ini bukan menyuruh kita berhenti berpikir kritis, tapi mengingatkan bahwa ada batas dari apa yang bisa dijangkau akal manusia, dan keangkuhan intelektual bisa sama berbahayanya dengan kebodohan.</p>
+    <p>Aplikasi praktis: jaga keseimbangan antara berpikir kritis dan kerendahan hati intelektual — sah-sah saja bertanya, tapi jangan jadikan ketidaktahuan sebagai alasan untuk menolak. Kedua, ingat bahwa banyak hal yang dulu manusia ragukan secara ilmiah, ternyata terbukti benar di kemudian hari — jadi berhati-hatilah meremehkan apa yang belum kamu pahami sepenuhnya.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Pertanyaan yang dulu kau lontarkan dengan nada mengejek, bisa jadi kelak menjadi pertanyaan yang kau ajukan dengan suara gemetar.
+  </div>
+</div>
+
+<!-- AYAT 11 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">١١</span><span class="gold">Ayat Kesebelas</span></div>
+  <div class="arabic-wrap"><div class="arabic">أَئِذَا كُنَّا عِظَامًا نَخِرَةً</div></div>
+  <p class="translation">"Apakah (akan dibangkitkan) apabila kami telah menjadi tulang belulang yang hancur?"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">نَخِرَةً — Hancur Lapuk</div>
+  <p>Dari <em>nakhara</em>, tulang yang sudah keropos, rapuh, dan berongga — bukan sekadar tua, tapi benar-benar hancur sampai kehilangan bentuknya. Penekanan pada kondisi paling ekstrem ini sengaja dipakai untuk memperkuat nada penolakan mereka: "masa iya sesuatu yang sudah sehancur ini bisa hidup lagi?"</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Ini adalah lanjutan dari keraguan ayat sebelumnya, kali ini dengan argumen yang lebih spesifik dan "logis" menurut mereka — bagaimana mungkin sesuatu yang sudah hancur total bisa disusun kembali? Argumen ini terdengar masuk akal dari sudut pandang fisika sehari-hari, tapi mengabaikan satu hal: Yang menciptakan dari ketiadaan tentu lebih mudah menciptakan ulang dari sisa-sisa yang ada.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering menerapkan logika ini pada diri sendiri: "aku sudah terlalu hancur untuk berubah", "trauma ini sudah terlalu dalam untuk sembuh", "kesalahanku sudah terlalu banyak untuk diampuni". Padahal jika Allah sanggup menghidupkan tulang yang sudah lapuk, Dia jauh lebih sanggup memulihkan hati yang masih berdetak.</p>
+    <p>Aplikasi praktis: setiap kali muncul pikiran "aku sudah terlalu rusak untuk diperbaiki", lawan dengan kesadaran bahwa kuasa yang sama yang bisa menghidupkan tulang lapuk, juga bisa memulihkan apa pun dalam hidupmu yang terasa hancur. Kedua, jangan jadikan kegagalan masa lalu sebagai alasan untuk berhenti berusaha — karena bahkan kehancuran total bukan halangan bagi-Nya.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Sehancur apa pun yang kamu rasakan tentang dirimu sendiri, kehancuran itu tidak pernah melebihi kemampuan-Nya untuk memulihkan.
+  </div>
+</div>
+
+<!-- AYAT 12 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">١٢</span><span class="gold">Ayat Kedua Belas</span></div>
+  <div class="arabic-wrap"><div class="arabic">قَالُوا تِلْكَ إِذًا كَرَّةٌ خَاسِرَةٌ</div></div>
+  <p class="translation">"Mereka berkata, 'Kalau demikian, itu adalah suatu pengembalian yang merugikan.'"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">خَاسِرَةٌ — Merugikan</div>
+  <p>Dari <em>khasira</em>, rugi dalam arti transaksi — kehilangan modal tanpa untung. Mereka menyebut kebangkitan sebagai "kerugian" karena dalam logika dunia mereka, semua usaha untuk hidup kembali setelah hancur total terdengar seperti investasi yang sia-sia, tidak masuk akal secara untung-rugi.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Kalimat ini adalah puncak sinisme mereka — bukan hanya meragukan kemungkinan kebangkitan, tapi sudah berani menyimpulkan bahwa jika itu terjadi, itu adalah "kerugian". Ironisnya, justru merekalah yang akan mengalami kerugian sesungguhnya — bukan karena dibangkitkan, tapi karena tidak mempersiapkan diri untuk hari itu.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Cara berpikir "untung-rugi" sering kita terapkan secara keliru pada hal-hal spiritual — menganggap ibadah sebagai "biaya" yang mengurangi waktu produktif, menganggap kejujuran sebagai "kerugian" dibanding kecurangan yang menguntungkan. Padahal kalkulasi sesungguhnya baru terlihat jelas di akhir, bukan di tengah jalan.</p>
+    <p>Aplikasi praktis: ubah cara menghitung untung-rugi dalam hidupmu — masukkan dimensi akhirat ke dalam kalkulasi, bukan hanya keuntungan duniawi jangka pendek. Kedua, ingatkan diri bahwa "rugi" yang sesungguhnya bukan kehilangan kesempatan duniawi, tapi kehilangan kesempatan memperbaiki diri sebelum waktu habis.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Mereka yang menyebut kebenaran sebagai kerugian, biasanya sedang menghitung dengan kalkulator yang salah.
+  </div>
+</div>
+
+<!-- AYAT 13 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">١٣</span><span class="gold">Ayat Ketiga Belas</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَإِنَّمَا هِيَ زَجْرَةٌ وَاحِدَةٌ</div></div>
+  <p class="translation">"Sesungguhnya kebangkitan itu hanya dengan satu teriakan saja."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">زَجْرَةٌ — Satu Hardikan / Teriakan</div>
+  <p>Dari <em>zajara</em>, menghardik atau membentak dengan suara keras untuk menggerakkan sesuatu seketika — seperti seorang gembala menghardik ternaknya agar bergerak instan. Allah menjawab semua keraguan panjang lebar mereka hanya dengan satu fakta sederhana: cukup satu teriakan, dan semuanya selesai.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Setelah mendengarkan argumen panjang manusia yang meragukan kebangkitan — "bagaimana mungkin", "itu kerugian", dan sebagainya — Allah menjawab dengan kesederhanaan yang menohok: tidak perlu proses rumit, tidak perlu waktu lama, cukup satu perintah dan semuanya terjadi seketika. Inilah kontras antara keterbatasan logika manusia dan kuasa tak terbatas Allah.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering mengukur kemungkinan sesuatu berdasarkan seberapa rumit prosesnya menurut kita — padahal bagi Allah, "rumit" dan "mudah" tidak berlaku sama seperti bagi manusia. Ini relevan saat kita merasa masalah hidup terlalu besar untuk diselesaikan: rezeki yang seret, hubungan yang rusak, kesehatan yang menurun.</p>
+    <p>Aplikasi praktis: saat menghadapi masalah yang terasa mustahil, ingat bahwa solusi bagi Allah hanya perlu "satu kun" — jangan batasi harapanmu dengan logika keterbatasan manusia. Kedua, jadikan doa sebagai bagian serius dari ikhtiar, bukan formalitas terakhir setelah semua usaha manusia gagal.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Apa yang terasa mustahil bagimu, bagi-Nya hanya butuh satu kata.
+  </div>
+</div>
+
+<!-- AYAT 14 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">١٤</span><span class="gold">Ayat Keempat Belas</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَإِذَا هُمْ بِالسَّاهِرَةِ</div></div>
+  <p class="translation">"Maka seketika itu mereka hidup kembali di permukaan bumi."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">السَّاهِرَةِ — Permukaan Bumi yang Terjaga</div>
+  <p>Dari <em>sahira</em>, terjaga, tidak tidur. Permukaan bumi disebut "as-sahirah" karena di sanalah semua makhluk akan bangun dan terjaga sepenuhnya — tidak ada lagi ruang untuk "tidur" dalam kelalaian. Semua kesadaran yang dulu tertutup oleh dunia kini terbuka lebar.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Inilah penutup dari rangkaian penolakan dan keraguan: setelah satu teriakan, manusia yang dulu hanya tulang belulang kini berdiri "terjaga" sepenuhnya di permukaan bumi yang baru. Tidak ada lagi alasan, tidak ada lagi keraguan — realitas akhirat berdiri tegak di hadapan mereka.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Banyak dari kita menjalani hidup dalam mode "setengah sadar" — autopilot, scrolling tanpa tujuan, rutinitas tanpa refleksi. Ayat ini menggambarkan momen ketika kesadaran penuh dipaksa terbuka. Pertanyaannya: maukah kita "terjaga" secara sukarela sekarang, sebelum dipaksa terjaga nanti?</p>
+    <p>Aplikasi praktis: ciptakan momen-momen "terjaga" sengaja dalam kesibukanmu — refleksi malam sebelum tidur, evaluasi mingguan, atau sekadar bertanya "apakah aku benar-benar hidup hari ini, atau sekadar berjalan dalam mode autopilot?" Kedua, gunakan momen krisis kecil dalam hidup sebagai alarm bangun, bukan sekadar gangguan yang ingin cepat dilewati.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Kelak semua orang akan terjaga sepenuhnya, tanpa pilihan. Yang membedakan adalah siapa yang sudah memilih untuk terjaga lebih dulu, sejak di dunia.
+  </div>
+</div>
+
+<!-- BAGIAN III -->
+<h2 class="bagian-title gold">Bagian III — Kisah Musa dan Fir'aun</h2>
+<p class="bagian-sub">Saat seorang manusia mengklaim dirinya admin tertinggi dari sistem yang bahkan bukan dia yang membangunnya</p>
+
+<!-- AYAT 15 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">١٥</span><span class="gold">Ayat Kelima Belas</span></div>
+  <div class="arabic-wrap"><div class="arabic">هَلْ أَتَاكَ حَدِيثُ مُوسَىٰ</div></div>
+  <p class="translation">"Sudahkah sampai kepadamu (Muhammad) kisah Musa?"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">هَلْ أَتَاكَ — Sudahkah Sampai Kepadamu</div>
+  <p>Pertanyaan retoris yang sering dipakai Al-Qur'an sebelum kisah penting — bukan benar-benar bertanya, tapi membangkitkan rasa ingin tahu dan perhatian penuh sebelum menyampaikan pelajaran besar. Pola ini seperti seorang guru yang berkata, "Kamu sudah dengar belum cerita ini? Dengarkan baik-baik."</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Setelah membahas keraguan manusia tentang kebangkitan, Allah beralih ke kisah nyata sebagai bukti — kisah Musa dan Fir'aun, sebuah studi kasus tentang kesombongan manusia yang berujung kehancuran. Ini adalah pengalihan dari teori abstrak ke fakta sejarah, dari "apakah mungkin" ke "ini sudah pernah terjadi".</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita hidup di era yang dipenuhi opini dan teori, tapi sejarah tetap menjadi guru terbaik yang sering diabaikan. Kisah-kisah kejatuhan tokoh besar karena kesombongan terus berulang dalam bentuk berbeda — pemimpin, pengusaha, figur publik yang merasa "tidak tersentuh".</p>
+    <p>Aplikasi praktis: jadikan kebiasaan membaca sejarah dan kisah-kisah Al-Qur'an sebagai cermin untuk introspeksi diri, bukan sekadar hiburan naratif. Kedua, setiap kali kamu merasa "di atas angin" dalam suatu pencapaian, ingat kisah Fir'aun sebagai pengingat bahwa kekuasaan duniawi punya batas waktu yang tidak bisa diprediksi.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Sejarah tidak diulang Al-Qur'an untuk nostalgia, tapi sebagai cermin yang dipaksa kau lihat sebelum kau mengulangi kesalahan yang sama.
+  </div>
+</div>
+
+<!-- AYAT 16 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">١٦</span><span class="gold">Ayat Keenam Belas</span></div>
+  <div class="arabic-wrap"><div class="arabic">إِذْ نَادَاهُ رَبُّهُ بِالْوَادِ الْمُقَدَّسِ طُوًى</div></div>
+  <p class="translation">"Ketika Tuhannya memanggilnya di lembah suci, Tuwa."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">نَادَاهُ — Memanggilnya Langsung</div>
+  <p>Dari <em>nada</em>, memanggil dengan suara, biasanya dengan jarak — di sini menggambarkan komunikasi langsung tanpa perantara antara Allah dan Musa, sebuah kehormatan luar biasa yang menandai awal misi kenabian. Lokasi "lembah suci Tuwa" menegaskan bahwa momen ini disucikan, dipersiapkan khusus.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Sebelum Musa diutus menghadapi penguasa paling angkuh di zamannya, Allah lebih dulu memanggilnya secara personal, di tempat yang disucikan. Ini menunjukkan pola penting: misi besar selalu dimulai dari momen keintiman dengan Allah, bukan dari ambisi pribadi atau dorongan emosional semata.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Banyak orang ingin "berbuat besar" untuk dunia — mengubah sistem, melawan ketidakadilan, membangun sesuatu yang berarti — tapi melompat langsung ke aksi tanpa pernah berhenti di "lembah suci" mereka sendiri: momen refleksi, doa, dan penjernihan niat.</p>
+    <p>Aplikasi praktis: sebelum memulai proyek besar atau perjuangan yang berat, sisihkan waktu khusus untuk introspeksi dan memohon kekuatan — anggap ini "lembah Tuwa" pribadimu. Kedua, jangan biarkan semangat berbuat baik justru membuatmu kehilangan koneksi spiritual yang menjadi sumber kekuatan sesungguhnya.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Setiap misi besar yang bertahan lama selalu lahir dari momen sunyi bersama Tuhan, bukan dari amarah atau ambisi yang meledak tiba-tiba.
+  </div>
+</div>
+
+<!-- AYAT 17 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">١٧</span><span class="gold">Ayat Ketujuh Belas</span></div>
+  <div class="arabic-wrap"><div class="arabic">اذْهَبْ إِلَىٰ فِرْعَوْنَ إِنَّهُ طَغَىٰ</div></div>
+  <p class="translation">"'Pergilah kepada Fir'aun! Sesungguhnya dia telah melampaui batas.'"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">طَغَىٰ — Melampaui Batas</div>
+  <p>Dari <em>thagha</em>, akar kata yang sama dengan "thaghut" — melampaui batas kewajaran, terutama dalam hal kesombongan dan penindasan. Ini bukan sekadar "nakal", tapi penyimpangan sistemik yang sudah merusak tatanan, ketika seseorang lupa posisinya sebagai makhluk dan mulai berlagak sebagai penentu mutlak.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Misi Musa tidak main-main: menghadapi penguasa terkuat di zamannya yang sudah "melampaui batas". Ini adalah pengingat bahwa kebenaran kadang harus dihadapkan langsung pada kekuasaan yang menyimpang, betapapun besarnya risiko yang menyertainya.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>"Melampaui batas" tidak selalu berbentuk kerajaan dan tahta — ia bisa berupa atasan yang menyalahgunakan kekuasaan, sistem yang menindas, atau bahkan diri sendiri ketika ego mulai merasa "aku selalu benar" dan menolak masukan siapa pun.</p>
+    <p>Aplikasi praktis: kenali tanda-tanda "thughyan" dalam dirimu sendiri — kapan kamu mulai merasa kebal kritik, merasa selalu benar, atau meremehkan orang lain. Kedua, jika kamu menyaksikan ketidakadilan sistemik di sekitarmu, jangan diam sepenuhnya — cari cara yang bijak dan aman untuk menyuarakan kebenaran, sebagaimana Musa diutus untuk bicara, bukan untuk diam.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Batas yang dilampaui seseorang selalu dimulai dari batas kecil yang dibiarkan dilewati tanpa teguran.
+  </div>
+</div>
+
+<!-- AYAT 18 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">١٨</span><span class="gold">Ayat Kedelapan Belas</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَقُلْ هَل لَّكَ إِلَىٰ أَن تَزَكَّىٰ</div></div>
+  <p class="translation">"Dan katakanlah (kepada Fir'aun), 'Adakah keinginan bagimu untuk membersihkan diri (dari kesesatan)?'"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">تَزَكَّىٰ — Membersihkan / Menyucikan Diri</div>
+  <p>Dari akar <em>zaka</em>, yang juga menjadi asal kata "zakat" — membersihkan, menumbuhkan, menyucikan. Bukan sekadar berhenti berbuat salah, tapi proses aktif "tumbuh" menjadi lebih baik, seperti tanaman yang dibersihkan dari gulma agar bisa berkembang maksimal.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Yang luar biasa di sini adalah pendekatan Musa: bukan ancaman, bukan penghakiman langsung, tapi tawaran lembut — "maukah kamu membersihkan diri?" Bahkan kepada penguasa paling zalim sekalipun, dakwah dimulai dengan ajakan, bukan vonis. Ini menunjukkan adab dakwah yang penuh hikmah meski objeknya adalah kejahatan besar.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering ingin "mengoreksi" orang lain dengan nada menghakimi, terutama di media sosial — komentar pedas, cancel culture, label instan. Ayat ini mengajarkan pendekatan berbeda: tawarkan jalan keluar dengan hormat, bahkan kepada orang yang jelas-jelas salah.</p>
+    <p>Aplikasi praktis: saat ingin menasihati seseorang, mulai dengan pertanyaan terbuka seperti "maukah kamu mendengar perspektif lain?" daripada pernyataan menghakimi. Kedua, ingat bahwa tujuan menasihati adalah perbaikan, bukan kepuasan diri sendiri karena merasa lebih benar.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Dakwah sejati tidak dimulai dengan vonis, tapi dengan tawaran — bahkan kepada orang yang paling layak dihakimi sekalipun.
+  </div>
+</div>
+
+<!-- AYAT 19 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">١٩</span><span class="gold">Ayat Kesembilan Belas</span></div>
+  <div class="arabic-wrap"><div class="arabic">وَأَهْدِيَكَ إِلَىٰ رَبِّكَ فَتَخْشَىٰ</div></div>
+  <p class="translation">"'Dan kamu akan kupimpin ke jalan Tuhanmu agar engkau takut kepada-Nya.'"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">فَتَخْشَىٰ — Agar Engkau Takut (dengan Hormat)</div>
+  <p><em>Khasya</em> berbeda dari <em>khauf</em> — bukan sekadar takut karena ancaman, tapi rasa takut yang lahir dari pengenalan dan penghormatan mendalam terhadap kebesaran sesuatu. Inilah tujuan akhir dari ajakan Musa: bukan sekadar Fir'aun berhenti zalim, tapi hatinya benar-benar tersentuh dan mengenal Tuhannya.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Tujuan dakwah Musa bukan sekadar perubahan perilaku eksternal, tapi transformasi hati — dari hati yang merasa dirinya tuhan, menjadi hati yang takut dan tunduk kepada Tuhan yang sesungguhnya. Ini adalah tawaran terbesar yang bisa diberikan kepada manusia manapun, tanpa memandang seberapa besar dosanya.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering puas dengan perubahan permukaan — orang berhenti melakukan sesuatu karena takut sanksi sosial, bukan karena hatinya benar-benar berubah. Ayat ini mengingatkan bahwa transformasi sejati selalu dimulai dari hati yang mengenal dan menghormati Penciptanya.</p>
+    <p>Aplikasi praktis: evaluasi motivasimu berbuat baik — apakah karena takut dilihat orang, atau karena kesadaran spiritual yang tulus? Kedua, saat membimbing orang lain (anak, rekan, sahabat), fokuslah membangun kesadaran hati mereka, bukan sekadar kepatuhan pada aturan.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Perubahan yang bertahan bukan yang dipaksa dari luar, tapi yang tumbuh dari hati yang akhirnya mengenal kepada siapa ia harus tunduk.
+  </div>
+</div>
+
+<!-- AYAT 20 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٢٠</span><span class="gold">Ayat Kedua Puluh</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَأَرَاهُ الْآيَةَ الْكُبْرَىٰ</div></div>
+  <p class="translation">"Lalu (Musa) memperlihatkan kepadanya mukjizat yang besar."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">الْآيَةَ الْكُبْرَىٰ — Mukjizat Terbesar</div>
+  <p>Merujuk pada tongkat Musa yang berubah menjadi ular besar — bukti nyata yang melampaui logika dan tipu daya tukang sihir Mesir manapun. Disebut "terbesar" karena daya dan kejelasannya tak terbantahkan, sebuah bukti yang seharusnya tidak menyisakan ruang untuk keraguan.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Setelah ajakan lembut diabaikan, Allah memberikan bukti konkret kepada Fir'aun. Ini menunjukkan tahapan dakwah: ajakan, lalu bukti nyata bagi yang masih meragukan. Tapi seperti yang akan kita lihat di ayat berikutnya, bahkan bukti sebesar apa pun tidak berarti apa-apa bagi hati yang sudah dikunci kesombongan.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering berpikir bahwa orang akan berubah jika diberi cukup bukti dan fakta — padahal pengalaman menunjukkan, banyak orang tetap menolak kebenaran meski bukti sudah di depan mata, karena masalahnya bukan kurangnya informasi, tapi kerasnya hati.</p>
+    <p>Aplikasi praktis: jangan berkecil hati jika fakta dan argumen logis yang kamu sampaikan tetap ditolak orang lain — fokus pada apa yang menjadi tanggung jawabmu (menyampaikan), bukan hasil akhirnya (mengubah hati orang). Kedua, jika kamu sendiri sering menolak kebenaran meski buktinya jelas, tanyakan pada diri — apa yang sebenarnya kamu lindungi dengan penolakan itu?</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Bukti terbesar sekalipun tidak akan menembus hati yang sudah memutuskan untuk tidak mau percaya.
+  </div>
+</div>
+
+<!-- AYAT 21 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٢١</span><span class="gold">Ayat Kedua Puluh Satu</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَكَذَّبَ وَعَصَىٰ</div></div>
+  <p class="translation">"Tetapi (Fir'aun) mendustakan dan mendurhakai."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">كَذَّبَ وَعَصَىٰ — Mendustakan dan Mendurhakai</div>
+  <p>Dua kata yang menggambarkan dua dimensi penolakan: <em>kadzdzaba</em> adalah penolakan di level keyakinan (menganggap bohong), dan <em>'ashaa</em> adalah penolakan di level tindakan (tidak patuh). Penolakan Fir'aun bukan setengah-setengah — ia menolak secara total, baik dalam hati maupun perbuatan.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Setelah melihat mukjizat sebesar itu, respons Fir'aun bukan keterkejutan jujur atau pertanyaan tulus, melainkan penolakan ganda: dia tidak percaya (kadzdzaba) dan dia tidak patuh (ashaa). Ini menunjukkan bahwa penolakan terhadap kebenaran sering kali bukan soal kurang bukti, tapi soal pilihan sadar untuk mempertahankan kepentingan dan ego.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita semua punya momen-momen kecil "Fir'aun" dalam diri — tahu sesuatu itu benar tapi memilih tidak mengakuinya karena gengsi, tahu suatu kebiasaan itu salah tapi tetap melakukannya karena sudah terlanjur nyaman. Ada jarak antara "tahu" dan "mau mengikuti".</p>
+    <p>Aplikasi praktis: ketika dihadapkan dengan kebenaran yang mengusik kenyamananmu (kritik, nasihat, fakta yang tidak menyenangkan), latih kejujuran untuk mengakuinya meski itu menyakitkan ego. Kedua, perhatikan pola dalam dirimu — apakah kamu lebih sering menolak kebenaran karena memang tidak yakin, atau karena tidak mau repot berubah?</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Penolakan yang paling berbahaya bukan karena tidak tahu kebenaran, tapi karena memilih untuk tidak mengakuinya.
+  </div>
+</div>
+
+<!-- AYAT 22 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٢٢</span><span class="gold">Ayat Kedua Puluh Dua</span></div>
+  <div class="arabic-wrap"><div class="arabic">ثُمَّ أَدْبَرَ يَسْعَىٰ</div></div>
+  <p class="translation">"Kemudian dia berpaling seraya berusaha menantang (Musa)."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">يَسْعَىٰ — Berusaha Keras (untuk Melawan)</div>
+  <p><em>Sa'a</em> biasanya berkonotasi positif (berusaha, berjuang), tapi di sini dipakai untuk usaha yang salah arah — kesungguhan dan energi besar yang dicurahkan untuk melawan kebenaran, bukan untuk menerimanya. Ironi yang menyedihkan: tenaga sebesar itu, dipakai untuk hal yang sia-sia.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Fir'aun tidak hanya menolak secara pasif, tapi aktif "berusaha keras" melawan kebenaran — mengumpulkan tukang sihir, menyusun strategi, mengerahkan kekuasaannya. Ini adalah gambaran tentang energi besar yang disalahgunakan, kesungguhan yang dialokasikan untuk tujuan yang keliru.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Banyak orang sangat gigih dan kerja keras — tapi untuk hal yang salah: bekerja keras menutupi kebohongan, gigih mempertahankan ego dalam pertengkaran, all-out membangun citra palsu di media sosial. Kesungguhan tanpa arah yang benar justru jadi bumerang.</p>
+    <p>Aplikasi praktis: evaluasi ke mana energimu paling banyak tercurah belakangan ini — apakah untuk hal yang mendekatkanmu pada kebaikan, atau justru untuk mempertahankan sesuatu yang sebenarnya salah? Kedua, sebelum "berusaha keras" untuk sesuatu, tanyakan dulu apakah arah usahamu sudah benar — karena kerja keras ke arah yang salah hanya mempercepat kehancuran.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Kesungguhan tanpa arah yang benar hanyalah kecepatan menuju kehancuran yang lebih cepat.
+  </div>
+</div>
+
+<!-- AYAT 23 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٢٣</span><span class="gold">Ayat Kedua Puluh Tiga</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَحَشَرَ فَنَادَىٰ</div></div>
+  <p class="translation">"Kemudian dia mengumpulkan (orang-orangnya) lalu berseru memanggil."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">حَشَرَ — Mengumpulkan (Massa)</div>
+  <p>Kata yang sama dipakai untuk menggambarkan pengumpulan manusia di hari kiamat (al-hasyr) — di sini dipakai untuk menggambarkan Fir'aun mengumpulkan massa dan kekuatannya untuk show of force, mempertontonkan kekuasaan sebagai senjata melawan kebenaran.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Tidak punya argumen, Fir'aun mengandalkan jumlah dan kekuasaan — mengumpulkan massa untuk menciptakan ilusi legitimasi dan kekuatan. Ini adalah pola klasik penguasa zalim sepanjang sejarah: ketika kebenaran tidak bisa dilawan dengan logika, lawan dengan jumlah dan intimidasi.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Pola ini terus berulang di era digital — "mengumpulkan massa" lewat buzzer, framing opini publik, atau tekanan sosial untuk membungkam kebenaran yang tidak nyaman. Jumlah pengikut atau dukungan ramai-ramai tidak otomatis berarti benar.</p>
+    <p>Aplikasi praktis: jangan mudah terbawa arus opini mayoritas tanpa mengecek substansi kebenarannya sendiri — banyak orang setuju bukan jaminan sesuatu itu benar. Kedua, jika kamu berdiri di pihak yang benar tapi merasa "kalah jumlah", ingat bahwa kebenaran tidak ditentukan oleh suara terbanyak.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Jumlah pendukung yang banyak tidak pernah menjadi bukti kebenaran — ia hanya bukti seberapa baik seseorang pandai mengumpulkan massa.
+  </div>
+</div>
+
+<!-- AYAT 24 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٢٤</span><span class="gold">Ayat Kedua Puluh Empat</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَقَالَ أَنَا رَبُّكُمُ الْأَعْلَىٰ</div></div>
+  <p class="translation">"(Seraya) berkata, 'Akulah tuhanmu yang paling tinggi.'"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">رَبُّكُمُ الْأَعْلَىٰ — Tuhanmu yang Paling Tinggi</div>
+  <p>Inilah klimaks kesombongan manusia dalam sejarah — sebuah deklarasi yang bukan hanya menolak kebenaran, tapi mengklaim posisi yang bukan miliknya sama sekali. "Al-A'la" (yang paling tinggi) adalah kata yang seharusnya hanya pantas disandang oleh Allah, di sini dicuri dan dilekatkan pada diri seorang manusia fana.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Inilah puncak dari "logout paksa" yang akan terjadi — seseorang yang lupa bahwa dia hanyalah "user" dalam sistem kehidupan, mencoba mengklaim dirinya sebagai "admin tertinggi". Klaim ini begitu absurd, tapi justru menjadi cermin tentang bagaimana kesombongan bisa membuat manusia kehilangan kewarasan dasar tentang posisinya di alam semesta.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita tidak perlu mengaku sebagai "tuhan" secara harfiah untuk jatuh dalam jebakan yang sama — setiap kali kita merasa pendapat kita selalu benar, merasa tidak perlu bertanggung jawab pada siapa pun, merasa berhak menentukan nasib orang lain tanpa batas, kita sedang menggemakan klaim Fir'aun dalam skala mini.</p>
+    <p>Aplikasi praktis: setiap kali merasakan dorongan untuk "selalu benar" dalam suatu perdebatan atau posisi kekuasaan (sebagai bos, orang tua, atau figur otoritas), ingat kembali batas dirimu sebagai makhluk. Kedua, latih kebiasaan mengucap "wallahu a'lam" (Allah yang lebih tahu) sebagai pengingat rutin bahwa kebenaran mutlak bukan milikmu.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Kesombongan paling berbahaya bukan yang berteriak "akulah tuhan", tapi yang diam-diam bertindak seolah dirinya tidak perlu pertanggungjawaban kepada siapa pun.
+  </div>
+</div>
+
+<!-- AYAT 25 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٢٥</span><span class="gold">Ayat Kedua Puluh Lima</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَأَخَذَهُ اللَّهُ نَكَالَ الْآخِرَةِ وَالْأُولَىٰ</div></div>
+  <p class="translation">"Maka Allah mengazabnya dengan azab di akhirat dan di dunia."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">نَكَالَ — Azab yang Menjadi Pelajaran</div>
+  <p><em>Nakal</em> bukan sekadar hukuman, tapi hukuman yang dirancang menjadi pelajaran keras bagi orang lain — seperti contoh nyata yang membuat siapa pun yang melihatnya berpikir dua kali. Allah mengambil Fir'aun bukan hanya untuk membalas, tapi untuk dijadikan studi kasus sepanjang masa.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Setelah deklarasi paling sombong dalam sejarah, balasannya datang ganda — azab di dunia (tenggelam di Laut Merah) dan azab di akhirat. Tidak ada kekuasaan, harta, atau pasukan yang bisa menyelamatkannya dari kuasa yang sebenarnya. Inilah akhir dari setiap "logout paksa" bagi yang menolak mengakui Penciptanya.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering menyaksikan "Fir'aun-Fir'aun kecil" zaman sekarang — orang yang berada di puncak kekuasaan atau kekayaan, merasa tak tersentuh, lalu jatuh dengan cara yang sangat publik dan menghancurkan. Pola ini terus berulang sebagai pengingat bahwa tidak ada yang benar-benar "di atas hukum" alam semesta.</p>
+    <p>Aplikasi praktis: jangan iri pada kesuksesan orang yang dibangun di atas kezaliman — karena keseimbangan selalu datang, cepat atau lambat, di dunia maupun akhirat. Kedua, jadikan kisah-kisah kejatuhan ini sebagai pengingat untuk selalu rendah hati dalam keadaan apa pun kamu berada.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Kekuasaan yang dibangun di atas penolakan terhadap Yang Maha Kuasa, cepat atau lambat akan runtuh oleh kuasa yang sama yang ditolaknya.
+  </div>
+</div>
+
+<!-- AYAT 26 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٢٦</span><span class="gold">Ayat Kedua Puluh Enam</span></div>
+  <div class="arabic-wrap"><div class="arabic">إِنَّ فِي ذَٰلِكَ لَعِبْرَةً لِّمَن يَخْشَىٰ</div></div>
+  <p class="translation">"Sungguh, pada yang demikian itu terdapat pelajaran bagi orang yang takut (kepada Allah)."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">عِبْرَةً — Pelajaran yang Menembus</div>
+  <p>Dari <em>'abara</em>, "menyeberang" — kata yang sama menjadi dasar kata "air mata" (yang menyeberang dari mata) dan "tafsir mimpi" (menyeberang dari simbol ke makna). <em>'ibrah</em> bukan sekadar informasi, tapi pelajaran yang "menyeberang" dari kisah orang lain menuju kesadaran diri kita sendiri.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Kisah Musa dan Fir'aun ditutup dengan satu syarat penting: pelajaran ini hanya bisa diserap oleh orang yang punya <em>khasyyah</em> — rasa takut dan hormat kepada Allah. Bagi hati yang keras, kisah ini hanya jadi cerita masa lalu yang tidak relevan; bagi hati yang lembut, kisah ini menjadi cermin yang mengubah cara hidup.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita bisa membaca atau menonton ribuan kisah inspiratif dan kisah kejatuhan orang lain tanpa benar-benar berubah, karena kita memposisikan diri sebagai penonton, bukan pembelajar. Pelajaran sejati membutuhkan kerendahan hati untuk mengakui "ini bisa terjadi padaku juga".</p>
+    <p>Aplikasi praktis: saat membaca kisah kejatuhan seseorang (baik dari Al-Qur'an maupun berita), tanyakan "bagian mana dari karakter ini yang ada dalam diriku?" daripada hanya menghakimi dari luar. Kedua, bangun kebiasaan refleksi setelah mendengar kisah-kisah peringatan — jangan biarkan kisah itu lewat begitu saja tanpa membekas.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Sebuah kisah hanya menjadi pelajaran bagi hati yang bersedia melihat dirinya sendiri di dalamnya, bukan bagi hati yang hanya sibuk menghakimi tokohnya.
+  </div>
+</div>
+
+<!-- BAGIAN IV -->
+<h2 class="bagian-title gold">Bagian IV — Bukti Penciptaan</h2>
+<p class="bagian-sub">Sebelum bertanya "siapa yang sanggup membangkitkan kita kembali", lihat dulu siapa yang membangun seluruh sistemnya dari nol</p>
+
+<!-- AYAT 27 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٢٧</span><span class="gold">Ayat Kedua Puluh Tujuh</span></div>
+  <div class="arabic-wrap"><div class="arabic">أَأَنتُمْ أَشَدُّ خَلْقًا أَمِ السَّمَاءُ بَنَاهَا</div></div>
+  <p class="translation">"Apakah penciptaan kamu yang lebih sulit ataukah langit? Allah telah membinanya."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">أَشَدُّ خَلْقًا — Lebih Sulit Penciptaannya</div>
+  <p>Sebuah pertanyaan retoris yang menggugah akal: membandingkan skala penciptaan manusia (yang sering kita anggap sangat rumit dan "mustahil" untuk dihidupkan kembali) dengan penciptaan langit yang jauh lebih masif dan kompleks. Logikanya sederhana: jika yang lebih besar saja sanggup diciptakan, yang lebih kecil tentu jauh lebih mudah.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Setelah kisah Fir'aun, Allah kembali ke argumen tentang kebangkitan dengan pendekatan logis — mengajak manusia membandingkan skala. Langit dengan segala kerumitan dan keluasannya sudah Allah ciptakan; mengembalikan manusia yang sudah hancur menjadi tulang tentu jauh lebih "sederhana" bagi-Nya.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering meragukan kemampuan Allah menyelesaikan masalah kita yang "kecil" — rezeki, jodoh, kesembuhan — padahal jika kita melihat skala alam semesta yang Dia ciptakan dan kelola, urusan kita sebenarnya remeh dibanding kompleksitas kosmik yang Dia tangani setiap detik.</p>
+    <p>Aplikasi praktis: saat merasa masalahmu terlalu besar untuk diselesaikan, coba renungkan skala alam semesta — galaksi, bintang, hukum fisika yang berjalan presisi setiap detik. Kedua, jadikan kekaguman terhadap ciptaan (langit malam, alam, tubuh manusia) sebagai latihan rutin untuk membangun kembali keyakinan pada kemampuan-Nya.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Jika kamu bisa terpukau melihat luasnya langit, seharusnya kamu tidak pernah meragukan kemampuan Penciptanya menyelesaikan masalahmu yang jauh lebih kecil.
+  </div>
+</div>
+
+<!-- AYAT 28 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٢٨</span><span class="gold">Ayat Kedua Puluh Delapan</span></div>
+  <div class="arabic-wrap"><div class="arabic">رَفَعَ سَمْكَهَا فَسَوَّاهَا</div></div>
+  <p class="translation">"Dia meninggikan bangunannya lalu menyempurnakannya."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">فَسَوَّاهَا — Menyempurnakannya</div>
+  <p>Dari <em>sawwa</em>, menyamakan, menyempurnakan, membuat proporsional tanpa cela — kata yang juga dipakai untuk penciptaan manusia (QS. As-Sajdah: 9). Langit tidak hanya "ditinggikan" tanpa arah, tapi disempurnakan dengan presisi yang luar biasa, tanpa ada satu pun bagian yang cacat atau timpang.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Dua kata kerja berurutan ini menggambarkan proses penciptaan yang sangat disengaja: pertama meninggikan, lalu menyempurnakan. Tidak ada langit yang "asal jadi" — semuanya dirancang dengan tujuan dan ketelitian yang sempurna, sebuah pesan implisit bahwa Allah yang sangat teliti dalam hal sebesar langit, pasti juga sangat teliti dalam hal sekecil urusan hidupmu.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Banyak orang merasa hidupnya "asal jadi", tidak punya arah, atau bahwa Tuhan tidak peduli pada detail kehidupan mereka. Ayat ini membantah itu — kalau langit saja disempurnakan dengan presisi, bagaimana mungkin hidupmu dibiarkan tanpa rancangan?</p>
+    <p>Aplikasi praktis: saat merasa hidup terasa acak dan tanpa arah, coba lihat kembali ke belakang — pola-pola yang mengarahkanmu ke titik sekarang, sering kali baru terlihat jelas setelah waktu berlalu. Kedua, percayakan detail-detail yang belum kamu pahami pada Yang Maha Teliti, sambil tetap menjalankan ikhtiar terbaikmu.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Tangan yang menyempurnakan langit tanpa cela bukan tangan yang akan membiarkan hidupmu berjalan tanpa rancangan.
+  </div>
+</div>
+
+<!-- AYAT 29 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٢٩</span><span class="gold">Ayat Kedua Puluh Sembilan</span></div>
+  <div class="arabic-wrap"><div class="arabic">وَأَغْطَشَ لَيْلَهَا وَأَخْرَجَ ضُحَاهَا</div></div>
+  <p class="translation">"Dan Dia menjadikan malamnya gelap gulita, dan menjadikan siangnya terang benderang."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">أَغْطَشَ — Menggelapkan Pekat</div>
+  <p>Dari <em>ghathasya</em>, kegelapan yang pekat dan menyeluruh — bukan sekadar redup, tapi gelap yang sempurna. Berpasangan dengan <em>dhuha</em> (cahaya pagi yang terang dan hangat), ayat ini menggambarkan pengaturan siklus siang-malam sebagai bukti kendali Allah atas ritme kehidupan.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Pergantian gelap dan terang yang kita anggap "biasa saja" karena terjadi setiap hari, sebenarnya adalah salah satu mukjizat paling konstan dan presisi di alam semesta. Tidak pernah sekali pun siklus ini meleset, tidak pernah sekali pun matahari "lupa" terbit.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita hidup dengan ritme yang kacau — begadang tanpa henti, scroll media sosial sampai pagi, melawan ritme alami siang-malam yang sudah dirancang untuk kesehatan kita. Ayat ini mengajak kembali menghargai ritme yang sudah ditetapkan Allah dalam ciptaan-Nya.</p>
+    <p>Aplikasi praktis: hormati ritme malam-siang dalam keseharianmu — gunakan malam untuk istirahat dan refleksi, gunakan siang untuk produktivitas, alih-alih membalik keduanya secara konsisten. Kedua, jadikan momen pergantian gelap-terang (subuh, magrib) sebagai pengingat rutin untuk bersyukur atas konsistensi yang Allah jaga setiap hari tanpa pernah absen.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Sesuatu yang terjadi setiap hari tanpa gagal sekalipun bukanlah hal biasa — itu adalah bukti konsistensi yang seharusnya membuat kita malu pada inkonsistensi diri sendiri.
+  </div>
+</div>
+
+<!-- AYAT 30 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٣٠</span><span class="gold">Ayat Ketiga Puluh</span></div>
+  <div class="arabic-wrap"><div class="arabic">وَالْأَرْضَ بَعْدَ ذَٰلِكَ دَحَاهَا</div></div>
+  <p class="translation">"Dan setelah itu bumi Dia hamparkan."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">دَحَاهَا — Menghamparkan</div>
+  <p>Dari <em>daha</em>, menghamparkan, meluaskan, membuat permukaan yang bisa dihuni dan ditapaki. Kata ini menggambarkan bumi yang dibentuk khusus agar layak huni bagi manusia — bukan sekadar gumpalan materi, tapi rumah yang dirancang dengan tujuan.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Setelah membangun langit, Allah menghamparkan bumi sebagai tempat tinggal yang nyaman. Urutan penciptaan ini menunjukkan bahwa semuanya direncanakan, bukan kebetulan kosmik — bumi tidak diciptakan asal-asalan, tapi dihamparkan khusus agar layak menjadi rumah bagi kehidupan.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Di tengah krisis lingkungan dan eksploitasi alam yang merajalela, ayat ini mengingatkan bahwa bumi bukan sekadar sumber daya untuk dieksploitasi habis-habisan, tapi "hamparan" yang sengaja disiapkan untuk dihuni dengan penuh tanggung jawab dan rasa syukur.</p>
+    <p>Aplikasi praktis: terapkan kebiasaan kecil yang menghormati bumi sebagai amanah — mengurangi sampah plastik, tidak boros air dan listrik. Kedua, ajarkan rasa syukur atas bumi yang kita pijak kepada anak-anak atau orang terdekat, sebagai pengingat bahwa rumah ini sengaja dipersiapkan untuk kita, bukan kebetulan belaka.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Bumi yang kau pijak setiap hari bukan kebetulan kosmik — ia adalah hamparan yang sengaja dipersiapkan, dan kau adalah tamu yang dipercaya menjaganya.
+  </div>
+</div>
+
+<!-- AYAT 31 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٣١</span><span class="gold">Ayat Ketiga Puluh Satu</span></div>
+  <div class="arabic-wrap"><div class="arabic">أَخْرَجَ مِنْهَا مَاءَهَا وَمَرْعَاهَا</div></div>
+  <p class="translation">"Darinya Dia pancarkan mata air, dan (ditumbuhkan) tumbuh-tumbuhannya."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">أَخْرَجَ — Mengeluarkan / Memancarkan</div>
+  <p>Dari <em>akhraja</em>, mengeluarkan sesuatu dari dalam ke luar — menggambarkan air dan tumbuhan yang "dikeluarkan" dari dalam bumi yang sebelumnya tampak kering dan tandus. Ini adalah gambaran tentang potensi kehidupan yang tersembunyi, menunggu untuk dikeluarkan pada waktu yang tepat.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Air dan tumbuhan adalah dua kebutuhan dasar kehidupan yang Allah pastikan tersedia dari dalam bumi itu sendiri — bukan didatangkan dari luar, tapi memang sudah dirancang ada di dalamnya. Ini adalah bukti perencanaan yang sangat detail: rezeki sudah dipersiapkan jauh sebelum makhluk yang membutuhkannya diciptakan.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kecemasan tentang rezeki adalah salah satu sumber stres terbesar generasi sekarang — takut kekurangan, takut tidak cukup, takut masa depan suram. Ayat ini mengingatkan bahwa Allah sudah "memancarkan" sumber kehidupan jauh sebelum kita lahir membutuhkannya.</p>
+    <p>Aplikasi praktis: saat cemas soal rezeki, ingat bahwa Allah yang menyiapkan air dan tumbuhan dari dalam bumi yang tandus, juga sudah menyiapkan jalan rezekimu — tugasmu adalah berikhtiar mencarinya, bukan menciptakan dari nol. Kedua, latih rasa syukur atas hal-hal dasar yang sering kita anggap remeh — air yang mengalir dari keran, makanan di meja — sebagai pengingat bahwa semuanya adalah hasil "pancaran" yang disengaja.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Rezeki yang kau cemaskan hari ini, sumbernya sudah dipersiapkan jauh sebelum kau lahir untuk membutuhkannya.
+  </div>
+</div>
+
+<!-- AYAT 32 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٣٢</span><span class="gold">Ayat Ketiga Puluh Dua</span></div>
+  <div class="arabic-wrap"><div class="arabic">وَالْجِبَالَ أَرْسَاهَا</div></div>
+  <p class="translation">"Dan gunung-gunung dipancangkan-Nya dengan teguh."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">أَرْسَاهَا — Memancangkan dengan Teguh</div>
+  <p>Dari <em>arsa</em>, akar yang sama dengan "jangkar" kapal — menancapkan sesuatu agar tidak goyah, memberi stabilitas di tengah pergerakan. Gunung-gunung berfungsi sebagai "jangkar" bumi, menjaga keseimbangan sehingga kehidupan bisa berlangsung dengan stabil.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Gunung yang kita pandang sebagai objek pemandangan, ternyata memiliki fungsi vital — menstabilkan bumi agar layak huni. Ini adalah bukti lain dari kecermatan rancangan Allah, di mana setiap elemen ciptaan punya peran fungsional, tidak ada yang sia-sia atau dekoratif semata.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Setiap orang membutuhkan "jangkar" dalam hidupnya — nilai, prinsip, atau hubungan yang stabil yang menjaga mereka tidak goyah saat badai kehidupan datang. Tanpa jangkar, sekecil apa pun guncangan bisa membuat hidup terombang-ambing tak terkendali.</p>
+    <p>Aplikasi praktis: identifikasi apa "gunung" dalam hidupmu — prinsip atau hubungan apa yang menjaga stabilitasmu saat segala sesuatu terasa goyah. Kedua, jika kamu belum punya jangkar yang kuat, mulai bangun satu — bisa berupa rutinitas ibadah, komunitas yang sehat, atau nilai hidup yang kau pegang teguh tanpa kompromi.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Sebagaimana gunung menjaga bumi tetap stabil, setiap orang butuh "gunung"-nya sendiri — prinsip yang menjaga jiwa tetap teguh saat dunia berguncang.
+  </div>
+</div>
+
+<!-- AYAT 33 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٣٣</span><span class="gold">Ayat Ketiga Puluh Tiga</span></div>
+  <div class="arabic-wrap"><div class="arabic">مَتَاعًا لَّكُمْ وَلِأَنْعَامِكُمْ</div></div>
+  <p class="translation">"(Semua itu) untuk kesenanganmu dan untuk hewan-hewan ternakmu."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">مَتَاعًا — Perbekalan untuk Dinikmati</div>
+  <p>Dari <em>mata'a</em>, perbekalan atau kesenangan yang bersifat sementara — kata ini sering dipakai Al-Qur'an untuk menggambarkan kenikmatan dunia yang fana, mengandung pesan implisit bahwa semua yang kita nikmati di bumi bersifat "perbekalan", bukan tujuan akhir.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Ayat penutup rangkaian penciptaan ini menyimpulkan tujuan dari segala yang diciptakan: untuk kesenangan dan keberlangsungan hidup manusia dan hewan ternaknya. Ini adalah pengingat tentang kasih sayang Allah yang detail — bukan hanya menciptakan, tapi memastikan ciptaan-Nya bisa hidup nyaman.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kata "mata'a" (perbekalan sementara) adalah pengingat penting di tengah budaya konsumerisme yang menjadikan kenikmatan dunia sebagai tujuan akhir. Boleh menikmati, tapi jangan sampai lupa bahwa semua ini hanyalah bekal perjalanan, bukan tujuan akhir perjalanan itu sendiri.</p>
+    <p>Aplikasi praktis: nikmati rezeki dan fasilitas hidup dengan rasa syukur, tapi sertai dengan kesadaran bahwa semuanya bersifat sementara — jangan jadikan kepemilikan sebagai ukuran nilai dirimu. Kedua, sisihkan sebagian dari "perbekalan" yang kau nikmati untuk kebaikan jangka panjang (sedekah, ilmu, amal jariyah) — sesuatu yang akan menyertaimu melampaui batas dunia ini.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Segala kenikmatan dunia adalah perbekalan perjalanan, bukan tujuan akhir — nikmatilah secukupnya, tapi jangan sampai kau lupa ke mana sebenarnya kau sedang menuju.
+  </div>
+</div>
+
+<!-- BAGIAN V -->
+<h2 class="bagian-title gold">Bagian V — Hari Malapetaka Besar dan Dua Jalan</h2>
+<p class="bagian-sub">Saat semua riwayat aktivitas hidup ditampilkan, dan hanya ada dua folder tujuan: surga atau neraka</p>
+
+<!-- AYAT 34 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٣٤</span><span class="gold">Ayat Ketiga Puluh Empat</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَإِذَا جَاءَتِ الطَّامَّةُ الْكُبْرَىٰ</div></div>
+  <p class="translation">"Maka apabila malapetaka besar (hari Kiamat) telah datang."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">الطَّامَّةُ الْكُبْرَىٰ — Malapetaka Terbesar</div>
+  <p>Dari <em>thamma</em>, sesuatu yang membanjiri dan menutupi segalanya, melampaui batas hingga tak ada yang tersisa tak tersentuh. "Ath-Thammah al-Kubra" adalah peristiwa yang melingkupi dan mengalahkan segala peristiwa besar lainnya — puncak dari segala puncak kejadian.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Setelah membahas bukti penciptaan, Allah kembali ke tema utama surah ini: hari kiamat. "Ath-Thammah al-Kubra" digambarkan sebagai peristiwa yang membanjiri dan menenggelamkan segala hal lain yang pernah kita anggap besar dalam hidup — masalah karir, drama percintaan, ambisi duniawi, semuanya tenggelam di hadapan peristiwa ini.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering terjebak dalam "masalah besar" versi kita sendiri — deadline yang mengancam, validasi sosial yang dikejar, krisis seperempat abad. Semua itu terasa sangat besar saat ini, tapi ayat ini memberi perspektif: ada satu peristiwa yang akan membuat semua "masalah besar" itu terlihat kecil.</p>
+    <p>Aplikasi praktis: saat masalah hidup terasa sangat berat, latih perspektif jangka panjang — tanyakan, "apakah ini akan terasa sebesar ini di hadapan peristiwa terbesar nanti?" Kedua, jangan biarkan masalah-masalah kecil dunia merenggut energimu sepenuhnya hingga lupa mempersiapkan diri untuk peristiwa yang sesungguhnya jauh lebih besar.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Apa pun yang terasa sangat besar dalam hidupmu hari ini, akan tenggelam tak berbekas di hadapan peristiwa yang sesungguhnya besar.
+  </div>
+</div>
+
+<!-- AYAT 35 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٣٥</span><span class="gold">Ayat Ketiga Puluh Lima</span></div>
+  <div class="arabic-wrap"><div class="arabic">يَوْمَ يَتَذَكَّرُ الْإِنسَانُ مَا سَعَىٰ</div></div>
+  <p class="translation">"Pada hari (ketika) manusia teringat akan apa yang telah dikerjakannya."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">يَتَذَكَّرُ — Teringat Sepenuhnya</div>
+  <p>Dari <em>dzakara</em>, mengingat — tapi dalam bentuk <em>tafa'ul</em> (يَتَذَكَّرُ) yang menyiratkan usaha mengingat yang intens, atau ingatan yang muncul kembali secara penuh dan menyeluruh, bukan sekadar samar-samar. Pada hari itu, semua yang pernah dilupakan akan kembali utuh dalam ingatan.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Inilah momen yang menakutkan sekaligus adil: tidak ada lagi "lupa" sebagai alasan. Setiap usaha (sa'a) yang pernah kita lakukan — baik atau buruk, besar atau kecil — akan terputar kembali dengan jelas dalam ingatan, persis seperti "riwayat aktivitas" yang tersimpan rapi dan tak bisa dihapus.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita hidup di era digital di mana jejak digital sulit dihapus sepenuhnya — pesan lama, status lama, jejak yang bisa muncul kembali kapan saja. Ayat ini adalah versi spiritual dari kenyataan itu: setiap usaha kita tersimpan dengan presisi sempurna, menunggu untuk ditampilkan.</p>
+    <p>Aplikasi praktis: jalani hidup dengan kesadaran bahwa setiap usaha kecil tersimpan — perlakukan setiap tindakan seolah kamu sedang membangun "riwayat" yang akan kamu pertanggungjawabkan. Kedua, jangan menunda permintaan maaf atau perbaikan hubungan yang rusak — selesaikan urusan dunia sebisa mungkin sebelum riwayat itu ditampilkan tanpa kesempatan revisi.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Tidak ada "lupa" yang permanen di hari itu — setiap usahamu, sekecil apa pun, tersimpan rapi menunggu untuk ditampilkan.
+  </div>
+</div>
+
+<!-- AYAT 36 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٣٦</span><span class="gold">Ayat Ketiga Puluh Enam</span></div>
+  <div class="arabic-wrap"><div class="arabic">وَبُرِّزَتِ الْجَحِيمُ لِمَن يَرَىٰ</div></div>
+  <p class="translation">"Dan diperlihatkan dengan jelas neraka Jahim kepada setiap orang yang melihat."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">بُرِّزَتِ — Ditampilkan Jelas Tanpa Tabir</div>
+  <p>Dari <em>baraza</em>, muncul dengan jelas tanpa penghalang — kata yang juga dipakai untuk pertandingan terbuka (duel). Neraka tidak lagi tersembunyi atau sekadar konsep abstrak, tapi "ditampilkan" secara nyata dan terbuka di hadapan siapa pun yang bisa melihat.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Selama di dunia, neraka sering dianggap konsep abstrak yang mudah diabaikan. Di hari itu, segala keraguan terhapus karena ia "ditampilkan" secara langsung dan nyata. Tidak ada lagi ruang untuk berkata "itu kan cuma cerita" — kebenarannya berdiri terbuka di hadapan mata.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Banyak konsekuensi dalam hidup yang terasa abstrak sampai kita benar-benar mengalaminya — bahaya merokok terasa jauh sampai kita didiagnosis sakit, bahaya utang terasa ringan sampai kita terlilit. Ayat ini mengajak kita mempercayai konsekuensi sebelum kita "melihatnya" secara langsung.</p>
+    <p>Aplikasi praktis: latih kemampuan membayangkan konsekuensi jangka panjang dari pilihan-pilihanmu sekarang — seolah kamu sudah "melihat" hasilnya, bukan menunggu sampai terlambat. Kedua, percayai peringatan-peringatan yang Allah sampaikan lewat wahyu meski belum bisa kau lihat dengan mata kepala sendiri — karena keimanan yang sejati justru diuji pada hal yang belum terlihat.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Sesuatu yang terasa jauh dan abstrak hari ini, kelak akan berdiri sangat nyata di hadapanmu — pertanyaannya, sudahkah kau percaya sebelum melihat?
+  </div>
+</div>
+
+<!-- AYAT 37 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٣٧</span><span class="gold">Ayat Ketiga Puluh Tujuh</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَأَمَّا مَن طَغَىٰ</div></div>
+  <p class="translation">"Maka adapun orang yang melampaui batas."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">طَغَىٰ — Melampaui Batas (Kembali Muncul)</div>
+  <p>Kata yang sama yang dipakai untuk menggambarkan Fir'aun di ayat 17 kini muncul kembali secara umum — menunjukkan bahwa pola kesombongan Fir'aun bukan kasus tunggal dalam sejarah, tapi tipe karakter yang bisa muncul pada siapa saja yang melampaui batas kewajaran sebagai makhluk.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Setelah kisah spesifik tentang Fir'aun, Allah kini berbicara secara umum tentang siapa pun yang punya karakter serupa — melampaui batas, merasa tak terkendali, menolak aturan. Pengulangan kata ini sengaja menghubungkan kisah masa lalu dengan kemungkinan yang ada pada setiap individu di setiap zaman.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>"Melampaui batas" zaman sekarang bisa berwujud banyak hal — melampaui batas dalam ambisi hingga menghalalkan segala cara, melampaui batas dalam kebebasan hingga mengabaikan tanggung jawab, melampaui batas dalam ego hingga tidak mau mendengar siapa pun.</p>
+    <p>Aplikasi praktis: lakukan audit jujur terhadap area hidupmu yang berpotensi "melampaui batas" — ambisi karir, gaya hidup, atau cara memperlakukan orang lain. Kedua, bangun kebiasaan menerima batasan dengan lapang dada, karena batasan yang sehat justru melindungi, bukan mengekang.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Fir'aun bukan satu orang di masa lalu — ia adalah pola karakter yang bisa tumbuh dalam siapa saja yang lupa di mana batasnya.
+  </div>
+</div>
+
+<!-- AYAT 38 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٣٨</span><span class="gold">Ayat Ketiga Puluh Delapan</span></div>
+  <div class="arabic-wrap"><div class="arabic">وَآثَرَ الْحَيَاةَ الدُّنْيَا</div></div>
+  <p class="translation">"Dan lebih mengutamakan kehidupan dunia."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">آثَرَ — Memilih dan Mengutamakan</div>
+  <p>Dari <em>atsara</em>, memilih dan mengutamakan sesuatu di atas yang lain secara sadar — bukan kebetulan atau kelalaian, tapi keputusan aktif. Kata ini menunjukkan bahwa orientasi seseorang pada dunia bukan kebetulan, tapi hasil pilihan yang berulang kali diambil.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Ciri kedua orang yang melampaui batas adalah mengutamakan dunia di atas segalanya — bukan berarti mencari dunia itu salah, tapi ketika dunia menjadi prioritas tertinggi yang mengalahkan akhirat, di situlah letak masalahnya. Ini adalah pilihan, bukan nasib.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Budaya hustle culture sering secara halus mengajarkan bahwa kesuksesan dunia adalah ukuran tertinggi nilai diri — bekerja tanpa henti, mengorbankan ibadah dan keluarga demi pencapaian, semuanya demi validasi duniawi yang fana.</p>
+    <p>Aplikasi praktis: evaluasi rutin — di mana posisi ibadah dan akhirat dalam daftar prioritas hidupmu dibanding karir dan pencapaian duniawi? Kedua, buat batasan jelas antara "mengejar dunia sebagai sarana" versus "mengejar dunia sebagai tujuan" — yang pertama sehat, yang kedua berbahaya.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Bukan dunia yang berbahaya, tapi ketika dunia naik tahta menggantikan posisi yang seharusnya milik akhirat.
+  </div>
+</div>
+
+<!-- AYAT 39 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٣٩</span><span class="gold">Ayat Ketiga Puluh Sembilan</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَإِنَّ الْجَحِيمَ هِيَ الْمَأْوَىٰ</div></div>
+  <p class="translation">"Maka sungguh, nerakalah tempat tinggal(nya)."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">الْمَأْوَىٰ — Tempat Berlindung / Tempat Pulang</div>
+  <p>Dari <em>awa</em>, tempat seseorang kembali dan berlindung — kata yang biasanya berkonotasi hangat dan aman (seperti rumah). Di sini dipakai secara ironis untuk neraka, menyiratkan kepedihan: tempat yang seharusnya menjadi perlindungan, kini menjadi konsekuensi pahit dari pilihan yang salah.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Penggunaan kata "ma'wa" (tempat pulang) untuk neraka adalah ironi yang menyayat — kata yang seharusnya membawa kehangatan dan rasa aman, kini menjadi destinasi akhir bagi mereka yang memilih melampaui batas dan mengutamakan dunia. Konsekuensi ini bukan hukuman sewenang-wenang, tapi buah logis dari pilihan yang diambil berulang kali.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering mencari "rumah" — rasa aman dan kepulangan — di tempat yang salah: validasi sosial, pencapaian materi, hubungan yang toksik. Ayat ini mengingatkan bahwa "rumah" sejati hanya ditemukan dengan memilih jalan yang benar, bukan jalan yang terasa nyaman sesaat.</p>
+    <p>Aplikasi praktis: introspeksi — di mana kau mencari rasa "pulang" dan aman selama ini? Jika jawabannya hal-hal duniawi yang fana, mulai geser pencarian itu kepada hal yang lebih abadi. Kedua, ingat bahwa setiap pilihan kecil hari ini sedang membangun "rumah" tempatmu akan tinggal selamanya nanti.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Tempat pulang yang sejati tidak ditemukan secara kebetulan — ia dibangun, sedikit demi sedikit, dari setiap pilihan yang kau ambil hari ini.
+  </div>
+</div>
+
+<!-- AYAT 40 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٤٠</span><span class="gold">Ayat Keempat Puluh</span></div>
+  <div class="arabic-wrap"><div class="arabic">وَأَمَّا مَنْ خَافَ مَقَامَ رَبِّهِ وَنَهَى النَّفْسَ عَنِ الْهَوَىٰ</div></div>
+  <p class="translation">"Dan adapun orang-orang yang takut akan kebesaran Tuhannya dan menahan diri dari keinginan hawa nafsunya."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">نَهَى النَّفْسَ — Menahan Diri Sendiri</div>
+  <p>Dari <em>naha</em>, melarang atau mencegah — di sini dipakai secara refleksif: mencegah diri sendiri, bukan mencegah orang lain. Ini adalah perang internal yang paling sulit — menahan diri sendiri dari keinginan yang sebenarnya berasal dari dalam dirinya sendiri.</p>
+  <div class="energi-chip">الْهَوَىٰ — Hawa Nafsu yang Menjerumuskan</div>
+  <p><em>Hawa</em> berasal dari akar yang berarti "jatuh" — menggambarkan keinginan yang menarik seseorang turun, bukan keinginan netral, tapi dorongan yang cenderung menjerumuskan jika dituruti tanpa kendali.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Inilah kontras total dari karakter Fir'aun — bukan orang yang tidak punya keinginan atau hawa nafsu (semua manusia punya), tapi orang yang mampu menahannya karena rasa takut dan hormat kepada kebesaran Allah. Ini adalah definisi kemenangan sejati: mengalahkan musuh dari dalam diri sendiri, bukan sekadar musuh dari luar.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Di era yang mendewakan "ikuti kata hatimu" dan "lakukan apa yang membuatmu bahagia" tanpa batas, ayat ini menawarkan kebijaksanaan yang sering dilupakan: tidak semua keinginan layak dituruti, dan kebebasan sejati justru ditemukan dalam kemampuan mengendalikan diri, bukan menuruti semua dorongan.</p>
+    <p>Aplikasi praktis: sebelum menuruti dorongan impulsif (belanja, marah, balas dendam kecil, godaan), beri jeda sepuluh menit untuk bertanya "apakah ini keinginan yang sehat atau hawa nafsu yang menjerumuskan?" Kedua, latih "puasa" dari hal-hal kecil secara rutin — bukan hanya makan dan minum, tapi juga dari kemarahan, gosip, dan kebiasaan buruk — sebagai latihan otot menahan diri.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Kebebasan sejati bukan kemampuan menuruti semua keinginan, tapi kemampuan memilih dengan sadar keinginan mana yang layak kau turuti.
+  </div>
+</div>
+
+<!-- AYAT 41 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٤١</span><span class="gold">Ayat Keempat Puluh Satu</span></div>
+  <div class="arabic-wrap"><div class="arabic">فَإِنَّ الْجَنَّةَ هِيَ الْمَأْوَىٰ</div></div>
+  <p class="translation">"Maka sungguh, surgalah tempat tinggal(nya)."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">الْجَنَّةَ — Taman yang Tersembunyi</div>
+  <p>Dari <em>janna</em>, "menutupi" atau "menyembunyikan" — surga disebut demikian karena keindahannya tersembunyi dari pandangan dunia, sebuah hadiah yang baru bisa dilihat dan dirasakan sepenuhnya setelah perjuangan menahan diri di dunia dilalui dengan sungguh-sungguh.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Inilah jawaban dari perjuangan menahan hawa nafsu di ayat sebelumnya — kata "ma'wa" yang sama (tempat pulang) kini dipakai dalam konteks yang sangat berbeda: bukan ironi pahit, tapi janji yang tulus. Mereka yang berhasil mengalahkan diri sendiri akan pulang ke tempat yang sesungguhnya layak disebut "rumah".</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Setiap kali kita berhasil menahan diri dari godaan kecil sehari-hari — menahan amarah, menolak gosip, menahan keinginan instan — kita sebenarnya sedang menabung "bata demi bata" untuk rumah abadi yang dijanjikan ini.</p>
+    <p>Aplikasi praktis: ubah cara pandang terhadap perjuangan menahan diri — alih-alih melihatnya sebagai pengorbanan yang menyiksa, lihat sebagai investasi menuju "rumah" yang jauh lebih indah. Kedua, rayakan kemenangan-kemenangan kecil melawan hawa nafsu sebagai langkah nyata menuju tujuan akhir, bukan hal sepele yang tidak berarti.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Setiap kali kau menang melawan dirimu sendiri hari ini, kau sedang menabung sebuah rumah yang keindahannya melampaui imajinasi.
+  </div>
+</div>
+
+<!-- BAGIAN VI -->
+<h2 class="bagian-title gold">Bagian VI — Tentang Waktu Kiamat</h2>
+<p class="bagian-sub">Bukan jadwal pastinya yang penting kau ketahui, tapi kesiapanmu menghadapinya kapan pun ia tiba</p>
+
+<!-- AYAT 42 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٤٢</span><span class="gold">Ayat Keempat Puluh Dua</span></div>
+  <div class="arabic-wrap"><div class="arabic">يَسْأَلُونَكَ عَنِ السَّاعَةِ أَيَّانَ مُرْسَاهَا</div></div>
+  <p class="translation">"Mereka bertanya kepadamu (Muhammad) tentang Kiamat, 'Kapankah terjadinya?'"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">مُرْسَاهَا — Waktu Berlabuhnya</div>
+  <p>Dari akar yang sama dengan "arsaha" di ayat 32 (gunung yang dipancangkan teguh) — kini dipakai untuk pertanyaan tentang kapan kiamat "berlabuh" atau terjadi secara pasti. Penggunaan akar yang sama menyiratkan bahwa kiamat, seperti gunung, adalah ketetapan yang sudah pasti — hanya waktunya yang dirahasiakan.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Pertanyaan ini sering dilontarkan kepada Nabi Muhammad ﷺ, baik dari rasa ingin tahu yang tulus maupun dari nada mengejek yang meragukan. Allah tidak menjawab dengan tanggal atau angka, melainkan mengalihkan fokus dari "kapan" ke "bagaimana kau mempersiapkan diri".</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering terobsesi dengan "kapan" — kapan sukses, kapan menikah, kapan masalah selesai — padahal energi yang dihabiskan untuk mengkhawatirkan waktu sering kali lebih besar daripada energi untuk mempersiapkan diri menghadapinya.</p>
+    <p>Aplikasi praktis: alihkan energi dari mengkhawatirkan "kapan" sesuatu terjadi, ke "bagaimana aku mempersiapkan diri jika itu terjadi besok". Kedua, hindari rasa penasaran berlebihan terhadap hal-hal gaib yang memang sengaja dirahasiakan, dan fokuskan perhatian pada hal-hal yang memang dalam kendalimu.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Pertanyaan yang lebih penting dari "kapan" selalu adalah "sudah siapkah aku, jika itu terjadi sekarang?"
+  </div>
+</div>
+
+<!-- AYAT 43 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٤٣</span><span class="gold">Ayat Keempat Puluh Tiga</span></div>
+  <div class="arabic-wrap"><div class="arabic">فِيمَ أَنتَ مِن ذِكْرَاهَا</div></div>
+  <p class="translation">"Untuk apa engkau (perlu) menyebutkan (waktunya)?"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">فِيمَ — Untuk Apa / Apa Urusannya</div>
+  <p>Sebuah pertanyaan retoris yang menegaskan batas pengetahuan — bahkan Nabi Muhammad ﷺ sendiri, manusia paling mulia, tidak diberi akses pada informasi waktu pastinya. Ini adalah pengingat tegas tentang batas pengetahuan manusia, betapapun tinggi kedudukannya.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Allah menegaskan bahwa bahkan Nabi-Nya sendiri tidak diberi akses pada informasi waktu kiamat — sebuah penegasan bahwa rahasia ini benar-benar dijaga ketat oleh Allah semata. Ini mengajarkan kerendahan hati intelektual: ada hal-hal yang memang tidak ditakdirkan untuk kita ketahui, betapapun kita berusaha mencari tahu.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Banyak orang menghabiskan energi besar mencari "kepastian" atas hal-hal yang memang dirancang tidak pasti — masa depan karir, jodoh, umur. Ketidaktahuan ini bukan kekurangan informasi, tapi bagian dari desain agar manusia terus bergantung dan berserah kepada Allah.</p>
+    <p>Aplikasi praktis: berhenti mengejar kepastian mutlak atas hal-hal yang memang Allah rahasiakan — fokuskan energi pada persiapan, bukan prediksi. Kedua, jadikan ketidakpastian sebagai pengingat untuk terus bersandar pada Allah dalam setiap rencana, bukan sebagai sumber kecemasan yang melumpuhkan.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Bahkan manusia paling mulia sekalipun tidak diberi akses pada rahasia waktu — maka berhentilah mencari kepastian yang memang sengaja disembunyikan darimu.
+  </div>
+</div>
+
+<!-- AYAT 44 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٤٤</span><span class="gold">Ayat Keempat Puluh Empat</span></div>
+  <div class="arabic-wrap"><div class="arabic">إِلَىٰ رَبِّكَ مُنتَهَاهَا</div></div>
+  <p class="translation">"Kepada Tuhanmulah dikembalikan kesudahannya (ketentuan waktunya)."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">مُنتَهَاهَا — Batas Akhir Pengetahuannya</div>
+  <p>Dari <em>intaha</em>, batas akhir, ujung dari sesuatu yang dicari — menegaskan bahwa pengetahuan tentang waktu kiamat berhenti dan kembali sepenuhnya kepada Allah, tidak ada satu pun makhluk yang bisa melampaui batas ini.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Ayat singkat ini menutup pintu spekulasi tentang waktu kiamat secara definitif — pengetahuannya hanya milik Allah, titik. Tidak ada celah untuk dugaan, ramalan, atau perhitungan manusia, betapapun canggih metodenya. Ini adalah pelajaran tentang menerima batas dengan ikhlas.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Di era informasi yang membuat kita merasa bisa mengetahui segalanya lewat riset dan algoritma, ayat ini adalah pengingat penting bahwa ada batas pengetahuan yang tidak akan pernah bisa ditembus manusia, betapapun majunya teknologi.</p>
+    <p>Aplikasi praktis: latih kerendahan hati intelektual — terima bahwa ada banyak hal yang memang di luar jangkauan pemahamanmu, dan itu bukan kegagalan, melainkan desain. Kedua, alihkan rasa penasaran berlebihan kepada hal-hal gaib menjadi rasa penasaran yang produktif terhadap hal-hal yang bisa kau pelajari dan perbaiki.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Ada batas pengetahuan yang sengaja dijaga Allah agar manusia tidak pernah lupa posisinya sebagai makhluk, bukan pencipta.
+  </div>
+</div>
+
+<!-- AYAT 45 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٤٥</span><span class="gold">Ayat Keempat Puluh Lima</span></div>
+  <div class="arabic-wrap"><div class="arabic">إِنَّمَا أَنتَ مُنذِرُ مَن يَخْشَاهَا</div></div>
+  <p class="translation">"Engkau (Muhammad) hanyalah pemberi peringatan bagi siapa yang takut kepada (kiamat) itu."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">مُنذِرُ — Pemberi Peringatan</div>
+  <p>Dari <em>andzara</em>, memperingatkan dengan tujuan agar yang diperingatkan waspada dan bersiap — bukan menakut-nakuti tanpa arah, tapi peringatan yang konstruktif, ditujukan untuk mendorong perubahan dan persiapan, bukan kepanikan tanpa solusi.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Setelah menegaskan bahwa waktu kiamat hanya Allah yang tahu, tugas Nabi (dan setiap pembawa kebenaran) dipersempit: bukan memprediksi waktu, tapi memperingatkan agar manusia bersiap. Dan peringatan ini hanya akan benar-benar berbuah bagi mereka yang punya <em>khasyyah</em> — rasa takut yang lahir dari cinta dan pengenalan kepada Allah.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Sebagai individu, kita sering ingin "mengubah" orang lain secara total — tapi ayat ini mengajarkan batasan peran kita: kita hanya bisa menyampaikan, mengingatkan, dan menjadi teladan; hasilnya bergantung pada hati yang menerima.</p>
+    <p>Aplikasi praktis: jika kamu sering frustrasi karena nasihatmu tidak didengar orang lain, ingat bahwa tugasmu hanya menyampaikan dengan baik, bukan memaksa perubahan. Kedua, fokuskan energi pada dirimu sendiri agar menjadi pribadi yang punya <em>khasyyah</em> — karena hanya hati yang takut dan mencintai Allah yang benar-benar bisa menerima peringatan.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Tugasmu hanya menyalakan lilin peringatan — apakah orang lain memilih untuk melihat cahayanya atau tetap berjalan dalam gelap, itu bukan lagi tanggung jawabmu.
+  </div>
+</div>
+
+<!-- AYAT 46 -->
+<div class="ayat-section">
+  <div class="ayat-number"><span class="num">٤٦</span><span class="gold">Ayat Keempat Puluh Enam</span></div>
+  <div class="arabic-wrap"><div class="arabic">كَأَنَّهُمْ يَوْمَ يَرَوْنَهَا لَمْ يَلْبَثُوا إِلَّا عَشِيَّةً أَوْ ضُحَاهَا</div></div>
+  <p class="translation">"Pada hari mereka melihatnya, mereka merasa seakan-akan hanya tinggal (di dunia) sebentar saja, di waktu sore atau pagi hari."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+  <div class="energi-chip">لَمْ يَلْبَثُوا — Tidak Tinggal Lama</div>
+  <p>Dari <em>labitsa</em>, menetap atau tinggal — dengan penegasian, menggambarkan bahwa rentang waktu hidup di dunia yang dulu terasa sangat panjang dan penting, ternyata di akhirat akan terasa sesingkat satu sore atau satu pagi saja, hampir tidak berbekas dalam ingatan.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Inilah penutup surah yang sangat menohok: seluruh hidup yang terasa begitu panjang, begitu rumit, begitu penuh drama dan perjuangan — di akhirat akan terasa hanya seperti sekejap waktu sore atau pagi. Ini bukan untuk meremehkan kehidupan, tapi untuk memberi perspektif tentang betapa singkatnya kesempatan kita dibanding keabadian yang menanti.</p>
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering merasa hidup ini sangat panjang — masih ada banyak waktu untuk bertaubat nanti, masih ada banyak kesempatan untuk berubah besok. Ayat penutup ini menampar ilusi itu: dari sudut pandang keabadian, hidup di dunia hanyalah sesi singkat, secepat login dan logout dalam satu sore.</p>
+    <p>Aplikasi praktis: jalani hidup dengan kesadaran urgensi yang sehat — jangan menunda kebaikan dengan alasan "masih ada waktu", karena waktu yang kau anggap panjang sebenarnya sangat singkat dari perspektif yang lebih besar. Kedua, jadikan setiap hari sebagai kesempatan yang berharga, bukan sekadar rutinitas yang dilewati tanpa makna — karena sesi ini, sesingkat apa pun terasa nanti, adalah satu-satunya kesempatan yang kau punya.</p>
+  </div>
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Hidup yang terasa begitu panjang dan berat hari ini, kelak akan terasa hanya seperti satu sore yang singkat — maka jangan sia-siakan sesi singkat ini dengan penundaan yang tak perlu.
+  </div>
+</div>
+
+<!-- PENUTUP -->
+<div class="penutup">
+  <h2 class="section-title gold" style="margin-top:0;">Refleksi: Pola yang Bisa Diambil</h2>
+
+  <div class="langkah">
+    <div class="lnum">1 — Kenali "Thughyan" Versi Pribadimu</div>
+    <p>Fir'aun tidak lahir sombong dalam semalam — kesombongannya tumbuh dari batas-batas kecil yang terus-menerus dilewati tanpa teguran. Setiap minggu, luangkan waktu jujur bertanya: di area mana dalam hidupku aku mulai merasa "tidak perlu pertanggungjawaban"?</p>
+  </div>
+
+  <div class="langkah">
+    <div class="lnum">2 — Latih Otot Menahan Hawa Nafsu</div>
+    <p>Surah ini membedakan dua nasib akhir berdasarkan satu hal: kemampuan menahan diri dari hawa nafsu. Mulai dari hal kecil — menahan kata-kata kasar, menahan keinginan belanja impulsif, menahan amarah sesaat. Setiap kemenangan kecil adalah latihan untuk kemenangan yang lebih besar.</p>
+  </div>
+
+  <div class="langkah">
+    <div class="lnum">3 — Bangun Kesiapan, Bukan Kecemasan</div>
+    <p>Surah ini tidak menyuruh kita panik soal kapan kiamat tiba, tapi mendorong kesiapan yang tenang. Buat daftar "urusan yang belum selesai" dalam hidupmu — permintaan maaf yang tertunda, hutang yang belum dibayar, hubungan yang perlu diperbaiki — dan mulai selesaikan satu per satu.</p>
+  </div>
+
+  <div class="langkah">
+    <div class="lnum">4 — Perbanyak "Bukti Kecil" Iman Lewat Penciptaan</div>
+    <p>Sisihkan waktu menatap langit malam, mengamati pergantian siang-malam, atau merenungkan air yang mengalir dari tanah. Biarkan kekaguman terhadap penciptaan menjadi bahan bakar keyakinan bahwa Yang menciptakan semua ini sanggup menangani urusan hidupmu yang jauh lebih kecil.</p>
+  </div>
+
+  <p style="margin-top:28px; font-style:italic; color:#cdc4ee; text-align:center;">Surah ini, pada akhirnya, bukan tentang menakuti kita dengan kiamat — tapi tentang membangunkan kita dari "mode autopilot" sebelum sistem benar-benar melakukan logout paksa tanpa pemberitahuan.</p>
+</div>
+
+<!-- EPILOG -->
+<div class="epilog">
+  <h2 class="epilog-title gold">Sebelum Sesi Ini Berakhir</h2>
+
+  <p>Setiap sistem, secanggih apa pun, suatu hari akan menerima perintah shutdown. Bukan karena rusak, tapi karena memang begitulah ia dirancang — sementara, terbatas, dan suatu hari akan dikembalikan kepada Yang Mengelolanya.</p>
+
+  <span class="voice-label">Untuk kamu yang merasa selalu kekurangan waktu</span>
+  <p>Kamu yang terus berkata "nanti", "besok", "setelah ini selesai" — surah ini berbisik lembut: waktu yang kau anggap panjang sebenarnya hanya satu sore yang singkat. Tidak perlu panik, tapi mulailah sekarang. Sesi ini berharga, jangan biarkan ia habis dalam penundaan.</p>
+
+  <span class="voice-label">Untuk kamu yang merasa sudah terlalu jauh tersesat</span>
+  <p>Kamu yang merasa hatimu sudah terlalu hancur, terlalu lapuk seperti tulang yang sudah keropos untuk diperbaiki — ingatlah, kuasa yang sanggup menghidupkan tulang yang sudah hancur total, jauh lebih sanggup memulihkan hati yang masih berdetak hingga detik ini.</p>
+
+  <span class="voice-label">Untuk kamu yang sedang berjuang melawan diri sendiri</span>
+  <p>Kamu yang sedang menahan amarah, menahan keinginan, menahan godaan yang terasa begitu berat — setiap kemenangan kecilmu sedang menabung sebuah rumah yang keindahannya jauh melampaui apa yang bisa kau bayangkan sekarang. Jangan menyerah di tengah jalan.</p>
+
+  <span class="voice-label">Untuk kamu yang merasa tidak didengar saat menyampaikan kebenaran</span>
+  <p>Kamu yang lelah menasihati tapi terasa sia-sia — ingatlah Musa, yang dengan lembut mengajak bahkan kepada penguasa paling zalim sekalipun. Tugasmu hanya menyalakan lilin; siapa yang memilih melihat cahayanya, itu bukan lagi wewenangmu.</p>
+
+  <span class="voice-label">Untuk kamu yang takut akan masa depan yang tidak pasti</span>
+  <p>Kamu yang cemas akan rezeki, akan jodoh, akan hari esok yang belum jelas — ingatlah, Yang memancarkan air dan tumbuhan dari bumi yang tandus, sudah menyiapkan jalanmu jauh sebelum kau lahir untuk membutuhkannya. Berikhtiarlah, lalu serahkan sisanya.</p>
+
+  <div class="divider-gold" style="margin:40px auto;"></div>
+
+  <span class="arabic-line">فَإِنَّمَا هِيَ زَجْرَةٌ وَاحِدَةٌ</span>
+  <span class="latin-line">Fa innamaa hiya zajratuw waahidah</span>
+  <p>Sesungguhnya, semua itu hanya butuh satu perintah saja.</p>
+
+  <p class="closing">
+    Karena di dunia yang menjual ilusi kontrol penuh atas segalanya,<br>
+    An-Nazi'at adalah pengingat:<br><br>
+    <span class="gold" style="-webkit-text-fill-color:unset; background:none; color:#a78bfa;">kamu hanyalah user dalam sistem yang jauh lebih besar darimu.</span><br>
+    Bukan untuk membuatmu kecil dan tak berdaya,<br>
+    tapi untuk membuatmu rendah hati dan siap —<br>
+    agar saat logout paksa itu tiba, sesi yang kau tinggalkan<br>
+    adalah sesi yang layak dikenang dengan baik.<br><br>
+    <strong style="color:#a78bfa; font-size:1.1em;">Dan ketika kamu menyadari betapa singkatnya sesi ini, kamu akan belajar mengisinya dengan lebih bermakna.</strong>
+  </p>
+</div>
+
+</div><!-- /container -->
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.ayat-section').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

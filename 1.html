@@ -1,0 +1,886 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Fatihah: Manual Rahasia Pemain Hidup</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:wght@400;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: #070c08;
+    color: #d0e4cc;
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+
+  /* ── GRADIENT TEXT ── */
+  .emerald-text {
+    background: linear-gradient(135deg, #2d8a45 0%, #58c46a 45%, #a8e8a0 60%, #3aaa50 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: relative;
+    padding: 84px 40px 74px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, #0a1f0d 0%, #070c08 70%);
+    border-bottom: 1px solid #1a3020;
+  }
+
+  .header::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle, rgba(60,150,80,.10) 1px, transparent 1px);
+    background-size: 44px 44px;
+    animation: drift 50s linear infinite;
+    pointer-events:none;
+  }
+
+  .header::after {
+    content:'';
+    position:absolute;
+    top:-80px; left:50%; transform:translateX(-50%);
+    width:620px; height:320px;
+    background: radial-gradient(ellipse, rgba(40,130,60,.15) 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  @keyframes drift { to { background-position: 44px 44px; } }
+
+  .header-bismillah {
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    font-size: 2em;
+    color: #7ad090;
+    opacity: .55;
+    margin-bottom: 22px;
+    letter-spacing: 4px;
+    position: relative; z-index:1;
+  }
+
+  .header-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: .78em;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #5a9a68;
+    position: relative; z-index:1;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.4em, 5.5vw, 3.8em);
+    font-weight: 700;
+    line-height: 1.15;
+    position: relative; z-index:1;
+    margin-bottom: 8px;
+  }
+
+  .header-sub {
+    font-size: .95em;
+    color: #5a9060;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative; z-index:1;
+    margin-bottom: 30px;
+    font-family: 'Cinzel', serif;
+  }
+
+  .divider-emerald {
+    width: 130px; height: 2px;
+    background: linear-gradient(to right, transparent, #3a8a4a, #78c888, #3a8a4a, transparent);
+    margin: 22px auto;
+    position:relative; z-index:1;
+  }
+
+  .tagline {
+    font-style: italic;
+    font-size: 1.18em;
+    color: #a8c8a4;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative; z-index:1;
+    line-height: 1.75;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 940px; margin: 0 auto; padding: 54px 24px 86px; }
+
+  /* ── AYAT SECTION ── */
+  .ayat-section {
+    position: relative;
+    background: linear-gradient(160deg, #0d1a10, #0a1208);
+    border: 1px solid #1c3022;
+    border-left: 3px solid #3a8a4a;
+    border-radius: 16px;
+    padding: 50px 46px;
+    margin-bottom: 52px;
+    box-shadow: 0 4px 44px rgba(0,0,0,.65), inset 0 1px 0 rgba(60,160,80,.05);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .75s ease, transform .75s ease, box-shadow .3s;
+  }
+  .ayat-section.visible { opacity:1; transform:translateY(0); }
+  .ayat-section:hover { box-shadow: 0 8px 54px rgba(0,0,0,.85), 0 0 0 1px rgba(60,160,80,.10); }
+
+  .ayat-section::before {
+    content: '✦';
+    position:absolute; top:20px; right:24px;
+    color: #3a8a4a; opacity:.22; font-size:1.5em;
+  }
+
+  /* ── SECTION TITLES ── */
+  .ayat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6em;
+    font-weight: 700;
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .ayat-number .num-circle {
+    display:inline-block;
+    width:40px; height:40px; line-height:38px; text-align:center;
+    border: 1px solid #3a8a4a;
+    border-radius:50%;
+    font-size:.72em;
+    background: linear-gradient(135deg,#0c1e10,#081408);
+    color: #78c888;
+    flex-shrink:0;
+    font-family: 'Lora', serif;
+  }
+
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.32em;
+    font-weight: 700;
+    margin: 38px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1a3020;
+    color: #58c46a;
+  }
+
+  h3.sub-title {
+    font-family: 'Lora', serif;
+    font-size: 1.04em;
+    font-weight: 600;
+    margin: 28px 0 10px;
+    color: #a8d8a0;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h3.sub-title::before {
+    content:'';
+    display:inline-block;
+    width:18px; height:2px;
+    background: linear-gradient(to right, #3a8a4a, #78c888);
+    flex-shrink:0;
+  }
+
+  /* ── ARABIC ── */
+  .arabic-wrap {
+    text-align: center;
+    margin: 34px 0 12px;
+    padding: 30px 24px;
+    background: radial-gradient(ellipse at center, #0d2010 0%, #080e08 80%);
+    border-radius: 12px;
+    border: 1px solid #1e3822;
+    position:relative;
+  }
+  .arabic-wrap::before, .arabic-wrap::after {
+    content:'❧';
+    position:absolute; top:50%; transform:translateY(-50%);
+    color:#3a8a4a; opacity:.28; font-size:1.2em;
+  }
+  .arabic-wrap::before { left:20px; }
+  .arabic-wrap::after  { right:20px; transform:translateY(-50%) scaleX(-1); }
+
+  .arabic {
+    font-family: 'Traditional Arabic', serif;
+    font-size: clamp(2.2em, 5.5vw, 3.4em);
+    line-height: 2.1;
+    background: linear-gradient(135deg, #1e5a28 0%, #58c46a 38%, #a8e8a0 58%, #3aaa50 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    direction: rtl;
+  }
+
+  .translation {
+    text-align: center;
+    font-style: italic;
+    color: #7a9878;
+    font-size: 1.04em;
+    margin: 10px 0 32px;
+  }
+
+  /* ── ENERGI KATA CHIP ── */
+  .energi-chip {
+    display: inline-block;
+    background: linear-gradient(135deg, #0c1e10 0%, #122018 100%);
+    border: 1px solid #2a5a34;
+    color: #7ad890;
+    padding: 8px 22px;
+    border-radius: 30px;
+    font-size: .94em;
+    font-weight: 600;
+    margin: 18px 0 10px;
+    letter-spacing:.4px;
+  }
+
+  /* ── PARAGRAPHS ── */
+  p {
+    margin-bottom: 16px;
+    color: #bcd4b8;
+    text-align: justify;
+    font-size: .97em;
+  }
+
+  strong { color: #78d888; font-weight:600; }
+  em { color: #a8c898; font-style: italic; }
+
+  /* ── RELEVANCE BOX ── */
+  .relevance-box {
+    background: linear-gradient(160deg,#0d1c0e,#0a1408);
+    border-left: 3px solid #a8e8a0;
+    border-radius: 0 10px 10px 0;
+    padding: 22px 26px;
+    margin: 26px 0;
+  }
+  .relevance-label {
+    font-size:.78em;
+    letter-spacing:2.2px;
+    text-transform:uppercase;
+    color: #58c46a;
+    margin-bottom:12px;
+    font-family:'Cinzel',serif;
+  }
+
+  /* ── INTISARI ── */
+  .intisari {
+    position:relative;
+    background: linear-gradient(160deg, #0c1e10, #081408);
+    border: 1px solid #2a4a30;
+    border-radius: 12px;
+    padding: 30px 34px 26px;
+    margin: 30px 0 0;
+    color: #c0e0b8;
+    font-size: .98em;
+    line-height: 1.97;
+  }
+  .intisari::before {
+    content: '"';
+    position:absolute; top:-18px; left:24px;
+    font-size:4.2em; line-height:1;
+    background: linear-gradient(to bottom, #78d888, #3a8a4a);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-family:'Playfair Display',serif;
+  }
+  .intisari-label {
+    font-size:.74em; letter-spacing:2.5px; text-transform:uppercase;
+    color: #58c46a; margin-bottom:13px;
+    font-family:'Cinzel',serif;
+  }
+
+  /* ── PENUTUP ── */
+  .penutup {
+    background: linear-gradient(160deg,#0c1a0e,#080e08);
+    border: 1px solid #1c3020;
+    border-radius: 16px;
+    padding: 54px 46px;
+    margin-bottom: 50px;
+  }
+
+  .langkah {
+    background: linear-gradient(160deg,#0d1c10,#0a1208);
+    border: 1px solid #1c3020;
+    border-left: 3px solid #3a8a4a;
+    border-radius: 0 10px 10px 0;
+    padding: 22px 26px;
+    margin: 18px 0;
+    color: #bcd4b8;
+    font-size:.97em;
+  }
+  .langkah .lnum {
+    display:inline-block;
+    background: linear-gradient(135deg, #3a8a4a, #78c888);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-weight:700; font-family:'Playfair Display',serif;
+    font-size:1.08em; margin-bottom:5px;
+    display: block;
+  }
+  .langkah p { margin-bottom:0; }
+
+  /* ── EPILOG ── */
+  .epilog {
+    background: radial-gradient(ellipse at 50% 0%, #0a1e0e 0%, #060a07 65%);
+    border: 1px solid #1c3020;
+    border-top: 2px solid #3a8a4a;
+    border-radius: 16px;
+    padding: 66px 46px;
+    text-align: center;
+  }
+  .epilog .epilog-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.5em,3vw,2.1em);
+    font-weight:700;
+    margin-bottom:42px;
+    color: #58c46a;
+  }
+
+  .epilog-voice {
+    max-width: 680px;
+    margin: 0 auto 36px;
+    padding: 28px 32px;
+    background: linear-gradient(160deg,#0c1c10,#080e08);
+    border: 1px solid #1c3020;
+    border-radius: 12px;
+    text-align: left;
+  }
+  .epilog-voice .voice-label {
+    font-family: 'Cinzel', serif;
+    font-size: .72em;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #4a9a5a;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .epilog-voice p {
+    color: #b8d4b0;
+    text-align: left;
+    font-style: italic;
+    margin-bottom: 10px;
+    font-size: .97em;
+  }
+  .epilog-voice p:last-child { margin-bottom: 0; }
+  .epilog-voice .affirmasi {
+    font-style: normal;
+    color: #78d888;
+    font-weight: 600;
+    font-size: .97em;
+    margin-top: 10px;
+  }
+
+  .epilog .arabic-line {
+    font-family: 'Traditional Arabic','Scheherazade New',serif;
+    font-size:clamp(1.7em,4vw,2.6em);
+    direction:rtl;
+    background: linear-gradient(135deg,#1e5a28,#58c46a,#a8e8a0,#3aaa50);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    display:block; margin:30px auto 8px;
+  }
+  .epilog .latin-line {
+    font-style:italic; color: #7ad890; font-size:1.05em;
+    margin-bottom:10px; display:block;
+    font-family: 'Lora', serif;
+  }
+
+  .epilog .closing {
+    margin-top:44px; font-style:normal;
+    font-family:'Playfair Display',serif;
+    font-size:1.08em; color: #c0d8bc;
+    line-height:1.85;
+    max-width: 700px;
+    margin-left: auto; margin-right: auto;
+    text-align: center;
+  }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position:fixed; bottom:28px; right:28px;
+    width:46px; height:46px;
+    background: linear-gradient(135deg,#1e5a28,#3a8a4a);
+    color:#c8f0cc; font-size:1.2em; font-weight:700;
+    border:none; border-radius:50%;
+    cursor:pointer; display:none; align-items:center; justify-content:center;
+    box-shadow:0 4px 22px rgba(0,0,0,.55);
+    transition:transform .2s;
+    z-index:999;
+  }
+  #scrollTop:hover { transform:scale(1.1); }
+
+  /* ── QUEST BADGE (dekoratif per ayat) ── */
+  .quest-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #0c2212, #091608);
+    border: 1px solid #2a5a34;
+    border-radius: 6px;
+    padding: 5px 14px;
+    font-family: 'Cinzel', serif;
+    font-size: .72em;
+    letter-spacing: 2px;
+    color: #4a9a58;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:660px){
+    .header { padding:60px 20px 52px; }
+    .ayat-section, .penutup, .epilog { padding:34px 20px; }
+    .container { padding:32px 14px 64px; }
+    .epilog-voice { padding: 22px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <p class="header-eyebrow">Tafsir Mendalam · Seri Juz Amma</p>
+  <h1 class="emerald-text">Al-Fatihah</h1>
+  <p class="header-sub">Surat 1 · 7 Ayat · Makkiyah</p>
+  <div class="divider-emerald"></div>
+  <p class="tagline">Al-Fatihah dibaca minimal 17 kali sehari—tapi berapa kali kamu benar-benar mendengar apa yang sedang kamu ucapkan?</p>
+</div>
+
+<div class="container">
+
+  <!-- ═══════════════════════════════════ AYAT 1 ═══════════════════════════════════ -->
+  <div class="ayat-section">
+    <div class="quest-badge">◈ Prolog Quest · Pembukaan</div>
+    <div class="ayat-number">
+      <span class="num-circle">١</span>
+      <span class="emerald-text">Ayat Pertama</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِيمِ</div>
+    </div>
+    <p class="translation">"Dengan nama Allah Yang Maha Pengasih, Maha Penyayang."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="energi-chip">بِسۡمِ — Dengan Nama</div>
+    <p>Perhatikan: ayat ini tidak dimulai dengan "Aku memulai dengan nama Allah." Kata <em>"aku"</em> tidak ada. Subyek kalimatnya tersembunyi—sengaja tersembunyi. Ini bukan kecerobohan bahasa; ini adalah tata bahasa kerendahan hati. Di dalam <em>bismi</em>, ada pengakuan bahwa diri ini bukan titik awal yang relevan. Yang relevan adalah: <strong>dalam nama siapa?</strong></p>
+    <p>Berbeda dengan awalan lain seperti <em>bi quwwatillah</em> (dengan kekuatan Allah) atau <em>bi idznillah</em> (dengan izin Allah) — <em>bismillah</em> jauh lebih luas. Nama merangkum seluruh sifat, seluruh kekuasaan, seluruh kehendak-Nya. Memulai dengan nama berarti memulai dengan menempatkan seluruh entitas itu sebagai payung.</p>
+
+    <div class="energi-chip">ٱلرَّحۡمَـٰنِ vs ٱلرَّحِيمِ — Dua Wajah Kasih</div>
+    <p>Keduanya berakar dari <em>rahmah</em> (kasih sayang), tapi dengan bobot yang berbeda. <em>Ar-Rahman</em>: kasih yang meluas tanpa syarat, melingkupi semua makhluk—mukmin dan kafir, manusia dan hewan, masa kini dan masa depan. Ini adalah kasih struktural. <em>Ar-Rahim</em>: kasih yang mendalam, aktif, dan berkesinambungan—khusus untuk mereka yang memilih untuk membuka diri. Ini adalah kasih relasional.</p>
+    <p>Satu analogi: <em>Rahman</em> adalah matahari yang menyinari semua orang tanpa diminta. <em>Rahim</em> adalah kehangatan yang kamu rasakan saat kamu memilih duduk di bawah sinarnya.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Ini adalah ayat tentang cara memulai. Bukan cara mengakhiri, bukan cara bertahan—tapi cara <em>memulai</em>. Dan dalam cara memulai, tersimpan seluruh arsitektur niat.</p>
+    <p>Manusia biasanya memulai sesuatu dengan pertanyaan "apa?" (apa rencanaku?), "bagaimana?" (bagaimana caranya?), atau "kapan?" (kapan saat terbaik?). Bismillah mengajukan pertanyaan yang lebih fundamental: <strong>dalam nama siapa?</strong> Bukan pertanyaan tentang metode, tapi tentang orientasi. Bukan soal strategi, tapi soal pusat gravitasi.</p>
+    <p>Ketika sebuah tindakan dimulai dalam nama Allah, ada dua hal yang terjadi secara bersamaan: pertama, ego tidak lagi menjadi satu-satunya yang berkepentingan dalam tindakan itu. Kedua, ada semacam "penanggungjawab tertinggi" yang ikut masuk ke dalam proses—dan ini bukan beban, ini justru adalah kelegaan yang dalam.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era personal branding dan "hustle culture" yang mengajarkan: semakin keras kamu bekerja <em>untuk dirimu sendiri</em>, semakin berharga kamu. Setiap pagi dimulai dengan to-do list, target, dan self-affirmation tentang betapa layaknya diri ini sukses. Ego adalah mesin penggerak utama. Dan tidak ada yang salah dengan ambisi—tapi ketika seluruh bangunan dimulai dari ego, pondasi itu retak setiap kali ego kamu terluka.</p>
+      <p>Bayangkan seorang kreator konten yang memulai setiap video bukan dari "bagaimana ini membesarkan namaku?" tapi dari "dalam nama siapa aku berbicara ini, dan siapa yang benar-benar ingin aku layani?" Orientasi itu mengubah segalanya—bukan hanya outputnya, tapi ketahanan mentalnya ketika jumlah penonton turun, ketika komentar negatif datang, ketika algoritma berubah.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Setiap awal yang kita tandai dengan nama-Nya bukan sekadar ritual pembuka—itu adalah deklarasi bahwa ego bukan lagi satu-satunya yang duduk di kursi pengemudi. Dan anehnya, justru ketika kita mundurkan ego itu, pekerjaan kita menjadi lebih ringan, tujuannya lebih bersih, dan dampaknya lebih dalam dari yang pernah kita rencanakan.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ AYAT 2 ═══════════════════════════════════ -->
+  <div class="ayat-section">
+    <div class="quest-badge">◈ Level 1 · Kesadaran</div>
+    <div class="ayat-number">
+      <span class="num-circle">٢</span>
+      <span class="emerald-text">Ayat Kedua</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">ٱلۡحَمۡدُ لِلَّهِ رَبِّ ٱلۡعَـٰلَمِينَ</div>
+    </div>
+    <p class="translation">"Segala puji bagi Allah, Tuhan seluruh alam."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="energi-chip">ٱلۡحَمۡدُ — Al-Hamd bukan Sekadar Syukur</div>
+    <p><em>Al-Hamd</em> sering diterjemahkan "pujian" atau "syukur", tapi kedua padanan itu tidak cukup menangkap bobotnya. Dalam bahasa Arab, ada spektrum ekspresi terima kasih: <em>madh</em> (memuji yang baik, tapi bisa juga kepada yang jahat), <em>syukr</em> (berterima kasih atas manfaat yang diterima), dan <em>hamd</em> yang merangkum keduanya—pujian yang sekaligus pengakuan atas kebaikan intrinsik yang dipuji, <strong>terlepas dari apakah kamu sendiri sedang merasakan manfaatnya atau tidak</strong>.</p>
+    <p>Inilah yang membuat <em>al-hamd</em> berbeda secara radikal: ia tidak bersyarat pada kondisimu. Syukur muncul saat rezeki datang; <em>hamd</em> tetap ada bahkan saat hujan tidak kunjung turun.</p>
+
+    <div class="energi-chip">رَبِّ — Rabb bukan Sekadar "Tuhan"</div>
+    <p><em>Rabb</em> adalah paduan tiga fungsi sekaligus: Pencipta yang mengadakan dari tidak ada, Pemelihara yang terus-menerus menjaga keberlangsungan, dan Pendidik yang menumbuhkan menuju kesempurnaan. Bukan sekadar "yang ada di atas sana"—tapi yang <em>aktif terlibat</em> dalam proses pertumbuhanmu setiap detik.</p>
+
+    <div class="energi-chip">ٱلۡعَـٰلَمِينَ — Seluruh Alam Semesta</div>
+    <p><em>Al-'alamin</em> adalah jamak dari <em>'alam</em>—bukan satu alam, tapi seluruh alam semesta yang ada: alam manusia, alam jin, alam malaikat, alam yang kita kenal dan yang belum kita ketahui. Rabb dari <em>semua</em> itu. Ini bukan Tuhan yang terbatas pada satu suku, satu bangsa, atau satu agama—ini Rabb yang tidak mengenal batas teritorial.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Setelah bismillah memberi kita orientasi (dalam nama siapa), ayat kedua ini memberi kita <em>postur</em>. Postur terhadap hidup dan terhadap Sang Pemberi hidup. Dan postur yang diajarkan di sini adalah postur yang sangat melawan arus: <strong>pujian yang tidak bersyarat</strong>.</p>
+    <p>Kita adalah generasi yang terlatih untuk bersyukur secara transaksional. Dapat promosi → syukur. Lulus ujian → syukur. Hubungan berjalan mulus → syukur. Tapi ketika yang sebaliknya terjadi, kita masuk ke mode protes, kecewa, atau pertanyaan yang pahit. Sah? Sangat manusiawi. Tapi <em>al-hamd</em> mengundang kita ke level yang berbeda: pengakuan bahwa Rabb yang sama yang memberi juga yang mengambil, dan <strong>keduanya adalah bentuk pemeliharaan</strong>.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Ada tren "gratitude journaling" yang populer dalam dunia produktivitas dan kesehatan mental—menulis tiga hal yang kamu syukuri setiap hari. Ini indah dan memang terbukti bermanfaat. Tapi hampir selalu, yang ditulis adalah hal-hal yang terasa baik: cuaca cerah, kopi enak, kabar baik dari teman. Ketika hari terasa berat, jurnal itu sering terlupakan.</p>
+      <p><em>Al-hamd lillah</em> di awal setiap rakaat shalat mengajarkan sesuatu yang lebih radikal: pujian itu bukan kesimpulan setelah situasinya baik—pujian itu adalah <em>titik awal</em> sebelum kamu menilai situasinya. Coba bayangkan seorang dokter yang menghadapi diagnosa buruk pada pasiennya—bukan karena tidak sedih, tapi karena ada landasan yang tidak bergantung pada kondisi eksternal. Itulah kekuatan <em>al-hamd</em>: bukan penolakan realita, tapi penempatan realita pada konteks yang lebih besar.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Syukur yang sejati bukan tanda bahwa hidupmu sedang baik-baik saja—tapi tanda bahwa kamu sudah cukup percaya kepada Sang Rabb untuk memuji-Nya bahkan sebelum kamu tahu bagaimana cerita ini akan berakhir. Itu bukan kepolosan. Itu adalah kepercayaan tertinggi yang bisa dimiliki seorang hamba.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ AYAT 3 ═══════════════════════════════════ -->
+  <div class="ayat-section">
+    <div class="quest-badge">◈ Level 2 · Landasan Kasih</div>
+    <div class="ayat-number">
+      <span class="num-circle">٣</span>
+      <span class="emerald-text">Ayat Ketiga</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">ٱلرَّحۡمَـٰنِ ٱلرَّحِيمِ</div>
+    </div>
+    <p class="translation">"Yang Maha Pengasih, Maha Penyayang."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="energi-chip">Pengulangan yang Bukan Pengulangan</div>
+    <p>Kedua nama ini sudah muncul di ayat pertama (Bismillah). Mengapa diulang di sini? Dalam ilmu balaghah Arab, pengulangan di konteks berbeda bukanlah redundansi—itu adalah penekanan yang memiliki fungsi tersendiri. Bismillah muncul sebagai <em>pintu masuk</em>: kamu masuk dengan nama-Nya. Di sini, setelah kamu memuji-Nya sebagai Rabb seluruh alam, kedua nama itu muncul lagi sebagai <em>klarifikasi karakter</em>: Rabb yang Maha Besar itu, karakter-Nya adalah kasih.</p>
+    <p>Ini penting secara teologis maupun psikologis. Banyak orang yang punya bayangan Tuhan sebagai hakim yang dingin, penguasa yang mengintai kesalahan. Ayat ini secara eksplisit menempatkan kasih sayang sebagai sifat yang mendefinisikan, bukan sekadar sifat tambahan.</p>
+
+    <div class="energi-chip">Struktur Kasih: Universal → Personal</div>
+    <p>Para ulama klasik menggambarkan perbedaan <em>Rahman</em> dan <em>Rahim</em> dengan cara yang indah: <em>Rahman</em> adalah seperti hujan yang turun tanpa pandang bulu—menutrisi tanaman yang dipelihara dan yang liar sekaligus, mengairi ladang orang beriman dan orang yang melupakannya. <em>Rahim</em> adalah seperti irigasi yang sengaja dialirkan ke tanaman yang dipilih dan dirawat—kasih yang aktif dan terarah.</p>
+    <p>Artinya: tidak ada manusia yang hidup di luar lingkaran <em>Rahman</em>-Nya. Tidak ada. Tapi ada kasih yang lebih dalam lagi—<em>Rahim</em>—yang mengalir khusus bagi mereka yang membuka diri untuk menerimanya.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Mengapa perlu diingatkan tentang kasih-Nya tepat setelah kita mengakui keagungan-Nya sebagai Rabb seluruh alam? Karena ada sebuah jebakan kognitif yang sering terjadi: semakin besar sosok yang kita bayangkan, semakin kecil kita merasa, dan semakin jauh pula jarak yang kita rasakan. Ketika kita membayangkan Tuhan yang menguasai seluruh galaksi, pikiran kita kadang bergerak ke tempat yang salah: "<em>Aku ini siapa, sehingga Dia peduli padaku?</em>"</p>
+    <p>Ayat ketiga ini adalah jawaban langsung terhadap perasaan itu. Setelah menegaskan kebesaran-Nya (Rabb seluruh alam), Al-Fatihah segera menegaskan sifat-Nya: <strong>Maha Pengasih. Maha Penyayang.</strong> Dua kali. Berurutan. Seolah Al-Quran tahu bahwa pikiran manusia perlu diyakinkan dua kali.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Salah satu krisis tersembunyi yang dialami banyak orang beriman generasi sekarang adalah perasaan bahwa mereka "tidak layak" mendekati Tuhan. Bukan karena tidak percaya pada-Nya, tapi karena merasa dosa-dosa mereka sudah terlalu banyak, ibadah mereka terlalu bolong, hati mereka terlalu tidak bersih. Mereka tahu Allah itu ada, tapi mereka ragu apakah Allah <em>mau</em> diajak bicara oleh seseorang seperti mereka.</p>
+      <p>Ada juga yang terjebak dalam gambaran Tuhan sebagai auditor surgawi—yang terus-menerus mencatat kesalahan dan suatu hari akan menyodorkan tagihan yang tidak terbayarkan. Gambaran itu membuat ibadah terasa seperti kewajiban yang penuh kecemasan, bukan percakapan yang penuh kedekatan. <em>Ar-Rahman Ar-Rahim</em>—dua sifat yang disebut pertama, bukan <em>Al-Jabbar</em> (Yang Maha Memaksa) atau <em>Al-Muntaqim</em> (Yang Maha Membalas)—mengatakan sesuatu yang sangat jelas tentang dari mana Allah ingin kamu mendatangi-Nya.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Tuhan yang paling besar pun hadir dengan kasih sayang sebagai sifat pertama yang diperkenalkan. Bukan kekuasaan-Nya yang disodorkan sebagai pintu masuk—tapi kasih-Nya. Ini adalah undangan, bukan sidang. Jika kamu merasa tidak layak mendekat, ingat: justru ketidaklayakan itulah yang menjadi alasan kasih itu ada.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ AYAT 4 ═══════════════════════════════════ -->
+  <div class="ayat-section">
+    <div class="quest-badge">◈ Level 3 · Sistem Akuntabilitas</div>
+    <div class="ayat-number">
+      <span class="num-circle">٤</span>
+      <span class="emerald-text">Ayat Keempat</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">مَـٰلِكِ يَوۡمِ ٱلدِّينِ</div>
+    </div>
+    <p class="translation">"Pemilik hari pembalasan."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="energi-chip">مَـٰلِكِ — Malik vs Melik</div>
+    <p>Terdapat dua bacaan (qira'at) yang sama-sama sahih: <em>Maalik</em> (dengan alif panjang) artinya "Pemilik"—yang menguasai secara penuh dan absolut. <em>Melik</em> (tanpa alif panjang) artinya "Raja"—yang berkuasa dan memerintah. Para ulama menyebut keduanya saling melengkapi: Dia bukan hanya Raja yang memerintah di hari itu, tapi juga Pemilik tunggal yang otoritasnya tidak bisa digugat oleh siapa pun. Tidak ada lobbying, tidak ada banding ke pengadilan lain, tidak ada "orang dalam".</p>
+
+    <div class="energi-chip">يَوۡمِ ٱلدِّينِ — Hari Al-Diin</div>
+    <p><em>Al-Diin</em> adalah kata yang kaya: ia bisa berarti agama, tapi juga "pembalasan", "perhitungan", dan "sistem". Hari Al-Diin adalah hari di mana sistem itu bekerja secara sempurna—tidak ada yang lolos, tidak ada file yang hilang, tidak ada ketidakadilan prosedural. <em>Diin</em> dari akar kata yang sama dengan <em>madana</em> (beradab) dan <em>daana</em> (berhutang)—ada nuansa pelunasan hutang yang sempurna di sana.</p>
+    <p>Berbeda dengan <em>yawmul qiyamah</em> (hari kebangkitan) yang menekankan momen berdirinya kembali, <em>yaumud-diin</em> menekankan proses pertanggungjawaban yang sistematis dan adil.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Setelah tiga ayat yang berbicara tentang kasih sayang (Rahman, Rahim) dan pujian (Alhamdulillah), ayat keempat ini hadir seperti nada minor yang tiba-tiba menyeimbangkan melodi. Ini adalah ayat tentang <strong>keseriusan</strong>—bahwa ada konsekuensi, ada pertanggungjawaban, ada hari di mana semua buku akan dibuka.</p>
+    <p>Tapi perhatikan posisinya dalam struktur Al-Fatihah: kasih sayang disebut dulu (tiga ayat), baru kemudian pertanggungjawaban (satu ayat). Ini bukan kebetulan. Urutannya adalah pedagogis: kamu memahami pertanggungjawaban itu <em>di dalam</em> konteks kasih, bukan sebagai antitesisnya. Seorang orang tua yang bijak tidak hanya mencintai tanpa batas, tapi juga mengajarkan konsekuensi—dan keduanya lahir dari kasih yang sama.</p>
+    <p>Dalam permainan hidup, ini adalah pengingat bahwa ada sistem yang tidak bisa dimanipulasi. Di dunia, kita bisa memanipulasi sistem: bayar pengacara terbaik, manfaatkan koneksi, sembunyikan dokumen. Di <em>yaumud-diin</em>, tidak ada satupun dari itu yang berfungsi. Ini seharusnya menimbulkan dua respons sekaligus: rasa takut yang sehat, dan rasa lega yang mendalam—karena artinya semua ketidakadilan yang kamu alami di dunia ini <em>tidak akan dibiarkan berlalu begitu saja</em>.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita adalah generasi yang hidup dalam budaya <em>YOLO</em> ("You Only Live Once") dan nihilisme yang dibalut estetika. "Tidak ada yang abadi, jadi nikmati saja sekarang." Ada kebenaran dalam itu—carpe diem itu Islami juga, dalam batas yang benar. Tapi ada bahaya ketika tidak ada kesadaran tentang akuntabilitas: pilihan-pilihan kecil yang menyakiti orang lain, ketidakjujuran kecil yang dianggap tidak signifikan, hak-hak orang yang tidak terlihat yang terinjak diam-diam.</p>
+      <p>Kesadaran tentang <em>yaumud-diin</em> bukan untuk membuat hidup menjadi penuh kecemasan—tapi untuk menjadi semacam <em>gyroscope</em> moral yang mengembalikan orientasi ketika kita mulai condong ke arah yang salah. Seorang pebisnis yang sadar akan hari pertanggungjawaban akan dua kali berpikir sebelum memilih jalan pintas yang merugikan karyawannya. Bukan karena takut ketahuan manusia, tapi karena ada sistem yang jauh lebih teliti sedang mencatat.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kesadaran akan hari pertanggungjawaban bukan hukuman bagi orang beriman—itu adalah penghiburan. Penghiburan bagi mereka yang pernah dizalimi tanpa pembelaan, yang pernah bekerja keras tanpa pengakuan, yang pernah diperlakukan tidak adil tanpa pernah ada permintaan maaf. Ada hari di mana setiap timbangan akan ditegakkan dengan sempurna—dan Yang Memegang timbangan itu tidak bisa disuap.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ AYAT 5 ═══════════════════════════════════ -->
+  <div class="ayat-section">
+    <div class="quest-badge">◈ Level 4 · Deklarasi Kemerdekaan</div>
+    <div class="ayat-number">
+      <span class="num-circle">٥</span>
+      <span class="emerald-text">Ayat Kelima — Jantung Al-Fatihah</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">إِيَّاكَ نَعۡبُدُ وَإِيَّاكَ نَسۡتَعِينُ</div>
+    </div>
+    <p class="translation">"Hanya kepada Engkau kami menyembah, dan hanya kepada Engkau kami memohon pertolongan."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="energi-chip">إِيَّاكَ — Hanya Engkau (Penekanan yang Membalik Segalanya)</div>
+    <p>Dalam tata bahasa Arab, objek biasanya mengikuti kata kerja. Tapi di sini urutan itu dibalik: <em>iyyaka</em> (kepada Engkau) datang <em>sebelum</em> kata kerjanya (<em>na'budu / nasta'in</em>). Dalam ilmu nahwu, ini disebut <em>taqdimul maf'ul</em>—pemajuan objek untuk memberi efek eksklusivitas. Terjemahan yang lebih tepat bukan "kami menyembah Engkau", tapi "<strong>hanya Engkau</strong> yang kami sembah". Bukan "kami meminta pertolongan kepada-Mu", tapi "<strong>hanya kepada Engkau</strong> kami meminta pertolongan".</p>
+    <p>Satu kata perubahan posisi, tapi maknanya berputar 180 derajat. Dari laporan aktivitas menjadi <em>deklarasi eksklusivitas</em>.</p>
+
+    <div class="energi-chip">نَعۡبُدُ vs نَسۡتَعِينُ — Dua Arah Ibadah</div>
+    <p><em>Na'budu</em> adalah kata kerja aktif: kami beribadah, kami bergerak ke arah-Nya, kami mempersembahkan. Ini adalah inisiatif dari pihak hamba. <em>Nasta'in</em> adalah kata kerja yang menunjukkan permohonan: kami meminta agar ditolong, kami membuka tangan. Ini adalah pengakuan ketidakmampuan.</p>
+    <p>Dua kata ini berdampingan bukan tanpa alasan: ibadah tanpa permintaan pertolongan bisa menjadi kesombongan rohani ("aku bisa sendiri"). Permintaan pertolongan tanpa ibadah bisa menjadi kemalasan transaksional ("tolong saja tanpa aku berbuat apa-apa"). Keduanya bersama-sama adalah formula yang benar: <strong>aku berusaha, dan aku juga minta tolong</strong>.</p>
+
+    <div class="energi-chip">Pergeseran dari "Aku" ke "Kami"</div>
+    <p>Perhatikan: sejak ayat ini seterusnya, Al-Fatihah berbicara dalam bentuk jamak (<em>na'budu, nasta'in, ihdina</em>) bukan tunggal. Padahal kita membacanya secara pribadi, sendirian dalam shalat kita. Ini adalah sinyal: ibadah sejati tidak pernah sepenuhnya individual. Kamu membawa umat bersamamu ketika berdoa—dan doa ini mewakili lebih dari dirimu sendiri.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Para ulama menyebut ayat kelima ini sebagai <em>qalbul Fatihah</em>—jantung Al-Fatihah. Empat ayat sebelumnya adalah penegasan tentang siapa Allah (Rabb, Rahman, Rahim, Malik), dan tiga ayat sesudahnya adalah permintaan hamba. Di tengah-tengahnya, persis di sini, ada sebuah perjanjian bilateral yang diucapkan ulang setiap hari, minimal 17 kali.</p>
+    <p>Ini adalah deklarasi kemerdekaan yang sejati. Bukan kemerdekaan dari semua ketergantungan—tapi kemerdekaan dari ketergantungan yang salah. Ketika kamu berkata <em>iyyaka na'budu</em>, kamu secara bersamaan sedang berkata: <strong>bukan sistem ini yang aku sembah, bukan popularitas ini, bukan rasa aman finansial ini, bukan validasi orang lain ini</strong>. Satu pengakuan ibadah yang tulus sekaligus merupakan pembebasan dari ratusan perbudakan halus yang tidak disadari.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di zaman di mana "penyembahan" bisa terjadi tanpa kita sadari. Kita tidak berlutut di depan patung—tapi berapa menit dalam sehari kita mengecek notifikasi media sosial karena membutuhkan validasi? Berapa keputusan hidup yang dipengaruhi lebih banyak oleh ketakutan pendapat orang lain daripada keyakinan tentang yang benar? <em>Iyyaka na'budu</em> diucapkan 17 kali sehari bukan karena Allah butuh pengingat—tapi karena <em>kita</em> yang butuh pengingat. Setiap kali lidah mengucapkannya, ada satu kesempatan untuk menyadari ketergantungan mana yang sedang diam-diam menguasai hatimu hari itu.</p>
+      <p>Tentang <em>iyyaka nasta'in</em>: ini adalah ayat yang paling banyak dilanggar oleh mereka yang ingin tampak kuat. Budaya "mandiri seutuhnya" membuat kita merasa bahwa meminta pertolongan—bahkan kepada Allah—adalah kelemahan. Padahal justru sebaliknya: pengakuan bahwa kamu tidak bisa segalanya sendirian adalah puncak kejujuran. Dan lebih jauh—ia adalah undangan bagi kekuatan yang jauh melebihi kekuatanmu sendiri untuk masuk ke dalam urusanmu.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      "Hanya kepada-Mu" adalah dua kata yang, jika sungguh-sungguh diresapi, membebaskan manusia dari ribuan penjara tidak kasat mata: penjara validasi, penjara takut pendapat orang, penjara ketergantungan pada yang tidak bisa diandalkan. Dan "hanya kepada-Mu kami meminta tolong" adalah pengakuan paling jujur yang bisa diucapkan: aku sudah berusaha sepenuhnya, dan aku tahu batas kekuatanku—sekarang aku membuka tangan.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ AYAT 6 ═══════════════════════════════════ -->
+  <div class="ayat-section">
+    <div class="quest-badge">◈ Level 5 · Permohonan Navigasi</div>
+    <div class="ayat-number">
+      <span class="num-circle">٦</span>
+      <span class="emerald-text">Ayat Keenam</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">ٱهۡدِنَا ٱلصِّرَٰطَ ٱلۡمُسۡتَقِيمَ</div>
+    </div>
+    <p class="translation">"Tunjukkanlah kami jalan yang lurus."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="energi-chip">ٱهۡدِنَا — Ihdina: Lebih dari Sekadar "Tunjukkan"</div>
+    <p>Kata <em>hidayah</em> dalam bahasa Arab memiliki kedalaman yang tidak tertangkap oleh "petunjuk". <em>Hada-yahdi</em> bisa berarti memberi hadiah yang berharga, menuntun seseorang ke tujuan dengan penuh perhatian, atau menempatkan sesuatu pada posisi yang tepat. Hidayah bukan sekadar peta yang diberikan—tapi lebih seperti pendamping yang berjalan bersamamu dan memastikan kamu tidak tersesat di setiap persimpangan.</p>
+    <p>Dan perhatikan: ini adalah <em>fi'il mudhori'</em>—kata kerja yang menunjukkan masa sekarang yang terus-menerus berlangsung. Bukan "sudah tunjukkan" atau "pernah tunjukkan". Ini adalah permohonan yang <em>hidup</em>, yang setiap saat meminta pembaruan bimbingan. Orang beriman pun, yang sudah di jalan, tetap membutuhkan <em>ihdina</em> setiap hari.</p>
+
+    <div class="energi-chip">ٱلصِّرَٰطَ — Sirat: Jalan yang Sangat Spesifik</div>
+    <p><em>Ash-shirath</em> bukan sembarang jalan. Dalam bahasa Arab, ada banyak kata untuk jalan: <em>thariq</em> (jalan umum, bisa sempit bisa lebar), <em>sabil</em> (jalur, bisa bercabang), <em>minhaj</em> (metode jalan). <em>Shirath</em> khusus dipakai untuk jalan yang lebar, jelas, tidak tersembunyi—jalan utama yang tidak bisa diklaim tidak terlihat. Ini bukan jalan yang abstrak atau misterius. Ini adalah jalan yang visible, cukup lebar untuk komunitas, cukup jelas untuk diikuti—hanya perlu kemauan.</p>
+
+    <div class="energi-chip">ٱلۡمُسۡتَقِيمَ — Mustaqim: Lurus yang Hidup</div>
+    <p><em>Mustaqim</em> bukan sekadar lurus secara geometris. Akar katanya <em>qama-yaqumu</em> berarti berdiri tegak, hidup, aktif. Jalan yang <em>mustaqim</em> adalah jalan yang "berdiri"—tidak berubah, tidak merosot, tidak runtuh. Ini membedakannya dari jalan-jalan lain yang awalnya menjanjikan tapi lama-kelamaan membelok atau ambruk.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Ada sebuah paradoks yang indah di sini: ayat ini adalah inti permintaan dalam Al-Fatihah, dan ia dipanjatkan oleh orang-orang yang sudah beriman, sudah shalat, sudah mengakui keesaan Allah. Artinya: <strong>hidayah bukan hanya milik mereka yang tersesat.</strong> Hidayah adalah sesuatu yang bahkan orang beriman pun perlu terus-menerus dimohonkan.</p>
+    <p>Ini menjungkirbalikkan asumsi kita tentang apa artinya "sudah di jalan yang benar". Bukan status yang pernah dicapai dan kemudian aman selamanya—tapi sesuatu yang hidup, yang perlu dijaga, yang perlu dimohonkan setiap hari. Seperti navigasi GPS yang terus-menerus memperbarui posisi, bukan peta statis yang dicetak sekali lalu disimpan di laci.</p>
+    <p>Dan permohonan ini menuntun kita pada kerendahan hati yang kritis: sebesar apapun pengetahuan dan pengalaman spiritual yang kita miliki, kita tidak pernah sampai pada titik di mana kita tidak lagi membutuhkan bimbingan. Tokoh-tokoh paling taat dalam sejarah Islam tetap memanjatkan doa ini 17 kali sehari. Ini bukan kelemahan—ini adalah kearifan.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita adalah generasi yang paling banyak punya akses informasi tapi mungkin paling bingung soal arah. Bukan karena kurang pengetahuan, tapi karena terlalu banyak suara yang masing-masing mengklaim memiliki "jalan yang benar": influencer gaya hidup, guru spiritual online, komunitas ideologi, algoritma yang curated—semuanya menawarkan peta. Dan paradoksnya, semakin banyak pilihan jalan, semakin sulit menentukan mana yang <em>shirath mustaqim</em>.</p>
+      <p><em>Ihdinas-shiratal mustaqim</em> mengajarkan sesuatu yang sederhana namun mendalam: <strong>jalan itu ada—bukan relatif, bukan sekadar persepsi</strong>—dan ada yang bisa menunjukkannya. Bukan sesama manusia yang sama-sama sedang mencari, tapi Sang Rabb yang melihat seluruh peta dari ketinggian yang tidak terjangkau. Doa ini adalah tindakan yang paling cerdas dalam era information overload: mengakui keterbatasan navigasi sendiri, lalu meminta GPS yang tidak bisa salah.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Meminta ditunjukkan jalan meski sudah merasa berada di jalan yang benar bukanlah keragu-raguan iman—itu adalah kedalaman iman. Ia adalah pengakuan bahwa jalan hidup terlalu kompleks untuk dinavigasi sendirian, bahwa setiap hari ada persimpangan baru, dan bahwa ada yang melihat persimpangan itu jauh sebelum kita sampai. Doa ini adalah cara paling rendah hati sekaligus paling berani untuk memulai setiap hari.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ AYAT 7 ═══════════════════════════════════ -->
+  <div class="ayat-section">
+    <div class="quest-badge">◈ Level 6 · Peta Tiga Jenis Pemain</div>
+    <div class="ayat-number">
+      <span class="num-circle">٧</span>
+      <span class="emerald-text">Ayat Ketujuh — Penutup Quest</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">صِرَٰطَ ٱلَّذِينَ أَنۡعَمۡتَ عَلَيۡهِمۡ غَيۡرِ ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ وَلَا ٱلضَّآلِّينَ</div>
+    </div>
+    <p class="translation">"Yaitu jalan orang-orang yang telah Engkau beri nikmat; bukan jalan mereka yang dimurkai dan bukan pula jalan mereka yang sesat."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="energi-chip">أَنۡعَمۡتَ عَلَيۡهِمۡ — Yang Diberi Nikmat</div>
+    <p>Siapakah mereka? Al-Quran menjawab sendiri dalam surah An-Nisa (4:69): para nabi, orang-orang yang jujur dan benar (<em>shiddiqin</em>), para syahid, dan orang-orang saleh. Tapi perhatikan yang menarik: mereka tidak didefinisikan dengan status sosial, tingkat kecerdasan, atau keturunan mulia. Yang mendefinisikan mereka adalah nikmat yang <em>Allah berikan</em>—dan dasar pemberian nikmat itu adalah kesetiaan mereka dalam menjalani apa yang mereka ketahui tentang kebenaran.</p>
+    <p>Ini bukan kelompok eksklusif yang kamu lahir di dalamnya. Ini adalah jalan yang terbuka—dengan syarat: kejujuran terhadap kebenaran yang sudah kamu kenal.</p>
+
+    <div class="energi-chip">ٱلۡمَغۡضُوبِ عَلَيۡهِمۡ — Yang Dimurkai</div>
+    <p>Para ulama klasik menjelaskan pola ini sebagai mereka yang memiliki <em>ilmu tanpa amal</em>: mengetahui kebenaran tapi dengan sengaja tidak menjalaninya, bahkan menghalangi orang lain. Bukan kebodohan yang menjadi masalah—justru pengetahuan yang dipegang tapi dikhianati secara sadar. Ini adalah bentuk ketidakjujuran intelektual yang paling berbahaya.</p>
+
+    <div class="energi-chip">ٱلضَّآلِّينَ — Yang Sesat</div>
+    <p>Berbeda dari yang dimurkai, pola yang disebut sesat ini menggambarkan mereka yang <em>beramal tanpa ilmu</em>: semangat beribadah dan berbuat baik, tapi tanpa landasan pengetahuan yang benar, sehingga usahanya justru menjauh dari tujuan yang dimaksud. Bukan kemalasan yang menjadi masalah—justru kesungguhan yang salah arah.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Ayat terakhir Al-Fatihah ini adalah peta tiga jenis pemain dalam permainan hidup—dan peta ini seharusnya membuat kita memeriksa diri, bukan menghakimi orang lain.</p>
+    <p><strong>Pemain pertama</strong> (yang diberi nikmat): harmonis antara ilmu dan amal. Tahu apa yang benar, dan dengan jujur berusaha menjalaninya—bukan karena sempurna, tapi karena setia. <strong>Pemain kedua</strong> (yang dimurkai): tahu tapi tidak mau. Punya kompas yang berfungsi tapi sengaja mengabaikan arahnya—biasanya karena nyaman dengan posisi saat ini, atau takut kehilangan sesuatu jika mengikuti arah yang ditunjukkan kompas. <strong>Pemain ketiga</strong> (yang sesat): mau tapi tidak tahu dengan benar. Semangat besar, tapi navigasinya salah—kadang karena malas mengkaji, kadang karena mempercayai sumber yang salah.</p>
+    <p>Yang menarik adalah bagaimana peta ini menempatkan kita semua: tidak ada manusia yang sepenuhnya berada di salah satu kategori secara permanen. Di area ibadah tertentu kita mungkin seperti golongan pertama; di area kehidupan lain mungkin kita berperilaku seperti golongan kedua; dan di aspek kehidupan yang lain kita mungkin masih berada di kondisi ketiga. Ayat ini bukan vonis—ia adalah cermin.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Generasi sekarang rentan pada dua ekstrem yang mencerminkan pola kedua dan ketiga. Ekstrem pertama adalah <em>religious burnout</em> dan kemunafikan halus: tahu banyak tentang agama—bisa ceramah, bisa berdebat di Twitter, bisa mengkritik yang lain—tapi dalam privasi hidupnya, antara pengetahuan dan tindakannya ada jurang yang besar. Semakin banyak tahu, semakin terasa beratnya bertindak sesuai dengan yang diketahui—dan sering kali solusinya bukan memperbaiki tindakan, tapi mencari pembenaran intelektual yang baru.</p>
+      <p>Ekstrem kedua adalah <em>toxic positivity spiritual</em>: semangat berkobar, ritual dijalankan dengan antusias, tapi tidak ada usaha serius untuk memahami makna dan konteksnya. Ibadah menjadi performatif—baik di mata orang lain maupun di hadapan diri sendiri—tapi tidak mengakar ke perubahan karakter. Keduanya adalah jebakan yang bisa dikenali lebih awal jika kita mau jujur membaca peta yang diberikan ayat ini.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Jalan yang lurus bukan jalan tanpa kesulitan—tapi jalan yang menjaga kejujuran antara apa yang kamu ketahui dan apa yang kamu lakukan. Ilmu tanpa kesediaan untuk berubah adalah beban. Semangat tanpa pengetahuan adalah energi yang terbuang. Jalan yang diberkati adalah jalan di mana keduanya berjalan beriringan—dan itu bukan pencapaian yang diraih sekali, tapi komitmen yang diperbarui setiap hari.
+    </div>
+  </div>
+
+  <!-- ═══════════════════ PENUTUP ═══════════════════ -->
+  <div class="penutup">
+    <h2 class="section-title" style="margin-top:0; color:#58c46a; border-bottom-color:#1a3020;">Refleksi: Pola yang Bisa Diambil</h2>
+
+    <div class="langkah">
+      <span class="lnum">1 — Audit Orientasi Pagi</span>
+      <p>Sebelum membuka ponsel di pagi hari, ambil 60 detik untuk memperhatikan: <em>dalam nama siapa aku memulai hari ini?</em> Bukan pertanyaan yang memerlukan jawaban panjang—cukup sebuah kesadaran. Siapa atau apa yang secara efektif menjadi pusat gravitasi keputusanmu hari ini? Jika jawabannya adalah kecemasan, validasi orang lain, atau target yang terasa seperti tuhan, itu adalah informasi berharga yang bisa mengarahkan doa dan langkahmu hari itu.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">2 — Shalat dengan Kesadaran Satu Ayat</span>
+      <p>Daripada mencoba meresapi Al-Fatihah sepenuhnya di setiap rakaat (yang idealnya begitu, tapi tidak selalu realistis), coba pilih <em>satu ayat</em> yang menjadi fokus minggu ini. Selama seminggu, setiap kali membaca Al-Fatihah dalam shalat, berikan perhatian ekstra pada satu ayat itu—resapi kata-katanya, biarkan maknanya hadir secara nyata. Minggu berikutnya, pindah ke ayat berikutnya. Dalam tujuh minggu, Al-Fatihah akan terasa seperti bacaan yang benar-benar kamu kenal, bukan sekadar urutan suara yang terhafal.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">3 — Jujur pada Peta Tiga Pemain</span>
+      <p>Pilih satu area kehidupanmu—hubungan, pekerjaan, kebiasaan harian, atau dimensi spiritual tertentu. Tanyakan dengan jujur: di area ini, aku sedang berperilaku seperti pemain mana? Apakah ada kesenjangan antara apa yang aku <em>ketahui</em> harus kulakukan dan apa yang benar-benar kulakukan? Atau apakah ada semangat yang besar tapi tanpa pemahaman yang cukup? Jujurkan jawabannya—bukan untuk dihakimi, tapi untuk tahu langkah selanjutnya yang konkret.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">4 — Doa Ihdina yang Spesifik</span>
+      <p>Setelah shalat fardhu, tambahkan satu momen kecil: sebut secara spesifik area hidup yang paling kamu butuhkan petunjuk hari ini. Bukan doa umum "ya Allah tunjukkan aku jalan"—tapi "ya Allah, dalam keputusan tentang <em>ini</em>, tunjukkan aku jalan yang lurus." Kekhususan itu bukan mengajarkan Allah—tapi mengajarkan dirimu sendiri untuk benar-benar sadar tentang apa yang sedang kamu hadapi dan apa yang benar-benar kamu perlukan.</p>
+    </div>
+
+    <h2 class="section-title" style="color:#58c46a; border-bottom-color:#1a3020;">Closing Statement</h2>
+    <p style="color:#bcd4b8; font-size:1.02em; line-height:1.95;">Al-Fatihah bukan pengantar. Ia adalah manual. Manual yang ditulis bukan dalam bahasa teknis yang memerlukan keahlian khusus untuk dibaca—tapi dalam tujuh ayat yang bisa dihafal seorang anak berusia lima tahun, namun menyimpan kedalaman yang para ulama terbesar sepanjang sejarah pun tidak habis mengkajinya. Setiap kali kamu berdiri dalam shalat dan mengucapkan <em>Alhamdulillahi rabbil 'alamin</em>, kamu sedang membaca kembali halaman pertama manual hidupmu. Dan setiap kali kamu benar-benar memahami satu kata di dalamnya, hidup itu tidak perlu terasa sesakit dulu.</p>
+  </div>
+
+  <!-- ═══════════════════ EPILOG ═══════════════════ -->
+  <div class="epilog">
+    <h2 class="epilog-title">Tujuh Ayat yang Sudah Tahu Tentang Hidupmu</h2>
+
+    <p style="max-width:680px; margin:0 auto 34px; color:#9abca0; text-align:center; font-style:italic; font-size:1.05em;">Ada sesuatu yang aneh tentang Al-Fatihah.<br>
+    Kamu membacanya ribuan kali sebelum benar-benar mendengarnya.<br>
+    Dan ketika kamu akhirnya benar-benar mendengar—<br>
+    kamu menyadari bahwa ia sudah lama berbicara tentang hidupmu secara spesifik.</p>
+
+    <div class="epilog-voice">
+      <span class="voice-label">◈ Untuk yang merasa hidupnya tidak punya arah</span>
+      <p>Kamu sudah coba berbagai peta. Saran orang tua, rencana hidup yang dibuat di usia dua puluh, nasihat mentor, tren karir yang katanya menjanjikan. Semua berakhir di persimpangan yang tidak ada di peta. Kamu tidak gagal—kamu sedang menyadari bahwa peta yang kamu butuhkan memerlukan perspektif yang tidak bisa diberikan oleh sesama pengelana di level yang sama.</p>
+      <p class="affirmasi">Ihdinas-shiratal mustaqim masih berlaku. Untuk kamu. Sekarang. Permintaan itu tidak memiliki tanggal kadaluarsa.</p>
+    </div>
+
+    <div class="epilog-voice">
+      <span class="voice-label">◈ Untuk yang merasa terlalu kotor untuk berdoa</span>
+      <p>Ada rasa malu yang sangat spesifik—bukan rasa malu di depan orang lain, tapi rasa malu yang membuat kamu hesitate untuk mengangkat tangan dalam doa, seolah tangan yang sudah melakukan ini dan itu tidak layak terangkat. Seolah ada jarak yang sudah tidak bisa dijembatani lagi.</p>
+      <p class="affirmasi">Ar-Rahman Ar-Rahim disebut dua kali di awal Al-Fatihah. Bukan Ar-Rahman untuk yang bersih dan Ar-Rahim untuk yang sempurna. Untuk semua. Termasuk kamu dengan semua yang sudah terjadi. Terutama kamu.</p>
+    </div>
+
+    <div class="epilog-voice">
+      <span class="voice-label">◈ Untuk yang sudah lama berdoa tanpa merasa didengar</span>
+      <p>Kamu sudah konsisten. Shalat tepat waktu, doa setelah shalat, tahajud di malam yang paling berat. Dan tetap—situasinya belum berubah, jawaban itu belum datang dalam bentuk yang kamu minta. Kamu mulai bertanya-tanya apakah semua ini ada gunanya, atau apakah kamu sedang bicara ke langit-langit kamar saja.</p>
+      <p class="affirmasi">Ayat keempat adalah untukmu: ada yang Memiliki hari pembalasan, yang artinya tidak ada yang dibiarkan tidak terhitung. Tidak ada usaha yang sia-sia. Tidak ada doa yang hilang di udara. Mungkin jawabannya belum datang dalam bentuk yang kamu ekspektasikan—tapi tidak berarti tidak dicatat.</p>
+    </div>
+
+    <div class="epilog-voice">
+      <span class="voice-label">◈ Untuk yang lelah berpura-pura punya segalanya</span>
+      <p>Kamu tahu banyak. Bisa mengisi kajian, bisa menjawab pertanyaan tentang agama, bisa terlihat tenang di depan orang lain. Tapi di dalam—ada kekosongan yang tidak ada yang tahu. Antara yang kamu katakan dan yang kamu rasakan, ada jurang yang semakin lebar, dan kamu tidak tahu bagaimana cara menutupnya tanpa merobohkan citra yang sudah terlanjur dibangun.</p>
+      <p class="affirmasi">Iyyaka na'budu wa iyyaka nasta'in. Hanya kepada-Nya—bukan kepada citra, bukan kepada audiens, bukan kepada ekspektasi orang lain. Di hadapan-Nya, kamu tidak perlu mengisi formulir dengan jawaban yang benar. Kamu bisa datang dengan apa adanya.</p>
+    </div>
+
+    <div class="epilog-voice">
+      <span class="voice-label">◈ Untuk yang merasa hidup ini tidak adil</span>
+      <p>Kamu sudah berusaha dengan cara yang benar. Tidak mengambil jalan pintas, tidak berbuat curang, tidak merugikan orang lain. Dan tetap—ada yang bermain curang dan tampaknya menang, ada yang tidak berprinsip tapi hidupnya terlihat mudah, ada yang menyakitimu tanpa konsekuensi apa pun. Kamu lelah dengan narasi bahwa "kebaikan akan dibalas kebaikan" karena kamu belum melihat itu terjadi.</p>
+      <p class="affirmasi">Malik yaumid-diin. Ada Pemilik hari di mana seluruh timbangan ditegakkan dengan sempurna. Bukan karena kamu membutuhkan balas dendam—tapi karena kamu membutuhkan kepastian bahwa dunia ini tidak sepenuhnya absurd, bahwa ada sistem yang lebih besar yang bekerja dengan keadilan yang tidak bisa dibeli atau dilobi.</p>
+    </div>
+
+    <div class="divider-emerald" style="margin: 42px auto;"></div>
+
+    <span class="arabic-line">ٱهۡدِنَا ٱلصِّرَٰطَ ٱلۡمُسۡتَقِيمَ</span>
+    <span class="latin-line">Ihdinas-shiratal mustaqim</span>
+
+    <p class="closing">
+      Tujuh ayat.<br>
+      Tujuh cermin yang menunjukkan siapa kamu, ke mana kamu seharusnya pergi,<br>
+      apa yang kamu butuhkan, dan siapa yang bisa benar-benar memberikannya.<br><br>
+      Kamu tidak perlu membaca Al-Fatihah lebih banyak—<br>
+      kamu perlu membacanya lebih <em>dalam</em>.<br><br>
+      Dan mungkin, mulai hari ini, ketika lidahmu mengucapkan<br>
+      <em style="color:#78d888;">Alhamdulillahi rabbil 'alamin</em><br>
+      ada sesuatu dalam dadamu yang ikut bergetar—<br>
+      bukan karena hafal, tapi karena akhirnya<br>
+      <strong style="color:#78d888; font-size:1.08em;">sungguh-sungguh mengerti.</strong>
+    </p>
+  </div>
+
+</div><!-- /container -->
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.ayat-section').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

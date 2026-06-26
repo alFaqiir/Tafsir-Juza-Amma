@@ -1,0 +1,1251 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tafsir Al-Fiil — Simulasi Hidup Tentang Kesombongan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Cinzel:wght@400;600;700;900&family=Noto+Naskh+Arabic:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #080808;
+    --black2: #0f0f0f;
+    --black3: #141414;
+    --surface: #1a1a1a;
+    --surface2: #1f1f1f;
+    --gold: #c9a84c;
+    --gold2: #e8c96a;
+    --gold-dim: #8a6f2e;
+    --crimson: #8b2635;
+    --crimson2: #c43c50;
+    --cream: #f0e8d8;
+    --cream2: #d4c4a8;
+    --text: #e8dfc8;
+    --text2: #b8a888;
+    --text3: #7a6f5a;
+    --accent-blue: #2a4a6b;
+    --glow-gold: rgba(201,168,76,0.15);
+    --glow-crimson: rgba(139,38,53,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Source Serif 4', 'Cormorant Garamond', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.85;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.6;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black2); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+  /* PROGRESS BAR */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--crimson), var(--gold), var(--crimson2));
+    z-index: 1000;
+    transition: width 0.1s;
+    box-shadow: 0 0 8px var(--gold);
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    background: linear-gradient(180deg, rgba(8,8,8,0.98) 0%, transparent 100%);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(2px);
+  }
+  .nav-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--text3);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 80px 40px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(139,38,53,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 80% 20%, rgba(42,74,107,0.08) 0%, transparent 60%);
+  }
+
+  /* GEOMETRIC ORNAMENT */
+  .hero-ornament {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.04;
+    animation: rotate-slow 60s linear infinite;
+  }
+  @keyframes rotate-slow {
+    from { transform: translate(-50%,-50%) rotate(0deg); }
+    to { transform: translate(-50%,-50%) rotate(360deg); }
+  }
+
+  .hero-seri {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.6em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    animation: fadeUp 1s ease both;
+  }
+  .hero-arabic {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    color: var(--gold);
+    text-shadow: 0 0 60px rgba(201,168,76,0.3), 0 2px 20px rgba(0,0,0,0.8);
+    line-height: 1.3;
+    margin-bottom: 24px;
+    animation: fadeUp 1s ease 0.15s both;
+    direction: rtl;
+  }
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 900;
+    color: var(--cream);
+    letter-spacing: 0.06em;
+    text-align: center;
+    margin-bottom: 12px;
+    animation: fadeUp 1s ease 0.3s both;
+  }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--crimson2);
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeUp 1s ease 0.45s both;
+    letter-spacing: 0.03em;
+  }
+
+  .hero-divider {
+    width: 320px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 48px;
+    animation: fadeUp 1s ease 0.6s both;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2vw, 20px);
+    font-style: italic;
+    color: var(--text2);
+    text-align: center;
+    max-width: 580px;
+    animation: fadeUp 1s ease 0.75s both;
+    line-height: 1.7;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: fadeUp 1s ease 1s both;
+    cursor: pointer;
+  }
+  .hero-scroll span {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    color: var(--text3);
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--gold-dim), transparent);
+    animation: scroll-pulse 2s ease-in-out infinite;
+  }
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* MAIN CONTENT */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* SECTION */
+  section {
+    padding: 80px 0;
+    position: relative;
+  }
+
+  /* INFO SECTION */
+  .info-section {
+    background: linear-gradient(180deg, var(--black) 0%, var(--black2) 50%, var(--black) 100%);
+    padding: 80px 0;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 40px;
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+  .info-cell {
+    background: var(--black3);
+    padding: 20px 28px;
+    border-bottom: 1px solid rgba(201,168,76,0.07);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .info-cell:hover { background: var(--surface); }
+  .info-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    min-width: 120px;
+    padding-top: 3px;
+  }
+  .info-value {
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    text-align: center;
+    margin-bottom: 64px;
+    position: relative;
+  }
+  .section-num {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 700;
+    color: var(--cream);
+    letter-spacing: 0.04em;
+    margin-bottom: 20px;
+  }
+  .section-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    color: var(--gold-dim);
+    font-size: 18px;
+    margin-top: 12px;
+  }
+  .section-ornament::before, .section-ornament::after {
+    content: '';
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim));
+  }
+  .section-ornament::after {
+    background: linear-gradient(90deg, var(--gold-dim), transparent);
+  }
+
+  /* VERSE CARD */
+  .verse-card {
+    background: var(--black2);
+    border: 1px solid rgba(201,168,76,0.08);
+    margin-bottom: 80px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s;
+  }
+  .verse-card:hover {
+    border-color: rgba(201,168,76,0.2);
+  }
+  .verse-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .verse-card:hover::before { opacity: 1; }
+
+  .verse-number-badge {
+    position: absolute;
+    top: -1px;
+    left: 40px;
+    background: var(--crimson);
+    color: var(--cream);
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+  }
+
+  .verse-arabic-block {
+    background: linear-gradient(135deg, var(--black3) 0%, rgba(139,38,53,0.08) 100%);
+    padding: 56px 40px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(201,168,76,0.06);
+  }
+  .verse-arabic {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--gold);
+    direction: rtl;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(201,168,76,0.2);
+  }
+  .verse-latin {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--gold-dim);
+    margin-bottom: 12px;
+    letter-spacing: 0.03em;
+  }
+  .verse-translation {
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    color: var(--text2);
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .verse-body { padding: 40px; }
+
+  /* TAGS */
+  .subsection-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    margin-bottom: 28px;
+    border: 1px solid;
+  }
+  .tag-energi {
+    color: var(--gold);
+    border-color: rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.05);
+  }
+  .tag-tafsir {
+    color: #6a9fd8;
+    border-color: rgba(106,159,216,0.3);
+    background: rgba(106,159,216,0.05);
+  }
+  .tag-relevansi {
+    color: var(--crimson2);
+    border-color: rgba(196,60,80,0.3);
+    background: rgba(196,60,80,0.05);
+  }
+  .tag-intisari {
+    color: #7ec8a0;
+    border-color: rgba(126,200,160,0.3);
+    background: rgba(126,200,160,0.05);
+  }
+
+  /* KEYWORD BLOCK */
+  .keyword-block {
+    border-left: 2px solid var(--gold);
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    background: rgba(201,168,76,0.03);
+  }
+  .keyword-title {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    color: var(--gold2);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  /* BODY TEXT */
+  p {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.9;
+    margin-bottom: 18px;
+    font-weight: 300;
+  }
+
+  /* RELEVANSI BOXES */
+  .example-box {
+    background: rgba(139,38,53,0.06);
+    border: 1px solid rgba(196,60,80,0.12);
+    border-left: 3px solid var(--crimson);
+    padding: 20px 24px;
+    margin: 20px 0;
+  }
+  .example-title {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--crimson2);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* HIGHLIGHT */
+  .highlight-box {
+    background: rgba(201,168,76,0.06);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 20px 28px;
+    margin: 24px 0;
+    text-align: center;
+  }
+  .highlight-box p {
+    color: var(--gold2);
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  /* INTISARI */
+  .intisari-block {
+    background: linear-gradient(135deg, rgba(42,74,107,0.15) 0%, rgba(8,8,8,0) 100%);
+    border-top: 1px solid rgba(106,159,216,0.2);
+    border-bottom: 1px solid rgba(106,159,216,0.2);
+    padding: 32px 40px;
+    margin: 32px -40px 0;
+    text-align: center;
+  }
+  .intisari-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 2vw, 21px);
+    font-style: italic;
+    color: var(--cream2);
+    line-height: 1.7;
+    font-weight: 600;
+    margin: 0;
+  }
+  .intisari-ornament {
+    color: rgba(106,159,216,0.4);
+    font-size: 20px;
+    margin-bottom: 12px;
+    letter-spacing: 8px;
+  }
+
+  /* REFLEKSI */
+  .refleksi-section {
+    background: linear-gradient(180deg, var(--black) 0%, var(--black2) 30%, var(--black2) 70%, var(--black) 100%);
+    padding: 100px 0;
+  }
+
+  .pola-block {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 24px;
+    margin-bottom: 36px;
+    align-items: start;
+  }
+  .pola-num {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .pola-content h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    color: var(--cream);
+    letter-spacing: 0.05em;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  /* LANGKAH */
+  .langkah-card {
+    background: var(--black3);
+    border: 1px solid rgba(201,168,76,0.08);
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .langkah-card::after {
+    content: attr(data-num);
+    position: absolute;
+    right: 24px;
+    top: 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 48px;
+    color: rgba(201,168,76,0.05);
+    font-weight: 900;
+    line-height: 1;
+  }
+  .langkah-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .langkah-1 .langkah-title { color: var(--crimson2); }
+  .langkah-2 .langkah-title { color: #6a9fd8; }
+  .langkah-3 .langkah-title { color: var(--gold); }
+
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .checklist li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 15px;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  .checklist li::before {
+    content: '◇';
+    color: var(--gold-dim);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* CLOSING STATEMENT */
+  .closing-block {
+    background: linear-gradient(135deg, rgba(139,38,53,0.12) 0%, rgba(8,8,8,0) 60%);
+    border: 1px solid rgba(139,38,53,0.2);
+    border-top: 3px solid var(--crimson);
+    padding: 48px 56px;
+    margin: 64px 0;
+    text-align: center;
+  }
+  .closing-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2vw, 19px);
+    font-style: italic;
+    color: var(--cream2);
+    line-height: 1.8;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* EPILOG */
+  .epilog-section {
+    background: var(--black);
+    padding: 100px 0 120px;
+  }
+  .epilog-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(24px, 3.5vw, 40px);
+    font-weight: 900;
+    color: var(--cream);
+    text-align: center;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .epilog-sub {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text3);
+    margin-bottom: 64px;
+  }
+  .epilog-body {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .epilog-body p {
+    font-size: 17px;
+    color: var(--text);
+    line-height: 2;
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+  .epilog-body p.em {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-style: italic;
+    color: var(--cream2);
+    line-height: 1.8;
+    font-weight: 400;
+  }
+  .epilog-body p.bold-line {
+    color: var(--gold2);
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  /* FINAL */
+  .final-block {
+    text-align: center;
+    padding: 80px 40px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+  .final-arabic {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 36px;
+    color: var(--gold);
+    direction: rtl;
+    margin-bottom: 24px;
+    text-shadow: 0 0 40px rgba(201,168,76,0.25);
+  }
+  .final-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--text2);
+    max-width: 500px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  /* REFLECTIVE QUESTION */
+  .q-block {
+    background: rgba(201,168,76,0.03);
+    border: 1px dashed rgba(201,168,76,0.15);
+    padding: 18px 24px;
+    margin: 24px 0;
+  }
+  .q-block p {
+    font-size: 15px;
+    color: var(--gold-dim);
+    font-style: italic;
+    margin: 0;
+    line-height: 1.7;
+  }
+  .q-block p::before { content: '? '; color: var(--gold); font-style: normal; font-weight: bold; }
+
+  /* DIVIDER */
+  .hr-gold {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    margin: 40px 0;
+  }
+  .hr-crimson {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--crimson), transparent);
+    margin: 40px 0;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .container { padding: 0 20px; }
+    .verse-body { padding: 24px 20px; }
+    .verse-arabic-block { padding: 48px 20px 32px; }
+    .intisari-block { margin: 32px -20px 0; padding: 28px 20px; }
+    .info-grid { grid-template-columns: 1fr; }
+    .closing-block { padding: 32px 24px; }
+    .langkah-card { padding: 24px 20px; }
+  }
+
+  /* FADE-IN ON SCROLL */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<nav>
+  <span class="nav-brand">Tafsir Al-Quran</span>
+  <ul class="nav-links">
+    <li><a href="#info">Info</a></li>
+    <li><a href="#ayat">Ayat</a></li>
+    <li><a href="#refleksi">Refleksi</a></li>
+    <li><a href="#epilog">Epilog</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <svg class="hero-ornament" viewBox="0 0 600 600" fill="none" stroke="white">
+    <circle cx="300" cy="300" r="260" stroke-width="0.5"/>
+    <circle cx="300" cy="300" r="200" stroke-width="0.5"/>
+    <circle cx="300" cy="300" r="150" stroke-width="0.5"/>
+    <polygon points="300,60 527,195 527,405 300,540 73,405 73,195" stroke-width="0.5"/>
+    <polygon points="300,120 480,225 480,375 300,480 120,375 120,225" stroke-width="0.5"/>
+    <line x1="300" y1="40" x2="300" y2="560" stroke-width="0.3"/>
+    <line x1="40" y1="300" x2="560" y2="300" stroke-width="0.3"/>
+    <line x1="113" y1="113" x2="487" y2="487" stroke-width="0.3"/>
+    <line x1="487" y1="113" x2="113" y2="487" stroke-width="0.3"/>
+  </svg>
+
+  <span class="hero-seri">Seri Tafsir Mendalam · Surah ke-105</span>
+  <div class="hero-arabic">سُورَةُ الْفِيلِ</div>
+  <h1 class="hero-title">AL-FIIL</h1>
+  <p class="hero-subtitle">Simulasi Hidup Tentang Kesombongan</p>
+  <div class="hero-divider"></div>
+  <p class="hero-tagline">
+    "Kekuatan tanpa batas yang tidak disertai kesadaran tentang batas —<br>adalah undangan untuk kehancuran."
+  </p>
+
+  <div class="hero-scroll" onclick="document.getElementById('info').scrollIntoView({behavior:'smooth'})">
+    <span>Mulai Membaca</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PEMBUKA -->
+<section style="background: var(--black2); padding: 80px 0;">
+  <div class="container fade-in">
+    <div style="max-width: 680px; margin: 0 auto; text-align: center;">
+      <p style="font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.5em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:32px;">Sebelum Membaca</p>
+      <div class="highlight-box" style="background:rgba(139,38,53,0.08); border-color:rgba(196,60,80,0.2);">
+        <p style="color:var(--crimson2); font-size:17px;">Pernahkah kamu merasa sudah terlalu kuat, terlalu sukses, atau terlalu aman — sampai-sampai mulai lupa bahwa semuanya bisa runtuh?</p>
+      </div>
+      <br>
+      <p>Kalau pernah — selamat datang. Surat Al-Fiil berbicara tepat untuk kamu.</p>
+      <p>Surat yang hanya terdiri dari 5 ayat ini bukan sekadar catatan sejarah tentang pasukan bergajah yang dihancurkan. Ia adalah <strong style="color:var(--cream);">cermin</strong> — yang memperlihatkan betapa cepat dan totalnya sebuah kekuatan yang dibangun di atas kesombongan bisa hancur berkeping-keping, bukan oleh pasukan, bukan oleh senjata, tetapi oleh burung-burung kecil yang membawa batu.</p>
+      <p style="color:var(--text2); font-style:italic;">Sesederhana itu. Sesyok itu.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INFO DASAR -->
+<section id="info" class="info-section">
+  <div class="container fade-in">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Informasi Dasar</h2>
+      <div class="section-ornament">✦</div>
+    </div>
+    <div class="info-grid">
+      <div class="info-cell"><span class="info-label">Nama</span><span class="info-value">Al-Fiil (Gajah)</span></div>
+      <div class="info-cell"><span class="info-label">Jumlah Ayat</span><span class="info-value">5 Ayat</span></div>
+      <div class="info-cell"><span class="info-label">Golongan</span><span class="info-value">Makkiyah</span></div>
+      <div class="info-cell"><span class="info-label">Urutan</span><span class="info-value">Surat ke-105 dalam mushaf</span></div>
+      <div class="info-cell" style="grid-column:1/-1;"><span class="info-label">Konteks Turun</span><span class="info-value">Peristiwa Tahun Gajah (~570 M) — tahun kelahiran Nabi Muhammad SAW. Abrahah, penguasa Yaman, datang dengan pasukan bergajah untuk menghancurkan Kabah agar seluruh arus ziarah Arab beralih ke gereja megah yang ia bangun di Sanaa.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AYAT-AYAT -->
+<section id="ayat" style="padding: 100px 0; background: var(--black);">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Tafsir Per Ayat</h2>
+      <div class="section-ornament">✦</div>
+    </div>
+
+    <!-- AYAT 1 -->
+    <div class="verse-card fade-in">
+      <span class="verse-number-badge">Ayat Pertama</span>
+      <div class="verse-arabic-block">
+        <div class="verse-arabic">أَلَمۡ تَرَ كَيۡفَ فَعَلَ رَبُّكَ بِأَصۡحَٰبِ ٱلۡفِيلِ</div>
+        <div class="verse-latin">Alam tara kayfa fa'ala Rabbuka bi-ash-habil fiil</div>
+        <div class="verse-translation">"Tidakkah engkau memperhatikan bagaimana Tuhanmu telah bertindak terhadap pasukan bergajah?"</div>
+      </div>
+      <div class="verse-body">
+        <div class="subsection-tag tag-energi">⚡ Energi Kata</div>
+        <div class="keyword-block">
+          <div class="keyword-title">1. "ALAM TARA" — Perhatikanlah dengan Sungguh</div>
+          <p>Kata "ara" (تَرَ) bukan sekadar "melihat" biasa. Ia memiliki dimensi kognitif — bukan hanya mata yang bekerja, tetapi seluruh kesadaran yang terlibat. Berbeda dari kata <em>nazara</em> yang lebih bersifat fisik-observasional.</p>
+          <p>Allah menggunakan bentuk pertanyaan retoris — "Alam..." (Tidakkah...) — yang secara psikologis jauh lebih mengena daripada pernyataan langsung. Pertanyaan retoris memaksa pendengarnya untuk menjawab secara batin.</p>
+        </div>
+        <div class="highlight-box">
+          <p>"Seolah Allah berkata: 'Aku tahu kamu sudah tahu — tapi sudahkah kamu benar-benar mengerti?'"</p>
+        </div>
+        <div class="keyword-block">
+          <div class="keyword-title">2. "RABBUKA" — Tuhanmu yang Personal</div>
+          <p>Bukan "Rabbul 'alamin" (Tuhan semesta alam), melainkan "Rabbuka" — Tuhanmu, khusus untuk Nabi dan untuk kita yang membaca. Penggunaan kata ganti orang kedua ini menciptakan kedekatan yang intim. Allah sedang berbicara langsung — bukan ceramah publik, melainkan percakapan pribadi.</p>
+        </div>
+
+        <hr class="hr-gold">
+        <div class="subsection-tag tag-tafsir">📖 Tafsir Mendalam</div>
+        <p>Abrahah adalah seorang pemimpin yang, dalam standar zamannya, telah "mencapai segalanya". Ia berhasil menaklukkan wilayah luas, membangun gereja termegah — Al-Qullis — dan mengerahkan pasukan dengan senjata yang tak tertandingi: gajah perang. Niatnya menghancurkan Kabah bukan sekadar tindakan militer, melainkan pernyataan supremasi.</p>
+        <p>Tapi justru di sini letak ironi besarnya: <strong style="color:var(--cream);">semakin besar seseorang merasa, semakin besar pula titik buta yang muncul.</strong></p>
+
+        <div class="subsection-tag tag-relevansi" style="margin-top:28px;">🌐 Relevansi Kekinian</div>
+        <div class="example-box">
+          <div class="example-title">Contoh 1 — Korporasi Raksasa yang Lupa Diri</div>
+          <p>Nokia pernah menguasai 40% pasar ponsel dunia. BlackBerry pernah jadi standar email profesional. Mereka tidak hancur karena persaingan semata — mereka hancur karena berhenti memperhatikan perubahan yang datang dari arah yang tidak mereka sangka.</p>
+        </div>
+        <div class="example-box">
+          <div class="example-title">Contoh 2 — Personal Branding yang Terlalu Percaya Diri</div>
+          <p>Di era media sosial, influencer yang merasa "sudah besar" sering justru paling rentan terhadap kehancuran reputasi, karena mereka berhenti mendengar dan mulai hanya bermonolog. Follower jutaan tidak otomatis berarti kebijaksanaan.</p>
+        </div>
+        <div class="q-block">
+          <p>Adakah bidang dalam hidupmu — karier, hubungan, kesehatan, iman — di mana kamu sudah mulai merasa "aman" hingga berhenti waspada dan bersyukur?</p>
+        </div>
+
+        <div class="intisari-block">
+          <div class="intisari-ornament">· · ·</div>
+          <p class="intisari-text">"Pertanyaan terbesar bukan apakah kamu sudah cukup kuat — tapi apakah kamu masih cukup sadar untuk melihat ke mana arah angin berubah."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AYAT 2 -->
+    <div class="verse-card fade-in">
+      <span class="verse-number-badge">Ayat Kedua</span>
+      <div class="verse-arabic-block">
+        <div class="verse-arabic">أَلَمۡ يَجۡعَلۡ كَيۡدَهُمۡ فِي تَضۡلِيلٍ</div>
+        <div class="verse-latin">Alam yaj'al kaydahum fi tadhlil</div>
+        <div class="verse-translation">"Bukankah Dia telah menjadikan tipu daya mereka itu sia-sia?"</div>
+      </div>
+      <div class="verse-body">
+        <div class="subsection-tag tag-energi">⚡ Energi Kata</div>
+        <div class="keyword-block">
+          <div class="keyword-title">1. "KAYD" — Makar Penuh Perhitungan</div>
+          <p>Kata <em>kayd</em> (كَيۡد) bukan sekadar "rencana" biasa. Ia mengandung nuansa kesengajaan, perhitungan matang, dan niat tersembunyi yang ingin merusak. Berbeda dari <em>makr</em> (tipu daya spontan), <em>kayd</em> adalah strategi terencana yang dibangun berbulan-bulan bahkan bertahun-tahun.</p>
+        </div>
+        <div class="keyword-block">
+          <div class="keyword-title">2. "TADHLIL" — Bukan Sekadar Gagal, tapi Tersesat Total</div>
+          <p>Kata <em>tadhlil</em> berasal dari akar <em>dhalla</em> — sesat, hilang arah, menjadi tidak berarti. Allah tidak hanya berkata bahwa rencana Abrahah "tidak berhasil" — Ia berkata bahwa rencana itu menjadi <strong style="color:var(--cream);">benar-benar tidak bermakna</strong>, seolah tidak pernah ada.</p>
+        </div>
+
+        <hr class="hr-gold">
+        <div class="subsection-tag tag-tafsir">📖 Tafsir Mendalam</div>
+        <p>Paradoks paling menyakitkan dari kesombongan: semakin matang rencana yang disusun dengan mengandalkan ego semata, semakin total pula kegagalannya saat tiba. Abrahah membangun strategi berdasarkan kekuatan yang ia lihat dan ukur, tapi mengabaikan kekuatan yang tidak terlihat dan tidak terukur.</p>
+
+        <div class="subsection-tag tag-relevansi" style="margin-top:28px;">🌐 Relevansi Kekinian</div>
+        <div class="example-box">
+          <div class="example-title">Contoh 1 — Burnout di Balik Rencana "Sempurna"</div>
+          <p>Banyak dari kita menyusun rencana hidup yang terasa sangat solid: lulus dengan nilai terbaik, kerja di perusahaan impian, menikah di usia tertentu. Ketika salah satu slot tidak terpenuhi, kita tidak hanya merasa gagal — kita merasa seluruh hidup tidak berarti. Inilah <em>tadhlil</em> versi personal.</p>
+        </div>
+        <div class="example-box">
+          <div class="example-title">Contoh 2 — Manipulasi dalam Hubungan</div>
+          <p>Seseorang yang menyusun strategi manipulasi yang sangat rapi justru cenderung meninggalkan jejak yang akhirnya terbongkar. Kehancurannya jauh lebih total daripada jika ia jujur sejak awal.</p>
+        </div>
+        <div class="q-block">
+          <p>Adakah rencana dalam hidupmu yang lebih banyak dibangun atas ego daripada atas kebenaran? Sudahkah kamu melibatkan Allah dalam perencanaannya — atau hanya dalam doanya saja?</p>
+        </div>
+
+        <div class="intisari-block">
+          <div class="intisari-ornament">· · ·</div>
+          <p class="intisari-text">"Rencana yang tidak disertai kerendahan hati adalah jebakan yang kita pasang untuk diri sendiri."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AYAT 3 -->
+    <div class="verse-card fade-in">
+      <span class="verse-number-badge">Ayat Ketiga</span>
+      <div class="verse-arabic-block">
+        <div class="verse-arabic">وَأَرۡسَلَ عَلَيۡهِمۡ طَيۡرًا أَبَابِيلَ</div>
+        <div class="verse-latin">Wa arsala 'alayhim tayran ababiil</div>
+        <div class="verse-translation">"Dan Dia mengirimkan kepada mereka burung yang berbondong-bondong"</div>
+      </div>
+      <div class="verse-body">
+        <div class="subsection-tag tag-energi">⚡ Energi Kata</div>
+        <div class="keyword-block">
+          <div class="keyword-title">1. "ARSALA" — Dikirim dengan Misi</div>
+          <p>Kata <em>arsala</em> berarti mengutus dengan tujuan tertentu — seperti Allah mengutus seorang rasul. Ini bukan kebetulan alam, bukan fenomena migrasi burung yang kebetulan melintas. Ini adalah <strong style="color:var(--cream);">pengutusan</strong> yang menegaskan bahwa setiap detail dari kejadian ini adalah kesengajaan Ilahi.</p>
+        </div>
+        <div class="keyword-block">
+          <div class="keyword-title">2. "ABABIIL" — Kawanan yang Terorganisir</div>
+          <p>Kata <em>ababiil</em> adalah salah satu kata paling unik dalam Al-Quran — ia tidak memiliki bentuk tunggal dalam bahasa Arab. Ia menggambarkan sekumpulan yang datang bergelombang, tidak hanya banyak, tetapi dalam kelompok-kelompok terorganisir. Ini bukan serangan panik — ini adalah <strong style="color:var(--cream);">formasi yang sistematis.</strong></p>
+        </div>
+
+        <hr class="hr-gold">
+        <div class="subsection-tag tag-tafsir">📖 Tafsir Mendalam</div>
+        <p>Siapa yang menduga bahwa kehancuran pasukan terkuat di jazirah Arabia akan datang dari burung-burung? Bukan dari gempa bumi, bukan dari badai pasir, bukan dari pasukan saingan — melainkan dari makhluk yang biasa kita pandang remeh.</p>
+        <div class="highlight-box">
+          <p>"Allah tidak butuh alat yang besar untuk menyelesaikan urusan yang besar. Ia hanya butuh kehendak."</p>
+        </div>
+
+        <div class="subsection-tag tag-relevansi" style="margin-top:28px;">🌐 Relevansi Kekinian</div>
+        <div class="example-box">
+          <div class="example-title">Contoh 1 — Kehancuran dari Arah yang Tidak Disangka</div>
+          <p>Seorang pengusaha yang membangun kerajaan bisnis puluhan tahun bisa jatuh bukan karena kompetitor besar, tapi karena satu karyawan yang selama ini dianggap tidak penting membocorkan skandal internal. Satu ulasan buruk yang viral bisa meruntuhkan reputasi bertahun-tahun.</p>
+        </div>
+        <div class="example-box">
+          <div class="example-title">Contoh 2 — Kesembuhan yang Datang dari Hal Sederhana</div>
+          <p>Banyak orang keluar dari depresi bukan karena terapi mahal, melainkan karena percakapan singkat dengan seorang asing, atau karena membaca satu kalimat di halaman buku yang sudah lama terlupakan. Allah mengirim keajaiban dalam paket yang sering kita lewatkan.</p>
+        </div>
+        <div class="q-block">
+          <p>Pernahkah kamu meremehkan sesuatu yang kemudian menjadi penentu hidupmu? Atau sebaliknya — pernahkah kamu terlalu takut pada hal besar, sampai melupakan pertolongan yang mungkin datang dari hal kecil?</p>
+        </div>
+
+        <div class="intisari-block">
+          <div class="intisari-ornament">· · ·</div>
+          <p class="intisari-text">"Allah tidak butuh senjata besarmu. Ia cukup mengutus apa yang tidak pernah masuk dalam perhitunganmu."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AYAT 4 -->
+    <div class="verse-card fade-in">
+      <span class="verse-number-badge">Ayat Keempat</span>
+      <div class="verse-arabic-block">
+        <div class="verse-arabic">تَرۡمِيهِم بِحِجَارَةٍ مِّن سِجِّيلٍ</div>
+        <div class="verse-latin">Tarmiihim bihijaaratim min sijjiil</div>
+        <div class="verse-translation">"Yang melempari mereka dengan batu dari tanah liat yang dibakar"</div>
+      </div>
+      <div class="verse-body">
+        <div class="subsection-tag tag-energi">⚡ Energi Kata</div>
+        <div class="keyword-block">
+          <div class="keyword-title">1. "TARMI" — Aksi Presisi</div>
+          <p>Kata <em>tarmi</em> berasal dari akar <em>ramaa</em> — melempar dengan akurasi dan tujuan. Bukan sekadar menjatuhkan sesuatu secara acak, melainkan melempar dengan arah yang tepat. Setiap burung membawa tiga batu — satu di paruh dan satu di masing-masing kaki — dan setiap batu mengenai tepat satu prajurit. Ini bukan bencana massal yang tidak terarah, ini adalah <strong style="color:var(--cream);">eksekusi yang terukur.</strong></p>
+        </div>
+        <div class="keyword-block">
+          <div class="keyword-title">2. "SIJJIIL" — Bukan Batu Biasa</div>
+          <p>Kata <em>sijjiil</em> merujuk pada tanah liat yang dibakar keras. Ada ulama yang menghubungkannya dengan kata <em>sijill</em> (catatan/daftar) — seolah setiap batu yang dijatuhkan membawa "nama" korban yang sudah tercatat. Dalam tafsir Ibn Katsir, batu-batu ini menyebabkan luka yang tidak lazim — hukuman yang sudah ditetapkan.</p>
+        </div>
+
+        <hr class="hr-gold">
+        <div class="subsection-tag tag-tafsir">📖 Tafsir Mendalam</div>
+        <p>Bayangkan sudut pandang seorang prajurit Abrahah di hari itu. Ia sudah bersiap menghadapi pertempuran dari arah Makkah — yang tidak pernah ia bayangkan adalah bahwa ancaman datang dari atas. Dari langit. Dari makhluk yang biasanya tidak diperhitungkan dalam strategi perang mana pun.</p>
+        <p><strong style="color:var(--cream);">Kita selalu mempersiapkan diri untuk ancaman dari arah yang kita kenal — tapi kehancuran sering datang dari arah yang tidak pernah kita waspadai.</strong></p>
+
+        <div class="subsection-tag tag-relevansi" style="margin-top:28px;">🌐 Relevansi Kekinian</div>
+        <div class="example-box">
+          <div class="example-title">Contoh 1 — Kesehatan yang Dianggap "Aman"</div>
+          <p>Berapa banyak orang yang sangat berhati-hati soal diet dan olahraga, tapi justru tidak memperhatikan kesehatan mental? Kita membentengi sisi yang kita lihat, sementara lupa bahwa "batu dari langit" bisa datang dari sisi yang tidak kita jaga.</p>
+        </div>
+        <div class="example-box">
+          <div class="example-title">Contoh 2 — Persiapan Karier vs Kecerdasan Emosional</div>
+          <p>Banyak profesional muda gagal bukan karena kurang kompeten secara teknis, melainkan karena tidak mampu berkolaborasi atau mudah hancur saat menghadapi penolakan. Hardskill adalah baju zirah yang mereka siapkan — tapi batu itu datang dari arah softskill yang tidak mereka lindungi.</p>
+        </div>
+        <div class="q-block">
+          <p>Di bidang mana dalam hidupmu kamu paling yakin sudah "terlindungi" — tapi mungkin justru itu area yang paling jarang kamu periksa?</p>
+        </div>
+
+        <div class="intisari-block">
+          <div class="intisari-ornament">· · ·</div>
+          <p class="intisari-text">"Kehancuran tidak selalu datang sebagai badai yang sudah kamu nantikan — ia sering datang sebagai batu kecil yang kamu anggap tidak akan mengenaimu."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AYAT 5 -->
+    <div class="verse-card fade-in">
+      <span class="verse-number-badge" style="background:var(--gold); color:var(--black);">Ayat Kelima</span>
+      <div class="verse-arabic-block" style="background: linear-gradient(135deg, var(--black3) 0%, rgba(201,168,76,0.06) 100%);">
+        <div class="verse-arabic">فَجَعَلَهُمۡ كَعَصۡفٍ مَّأۡكُولٍ</div>
+        <div class="verse-latin">Faja'alahum ka'ashfim ma'kuul</div>
+        <div class="verse-translation">"Maka Dia menjadikan mereka seperti daun-daun yang dimakan ulat"</div>
+      </div>
+      <div class="verse-body">
+        <div class="subsection-tag tag-energi">⚡ Energi Kata</div>
+        <div class="keyword-block">
+          <div class="keyword-title">1. "FA" — Kecepatan yang Mengerikan</div>
+          <p>Huruf <em>fa</em> di awal ayat menunjukkan urutan yang sangat cepat — hampir seketika. Semua persiapan Abrahah yang berbulan-bulan hancur dalam hitungan jam. Ketika Allah memutuskan sesuatu, prosesnya bisa berlangsung dalam durasi yang tidak bisa dikalkulasi manusia.</p>
+        </div>
+        <div class="keyword-block">
+          <div class="keyword-title">2. "'ASHF MA'KUUL" — Gambaran yang Paling Merendahkan</div>
+          <p><em>'Ashf</em> adalah daun atau jerami dari tanaman yang sudah kering, sisa panen yang tidak terpakai. <em>Ma'kuul</em> artinya dimakan — bukan oleh manusia atau hewan besar, melainkan oleh ulat atau serangga kecil. Dari pasukan bergajah yang megah — menjadi seperti daun kering yang digerogoti ulat. Kesombongan tidak hanya dikalahkan, ia <strong style="color:var(--cream);">dihinakan.</strong></p>
+        </div>
+
+        <hr class="hr-gold">
+        <div class="subsection-tag tag-tafsir">📖 Tafsir Mendalam</div>
+        <p>Ayat terakhir adalah konklusi yang paling dramatis dari seluruh surat. Allah tidak menutup surat ini dengan kemenangan pasukan Makkah atau deskripsi kemegahan Kabah yang selamat. Ia menutupnya dengan gambaran tentang apa yang terjadi pada kesombongan ketika bertemu kehendak-Nya.</p>
+        <p>Abrahah sendiri mundur ke Yaman dengan tubuh yang mulai membusuk akibat luka yang aneh, sampai akhirnya meninggal dalam kondisi yang sangat menyedihkan. Dari penguasa yang paling ditakuti, ia menjadi manusia yang tidak berdaya atas tubuhnya sendiri.</p>
+
+        <div class="subsection-tag tag-relevansi" style="margin-top:28px;">🌐 Relevansi Kekinian</div>
+        <div class="example-box">
+          <div class="example-title">Contoh 1 — Warisan Kebencian yang Hancur Sendiri</div>
+          <p>Rezim-rezim otoriter sepanjang sejarah modern yang membangun monumen untuk diri sendiri hampir selalu berakhir tumbang oleh rakyatnya sendiri, atau berakhir dalam pengasingan yang sunyi. Yang tersisa hanyalah catatan memalukan dalam buku sejarah.</p>
+        </div>
+        <div class="example-box">
+          <div class="example-title">Contoh 2 — Kesombongan Relasional</div>
+          <p>Ada orang yang begitu yakin bahwa pasangannya atau sahabatnya tidak akan pernah pergi — karena mereka merasa terlalu "dibutuhkan". Lalu suatu hari, orang-orang itu pergi. Pelan-pelan, seperti daun yang gugur satu per satu. Dan yang tersisa adalah orang yang terlalu sombong untuk menyadari bahwa ia sudah menjadi <em>ashf ma'kuul</em> — kosong dari dalam.</p>
+        </div>
+        <div class="q-block">
+          <p>Adakah sisi dalam dirimu yang mulai menjadi "daun kering" — bukan karena serangan dari luar, melainkan karena kamu berhenti menyirami hubungan, iman, atau rasa syukur yang menjadi akar kehidupanmu?</p>
+        </div>
+
+        <div class="intisari-block" style="background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 100%); border-color: rgba(201,168,76,0.2);">
+          <div class="intisari-ornament" style="color:rgba(201,168,76,0.4);">· · ·</div>
+          <p class="intisari-text" style="color:var(--gold2);">"Yang paling menakutkan bukan kehancuran yang datang dari luar — tapi kehancuran dari dalam, ketika kita menjadi ashf ma'kuul tanpa menyadarinya."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFLEKSI -->
+<section id="refleksi" class="refleksi-section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Refleksi Penutup</h2>
+      <div class="section-ornament">✦</div>
+    </div>
+
+    <div class="fade-in">
+      <p style="text-align:center; max-width:640px; margin: 0 auto 64px; color:var(--text2); font-style:italic; font-size:17px;">Lima ayat. Lima lapisan cermin. Setiap ayat menawarkan sudut pandang yang berbeda tentang satu tema besar yang tidak pernah basi: kesombongan dan konsekuensinya.</p>
+
+      <h3 style="font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.4em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:40px;">Pola yang Bisa Kita Ambil</h3>
+
+      <div class="pola-block">
+        <div class="pola-num">I</div>
+        <div class="pola-content">
+          <h4>Kesombongan dimulai dari berhentinya rasa ingin tahu</h4>
+          <p>Abrahah berhenti bertanya: "Mungkinkah ada kekuatan yang tidak bisa aku perhitungkan?" Ketika seseorang merasa sudah tahu segalanya, ia menutup dirinya dari hikmah yang mungkin justru datang dari arah yang tidak ia duga.</p>
+        </div>
+      </div>
+      <div class="pola-block">
+        <div class="pola-num">II</div>
+        <div class="pola-content">
+          <h4>Makar yang paling matang pun bisa menjadi tadhlil</h4>
+          <p>Tidak ada rencana manusia yang kebal dari kehendak Allah. Ini bukan alasan untuk tidak merencanakan — ini adalah undangan untuk merencanakan dengan kerendahan hati, dengan kesadaran bahwa hasil akhirnya bukan di tangan kita sepenuhnya.</p>
+        </div>
+      </div>
+      <div class="pola-block">
+        <div class="pola-num">III</div>
+        <div class="pola-content">
+          <h4>Alat yang paling sederhana bisa menjadi takdir yang paling menentukan</h4>
+          <p>Burung kecil mengalahkan gajah perang. Satu percakapan tulus bisa membalikkan keputusan besar. Jangan pernah meremehkan hal-hal kecil — baik yang datang sebagai berkat maupun sebagai peringatan.</p>
+        </div>
+      </div>
+      <div class="pola-block">
+        <div class="pola-num">IV</div>
+        <div class="pola-content">
+          <h4>Kecepatan kehancuran berbanding lurus dengan ketinggian kesombongan</h4>
+          <p>Semakin tinggi sesuatu dibangun di atas ego, semakin cepat dan total keruntuhannya ketika waktunya tiba. Hukum ini berlaku dalam sejarah, dalam hubungan, dalam karier, dan dalam kehidupan batin.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="hr-gold" style="margin: 60px 0;">
+
+    <div class="fade-in">
+      <h3 style="font-family:'Cinzel',serif; font-size:13px; letter-spacing:0.4em; color:var(--gold-dim); text-transform:uppercase; margin-bottom:40px;">Langkah Nyata yang Bisa Dimulai Hari Ini</h3>
+
+      <div class="langkah-card langkah-1" data-num="01">
+        <div class="langkah-title">Langkah 01 — Audit Kesombongan Diam-diam</div>
+        <p>Duduklah sejenak — matikan notifikasi, simpan ponsel — dan tanyakan kepada diri sendiri dengan jujur:</p>
+        <ul class="checklist">
+          <li>Di bidang apa aku mulai merasa "sudah tiba" dan berhenti belajar?</li>
+          <li>Terakhir kali aku meminta masukan dari orang yang kuanggap lebih rendah dariku — kapan?</li>
+          <li>Adakah seseorang yang pernah aku anggap tidak penting, tapi ternyata membawa pelajaran besar?</li>
+        </ul>
+        <p style="margin-top:16px; font-style:italic; color:var(--text2); font-size:15px;">Jawaban jujur dari pertanyaan-pertanyaan ini lebih berharga daripada seminar motivasi mana pun.</p>
+      </div>
+
+      <div class="langkah-card langkah-2" data-num="02">
+        <div class="langkah-title">Langkah 02 — Praktik Harian 'Alam Tara'</div>
+        <p>Jadikan pertanyaan "Alam tara" sebagai filter harian. Setiap kali menghadapi keputusan penting, tanyakan:</p>
+        <ul class="checklist">
+          <li>"Sudahkah aku benar-benar memperhatikan — atau aku hanya melihat apa yang ingin aku lihat?"</li>
+          <li>"Adakah tanda-tanda yang sudah lama muncul tapi aku abaikan karena tidak sesuai dengan rencanaku?"</li>
+          <li>"Sudahkah aku melibatkan Allah dalam rencanaku — atau hanya meminta restu untuk rencanaku sendiri?"</li>
+        </ul>
+      </div>
+
+      <div class="langkah-card langkah-3" data-num="03">
+        <div class="langkah-title">Langkah 03 — Satu Kerendahan Hati per Hari</div>
+        <p>Pilih satu tindakan kecil setiap hari yang secara sadar melatih kerendahan hati:</p>
+        <ul class="checklist">
+          <li>Minta maaf duluan — meskipun kamu merasa bukan sepenuhnya salahmu</li>
+          <li>Tanyakan pendapat orang yang biasanya kamu lewatkan dalam diskusi</li>
+          <li>Ucapkan terima kasih yang tulus kepada seseorang yang kamu anggap remeh perannya</li>
+          <li>Saat berdoa, kurangi daftar permintaan dan perbanyak pengakuan bahwa kamu tidak tahu apa yang terbaik</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="closing-block fade-in">
+      <p>Surat Al-Fiil mengajarkan satu hal yang paling sulit diterima ego manusia: bahwa tidak ada kekuatan di muka bumi yang bisa mengatur sendiri takdirnya. Setiap gajah perang, setiap strategi matang, setiap status sosial yang kita banggakan — adalah <em>ashf ma'kuul</em> dalam hitungan waktu, jika tidak disertai kerendahan hati dan kesadaran akan Yang Maha Mengatur. Yang selamat bukan yang paling kuat, tapi yang paling sadar akan keterbatasannya.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EPILOG -->
+<section id="epilog" class="epilog-section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-num">❧</span>
+      <h2 class="epilog-title">Ketika Gajah Belajar Terbang</h2>
+      <p class="epilog-sub">— sebuah narasi untuk jiwa yang sedang belajar —</p>
+    </div>
+
+    <div class="epilog-body fade-in">
+      <p>Ada hari-hari ketika kamu merasa seperti gajah.</p>
+      <p>Bukan dalam arti yang buruk — setidaknya bukan pada awalnya. Kamu besar. Kamu kuat. Kamu sudah melewati banyak hal yang membuat orang lain menyerah. Kamu sudah membangun sesuatu yang membanggakan, sudah melewati ujian yang tidak semua orang bisa lewati, sudah berdiri tegak ketika dunia mencoba merobohkanmu.</p>
+      <p class="em">Dan wajar kalau kamu kemudian merasa: "Aku sudah cukup tahu. Aku sudah cukup kuat. Aku sudah tiba."</p>
+      <p style="color:var(--text2);">Itu bukan perasaan yang salah. Itu adalah perasaan manusia.</p>
+      <p>Tapi Al-Fiil berbisik lembut — dan kadang keras — bahwa ada jarak antara "sudah sampai" dan "benar-benar tiba". Bahwa kekuatan yang paling berbahaya adalah kekuatan yang tidak lagi bertanya, tidak lagi mendengar, tidak lagi bisa melihat ke arah yang tidak ia sangka.</p>
+      <p>Abrahah bukan manusia dungu. Ia cerdas, ambisius, dan terencana. Itulah justru yang membuat kisahnya begitu menyentuh — bukan karena ia bodoh, melainkan karena ia terlalu yakin dengan kecerdasannya sendiri.</p>
+      <p class="bold-line">Dan kita — kamu dan aku — tidak kebal dari pola yang sama.</p>
+      <hr class="hr-crimson">
+      <p>Berapa kali kita sudah membangun "pasukan bergajah" kita sendiri — entah itu karier, argumen, reputasi, prinsip yang kaku, atau citra yang harus dijaga — lalu terkejut ketika ada hal-hal kecil, hal-hal yang tidak pernah masuk dalam perhitungan kita, yang tiba-tiba membuat semuanya goyah?</p>
+      <p>Burung-burung itu — ababiil itu — bukan musuhmu. Mereka adalah utusan. Terkadang mereka datang dalam bentuk kritik dari orang yang kamu anggap tidak penting. Kadang dalam bentuk kehilangan yang tidak kamu minta. Kadang dalam bentuk kegagalan yang memalukan. Kadang dalam bentuk rasa sepi di tengah pencapaian yang harusnya membuatmu bahagia.</p>
+      <p>Mereka datang bukan untuk menghancurkanmu — mereka datang untuk mengingatkanmu bahwa masih ada hal yang belum selesai di dalam dirimu. Masih ada kesombongan diam-diam yang belum kamu lepas. Masih ada rasa takut yang kamu tutupi dengan keberanian palsu. Masih ada luka yang kamu sembunyikan di balik kesuksesan yang kamu pamerkan.</p>
+      <hr class="hr-gold">
+      <p class="em">Surat Al-Fiil bukan tentang Abrahah yang kalah.</p>
+      <p>Surat Al-Fiil adalah tentang kamu dan aku yang setiap hari diberi pilihan: menjadi gajah yang percaya tidak ada yang bisa mengalahkannya — atau menjadi manusia yang sadar bahwa kekuatan sejati bukan tentang siapa yang paling besar, melainkan tentang siapa yang paling tahu kapan harus berlutut.</p>
+      <p>Dan ketika kamu bisa berlutut — bukan karena kalah, bukan karena terpaksa, tapi karena kamu benar-benar memahami bahwa ada sesuatu yang jauh lebih besar dari dirimu —</p>
+      <p class="bold-line" style="font-size:20px; text-align:center; letter-spacing:0.02em;">di situlah, justru di situlah, kamu mulai benar-benar terbang.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<div class="final-block fade-in">
+  <div class="final-arabic">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+  <p class="final-text">Semoga kita selalu menjadi yang berlutut dengan penuh harap — bukan yang berdiri dengan penuh kesombongan.</p>
+  <div style="width:200px; height:1px; background:linear-gradient(90deg,transparent,var(--gold-dim),transparent); margin:0 auto 32px;"></div>
+  <p style="font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.4em; color:var(--text3); text-transform:uppercase;">Tafsir Al-Fiil · Seri Renungan Al-Quran</p>
+</div>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = (window.scrollY / total) * 100;
+    document.getElementById('progress-bar').style.width = pct + '%';
+  });
+
+  // Fade-in observer
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

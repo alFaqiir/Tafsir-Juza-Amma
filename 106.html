@@ -1,0 +1,1655 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tafsir Al-Quraisy — Blueprint Keluar dari Loop Kehidupan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Raleway:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0D080;
+    --gold-dim: #8B6914;
+    --gold-glow: rgba(201,168,76,0.3);
+    --cream: #F5EDD6;
+    --dark: #0A0A0A;
+    --dark-2: #111111;
+    --dark-3: #181818;
+    --dark-4: #222222;
+    --green-deep: #0D2B1E;
+    --green-mid: #1B4332;
+    --teal: #1D5C63;
+    --white: #FFFFFF;
+    --gray: #888888;
+    --gray-light: #BBBBBB;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--dark);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ─── GRAIN OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+  /* ─── SELECTION ─── */
+  ::selection { background: var(--gold-dim); color: var(--dark); }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 900;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.97), transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-brand {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ─── HERO / COVER ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(13,43,30,0.6) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(29,92,99,0.3) 0%, transparent 50%);
+  }
+
+  .geometric-bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0.07;
+  }
+
+  .geo-line {
+    position: absolute;
+    border: 1px solid var(--gold);
+  }
+
+  .geo-circle {
+    position: absolute;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    animation: rotate 60s linear infinite;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .bismillah {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: var(--gold);
+    text-shadow: 0 0 40px var(--gold-glow), 0 0 80px rgba(201,168,76,0.1);
+    margin-bottom: 2rem;
+    animation: fadeInDown 1.2s ease forwards;
+    opacity: 0;
+    animation-delay: 0.3s;
+  }
+
+  .hero-surah-number {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1rem;
+    animation: fadeInDown 1.2s ease forwards;
+    opacity: 0;
+    animation-delay: 0.6s;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 900;
+    color: var(--gold);
+    text-shadow: 0 0 60px var(--gold-glow);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    animation: fadeInDown 1.2s ease forwards;
+    opacity: 0;
+    animation-delay: 0.8s;
+  }
+
+  .hero-arabic-sub {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    color: rgba(201,168,76,0.6);
+    margin-bottom: 1.5rem;
+    animation: fadeInDown 1.2s ease forwards;
+    opacity: 0;
+    animation-delay: 1s;
+  }
+
+  .hero-divider {
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 1.5rem auto;
+    animation: expandWidth 1.5s ease forwards;
+    transform: scaleX(0);
+    animation-delay: 1.2s;
+  }
+
+  @keyframes expandWidth {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-style: italic;
+    color: var(--gray-light);
+    max-width: 600px;
+    animation: fadeIn 1.5s ease forwards;
+    opacity: 0;
+    animation-delay: 1.4s;
+  }
+
+  .hero-tagline {
+    margin-top: 1.5rem;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.7rem 2rem;
+    display: inline-block;
+    animation: fadeIn 1.5s ease forwards;
+    opacity: 0;
+    animation-delay: 1.6s;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeIn 1.5s ease forwards;
+    opacity: 0;
+    animation-delay: 1.8s;
+  }
+
+  .meta-item {
+    text-align: center;
+  }
+
+  .meta-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .meta-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--cream);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeIn 2s ease forwards;
+    opacity: 0;
+    animation-delay: 2.5s;
+  }
+
+  .scroll-indicator span {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  /* ─── SECTION COMMON ─── */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    position: relative;
+  }
+
+  .section-full {
+    padding: 5rem 2rem;
+    position: relative;
+  }
+
+  /* ─── INTRO STRIP ─── */
+  #intro {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .intro-text {
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    color: var(--gray-light);
+    line-height: 2;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .intro-text em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* ─── AYAT SECTIONS ─── */
+  .ayat-section {
+    padding: 6rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    position: relative;
+  }
+
+  .ayat-number-bg {
+    position: absolute;
+    top: 3rem;
+    right: -1rem;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 12rem;
+    color: rgba(201,168,76,0.03);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .ayat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .ayat-badge-line {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .ayat-badge-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .ayat-chapter-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .ayat-chapter-sub {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gray);
+    margin-bottom: 3rem;
+  }
+
+  /* ─── ARABIC VERSE BOX ─── */
+  .verse-box {
+    background: linear-gradient(135deg, var(--green-deep) 0%, rgba(13,43,30,0.5) 100%);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-left: 4px solid var(--gold);
+    padding: 2.5rem;
+    margin: 2.5rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verse-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .verse-box::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .arabic-text {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--gold);
+    text-shadow: 0 0 30px var(--gold-glow);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    direction: rtl;
+  }
+
+  .ayat-num {
+    font-size: 1.2rem;
+    color: rgba(201,168,76,0.5);
+    margin-left: 0.5rem;
+  }
+
+  .transliteration {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--teal);
+    color: #4EA8B0;
+    margin-bottom: 0.75rem;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .translation {
+    font-size: 1rem;
+    color: var(--gray-light);
+    font-style: italic;
+  }
+
+  .translation::before { content: '"'; }
+  .translation::after { content: '"'; }
+
+  /* ─── KEYWORD BOX ─── */
+  .keyword-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-top: 3px solid var(--gold);
+    padding: 1.75rem;
+    margin: 1.5rem 0;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .keyword-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateX(4px);
+  }
+
+  .keyword-word {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .keyword-word::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(201,168,76,0.3), transparent);
+  }
+
+  .keyword-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+  }
+
+  .keyword-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    padding: 0.2rem 0.6rem;
+    border: 1px solid rgba(201,168,76,0.2);
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .keyword-val {
+    color: var(--gray-light);
+    line-height: 1.5;
+  }
+
+  .keyword-desc {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--gray-light);
+    line-height: 1.9;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding-top: 1rem;
+  }
+
+  /* ─── SUBSECTION HEADERS ─── */
+  .sub-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.5rem 0 1rem;
+  }
+
+  .sub-icon {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  .sub-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .sub-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(201,168,76,0.2), transparent);
+  }
+
+  /* ─── SECTION BADGE ─── */
+  .section-badge {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    padding: 1rem 1.5rem;
+    border-left: 3px solid var(--gold);
+    background: rgba(201,168,76,0.04);
+    margin: 2.5rem 0 1.5rem;
+    position: relative;
+  }
+
+  .section-badge::before {
+    content: '◆';
+    margin-right: 0.75rem;
+    font-size: 0.7em;
+  }
+
+  /* ─── BODY TEXT ─── */
+  .body-p {
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    color: var(--gray-light);
+    line-height: 2;
+    margin-bottom: 1.2rem;
+  }
+
+  /* ─── BULLETS ─── */
+  .bullet-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    color: var(--gray-light);
+    line-height: 1.9;
+  }
+
+  .bullet-dot {
+    color: var(--gold);
+    font-size: 1.2rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+  }
+
+  /* ─── REFLECT QUESTIONS ─── */
+  .reflect-q {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0.8rem 0;
+    font-style: italic;
+    color: #4EA8B0;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .reflect-arrow {
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  /* ─── QUOTE BOX ─── */
+  .quote-box {
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    background: linear-gradient(to right, rgba(201,168,76,0.05), transparent);
+    position: relative;
+  }
+
+  .quote-box::before {
+    content: '"';
+    position: absolute;
+    top: -0.5rem;
+    left: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: rgba(201,168,76,0.15);
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.9;
+  }
+
+  /* ─── INTISARI SECTION ─── */
+  .intisari-block {
+    background: var(--dark-3);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 2rem;
+    margin: 2rem 0;
+  }
+
+  /* ─── REFLEKSI PENUTUP ─── */
+  #refleksi {
+    background: linear-gradient(to bottom, var(--dark), var(--dark-2), var(--dark));
+  }
+
+  .refleksi-header {
+    text-align: center;
+    padding: 4rem 2rem 2rem;
+  }
+
+  .refleksi-eyebrow {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .refleksi-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .refleksi-sub {
+    font-style: italic;
+    color: var(--gray);
+    font-size: 1.1rem;
+  }
+
+  /* ─── ACTION POINTS ─── */
+  .action-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .action-card {
+    background: var(--dark-3);
+    border: 1px solid rgba(201,168,76,0.12);
+    padding: 1.75rem;
+    display: flex;
+    gap: 1.5rem;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .action-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+  }
+
+  .action-card:hover::before { transform: scaleY(1); }
+  .action-card:hover { background: rgba(201,168,76,0.03); border-color: rgba(201,168,76,0.3); }
+
+  .action-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2rem;
+    color: rgba(201,168,76,0.2);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2.5rem;
+  }
+
+  .action-content { flex: 1; }
+
+  .action-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .action-text {
+    font-size: 1rem;
+    color: var(--gray-light);
+    line-height: 1.9;
+  }
+
+  /* ─── CLOSING QUOTE ─── */
+  .closing-quote {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+    margin: 3rem 0;
+  }
+
+  .closing-quote-text {
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    font-style: italic;
+    color: var(--cream);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 2;
+  }
+
+  /* ─── EPILOG ─── */
+  #epilog {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .epilog-header {
+    text-align: center;
+    padding: 4rem 2rem 1rem;
+  }
+
+  .epilog-kicker {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .epilog-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .epilog-sub {
+    font-style: italic;
+    color: var(--gray);
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .epilog-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+  }
+
+  .epilog-line {
+    display: block;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    line-height: 2;
+    margin-bottom: 0.2rem;
+  }
+
+  .epilog-line.italic { font-style: italic; color: var(--gray); }
+  .epilog-line.dark { color: var(--gray); }
+  .epilog-line.accent { color: var(--cream); }
+  .epilog-line.gold { color: var(--gold); font-size: clamp(1.1rem, 2vw, 1.4rem); }
+  .epilog-line.big { font-size: clamp(1.3rem, 2.5vw, 1.8rem); color: var(--cream); }
+  .epilog-line.teal { color: #4EA8B0; font-style: italic; }
+  .epilog-line.final { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.2rem, 2.5vw, 1.6rem); color: var(--gold); text-shadow: 0 0 30px var(--gold-glow); }
+
+  .epilog-spacer { height: 2.5rem; }
+
+  .epilog-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.4), transparent);
+    margin: 2rem auto;
+  }
+
+  .epilog-highlight {
+    background: linear-gradient(135deg, rgba(13,43,30,0.6), rgba(29,92,99,0.2));
+    border: 1px solid rgba(201,168,76,0.25);
+    border-left: 4px solid var(--gold);
+    padding: 2rem 2.5rem;
+    margin: 2.5rem 0;
+    text-align: center;
+  }
+
+  .epilog-highlight-text {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--cream);
+    line-height: 1.9;
+  }
+
+  /* ─── CLOSING FINALE ─── */
+  .finale {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: var(--dark);
+    border-top: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .finale-bismillah {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--gold);
+    text-shadow: 0 0 40px var(--gold-glow);
+    margin-bottom: 2rem;
+  }
+
+  .finale-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .footer-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .section { padding: 3rem 1.5rem; }
+    .ayat-number-bg { display: none; }
+  }
+
+  /* ─── PROGRESS BAR ─── */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold-dim), var(--gold), var(--gold-light));
+    z-index: 9999;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">Tafsir Al-Quraisy</div>
+  <ul class="nav-links">
+    <li><a href="#ayat1">Ayat 1</a></li>
+    <li><a href="#ayat2">Ayat 2</a></li>
+    <li><a href="#ayat3">Ayat 3</a></li>
+    <li><a href="#ayat4">Ayat 4</a></li>
+    <li><a href="#refleksi">Refleksi</a></li>
+    <li><a href="#epilog">Epilog</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="geometric-bg">
+    <div class="geo-circle" style="width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%) rotate(0deg);animation-duration:80s;"></div>
+    <div class="geo-circle" style="width:400px;height:400px;top:50%;left:50%;transform:translate(-50%,-50%) rotate(0deg);animation-duration:50s;animation-direction:reverse;"></div>
+    <div class="geo-line" style="width:1px;height:100%;top:0;left:20%;"></div>
+    <div class="geo-line" style="width:1px;height:100%;top:0;right:20%;"></div>
+    <div class="geo-line" style="width:100%;height:1px;top:30%;left:0;"></div>
+    <div class="geo-line" style="width:100%;height:1px;bottom:30%;left:0;"></div>
+  </div>
+
+  <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+  <div class="hero-surah-number">Surat ke-106 · Makkiyah · 4 Ayat</div>
+  <h1 class="hero-title">Al-Quraisy</h1>
+  <div class="hero-arabic-sub">سُورَةُ قُرَيْشٍ</div>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle">Tafsir Mendalam & Refleksi Kehidupan Modern</p>
+  <div class="hero-tagline">Blueprint untuk Keluar dari Loop Kehidupan</div>
+
+  <div class="hero-meta">
+    <div class="meta-item">
+      <span class="meta-label">Golongan</span>
+      <span class="meta-value">Makkiyah</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Jumlah Ayat</span>
+      <span class="meta-value">4 Ayat</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Tema Utama</span>
+      <span class="meta-value">Syukur & Ibadah</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Urutan Mushaf</span>
+      <span class="meta-value">Surat ke-106</span>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Gulir</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="intro" class="section-full">
+  <div class="section">
+    <p class="intro-text reveal">
+      Surat Al-Quraisy adalah surat yang <em>pendek secara fisik</em> — hanya 4 ayat. Namun di balik kesingkatannya, tersimpan pelajaran yang menampar dan mencerahkan sekaligus. Allah berbicara langsung kepada suku Quraisy dan mengingatkan mereka: <em>keberhasilan kalian bukan milik kalian sendiri.</em>
+    </p>
+    <br>
+    <p class="intro-text reveal">
+      Dan hari ini, kita yang hidup di era media sosial, hustle culture, dan FOMO yang tak pernah reda — <em>kita adalah Quraisy versi modern itu.</em>
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     AYAT 1
+═══════════════════════════════════════ -->
+<section id="ayat1" class="section-full">
+  <div class="section">
+    <div class="ayat-number-bg">١</div>
+
+    <div class="ayat-badge reveal">
+      <div class="ayat-badge-line"></div>
+      <span class="ayat-badge-text">Ayat Pertama</span>
+      <div class="ayat-badge-line"></div>
+    </div>
+
+    <h2 class="ayat-chapter-title reveal">Dari Kebiasaan Menjadi Ketergantungan</h2>
+    <p class="ayat-chapter-sub reveal">Ketika rutinitas bisa jadi penjara atau berkat</p>
+
+    <div class="verse-box reveal">
+      <div class="arabic-text">لِإِيلَافِ قُرَيْشٍ <span class="ayat-num">﴿١﴾</span></div>
+      <div class="transliteration">Li-ilaafi Quraisyin</div>
+      <div class="translation">Karena kebiasaan (yang telah menjadi keakraban) suku Quraisy</div>
+    </div>
+
+    <div class="section-badge reveal">A. Energi Kata</div>
+
+    <div class="keyword-card reveal">
+      <div class="keyword-word">إِيلَاف — Ilaaf</div>
+      <div class="keyword-row">
+        <span class="keyword-label">Akar Kata</span>
+        <span class="keyword-val">&nbsp;Dari kata 'alifa — berarti terbiasa, jinak, akrab, menyatu</span>
+      </div>
+      <div class="keyword-row">
+        <span class="keyword-label">Sinonim</span>
+        <span class="keyword-val">&nbsp;Ittikhaadz 'aadah, istimraar (kontinuitas)</span>
+      </div>
+      <div class="keyword-row">
+        <span class="keyword-label">Antonim</span>
+        <span class="keyword-val">&nbsp;Istinkaar (keterasingan), nufuur (penolakan)</span>
+      </div>
+      <div class="keyword-desc">
+        Kata 'ilaaf' bukan sekadar 'kebiasaan' biasa. Ia adalah keakraban yang telah meresap ke dalam tulang — sesuatu yang tidak lagi dipertanyakan karena sudah menjadi bagian dari identitas. Ini berbeda dari sekadar rutinitas; ini adalah <em style="color:var(--gold)">ketergantungan yang telah diakrabi.</em>
+      </div>
+    </div>
+
+    <div class="section-badge reveal">B. Tafsir Mendalam</div>
+
+    <div class="sub-header reveal">
+      <div class="sub-icon"></div>
+      <span class="sub-title">Konteks Sejarah</span>
+      <div class="sub-line"></div>
+    </div>
+    <p class="body-p reveal">Suku Quraisy adalah penguasa Makkah dan penjaga Ka'bah. Posisi mereka ini memberi mereka <em style="color:var(--cream)">privilege</em> luar biasa: jaminan keamanan dalam perjalanan dagang, bahkan di masa perang antar suku. Siapapun yang menyentuh mereka, berarti menantang penjaga Baitullah — dan itu pantangan bagi seluruh suku Arab.</p>
+    <p class="body-p reveal">Sistem ini tidak terjadi begitu saja. Ia adalah anugerah tersembunyi dari Allah yang bekerja lewat sejarah, geografi, dan iman.</p>
+
+    <div class="sub-header reveal">
+      <div class="sub-icon"></div>
+      <span class="sub-title">Filosofi Ayat</span>
+      <div class="sub-line"></div>
+    </div>
+    <p class="body-p reveal">Kata pembuka 'Li' (لِ) di sini bermakna 'karena' atau 'demi'. Ini adalah <em style="color:var(--gold)">lam ta'lil</em> — penjelasan sebab. Allah seolah berkata: "Ingat, semua ini terjadi KARENA sesuatu yang lebih besar dari dirimu." Ini adalah undangan untuk melihat ke belakang — mendeteksi tangan Allah dalam setiap kebiasaan yang kita anggap wajar.</p>
+
+    <div class="sub-header reveal">
+      <div class="sub-icon"></div>
+      <span class="sub-title">Relevansi Kekinian</span>
+      <div class="sub-line"></div>
+    </div>
+    <p class="body-p reveal">Pernahkah kalian berhenti dan bertanya: mengapa kita begitu mudah mengakses makanan? Mengapa pagi ini masih bisa bangun dengan sehat? Mengapa otak ini masih bisa berpikir jernih?</p>
+
+    <div class="bullet-item reveal">
+      <span class="bullet-dot">◆</span>
+      <span><strong style="color:var(--cream)">Contoh 1 — Si Pekerja Kantoran:</strong> Setiap pagi minum kopi, buka laptop, mulai kerja. Rutinitas itu begitu akrab sampai ia lupa bahwa di balik kopi ada petani, di balik listrik ada teknisi, dan di balik kesehatan tubuhnya ada sistem imun yang bekerja tanpa ia minta. Ilaaf-nya telah membuatnya buta.</span>
+    </div>
+    <div class="bullet-item reveal">
+      <span class="bullet-dot">◆</span>
+      <span><strong style="color:var(--cream)">Contoh 2 — Si Pebisnis Digital:</strong> Aplikasi berjalan, pembayaran masuk, konten viral. Ia sudah terbiasa dengan algoritma yang menguntungkannya. Sampai suatu hari servernya down — dan barulah ia sadar betapa rapuhnya fondasi yang selama ini ia anggap 'miliknya'.</span>
+    </div>
+
+    <div class="reflect-q reveal">
+      <span class="reflect-arrow">→</span>
+      <span>Ilaaf apa yang sedang kamu nikmati sekarang, tapi belum pernah benar-benar kamu syukuri?</span>
+    </div>
+    <div class="reflect-q reveal">
+      <span class="reflect-arrow">→</span>
+      <span>Adakah kebiasaan yang sudah begitu akrab sampai kamu lupa itu adalah anugerah?</span>
+    </div>
+
+    <div class="section-badge reveal">C. Intisari</div>
+
+    <div class="quote-box reveal">
+      <p class="quote-text">Yang paling berbahaya bukan kehilangan nikmat — tapi terbiasa dengan nikmat sampai kita lupa itu nikmat.</p>
+    </div>
+    <div class="quote-box reveal">
+      <p class="quote-text">Keakraban bisa jadi berkat, bisa jadi kebutaan. Bedanya ada di satu hal: apakah kita masih sadar siapa yang memberi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     AYAT 2
+═══════════════════════════════════════ -->
+<section id="ayat2" class="section-full" style="background:var(--dark-2);">
+  <div class="section">
+    <div class="ayat-number-bg">٢</div>
+
+    <div class="ayat-badge reveal">
+      <div class="ayat-badge-line"></div>
+      <span class="ayat-badge-text">Ayat Kedua</span>
+      <div class="ayat-badge-line"></div>
+    </div>
+
+    <h2 class="ayat-chapter-title reveal">Sistem yang Tak Pernah Berhenti</h2>
+    <p class="ayat-chapter-sub reveal">Dua musim, dua perjalanan, satu tangan yang mengatur</p>
+
+    <div class="verse-box reveal">
+      <div class="arabic-text">إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ <span class="ayat-num">﴿٢﴾</span></div>
+      <div class="transliteration">Iilaafihim rihlatas syitaa-i was shoif</div>
+      <div class="translation">Yaitu kebiasaan mereka bepergian pada musim dingin dan musim panas</div>
+    </div>
+
+    <div class="section-badge reveal">A. Energi Kata</div>
+
+    <div class="keyword-card reveal">
+      <div class="keyword-word">رِحْلَة — Rihlah</div>
+      <div class="keyword-row">
+        <span class="keyword-label">Akar Kata</span>
+        <span class="keyword-val">&nbsp;Dari kata rahala — melepas tali unta, bergerak pergi dengan tujuan jelas</span>
+      </div>
+      <div class="keyword-row">
+        <span class="keyword-label">Sinonim</span>
+        <span class="keyword-val">&nbsp;Safar (perjalanan umum), ghazwah (ekspedisi)</span>
+      </div>
+      <div class="keyword-row">
+        <span class="keyword-label">Antonim</span>
+        <span class="keyword-val">&nbsp;Iqaamah (menetap), sukuun (diam tak bergerak)</span>
+      </div>
+      <div class="keyword-desc">
+        Rihlah bukan sekadar 'jalan-jalan'. Ia adalah <em style="color:var(--gold)">pergerakan berformat</em> — ada waktu, ada tujuan, ada sistem. Quraisy berihlah ke Yaman (selatan/musim dingin) dan ke Syam (utara/musim panas). Ini adalah kalender bisnis yang presisi — bukan kebetulan.
+      </div>
+    </div>
+
+    <div class="section-badge reveal">B. Tafsir Mendalam</div>
+
+    <div class="sub-header reveal">
+      <div class="sub-icon"></div>
+      <span class="sub-title">Konteks Sejarah</span>
+      <div class="sub-line"></div>
+    </div>
+    <p class="body-p reveal">Jazirah Arabia dikenal dengan iklim yang keras. Di musim dingin, jalur utara (Syam/Syria) terlalu dingin untuk rombongan besar, maka mereka bergerak ke selatan menuju Yaman yang lebih hangat. Di musim panas, mereka bergerak ke utara mencari kesejukan dan pasar Syam yang ramai. Ini bukan hanya bisnis — ini adalah <em style="color:var(--cream)">survival system yang terencana.</em></p>
+
+    <div class="sub-header reveal">
+      <div class="sub-icon"></div>
+      <span class="sub-title">Filosofi Ayat</span>
+      <div class="sub-line"></div>
+    </div>
+    <p class="body-p reveal">Allah menyebut dua waktu: syitaa' (musim dingin) dan shoif (musim panas). Ini adalah penyebutan yang lengkap — meliputi seluruh siklus setahun. Tidak ada jeda. Tidak ada kosong. Sistem ini berjalan terus-menerus, dan itulah inti pesannya: <em style="color:var(--gold)">Allah tidak pernah berhenti menafkahi.</em></p>
+
+    <div class="sub-header reveal">
+      <div class="sub-icon"></div>
+      <span class="sub-title">Relevansi Kekinian</span>
+      <div class="sub-line"></div>
+    </div>
+
+    <div class="bullet-item reveal">
+      <span class="bullet-dot">◆</span>
+      <span><strong style="color:var(--cream)">Contoh 1 — Generasi Sandwich:</strong> Bekerja pagi sampai malam, ada tagihan di awal bulan, ada kebutuhan orang tua di tengah, ada mimpi anak-anak di ujung. Ini adalah 'dua rihlah' mereka — perjalanan tanpa henti yang terasa melelahkan. Pertanyaannya: apakah dalam sistem yang berat ini, kita masih melihat tangan Allah yang terus menopang?</span>
+    </div>
+    <div class="bullet-item reveal">
+      <span class="bullet-dot">◆</span>
+      <span><strong style="color:var(--cream)">Contoh 2 — Startup Founder:</strong> Ada fase 'musim dingin' — investor menolak, tim bubar, revenue nol. Ada fase 'musim panas' — momentum tiba, pertumbuhan pesat. Keduanya adalah bagian dari satu siklus yang utuh. Mereka yang pahami ini tidak akan hancur di musim dingin dan tidak akan sombong di musim panas.</span>
+    </div>
+
+    <div class="reflect-q reveal">
+      <span class="reflect-arrow">→</span>
+      <span>Di musim apa kamu sekarang berada — musim dingin atau musim panas dalam hidupmu?</span>
+    </div>
+
+    <div class="section-badge reveal">C. Intisari</div>
+
+    <div class="quote-box reveal">
+      <p class="quote-text">Hidup tidak selalu cerah, tapi rezeki tidak pernah benar-benar berhenti. Yang berubah hanya bentuknya.</p>
+    </div>
+    <div class="quote-box reveal">
+      <p class="quote-text">Musim dingin bukan tanda Allah meninggalkan — ia tanda bahwa kita sedang dipersiapkan untuk musim panas berikutnya.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     AYAT 3
+═══════════════════════════════════════ -->
+<section id="ayat3" class="section-full">
+  <div class="section">
+    <div class="ayat-number-bg">٣</div>
+
+    <div class="ayat-badge reveal">
+      <div class="ayat-badge-line"></div>
+      <span class="ayat-badge-text">Ayat Ketiga</span>
+      <div class="ayat-badge-line"></div>
+    </div>
+
+    <h2 class="ayat-chapter-title reveal">Satu Perintah yang Mengubah Segalanya</h2>
+    <p class="ayat-chapter-sub reveal">Setelah semua yang kamu terima — sekarang, giliranmu</p>
+
+    <div class="verse-box reveal">
+      <div class="arabic-text">فَلْيَعْبُدُوا رَبَّ هَٰذَا الْبَيْتِ <span class="ayat-num">﴿٣﴾</span></div>
+      <div class="transliteration">Falya'budu Rabba haadzal bait</div>
+      <div class="translation">Maka hendaklah mereka menyembah Rabb (Tuhan) rumah ini (Ka'bah)</div>
+    </div>
+
+    <div class="section-badge reveal">A. Energi Kata</div>
+
+    <div class="keyword-card reveal">
+      <div class="keyword-word">فَلْيَعْبُدُوا — Falya'budu</div>
+      <div class="keyword-row">
+        <span class="keyword-label">Akar Kata</span>
+        <span class="keyword-val">&nbsp;Dari 'abada — menyembah, mengabdi. Kata fa (فَ) = konsekuensi logis yang tak bisa dielakkan</span>
+      </div>
+      <div class="keyword-row">
+        <span class="keyword-label">Sinonim</span>
+        <span class="keyword-val">&nbsp;Atha'a (taat), khasha'a (tunduk), sajada (bersujud)</span>
+      </div>
+      <div class="keyword-row">
+        <span class="keyword-label">Antonim</span>
+        <span class="keyword-val">&nbsp;Takabbara (sombong), 'ashaa (durhaka), jahada (mengingkari)</span>
+      </div>
+      <div class="keyword-desc">Huruf 'fa' di sini adalah <em style="color:var(--gold)">fa as-sababiyyah</em> — sebab-akibat. Terjemahan langsungnya: "Maka OLEH KARENA ITU, sembahlah." Ini bukan permintaan — ini adalah konsekuensi logis dari semua yang disebutkan sebelumnya.</div>
+    </div>
+
+    <div class="keyword-card reveal">
+      <div class="keyword-word">رَبَّ — Rabb</div>
+      <div class="keyword-row">
+        <span class="keyword-label">Akar Kata</span>
+        <span class="keyword-val">&nbsp;Dari rabba — memelihara, mendidik, menumbuhkan. Berbeda dari 'Ilah' (sembahan)</span>
+      </div>
+      <div class="keyword-row">
+        <span class="keyword-label">Sinonim</span>
+        <span class="keyword-val">&nbsp;Wali (pelindung), murabbi (pendidik), qayyim (pemelihara)</span>
+      </div>
+      <div class="keyword-row">
+        <span class="keyword-label">Antonim</span>
+        <span class="keyword-val">&nbsp;Muhmil (yang mengabaikan), taarik (yang meninggalkan)</span>
+      </div>
+      <div class="keyword-desc">Allah dipanggil bukan hanya sebagai 'Tuhan' yang jauh dan abstrak, tapi sebagai Rabb — Yang Memelihara, Yang Aktif Merawat. Ini adalah <em style="color:var(--gold)">panggilan yang hangat.</em> Bukan panggilan ketakutan, tapi panggilan keterikatan yang dalam.</div>
+    </div>
+
+    <div class="section-badge reveal">B. Tafsir Mendalam</div>
+
+    <div class="sub-header reveal">
+      <div class="sub-icon"></div>
+      <span class="sub-title">Konteks dan Filosofi</span>
+      <div class="sub-line"></div>
+    </div>
+    <p class="body-p reveal">Setelah dua ayat sebelumnya 'membangun kasus' tentang betapa banyaknya nikmat yang diterima Quraisy, ayat ketiga ini adalah <em style="color:var(--cream)">turning point.</em> Ini adalah klimaks surat. Semua narasi sebelumnya mengarah ke sini: satu perintah yang simpel tapi bermakna dalam — ibadahlah.</p>
+    <p class="body-p reveal">Allah tidak berkata 'sembahlah Aku.' Ia berkata 'sembahlah Rabb rumah ini' — menyebut Ka'bah. Mengapa? Karena Quraisy sudah tahu Ka'bah. Mereka hidup di dekatnya. Allah mengingatkan mereka: rumah yang kalian bangga-banggakan itu — Pemiliknya jauh lebih layak untuk disembah daripada berhala-berhala yang kalian taruh di dalamnya.</p>
+
+    <div class="sub-header reveal">
+      <div class="sub-icon"></div>
+      <span class="sub-title">Relevansi Kekinian</span>
+      <div class="sub-line"></div>
+    </div>
+
+    <div class="bullet-item reveal">
+      <span class="bullet-dot">◆</span>
+      <span><strong style="color:var(--cream)">Contoh 1 — Si Sukses yang Lupa Asal:</strong> Karier meroket, rekening tebal, networking luas. Semua terasa hasil kerja keras sendiri. Tapi ada yang hilang — ia tidak pernah lagi shalat, tidak pernah lagi bersyukur secara sadar. Ia mendiami gedung pencakar langit tapi melupakan Pemilik langit itu sendiri.</span>
+    </div>
+    <div class="bullet-item reveal">
+      <span class="bullet-dot">◆</span>
+      <span><strong style="color:var(--cream)">Contoh 2 — Si Pemuda yang Terlalu Sibuk:</strong> Kuliah, organisasi, part-time, konten kreator. Jadwalnya penuh. Tapi ibadahnya dikebiri. Shalat 'kalau sempat'. Dzikir 'kalau ingat'. Ia lupa bahwa semua kesibukan itu pun berjalan di atas rel yang Allah pasang.</span>
+    </div>
+
+    <div class="reflect-q reveal">
+      <span class="reflect-arrow">→</span>
+      <span>Setelah semua yang sudah kamu terima, apa yang sudah kamu berikan kembali sebagai bentuk ibadah?</span>
+    </div>
+
+    <div class="section-badge reveal">C. Intisari</div>
+
+    <div class="quote-box reveal">
+      <p class="quote-text">Ibadah bukan pajak yang dipungut paksa — ia adalah respons alami dari jiwa yang benar-benar sadar sudah menerima segalanya.</p>
+    </div>
+    <div class="quote-box reveal">
+      <p class="quote-text">Saat kamu lelah beribadah, coba hitung dulu nikmat hari ini. Biasanya, capeknya langsung berkurang.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     AYAT 4
+═══════════════════════════════════════ -->
+<section id="ayat4" class="section-full" style="background:var(--dark-2);">
+  <div class="section">
+    <div class="ayat-number-bg">٤</div>
+
+    <div class="ayat-badge reveal">
+      <div class="ayat-badge-line"></div>
+      <span class="ayat-badge-text">Ayat Keempat</span>
+      <div class="ayat-badge-line"></div>
+    </div>
+
+    <h2 class="ayat-chapter-title reveal">Dua Hadiah yang Kita Anggap Biasa</h2>
+    <p class="ayat-chapter-sub reveal">Kenyang dan aman — dua hal yang hilang baru terasa</p>
+
+    <div class="verse-box reveal">
+      <div class="arabic-text">الَّذِي أَطْعَمَهُم مِّن جُوعٍ وَآمَنَهُم مِّنْ خَوْفٍ <span class="ayat-num">﴿٤﴾</span></div>
+      <div class="transliteration">Alladzii ath'amahum min juu'in wa aamanahum min khauf</div>
+      <div class="translation">Yang telah memberi mereka makan untuk menghilangkan lapar dan mengamankan mereka dari ketakutan</div>
+    </div>
+
+    <div class="section-badge reveal">A. Energi Kata</div>
+
+    <div class="keyword-card reveal">
+      <div class="keyword-word">جُوع — Juu'</div>
+      <div class="keyword-row">
+        <span class="keyword-label">Makna</span>
+        <span class="keyword-val">&nbsp;Lapar secara fisik; juga berarti kekosongan, kekurangan mendasar</span>
+      </div>
+      <div class="keyword-row">
+        <span class="keyword-label">Sinonim</span>
+        <span class="keyword-val">&nbsp;Khawaa (perut kosong), naqs (kekurangan), faqr (kemiskinan)</span>
+      </div>
+      <div class="keyword-row">
+        <span class="keyword-label">Antonim</span>
+        <span class="keyword-val">&nbsp;Shibaa' (kenyang), iktifaa' (kecukupan), ghina (kelimpahan)</span>
+      </div>
+      <div class="keyword-desc">Kata juu' disebut setelah ath'amahum — "Ia memberi makan mereka DARI lapar." Bukan sekadar memberi makan, tapi <em style="color:var(--gold)">menyelamatkan dari kondisi kelaparan.</em> Allah tidak hanya memenuhi, tapi juga menyelamatkan dari kekurangan.</div>
+    </div>
+
+    <div class="keyword-card reveal">
+      <div class="keyword-word">خَوْف — Khauf</div>
+      <div class="keyword-row">
+        <span class="keyword-label">Makna</span>
+        <span class="keyword-val">&nbsp;Rasa takut yang aktif terhadap sesuatu yang nyata dan mengancam</span>
+      </div>
+      <div class="keyword-row">
+        <span class="keyword-label">Sinonim</span>
+        <span class="keyword-val">&nbsp;Faza' (panik tiba-tiba), ru'b (teror mendalam)</span>
+      </div>
+      <div class="keyword-row">
+        <span class="keyword-label">Antonim</span>
+        <span class="keyword-val">&nbsp;Amn (aman), thuma'niinah (tenang), sukuun (damai)</span>
+      </div>
+      <div class="keyword-desc">Kontras antara juu' dan khauf menarik: satu tentang kebutuhan fisik (perut), satu tentang kebutuhan psikologis (rasa aman). Allah memenuhi dua kebutuhan paling mendasar manusia sekaligus — <em style="color:var(--gold)">Maslow's hierarchy versi Al-Qur'an dalam satu ayat.</em></div>
+    </div>
+
+    <div class="section-badge reveal">B. Tafsir Mendalam</div>
+
+    <div class="sub-header reveal">
+      <div class="sub-icon"></div>
+      <span class="sub-title">Filosofi Ayat</span>
+      <div class="sub-line"></div>
+    </div>
+    <p class="body-p reveal">Ayat penutup ini adalah ringkasan paling polos dari segala nikmat: makanan dan rasa aman. Dua hal yang setiap hari kita miliki, tapi setiap hari kita lupa syukuri karena sudah terlalu akrab.</p>
+    <p class="body-p reveal">Allah menyebut nikmat dari keadaan negatifnya: bukan 'Dia memberi kenyang' tapi 'Dia memberi makan dari lapar.' Ini adalah <em style="color:var(--gold)">teknik pengingat yang kuat</em> — kita diajak membayangkan kondisi sebelum nikmat itu ada, baru kita menghargainya.</p>
+
+    <div class="sub-header reveal">
+      <div class="sub-icon"></div>
+      <span class="sub-title">Relevansi Kekinian</span>
+      <div class="sub-line"></div>
+    </div>
+
+    <div class="bullet-item reveal">
+      <span class="bullet-dot">◆</span>
+      <span><strong style="color:var(--cream)">Contoh 1 — Pagi yang Kita Lewati Begitu Saja:</strong> Bangun pagi, sarapan tersedia atau bisa dibeli dengan mudah, rumah tidak diserang siapapun, perjalanan ke tempat kerja relatif aman. Ini adalah nikmat ayat ke-4 yang terjadi setiap pagi. Tapi berapa kali kita benar-benar berhenti dan merasakannya?</span>
+    </div>
+    <div class="bullet-item reveal">
+      <span class="bullet-dot">◆</span>
+      <span><strong style="color:var(--cream)">Contoh 2 — Kecemasan Generasi Z:</strong> Banyak anak muda hari ini hidup dalam perut kenyang tapi jiwa lapar — lapar makna, lapar ketenangan, lapar rasa aman. Anxiety disorder meningkat, mental health crisis nyata. Ini adalah 'khauf' versi modern. Dan jawabannya ada di sini: <em style="color:var(--gold)">aamanahum min khauf</em> — sumber rasa aman yang hakiki hanya dari Rabb.</span>
+    </div>
+
+    <div class="reflect-q reveal">
+      <span class="reflect-arrow">→</span>
+      <span>Kapan terakhir kali kamu benar-benar bersyukur karena bisa makan dengan cukup hari ini?</span>
+    </div>
+    <div class="reflect-q reveal">
+      <span class="reflect-arrow">→</span>
+      <span>Dari ketakutan apa yang Allah sedang bebaskan kamu sekarang — tapi kamu mungkin belum menyadarinya?</span>
+    </div>
+
+    <div class="section-badge reveal">C. Intisari</div>
+
+    <div class="quote-box reveal">
+      <p class="quote-text">Kenyang dan aman adalah dua nikmat yang baru terasa mahalnya ketika hilang. Jangan tunggu kehilangan untuk mulai bersyukur.</p>
+    </div>
+    <div class="quote-box reveal">
+      <p class="quote-text">Rasa aman yang hakiki tidak tumbuh dari rekening penuh atau rumah berpagar — ia tumbuh dari hati yang mengenal Rabb-nya.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     REFLEKSI PENUTUP
+═══════════════════════════════════════ -->
+<section id="refleksi" class="section-full">
+  <div class="refleksi-header">
+    <span class="refleksi-eyebrow">Bagian Akhir</span>
+    <h2 class="refleksi-title reveal">Refleksi Penutup</h2>
+    <p class="refleksi-sub reveal">Pola yang Bisa Diambil dari Surat Al-Quraisy</p>
+  </div>
+
+  <div class="section">
+
+    <div class="section-badge reveal">Pola 1 — Dari Ilaaf Menuju Kesadaran</div>
+    <p class="body-p reveal">Surat ini mengajarkan satu pola pergerakan jiwa: dari kebiasaan (ilaaf) yang membutakan, menuju kesadaran (ta'abbud) yang memberdayakan. Kita semua hidup dalam lingkaran ilaaf — terbiasa dengan nikmat sampai tidak lagi merasakannya. Jalan keluarnya bukan dengan mencabut nikmat itu, tapi dengan melatih pandangan.</p>
+
+    <div class="section-badge reveal">Pola 2 — Sebab-Akibat yang Jujur</div>
+    <p class="body-p reveal">Struktur surat ini adalah argumen yang rapi: (1) Ini yang kamu terima, (2) Ini lebih rincinya, (3) Maka ini kewajiban logismu. Tidak ada paksaan emosional. Tidak ada intimidasi. Hanya logika yang jujur: jika kamu menerima ini semua, maka tidak ada respons yang lebih wajar selain bersyukur melalui ibadah.</p>
+
+    <div class="section-badge reveal">Langkah Nyata — 5 Action Points</div>
+
+    <div class="action-grid">
+
+      <div class="action-card reveal">
+        <div class="action-num">01</div>
+        <div class="action-content">
+          <div class="action-title">Latihan Ilaaf Terbalik</div>
+          <p class="action-text">Setiap pagi sebelum beranjak dari tempat tidur, sebutkan 3 hal yang kamu nikmati tapi biasanya kamu anggap wajar. Bukan hal besar. Cukup: bisa bernapas, kasur yang nyaman, hari baru yang diberikan. Lakukan 21 hari berturut-turut dan perhatikan bagaimana pandanganmu terhadap hidup mulai berubah.</p>
+        </div>
+      </div>
+
+      <div class="action-card reveal">
+        <div class="action-num">02</div>
+        <div class="action-content">
+          <div class="action-title">Audit Rasa Aman</div>
+          <p class="action-text">Di malam hari, tanyakan ke diri sendiri: 'Dari ketakutan apa aku dilindungi hari ini?' Mungkin dari kecelakaan yang tidak terjadi. Dari penyakit yang tidak mampir. Dari konflik yang tidak meledak. Menyadari perlindungan yang tidak terlihat adalah salah satu cara paling kuat untuk membangun hubungan yang nyata dengan Allah.</p>
+        </div>
+      </div>
+
+      <div class="action-card reveal">
+        <div class="action-num">03</div>
+        <div class="action-content">
+          <div class="action-title">Rihlah dalam Diri</div>
+          <p class="action-text">Seperti Quraisy yang berrihlah dua kali setahun, jadwalkan 'perjalanan batin' dua kali dalam sebulan: satu untuk muhasabah (introspeksi) dan satu untuk tafakkur (merenungi alam dan nikmat). Bisa 30 menit berjalan sendiri di taman, bisa duduk diam tanpa ponsel, bisa membaca satu halaman tentang keajaiban alam semesta.</p>
+        </div>
+      </div>
+
+      <div class="action-card reveal">
+        <div class="action-num">04</div>
+        <div class="action-content">
+          <div class="action-title">Ibadah sebagai Respons</div>
+          <p class="action-text">Ubah framing ibadah dalam hidupmu. Bukan: 'Aku shalat karena wajib.' Tapi: 'Aku shalat karena hari ini aku sudah menerima begitu banyak, dan ini cara paling indah untuk mengatakan terima kasih.' Perbedaan framing ini kecil di kata-kata, tapi besar dalam rasa.</p>
+        </div>
+      </div>
+
+      <div class="action-card reveal">
+        <div class="action-num">05</div>
+        <div class="action-content">
+          <div class="action-title">Berbagi sebagai Syukur</div>
+          <p class="action-text">Syukur yang paling aktif adalah yang mengalir keluar. Ketika kamu merasa kenyang — dalam arti literal maupun metaforis — cari satu orang yang sedang 'lapar' dan penuhi satu kebutuhannya. Ini adalah cara paling konkret untuk menjadi perpanjangan tangan dari ath'amahum min juu'.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="closing-quote reveal">
+      <p class="closing-quote-text">Hidup yang paling kaya bukan diukur dari seberapa banyak yang kamu punya, tapi dari seberapa dalam kamu merasakan apa yang sudah kamu miliki.</p>
+    </div>
+
+    <div class="quote-box reveal" style="text-align:center;border-left:none;border-top:1px solid rgba(201,168,76,0.2);border-bottom:1px solid rgba(201,168,76,0.2);background:none;">
+      <p class="quote-text" style="font-size:clamp(1rem,1.8vw,1.2rem);color:var(--gray-light);">Surat Al-Quraisy tidak butuh banyak kata untuk mengubah cara pandang. Empat ayat. Dua nikmat. Satu perintah. Dan satu undangan: untuk keluar dari loop kehidupan tanpa kesadaran, dan masuk ke dalam kehidupan yang benar-benar hidup — penuh rasa, penuh syukur, penuh makna.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     EPILOG
+═══════════════════════════════════════ -->
+<section id="epilog" class="section-full" style="background:var(--dark-2);">
+  <div class="epilog-header section" style="padding-bottom:0;">
+    <span class="epilog-kicker reveal">Penutup</span>
+    <h2 class="epilog-title reveal">Ketika Perut Kenyang Tapi Jiwa Lapar</h2>
+    <p class="epilog-sub reveal">Sebuah narasi untuk jiwa-jiwa yang kelelahan di era yang berlimpah</p>
+  </div>
+
+  <div class="epilog-body">
+
+    <!-- SUASANA -->
+    <span class="epilog-line accent reveal">Kamu bangun pagi ini.</span>
+    <span class="epilog-line italic reveal">Alarm berbunyi, dan kamu menekannya — untuk kesekian kalinya.</span>
+    <span class="epilog-line italic reveal">Perut belum lapar, tapi entah kenapa jiwa sudah terasa kosong lebih dulu.</span>
+
+    <div class="epilog-spacer"></div>
+
+    <span class="epilog-line accent reveal">Kamu buka ponsel.</span>
+    <span class="epilog-line italic reveal">Ada notifikasi dari pekerjaan, pesan yang belum sempat dibalas,</span>
+    <span class="epilog-line italic reveal">angka-angka yang mengukur seberapa 'produktif' hidupmu hari kemarin.</span>
+
+    <div class="epilog-spacer"></div>
+
+    <span class="epilog-line big reveal">Dan tanpa sadar, kamu sudah masuk ke dalam loop itu lagi.</span>
+    <span class="epilog-line teal reveal">Loop yang sama. Setiap hari.</span>
+
+    <div class="epilog-divider"></div>
+
+    <!-- KONFLIK -->
+    <span class="epilog-line big reveal">Tapi ada yang aneh hari ini.</span>
+    <div class="epilog-spacer" style="height:1rem;"></div>
+    <span class="epilog-line italic reveal">Entah kenapa matamu terhenti di satu detail kecil:</span>
+    <span class="epilog-line italic reveal">cahaya pagi yang jatuh di lantai kamarmu,</span>
+    <span class="epilog-line italic reveal">suara adzan yang selama ini hanya jadi background noise,</span>
+    <span class="epilog-line italic reveal">napasmu sendiri — yang sudah bekerja semalaman tanpa kamu minta.</span>
+
+    <div class="epilog-spacer"></div>
+
+    <span class="epilog-line accent reveal">Dan tiba-tiba ada sesuatu yang menghantam dada.</span>
+    <div class="epilog-spacer" style="height:0.5rem;"></div>
+    <span class="epilog-line italic reveal">Bukan kesedihan. Bukan penyesalan.</span>
+    <span class="epilog-line italic reveal">Sesuatu yang lebih aneh dari itu:</span>
+    <span class="epilog-line teal reveal">rasa bahwa selama ini kamu sudah menerima begitu banyak</span>
+    <span class="epilog-line teal" style="font-size:clamp(1.1rem,2vw,1.3rem); font-style:italic; color:#4EA8B0; display:block; text-align:center; margin:0.5rem 0;">tapi belum pernah benar-benar... <em style="color:var(--gold)">merasakannya.</em></span>
+
+    <div class="epilog-divider"></div>
+
+    <!-- WISDOM -->
+    <span class="epilog-line accent reveal">Inilah yang Surat Al-Quraisy coba bisikkan kepadamu,</span>
+    <span class="epilog-line italic reveal">bukan dengan teriakan, tapi dengan empat ayat yang tenang:</span>
+
+    <div class="epilog-highlight reveal">
+      <p class="epilog-highlight-text">Kamu sudah terbiasa hidup — tapi sudahkah kamu belajar untuk benar-benar sadar sedang hidup?</p>
+    </div>
+
+    <div class="epilog-spacer"></div>
+
+    <span class="epilog-line italic reveal">Untuk kamu yang setiap hari berangkat kerja melewati jalan yang sama,</span>
+    <span class="epilog-line italic reveal">yang makan tiga kali sehari tanpa pernah berpikir berapa banyak tangan yang terlibat,</span>
+    <span class="epilog-line italic reveal">yang tidur di tempat yang aman setiap malam tanpa pernah mengucap syukur secara sadar —</span>
+    <div class="epilog-spacer" style="height:0.5rem;"></div>
+    <span class="epilog-line gold reveal" style="text-align:center;display:block;">surat ini ditulis untukmu.</span>
+
+    <div class="epilog-spacer"></div>
+
+    <span class="epilog-line italic reveal">Untuk kamu yang karier sedang menanjak tapi hati terasa mendatar,</span>
+    <span class="epilog-line italic reveal">yang rekening bertambah tapi kedamaian semakin menghilang,</span>
+    <span class="epilog-line italic reveal">yang punya segalanya di permukaan tapi kosong di dalam —</span>
+    <div class="epilog-spacer" style="height:0.5rem;"></div>
+    <span class="epilog-line gold reveal" style="text-align:center;display:block;">surat ini adalah undangan pulang.</span>
+
+    <div class="epilog-spacer"></div>
+
+    <span class="epilog-line italic reveal">Untuk kamu yang sedang di musim dingin hidupnya,</span>
+    <span class="epilog-line italic reveal">yang merasa Allah diam dan langit terasa beton,</span>
+    <span class="epilog-line italic reveal">yang masih bisa bernapas hari ini tapi tidak yakin apakah itu cukup alasan untuk bersyukur —</span>
+    <div class="epilog-spacer" style="height:0.5rem;"></div>
+    <span class="epilog-line accent reveal" style="text-align:center;display:block;font-style:italic;">ath'amahum min juu'. Ia yang memberimu makan dari lapar.</span>
+    <span class="epilog-line accent reveal" style="text-align:center;display:block;font-style:italic;">Aamanahum min khauf. Ia yang mengamankanmu dari ketakutan.</span>
+    <div class="epilog-spacer" style="height:0.5rem;"></div>
+    <span class="epilog-line teal reveal" style="text-align:center;display:block;">Sekalipun kamu tidak merasakannya — itu sudah terjadi.</span>
+
+    <div class="epilog-divider"></div>
+
+    <!-- CLOSING -->
+    <span class="epilog-line big reveal" style="text-align:center;display:block;">Loop tidak akan putus dengan sendirinya.</span>
+    <div class="epilog-spacer" style="height:0.5rem;"></div>
+    <span class="epilog-line italic reveal" style="text-align:center;display:block;">Tapi ia bisa putus dengan satu keputusan kecil:</span>
+    <span class="epilog-line italic reveal" style="text-align:center;display:block;">untuk berhenti sejenak, melihat ke sekeliling,</span>
+    <span class="epilog-line italic reveal" style="text-align:center;display:block;">dan mengakui bahwa hidup ini sudah sangat dipenuhi anugerah —</span>
+    <span class="epilog-line teal reveal" style="text-align:center;display:block;">jauh sebelum kamu sempat memintanya.</span>
+
+    <div class="epilog-spacer"></div>
+
+    <span class="epilog-line gold reveal" style="text-align:center;display:block;font-family:'Cinzel Decorative',serif;font-size:clamp(1.1rem,2vw,1.4rem);letter-spacing:0.1em;">Falya'budu Rabba haadzal bait.</span>
+    <div class="epilog-spacer" style="height:0.5rem;"></div>
+    <span class="epilog-line italic reveal" style="text-align:center;display:block;color:var(--gray-light);">Maka sembahlah.</span>
+    <span class="epilog-line italic reveal" style="text-align:center;display:block;color:var(--gray);">Bukan karena dipaksa.</span>
+    <span class="epilog-line italic reveal" style="text-align:center;display:block;color:var(--gray);">Bukan karena takut.</span>
+    <span class="epilog-line italic reveal" style="text-align:center;display:block;color:var(--gray);">Tapi karena kamu sudah cukup dewasa untuk tahu:</span>
+
+    <div class="epilog-spacer"></div>
+
+    <span class="epilog-line italic reveal" style="text-align:center;display:block;color:var(--gray-light);">ketika seseorang sudah memberimu segalanya,</span>
+    <span class="epilog-line italic reveal" style="text-align:center;display:block;color:var(--gray-light);">hal paling indah yang bisa kamu lakukan</span>
+    <span class="epilog-line italic reveal" style="text-align:center;display:block;color:var(--gray-light);">adalah menoleh, menatap, dan berkata:</span>
+
+    <div class="epilog-spacer"></div>
+
+    <div class="epilog-highlight reveal" style="margin-top:1rem;">
+      <p class="epilog-highlight-text" style="color:var(--gold);font-size:clamp(1.2rem,2.5vw,1.7rem);text-shadow:0 0 30px var(--gold-glow);">"Aku tahu. Aku sadar. Dan aku bersyukur."</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FINALE -->
+<div class="finale">
+  <div class="finale-bismillah">﷽</div>
+  <div class="finale-text">— Tamat —</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-text">Tafsir Surat Al-Quraisy · Refleksi untuk Kehidupan Modern</p>
+</footer>
+
+<script>
+  // ─── PROGRESS BAR ───────────────────────────────────────
+  const progressBar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scrollTop / docHeight) * 100;
+    progressBar.style.width = progress + '%';
+  });
+
+  // ─── REVEAL ON SCROLL ───────────────────────────────────
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // ─── STAGGERED REVEAL for siblings ──────────────────────
+  document.querySelectorAll('.action-grid').forEach(grid => {
+    const cards = grid.querySelectorAll('.action-card');
+    cards.forEach((card, i) => {
+      card.style.transitionDelay = (i * 0.1) + 's';
+    });
+  });
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

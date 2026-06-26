@@ -1,0 +1,1095 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Muthaffifin: Dosa yang Tidak Kamu Sadari Sedang Menghancurkan Hidupmu</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette — ember & tembaga: dosa yang membara perlahan */
+    --ember1:  #e8733a;
+    --ember2:  #c94f1e;
+    --ember3:  #f5a878;
+    --ember4:  #7a2c0a;
+    --ash1:    #d4c4b0;
+    --ash2:    #9a8878;
+    --ash3:    #c8b89a;
+
+    /* Warna aksen per klaster */
+    --accent-a: #e8733a;   /* Klaster I  — TIMBANGAN: oranye tembaga */
+    --accent-b: #c94f8a;   /* Klaster II — SIJJIN: merah mawar gelap */
+    --accent-c: #4a9acc;   /* Klaster III — ILLIYYIN: biru langit */
+    --accent-d: #7acc6a;   /* Klaster IV  — BALASAN: hijau zamrud */
+    --accent-e: #a07ad4;   /* Klaster V   — TERTAWA: ungu anggur */
+
+    --bg:    #090806;
+    --bg2:   #0f0d0a;
+    --bg3:   #141210;
+    --card:  #111009;
+    --border:#2e2418;
+    --text:  #e0d0b8;
+    --muted: #8a7a62;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.95;
+    min-height: 100vh;
+    font-size: 17px;
+  }
+
+  /* ── GRADIEN TEKS EMBER ── */
+  .ember {
+    background: linear-gradient(135deg, var(--ember2) 0%, var(--ember1) 45%, var(--ember3) 65%, var(--ember2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: relative;
+    padding: 90px 40px 75px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, #1e0c04 0%, #090806 70%);
+    border-bottom: 1px solid #2e1808;
+  }
+
+  /* partikel bara terbang */
+  .header::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle, rgba(232,115,58,.10) 1px, transparent 1px),
+      radial-gradient(circle, rgba(201,79,30,.07) 1px, transparent 1px);
+    background-size: 44px 44px, 77px 77px;
+    background-position: 0 0, 22px 22px;
+    animation: drift 50s linear infinite;
+    pointer-events:none;
+  }
+
+  .header::after {
+    content:'';
+    position:absolute;
+    top:-100px; left:50%; transform:translateX(-50%);
+    width:700px; height:340px;
+    background: radial-gradient(ellipse, rgba(180,70,20,.16) 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  @keyframes drift { to { background-position: 44px 44px, 66px 66px; } }
+
+  .header-bismillah {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 2.1em;
+    color: var(--ember3);
+    opacity: .55;
+    margin-bottom: 26px;
+    letter-spacing: 4px;
+    position: relative; z-index:1;
+  }
+
+  .header-keterangan {
+    font-size: .82em;
+    color: var(--muted);
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    position: relative; z-index:1;
+    margin-bottom: 10px;
+  }
+
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.1em, 5.5vw, 3.6em);
+    font-weight: 700;
+    line-height: 1.15;
+    position: relative; z-index:1;
+    margin-bottom: 6px;
+  }
+
+  .header-sub {
+    font-size: .85em;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative; z-index:1;
+    margin-bottom: 32px;
+  }
+
+  .divider-ember {
+    width: 130px; height: 2px;
+    background: linear-gradient(to right, transparent, var(--ember2), var(--ember1), var(--ember2), transparent);
+    margin: 22px auto;
+    position: relative; z-index:1;
+  }
+
+  .tagline {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1.18em;
+    color: #c8aa88;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative; z-index:1;
+    line-height: 1.75;
+  }
+
+  /* ── LABEL KLASTER ── */
+  .cluster-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 60px 0 20px;
+    padding: 0 4px;
+  }
+  .cluster-label::before, .cluster-label::after {
+    content:'';
+    flex:1; height:1px;
+    background: linear-gradient(to right, transparent, var(--border));
+  }
+  .cluster-label::after {
+    background: linear-gradient(to left, transparent, var(--border));
+  }
+  .cluster-badge {
+    font-family: 'Cinzel', serif;
+    font-size: .72em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border-radius: 30px;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 940px; margin: 0 auto; padding: 50px 24px 90px; }
+
+  /* ── AYAT SECTION ── */
+  .ayat-section {
+    position: relative;
+    background: linear-gradient(160deg, #151210, #100e0b);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 50px 46px;
+    margin-bottom: 36px;
+    box-shadow: 0 4px 40px rgba(0,0,0,.65), inset 0 1px 0 rgba(232,115,58,.05);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .75s ease, transform .75s ease, box-shadow .3s;
+  }
+  .ayat-section.visible { opacity:1; transform:translateY(0); }
+  .ayat-section:hover { box-shadow: 0 10px 60px rgba(0,0,0,.85), 0 0 0 1px rgba(232,115,58,.10); }
+
+  /* garis sisi dinamis per klaster */
+  .ayat-section.klaster-a { border-left: 3px solid var(--accent-a); }
+  .ayat-section.klaster-b { border-left: 3px solid var(--accent-b); }
+  .ayat-section.klaster-c { border-left: 3px solid var(--accent-c); }
+  .ayat-section.klaster-d { border-left: 3px solid var(--accent-d); }
+  .ayat-section.klaster-e { border-left: 3px solid var(--accent-e); }
+
+  .ayat-section::before {
+    content: '◆';
+    position:absolute; top:20px; right:24px;
+    opacity:.18; font-size:1.2em;
+  }
+  .ayat-section.klaster-a::before { color: var(--accent-a); }
+  .ayat-section.klaster-b::before { color: var(--accent-b); }
+  .ayat-section.klaster-c::before { color: var(--accent-c); }
+  .ayat-section.klaster-d::before { color: var(--accent-d); }
+  .ayat-section.klaster-e::before { color: var(--accent-e); }
+
+  /* ── NOMOR AYAT ── */
+  .ayat-number {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .ayat-num-badge {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:40px; height:40px;
+    border-radius:50%;
+    font-size:.7em;
+    font-weight:600;
+    flex-shrink:0;
+    border: 1px solid;
+  }
+  .klaster-a .ayat-num-badge { border-color: var(--accent-a); color: var(--accent-a); background: rgba(232,115,58,.08); }
+  .klaster-b .ayat-num-badge { border-color: var(--accent-b); color: var(--accent-b); background: rgba(201,79,138,.08); }
+  .klaster-c .ayat-num-badge { border-color: var(--accent-c); color: var(--accent-c); background: rgba(74,154,204,.08); }
+  .klaster-d .ayat-num-badge { border-color: var(--accent-d); color: var(--accent-d); background: rgba(122,204,106,.08); }
+  .klaster-e .ayat-num-badge { border-color: var(--accent-e); color: var(--accent-e); background: rgba(160,122,212,.08); }
+
+  /* ── JUDUL SEKSI ── */
+  h2.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 38px 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .klaster-a h2.section-title { color: var(--accent-a); }
+  .klaster-b h2.section-title { color: var(--accent-b); }
+  .klaster-c h2.section-title { color: var(--accent-c); }
+  .klaster-d h2.section-title { color: var(--accent-d); }
+  .klaster-e h2.section-title { color: var(--accent-e); }
+
+  h3.sub-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.08em;
+    font-weight: 600;
+    margin: 26px 0 8px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h3.sub-title::before {
+    content:'';
+    display:inline-block;
+    width:20px; height:2px;
+    flex-shrink:0;
+  }
+  .klaster-a h3.sub-title::before { background: linear-gradient(to right, var(--accent-a), var(--ember3)); }
+  .klaster-b h3.sub-title::before { background: linear-gradient(to right, var(--accent-b), #e896c8); }
+  .klaster-c h3.sub-title::before { background: linear-gradient(to right, var(--accent-c), #90ccf0); }
+  .klaster-d h3.sub-title::before { background: linear-gradient(to right, var(--accent-d), #a0e896); }
+  .klaster-e h3.sub-title::before { background: linear-gradient(to right, var(--accent-e), #c8a8f0); }
+
+  /* ── ARABIC ── */
+  .arabic-wrap {
+    text-align: center;
+    margin: 34px 0 10px;
+    padding: 30px 24px;
+    background: radial-gradient(ellipse at center, #160e06 0%, #0a0806 80%);
+    border-radius: 14px;
+    border: 1px solid #281a0c;
+    position: relative;
+  }
+  .arabic-wrap::before, .arabic-wrap::after {
+    content:'❧';
+    position:absolute; top:50%; transform:translateY(-50%);
+    opacity:.25; font-size:1.2em;
+  }
+  .arabic-wrap::before { left:20px; }
+  .arabic-wrap::after  { right:20px; transform:translateY(-50%) scaleX(-1); }
+
+  .klaster-a .arabic-wrap::before,
+  .klaster-a .arabic-wrap::after { color: var(--accent-a); }
+  .klaster-b .arabic-wrap::before,
+  .klaster-b .arabic-wrap::after { color: var(--accent-b); }
+  .klaster-c .arabic-wrap::before,
+  .klaster-c .arabic-wrap::after { color: var(--accent-c); }
+  .klaster-d .arabic-wrap::before,
+  .klaster-d .arabic-wrap::after { color: var(--accent-d); }
+  .klaster-e .arabic-wrap::before,
+  .klaster-e .arabic-wrap::after { color: var(--accent-e); }
+
+  .arabic {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: clamp(2.2em, 5.5vw, 3.4em);
+    line-height: 2.1;
+    direction: rtl;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+  .klaster-a .arabic { background-image: linear-gradient(135deg, var(--ember4), var(--ember1), var(--ember3), var(--ember2)); }
+  .klaster-b .arabic { background-image: linear-gradient(135deg, #7a1040, var(--accent-b), #f0a8d8, #c94f8a); }
+  .klaster-c .arabic { background-image: linear-gradient(135deg, #1a4a6a, var(--accent-c), #b0dcf5, #4a9acc); }
+  .klaster-d .arabic { background-image: linear-gradient(135deg, #1a4a14, var(--accent-d), #b0f0a0, #7acc6a); }
+  .klaster-e .arabic { background-image: linear-gradient(135deg, #3a1a6a, var(--accent-e), #d0b8f8, #a07ad4); }
+
+  .translation {
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.05em;
+    margin: 8px 0 34px;
+    line-height: 1.7;
+  }
+
+  /* ── CHIP KATA KUNCI ── */
+  .kata-chip {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: .9em;
+    font-weight: 600;
+    font-family: 'Cinzel', serif;
+    letter-spacing: .5px;
+    margin: 16px 0 8px;
+    border: 1px solid;
+  }
+  .klaster-a .kata-chip { border-color: var(--accent-a); color: var(--accent-a); background: rgba(232,115,58,.07); }
+  .klaster-b .kata-chip { border-color: var(--accent-b); color: var(--accent-b); background: rgba(201,79,138,.07); }
+  .klaster-c .kata-chip { border-color: var(--accent-c); color: var(--accent-c); background: rgba(74,154,204,.07); }
+  .klaster-d .kata-chip { border-color: var(--accent-d); color: var(--accent-d); background: rgba(122,204,106,.07); }
+  .klaster-e .kata-chip { border-color: var(--accent-e); color: var(--accent-e); background: rgba(160,122,212,.07); }
+
+  /* ── PARAGRAF ── */
+  p {
+    margin-bottom: 16px;
+    color: #cfc0a0;
+    text-align: justify;
+    font-size: 1em;
+    line-height: 1.9;
+  }
+
+  strong { color: var(--ash1); font-weight: 600; }
+  em { color: var(--ash3); font-style: italic; }
+
+  /* ── KOTAK RELEVANSI ── */
+  .relevance-box {
+    border-radius: 0 12px 12px 0;
+    padding: 20px 26px;
+    margin: 26px 0;
+    border-left: 3px solid;
+  }
+  .klaster-a .relevance-box { background: linear-gradient(160deg,#160a04,#100806); border-color: var(--accent-a); }
+  .klaster-b .relevance-box { background: linear-gradient(160deg,#160410,#10060e); border-color: var(--accent-b); }
+  .klaster-c .relevance-box { background: linear-gradient(160deg,#04101a,#060e14); border-color: var(--accent-c); }
+  .klaster-d .relevance-box { background: linear-gradient(160deg,#041408,#060e06); border-color: var(--accent-d); }
+  .klaster-e .relevance-box { background: linear-gradient(160deg,#0c0418,#0a0612); border-color: var(--accent-e); }
+
+  .relevance-label {
+    font-size: .78em;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-family: 'Cinzel', serif;
+  }
+  .klaster-a .relevance-label { color: var(--accent-a); }
+  .klaster-b .relevance-label { color: var(--accent-b); }
+  .klaster-c .relevance-label { color: var(--accent-c); }
+  .klaster-d .relevance-label { color: var(--accent-d); }
+  .klaster-e .relevance-label { color: var(--accent-e); }
+
+  /* ── INTISARI ── */
+  .intisari {
+    position: relative;
+    background: linear-gradient(160deg, #1a1208, #120e06);
+    border: 1px solid #3a2a14;
+    border-radius: 14px;
+    padding: 30px 34px 26px;
+    margin: 30px 0 0;
+    color: var(--ash1);
+    font-size: 1em;
+    line-height: 1.95;
+  }
+  .intisari::before {
+    content: '"';
+    position:absolute; top:-14px; left:26px;
+    font-size:3.8em; line-height:1;
+    font-family:'EB Garamond',serif;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .klaster-a .intisari::before { background-image: linear-gradient(to bottom, var(--accent-a), var(--ember2)); }
+  .klaster-b .intisari::before { background-image: linear-gradient(to bottom, var(--accent-b), #7a1040); }
+  .klaster-c .intisari::before { background-image: linear-gradient(to bottom, var(--accent-c), #1a4a6a); }
+  .klaster-d .intisari::before { background-image: linear-gradient(to bottom, var(--accent-d), #1a4a14); }
+  .klaster-e .intisari::before { background-image: linear-gradient(to bottom, var(--accent-e), #3a1a6a); }
+
+  .intisari-label {
+    font-size: .75em;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-family: 'Cinzel', serif;
+    display: block;
+  }
+  .klaster-a .intisari-label { color: var(--accent-a); }
+  .klaster-b .intisari-label { color: var(--accent-b); }
+  .klaster-c .intisari-label { color: var(--accent-c); }
+  .klaster-d .intisari-label { color: var(--accent-d); }
+  .klaster-e .intisari-label { color: var(--accent-e); }
+
+  /* ── PENUTUP ── */
+  .penutup {
+    background: linear-gradient(160deg,#100e0a,#0a0908);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 54px 46px;
+    margin-bottom: 50px;
+  }
+  .penutup h2.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15em;
+    color: var(--ember1);
+    margin-top: 0;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .langkah {
+    background: linear-gradient(160deg,#141008,#0e0c06);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--ember2);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 26px;
+    margin: 16px 0;
+    color: var(--ash3);
+    font-size:.97em;
+  }
+  .langkah .lnum {
+    display:block;
+    background: linear-gradient(135deg, var(--ember2), var(--ember1));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-weight:700;
+    font-family:'Cinzel',serif;
+    font-size:.9em;
+    letter-spacing:.5px;
+    margin-bottom:6px;
+  }
+  .langkah p { margin-bottom:0; color: var(--ash3); }
+
+  /* ── EPILOG ── */
+  .epilog {
+    background: radial-gradient(ellipse at 50% 0%, #1c0c04 0%, #070706 65%);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--ember2);
+    border-radius: 18px;
+    padding: 65px 46px;
+    text-align: center;
+  }
+  .epilog-title {
+    font-family:'Cinzel',serif;
+    font-size:clamp(1.3em,3vw,2em);
+    font-weight:700;
+    margin-bottom:44px;
+    line-height: 1.3;
+  }
+
+  .voice-block {
+    max-width: 680px;
+    margin: 36px auto;
+    padding: 32px 36px;
+    border-radius: 14px;
+    text-align: left;
+    border: 1px solid;
+    position: relative;
+  }
+  .voice-block::before {
+    content: attr(data-voice);
+    position:absolute; top:-12px; left:24px;
+    font-size:.72em; letter-spacing:2px; text-transform:uppercase;
+    font-family:'Cinzel',serif;
+    padding: 3px 12px;
+    border-radius:20px;
+    border: 1px solid;
+  }
+
+  .voice-block.v-lelah  { background:#12100a; border-color:#3a2814; }
+  .voice-block.v-lelah::before  { color:var(--accent-a); border-color:var(--accent-a); background:#0c0a06; }
+  .voice-block.v-bohong { background:#12080e; border-color:#3a0c28; }
+  .voice-block.v-bohong::before { color:var(--accent-b); border-color:var(--accent-b); background:#0a0608; }
+  .voice-block.v-cemas  { background:#060c14; border-color:#0c2038; }
+  .voice-block.v-cemas::before  { color:var(--accent-c); border-color:var(--accent-c); background:#060810; }
+  .voice-block.v-ragu   { background:#060e08; border-color:#0c2814; }
+  .voice-block.v-ragu::before   { color:var(--accent-d); border-color:var(--accent-d); background:#060806; }
+  .voice-block.v-jauh   { background:#0c0814; border-color:#281040; }
+  .voice-block.v-jauh::before   { color:var(--accent-e); border-color:var(--accent-e); background:#0a0610; }
+
+  .voice-block p {
+    color: var(--ash3);
+    font-style: italic;
+    text-align: left;
+    margin-bottom: 0;
+    font-size: 1.02em;
+    line-height: 1.85;
+  }
+  .voice-block p strong { color: var(--ash1); font-style: normal; }
+
+  .epilog .arabic-line {
+    font-family: 'Amiri','Traditional Arabic',serif;
+    font-size:clamp(1.5em,4vw,2.4em);
+    direction:rtl;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    background-image: linear-gradient(135deg,var(--ember4),var(--ember1),var(--ember3),var(--ember2));
+    display:block;
+    margin:32px auto 4px;
+  }
+  .epilog .latin-line {
+    font-style:italic;
+    color:var(--ember1);
+    font-size:.97em;
+    margin-bottom:14px;
+    display:block;
+  }
+
+  .closing-verse {
+    margin: 50px auto 0;
+    max-width: 640px;
+    font-style:normal;
+    font-family:'EB Garamond',serif;
+    font-size:1.12em;
+    color:#c8b490;
+    line-height:2;
+    text-align: center;
+  }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position:fixed; bottom:28px; right:28px;
+    width:46px; height:46px;
+    background: linear-gradient(135deg,var(--ember4),var(--ember2));
+    color:#0a0400; font-size:1.2em; font-weight:700;
+    border:none; border-radius:50%;
+    cursor:pointer; display:none; align-items:center; justify-content:center;
+    box-shadow:0 4px 20px rgba(0,0,0,.5);
+    transition:transform .2s;
+    z-index:999;
+  }
+  #scrollTop:hover { transform:scale(1.12); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:640px){
+    .header { padding:60px 20px 52px; }
+    .ayat-section, .penutup, .epilog { padding:32px 20px; }
+    .container { padding:30px 14px 60px; }
+    .voice-block { padding:26px 20px; margin: 28px auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <p class="header-keterangan">Surat ke-83 · Juz 30 · Makkiyyah · 36 Ayat</p>
+  <h1 class="ember">Al-Muthaffifin</h1>
+  <p class="header-sub">المطففين · Para Penipu Timbangan</p>
+  <div class="divider-ember"></div>
+  <p class="tagline">Ketika Semesta Mulai Menagih Semua yang Pernah Kamu Kurangi — dari janji, dari kejujuran, dari hak orang lain yang tak pernah kamu kembalikan.</p>
+</div>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════════
+       KLASTER I — TIMBANGAN YANG CURANG
+  ══════════════════════════════════════════ -->
+  <div class="cluster-label">
+    <div class="cluster-badge" style="color:var(--accent-a); border-color:var(--accent-a);">
+      Klaster I · Ayat 1–3 · Timbangan yang Curang
+    </div>
+  </div>
+
+  <!-- AYAT 1 -->
+  <div class="ayat-section klaster-a">
+    <div class="ayat-number">
+      <div class="ayat-num-badge">١</div>
+      <span class="ember">Ayat Pertama</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَيۡلٌ لِّلۡمُطَفِّفِينَ</div>
+    </div>
+    <p class="translation">"Celakalah orang-orang yang curang dalam takaran dan timbangan!"</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="kata-chip">وَيۡلٌ — WAILUN: Celaka</div>
+    <p><em>Wail</em> adalah kata yang paling keras dalam kosakata Al-Qur'an untuk menggambarkan kebinasaan. Ini bukan sekadar teguran ringan. Para ulama menjelaskan bahwa <em>wail</em> mengandung makna kehancuran yang menyeluruh — kehancuran yang sudah berjalan, bukan sekadar ancaman. Bandingkan dengan <em>la'nah</em> (kutukan) yang sifatnya aktif dari luar; <em>wail</em> lebih seperti menggambarkan kondisi internal yang sudah runtuh. Bayangkan bangunan yang fondasinya sudah rapuh dari dalam — bukan sedang dirobohkan, tapi sedang runtuh.</p>
+
+    <div class="kata-chip">المُطَفِّفِينَ — Pemain Timbangan Curang</div>
+    <p>Dari akar <em>thafafa</em> — yang berarti berdiri di tepi, mengambil yang paling sedikit dari yang seharusnya. <em>Muthaffif</em> bukanlah pencuri kasar yang merampok secara terang-terangan. Ia adalah orang yang beroperasi di zona abu-abu — sedikit dikurangi di sini, sedikit lebih ambil di sana — dengan presisi yang bahkan terasa seperti kewajaran. Inilah yang membuatnya lebih berbahaya dari pencuri biasa.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Al-Qur'an membuka surah ini dengan kata paling keras sebelum menjelaskan apa dosanya. Urutan ini bukan kebetulan. Ini adalah teknik retorika yang kuat: suara alarm berbunyi dulu, baru kita tahu apa yang menyebabkannya berbunyi.</p>
+    <p>Ini adalah surah pertama yang turun setelah Nabi Muhammad tiba di Madinah — kota yang saat itu dikenal dengan praktik perdagangan yang kotor. Para pedagang memakai dua timbangan: satu untuk membeli (lebih berat, agar barang yang diterima terasa banyak), satu untuk menjual (lebih ringan, agar barang yang diberikan terasa sedikit). Praktik ini begitu lumrah sehingga dianggap "cara berbisnis yang normal".</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Timbangan hari ini tidak selalu berupa neraca logam. Kita memakai timbangan digital, timbangan sosial, timbangan emosional. <strong>Pernahkah kamu minta lebih dari yang kamu berikan dalam sebuah hubungan</strong> — mengharapkan perhatian penuh tapi memberikan setengahnya? Pernahkah kamu menyampaikan laporan kerja yang "dipoles" — menambah angka di sana, mengurangi fakta di sini — karena yakin tidak ada yang akan memeriksa detail?</p>
+      <p>Dua contoh konkret yang paling umum di zaman ini: pertama, <strong>karyawan yang absen dua jam tapi melaporkan hadir penuh</strong> — karena "semua orang juga melakukannya". Kedua, <strong>pelaku usaha yang menjual produk dengan deskripsi yang jauh dari kenyataan</strong>, menggunakan foto yang menyesatkan, ulasan yang dibeli. Keduanya adalah <em>muthaffifin</em> modern — bukan pencuri jalanan, tapi pemain timbangan curang yang beroperasi di balik topeng normalitas.</p>
+    </div>
+
+    <div class="intisari">
+      <span class="intisari-label">✦ Intisari</span>
+      Kecurangan paling berbahaya bukan yang dilakukan dengan keras dan kasar — melainkan yang dilakukan sedikit demi sedikit, di zona abu-abu yang nyaman, sampai kita sendiri tidak lagi bisa membedakan antara "mengambil hakku" dan "mengambil hak orang lain".
+    </div>
+  </div>
+
+  <!-- AYAT 2-3 -->
+  <div class="ayat-section klaster-a">
+    <div class="ayat-number">
+      <div class="ayat-num-badge">٢–٣</div>
+      <span class="ember">Ayat Kedua & Ketiga</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">ٱلَّذِينَ إِذَا ٱكۡتَالُواْ عَلَى ٱلنَّاسِ يَسۡتَوۡفُونَ ۝ وَإِذَا كَالُوهُمۡ أَو وَّزَنُوهُمۡ يُخۡسِرُونَ</div>
+    </div>
+    <p class="translation">"Yaitu orang-orang yang apabila menerima takaran dari orang lain, mereka minta dicukupkan; dan apabila mereka menakar atau menimbang untuk orang lain, mereka mengurangi."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="kata-chip">يَسۡتَوۡفُونَ — Menuntut Penuh</div>
+    <p>Dari akar <em>wafa</em> — memenuhi. Dengan awalan <em>ista</em>, maknanya menjadi "meminta agar dipenuhi". Ini bukan sekadar menerima; ini adalah sikap aktif menuntut kelengkapan. Tidak ada toleransi untuk kekurangan seujung kuku pun ketika posisinya sebagai penerima.</p>
+
+    <div class="kata-chip">يُخۡسِرُونَ — Mengurangi</div>
+    <p><em>Yukhsiruun</em> dari akar <em>khasara</em> — rugi, kehilangan. Tapi di sini ia dipakai dalam bentuk aktif transitif: bukan "mereka yang rugi", melainkan "mereka yang membuat orang lain rugi". Tindakan disengaja. Direncanakan. Sistematis.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Dua ayat ini adalah cermin yang paling jujur untuk diri kita. Perhatikan strukturnya: ayat 2 bicara soal posisi <em>menerima</em>, ayat 3 bicara soal posisi <em>memberi</em>. Dua kondisi yang sama orangnya, berbeda arahnya — dan sungguh bertolak belakang standarnya.</p>
+    <p>Ketika menerima: menuntut sempurna. Ketika memberi: mengurangi dengan sengaja. Inilah anatomi hipokrisi yang paling telanjang. Dan yang membuatnya menusuk adalah: kita semua pernah ada di posisi ini.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Saat kamu memesan makanan dan porsinya sedikit berkurang, kamu langsung komplain ke resto. Tapi saat kamu masak untuk orang lain dan tanpa sadar porsinya kurang, kamu bilang "biasalah, lagi hemat". Saat gaji kamu terlambat seminggu, kamu marah luar biasa. Tapi saat kamu menunda bayar hutang ke teman selama berbulan-bulan, kamu merasa "dia maklum kok". <strong>Standar ganda ini adalah <em>tathfif</em> dalam bentuknya yang paling modern.</strong></p>
+      <p>Contoh lain yang sering terjadi: seorang atasan yang menuntut laporan tepat waktu dari tim, tapi ia sendiri kerap telat memberikan keputusan yang timnya butuhkan untuk bekerja. Atau pasangan yang menuntut perhatian penuh, tapi ketika diminta hal yang sama, selalu ada alasan mengapa dirinya "lebih sibuk".</p>
+    </div>
+
+    <div class="intisari">
+      <span class="intisari-label">✦ Intisari</span>
+      Standar ganda adalah tanda timbangan yang curang — dan kita semua punya dua timbangan dalam kehidupan sehari-hari: satu yang lebih berat ketika kita di posisi menuntut, satu yang lebih ringan ketika kita di posisi memenuhi. Surah ini mengetuk pintu dan bertanya: sudahkah kamu pakai timbangan yang sama?
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       KLASTER II — SIJJIN: CATATAN YANG TAK BISA DIHAPUS
+  ══════════════════════════════════════════ -->
+  <div class="cluster-label">
+    <div class="cluster-badge" style="color:var(--accent-b); border-color:var(--accent-b);">
+      Klaster II · Ayat 4–17 · Sijjin: Catatan yang Tak Bisa Dihapus
+    </div>
+  </div>
+
+  <!-- AYAT 4-6 -->
+  <div class="ayat-section klaster-b">
+    <div class="ayat-number">
+      <div class="ayat-num-badge">٤–٦</div>
+      <span style="color:var(--accent-b);">Ayat Keempat hingga Keenam</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">أَلَا يَظُنُّ أُوْلَٰٓئِكَ أَنَّهُم مَّبۡعُوثُونَ ۝ لِيَوۡمٍ عَظِيمٖ ۝ يَوۡمَ يَقُومُ ٱلنَّاسُ لِرَبِّ ٱلۡعَٰلَمِينَ</div>
+    </div>
+    <p class="translation">"Tidakkah mereka itu mengira, bahwa sesungguhnya mereka akan dibangkitkan, pada suatu hari yang besar, yaitu hari (ketika) semua manusia berdiri menghadap Tuhan seluruh alam?"</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="kata-chip">أَلَا يَظُنُّ — Tidakkah Mereka Menyangka?</div>
+    <p><em>Zhanna</em> di sini sangat menarik — bukan <em>ya'lamu</em> (mengetahui dengan pasti) tapi <em>yazhunnu</em> (bersangka, memperkirakan). Al-Qur'an tidak menuntut keyakinan absolut; bahkan dugaan pun sudah cukup untuk mengubah perilaku. Ini seperti bertanya: "Bahkan kalau hanya ada 10% kemungkinan ada akibatnya, bukankah itu sudah cukup untuk membuatmu berpikir dua kali?"</p>
+
+    <div class="kata-chip">يَوۡمٍ عَظِيمٖ — Hari yang Agung</div>
+    <p><em>'Azhim</em> dari akar yang sama dengan <em>udzma</em> — kebesaran. Tapi ini bukan sekadar besar secara skala. <em>'Azhim</em> mengandung makna bobot yang menggetarkan, bukan hanya ukuran yang besar. Perbedaan: gunung besar secara fisik (<em>kabir</em>), tapi hari kiamat <em>'azhim</em> — beratnya melampaui fisik.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Tiga ayat ini adalah pertanyaan yang paling menusuk dalam seluruh surah. Al-Qur'an tidak menghukum, tidak mengancam — hanya bertanya. Dan pertanyaan itu jauh lebih membekas dari pernyataan.</p>
+    <p>Akar dari semua kecurangan adalah satu: perasaan bahwa tidak ada konsekuensi jangka panjang. Bahwa yang "tidak kelihatan" tidak akan pernah tertagih. Para penipu timbangan di Madinah percaya bahwa selama tidak ada saksi manusia, transaksi itu aman. Kita pun sering berpikir demikian — "tidak ada yang tahu", "tidak akan terdeteksi", "toh sudah berlalu".</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p><strong>Sistem hidup modern sangat pandai menghapus jejak.</strong> Data bisa dihapus. Percakapan bisa di-delete. Rekaman bisa dimusnahkan. Ini menciptakan ilusi bahwa kecurangan yang "bersih" benar-benar bisa tak berbekas. Kita hidup di era di mana orang lebih takut terekam kamera daripada takut berbuat curang itu sendiri.</p>
+      <p>Tapi ayat ini mengingatkan: ada hari ketika "berdiri" bukan di hadapan polisi, bukan di hadapan atasan, bukan di hadapan publik — melainkan di hadapan <em>Rabb al-'alamin</em>. Dan kata "berdiri" (<em>yaqumu</em>) di sini bukan berdiri santai — ini berdiri yang menggambarkan postur tertunduk di hadapan otoritas tertinggi yang tidak bisa dilobi, tidak bisa dibayar, tidak bisa ditipu dengan data palsu.</p>
+    </div>
+
+    <div class="intisari">
+      <span class="intisari-label">✦ Intisari</span>
+      Ketika kita berbuat curang karena merasa "tidak ada yang melihat", kita lupa satu hal: semua yang pernah kita kurangi dari hak orang lain sedang dicatat di tempat yang tidak punya tombol delete. Dan pertanyaan paling jujur untuk diri kita adalah: apakah kita sungguh-sungguh tidak percaya ini, atau kita hanya pura-pura tidak percaya karena lebih mudah?
+    </div>
+  </div>
+
+  <!-- AYAT 7-9 -->
+  <div class="ayat-section klaster-b">
+    <div class="ayat-number">
+      <div class="ayat-num-badge">٧–٩</div>
+      <span style="color:var(--accent-b);">Ayat Ketujuh hingga Kesembilan</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">كَلَّآ إِنَّ كِتَٰبَ ٱلۡفُجَّارِ لَفِي سِجِّينٖ ۝ وَمَآ أَدۡرَىٰكَ مَا سِجِّينٌ ۝ كِتَٰبٌ مَّرۡقُومٌ</div>
+    </div>
+    <p class="translation">"Sekali-kali tidak! Sesungguhnya catatan orang-orang yang durhaka benar-benar tersimpan dalam Sijjin. Dan tahukah kamu apakah Sijjin itu? (Yaitu) kitab yang berisi catatan tertulis."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="kata-chip">كَلَّآ — Sekali-kali Tidak!</div>
+    <p><em>Kalla</em> adalah salah satu kata paling tegas dalam Al-Qur'an — penolakan keras terhadap kondisi atau pikiran yang baru disebut. Di sini ia menolak praduga bahwa perbuatan buruk tidak akan mendapat balasan. Ini adalah hardstop dari semua rationalisasi.</p>
+
+    <div class="kata-chip">سِجِّين — Sijjin</div>
+    <p>Dari akar <em>sajana</em> — penjara. <em>Sijjin</em> bukan hanya tempat; ia adalah metafora kondisi — sesuatu yang terperangkap, padat, tidak bisa bergerak ke atas. Para mufasir menggambarkannya sebagai lapisan bumi paling rendah, tempat catatan amal buruk tersimpan bersama roh-roh yang jahat. Lawannya adalah <em>Illiyyin</em> — yang akan disebut nanti di klaster ketiga.</p>
+
+    <div class="kata-chip">مَّرۡقُومٌ — Tertulis/Tercetak</div>
+    <p>Dari <em>raqama</em> — menulis dengan tanda khusus, mencetak. Ini bukan tulisan samar. Ini catatan yang <em>raqm</em>-nya jelas, tidak bisa diperdebatkan, seperti stempel resmi pada dokumen otentik. Tidak ada yang bisa menyangkal isi catatan ini.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Al-Qur'an memperkenalkan konsep yang menggetarkan: ada dua "server" kosmis tempat semua catatan amal tersimpan — Sijjin untuk yang buruk, Illiyyin untuk yang baik. Dan yang menarik, Al-Qur'an menggunakan struktur retorika yang sama untuk keduanya: <em>"Wa maa adraaka maa..."</em> — "Tahukah kamu apa itu?" — sebuah cara untuk mengatakan bahwa pemahaman manusia tidak cukup untuk menggambarkannya.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era <em>cloud storage</em> dan <em>data logging</em> — di mana setiap klik tercatat, setiap transaksi tersimpan, setiap pesan terarsip di server yang bahkan kita sendiri tidak tahu di mana. Kita sudah terbiasa dengan fakta bahwa digital footprint kita nyata dan tidak bisa dihapus sepenuhnya.</p>
+      <p><em>Sijjin</em> dan <em>Illiyyin</em> adalah versi kosmis dari konsep ini. Tapi dengan satu perbedaan krusial: <strong>tidak ada yang bisa meretas sistem ini.</strong> Tidak ada GDPR spiritual. Tidak ada hak untuk dilupakan di hadapan catatan ilahi. Ini bukan untuk menakut-nakuti — ini adalah pengingat bahwa kita sedang "di-log" oleh sistem yang paling akurat yang pernah ada.</p>
+    </div>
+
+    <div class="intisari">
+      <span class="intisari-label">✦ Intisari</span>
+      Sijjin adalah pengingat bahwa tidak ada perbuatan yang benar-benar "tidak meninggalkan jejak". Setiap pengurangan hak orang lain, setiap kebohongan yang kamu kira sudah berlalu, setiap janji yang kamu ingkari dengan mudah — semuanya tersimpan rapi, dalam sistem yang tidak pernah crash dan tidak pernah kehilangan data.
+    </div>
+  </div>
+
+  <!-- AYAT 10-17 -->
+  <div class="ayat-section klaster-b">
+    <div class="ayat-number">
+      <div class="ayat-num-badge">١٠–١٧</div>
+      <span style="color:var(--accent-b);">Ayat Kesepuluh hingga Ketujuh Belas</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَيۡلٌ يَوۡمَئِذٖ لِّلۡمُكَذِّبِينَ ۝ ٱلَّذِينَ يُكَذِّبُونَ بِيَوۡمِ ٱلدِّينِ ۝ وَمَا يُكَذِّبُ بِهِۦٓ إِلَّا كُلُّ مُعۡتَدٍ أَثِيمٍ ۝ إِذَا تُتۡلَىٰ عَلَيۡهِ ءَايَٰتُنَا قَالَ أَسَٰطِيرُ ٱلۡأَوَّلِينَ ۝ كَلَّا بَلۡ رَانَ عَلَىٰ قُلُوبِهِم مَّا كَانُواْ يَكۡسِبُونَ ۝ كَلَّآ إِنَّهُمۡ عَن رَّبِّهِمۡ يَوۡمَئِذٖ لَّمَحۡجُوبُونَ ۝ ثُمَّ إِنَّهُمۡ لَصَالُواْ ٱلۡجَحِيمِ ۝ ثُمَّ يُقَالُ هَٰذَا ٱلَّذِي كُنتُم بِهِۦ تُكَذِّبُونَ</div>
+    </div>
+    <p class="translation">"Celakalah pada hari itu bagi para pendusta! Yaitu mereka yang mendustakan hari pembalasan. Dan tidak ada yang mendustakannya kecuali setiap orang yang melanggar batas lagi banyak dosa, yang apabila dibacakan kepadanya ayat-ayat Kami, dia berkata, 'Dongeng orang-orang dahulu.' Sekali-kali tidak! Bahkan apa yang mereka kerjakan itu telah menutupi hati mereka. Sekali-kali tidak! Sesungguhnya mereka pada hari itu benar-benar terhalang dari (melihat) Tuhan mereka. Kemudian mereka benar-benar masuk neraka. Kemudian dikatakan (kepada mereka), 'Inilah azab yang dahulu kamu dustakan.'"</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="kata-chip">رَانَ — Menyelimuti / Berkarat</div>
+    <p>Ini salah satu kata paling kuat dan paling sering dikutip ulama dalam konteks penyakit hati. <em>Rana 'ala qalbih</em> — berkarat di hatinya. Seperti logam yang dibiarkan terkena udara lembab terus-menerus sampai tertutup lapisan karat yang tebal. Awalnya tipis dan tidak kelihatan. Lama-lama menjadi perisai yang menghalangi semua cahaya.</p>
+
+    <div class="kata-chip">مَّحۡجُوبُونَ — Terhalang / Tertutup Tirai</div>
+    <p>Dari <em>hijab</em> — penghalang, tirai. Tapi di sini bukan tirai fisik. Ini adalah hukuman yang paling berat yang disebutkan: bukan api neraka lebih dulu yang disebut, tapi terhalang dari melihat wajah Tuhan. Para ulama menyebut ini sebagai azab paling pedih — lebih pedih dari siksa fisik, karena jiwa yang paling membutuhkan kedekatan justru dijauhkan sejauh-jauhnya.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Rangkaian ayat ini mengungkap mekanisme yang sangat psikologis: bagaimana kecurangan yang terus-menerus akhirnya membuat hati <em>tidak lagi bisa menerima kebenaran</em>. Ini bukan kutukan yang dijatuhkan dari luar — ini adalah akibat alamiah dari pilihan yang dibuat berulang-ulang.</p>
+    <p>Proses karat hati (<em>ran</em>) bekerja perlahan: setiap dosa meninggalkan satu lapisan tipis. Pertama kali berbohong, hati masih merasa tidak nyaman. Kedua kali, rasa tidak nyaman itu sedikit berkurang. Ketiga kali, sudah mulai terasa biasa. Dan begitu seterusnya — sampai hati tidak lagi mampu merasakan bedanya yang benar dan yang salah.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p><strong>Konsep "normalisasi" adalah <em>ran</em> zaman modern.</strong> Ketika kita terus-menerus memaparkan diri pada konten yang merendahkan, perilaku yang curang, atau lingkungan yang membuat kecurangan terasa "normal" — hati kita beradaptasi. Sama seperti telinga yang terbiasa dengan kebisingan sampai tidak lagi mendengar suara halus.</p>
+      <p>Contoh konkret: seseorang yang awalnya tidak nyaman melihat rekan kerjanya melakukan manipulasi data, tapi setelah enam bulan "ikut arus", ia bahkan tidak lagi mengenali tindakan itu sebagai sesuatu yang salah. Atau seseorang yang terus-menerus mengonsumsi konten yang menormalkan keserakahan sampai standar hidupnya bergeser tanpa ia sadari. Karat tidak datang sekaligus — ia menumpuk satu lapisan tipis setiap harinya.</p>
+    </div>
+
+    <div class="intisari">
+      <span class="intisari-label">✦ Intisari</span>
+      Azab terbesar bukan selalu yang paling menyakitkan secara fisik — melainkan yang memutus koneksi. Terhalang dari yang paling dirindukan jiwa adalah hukuman yang jauh lebih dalam dari sekadar rasa sakit. Dan yang membuatnya tragis: proses penutupan itu dimulai dari keputusan-keputusan kecil yang kita anggap "tidak seberapa".
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       KLASTER III — ILLIYYIN: CATATAN YANG MELAYANG TINGGI
+  ══════════════════════════════════════════ -->
+  <div class="cluster-label">
+    <div class="cluster-badge" style="color:var(--accent-c); border-color:var(--accent-c);">
+      Klaster III · Ayat 18–28 · Illiyyin: Catatan yang Melayang Tinggi
+    </div>
+  </div>
+
+  <!-- AYAT 18-21 -->
+  <div class="ayat-section klaster-c">
+    <div class="ayat-number">
+      <div class="ayat-num-badge">١٨–٢١</div>
+      <span style="color:var(--accent-c);">Ayat Kedelapan Belas hingga Kedua Puluh Satu</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">كَلَّآ إِنَّ كِتَٰبَ ٱلۡأَبۡرَارِ لَفِي عِلِّيِّينَ ۝ وَمَآ أَدۡرَىٰكَ مَا عِلِّيُّونَ ۝ كِتَٰبٌ مَّرۡقُومٌ ۝ يَشۡهَدُهُ ٱلۡمُقَرَّبُونَ</div>
+    </div>
+    <p class="translation">"Sekali-kali tidak! Sesungguhnya catatan orang-orang yang berbakti benar-benar tersimpan dalam Illiyyin. Dan tahukah kamu apakah Illiyyin itu? (Yaitu) kitab yang berisi catatan tertulis, yang disaksikan oleh para malaikat yang didekatkan (kepada Allah)."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="kata-chip">عِلِّيِّينَ — Illiyyin: Tempat Tertinggi</div>
+    <p>Dari akar <em>'alaa</em> — tinggi, luhur, mulia. <em>Illiyyin</em> adalah bentuk jamak yang intensif — ketinggian yang berlipat-lipat. Lawannya langsung terasa: <em>Sijjin</em> dari <em>sajana</em> (penjara, yang menekan ke bawah), <em>Illiyyin</em> dari <em>'alaa</em> (yang terus naik). Ini adalah simbol tentang arah yang dituju oleh amal — ada yang membebani jiwa sampai tenggelam, ada yang mengangkat jiwa sampai terbang.</p>
+
+    <div class="kata-chip">ٱلۡأَبۡرَارِ — Orang-orang yang Berbakti</div>
+    <p>Dari <em>birr</em> — kebaikan yang luas, melampaui sekadar "tidak berbuat salah". <em>Birr</em> adalah kebajikan yang aktif dan menyeluruh: berbuat baik kepada orang tua, menepati janji, bersikap jujur di semua kondisi. Berbeda dengan <em>muttaqin</em> (yang bertakwa, bermakna defensif — menjaga diri), <em>abrar</em> lebih aktif dan ekspansif. Mereka bukan hanya yang tidak mencuri — mereka yang secara aktif memberikan dengan penuh.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Al-Qur'an memperkenalkan kontras yang indah: tepat setelah menjelaskan Sijjin dengan nada yang berat, kini hadir Illiyyin dengan cahaya yang berbeda. Teknik ini bukan hanya retorika — ini adalah cara menunjukkan bahwa keduanya adalah pilihan yang tersedia, bukan takdir yang sudah ditentukan.</p>
+    <p>Yang menarik: catatan di Illiyyin juga disebut <em>marqum</em> (tertulis jelas) seperti Sijjin. Tapi ada tambahan yang tidak ada di Sijjin: <em>yashhadu hul muqarrabuun</em> — disaksikan oleh para malaikat yang didekatkan kepada Allah. Catatan kebaikan tidak hanya tersimpan — ia ditampilkan, disaksikan, dirayakan oleh makhluk-makhluk mulia.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Ada fenomena menarik di era digital: segala hal buruk menjadi viral dengan cepat, sementara kebaikan seringkali sunyi. Tapi di hadapan Illiyyin, logika ini terbalik: <strong>setiap kebaikan yang kamu lakukan diam-diam — yang tidak kamu posting, yang tidak ada yang tahu — disaksikan oleh makhluk-makhluk yang paling mulia di sisi Tuhan.</strong></p>
+      <p>Ini adalah pemulihan martabat yang luar biasa bagi mereka yang berbuat baik tanpa pengakuan. Guru yang mengajar dengan tulus di desa terpencil tanpa pernah masuk headline. Orang tua yang mendidik anak-anaknya dengan sabar tanpa tepuk tangan publik. Karyawan yang jujur dalam tugas kecilnya sehari-hari. Semua itu tersimpan dan disaksikan di tempat yang jauh lebih prestisius dari halaman depan media mana pun.</p>
+    </div>
+
+    <div class="intisari">
+      <span class="intisari-label">✦ Intisari</span>
+      Setiap kebaikan yang kamu lakukan di sudut yang sepi — yang tidak dipotret, tidak ditagar, tidak mendapat validasi dari siapa pun — sedang disaksikan di hadapan para malaikat terdekat Tuhan. Illiyyin adalah pengingat bahwa ada sistem apresiasi yang jauh melampaui algoritma media sosial mana pun.
+    </div>
+  </div>
+
+  <!-- AYAT 22-28 -->
+  <div class="ayat-section klaster-c">
+    <div class="ayat-number">
+      <div class="ayat-num-badge">٢٢–٢٨</div>
+      <span style="color:var(--accent-c);">Ayat Dua Puluh Dua hingga Dua Puluh Delapan</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">إِنَّ ٱلۡأَبۡرَارَ لَفِي نَعِيمٍ ۝ عَلَى ٱلۡأَرَآئِكِ يَنظُرُونَ ۝ تَعۡرِفُ فِي وُجُوهِهِمۡ نَضۡرَةَ ٱلنَّعِيمِ ۝ يُسۡقَوۡنَ مِن رَّحِيقٍ مَّخۡتُومٍ ۝ خِتَٰمُهُۥ مِسۡكٌ وَفِي ذَٰلِكَ فَلۡيَتَنَافَسِ ٱلۡمُتَنَٰفِسُونَ ۝ وَمِزَاجُهُۥ مِن تَسۡنِيمٍ ۝ عَيۡنٗا يَشۡرَبُ بِهَا ٱلۡمُقَرَّبُونَ</div>
+    </div>
+    <p class="translation">"Sesungguhnya orang-orang yang berbakti benar-benar berada dalam (surga yang penuh) kenikmatan. Di atas dipan-dipan (indah), mereka memandang. Engkau dapat mengenali wajah mereka karena kemilau kenikmatan. Mereka diberi minum arak murni (minuman surga) yang tersegel, yang segel (ujungnya) adalah kesturi. Dan untuk yang demikian itu, hendaklah berlomba-lomba orang yang ingin berlomba. Campurannya dari Tasnim, yaitu mata air yang diminum oleh orang-orang yang didekatkan (kepada Allah)."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="kata-chip">نَضۡرَةَ ٱلنَّعِيمِ — Kemilau Kenikmatan</div>
+    <p><em>Nadhrah</em> dari <em>nadhira</em> — hijau segar, berseri, bercahaya dari dalam. Ini adalah gambaran kebahagiaan yang memancar dari dalam — bukan riasan luar. Wajah yang <em>nadhrah</em> adalah wajah yang bahagianya tidak bisa dipalsukan karena cahayanya berasal dari dalam diri, bukan dari filter atau pencahayaan studio.</p>
+
+    <div class="kata-chip">فَلۡيَتَنَافَسِ ٱلۡمُتَنَٰفِسُونَ — Berlomba-lombalah dalam Hal Ini</div>
+    <p>Dari <em>tanafasa</em> — bersaing dengan semangat tinggi. Menariknya, Al-Qur'an menggunakan kata "bersaing" — yang biasanya dipakai untuk konteks yang kompetitif dan ambisius. Ini adalah izin bahkan dorongan untuk bersifat <em>ambisius dalam kebaikan</em>. Bukan ambisi untuk mengalahkan orang lain, tapi ambisi untuk meraih yang terbaik.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Setelah menggambarkan Sijjin dengan nada berat, Al-Qur'an menggambarkan Illiyyin dengan bahasa yang penuh warna dan indah. Ini bukan kebetulan. Al-Qur'an tahu bahwa manusia tidak hanya butuh peringatan — ia juga butuh gambaran tentang apa yang diperjuangkan.</p>
+    <p>Satu frasa yang sangat menonjol: "pada wajah mereka kamu dapat mengenali kemilau kenikmatan." Kebahagiaan mereka tidak tersembunyi, tidak bisa dipalsukan. Ini adalah gambaran tentang jiwa yang damai karena hidupnya konsisten — tidak ada beban kebohongan yang disembunyikan, tidak ada rasa bersalah yang terus-menerus menggerogoti.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Ada penelitian psikologi yang menemukan bahwa <strong>kejujuran secara konsisten berkorelasi dengan ketenangan mental yang lebih tinggi</strong> — bukan karena jujur itu mudah, tapi karena bohong membutuhkan energi yang luar biasa untuk mempertahankan cerita yang konsisten. Orang yang hidupnya penuh kebohongan kecil terus-menerus "mengecek ulang" cerita mereka, was-was siapa yang tahu apa, takut cerita yang berbeda bertemu.</p>
+      <p>Wajah yang bercahaya (<em>nadhrah</em>) itu adalah wajah orang yang tidak perlu mengingat-ingat kebohongan mana yang sudah disampaikan kepada siapa. <strong>Kejujuran adalah bentuk kebebasan — dan kebebasan itu terpancar di wajah.</strong> Kita semua tahu bedanya: ada orang yang senyumnya rileks karena tidak menyimpan beban; ada yang senyumnya lelah karena terus berakting.</p>
+    </div>
+
+    <div class="intisari">
+      <span class="intisari-label">✦ Intisari</span>
+      Kebahagiaan yang sejati bukan yang difoto untuk diperlihatkan — melainkan yang memancar di wajah karena jiwa tidak menanggung beban kepura-puraan. Dan Al-Qur'an secara eksplisit mengundang kita untuk berlomba meraih kondisi itu — bukan dengan bersaing mengalahkan orang lain, melainkan dengan berlomba menjadi versi diri yang paling jujur dan paling baik.
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       KLASTER IV — PEMBALASAN YANG SEMPURNA
+  ══════════════════════════════════════════ -->
+  <div class="cluster-label">
+    <div class="cluster-badge" style="color:var(--accent-d); border-color:var(--accent-d);">
+      Klaster IV · Ayat 29–36 · Pembalasan yang Sempurna dan Setimpal
+    </div>
+  </div>
+
+  <!-- AYAT 29-33 -->
+  <div class="ayat-section klaster-d">
+    <div class="ayat-number">
+      <div class="ayat-num-badge">٢٩–٣٣</div>
+      <span style="color:var(--accent-d);">Ayat Dua Puluh Sembilan hingga Tiga Puluh Tiga</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">إِنَّ ٱلَّذِينَ أَجۡرَمُواْ كَانُواْ مِنَ ٱلَّذِينَ ءَامَنُواْ يَضۡحَكُونَ ۝ وَإِذَا مَرُّواْ بِهِمۡ يَتَغَامَزُونَ ۝ وَإِذَا ٱنقَلَبُوٓاْ إِلَىٰٓ أَهۡلِهِمُ ٱنقَلَبُواْ فَكِهِينَ ۝ وَإِذَا رَأَوۡهُمۡ قَالُوٓاْ إِنَّ هَٰٓؤُلَآءِ لَضَآلُّونَ ۝ وَمَآ أُرۡسِلُواْ عَلَيۡهِمۡ حَٰفِظِينَ</div>
+    </div>
+    <p class="translation">"Sesungguhnya orang-orang yang berdosa itu dahulu menertawakan orang-orang yang beriman. Dan apabila mereka berjalan melewati orang-orang yang beriman, mereka saling mengedipkan mata. Dan apabila kembali kepada kaumnya, mereka kembali dengan bergembira. Dan apabila melihat orang-orang yang beriman, mereka berkata, 'Sesungguhnya mereka itu benar-benar orang-orang yang sesat.' Padahal mereka tidak dikirim sebagai penjaga (orang-orang beriman) itu."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="kata-chip">يَتَغَامَزُونَ — Saling Mengedipkan Mata / Bergunjing</div>
+    <p><em>Ghaamaza</em> — memberi isyarat tersembunyi, bergunjing dengan gerakan, memandang orang lain dengan tatapan merendahkan. Ini bukan penghinaan terbuka — ini adalah penghinaan yang halus, yang dilakukan di antara "orang-orang sendiri". Bahasa tubuh yang menyepelekan. Gelak tawa kecil yang sengaja diperdengarkan. "Kode-kode" yang membuat orang lain merasa tidak termasuk.</p>
+
+    <div class="kata-chip">فَكِهِينَ — Bersuka-cita / Bergembira Ria</div>
+    <p>Dari <em>fakiha</em> — menikmati buah-buahan, bersantai, bergembira yang penuh. Ini menggambarkan kesenangan yang didapat dari merendahkan orang lain. Pulang ke rumah dengan cerita lucu tentang "betapa bodohnya si fulan yang taat". Menikmati posisi sebagai orang yang "lebih tahu dunia". Kegembiraan yang dibangun di atas rasa superior.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Ini adalah bagian surah yang paling mengejutkan secara kontekstual. Setelah panjang lebar membahas tentang kecurangan dalam timbangan, tiba-tiba Al-Qur'an beralih ke gambaran sosial: orang-orang yang menertawai, menggunjingkan, dan menyepelekan mereka yang beriman.</p>
+    <p>Ini bukan tanpa benang merah. Kecurangan dalam timbangan dan penghinaan sosial berasal dari akar yang sama: <strong>menempatkan diri sebagai "lebih" dari orang lain</strong>. Si penipu timbangan merasa dirinya lebih pintar dari pembeli yang "naif". Si penggunjing merasa dirinya lebih paham dari yang diolok-olok. Keduanya adalah manifestasi dari hati yang sama: hati yang merasa berhak mengambil lebih dari yang seharusnya — baik dari sisi materi maupun dari sisi martabat orang lain.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Budaya <em>mockery</em> adalah salah satu epidemi era digital. <strong>Menertawai konten kreator yang "terlalu serius soal agama". Membuat meme untuk meledek orang yang "masih percaya hal-hal kuno". Bergabung dalam grup tertutup yang kontennya adalah bahan tertawaan orang-orang yang berbeda pilihan hidup.</strong> Semua itu adalah <em>yataghaamazuun</em> — edipan mata digital.</p>
+      <p>Yang menarik adalah kalimat penutup ayat 33: <em>"Padahal mereka tidak dikirim sebagai penjaga."</em> Ini adalah tamparan untuk semua yang merasa punya mandat untuk menilai dan mengawasi pilihan spiritual orang lain. Kamu tidak ditunjuk sebagai hakim kehidupan siapa pun. Menghabiskan energi untuk merendahkan yang berbeda keyakinan adalah kerugian ganda — merugikan orang lain, dan menghabiskan kapasitas hatimu sendiri untuk bertumbuh.</p>
+    </div>
+
+    <div class="intisari">
+      <span class="intisari-label">✦ Intisari</span>
+      Menertawai orang lain karena pilihan imannya bukan tanda kecerdasan — itu tanda hati yang perlu memerendahkan untuk merasa besar. Dan Al-Qur'an menegaskan dengan tenang: kamu tidak diberi mandat itu. Bukan urusanmu untuk menjadi hakim perjalanan spiritual orang lain.
+    </div>
+  </div>
+
+  <!-- AYAT 34-36 -->
+  <div class="ayat-section klaster-d">
+    <div class="ayat-number">
+      <div class="ayat-num-badge">٣٤–٣٦</div>
+      <span style="color:var(--accent-d);">Ayat Tiga Puluh Empat hingga Tiga Puluh Enam</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">فَٱلۡيَوۡمَ ٱلَّذِينَ ءَامَنُواْ مِنَ ٱلۡكُفَّارِ يَضۡحَكُونَ ۝ عَلَى ٱلۡأَرَآئِكِ يَنظُرُونَ ۝ هَلۡ ثُوِّبَ ٱلۡكُفَّارُ مَا كَانُواْ يَفۡعَلُونَ</div>
+    </div>
+    <p class="translation">"Maka pada hari ini, orang-orang yang beriman akan menertawakan orang-orang kafir. Sambil duduk di atas dipan (indah), mereka memandang. Sungguh, orang-orang kafir itu telah diberi balasan atas apa yang selalu mereka kerjakan."</p>
+
+    <h2 class="section-title">Energi Kata</h2>
+
+    <div class="kata-chip">هَلۡ ثُوِّبَ — Sungguhkah Sudah Dibalas?</div>
+    <p><em>Thawwaba</em> — memberi balasan yang setimpal. Bentuk retoris pertanyaan di sini bukan karena ragu — ini adalah pertanyaan konfirmasi yang kuat, seperti pengumuman resmi. "Inilah pembalasan yang tepat atas apa yang selalu mereka lakukan." Kalimat penutup ini menutup seluruh lingkaran narasi surah dengan sempurna: dari timbangan yang curang, berputar panjang melalui Sijjin dan Illiyyin, akhirnya kembali ke tema keadilan yang mutlak.</p>
+
+    <h2 class="section-title">Tafsir Mendalam</h2>
+    <p>Ayat penutup ini kerap disalahpahami sebagai "orang beriman membalas dendam". Penafsiran yang lebih tepat: ini adalah pemulihan keadilan yang sempurna — keseimbangan timbangan yang akhirnya ditegakkan setelah lama dimiringkan.</p>
+    <p>Seluruh surah bergerak dalam simetri yang indah: dibuka dengan gambaran timbangan yang curang (ayat 1-3), ditutup dengan gambaran timbangan yang diluruskan (ayat 34-36). Di antaranya, dua "arsip" kosmis — Sijjin dan Illiyyin — yang mencatat segalanya. Struktur ini bukan hanya puitis; ia adalah pernyataan teologis yang tegas: <strong>setiap ketidakadilan yang tidak diselesaikan di dunia akan diselesaikan di tempat lain, dengan presisi yang sempurna.</strong></p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Ini adalah penghiburan terbesar bagi mereka yang pernah diperlakukan tidak adil dan tidak menemukan keadilan di dunia ini. <strong>Yang pernah karyanya dicuri tapi tidak bisa membuktikannya. Yang pernah dikhianati tapi tidak ada yang mempercayai ceritanya. Yang pernah haknya dikurangi secara diam-diam oleh orang yang berkuasa.</strong></p>
+      <p>Al-Muthaffifin tidak mengajarkan untuk pasif dan diam saja menghadapi ketidakadilan. Tapi ia mengajarkan bahwa ketika semua jalan keadilan duniawi sudah ditempuh, ada jaminan bahwa akun kosmis tidak pernah salah catat. Ini bukan fatalistik — ini adalah fondasi psikologis yang memungkinkan seseorang untuk tidak hancur oleh kepahitan ketika keadilan duniawi gagal datang.</p>
+    </div>
+
+    <div class="intisari">
+      <span class="intisari-label">✦ Intisari</span>
+      Semesta memiliki mekanisme keseimbangan yang tidak bisa dimanipulasi. Setiap timbangan yang dikurangi di sini akan diluruskan di sana, dengan akurasi yang melampaui sistem hukum mana pun yang pernah dibuat manusia. Dan pemahaman ini bukan alasan untuk pasif — melainkan alasan untuk tetap tegak ketika keadilan dunia tampak lelah bekerja.
+    </div>
+  </div>
+
+  <!-- PENUTUP -->
+  <div class="penutup">
+    <h2 class="section-title">Refleksi: Pola yang Bisa Diambil</h2>
+
+    <div class="langkah">
+      <span class="lnum">Langkah 1 — Audit Timbangan Harian</span>
+      <p>Luangkan lima menit setiap malam untuk satu pertanyaan sederhana: "Hari ini, apakah ada yang aku terima lebih dari yang seharusnya, atau berikan kurang dari yang seharusnya?" Ini bukan ritual menghakimi diri — ini adalah kalibrasi rutin, seperti mengecek tekanan ban sebelum perjalanan jauh. Mulai kecil: satu area kehidupan saja — pekerjaan, atau hubungan, atau keuangan.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">Langkah 2 — Periksa Standar Ganda</span>
+      <p>Identifikasi satu bidang di mana kamu menuntut lebih dari yang kamu berikan. Bisa dalam hubungan: apakah kamu menuntut kepercayaan tapi kurang transparan? Dalam pekerjaan: menuntut penghargaan tapi jarang memberi apresiasi kepada yang lain? Dalam persahabatan: selalu minta didengar tapi jarang hadir ketika yang lain butuh? Mengenali pola ini bukan untuk menyiksa diri — melainkan untuk mengambil satu langkah penyesuaian yang konkret.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">Langkah 3 — Berhenti Jadi Hakim Perjalanan Orang Lain</span>
+      <p>Setiap kali kamu tergoda untuk menilai, merendahkan, atau bergunjing tentang pilihan spiritual atau hidup orang lain — ingat ayat 33: <em>"Padahal mereka tidak dikirim sebagai penjaga."</em> Kamu tidak punya mandat itu. Energi yang dipakai untuk mengurusi keyakinan orang lain adalah energi yang diambil dari pertumbuhan dirimu sendiri.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">Langkah 4 — Jaga Hati dari Karat</span>
+      <p>Karat hati (<em>ran</em>) dimulai dari paparan yang berulang terhadap hal-hal yang menumpulkan kepekaan. Periksa: apa yang kamu konsumsi setiap hari yang membuat ketidakjujuran terasa "normal"? Lingkungan mana yang terus-menerus menormalkan standar ganda? Satu perubahan kecil — unfollow satu akun, keluar dari satu grup, kurangi satu kebiasaan konsumsi — bisa menjadi awal pembersihan lapisan karat yang sudah menumpuk.</p>
+    </div>
+
+    <h2 class="section-title" style="margin-top:40px;">Langkah Nyata Hari Ini</h2>
+
+    <div class="langkah">
+      <span class="lnum">Praktis 1 — Kembalikan yang Tertunda</span>
+      <p>Apakah ada utang yang sudah terlalu lama kamu tunda? Bukan hanya utang uang — tapi juga utang janji, utang perhatian, utang penghargaan yang kamu tahu seharusnya sudah diberikan. Pilih satu yang paling lama tertunda. Hari ini, ambil langkah pertama untuk melunasinya — bahkan jika belum bisa lunas sepenuhnya, mulai dengan mengakui dan berkomunikasi.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">Praktis 2 — Satu Kebaikan Tanpa Saksi</span>
+      <p>Lakukan satu kebaikan hari ini yang tidak akan kamu ceritakan kepada siapa pun. Tidak ada caption, tidak ada cerita ke teman, tidak ada harapan dibalas. Ini bukan karena riya itu salah — tapi untuk melatih otot keikhlasan, dan untuk merasakan sendiri bedanya kebaikan yang ditujukan ke "Illiyyin" versus kebaikan yang ditujukan ke layar kamera.</p>
+    </div>
+  </div>
+
+  <!-- EPILOG -->
+  <div class="epilog">
+    <h2 class="epilog-title ember">Semua yang Pernah Kamu Kurangi Masih Menunggu Diperhitungkan</h2>
+
+    <p style="max-width:680px; margin:0 auto 16px; color:#c8aa88; font-style:italic; text-align:center;">
+      Ada suara-suara yang tidak pernah keras, tapi tidak pernah berhenti. Suara dari semua yang pernah kamu kurangi — dari janjimu, dari kejujuranmu, dari waktu dan perhatian yang seharusnya jadi hak orang lain. Mereka tidak menuntut. Mereka hanya menunggu.
+    </p>
+
+    <div class="divider-ember" style="margin:36px auto;"></div>
+
+    <!-- Voice blocks -->
+    <div class="voice-block v-lelah" data-voice="Kepada yang Kelelahan Berpura-pura">
+      <p>Kamu sudah lama menjalani dua kehidupan sekaligus. Satu yang ditampilkan, satu yang sesungguhnya. Dan kelelahan itu — kelelahan yang tidak bisa kamu jelaskan kepada siapa pun — bukan karena kamu lemah. Itu adalah biaya dari timbangan yang tidak seimbang yang kamu pikul setiap hari. <strong>Al-Muthaffifin tidak datang untuk menghukummu. Ia datang untuk memberimu izin berhenti.</strong> Izin untuk menyeimbangkan timbangan, sedikit demi sedikit, sebelum bebannya semakin berat. Perjalanan kembali ke kejujuran tidak harus dimulai dengan pengakuan besar — cukup dengan satu keputusan kecil hari ini untuk tidak lagi mengurangi.</p>
+    </div>
+
+    <div class="voice-block v-bohong" data-voice="Kepada yang Pernah Berlaku Tidak Adil">
+      <p>Kamu tahu ada yang salah. Mungkin sudah lama kamu tahu. Ada nama yang muncul di benakmu ketika membaca baris-baris tentang <em>muthaffifin</em> ini — nama dari hutang yang belum dilunasi, dari janji yang dilupakan dengan sengaja, dari hak yang pernah kamu ambil dengan kalkulasi yang kamu tahu tidak jujur. <strong>Rasa tidak nyaman itu adalah tanda hatimu masih hidup.</strong> Karat belum menutupi seluruhnya. Dan selama masih ada ruang untuk tidak nyaman, selalu ada ruang untuk memulai perbaikan. Mulai dari yang terkecil. Mulai hari ini.</p>
+    </div>
+
+    <div class="voice-block v-cemas" data-voice="Kepada yang Diperlakukan Tidak Adil">
+      <p>Kamu sudah menjelaskan. Sudah membuktikan. Sudah mencari jalan keadilan di semua arah yang bisa kamu jangkau. Dan kadang-kadang jawabannya tidak datang — setidaknya tidak dari arah yang kamu harapkan. <strong>Al-Muthaffifin adalah suratmu.</strong> Setiap gram yang dikurangi dari hakmu tercatat di tempat yang tidak bisa dipalsukan. Bukan untuk membuatmu duduk pasif menunggu karma — tapi untuk membebaskanmu dari beban kepahitan yang menggerogoti dari dalam. Kamu boleh mencari keadilan. Dan kamu juga boleh tidak hancur ketika keadilan duniawi lambat datangnya.</p>
+    </div>
+
+    <div class="voice-block v-ragu" data-voice="Kepada yang Bertanya Apakah Kebaikannya Berarti">
+      <p>Kamu berbuat baik tanpa pernah benar-benar tahu apakah itu dihargai. Kamu jujur dalam pekerjaan kecilmu sementara yang tidak jujur tampak lebih maju. Kamu menepati janji ketika yang lain santai mengingkarinya. Dan kadang kamu bertanya: untuk apa? <strong>Illiyyin menjawab pertanyaanmu.</strong> Setiap kebaikanmu yang tidak dilihat siapa pun di bumi sedang disaksikan oleh yang paling dekat kepada Tuhan. Catatan itu ada. Dan ia <em>marqum</em> — tertulis dengan jelas, tidak bisa dihapus, tidak bisa dimanipulasi. Kamu tidak sedang berlari tanpa tujuan.</p>
+    </div>
+
+    <div class="voice-block v-jauh" data-voice="Kepada yang Merasa Sudah Terlalu Jauh">
+      <p>Kamu membaca ini dan mungkin rasanya seperti bukan untukmu lagi. Seperti karat sudah terlalu tebal. Seperti Sijjin sudah terlalu terisi dengan namamu. <strong>Tapi ingat: Al-Qur'an tidak pernah mengajak yang sudah terlalu jauh untuk menyerah.</strong> Karat yang menutupi hati bisa dibersihkan — dengan taubat yang sungguh, dengan kebaikan yang diulangi sampai lapisan baru terbentuk, menutupi yang lama. Setiap orang yang kini bersinar di Illiyyin pernah berada di titik yang tidak sempurna. Yang membedakan bukan posisi awalnya — melainkan keputusan untuk mulai berbalik.</p>
+    </div>
+
+    <div class="divider-ember" style="margin:44px auto;"></div>
+
+    <span class="arabic-line">وَيۡلٌ لِّلۡمُطَفِّفِينَ</span>
+    <span class="latin-line">Wailun lil-muthaffifin</span>
+
+    <p class="closing-verse">
+      Celaka bagi yang mengurangi —<br>
+      bukan karena Tuhan kejam,<br>
+      melainkan karena setiap pengurangan<br>
+      pada akhirnya memiskinkan dirinya sendiri.<br><br>
+      Timbangan yang kita miringkan untuk orang lain<br>
+      adalah timbangan yang sama<br>
+      yang akan dipakai untuk menimbang kita.<br><br>
+      <span style="color:var(--ember1); font-style:normal;">Dan ketika hari itu tiba —<br>
+      semoga yang ditemukan bukan kecurangan,<br>
+      melainkan catatan dari semua yang pernah kita berikan dengan penuh,<br>
+      semua janji yang kita tepati di saat tidak ada yang mengawasi,<br>
+      semua kebaikan yang kita tulis diam-diam di halaman Illiyyin.<br><br>
+      Itulah warisan yang tidak bisa diambil siapa pun.</span>
+    </p>
+  </div>
+
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // tombol scroll ke atas
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  // animasi fade-in saat scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.ayat-section').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

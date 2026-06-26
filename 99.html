@@ -1,0 +1,750 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tafsir Az-Zalzalah — Reset Total Dalam Simulasi Kehidupan</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;1,8..60,300;1,8..60,400&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FAF7F0;--warm-white:#FFFEF9;--gold:#C9924A;--gold-light:#E8C68A;--gold-deep:#8B6234;
+  --ink:#2C2416;--ink-mid:#5C4A2A;--ink-soft:#8B7355;--ink-faint:#C4A87A;
+  --emerald:#2D6A4F;--rust:#8B3A24;--border-warm:#E8D5B0;--shadow-warm:rgba(139,98,52,0.12);
+}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:16px;line-height:1.8}
+.book{max-width:800px;margin:0 auto;background:var(--warm-white);box-shadow:0 0 60px var(--shadow-warm)}
+
+/* COVER */
+.cover{background:linear-gradient(160deg,#1a1209 0%,#2C1A08 40%,#3D2410 70%,#1a1209 100%);padding:80px 60px 70px;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 20%,rgba(201,146,74,.15) 0%,transparent 70%)}
+.cover-line{width:80px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 32px}
+.cover-num{font-family:'Playfair Display',serif;font-size:12px;letter-spacing:4px;color:var(--gold-light);opacity:.7;text-transform:uppercase;margin-bottom:20px}
+.cover-arabic{font-size:64px;color:var(--gold-light);line-height:1.3;margin-bottom:12px;text-shadow:0 2px 20px rgba(201,146,74,.3);direction:rtl;font-weight:400}
+.cover-title{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:#FFFEF9;line-height:1.2;margin-bottom:8px}
+.cover-sub{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--gold-light);opacity:.85;margin-bottom:32px}
+.cover-div{width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 28px}
+.cover-tagline{font-size:15px;color:rgba(232,198,138,.75);font-style:italic;line-height:1.6;max-width:440px;margin:0 auto 40px}
+.cover-meta{display:flex;justify-content:center;gap:32px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);opacity:.6}
+.cover-meta span{position:relative}
+.cover-meta span:not(:last-child)::after{content:'·';position:absolute;right:-18px}
+
+/* BISMILLAH */
+.bismillah{padding:60px 60px 50px;text-align:center;border-bottom:1px solid var(--border-warm);background:linear-gradient(180deg,rgba(201,146,74,.03) 0%,transparent 100%)}
+.bismillah-ar{font-size:38px;color:var(--gold-deep);direction:rtl;margin-bottom:12px;line-height:1.6}
+.bismillah-tr{font-size:13px;color:var(--ink-soft);letter-spacing:1px;font-style:italic}
+
+/* INFO DASAR */
+.info{padding:50px 60px;border-bottom:1px solid var(--border-warm)}
+.eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:500}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.info-card{background:var(--cream);border:.5px solid var(--border-warm);border-radius:8px;padding:16px 20px}
+.info-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.info-val{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:var(--ink)}
+.tagline-box{background:linear-gradient(135deg,#1a1209,#2C1A08);border-radius:12px;padding:28px 32px;position:relative;overflow:hidden}
+.tagline-box::before{content:'"';font-family:'Playfair Display',serif;font-size:120px;color:var(--gold);opacity:.1;position:absolute;top:-20px;left:16px;line-height:1}
+.tg-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:12px}
+.tg-text{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:#FFFEF9;line-height:1.4}
+
+/* AYAT SECTIONS */
+.ayats{padding:0 60px 50px}
+.ch-head{padding:48px 0 32px;border-bottom:1px solid var(--border-warm);margin-bottom:40px}
+.ch-num{width:48px;height:48px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:white;margin-bottom:20px}
+.ayat-block{background:linear-gradient(135deg,rgba(201,146,74,.06),rgba(201,146,74,.02));border:.5px solid var(--border-warm);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:24px 28px;margin-bottom:28px}
+.ayat-ar{font-size:36px;direction:rtl;color:var(--gold-deep);line-height:1.8;margin-bottom:10px}
+.ayat-lat{font-size:13px;font-style:italic;color:var(--ink-soft);margin-bottom:8px;line-height:1.6}
+.ayat-trj{font-size:15px;color:var(--ink-mid);font-weight:500;line-height:1.6}
+
+/* BADGES & SUB SECTIONS */
+.sub{margin-bottom:32px}
+.badge{font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;font-weight:500;display:inline-block;margin-bottom:16px}
+.badge-e{background:rgba(201,146,74,.12);color:var(--gold-deep);border:.5px solid rgba(201,146,74,.3)}
+.badge-t{background:rgba(45,106,79,.1);color:var(--emerald);border:.5px solid rgba(45,106,79,.25)}
+.badge-i{background:rgba(139,58,36,.08);color:var(--rust);border:.5px solid rgba(139,58,36,.2)}
+
+/* ENERGI */
+.e-grid{display:grid;gap:14px}
+.e-card{border:.5px solid var(--border-warm);border-radius:10px;padding:18px 22px;background:var(--warm-white)}
+.e-word{font-size:26px;color:var(--gold-deep);direction:rtl;display:inline;margin-right:8px}
+.e-lat{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:var(--ink-mid)}
+.e-div{width:40px;height:1px;background:var(--border-warm);margin:10px 0}
+.e-desc{font-size:14px;color:var(--ink-mid);line-height:1.7}
+.e-akar{margin-top:8px;font-size:13px;color:var(--ink-soft);font-style:italic}
+
+/* RELEVANSI */
+.rel-box{background:linear-gradient(135deg,#F7F9FF,#EEF2FF);border:.5px solid #BAC8FF;border-radius:10px;padding:20px 24px;margin:16px 0}
+.rel-title{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#3B5BDB;margin-bottom:12px;font-weight:500}
+.rel-item{display:flex;gap:10px;margin-bottom:10px;font-size:14px;color:var(--ink-mid);line-height:1.6}
+.rel-item::before{content:'→';color:#4C6EF5;flex-shrink:0;margin-top:1px}
+
+/* APLIKASI */
+.app-box{border:.5px solid rgba(45,106,79,.25);border-radius:10px;padding:18px 22px;background:rgba(45,106,79,.03);margin-top:14px}
+.app-title{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--emerald);margin-bottom:12px;font-weight:500}
+.app-item{display:flex;gap:10px;margin-bottom:8px;font-size:14px;color:var(--ink-mid);line-height:1.6}
+.app-num{background:var(--emerald);color:white;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px}
+
+/* INTISARI */
+.intisari{background:linear-gradient(135deg,#FFF8EF,#FFF4E6);border:.5px solid rgba(201,146,74,.35);border-radius:10px;padding:22px 28px;position:relative;overflow:hidden}
+.intisari::after{content:'✦';position:absolute;right:20px;top:16px;font-size:20px;color:var(--gold-light);opacity:.5}
+.intisari q{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:var(--ink);line-height:1.6;quotes:"\201C""\201D"}
+
+/* PERTANYAAN */
+.pertanyaan{border-top:.5px solid var(--border-warm);padding-top:16px;margin-top:16px}
+.p-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+.p-text{font-size:14px;color:var(--ink-mid);font-style:italic;line-height:1.6}
+
+/* SEPARATOR */
+.sep{display:flex;align-items:center;gap:16px;margin:40px 0;opacity:.4}
+.sep::before,.sep::after{content:'';flex:1;height:.5px;background:var(--gold)}
+.sep-orn{color:var(--gold);font-size:14px}
+
+/* TAFSIR PROSE */
+.tp{font-size:15px;color:var(--ink-mid);line-height:1.8;margin-bottom:14px}
+.tp strong{color:var(--ink);font-weight:600}
+
+/* REFLEKSI */
+.refleksi{padding:50px 60px;background:linear-gradient(180deg,var(--warm-white),var(--cream));border-top:2px solid var(--gold)}
+.r-header{text-align:center;margin-bottom:40px}
+.r-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.r-sub{font-size:14px;color:var(--ink-soft);font-style:italic}
+.pola-title{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.pola-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px}
+.pola-card{background:var(--warm-white);border:.5px solid var(--border-warm);border-radius:10px;padding:18px 20px}
+.pola-n{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold);opacity:.3;line-height:1;margin-bottom:8px}
+.pola-h{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.pola-d{font-size:13px;color:var(--ink-mid);line-height:1.6}
+.langkah-title{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--emerald);margin-bottom:16px}
+.langkah-item{display:flex;gap:16px;margin-bottom:14px;align-items:flex-start}
+.l-icon{width:36px;height:36px;border-radius:8px;background:rgba(45,106,79,.1);border:.5px solid rgba(45,106,79,.2);display:flex;align-items:center;justify-content:center;color:var(--emerald);font-size:18px;flex-shrink:0;font-weight:bold}
+.l-head{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.l-desc{font-size:13px;color:var(--ink-mid);line-height:1.6}
+.closing{background:linear-gradient(135deg,#1a1209,#2C1A08);border-radius:12px;padding:32px 36px;text-align:center;position:relative;overflow:hidden}
+.closing-orn{color:var(--gold);font-size:20px;margin-bottom:16px;opacity:.6}
+.closing-text{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:#FFFEF9;line-height:1.6}
+
+/* EPILOG */
+.epilog{padding:60px;background:linear-gradient(160deg,#1a1209 0%,#2C1A08 60%,#1a1209 100%);position:relative;overflow:hidden}
+.epilog::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 50% at 50% 0%,rgba(201,146,74,.08) 0%,transparent 60%)}
+.ep-ey{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.6;text-align:center;margin-bottom:20px}
+.ep-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;font-style:italic;color:#FFFEF9;text-align:center;line-height:1.3;margin-bottom:12px;position:relative}
+.ep-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 40px}
+.ep-p{font-size:15px;color:rgba(232,198,138,.8);line-height:1.9;margin-bottom:24px;position:relative}
+.ep-em{font-family:'Playfair Display',serif;font-size:17px;font-style:italic;color:var(--gold-light);line-height:1.7;margin-bottom:24px;padding-left:20px;border-left:2px solid var(--gold);opacity:.9}
+.ep-sap{font-size:15px;color:rgba(250,247,240,.7);line-height:2;margin-bottom:24px;font-style:italic;position:relative}
+.ep-close{text-align:center;margin-top:48px;padding-top:32px;border-top:.5px solid rgba(201,146,74,.2)}
+.ep-close-ar{font-size:28px;color:var(--gold-light);opacity:.5;direction:rtl;margin-bottom:16px}
+.ep-close-text{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:rgba(232,198,138,.7);line-height:1.6}
+
+/* FOOTER */
+.footer{padding:24px 60px;display:flex;justify-content:space-between;align-items:center;border-top:.5px solid var(--border-warm)}
+.ft{font-size:12px;color:var(--ink-faint);font-style:italic}
+.fo{color:var(--gold);font-size:16px;opacity:.3}
+
+@media(max-width:600px){
+  .cover,.bismillah,.info,.ayats,.refleksi,.epilog{padding-left:24px;padding-right:24px}
+  .cover-arabic,.ayat-ar{font-size:28px}
+  .cover-title{font-size:24px}
+  .info-grid,.pola-grid{grid-template-columns:1fr}
+  .footer{padding:16px 24px}
+}
+</style>
+</head>
+<body>
+<div class="book">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-line"></div>
+  <div class="cover-num">Surah ke-99 · Al-Qur'an Al-Karim</div>
+  <div class="cover-arabic">الزَّلْزَلَة</div>
+  <div class="cover-title">Az-Zalzalah</div>
+  <div class="cover-sub">Keguncangan Yang Mengubah Segalanya</div>
+  <div class="cover-div"></div>
+  <div class="cover-tagline">"Reset Total Dalam Simulasi Kehidupan"<br>— Ketika bumi bersaksi, tak ada yang tersembunyi lagi —</div>
+  <div class="cover-meta">
+    <span>8 Ayat</span>
+    <span>Madaniyyah</span>
+    <span>Juz 30</span>
+  </div>
+</div>
+
+<!-- BISMILLAH -->
+<div class="bismillah">
+  <div class="bismillah-ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+  <div class="bismillah-tr">Dengan nama Allah Yang Maha Pengasih, Maha Penyayang</div>
+</div>
+
+<!-- INFO DASAR -->
+<div class="info">
+  <div class="eyebrow">Informasi Dasar</div>
+  <div class="info-grid">
+    <div class="info-card"><div class="info-lbl">Nama Surat</div><div class="info-val">Az-Zalzalah (الزَّلْزَلَة)</div></div>
+    <div class="info-card"><div class="info-lbl">Arti</div><div class="info-val">Keguncangan / Gempa Bumi</div></div>
+    <div class="info-card"><div class="info-lbl">Turun di</div><div class="info-val">Madinah (Madaniyyah)</div></div>
+    <div class="info-card"><div class="info-lbl">Jumlah Ayat</div><div class="info-val">8 Ayat · Juz 30</div></div>
+  </div>
+  <div class="tagline-box">
+    <div class="tg-lbl">Tagline</div>
+    <div class="tg-text">Reset Total Dalam Simulasi Kehidupan — saat sistem dunia di-restart, semua file tersembunyi ikut terbaca.</div>
+  </div>
+</div>
+
+<!-- AYAT-AYAT -->
+<div class="ayats">
+
+<!-- AYAT 1 -->
+<div class="ch-head">
+  <div class="ch-num">١</div>
+  <div class="ayat-block">
+    <div class="ayat-ar">إِذَا زُلْزِلَتِ الْأَرْضُ زِلْزَالَهَا</div>
+    <div class="ayat-lat">Idzā zulzilati l-arḍu zilzālahā</div>
+    <div class="ayat-trj">"Apabila bumi diguncangkan dengan guncangan yang dahsyat"</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-e">A · Energi Kata</span>
+  <div class="e-grid">
+    <div class="e-card">
+      <span class="e-word">زُلْزِلَتْ</span><span class="e-lat">Zulzilat</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Kata kerja pasif yang diulang strukturnya sendiri — dari akar <em>za-la-za-la</em>. Pengulangan ini bukan sekadar gaya bahasa; ia menggambarkan getaran yang datang bertubi-tubi, tidak sekali lalu selesai. Berbeda dengan <em>haraka</em> (bergerak biasa) atau <em>ihtazza</em> (berguncang ringan), <em>zalzalah</em> menyiratkan perguncangan total yang tak bisa dikontrol.</div>
+      <div class="e-akar">Akar: ز-ل-ز-ل · Reduplikasi menandakan intensitas dan keberulangan yang ekstrem</div>
+    </div>
+    <div class="e-card">
+      <span class="e-word">الْأَرْضُ</span><span class="e-lat">Al-Arḍu</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Bukan sekadar "tanah" — kata ini mencakup keseluruhan fondasi realitas yang kita pijak. Al-Arḍ adalah simbol kestabilan tertinggi, tempat sandaran, titik rujukan. Ketika <em>bumi sendiri</em> yang berguncang, tidak ada yang tersisa sebagai pegangan fisik.</div>
+      <div class="e-akar">Berbeda dari <em>turāb</em> (debu) atau <em>barr</em> (daratan). Al-Arḍ = totalitas fondasi eksistensi.</div>
+    </div>
+    <div class="e-card">
+      <span class="e-word">زِلْزَالَهَا</span><span class="e-lat">Zilzālahā</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Penambahan kata ganti <em>-hā</em> (miliknya) memberi makna mendalam: guncangan ini adalah guncangan yang <em>memang sudah menjadi milik bumi</em>, sudah ditakdirkan khusus untuknya. Bukan guncangan biasa, melainkan guncangan pamungkas yang seluruh potensinya telah tersimpan sejak penciptaan.</div>
+      <div class="e-akar">Dhamir -hā menegaskan kepemilikan: inilah satu-satunya momen bumi melepaskan seluruh energinya sekaligus.</div>
+    </div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-t">B · Tafsir Mendalam</span>
+  <div class="tp">Ayat pembuka ini bukan deskripsi bencana semata. Ia adalah <strong>pengumuman reset kosmis</strong> — bahwa tatanan dunia yang selama ini kita kenal akan berakhir dengan cara paling dramatis yang bisa dibayangkan. Kata <em>idzā</em> di awal bukan "jika", melainkan "ketika" — sebuah kepastian yang menunggu waktu.</div>
+  <div class="tp">Para ulama mencatat bahwa surat ini membuka dengan kondisional yang paling menakutkan dalam Al-Qur'an: bukan manusia yang berguncang, bukan bangunan, bukan gunung — melainkan <em>bumi itu sendiri</em>. Fondasi segala fondasi. Basis dari segala realitas fisik yang pernah ada.</div>
+  <div class="rel-box">
+    <div class="rel-title">↯ Relevansi Kekinian</div>
+    <div class="rel-item">Generasi sekarang terbiasa hidup dalam ilusi kontrol: atur jadwal, set target, buat back-up plan. Ayat ini mengingatkan bahwa ada momen di mana semua sistem kontrol itu akan di-override oleh realitas yang lebih besar.</div>
+    <div class="rel-item">Bayangkan seseorang yang seluruh hidupnya tertata rapi — karir mapan, tabungan tersusun, relasi terkelola — lalu dalam semalam segalanya berubah. Itulah metafora modern untuk "bumi berguncang dengan guncangan miliknya".</div>
+    <div class="rel-item">Di era kecemasan eksistensial dan krisis identitas, ayat ini memberi kejujuran: bahwa ketidakpastian adalah bagian dari desain, bukan kerusakan sistem.</div>
+  </div>
+  <div class="app-box">
+    <div class="app-title">✦ Aplikasi Praktis</div>
+    <div class="app-item"><div class="app-num">1</div><div>Latih <strong>kesadaran ketidakkekalan</strong>: setiap kali terlalu menempel pada kenyamanan, ingatkan diri — "Ini bukan fondasi terakhir." Bukan untuk membuat cemas, tapi agar tidak kolaps ketika fondasi itu berguncang.</div></div>
+    <div class="app-item"><div class="app-num">2</div><div>Bangun <strong>resiliensi batin</strong> sebelum guncangan datang: sediakan waktu hening setiap hari untuk "latihan melepas" — melepas kemelekatan pada jabatan, harta, atau status yang terasa permanen.</div></div>
+  </div>
+  <div class="pertanyaan">
+    <div class="p-lbl">Pertanyaan Reflektif</div>
+    <div class="p-text">Apa "fondasi" yang paling kamu andalkan hari ini? Seberapa siap dirimu jika fondasi itu berguncang?</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-i">C · Intisari</span>
+  <div class="intisari"><q>Ketika yang paling stabil pun berguncang, kita baru benar-benar tahu di mana selama ini kita berpijak — dan di mana seharusnya.</q></div>
+</div>
+
+<div class="sep"><span class="sep-orn">❧</span></div>
+
+<!-- AYAT 2 -->
+<div class="ch-head">
+  <div class="ch-num">٢</div>
+  <div class="ayat-block">
+    <div class="ayat-ar">وَأَخْرَجَتِ الْأَرْضُ أَثْقَالَهَا</div>
+    <div class="ayat-lat">Wa-akhrajati l-arḍu atqālahā</div>
+    <div class="ayat-trj">"Dan bumi telah mengeluarkan beban-beban berat yang dikandungnya"</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-e">A · Energi Kata</span>
+  <div class="e-grid">
+    <div class="e-card">
+      <span class="e-word">أَخْرَجَتْ</span><span class="e-lat">Akhrajat</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Kata kerja aktif dari akar <em>kha-ra-ja</em> (keluar). Bentuk <em>akhrajat</em> adalah kausatif — "mengeluarkan dengan paksa". Bumi bukan sekadar membuka diri; ia aktif <em>memuntahkan</em> apa yang ada di dalamnya. Ada unsur dramatis di sini: sesuatu yang lama dikubur kini muncul ke permukaan tanpa bisa ditahan.</div>
+      <div class="e-akar">Berlawanan dengan <em>adkhala</em> (memasukkan). Siklus masuk-keluar ini adalah hukum kosmis yang berlaku juga pada rahasia dan amal manusia.</div>
+    </div>
+    <div class="e-card">
+      <span class="e-word">أَثْقَالَهَا</span><span class="e-lat">Atqālahā</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Jamak dari <em>thiql</em> — beban berat. Para mufasir berbeda pendapat: apakah ini jasad-jasad yang terkubur, harta terpendam, atau rekaman amal yang tersimpan? Kemungkinan besar, ketiganya. Kata <em>-hā</em> menegaskan: ini adalah beban yang <em>memang sudah menjadi milik bumi</em> — titipan yang kini dikembalikan.</div>
+      <div class="e-akar">Akar: ث-ق-ل (berat, padat, bermuatan). Thaqīl untuk berat, atqāl jamak untuk berbagai jenis beban kosmis.</div>
+    </div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-t">B · Tafsir Mendalam</span>
+  <div class="tp">Jika ayat pertama tentang <em>apa yang terjadi pada bumi</em>, ayat kedua tentang <em>apa yang bumi lakukan</em>. Bumi bukan korban pasif — ia aktif merespons dengan mengeluarkan semua isinya. Ibnu Abbas menafsirkan <em>atqāl</em> sebagai orang-orang mati yang bangkit dari kubur; Al-Mujahid menambahkan termasuk juga harta tersembunyi dan semua yang pernah dikuburkan sepanjang sejarah manusia.</div>
+  <div class="tp">Ada filosofi mendalam di sini: <strong>bumi selama ini menjadi "penyimpan"</strong>. Ia menampung jasad, benih, rahasia, dan sejarah. Tapi penyimpanan itu bukan selamanya. Ada hari di mana semua yang tersimpan harus dikeluarkan — dan bumi melakukannya bukan karena terpaksa, melainkan karena itu memang tugasnya.</div>
+  <div class="rel-box">
+    <div class="rel-title">↯ Relevansi Kekinian</div>
+    <div class="rel-item">Di era digital, kita terbiasa berpikir bahwa sesuatu bisa "dihapus permanen" — delete percakapan, hapus riwayat, uninstall aplikasi. Ayat ini adalah pengingat kosmis bahwa ada sistem penyimpanan yang jauh lebih andal dari server manapun.</div>
+    <div class="rel-item">Secara psikologis, ini paralel dengan konsep "shadow self" — bagian dari diri yang kita kubur karena memalukan. Ia tidak hilang; ia tersimpan. Dan pada waktunya, akan muncul ke permukaan — entah di akhirat, atau bahkan dalam hidup ini lewat pola perilaku yang berulang.</div>
+    <div class="rel-item">Bagi generasi yang suka menghindari konfrontasi: semua yang dihindari itu tidak benar-benar pergi. Ia menunggu momen pengungkapan.</div>
+  </div>
+  <div class="app-box">
+    <div class="app-title">✦ Aplikasi Praktis</div>
+    <div class="app-item"><div class="app-num">1</div><div>Praktikkan <strong>kejujuran berkala dengan diri sendiri</strong>: luangkan waktu bulanan untuk "mengeluarkan" apa yang selama ini dikubur — rasa bersalah, dendam, kekhawatiran yang tidak diakui. Lebih baik dikeluarkan secara sadar daripada meledak tanpa kendali.</div></div>
+    <div class="app-item"><div class="app-num">2</div><div>Tanamkan prinsip <strong>"setiap amal adalah deposit"</strong>. Kebaikan kecil yang tidak terlihat orang lain, tetap tersimpan. Keburukan yang berhasil disembunyikan, juga tersimpan. Hidup sesuai prinsip ini mengubah cara kita bertindak ketika tidak ada yang mengawasi.</div></div>
+  </div>
+  <div class="pertanyaan">
+    <div class="p-lbl">Pertanyaan Reflektif</div>
+    <div class="p-text">Apa yang selama ini "terkubur" dalam dirimu yang sesungguhnya perlu diakui dan dikeluarkan?</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-i">C · Intisari</span>
+  <div class="intisari"><q>Bumi tidak pernah benar-benar menyimpan — ia hanya menunda pengungkapan. Begitu pula dengan kebenaran yang kita kubur dalam diri sendiri.</q></div>
+</div>
+
+<div class="sep"><span class="sep-orn">❧</span></div>
+
+<!-- AYAT 3 -->
+<div class="ch-head">
+  <div class="ch-num">٣</div>
+  <div class="ayat-block">
+    <div class="ayat-ar">وَقَالَ الْإِنسَانُ مَا لَهَا</div>
+    <div class="ayat-lat">Wa-qāla l-insānu mā lahā</div>
+    <div class="ayat-trj">"Dan manusia bertanya: Ada apa dengannya?"</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-e">A · Energi Kata</span>
+  <div class="e-grid">
+    <div class="e-card">
+      <span class="e-word">الْإِنسَانُ</span><span class="e-lat">Al-Insān</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Bukan <em>rajul</em> (laki-laki), bukan <em>qawm</em> (kaum), bukan <em>nās</em> (orang banyak). Al-Insān adalah manusia dalam kesendirian eksistensialnya — setiap individu, menghadapi momen ini sendirian. Kata ini berakar dari <em>ins</em> (keakraban) atau <em>nisyān</em> (lupa) — ironi mendalam bahwa makhluk yang terbiasa "akrab dengan dunia" ini kini asing dengan apa yang terjadi.</div>
+      <div class="e-akar">Al-Insān vs Al-Basyar: insān = dimensi spiritual-psikologis manusia; basyar = dimensi fisik. Dipakai di sini karena momen ini menyentuh lapisan terdalam.</div>
+    </div>
+    <div class="e-card">
+      <span class="e-word">مَا لَهَا</span><span class="e-lat">Mā lahā</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Dua kata yang menangkap keheningan terdalam: "Ada apa dengannya?" — bukan teriak, bukan doa, bukan strategi. Hanya pertanyaan polos, hampir seperti bisikan bingung. Ini adalah momen di mana semua narasi besar manusia — kemajuan, teknologi, filsafat — luruh menjadi dua kata sederhana yang penuh ketidaktahuan.</div>
+      <div class="e-akar">Struktur pertanyaan retoris ini bukan mencari jawaban faktual, melainkan mengekspresikan ketakjuban yang melampaui kapasitas bahasa.</div>
+    </div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-t">B · Tafsir Mendalam</span>
+  <div class="tp">Ayat ketiga ini adalah <strong>potret psikologis yang paling jujur</strong> dalam surat ini. Di tengah kehancuran total, reaksi pertama manusia bukan tobat, bukan doa, bukan solusi — melainkan <em>kebingungan</em>. "Ada apa ini?" Ini bukan kelemahan; ini adalah kejujuran tentang kondisi manusia ketika berhadapan dengan sesuatu yang jauh melampaui kapasitas pemahamannya.</div>
+  <div class="tp">Ada kelucuan tragis di sini: manusia yang merasa sudah tahu segalanya, yang sudah membuat peta untuk setiap kemungkinan, tiba-tiba hanya bisa bertanya "Ada apa dengannya?" Semua arsip pengetahuan, semua database peradaban — tidak ada yang menyiapkan manusia untuk momen ini.</div>
+  <div class="rel-box">
+    <div class="rel-title">↯ Relevansi Kekinian</div>
+    <div class="rel-item">Generasi informasi — yang setiap hari dibanjiri data, analisis, dan prediksi — masih akan mengalami momen "Mā lahā?" ini. Kelebihan informasi tidak sama dengan kesiapan menghadapi yang tak terduga.</div>
+    <div class="rel-item">Ketika pandemi global melanda beberapa tahun lalu, jutaan manusia — dokter, ekonom, filsuf, pemimpin dunia — semuanya pada titik tertentu berkata versi modernnya: "Ada apa ini sebenarnya?" Itu adalah ekspresi <em>mā lahā</em> yang paling nyata di zaman kita.</div>
+    <div class="rel-item">Ada pelajaran tentang <strong>kesombongan epistemik</strong>: kita sering merasa sudah tahu cukup. Ayat ini adalah pengingat untuk mempertahankan kerendahan hati intelektual — bahwa selalu ada yang tidak kita ketahui.</div>
+  </div>
+  <div class="app-box">
+    <div class="app-title">✦ Aplikasi Praktis</div>
+    <div class="app-item"><div class="app-num">1</div><div>Kembangkan <strong>kenyamanan dengan ketidaktahuan</strong>: latih diri untuk berkata "Aku tidak tahu" tanpa rasa malu, karena itu jauh lebih jujur daripada jawaban palsu yang meyakinkan.</div></div>
+    <div class="app-item"><div class="app-num">2</div><div>Jadikan pertanyaan sebagai ibadah: <strong>bertanya dengan sungguh-sungguh</strong> lebih bernilai dari menjawab dengan tergesa. Budayakan ruang hening untuk pertanyaan-pertanyaan besar dalam hidupmu.</div></div>
+  </div>
+  <div class="pertanyaan">
+    <div class="p-lbl">Pertanyaan Reflektif</div>
+    <div class="p-text">Di area kehidupan mana kamu masih berpegang pada ilusi "sudah tahu" padahal sesungguhnya belum?</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-i">C · Intisari</span>
+  <div class="intisari"><q>Dua kata 'Ada apa?' dari manusia yang kebingungan, lebih jujur dari seribu kata penjelasan yang dibuat-buat.</q></div>
+</div>
+
+<div class="sep"><span class="sep-orn">❧</span></div>
+
+<!-- AYAT 4 -->
+<div class="ch-head">
+  <div class="ch-num">٤</div>
+  <div class="ayat-block">
+    <div class="ayat-ar">يَوْمَئِذٍ تُحَدِّثُ أَخْبَارَهَا</div>
+    <div class="ayat-lat">Yawma-idzin tuḥaddithu akhbārahā</div>
+    <div class="ayat-trj">"Pada hari itu, bumi menceritakan berita-beritanya"</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-e">A · Energi Kata</span>
+  <div class="e-grid">
+    <div class="e-card">
+      <span class="e-word">تُحَدِّثُ</span><span class="e-lat">Tuḥaddithu</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Dari akar <em>ḥ-d-th</em> (baru, terjadi, bercerita). Bentuk <em>tuḥaddithu</em> menandakan <em>terus-menerus bercerita, mengalir tanpa henti</em>. Bukan laporan singkat, bukan rangkuman — melainkan narasi lengkap, detil demi detil, momen demi momen. Ini adalah kata yang digunakan untuk obrolan intim, bukan pengumuman resmi yang kering.</div>
+      <div class="e-akar">Berbeda dari <em>akhbara</em> (laporan formal) dan <em>qāla</em> (berkata). Ḥaddatha menyiratkan kedekatan, kerincian, dan keberlangsungan cerita.</div>
+    </div>
+    <div class="e-card">
+      <span class="e-word">أَخْبَارَهَا</span><span class="e-lat">Akhbārahā</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Jamak dari <em>khabar</em> — berita, informasi, laporan. Tapi ini bukan sembarang berita; ini adalah <em>khazanah sejarah yang tersimpan dalam bumi sepanjang masa</em>: setiap jejak kaki, setiap tetesan air mata, setiap sujud di sudut kamar, setiap tipu daya di lorong gelap. Bumi menjadi saksi hidup yang akhirnya angkat bicara.</div>
+      <div class="e-akar">Kata ganti -hā kembali muncul: ini bukan berita tentang hal lain, ini <em>berita milik bumi sendiri</em> yang ia simpan selama berabad-abad.</div>
+    </div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-t">B · Tafsir Mendalam</span>
+  <div class="tp">Nabi Muhammad ﷺ pernah membacakan ayat ini lalu bertanya: "Apakah kalian tahu apa yang diceritakan bumi?" Para sahabat menjawab, "Allah dan Rasul-Nya lebih tahu." Beliau bersabda: <strong>"Sesungguhnya berita bumi adalah ia bersaksi atas setiap hamba laki-laki dan perempuan, atas apa yang mereka kerjakan di atas permukaannya."</strong> (HR. Tirmidzi)</div>
+  <div class="tp">Ini adalah salah satu konsep paling revolusioner dalam surat ini: <strong>bumi adalah saksi yang merekam segalanya</strong>. Setiap tempat yang pernah kamu pijak menyimpan memori. Setiap sudut yang pernah menjadi tempat kebaikan atau keburukan, menjadi arsip yang akan dibuka.</div>
+  <div class="rel-box">
+    <div class="rel-title">↯ Relevansi Kekinian</div>
+    <div class="rel-item">Di era CCTV, metadata GPS, dan digital footprint — kita sudah merasakan versi mini dari ini. Tapi kesaksian bumi jauh lebih komprehensif: ia merekam bukan hanya apa yang dilakukan, tapi juga <em>niat</em> di balik setiap perbuatan.</div>
+    <div class="rel-item">Konsep ini relevan untuk siapa pun yang merasa "aman" karena tidak ketahuan. Tidak ada zona privat sejati dari perspektif bumi sebagai saksi. Musholla di rumah yang sepi, kamar tidur di malam hari — semuanya merekam.</div>
+    <div class="rel-item">Sebaliknya, ini juga menjadi <strong>kabar gembira</strong>: setiap kebaikan yang dilakukan diam-diam, setiap doa yang dipanjatkan sendirian, setiap pengorbanan yang tidak diketahui siapapun — semua tercatat, semua akan bercerita.</div>
+  </div>
+  <div class="app-box">
+    <div class="app-title">✦ Aplikasi Praktis</div>
+    <div class="app-item"><div class="app-num">1</div><div><strong>Jadikan setiap tempat sebagai tempat kebaikan</strong>: setiap kali masuk ke sebuah ruang, tanyakan — "Apa yang akan diingat bumi tentang keberadaanku di sini?" Cara kreatif untuk membangun akuntabilitas harian.</div></div>
+    <div class="app-item"><div class="app-num">2</div><div>Praktikkan <strong>amal tersembunyi secara rutin</strong> — minimal satu kebaikan per hari yang tidak perlu diketahui siapapun. Bukan untuk disombongkan, tapi sebagai investasi yang bumi sendiri akan ceritakan kelak.</div></div>
+  </div>
+  <div class="pertanyaan">
+    <div class="p-lbl">Pertanyaan Reflektif</div>
+    <div class="p-text">Jika bumi di sekitarmu sekarang bisa bercerita, apa yang akan ia ceritakan tentang dirimu hari ini?</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-i">C · Intisari</span>
+  <div class="intisari"><q>Bumi tidak pernah lupa. Setiap langkah kebaikan yang kamu tapakkan di atasnya — ia simpan dengan setia, menunggu hari untuk bercerita.</q></div>
+</div>
+
+<div class="sep"><span class="sep-orn">❧</span></div>
+
+<!-- AYAT 5 -->
+<div class="ch-head">
+  <div class="ch-num">٥</div>
+  <div class="ayat-block">
+    <div class="ayat-ar">بِأَنَّ رَبَّكَ أَوْحَىٰ لَهَا</div>
+    <div class="ayat-lat">Bi-anna rabbaka awḥā lahā</div>
+    <div class="ayat-trj">"Karena sesungguhnya Tuhanmu telah memerintahkan itu kepadanya"</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-e">A · Energi Kata</span>
+  <div class="e-grid">
+    <div class="e-card">
+      <span class="e-word">رَبَّكَ</span><span class="e-lat">Rabbaka</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Tuhan yang memiliki, mendidik, dan memelihara. Bukan hanya <em>Ilāh</em> (sembahan) — tapi <em>Rabb</em> yang secara aktif mengurus dan mengatur. Menarik bahwa kata ini disandingkan dengan kata ganti <em>-ka</em> (milikmu/kamu): "Tuhanmu". Sebuah keintiman di tengah skenario kosmis paling agung — Yang mengatur seluruh keguncangan ini adalah Tuhan yang juga peduli padamu secara personal.</div>
+      <div class="e-akar">Rabb berasal dari akar yang sama dengan tarbiyah (pendidikan, pengasuhan). Ini bukan Tuhan yang asing dan jauh, tapi Yang paling tahu tentang dirimu.</div>
+    </div>
+    <div class="e-card">
+      <span class="e-word">أَوْحَىٰ</span><span class="e-lat">Awḥā</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Mewahyukan, menginspirasi, memberi instruksi tersembunyi. Kata yang sama digunakan untuk wahyu kepada para nabi, tapi juga untuk naluri lebah. Ini menunjukkan: bumi tidak bertindak atas kehendak sendiri atau karena hukum alam semata — ia menerima <em>instruksi ilahi yang spesifik</em> untuk momen ini. Ada orchestrasi di balik chaos yang terlihat.</div>
+      <div class="e-akar">Awḥā berbeda dari amara (perintah keras) atau qāla (berkata biasa). Awḥā adalah komunikasi yang lebih halus, lebih langsung, lebih intim — menembus ke inti.</div>
+    </div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-t">B · Tafsir Mendalam</span>
+  <div class="tp">Ayat ini adalah <strong>kunci untuk memahami seluruh skenario</strong>. Mengapa bumi berguncang? Karena diperintah. Mengapa bumi bercerita? Karena diperintah. Tidak ada chaos di balik ini semua — ada orchestrasi yang sempurna dari Yang Maha Tahu. Bahkan keguncangan paling dahsyat sekalipun adalah bagian dari perintah yang teratur.</div>
+  <div class="tp">Pilihan kata <em>rabbaka</em> (Tuhanmu — menyapa pembaca langsung) bukan kebetulan. Di tengah gambaran kiamat yang paling menakutkan, Al-Qur'an memilih untuk menyapa secara personal: "Ini semua diatur oleh <em>Tuhanmu</em> — Yang mengurus dirimu." Ada pesan ketenangan yang tersisip di balik keagungan skenario ini.</div>
+  <div class="rel-box">
+    <div class="rel-title">↯ Relevansi Kekinian</div>
+    <div class="rel-item">Kita hidup di era yang sering merasakan "kekacauan tanpa makna" — berita buruk bertubi-tubi, krisis global, ketidakpastian yang tak berkesudahan. Ayat ini menawarkan kerangka pandang: bahkan yang tampak chaos sekalipun, ada tangan yang mengatur.</div>
+    <div class="rel-item">Untuk mereka yang sedang mengalami masa sulit — kehilangan pekerjaan, hubungan yang hancur, sakit yang tak kunjung sembuh — kata <em>rabbaka</em> adalah sapaan langsung: "Yang mengatur ujianmu ini adalah yang paling peduli padamu."</div>
+    <div class="rel-item">Ini juga menjadi dasar <strong>ketenangan sejati</strong> yang berbeda dari toxic positivity: bukan menyangkal bahwa sesuatu itu berat, tapi tahu bahwa ada makna dan penguasa di balik yang berat itu.</div>
+  </div>
+  <div class="app-box">
+    <div class="app-title">✦ Aplikasi Praktis</div>
+    <div class="app-item"><div class="app-num">1</div><div>Ketika menghadapi situasi yang tampak kacau dan tidak masuk akal, latih <strong>reframing berbasis tawakal</strong>: "Ini dalam kendali Rabb-ku. Ada hikmah yang belum aku lihat." Bukan pasif, tapi tetap berikhtiar dengan batin yang tenang.</div></div>
+    <div class="app-item"><div class="app-num">2</div><div>Bangun kebiasaan <strong>murāqabah</strong> (kesadaran bahwa Allah selalu menyaksikan): sebelum tidur, renungkan — "Tindakan mana hari ini yang aku lakukan karena kesadaran bahwa Rabb-ku melihat?"</div></div>
+  </div>
+  <div class="pertanyaan">
+    <div class="p-lbl">Pertanyaan Reflektif</div>
+    <div class="p-text">Dalam situasi sulit yang sedang kamu hadapi, apakah kamu bisa merasakan tangan Rabb di baliknya — atau kekacauan itu masih terasa sendirian dan tanpa arah?</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-i">C · Intisari</span>
+  <div class="intisari"><q>Di balik setiap guncangan, ada Rabb yang memerintahkannya — dan Ia adalah Tuhan yang sama yang paling tahu tentang dirimu.</q></div>
+</div>
+
+<div class="sep"><span class="sep-orn">❧</span></div>
+
+<!-- AYAT 6 -->
+<div class="ch-head">
+  <div class="ch-num">٦</div>
+  <div class="ayat-block">
+    <div class="ayat-ar">يَوْمَئِذٍ يَصْدُرُ النَّاسُ أَشْتَاتًا لِّيُرَوْا أَعْمَالَهُمْ</div>
+    <div class="ayat-lat">Yawma-idzin yaṣduru n-nāsu asytatā liyuraw a'mālahum</div>
+    <div class="ayat-trj">"Pada hari itu, manusia keluar berkelompok-kelompok untuk diperlihatkan kepada mereka balasan amal perbuatan mereka"</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-e">A · Energi Kata</span>
+  <div class="e-grid">
+    <div class="e-card">
+      <span class="e-word">أَشْتَاتًا</span><span class="e-lat">Asytātā</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Jamak dari <em>syatt</em> — terpencar, terpecah, berkelompok. Manusia tidak berjalan bersama dalam satu barisan yang sama — mereka terpisah berdasarkan amal dan kondisi mereka. Ada yang bersinar, ada yang gelap. Ada yang penuh harap, ada yang penuh ketakutan. Kata ini menolak ilusi bahwa semua orang pada akhirnya sama.</div>
+      <div class="e-akar">Antonim: jamī'an (bersama, semuanya). Asytātā menegaskan individualitas pertanggungjawaban — tidak ada yang bisa "numpang" iman orang lain.</div>
+    </div>
+    <div class="e-card">
+      <span class="e-word">لِّيُرَوْا</span><span class="e-lat">Liyuraw</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Dari akar <em>ra-ā</em> (melihat), bentuk pasif kausatif: "agar mereka diperlihatkan". Ini bukan sekadar melihat — ini adalah momen di mana manusia menjadi penonton dari film hidupnya sendiri. Dan mereka tidak bisa menolak tayangannya, tidak bisa fast-forward, tidak bisa skip adegan manapun.</div>
+      <div class="e-akar">Pasif form menandakan: manusia bukan yang memilih untuk melihat — mereka <em>dihadapkan</em> untuk menyaksikan. Ada otoritas di balik pemutaran film ini.</div>
+    </div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-t">B · Tafsir Mendalam</span>
+  <div class="tp">Ayat keenam adalah <strong>transisi dari bumi ke manusia</strong>. Mereka keluar dalam kelompok-kelompok yang terbentuk berdasarkan apa yang telah mereka kerjakan. Tujuannya diungkapkan secara eksplisit: <em>liyuraw a'mālahum</em> — agar mereka melihat amal-amal mereka. Ini adalah momen pemaparan total. Selama hidup, manusia bisa berargumen, bisa mengelak, bisa mengklaim niat. Di sini, tidak perlu argumen — amal itu sendiri yang berbicara.</div>
+  <div class="rel-box">
+    <div class="rel-title">↯ Relevansi Kekinian</div>
+    <div class="rel-item">Di era perbandingan sosial yang obsesif, kita sering lupa bahwa kelompok yang paling penting bukan berdasarkan followers atau kekayaan, tapi berdasarkan kualitas amal. Pengelompokan di hari itu lebih jujur dari algoritma manapun.</div>
+    <div class="rel-item">Konsep "diperlihatkan amal sendiri" adalah motivasi untuk berhati-hati bukan hanya dengan apa yang dilakukan, tapi dengan <em>bagaimana rasanya nanti melihat kembali</em> apa yang kita lakukan hari ini.</div>
+    <div class="rel-item">Ada juga kenyamanan di sini: kebaikan yang kamu lakukan dan belum dihargai di dunia ini, akan diperlihatkan juga. Tidak ada yang hilang dari catatan.</div>
+  </div>
+  <div class="app-box">
+    <div class="app-title">✦ Aplikasi Praktis</div>
+    <div class="app-item"><div class="app-num">1</div><div>Coba latihan <strong>"lihat dari masa depan"</strong>: sebelum mengambil keputusan penting, bayangkan dirimu melihat keputusan itu pada hari pemaparan. Apakah kamu akan merasa bangga, menyesal, atau biasa? Ini adalah kompas etika yang powerful.</div></div>
+    <div class="app-item"><div class="app-num">2</div><div>Buat <strong>audit amal mingguan</strong>: setiap Jumat, luangkan 10 menit untuk meninjau — apa yang sudah kulakukan yang ingin aku lihat kembali di sana? Dan apa yang harus aku perbaiki sebelum terlambat?</div></div>
+  </div>
+  <div class="pertanyaan">
+    <div class="p-lbl">Pertanyaan Reflektif</div>
+    <div class="p-text">Jika minggu ini amalmu diputar ulang di hadapanmu sekarang, bagian mana yang membuat dadamu lapang, dan bagian mana yang membuat dadamu sesak?</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-i">C · Intisari</span>
+  <div class="intisari"><q>Hari itu, tidak ada kelompok berdasarkan status atau keturunan — hanya kelompok berdasarkan apa yang sungguh-sungguh kamu kerjakan ketika tidak ada yang melihat.</q></div>
+</div>
+
+<div class="sep"><span class="sep-orn">❧</span></div>
+
+<!-- AYAT 7-8 -->
+<div class="ch-head">
+  <div class="ch-num" style="width:auto;padding:0 16px;border-radius:24px;font-size:16px;">٧ · ٨</div>
+  <div style="margin-top:20px;" class="ayat-block">
+    <div class="ayat-ar">فَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُ</div>
+    <div class="ayat-lat">Faman ya'mal mithqāla dzarratin khayran yarah</div>
+    <div class="ayat-trj">"Maka barangsiapa mengerjakan kebaikan seberat zarrah, niscaya dia akan melihat balasannya."</div>
+  </div>
+  <div class="ayat-block" style="margin-top:16px;">
+    <div class="ayat-ar">وَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ شَرًّا يَرَهُ</div>
+    <div class="ayat-lat">Wa man ya'mal mithqāla dzarratin syarran yarah</div>
+    <div class="ayat-trj">"Dan barangsiapa mengerjakan kejahatan seberat zarrah, niscaya dia akan melihat balasannya."</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-e">A · Energi Kata</span>
+  <div class="e-grid">
+    <div class="e-card">
+      <span class="e-word">مِثْقَالَ ذَرَّةٍ</span><span class="e-lat">Mithqāla dzarratin</span>
+      <div class="e-div"></div>
+      <div class="e-desc"><em>Mithqāl</em> berarti timbangan atau bobot setara. <em>Dzarrah</em> adalah partikel terkecil yang bisa dilihat — debu yang melayang dalam cahaya matahari, yang dalam terminologi modern kita sebut setara atom atau bahkan lebih kecil. Gabungan keduanya menciptakan ukuran yang paling mengecilkan yang bisa dibayangkan. Ini bukan hiperbola — ini adalah ketelitian timbangan ilahi yang tidak melewatkan bahkan yang paling tidak terlihat.</div>
+      <div class="e-akar">Dzarrah dalam tafsir klasik: semut terkecil, debu terkecil, partikel dalam sorotan cahaya. Modernitas mengkonfirmasi: realitas terkecil pun memiliki bobot dan eksistensi.</div>
+    </div>
+    <div class="e-card">
+      <span class="e-word">يَرَهُ</span><span class="e-lat">Yarah</span>
+      <div class="e-div"></div>
+      <div class="e-desc">Ia akan melihatnya. Bukan "ia akan dihukum" atau "ia akan diberi pahala" — melainkan <em>ia akan melihat</em>. Ini adalah keadilan yang bersifat eksperiensial: bukan sekadar menerima konsekuensi, tapi <em>menyaksikan langsung dan mengerti sepenuhnya</em> hubungan sebab-akibat dari setiap amal yang pernah dilakukan.</div>
+      <div class="e-akar">Akar r-ā-ā. Diulang dua kali dengan struktur sempurna — cermin sempurna antara kebaikan dan kejahatan, tanpa ada yang lebih diistimewakan dalam ketelitian timbangan.</div>
+    </div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-t">B · Tafsir Mendalam</span>
+  <div class="tp">Dua ayat penutup ini adalah <strong>klimaks dari seluruh surat</strong> — dan mungkin dua ayat paling padat yang pernah diturunkan tentang keadilan kosmis. Ibnu Mas'ud menyebutnya sebagai ayat paling menakutkan dalam Al-Qur'an. Sementara sebagian ulama menyebutnya sebagai ayat paling memberikan harapan sekaligus paling membuat gentar.</div>
+  <div class="tp">Keseimbangan antara ayat 7 dan 8 adalah masterpiece kesimetrisan: struktur kalimatnya identik, bobotnya sama — <em>mithqāla dzarrah</em>. Al-Qur'an tidak menulis "kebaikan besar akan dibalas, kejahatan kecil dimaafkan." Tidak juga sebaliknya. Ketelitian berlaku dua arah. Tidak ada yang terlalu kecil untuk diabaikan — baik dalam catatan kebaikan maupun kejahatan.</div>
+  <div class="tp">Perlu diperhatikan: ayat 7 tentang kebaikan disebutkan terlebih dahulu — ini bukan kebetulan. Ada optimisme yang sengaja ditanam: bahwa sistem ini dimulai dari kabar baik untuk mereka yang berbuat baik, baru kemudian peringatan untuk yang berbuat buruk.</div>
+  <div class="rel-box">
+    <div class="rel-title">↯ Relevansi Kekinian</div>
+    <div class="rel-item">Di era di mana kebaikan kecil sering terasa sia-sia — satu doa untuk orang yang tidak mengenalmu, satu ucapan terima kasih yang tulus — ayat 7 adalah jaminan: tidak ada yang sia-sia, tidak ada yang terlalu kecil untuk hitungan kebaikan.</div>
+    <div class="rel-item">Di era di mana kejahatan kecil mudah dirasionalisasi — "hanya gosip kecil", "hanya berbohong sedikit", "hanya curang sekali" — ayat 8 adalah peringatan keras: tidak ada yang terlalu kecil untuk lolos dari catatan.</div>
+    <div class="rel-item">Bagi generasi yang terbiasa berpikir dalam skala besar (viral, masif, impactful), kedua ayat ini mengajarkan: <strong>konsistensi dalam hal kecil adalah strategi kehidupan yang paling solid</strong>.</div>
+  </div>
+  <div class="app-box">
+    <div class="app-title">✦ Aplikasi Praktis</div>
+    <div class="app-item"><div class="app-num">1</div><div>Terapkan <strong>prinsip dzarrah</strong> dalam kehidupan harian: jangan menunggu kesempatan besar untuk berbuat baik. Senyum tulus, doa singkat, bantuan kecil yang tidak diminta — semuanya bermakna. Kumpulkan kebaikan "atom" setiap hari.</div></div>
+    <div class="app-item"><div class="app-num">2</div><div>Hati-hati dengan <strong>kejahatan yang dianggap remeh</strong>: fitnah bisik-bisik, ketidakjujuran kecil dalam transaksi, sikap kasar yang dianggap wajar — semuanya tercatat. Bukan untuk membuat paranoid, tapi untuk membangun kehati-hatian yang lahir dari kesadaran.</div></div>
+  </div>
+  <div class="pertanyaan">
+    <div class="p-lbl">Pertanyaan Reflektif</div>
+    <div class="p-text">Kebaikan "seberat zarrah" apa yang bisa kamu lakukan hari ini, yang mungkin tidak terlihat besar tapi akan bermakna bagi seseorang?</div>
+  </div>
+</div>
+
+<div class="sub">
+  <span class="badge badge-i">C · Intisari</span>
+  <div class="intisari"><q>Tidak ada yang terlalu kecil untuk bermakna di hadapan timbangan yang paling teliti. Mulailah dari yang kecil — karena zarrah demi zarrah, itulah yang membentuk gunung.</q></div>
+</div>
+
+</div><!-- end ayats -->
+
+<!-- REFLEKSI PENUTUP -->
+<div class="refleksi">
+  <div class="r-header">
+    <div class="eyebrow">D · Refleksi Penutup</div>
+    <div class="r-title">Pola yang Bisa Diambil</div>
+    <div class="r-sub">Delapan ayat, delapan cermin untuk kehidupan</div>
+  </div>
+
+  <div class="pola-title">Pola Utama dari Az-Zalzalah</div>
+  <div class="pola-grid">
+    <div class="pola-card">
+      <div class="pola-n">01</div>
+      <div class="pola-h">Hukum Rekaman Universal</div>
+      <div class="pola-d">Tidak ada yang benar-benar hilang dari eksistensi. Setiap tindakan, niat, dan momen tersimpan dalam sistem yang lebih canggih dari teknologi apapun. Kesadaran ini mengubah cara kita bertindak di balik layar.</div>
+    </div>
+    <div class="pola-card">
+      <div class="pola-n">02</div>
+      <div class="pola-h">Keadilan Berbasis Atom</div>
+      <div class="pola-d">Sistem keadilan ilahi beroperasi pada resolusi tertinggi. Tidak ada kebaikan yang terlalu kecil untuk dihitung, tidak ada kejahatan yang terlalu kecil untuk tercatat. Ini mengundang konsistensi, bukan heroisme sesekali.</div>
+    </div>
+    <div class="pola-card">
+      <div class="pola-n">03</div>
+      <div class="pola-h">Orchestrasi di Balik Chaos</div>
+      <div class="pola-d">Setiap guncangan kehidupan — sekacau apapun dari luar — adalah bagian dari instruksi ilahi yang terencana. Ini bukan fatalis; ini adalah fondasi ketenangan yang memungkinkan kita tetap bertindak di tengah badai.</div>
+    </div>
+    <div class="pola-card">
+      <div class="pola-n">04</div>
+      <div class="pola-h">Pertanggungjawaban Individual</div>
+      <div class="pola-d">Manusia keluar "berkelompok-kelompok" berdasarkan amal masing-masing. Tidak ada yang bisa numpang nasib orang lain. Keimanan dan kebaikan harus menjadi milik sendiri, bukan warisan atau tumpangan.</div>
+    </div>
+  </div>
+
+  <div class="langkah-title">Langkah Nyata yang Bisa Dimulai Hari Ini</div>
+
+  <div class="langkah-item">
+    <div class="l-icon">◈</div>
+    <div>
+      <div class="l-head">Bangun Rutinitas Muhasabah Harian (10 Menit)</div>
+      <div class="l-desc">Sebelum tidur, tanyakan tiga hal: Kebaikan zarrah apa yang sudah kulakukan? Kejahatan zarrah apa yang harus aku perbaiki? Dan satu hal: jika bumi bercerita tentangku hari ini, cerita apa yang ia sampaikan? Konsistensi 10 menit ini lebih berdampak dari satu momen "besar" sesekali.</div>
+    </div>
+  </div>
+
+  <div class="langkah-item">
+    <div class="l-icon">◈</div>
+    <div>
+      <div class="l-head">Praktikkan "Amal Tersembunyi" Setiap Pekan</div>
+      <div class="l-desc">Minimal sekali seminggu, lakukan kebaikan yang tidak perlu diketahui siapapun — tidak perlu di-upload, tidak perlu diceritakan. Biarkan bumi yang menyimpannya. Ini bukan hanya latihan spiritual; ini juga terapi dari kecanduan validasi yang menggerus keikhlasan.</div>
+    </div>
+  </div>
+
+  <div class="langkah-item">
+    <div class="l-icon">◈</div>
+    <div>
+      <div class="l-head">Latih Respons Tenang di Tengah Guncangan</div>
+      <div class="l-desc">Ketika sesuatu tiba-tiba berguncang dalam hidupmu — kabar buruk, konflik tiba-tiba, rencana yang berantakan — ambil napas, ingat: "Ada Rabb yang memerintahkan ini, ada hikmah yang sedang berjalan." Ini bukan penyangkalan, ini adalah mengambil jeda untuk merespons dengan bijak.</div>
+    </div>
+  </div>
+
+  <div class="langkah-item">
+    <div class="l-icon">◈</div>
+    <div>
+      <div class="l-head">Jaga Kejujuran di Tempat Sepi</div>
+      <div class="l-desc">Pilih satu area kehidupan di mana kamu sering "kendur" ketika tidak ada yang melihat — kejujuran dalam pekerjaan, kualitas ibadah, perlakuan terhadap orang yang tidak bisa membalasmu. Perkuat area itu. Bumi bersaksi, dan itu lebih dari cukup sebagai motivasi.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;" class="closing">
+    <div class="closing-orn">✦ ✦ ✦</div>
+    <div class="closing-text">"Az-Zalzalah bukan surat tentang ketakutan — ia adalah undangan untuk hidup dengan kejujuran yang paling dalam, karena kita tahu bahwa setiap zarrah kebaikan tidak akan pernah sia-sia, dan setiap momen kita berpijak di bumi ini sedang disaksikan oleh saksi yang paling jujur."</div>
+  </div>
+</div>
+
+<!-- EPILOG -->
+<div class="epilog">
+  <div class="ep-ey">E · Epilog</div>
+  <div class="ep-title">Ketika Tanah Di Bawah Kakimu Mulai Bicara</div>
+  <div class="ep-line"></div>
+
+  <div class="ep-p">Pada suatu hari yang tidak kita tahu kapan, tanah yang selama ini kamu injak dengan santai — tanah yang menjadi alas langkahmu menuju kantor, tanah yang merekam sujudmu di tengah malam, tanah yang menyaksikan air matamu yang jatuh sendirian di kamar — tanah itu akan angkat bicara.</div>
+
+  <div class="ep-em">Ia tidak akan berteriak. Ia akan bercerita. Pelan, rinci, dan jujur — seperti sahabat lama yang telah menyaksikan hidupmu dari dekat selama bertahun-tahun, dan kini akhirnya diberi izin untuk mengungkapkan apa yang ia tahu.</div>
+
+  <div class="ep-sap">Untuk kamu yang sekarang sedang lelah — yang merasa kebaikan-kebaikanmu kecil dan tidak dilihat siapapun, yang sudah lama berjuang tanpa tepuk tangan, yang sering bertanya-tanya apakah semua ini ada artinya — ketahuilah: bumi merekam setiap langkahmu. Setiap malam yang kamu isi dengan doa ketika yang lain tidur. Setiap kali kamu memilih jujur meski itu merugikan. Setiap senyum yang kamu berikan kepada orang yang tidak bisa membalasnya. Semuanya tersimpan, semuanya menunggu momen cerita itu.</div>
+
+  <div class="ep-sap">Dan untuk kamu yang sedang bergumul dengan masa lalu — yang menyimpan rasa bersalah atas hal-hal yang pernah dilakukan dalam kegelapan, yang berharap ada tombol hapus yang benar-benar menghapus — surat ini bukan untuk membuatmu putus asa. Ia hadir untuk mengundangmu pada kejujuran: bahwa mengakui, memperbaiki, dan kembali, itu jauh lebih mulia dari terus berpura-pura. Timbangan itu teliti — tapi ia juga mencatat setiap langkah pertobatan dengan ketelitian yang sama.</div>
+
+  <div class="ep-p">Kita hidup di zaman yang ramai. Notifikasi, ekspektasi, perbandingan tanpa henti. Mudah sekali terseret dalam kepanikan tentang apa yang terlihat, dan lupa tentang apa yang sesungguhnya bermakna. Az-Zalzalah hadir seperti sebuah reset button — bukan untuk menakut-nakuti, tapi untuk mengembalikan fokus: bahwa pada akhirnya, yang paling penting bukan seberapa banyak yang kamu tampilkan, tapi seberapa banyak yang benar-benar kamu kerjakan.</div>
+
+  <div class="ep-em">Zarrah demi zarrah. Langkah demi langkah. Hari demi hari. Itulah cara gunung dibangun.</div>
+
+  <div class="ep-p">Jadi ketika malam ini kamu meletakkan kepalamu di bantal, dan sebelum matamu terpejam, tanyakan sekali pada diri sendiri: "Hari ini, apa yang sudah aku titipkan pada bumi — yang akan dengan bangga ia ceritakan?" Jika jawabannya membuatmu tersenyum, itu pertanda yang baik. Jika jawabannya membuatmu gelisah, itu juga pertanda yang baik — karena artinya hati nuranimu masih hidup dan mengajakmu kembali.</div>
+
+  <div class="ep-p">Az-Zalzalah bukan akhir cerita. Ia adalah pengingat bahwa cerita ini sedang berlangsung, dan kamu masih punya waktu untuk menulis bab yang paling indah dari hidupmu — zarrah demi zarrah, momen demi momen, dengan penuh kesadaran bahwa ada saksi yang paling setia menemanimu: bumi yang kamu pijak, dan Rabb yang menciptakanmu dengan penuh kasih.</div>
+
+  <div class="ep-close">
+    <div class="ep-close-ar">وَاللَّهُ أَعْلَم</div>
+    <div class="ep-close-text">
+      "Semoga setiap zarrah kebaikan yang kita tanamkan hari ini<br>
+      menjadi bunga yang mekar pada hari bumi menceritakan segalanya."
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="ft">Tafsir Az-Zalzalah · Surah ke-99</div>
+  <div class="fo">❧</div>
+  <div class="ft">Juz 30 · 8 Ayat</div>
+</div>
+
+</div>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

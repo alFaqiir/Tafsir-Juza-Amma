@@ -1,0 +1,1180 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Falaq — Benteng Diri di Tengah Kebisingan Dunia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night: #0d0d14;
+    --deep: #12121e;
+    --layer: #16162a;
+    --card: #1a1a2e;
+    --card2: #1e1e36;
+    --border: rgba(255,200,100,0.12);
+    --gold: #e8c36a;
+    --gold-soft: #c9a84c;
+    --gold-pale: rgba(232,195,106,0.15);
+    --amber: #f5a623;
+    --dawn: #ff8c61;
+    --rose: #c97b7b;
+    --sky: #7eb8d4;
+    --sage: #7db88a;
+    --text: #e8e0d0;
+    --text-soft: #a89880;
+    --text-dim: #6b6055;
+    --glow: 0 0 40px rgba(232,195,106,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--night);
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ── STARFIELD ── */
+  .stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .stars::before, .stars::after {
+    content: '';
+    position: absolute;
+    width: 1px; height: 1px;
+    border-radius: 50%;
+    background: transparent;
+    box-shadow:
+      120px 40px rgba(255,255,255,0.5), 340px 120px rgba(255,255,255,0.3),
+      80px 200px rgba(255,255,255,0.4), 500px 80px rgba(255,255,255,0.5),
+      620px 160px rgba(255,255,255,0.3), 780px 40px rgba(255,255,255,0.4),
+      900px 200px rgba(255,255,255,0.5), 1050px 90px rgba(255,255,255,0.3),
+      1200px 150px rgba(255,255,255,0.4), 200px 350px rgba(255,255,255,0.3),
+      450px 300px rgba(255,255,255,0.5), 680px 380px rgba(255,255,255,0.3),
+      830px 320px rgba(255,255,255,0.4), 1000px 400px rgba(255,255,255,0.3),
+      1150px 340px rgba(255,255,255,0.5), 60px 500px rgba(255,255,255,0.3),
+      300px 480px rgba(255,255,255,0.4), 560px 520px rgba(255,255,255,0.3),
+      750px 460px rgba(255,255,255,0.5), 970px 540px rgba(255,255,255,0.3),
+      1100px 490px rgba(255,255,255,0.4), 1300px 60px rgba(255,255,255,0.3),
+      1400px 260px rgba(255,255,255,0.5), 1350px 450px rgba(255,255,255,0.4),
+      170px 650px rgba(255,255,255,0.3), 420px 700px rgba(255,255,255,0.5),
+      660px 620px rgba(255,255,255,0.3), 890px 680px rgba(255,255,255,0.4),
+      1180px 740px rgba(255,255,255,0.3), 30px 780px rgba(255,255,255,0.5),
+      580px 800px rgba(255,255,255,0.3), 1020px 820px rgba(255,255,255,0.4);
+  }
+  .stars::after {
+    width: 2px; height: 2px;
+    box-shadow:
+      260px 70px rgba(232,195,106,0.4), 720px 130px rgba(232,195,106,0.3),
+      490px 430px rgba(232,195,106,0.4), 1060px 270px rgba(232,195,106,0.3),
+      150px 590px rgba(232,195,106,0.4), 870px 550px rgba(232,195,106,0.3),
+      1250px 370px rgba(232,195,106,0.4), 380px 860px rgba(232,195,106,0.3);
+  }
+
+  /* ── DAWN GRADIENT BG ── */
+  .dawn-bg {
+    position: fixed;
+    bottom: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 60vh;
+    background: radial-gradient(ellipse at 50% 100%, rgba(255,140,97,0.06) 0%, rgba(232,195,106,0.04) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── LAYOUT ── */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 80px 0 60px;
+    position: relative;
+  }
+
+  .hero-ornament {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 40px;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.5; transform: scaleX(1); }
+    50% { opacity: 1; transform: scaleX(1.3); }
+  }
+
+  .surah-badge {
+    font-family: 'Amiri', serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--gold-soft);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--gold) 0%, #fff8e7 50%, var(--gold-soft) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-style: italic;
+    color: var(--text-soft);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .tagline {
+    background: linear-gradient(135deg, var(--card), var(--card2));
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 20px 32px;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text-soft);
+    line-height: 1.7;
+    max-width: 560px;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+  .tagline::before {
+    content: '"';
+    position: absolute;
+    top: -20px; left: 20px;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.3;
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dim);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s ease 2s forwards;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold-soft), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(1); opacity: 0.6; }
+    50% { transform: scaleY(0.6); opacity: 1; }
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 60px 0;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+  .divider-gem {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    opacity: 0.6;
+  }
+
+  /* ── AYAT SECTION ── */
+  .ayat-section {
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .ayat-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .ayat-number {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .ayat-number::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .arabic-verse {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    color: var(--gold);
+    line-height: 1.8;
+    direction: rtl;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .translation {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text-soft);
+    text-align: center;
+  }
+
+  /* ── ENERGI KATA ── */
+  .energi-section {
+    margin: 36px 0;
+  }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .kata-grid {
+    display: grid;
+    gap: 16px;
+  }
+
+  .kata-card {
+    background: linear-gradient(135deg, var(--card) 0%, var(--card2) 100%);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-soft);
+    padding: 20px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .kata-card:hover {
+    transform: translateX(4px);
+    border-left-color: var(--gold);
+  }
+  .kata-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(232,195,106,0.03), transparent);
+    pointer-events: none;
+  }
+
+  .kata-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    direction: rtl;
+    margin-bottom: 6px;
+  }
+  .kata-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .kata-desc {
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    line-height: 1.75;
+  }
+
+  /* ── TAFSIR ── */
+  .tafsir-block {
+    margin: 36px 0;
+  }
+  .tafsir-body {
+    font-size: 0.97rem;
+    color: var(--text-soft);
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+  .tafsir-body p { margin-bottom: 16px; }
+
+  .relevansi-box {
+    background: linear-gradient(135deg, rgba(232,195,106,0.05), rgba(255,140,97,0.05));
+    border: 1px solid rgba(232,195,106,0.15);
+    padding: 24px 28px;
+    border-radius: 2px;
+    position: relative;
+  }
+  .relevansi-box::before {
+    content: 'Relevansi Kekinian';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: var(--night);
+    padding: 0 10px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  .relevansi-box p {
+    font-size: 0.9rem;
+    color: var(--text-soft);
+    line-height: 1.8;
+  }
+
+  /* ── INTISARI ── */
+  .intisari {
+    margin: 32px 0 0;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, var(--layer), var(--card));
+    border-top: 2px solid var(--gold-soft);
+    text-align: center;
+    position: relative;
+  }
+  .intisari-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.7;
+  }
+  .intisari-text strong {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* ── KESIMPULAN ── */
+  .kesimpulan {
+    margin-top: 60px;
+  }
+
+  .kesimpulan-hero {
+    text-align: center;
+    padding: 60px 0 40px;
+    position: relative;
+  }
+  .kesimpulan-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold-soft), transparent);
+  }
+  .kesimpulan-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--gold), var(--dawn));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .lapisan-grid {
+    display: grid;
+    gap: 24px;
+    margin: 40px 0;
+  }
+  .lapisan-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .lapisan-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--gold-soft), transparent);
+  }
+  .lapisan-num {
+    font-size: 3rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    opacity: 0.15;
+    position: absolute;
+    top: 12px; right: 20px;
+    line-height: 1;
+  }
+  .lapisan-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold-soft);
+    margin-bottom: 12px;
+  }
+  .lapisan-body {
+    font-size: 0.92rem;
+    color: var(--text-soft);
+    line-height: 1.85;
+  }
+
+  .paradoks-box {
+    background: linear-gradient(135deg, rgba(201,123,123,0.08), rgba(126,184,212,0.08));
+    border: 1px solid rgba(201,123,123,0.2);
+    padding: 36px 40px;
+    text-align: center;
+    margin: 40px 0;
+    position: relative;
+  }
+  .paradoks-box::after {
+    content: '✦';
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--night);
+    padding: 0 12px;
+    color: var(--rose);
+    font-size: 1rem;
+  }
+  .paradoks-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .paradoks-body {
+    font-size: 0.93rem;
+    color: var(--text-soft);
+    line-height: 1.85;
+  }
+  .paradoks-body em {
+    color: var(--text);
+    font-style: italic;
+  }
+
+  /* ── ACTION POINTS ── */
+  .action-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 40px 0;
+  }
+  @media (max-width: 600px) {
+    .action-grid { grid-template-columns: 1fr; }
+  }
+
+  .action-card {
+    background: var(--layer);
+    border: 1px solid var(--border);
+    padding: 24px;
+  }
+  .action-card-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .action-list {
+    list-style: none;
+    padding: 0;
+  }
+  .action-list li {
+    font-size: 0.88rem;
+    color: var(--text-soft);
+    padding: 6px 0;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .action-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold-soft);
+  }
+
+  /* ── PENUTUP ── */
+  .penutup {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(to bottom, transparent, var(--layer), transparent);
+    margin: 60px -24px 0;
+    padding: 80px 44px;
+  }
+  .penutup-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+  .penutup-quote {
+    font-family: 'Lora', serif;
+    font-size: 0.97rem;
+    font-style: italic;
+    color: var(--text-soft);
+    line-height: 1.95;
+    max-width: 560px;
+    margin: 0 auto 32px;
+  }
+  .penutup-body {
+    font-size: 0.93rem;
+    color: var(--text-soft);
+    line-height: 1.9;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .penutup-body p { margin-bottom: 16px; }
+
+  /* ── EPILOG ── */
+  .epilog {
+    margin: 60px 0 0;
+    padding-top: 60px;
+    border-top: 1px solid var(--border);
+  }
+  .epilog-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .epilog-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .epilog-body {
+    font-size: 0.93rem;
+    color: var(--text-soft);
+    line-height: 1.95;
+  }
+  .epilog-body p { margin-bottom: 18px; }
+
+  .closing-arabic {
+    text-align: center;
+    margin: 50px 0 24px;
+  }
+  .closing-arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    direction: rtl;
+    display: block;
+    margin-bottom: 16px;
+    text-shadow: 0 0 30px rgba(232,195,106,0.3);
+  }
+  .closing-translation {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: var(--text-soft);
+    font-size: 0.95rem;
+  }
+
+  .final-statement {
+    text-align: center;
+    padding: 48px 32px;
+    background: linear-gradient(135deg, rgba(232,195,106,0.05), rgba(255,140,97,0.05));
+    border: 1px solid var(--border);
+    margin-top: 48px;
+  }
+  .final-statement p {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-soft);
+    line-height: 1.8;
+    margin-bottom: 10px;
+  }
+  .final-statement strong {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .light-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--text);
+    text-align: center;
+    margin-top: 40px;
+    opacity: 0.85;
+  }
+
+  /* ── UTILS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  strong { color: var(--text); }
+  em { color: var(--text-soft); }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-soft), var(--dawn));
+    width: 0%;
+    z-index: 1000;
+    transition: width 0.1s linear;
+  }
+
+  /* ── NAV DOTS ── */
+  .nav-dots {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+  }
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .nav-dot.active, .nav-dot:hover {
+    background: var(--gold);
+    transform: scale(1.5);
+  }
+  @media (max-width: 768px) { .nav-dots { display: none; } }
+
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+<div class="dawn-bg"></div>
+<div class="progress-bar" id="progressBar"></div>
+
+<nav class="nav-dots" id="navDots">
+  <div class="nav-dot active" data-target="hero" title="Pengantar"></div>
+  <div class="nav-dot" data-target="ayat1" title="Ayat 1"></div>
+  <div class="nav-dot" data-target="ayat2" title="Ayat 2"></div>
+  <div class="nav-dot" data-target="ayat3" title="Ayat 3"></div>
+  <div class="nav-dot" data-target="ayat4" title="Ayat 4"></div>
+  <div class="nav-dot" data-target="ayat5" title="Ayat 5"></div>
+  <div class="nav-dot" data-target="kesimpulan" title="Penutup"></div>
+</nav>
+
+<main>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="hero">
+    <div class="hero-ornament"></div>
+    <div class="surah-badge">Surat ke-113 · Al-Qur'an</div>
+    <h1 class="hero-title">Al-Falaq</h1>
+    <p class="hero-subtitle">Benteng Diri di Tengah Kebisingan Dunia</p>
+    <div class="tagline">
+      Ketika Semesta Penuh Energi Yang Tak Kasat Mata, Perlindungan Sejati Dimulai Dari Kesadaran Penuh.
+    </div>
+    <div class="scroll-hint">
+      <span>Gulir ke bawah</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── AYAT 1 ── -->
+  <section class="ayat-section" id="ayat1">
+    <div class="ayat-number">Ayat 1</div>
+    <div class="arabic-verse">
+      <span class="arabic-text">قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ</span>
+      <p class="translation">"Katakanlah: Aku berlindung kepada Tuhan yang menguasai waktu subuh"</p>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+
+    <div class="energi-section">
+      <div class="section-label">Energi Kata</div>
+      <div class="kata-grid">
+        <div class="kata-card">
+          <div class="kata-arabic">الْفَلَقِ</div>
+          <div class="kata-title">Al-Falaq — Cahaya yang Membelah Kegelapan</div>
+          <div class="kata-desc">Kata ini bukan sekadar subuh dalam makna waktu. Ini tentang momen peralihan—ketika gelap bertemu terang, ketika yang tersembunyi mulai tersingkap. Dalam kehidupan modern, ini seperti kesadaran yang tiba-tiba muncul di tengah kebingungan. Ketika kita sadar ada masalah, saat itulah cahaya pertama mulai masuk.</div>
+        </div>
+        <div class="kata-card">
+          <div class="kata-arabic">رَبِّ</div>
+          <div class="kata-title">Rabb — Pengatur yang Memelihara</div>
+          <div class="kata-desc">Bukan sekadar Tuhan dalam konsep abstrak, tapi Pengelola aktif yang terus-menerus mengatur, memelihara, membesarkan. Seperti sistem kehidupan yang bekerja tanpa henti, memastikan semuanya berjalan—napasmu, detak jantungmu, bahkan pikiran yang sedang membaca ini.</div>
+        </div>
+        <div class="kata-card">
+          <div class="kata-arabic">أَعُوذُ</div>
+          <div class="kata-title">A'udzu — Berlindung dengan Kesadaran Penuh</div>
+          <div class="kata-desc">Ini bukan melarikan diri pasif. Kata ini mengandung makna aktif: sadar akan ancaman, lalu memilih untuk menempatkan diri di bawah perlindungan yang lebih besar. Seperti ketika kita mematikan notifikasi dari orang-orang beracun—bukan lari, tapi batasan yang sehat.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tafsir-block">
+      <div class="section-label">Tafsir Mendalam</div>
+      <div class="tafsir-body">
+        <p>Al-Falaq membuka dengan seruan untuk berlindung. Tapi kenapa harus kepada "Tuhan yang menguasai waktu subuh"? Karena subuh adalah momen paling rentan sekaligus paling kuat. Malam adalah waktu ketika energi negatif—baik yang nyata maupun yang abstrak—mencapai puncaknya. Lalu datang subuh, membelah semua itu dengan terang.</p>
+        <p>Dalam psikologi modern, ini seperti konsep permulaan baru—kenapa kita lebih termotivasi di awal hari, di awal bulan, di awal tahun. Ada sesuatu tentang momen peralihan yang memberi kita kekuatan untuk mengatur ulang, untuk memulai dengan bersih. Allah menyebut diri-Nya sebagai Rabb Al-Falaq karena Dia yang menguasai momen peralihan itu. Dia yang bisa mengubah kegelapanmu menjadi cahaya.</p>
+      </div>
+      <div class="relevansi-box">
+        <p>Di era kebanjiran informasi ini, kita dikelilingi "kegelapan" baru: <em>overthinking</em>, kecemasan dari media sosial, kepositifan yang beracun, vampir energi dari orang-orang di sekitar kita. Ayat ini mengajarkan bahwa perlindungan pertama adalah mengakui: "Ya, ada ancaman. Ya, saya butuh pertolongan." Ini tentang kesadaran kesehatan mental—sadar bahwa kita tidak harus menghadapi semuanya sendiri.</p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <p class="intisari-text"><strong>Perlindungan sejati dimulai dari kesadaran bahwa kita butuh perlindungan</strong>—dan memilih sumber yang tepat untuk berlindung.</p>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+
+  <!-- ── AYAT 2 ── -->
+  <section class="ayat-section" id="ayat2">
+    <div class="ayat-number">Ayat 2</div>
+    <div class="arabic-verse">
+      <span class="arabic-text">مِن شَرِّ مَا خَلَقَ</span>
+      <p class="translation">"Dari kejahatan makhluk-Nya"</p>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+
+    <div class="energi-section">
+      <div class="section-label">Energi Kata</div>
+      <div class="kata-grid">
+        <div class="kata-card">
+          <div class="kata-arabic">شَرِّ</div>
+          <div class="kata-title">Syarr — Potensi Merusak yang Melekat</div>
+          <div class="kata-desc">Bukan kejahatan dalam pengertian hitam-putih. Ini tentang potensi merusak yang ada dalam segala sesuatu—termasuk hal-hal baik yang berlebihan. Seperti api: bisa memasak makananmu atau membakar rumahmu. Teknologi: bisa menghubungkanmu dengan dunia atau menghancurkan kesehatan mentalmu.</div>
+        </div>
+        <div class="kata-card">
+          <div class="kata-arabic">مَا خَلَقَ</div>
+          <div class="kata-title">Ma Khalaqa — Semua yang Diciptakan</div>
+          <div class="kata-desc">Cakupannya universal. Dari energi negatif orang lain, sistem yang zalim, bahkan pikiran merusak dalam diri kita sendiri. Semuanya adalah "makhluk" dalam artian luas—sesuatu yang ada dan punya pengaruh.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tafsir-block">
+      <div class="section-label">Tafsir Mendalam</div>
+      <div class="tafsir-body">
+        <p>Ayat ini radikal dalam kesederhanaannya. Tidak ada daftar spesifik tentang apa yang harus kita takuti. Justru itu kekuatannya: ini mencakup SEMUA bentuk bahaya. Dari yang kasat mata (orang-orang beracun) hingga yang abstrak (sistem sosial yang menindas, standar kecantikan yang merusak citra diri).</p>
+        <p>Yang menarik, ayat ini tidak menyalahkan ciptaan itu sendiri. Api tidak jahat. Pisau tidak jahat. Bahkan energi seseorang tidak jahat secara alami. Yang berbahaya adalah ketika potensi merusaknya teraktivasi. Seperti hubungan yang beracun—orangnya mungkin bukan orang jahat, tapi kombinasi kalian berdua menciptakan dinamika yang merusak.</p>
+      </div>
+      <div class="relevansi-box">
+        <p>Kita hidup di zaman di mana bahaya punya wajah baru: algoritma yang bikin kecanduan, budaya kerja keras yang mengagungkan kelelahan, tekanan untuk selalu tampil di media sosial. Bahkan hal-hal yang dicipta dengan niat baik—seperti platform untuk terhubung—bisa jadi sumber kecemasan kalau tidak dikelola. Ayat ini mengajarkan: waspadai semua potensi merusak, tanpa harus jadi paranoid.</p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <p class="intisari-text"><strong>Bukan ciptaannya yang jahat</strong>—tapi potensi merusak ketika ia tak pada tempatnya. Bahkan hal baik bisa jadi racun kalau berlebihan.</p>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+
+  <!-- ── AYAT 3 ── -->
+  <section class="ayat-section" id="ayat3">
+    <div class="ayat-number">Ayat 3</div>
+    <div class="arabic-verse">
+      <span class="arabic-text">وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ</span>
+      <p class="translation">"Dan dari kejahatan malam ketika telah gelap gulita"</p>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+
+    <div class="energi-section">
+      <div class="section-label">Energi Kata</div>
+      <div class="kata-grid">
+        <div class="kata-card">
+          <div class="kata-arabic">غَاسِقٍ</div>
+          <div class="kata-title">Ghasiqin — Kegelapan yang Meresap</div>
+          <div class="kata-desc">Bukan sekadar gelap. Ini tentang kegelapan yang merayap, yang mengintensif, yang meresap ke dalam. Seperti <em>overthinking</em> yang mulai dari satu pikiran kecil, lalu mengambil alih seluruh malam. Atau lingkungan beracun yang awalnya "biasa saja" lalu perlahan menggerogoti kesehatan mental.</div>
+        </div>
+        <div class="kata-card">
+          <div class="kata-arabic">وَقَبَ</div>
+          <div class="kata-title">Waqaba — Memasuki dengan Intensitas Penuh</div>
+          <div class="kata-desc">Momen ketika kegelapan mencapai puncaknya. Seperti ketika kecemasanmu mencapai puncak di tengah malam, ketika semua ketakutan dan ketidakamanan menyerang bersamaan. Atau fase hidup ketika semuanya serba kelam.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tafsir-block">
+      <div class="section-label">Tafsir Mendalam</div>
+      <div class="tafsir-body">
+        <p>Kenapa malam? Karena malam adalah kiasan sempurna untuk kerentanan. Di malam hari, pertahanan psikologis kita melemah. Itulah kenapa banyak orang <em>overthinking</em> di tengah malam. Itulah kenapa pikiran gelap datang pas kita sendirian di kamar. Malam adalah waktu ketika kita paling terbuka terhadap setan-setan dalam diri.</p>
+        <p>Tapi ayat ini juga berbicara tentang "malam" dalam pengertian kiasan: fase gelap dalam hidup. Krisis seperempat abad. Patah hati yang berat. Kehilangan orang yang kita sayang. Kesulitan finansial. Fase-fase ini adalah <em>ghasiqin idza waqaba</em>—kegelapan yang benar-benar meresap.</p>
+        <p>Yang kuat: dengan menyebutkan ini secara spesifik, Al-Qur'an mengakui bahwa fase gelap itu nyata. Ini bukan tentang kepositifan beracun yang bilang "semua terjadi karena alasan!" Tidak. Ini pengakuan: "Ya, ada malam. Ya, akan gelap. Dan ya, kalian butuh perlindungan untuk melewatinya."</p>
+      </div>
+      <div class="relevansi-box">
+        <p>Masalah kesehatan mental seringkali memburuk di malam hari—ada istilah "pikiran jam 3 pagi" yang sangat terasa. Tapi "malam" modern juga bisa berarti: membuka media sosial di tengah insomnia lalu membandingkan diri dengan tampilan terbaik orang lain. Terus-menerus membaca berita buruk yang bikin putus asa. Produktivitas beracun yang bikin kita merasa "belum cukup" meski sudah kerja keras. Ayat ini pengingat: <strong>lindungi jam-jam rentanmu. Tetapkan batasan.</strong></p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <p class="intisari-text">Di <strong>saat-saat paling rentanmu</strong>—baik harfiah maupun kiasan—perlindungan bukan pilihan. <strong>Itu kebutuhan untuk bertahan.</strong></p>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+
+  <!-- ── AYAT 4 ── -->
+  <section class="ayat-section" id="ayat4">
+    <div class="ayat-number">Ayat 4</div>
+    <div class="arabic-verse">
+      <span class="arabic-text">وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ</span>
+      <p class="translation">"Dan dari kejahatan tukang sihir yang meniup pada buhul-buhul"</p>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+
+    <div class="energi-section">
+      <div class="section-label">Energi Kata</div>
+      <div class="kata-grid">
+        <div class="kata-card">
+          <div class="kata-arabic">النَّفَّاثَاتِ</div>
+          <div class="kata-title">An-Naffatsat — Yang Meniupkan Racun Halus</div>
+          <div class="kata-desc">Bentuk jamak dari "meniup"—bukan ledakan keras, tapi hembusan lembut yang terus-menerus. Seperti bisikan. Gosip. Sindiran. Agresi halus. Komentar beracun yang "cuma bercanda kok." Manipulasi emosional yang halus. Membuat orang meragukan realitasnya sendiri.</div>
+        </div>
+        <div class="kata-card">
+          <div class="kata-arabic">الْعُقَدِ</div>
+          <div class="kata-title">Al-'Uqad — Simpul-Simpul yang Mengikat</div>
+          <div class="kata-desc">Simpul adalah hambatan—sesuatu yang menghambat aliran alami. Dalam konteks modern: hambatan mental, keyakinan yang membatasi, ikatan trauma, kelekatan yang tidak sehat. "Simpul" adalah apa pun yang membuat kita terjebak dan tidak bisa maju.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tafsir-block">
+      <div class="section-label">Tafsir Mendalam</div>
+      <div class="tafsir-body">
+        <p>Ayat ini adalah salah satu yang paling disalahpahami. Banyak yang terlalu harfiah dengan "tukang sihir." Padahal, esensinya jauh lebih universal: ini tentang energi merusak yang disengaja, yang halus, yang bekerja dengan cara mengikat dan menghambat.</p>
+        <p>Pikirkan tentang orang-orang yang sengaja merusak kepercayaan dirimu. Bukan dengan kekerasan fisik, tapi dengan kata-kata yang "peduli" tapi sebenarnya meracuni: "Kamu yakin bisa? Soalnya dulu kan pernah gagal..." Atau yang lebih halus: tidak merespons, agresif pasif, mengadu domba, bermain jadi korban untuk manipulasi.</p>
+        <p>"Meniup pada simpul" adalah gambaran yang cemerlang—karena itulah cara manipulasi bekerja. Mereka tidak menyerang langsung. Mereka berbisik. Mereka menanam benih keraguan. Mereka menciptakan "simpul" dalam pikiranmu—ketidakamanan baru, ketakutan baru, keraguan baru—sampai kamu jadi terjebak, lumpuh, tidak bisa maju.</p>
+      </div>
+      <div class="relevansi-box">
+        <p>Selamat datang di era perang psikologis: <em>gaslighting</em>. Membombardir cinta lalu merendahkan. Pujian yang tertanam dengan hinaan. Perundungan siber yang sistematis. Budaya membatalkan yang beracun. Bahkan pemasaran yang manipulatif—yang sengaja bikin kamu merasa "kurang" supaya beli produk mereka.</p>
+        <p>Tapi ini juga tentang suara-suara internal—kata-kata orang lain yang sudah jadi "simpul" dalam pikiranmu. <em>"Kamu terlalu gemuk." "Kamu tidak cukup pintar." "Kamu tidak akan pernah sukses."</em> Suara itu terus "meniup" di simpul-simpul hambatan mentalmu, bikin kamu terjebak di situ.</p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <p class="intisari-text"><strong>Ancaman terbesar bukan yang teriak keras</strong>—tapi yang berbisik lembut, terus-menerus, sampai kamu percaya itu suara hatimu sendiri.</p>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+
+  <!-- ── AYAT 5 ── -->
+  <section class="ayat-section" id="ayat5">
+    <div class="ayat-number">Ayat 5</div>
+    <div class="arabic-verse">
+      <span class="arabic-text">وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ</span>
+      <p class="translation">"Dan dari kejahatan orang yang dengki apabila dia dengki"</p>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+
+    <div class="energi-section">
+      <div class="section-label">Energi Kata</div>
+      <div class="kata-grid">
+        <div class="kata-card">
+          <div class="kata-arabic">حَاسِدٍ</div>
+          <div class="kata-title">Hasidin — Orang yang Iri Merusak</div>
+          <div class="kata-desc">Ini bukan sekadar "pengen punya yang sama." Ini tentang iri yang pengen kamu TIDAK punya. Energi "kalau saya tidak bisa bahagia, kamu juga tidak boleh bahagia." Yang senang ketika kamu gagal. Yang diam-diam sabotase keberhasilanmu.</div>
+        </div>
+        <div class="kata-card">
+          <div class="kata-arabic">إِذَا حَسَدَ</div>
+          <div class="kata-title">Idza Hasada — Ketika Dia Benar-Benar Dengki</div>
+          <div class="kata-desc">Penekanan pada "ketika"—karena tidak semua orang yang iri akan bertindak. Tapi ketika iri itu sudah intens, sudah jadi obsesi, sudah mendorong mereka untuk bertindak—saat itulah ia berbahaya. Seperti perbedaan antara "kok dia bisa ya" versus "dia tidak berhak."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tafsir-block">
+      <div class="section-label">Tafsir Mendalam</div>
+      <div class="tafsir-body">
+        <p>Al-Falaq ditutup dengan ini bukan tanpa alasan. Karena dari semua ancaman yang disebutkan, hasad (iri hati yang merusak) adalah yang paling berbahaya, paling sulit dideteksi, dan paling merusak.</p>
+        <p>Kenapa? Karena pelakunya seringkali orang dekat. Teman. Keluarga. Rekan kerja. Orang-orang yang tersenyum di depanmu tapi dalam hati mereka pengen kamu jatuh. Dan yang lebih berbahaya: mereka seringnya tidak sadar. Mereka merasionalisasi: "Saya cuma peduli kok," padahal jauh di dalam, mereka tidak tulus senang dengan keberhasilanmu.</p>
+        <p>Tapi ayat ini juga bisa dibaca sebagai peringatan untuk diri sendiri: jangan jadi orang yang iri. Karena hasad merusak diri sendiri. Ketika kamu iri, yang paling sakit adalah dirimu sendiri. Kamu minum racun dan berharap orang lain yang mati.</p>
+      </div>
+      <div class="relevansi-box">
+        <p>Media sosial adalah tempat berkembang biak untuk hasad. Tampilan terbaik semua orang versus kenyataan di balik layarmu. Perbandingan adalah pencuri kebahagiaan, dan media sosial adalah perbandingan yang berlipat ganda. Hasad juga terwujud dalam: politik kantor, dinamika keluarga, persahabatan yang kompetitif, bahkan kebencian daring dari orang asing yang terpicu oleh keberhasilanmu.</p>
+        <p>Dan ada juga yang dengan kepositifan beracun bilang "abaikan pembenci." Tapi ayat ini lebih bijak: <strong>AKUI bahwa energi negatif itu nyata dan bisa memengaruhimu. Lalu berlindunglah. Tetapkan batasan. Pilah-pilah lingkaranmu.</strong></p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <p class="intisari-text"><strong>Energi negatif dari orang yang iri adalah nyata</strong>—dan perlindungan terbaik adalah kesadaran, batasan, dan tidak membiarkan mereka menempati ruang dalam pikiranmu.</p>
+    </div>
+  </section>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-gem"></div><div class="divider-line"></div></div>
+
+  <!-- ── KESIMPULAN ── -->
+  <section class="kesimpulan ayat-section" id="kesimpulan">
+    <div class="kesimpulan-hero">
+      <div class="surah-badge" style="opacity:1">Refleksi &amp; Penutup</div>
+      <h2 class="kesimpulan-title">Arsitektur Perlindungan Diri</h2>
+      <p style="color:var(--text-soft); font-style:italic; font-size:0.95rem;">Al-Falaq bukan sekadar doa perlindungan—ini adalah peta navigasi untuk hidup di dunia yang penuh energi berlawanan.</p>
+    </div>
+
+    <div class="lapisan-grid">
+      <div class="lapisan-card">
+        <div class="lapisan-num">1</div>
+        <div class="lapisan-title">Kesadaran adalah Benteng Pertama</div>
+        <div class="lapisan-body">Sebelum kamu bisa melindungi diri, kamu harus sadar bahwa ancaman itu ada. Bukan untuk jadi paranoid, tapi untuk jadi waspada. Namai ancamanmu. Yang tersembunyi hanya berkuasa selama ia tidak bernama. Begitu kamu bisa bilang "Ini manipulasi," "Ini energi iri," "Ini fase gelapku"—kamu sudah mengambil separuh kekuasaannya.</div>
+      </div>
+      <div class="lapisan-card">
+        <div class="lapisan-num">2</div>
+        <div class="lapisan-title">Perlindungan adalah Pilihan Aktif</div>
+        <div class="lapisan-body">Kata <em>a'udzu</em> adalah kata kerja. Bukan "aku terlindungi" (pasif), tapi "aku memilih untuk berlindung" (aktif). Ini tentang agensi. Kamu yang tetapkan batasan. Kamu yang pilih dari siapa dan apa kamu terima energi. Perlindungan bukan menunggu diselamatkan—tapi mengambil langkah nyata untuk menjaga kedamaianmu.</div>
+      </div>
+      <div class="lapisan-card">
+        <div class="lapisan-num">3</div>
+        <div class="lapisan-title">Musuh Terbesar Seringkali Paling Halus</div>
+        <div class="lapisan-body">Perhatikan progres Al-Falaq: dari "semua ciptaan" (umum), "malam gelap" (kondisi), "yang meniup simpul" (manipulasi halus), hingga "orang yang iri" (energi emosional). Semakin spesifik, semakin berbahaya—karena semakin sulit dideteksi. Racun yang diteteskan perlahan lebih mematikan dari ledakan yang terlihat.</div>
+      </div>
+    </div>
+
+    <div class="paradoks-box">
+      <div class="paradoks-title">Paradoks yang Membebaskan</div>
+      <div class="paradoks-body">
+        <p>Budaya modern sering mengajarkan bahwa kuat berarti tidak butuh siapa-siapa. Al-Falaq membantah semua itu. Ia bilang: <em>"Katakanlah—secara terang-terangan, tanpa malu—aku berlindung. Aku butuh perlindungan."</em></p>
+        <p style="margin-top:12px">Ini bukan kelemahan. <strong>Ini kebijaksanaan.</strong> Hanya orang yang cukup bijak yang tahu: ada pertempuran yang tidak perlu kamu menangkan sendiri.</p>
+      </div>
+    </div>
+
+    <div class="action-grid">
+      <div class="action-card">
+        <div class="action-card-title">Setiap Pagi</div>
+        <ul class="action-list">
+          <li>Apa yang mengancam kedamaianku hari ini?</li>
+          <li>Batasan apa yang perlu kuperkuat?</li>
+          <li>Dari siapa atau apa aku perlu menjaga jarak?</li>
+          <li>Energi mana yang boleh masuk, mana yang harus kutolak?</li>
+        </ul>
+      </div>
+      <div class="action-card">
+        <div class="action-card-title">Setiap Malam</div>
+        <ul class="action-list">
+          <li>Fase gelap ini tidak kekal</li>
+          <li>Aku tidak sendirian dalam perjuangan ini</li>
+          <li>Aku berhak untuk dilindungi, untuk sembuh, untuk damai</li>
+          <li>Subuh selalu datang, selalu</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Penutup -->
+    <div class="penutup">
+      <h3 class="penutup-title">Kamu Layak Dilindungi</h3>
+      <div class="penutup-quote">
+        Kamu tidak perlu menjadi pahlawan yang menghadapi segalanya sendirian. Kamu tidak perlu kuat setiap waktu. Kamu tidak perlu memaafkan semua orang, menerima semua energi, atau membuka diri untuk semua pengaruh.
+      </div>
+      <div class="penutup-body">
+        <p>Kamu boleh berlindung. Kamu boleh mundur. Kamu boleh bilang "tidak" tanpa penjelasan panjang lebar. Kamu boleh menutup pintu untuk orang-orang yang menguras.</p>
+        <p>Dan dalam memilih untuk berlindung, kamu tidak lemah—kamu bijaksana. Dalam menetapkan batasan, kamu tidak egois—kamu sehat. Dalam memilih pertempuranmu, kamu tidak pengecut—kamu strategis.</p>
+        <p>Karena pada akhirnya, hidup bukan tentang seberapa banyak pukulan yang bisa kamu terima. Hidup adalah tentang seberapa bijak kamu memilih pertempuran, seberapa kuat kamu menjaga energi, dan seberapa berani kamu melindungi cahaya dalam dirimu.</p>
+      </div>
+    </div>
+
+    <!-- Epilog -->
+    <div class="epilog">
+      <div class="epilog-label">Epilog</div>
+      <h3 class="epilog-title">Melindungi Cahaya Dalam Diri</h3>
+      <div class="epilog-body">
+        <p>Ada sebuah kebijaksanaan yang mengatakan: kamu tidak bisa menghentikan burung-burung terbang di atas kepalamu, tapi kamu bisa mencegah mereka membuat sarang di sana.</p>
+        <p>Al-Falaq adalah tentang itu. Tentang mengakui bahwa dunia memang penuh dengan energi—baik dan buruk. Orang-orang akan menghakimi. Akan iri. Akan mencoba meracuni pikiranmu dengan keraguan. Sistem akan mencoba menghancurkanmu. Malam-malam gelap akan datang.</p>
+        <p>Tapi di tengah semua itu, ada cahaya. Cahaya Al-Falaq—subuh yang membelah kegelapan. Dan cahaya itu dimulai dengan kesadaran. Dengan pengakuan bahwa kamu layak mendapat perlindungan. Bahwa kedamaianmu adalah suci. Bahwa energimu adalah terbatas dan berharga, jadi kamu harus bijak memilih di mana menggunakannya.</p>
+        <p>Berlindung bukan tentang jadi paranoid atau defensif. Ini tentang menjadi sengaja. Tentang menciptakan tempat perlindungan—dalam pikiran, dalam rumah, dalam lingkaranmu—di mana kamu bisa mengisi ulang energi, sembuh, tumbuh.</p>
+        <p>Dan ketika malam menjadi gelap—dan percayalah, akan gelap—ingat bahwa subuh selalu datang. Bahwa Rabb Al-Falaq, Penguasa peralihan dari gelap ke terang, selalu ada. Bahwa kamu tidak sendirian dalam kegelapan itu.</p>
+        <p>Tetapkan batasan tanpa rasa bersalah. Pergi dari ketoksikan tanpa perlu menjelaskan. Pilih kedamaian daripada membuktikan kamu benar. Pilih kesehatan mentalmu daripada menyenangkan orang lain.</p>
+        <p>Karena pada akhirnya, perlindungan terbaik adalah ketika kamu sudah begitu kokoh dalam dirimu sendiri, begitu aman dengan siapa kamu, begitu jelas tentang nilaimu—sehingga energi negatif orang lain tidak bisa menembus.</p>
+      </div>
+
+      <div class="closing-arabic">
+        <span class="closing-arabic-text">قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ</span>
+        <p class="closing-translation">Katakanlah: Aku berlindung kepada Tuhan yang menguasai waktu subuh</p>
+      </div>
+
+      <div class="final-statement">
+        <p>Katakanlah—dengan lantang, dengan yakin, dengan sadar:</p>
+        <p><strong>Aku memilih perlindungan. Aku memilih kesehatan. Aku memilih kedamaian.</strong></p>
+        <p>Aku memilih untuk menjaga cahayaku tetap menyala.</p>
+        <p>Dan dalam pilihan itu, kamu menemukan kebebasan sejati.</p>
+      </div>
+
+      <p class="light-text">Kamu adalah cahaya. Dan cahaya tidak perlu melawan kegelapan—ia cukup bersinar, dan kegelapan dengan sendirinya pergi.</p>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  // Progress bar
+  const progressBar = document.getElementById('progressBar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    progressBar.style.width = (scrollTop / scrollHeight * 100) + '%';
+  });
+
+  // Intersection observer for fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.ayat-section').forEach(el => observer.observe(el));
+
+  // Nav dots
+  const sections = ['hero', 'ayat1', 'ayat2', 'ayat3', 'ayat4', 'ayat5', 'kesimpulan'];
+  const dots = document.querySelectorAll('.nav-dot');
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      document.getElementById(sections[i])?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = sections.indexOf(entry.target.id);
+        dots.forEach(d => d.classList.remove('active'));
+        if (idx >= 0) dots[idx]?.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) sectionObserver.observe(el);
+  });
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</body>
+</html>

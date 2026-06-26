@@ -1,0 +1,1025 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad-Dhuha: Bangkit Dari Titik Terbawah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Traditional+Arabic&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            color: #e0e0e0;
+            font-family: 'Traditional Arabic', serif;
+            line-height: 1.8;
+            font-size: 16px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Efek background yang bergerak */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+            border-bottom: 3px solid #d4af37;
+            position: relative;
+        }
+
+        header::before {
+            content: '✨';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+        }
+
+        header::after {
+            content: '✨';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 40px;
+        }
+
+        .arab-title {
+            font-size: 48px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 32px;
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-style: italic;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .tagline {
+            font-size: 18px;
+            color: #c9a961;
+            font-style: italic;
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-left: 4px solid #d4af37;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 5px;
+        }
+
+        /* Pembuka */
+        .pembuka {
+            margin: 60px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 100%);
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .pembuka h2 {
+            color: #d4af37;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .pembuka p {
+            line-height: 2;
+            margin-bottom: 15px;
+        }
+
+        /* Section Ayat */
+        .ayat-section {
+            margin: 50px 0;
+            padding: 30px;
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 10px;
+            border-left: 5px solid #d4af37;
+            backdrop-filter: blur(10px);
+        }
+
+        .ayat-arabic {
+            font-size: 28px;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            direction: rtl;
+        }
+
+        .ayat-terjemah {
+            font-size: 14px;
+            color: #b8860b;
+            text-align: center;
+            margin-bottom: 25px;
+            font-style: italic;
+            padding: 10px;
+            background: rgba(212, 175, 55, 0.03);
+            border-radius: 5px;
+        }
+
+        .energi-kata {
+            margin: 25px 0;
+        }
+
+        .energi-kata h4 {
+            color: #d4af37;
+            margin-bottom: 12px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        .energi-kata h4::before {
+            content: '⚡';
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .energi-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(212, 175, 55, 0.04);
+            border-radius: 8px;
+            border-left: 3px solid #d4af37;
+        }
+
+        .energi-item strong {
+            color: #d4af37;
+        }
+
+        .tafsir-mendalam {
+            margin: 25px 0;
+        }
+
+        .tafsir-mendalam h4 {
+            color: #d4af37;
+            margin-bottom: 12px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        .tafsir-mendalam h4::before {
+            content: '🔍';
+            margin-right: 10px;
+        }
+
+        .tafsir-section {
+            margin-bottom: 20px;
+        }
+
+        .tafsir-section h5 {
+            color: #c9a961;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .relevance {
+            background: rgba(212, 175, 55, 0.06);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 3px solid #d4af37;
+        }
+
+        .relevance h5 {
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .contoh {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 6px;
+            border-left: 3px solid #b8860b;
+        }
+
+        .contoh strong {
+            color: #c9a961;
+        }
+
+        .intisari {
+            margin: 25px 0;
+        }
+
+        .intisari h4 {
+            color: #d4af37;
+            margin-bottom: 12px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        .intisari h4::before {
+            content: '💎';
+            margin-right: 10px;
+        }
+
+        .intisari-box {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0.04) 100%);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #d4af37;
+            font-style: italic;
+            color: #e0e0e0;
+            line-height: 2;
+        }
+
+        /* Refleksi Penutup */
+        .refleksi {
+            margin: 60px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.03) 100%);
+            border-radius: 15px;
+            border: 2px solid #d4af37;
+        }
+
+        .refleksi h2 {
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .refleksi h3 {
+            color: #c9a961;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .langkah {
+            background: rgba(20, 20, 20, 0.5);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .langkah strong {
+            color: #d4af37;
+            font-size: 17px;
+        }
+
+        /* Epilog */
+        .epilog {
+            margin: 60px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(0, 0, 0, 0.4) 100%);
+            border-radius: 15px;
+            border-top: 3px solid #d4af37;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .epilog h2 {
+            color: #d4af37;
+            margin-bottom: 25px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .epilog-text {
+            line-height: 2.2;
+            font-size: 17px;
+            color: #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .epilog-verse {
+            text-align: center;
+            font-size: 24px;
+            color: #d4af37;
+            margin: 40px 0;
+            font-style: italic;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 2px solid #d4af37;
+            margin-top: 60px;
+            color: #b8860b;
+        }
+
+        .download-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            margin: 10px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .share-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: 1px solid #d4af37;
+            margin: 5px;
+        }
+
+        .share-btn:hover {
+            background: rgba(212, 175, 55, 0.3);
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid #d4af37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .scroll-indicator:hover {
+            background: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .arab-title {
+                font-size: 36px;
+            }
+
+            .subtitle {
+                font-size: 24px;
+            }
+
+            .ayat-section {
+                padding: 20px;
+            }
+
+            .epilog, .refleksi {
+                padding: 20px;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Print styling */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .download-section, footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="arab-title">سورة الضحى</div>
+            <div class="subtitle">Ad-Dhuha: Bangkit Dari Titik Terbawah</div>
+            <div class="tagline">Dalam kesunyian terdalam, justru di situ Allah sedang merangkai jawaban terbaik untukmu</div>
+        </header>
+
+        <!-- Download Section -->
+        <div class="download-section">
+            <a href="#" class="download-btn" onclick="downloadHTML()">📥 Download File HTML</a>
+            <a href="#" class="download-btn" onclick="downloadPDF()">📄 Download PDF</a>
+            <br>
+            <a href="#" class="share-btn" onclick="shareWhatsApp()">💬 Bagikan ke WhatsApp</a>
+            <a href="#" class="share-btn" onclick="shareCopy()">🔗 Copy Link</a>
+        </div>
+
+        <!-- Pembuka -->
+        <section class="pembuka">
+            <h2>PEMBUKA: SURAT UNTUK YANG SEDANG RAPUH</h2>
+            <p>Pernahkah kalian merasa Allah menjauh? Ketika doa seperti menghantam dinding, ketika harapan terasa sia-sia, ketika malam begitu panjang sampai kalian lupa bagaimana rasanya percaya lagi?</p>
+            <p>Ad-Dhuha turun di momen seperti itu. Rasulullah ﷺ mengalami kesunyian wahyu—sesuatu yang sangat ia rindukan tiba-tiba berhenti. Orang-orang mulai berbisik: "Tuhannya meninggalkannya." Dan di tengah keraguan itu, turunlah surat ini. Bukan sekadar penghibur, tapi <strong>reset button</strong> untuk jiwa yang lelah.</p>
+            <p>Inilah surat tentang bangkit. Tentang cahaya yang hadir setelah gelap. Tentang mengenali pola kasih sayang Allah yang kadang tersamar dalam ujian.</p>
+        </section>
+
+        <!-- Ayat 1-2 -->
+        <section class="ayat-section">
+            <div class="ayat-arabic">وَالضُّحَىٰ - وَاللَّيْلِ إِذَا سَجَىٰ</div>
+            <div class="ayat-terjemah">"Demi waktu dhuha. Dan demi malam ketika telah sunyi."</div>
+
+            <div class="energi-kata">
+                <h4>ENERGI KATA</h4>
+                <div class="energi-item">
+                    <strong>الضُّحَىٰ (Adh-Dhuha) - Cahaya Pagi yang Menyembuhkan</strong>
+                    <p>Dhuha bukan sekadar "pagi". Ini adalah momen spesifik setelah matahari terbit sempurna, sekitar pukul 7-9 pagi, ketika cahaya mulai hangat tapi belum menyengat. Dalam kehidupan Arab, ini waktu produktif—ketika ternak digembalakan, ketika pasar mulai ramai, ketika hari benar-benar dimulai.</p>
+                    <p><strong>Dhuha adalah simbol kebangkitan yang lembut. Bukan ledakan tiba-tiba, tapi transisi natural dari gelap ke terang.</strong></p>
+                </div>
+                <div class="energi-item">
+                    <strong>سَجَىٰ (Saja) - Kesunyian yang Menyimpan Makna</strong>
+                    <p>Saja bukan sekadar "gelap" atau "tenang". Kata ini menggambarkan malam yang <strong>sangat sunyi</strong>, ketika semua makhluk tertidur, ketika dunia seperti berhenti bernapas. Ada nuansa <strong>kedalaman</strong> dan <strong>ketenangan total</strong> yang tidak dimiliki kata lain.</p>
+                </div>
+            </div>
+
+            <div class="tafsir-mendalam">
+                <h4>TAFSIR MENDALAM</h4>
+                <div class="tafsir-section">
+                    <h5>Filosofi di Baliknya:</h5>
+                    <p>Hidup tidak linear. Ada fase dhuha—ketika segalanya berjalan lancar, ketika kita produktif. Tapi ada juga fase malam—ketika semua terasa berhenti. Dan malam itu <strong>saja</strong>—sunyi, dalam, penuh misteri. Tapi seperti malam yang pasti diikuti dhuha, kesulitan kita juga pasti diikuti kemudahan.</p>
+                </div>
+
+                <div class="relevance">
+                    <h5>Relevansi Kekinian:</h5>
+                    <p>Generasi sekarang paling takut dengan kesunyian. Kita takut FOMO, takut ketinggalan, takut tidak produktif. Ketika usaha mandek, ketika karier stuck, ketika hubungan hambar, kita panik. Kita merasa "buang-buang waktu".</p>
+                    
+                    <div class="contoh">
+                        <strong>Contoh 1 - Fresh Graduate yang Belum dapat Kerja:</strong>
+                        <p>Sudah kirim ratusan CV, interview puluhan kali, tapi selalu ditolak. Teman-teman sudah pada kerja, punya penghasilan. Sementara ia masih di rumah, merasa gagal. Ini fase <em>saja</em>—sunyi, tidak ada kabar, tidak ada progress. Tapi apa yang terjadi di balik layar? Mungkin Allah sedang siapkan posisi yang lebih baik, atau mentransformasi karakter agar lebih siap.</p>
+                    </div>
+
+                    <div class="contoh">
+                        <strong>Contoh 2 - Entrepreneur dengan Bisnis Sepi:</strong>
+                        <p>Sudah modal habis, produk bagus, promosi gencar, tapi pembeli sepi. Ini fase <em>saja</em> yang menyakitkan. Tapi cerita Bob Sadino, Ippho Santosa, dan entrepreneur lokal lainnya menunjukkan: yang membedakan yang bertahan adalah <strong>pemahaman bahwa malam bukan akhir cerita</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <h4>INTISARI</h4>
+                <div class="intisari-box">
+                    Hidup punya ritme: terang dan gelap, sibuk dan sunyi, naik dan turun. Ketika kalian sedang di fase gelap, jangan panik. Kesunyian bukan pertanda Allah meninggalkan. Justru di kesunyian itulah Allah sedang bekerja di belakang layar, menyiapkan kebangkitan kalian. Dhuha akan datang—seperti ia selalu datang setelah malam tergelap.
+                </div>
+            </div>
+        </section>
+
+        <!-- Ayat 3 -->
+        <section class="ayat-section">
+            <div class="ayat-arabic">مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ</div>
+            <div class="ayat-terjemah">"Tuhanmu tidak meninggalkanmu dan tidak (pula) membencimu."</div>
+
+            <div class="energi-kata">
+                <h4>ENERGI KATA</h4>
+                <div class="energi-item">
+                    <strong>وَدَّعَ (Wadda'a) - Meninggalkan dengan Perpisahan</strong>
+                    <p>Ini bukan kata untuk "meninggalkan" biasa. <strong>Wadda'a</strong> adalah meninggalkan dengan sengaja, dengan perpisahan yang jelas, seperti mengucapkan selamat tinggal kepada seseorang yang tidak akan ditemui lagi. Ada nuansa <strong>pengabaian permanen</strong> di sini.</p>
+                </div>
+                <div class="energi-item">
+                    <strong>قَلَىٰ (Qala) - Benci Karena Muak</strong>
+                    <p><strong>Qala</strong> adalah kebencian yang muncul dari rasa muak atau jijik terhadap sesuatu yang dulunya dicintai. Ini bukan benci dari awal, tapi benci karena kecewa. Bayangkan: <strong>dua ketakutan terbesar manusia—ditinggalkan dan dibenci oleh yang kita cintai.</strong></p>
+                </div>
+            </div>
+
+            <div class="tafsir-mendalam">
+                <h4>TAFSIR MENDALAM</h4>
+                <p>Allah tidak hanya bilang "Aku tidak meninggalkanmu," tapi juga "Aku tidak membencimu." Dua negasi sekaligus. Kenapa? Karena manusia tidak cukup hanya tahu bahwa Allah tidak pergi—kita juga perlu tahu bahwa Allah tidak kecewa dengan kita.</p>
+
+                <div class="relevance">
+                    <h5>Relevansi Kekinian:</h5>
+                    <p>Di era instant gratification, kita terbiasa dengan jawaban cepat. Pesan WhatsApp harus dibales dalam hitungan menit, kalau tidak kita merasa diabaikan. Kita bawa mindset ini ke hubungan dengan Allah: doa tidak langsung dikabulkan = Allah tidak sayang.</p>
+                    
+                    <div class="contoh">
+                        <strong>Contoh 1 - Berdoa untuk Jodoh Selama 5 Tahun:</strong>
+                        <p>Setiap ada yang tanya "Kapan nyusul?" hatinya perih. Mulai berpikir: "Apa aku tidak cukup baik?" Tapi coba refleksi: mungkin Allah sedang siapkan seseorang yang lebih sepadan. Mungkin Allah sedang bentuk karakter kami dulu. <strong>Penundaan bukan penolakan.</strong></p>
+                    </div>
+
+                    <div class="contoh">
+                        <strong>Contoh 2 - Mahasiswa yang Gagal Ujian Berkali-kali:</strong>
+                        <p>Sudah belajar keras, tapi tetap tidak lulus. Teman-teman sudah wisuda. Mulai berpikir Allah tidak sayang. Tapi coba lihat: ada berapa orang yang akhirnya bersyukur karena tidak lulus tepat waktu? Karena di perpanjangan itu mereka dapat kesempatan lebih baik, ketemu mentor tepat, atau sadar jurusan itu bukan passion mereka.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <h4>INTISARI</h4>
+                <div class="intisari-box">
+                    Allah tidak pernah meninggalkan, tidak pernah benci. Ketika kalian merasa Dia menjauh, sebenarnya Dia sedang mengatur sesuatu yang lebih besar. Kesunyian wahyu bukan tanda pengabaian—justru tanda bahwa sesuatu yang luar biasa sedang disiapkan. Jangan pernah ragukan kasih sayang-Nya hanya karena timing-Nya tidak sesuai ekspektasi kalian.
+                </div>
+            </div>
+        </section>
+
+        <!-- Ayat 4 -->
+        <section class="ayat-section">
+            <div class="ayat-arabic">وَلَلْآخِرَةُ خَيْرٌ لَّكَ مِنَ ٱلْأُولَىٰ</div>
+            <div class="ayat-terjemah">"Dan sungguh, yang kemudian itu lebih baik bagimu daripada yang sekarang."</div>
+
+            <div class="energi-kata">
+                <h4>ENERGI KATA</h4>
+                <div class="energi-item">
+                    <strong>الْآخِرَةُ (Al-Akhirah) - Yang Kemudian</strong>
+                    <p>Bukan hanya tentang akhirat (surga). Dalam konteks ayat ini, berarti <strong>fase selanjutnya</strong> dalam hidup, <strong>chapter berikutnya</strong>. Ada makna ganda: dunia nanti (jangka pendek) dan akhirat nanti (jangka panjang).</p>
+                </div>
+                <div class="energi-item">
+                    <strong>الْأُولَىٰ (Al-Ula) - Yang Sekarang/Awal</strong>
+                    <p>Fase sekarang, kondisi saat ini, chapter yang sedang dijalani. Perhatikan: bukan "yang lalu" vs "yang akan datang", tapi <strong>"yang sekarang" vs "yang nanti"</strong>. Ini bicara tentang <strong>progression</strong>, tentang <strong>peningkatan bertahap</strong>.</p>
+                </div>
+            </div>
+
+            <div class="tafsir-mendalam">
+                <h4>TAFSIR MENDALAM</h4>
+                <p>Ini adalah <strong>janji Allah</strong> yang sangat konkret. Bukan sekadar "sabar ya, nanti ada hasilnya," tapi <strong>jaminan</strong> bahwa yang akan datang <strong>pasti lebih baik</strong> dari yang sekarang.</p>
+
+                <div class="tafsir-section">
+                    <h5>Filosofi di Baliknya:</h5>
+                    <p>Hidup adalah <strong>progression</strong>, bukan stagnasi. Allah mendesain kehidupan dengan sistem naik kelas—setiap fase dirancang untuk membawa kita ke level lebih tinggi. Tapi untuk naik kelas, kita harus <strong>lulus ujian</strong> di level sekarang dulu. Seperti game: kalau mau ke level selanjutnya, harus kalahkan boss di level sekarang.</p>
+                </div>
+
+                <div class="relevance">
+                    <h5>Relevansi Kekinian:</h5>
+                    <p>Masalah generasi sekarang: kita terlalu fokus pada <strong>hasil instan</strong> dan lupa pada <strong>proses bertahap</strong>. Kita ingin langsung sukses tanpa melewati fase belajar. Ketika stuck di satu fase, kita patah semangat, tidak sadar bahwa fase ini adalah <strong>persiapan</strong> untuk fase yang lebih baik.</p>
+                    
+                    <div class="contoh">
+                        <strong>Contoh 1 - Pekerja dengan Gaji Stagnan:</strong>
+                        <p>Sudah bertahun-tahun, gaji tidak naik-naik. Lihat juniornya pindah perusahaan langsung dapat gaji gede. Mulai berpikir: "Apa aku harus resign?" Tapi sebelum buru-buru, coba refleksi: di posisi sekarang, apa yang dipelajari? Skill apa yang diasah? Networking seperti apa yang dibangun? Bisa jadi Allah sedang siapkan untuk promosi besar yang tidak terduga, atau untuk bisnis sendiri nanti. <strong>Fase sekarang adalah fondasi untuk fase yang lebih baik.</strong></p>
+                    </div>
+
+                    <div class="contoh">
+                        <strong>Contoh 2 - Putus dari Hubungan Toxic:</strong>
+                        <p>Sakit, hancur, merasa tidak bisa move on. Tapi coba lihat: berapa banyak orang yang bersyukur karena hubungan toxic-nya berakhir? Karena setelah itu mereka dapat pasangan jauh lebih baik, atau mereka jadi lebih kenal diri sendiri. <strong>Yang nanti lebih baik—karena yang sekarang adalah proses penyembuhan dan rediscovery.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <h4>INTISARI</h4>
+                <div class="intisari-box">
+                    Masa depan kalian lebih baik dari masa sekarang—ini jaminan Allah. Tapi "lebih baik" tidak datang otomatis. Ia datang untuk mereka yang <strong>bertahan</strong>, yang <strong>belajar dari fase sekarang</strong>, yang <strong>tidak menyerah</strong> di tengah kesulitan. Setiap fase sulit adalah tangga menuju fase yang lebih tinggi. Percayalah pada prosesnya.
+                </div>
+            </div>
+        </section>
+
+        <!-- Ayat 5 -->
+        <section class="ayat-section">
+            <div class="ayat-arabic">وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ</div>
+            <div class="ayat-terjemah">"Dan sungguh, Tuhanmu pasti akan memberimu, sehingga engkau puas."</div>
+
+            <div class="energi-kata">
+                <h4>ENERGI KATA</h4>
+                <div class="energi-item">
+                    <strong>لَسَوْفَ (Lasawfa) - Penekanan Masa Depan</strong>
+                    <p>Ini bukan sekadar "akan" (<em>sawfa</em>). Dengan penambahan <em>lam</em> di depannya (<em>la-sawfa</em>), ini menjadi <strong>penekanan yang sangat kuat</strong>: "sungguh pasti akan". Tidak ada keraguan, tidak ada mungkin-mungkin. Ini adalah <strong>kepastian mutlak</strong>.</p>
+                </div>
+                <div class="energi-item">
+                    <strong>فَتَرْضَىٰ (Fatardha) - Hingga Engkau Puas</strong>
+                    <p><em>Tardha</em> menunjukkan <strong>pencapaian kepuasan penuh</strong>. Bukan sekadar "senang", tapi <strong>benar-benar puas</strong>, tidak ada lagi yang kurang. Allah tidak bilang "Aku akan beri sedikit" atau "Aku akan beri cukup". Tapi <strong>"hingga engkau puas"</strong>. Artinya, <strong>tidak ada batas</strong> selain kepuasan kalian sendiri.</p>
+                </div>
+            </div>
+
+            <div class="tafsir-mendalam">
+                <h4>TAFSIR MENDALAM</h4>
+                <p>Kepuasan (<em>ridha</em>) adalah kondisi hati, bukan kondisi kantong. Seseorang bisa punya segalanya tapi tidak puas. Seseorang bisa punya sedikit tapi sangat puas. Allah berjanji memberi hingga <strong>hati kita puas</strong>—dan hati baru puas kalau apa yang diberi adalah <strong>yang terbaik untuk kita</strong>.</p>
+
+                <div class="relevance">
+                    <h5>Relevansi Kekinian:</h5>
+                    <p>Masalah kita adalah kita sering <strong>salah target kepuasan</strong>. Kita pikir kalau punya uang banyak kita akan puas. Kalau punya pasangan ganteng/cantik kita akan puas. Kalau punya followers banyak kita akan puas. Tapi berapa banyak selebriti yang depresi? Berapa banyak orang kaya yang bunuh diri?</p>
+                    
+                    <div class="contoh">
+                        <strong>Contoh 1 - Obsesi dengan Target Materi:</strong>
+                        <p>Target punya rumah, mobil, tabungan miliaran. Tiap hari kerja keras, stres, tidak ada waktu keluarga. Akhirnya berhasil—punya rumah besar, mobil mewah, tapi... kosong. Pulang ke rumah besar sendirian. Ini contoh salah target. Allah berjanji memberi <strong>hingga puas</strong>, bukan hingga kaya. Kepuasan mungkin datangnya dari <strong>rumah sederhana yang penuh kehangatan</strong>, bukan dari rumah besar yang kosong.</p>
+                    </div>
+
+                    <div class="contoh">
+                        <strong>Contoh 2 - Obsesi dengan Title Pekerjaan:</strong>
+                        <p>Pengen banget kerja di perusahaan multinasional bergengsi. Akhirnya dapat—tapi ternyata kultur kerjanya toxic. Sementara teman lain yang kerja di startup kecil, gaji lebih kecil, tapi happy dan belajar banyak. <strong>Allah mungkin tahan yang pertama dari mendapat pekerjaan impian itu karena tahu itu akan menghancurkannya. Allah sedang arahkan ke tempat yang akan benar-benar bikin dia puas.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <h4>INTISARI</h4>
+                <div class="intisari-box">
+                    Allah berjanji memberi hingga kalian puas. Tapi puas menurut Allah, bukan menurut standar kalian yang mungkin salah. Kalau kalian belum dapat apa yang kalian minta, bersabarlah. Allah sedang siapkan yang lebih baik. Dan ketika Dia akhirnya beri, kalian akan bilang: "Ya Allah, syukur yang dulu tidak dikasih. Ternyata yang ini jauh lebih baik." Percayalah pada pilihan-Nya.
+                </div>
+            </div>
+        </section>
+
+        <!-- Ayat 6-8 -->
+        <section class="ayat-section">
+            <div class="ayat-arabic">أَلَمْ يَجِدْكَ يَتِيمًا فَـَٔاوَىٰ - وَوَجَدَكَ ضَآلًّا فَهَدَىٰ - وَوَجَدَكَ عَآئِلًا فَأَغْنَىٰ</div>
+            <div class="ayat-terjemah">"Bukankah Dia mendapatimu sebagai anak yatim, lalu Dia melindungimu? Dan Dia mendapatimu bingung, lalu Dia memberi petunjuk. Dan Dia mendapatimu miskin, lalu Dia memberikan kecukupan."</div>
+
+            <div class="energi-kata">
+                <h4>ENERGI KATA</h4>
+                <div class="energi-item">
+                    <strong>يَتِيمًا (Yatiman) - Yatim: Tanpa Pelindung</strong>
+                    <p>Yatim bukan sekadar "tidak punya orangtua". Berarti <strong>tidak punya pelindung sosial</strong>, tidak punya backing, tidak punya privilege, <strong>rentan</strong>. Anak yatim adalah yang paling mudah dizalimi karena tidak ada yang membela.</p>
+                </div>
+                <div class="energi-item">
+                    <strong>ضَآلًّا (Dhaallan) - Bingung Mencari Jalan</strong>
+                    <p>Bukan "sesat" dalam artian berbuat dosa. Berarti <strong>belum tahu jalan yang benar</strong>, belum dapat petunjuk, sedang mencari. Seperti orang yang tersesat di hutan—bukan karena jahat, tapi karena belum tahu jalan keluar.</p>
+                </div>
+                <div class="energi-item">
+                    <strong>عَآئِلًا ('Aa-ilan) - Miskin: Tidak Punya Apapun</strong>
+                    <p>Miskin absolut. Tidak punya harta, tidak punya penghasilan, <strong>bergantung pada orang lain</strong>. Ketiga kata ini menggambarkan <strong>tiga kondisi terendah</strong>: tidak punya pelindung, tidak punya arah, tidak punya harta.</p>
+                </div>
+            </div>
+
+            <div class="tafsir-mendalam">
+                <h4>TAFSIR MENDALAM</h4>
+                <p>Allah mengingatkan Rasulullah ﷺ tentang <strong>dari mana ia datang</strong>. Bukan untuk merendahkan, tapi untuk <strong>memberi perspektif</strong>: kamu dulu tidak punya apa-apa, tapi lihat sekarang—Aku sudah angkat kamu.</p>
+                <p>Rasulullah ﷺ lahir yatim, ibunya wafat saat beliau masih kecil. Beliau tumbuh tanpa figur orangtua, tidak punya harta warisan, bekerja menggembala kambing—pekerjaan paling rendah di masyarakat Arab. <strong>Beliau adalah underdog sejati.</strong></p>
+
+                <div class="relevance">
+                    <h5>Relevansi Kekinian - LIHAT TRACK RECORD DENGAN ALLAH:</h5>
+                    <p>Kita terlalu fokus pada <strong>apa yang belum kita dapat</strong>, sampai lupa <strong>apa yang sudah kita lewati</strong>. Kita terlalu fokus pada <strong>masalah sekarang</strong>, sampai lupa <strong>mukjizat-mukjizat kecil di masa lalu</strong>.</p>
+                    <p>Coba refleksi: berapa kali kalian seharusnya gagal, tapi ternyata lolos? Berapa kali kalian hampir kecelakaan, tapi selamat? Berapa kali kalian hampir menyerah, tapi tiba-tiba ada yang bantu? <strong>Itu semua bukan kebetulan. Itu pola kasih sayang Allah yang konsisten.</strong></p>
+                    
+                    <div class="contoh">
+                        <strong>Contoh 1 - Mahasiswa Kuliah di Universitas Bagus:</strong>
+                        <p>Dulu mungkin dari keluarga sederhana, orangtua cuma tamatan SMP, rumah kontrakan, uang pas-pasan. Tapi entah bagaimana, dapat beasiswa. Entah bagaimana, bisa bayar kuliah. Entah bagaimana, ada teman yang bantu. Sekarang sudah semester akhir, tapi tiba-tiba stuck, tidak bisa lulus-lulus. Jangan lupa: <strong>kalian yang dulu tidak punya apa-apa, sekarang sudah di universitas bagus</strong>. Siapa yang bawa kalian sampai sini? Allah. Kalau Dia sudah bawa kalian sejauh ini, Dia tidak akan biarkan kalian gagal di akhir. Percayalah—<strong>Allah yang sudah angkat kalian dari titik terendah, pasti akan selesaikan perjalanan kalian dengan baik.</strong></p>
+                    </div>
+
+                    <div class="contoh">
+                        <strong>Contoh 2 - Entrepreneur yang Pernah Bangkrut:</strong>
+                        <p>Usaha pertama bangkrut, hutang menumpuk. Tapi entah bagaimana, bisa bayar hutang. Entah bagaimana, dapat modal lagi. Entah bagaimana, bisa buka usaha kedua. Sekarang usaha kedua juga lagi sulit, omzet turun, hampir bangkrut lagi. Jangan panik. <strong>Lihat track record-mu dengan Allah</strong>: Dia yang dulu selamatkan kalian dari kebangkrutan pertama, yang kasih modal kedua, yang bawa kalian sampai bisa bangkit lagi—Dia tidak akan diam saja sekarang. <strong>Allah yang sudah tunjukkan mukjizat ekonomi-Nya di masa lalu, pasti akan tunjukkan lagi.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <h4>INTISARI</h4>
+                <div class="intisari-box">
+                    Kalian bukan di titik nol. Kalian sudah jauh. Lihat ke belakang—berapa banyak mukjizat kecil yang sudah Allah berikan? Dari tidak punya apa-apa, sekarang sudah punya banyak. Dari tidak tahu apa-apa, sekarang sudah paham banyak. Allah yang sudah bawa kalian sejauh ini, tidak akan tiba-tiba berhenti. <strong>Track record-Nya sempurna. Percayalah—Dia akan selesaikan perjalanan kalian dengan baik.</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ayat 9-10 -->
+        <section class="ayat-section">
+            <div class="ayat-arabic">فَأَمَّا ٱلْيَتِيمَ فَلَا تَقْهَرْ - وَأَمَّا ٱلسَّآئِلَ فَلَا تَنْهَرْ</div>
+            <div class="ayat-terjemah">"Maka terhadap anak yatim, janganlah kamu berlaku sewenang-wenang. Dan terhadap orang yang meminta-minta, janganlah kamu menghardik."</div>
+
+            <div class="tafsir-mendalam">
+                <h4>TAFSIR MENDALAM</h4>
+                <p>Setelah Allah ingatkan tentang nikmat-nikmat yang sudah diberikan, sekarang Allah kasih <strong>tanggung jawab sosial</strong>: kalian yang sudah diangkat, sekarang <strong>angkat yang lain</strong>.</p>
+                <p>Allah bilang: <strong>jangan berani</strong>. Jangan berlaku sewenang-wenang, jangan menghardik. Kenapa? Karena <strong>kalian dulu seperti mereka</strong>. Kalian dulu yatim, sekarang sudah punya pelindung—jangan lupa dari mana kalian datang.</p>
+
+                <div class="relevance">
+                    <h5>Relevansi Kekinian:</h5>
+                    <p>Masalah zaman sekarang: <strong>kasta-kasta baru</strong> yang tercipta dari kesenjangan ekonomi, pendidikan, dan privilege. Yang kaya merendahkan yang miskin. Yang berpendidikan merendahkan yang tidak sekolah tinggi. Media sosial memperburuk ini—orang pamer kesuksesan, lalu merendahkan yang belum sukses.</p>
+                    
+                    <div class="contoh">
+                        <strong>Contoh 1 - Fresh Graduate dengan Gaji Besar:</strong>
+                        <p>Dulu waktu kuliah, sering minta dikirim uang sama orangtua. Sekarang sudah kerja, gaji besar, tapi mulai pelit sama orangtua. "Mereka kan sudah tua, butuh apa lagi sih?" Mulai perhitungan kasih nafkah. Ini contoh <strong>lupa dari mana datang</strong>. Orangtua adalah "yatim sosial"—mereka sudah tua, tidak punya power lagi, bergantung pada kalian. Dan kalian berlaku sewenang-wenang. <strong>Padahal kalian bisa kuliah dan kerja sekarang karena mereka yang dulu susah payah.</strong></p>
+                    </div>
+
+                    <div class="contoh">
+                        <strong>Contoh 2 - Influencer Besar yang Lupa Asal:</strong>
+                        <p>Dulu minta-minta endorse, minta repost, minta dibantu viralkan. Banyak orang kecil yang bantu dengan tulus. Sekarang sudah besar, followers jutaan, tapi kalau ada kreator kecil yang minta bantuan, di-ignore atau diblock. Ini contoh <strong>menghardik peminta-minta</strong>. Kalian lupa bahwa kalian dulu juga peminta-minta. <strong>Rantai kebaikan terputus.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <h4>INTISARI</h4>
+                <div class="intisari-box">
+                    Kalian yang sudah diangkat, sekarang angkat yang lain. Kalian yang sudah diberi, sekarang beri untuk yang lain. Jangan pakai power kalian untuk menindas yang lemah. Jangan pakai privilege kalian untuk merendahkan yang tidak punya. Ingat: kalian dulu juga seperti mereka. <strong>Ini bukan beban—ini kesempatan untuk meneruskan kebaikan yang pernah kalian terima.</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ayat 11 -->
+        <section class="ayat-section">
+            <div class="ayat-arabic">وَأَمَّا بِنِعْمَةِ رَبِّكَ فَحَدِّثْ</div>
+            <div class="ayat-terjemah">"Dan terhadap nikmat Tuhanmu, maka sampaikanlah."</div>
+
+            <div class="tafsir-mendalam">
+                <h4>TAFSIR MENDALAM</h4>
+                <p>Ini penutup yang sempurna. Setelah Allah ingatkan tentang nikmat, setelah Allah minta kita berbuat baik pada yang lemah, sekarang Allah minta satu hal lagi: <strong>ceritakan nikmat-Ku</strong>.</p>
+                <p>Kenapa penting? Karena <strong>cerita nikmat adalah dakwah paling efektif</strong>. Orang tidak butuh ceramah panjang. Tapi kalau mereka dengar cerita nyata—"Dulu aku di titik terendah, sekarang Allah angkat aku"—itu langsung nyentuh hati. Itu memberi harapan.</p>
+
+                <div class="relevance">
+                    <h5>Relevansi Kekinian:</h5>
+                    <p>Masalah zaman sekarang: kita <strong>terlalu banyak mengeluh, terlalu sedikit bersyukur</strong>. Timeline penuh dengan curahan masalah. Jarang yang cerita nikmat dengan cara yang bersyukur. Kebanyakan kalau cerita nikmat, terkesan pamer—fokusnya pada "aku hebat", bukan "Allah baik".</p>
+                    
+                    <div class="contoh">
+                        <strong>Contoh 1 - Mahasiswa dapat Beasiswa:</strong>
+                        <p>Bukannya cerita "Alhamdulillah dapat beasiswa, ini karena Allah kasih kesempatan," malah cerita "Akhirnya usaha kerasku terbayar! IPK 4.0 itu tidak gampang lho!" Fokusnya pada "aku hebat". Cara yang benar: "Alhamdulillah dapat beasiswa. Padahal waktu apply, aku tidak yakin akan lolos. IPK-ku tidak sempurna. Aku merasa tidak layak, tapi Allah kasih. <strong>Fokus pada kebaikan Allah, bukan kehebatan diri.</strong>"</p>
+                    </div>
+
+                    <div class="contoh">
+                        <strong>Contoh 2 - Entrepreneur dengan Bisnis Sukses:</strong>
+                        <p>Bukannya cerita proses dan pertolongan Allah, malah cerita "Tips sukses dariku: kerja keras, konsisten, never give up!" seolah sukses itu pure karena skill sendiri. Padahal di balik itu ada berapa banyak pertolongan Allah yang tidak kelihatan. Cara yang benar: "Alhamdulillah bisnis sekarang berjalan baik. Ada meeting yang tadinya aku rasa akan gagal, tapi tiba-tiba deal. Ada masalah besar yang harusnya bikin bangkrut, tapi tiba-tiba ada jalan keluar. <strong>Ini karena Allah buka jalan demi jalan.</strong>"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <h4>INTISARI</h4>
+                <div class="intisari-box">
+                    Ceritakan nikmat Allah dalam hidupmu. Bukan untuk pamer, tapi untuk syukur dan memberi harapan. Ketika kalian cerita "Dulu aku di sini, sekarang aku di sini, semua karena Allah," kalian sedang memberi harapan bagi yang masih di posisi "dulu kalian". <strong>Jangan pelit cerita nikmat—cerita kalian bisa jadi penyelamat bagi seseorang yang sedang di ujung tanduk.</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Refleksi Penutup -->
+        <section class="refleksi">
+            <h2>REFLEKSI PENUTUP: POLA YANG BISA DIAMBIL</h2>
+            <p>Ad-Dhuha bukan sekadar surat penghibur. Ini adalah <strong>manual for survival</strong> di saat-saat terberat. Pola yang Allah tunjukkan di sini bisa jadi pegangan ketika kita merasa segalanya runtuh.</p>
+
+            <h3>POLA ALLAH DALAM MENGANGKAT MANUSIA:</h3>
+            <div class="tafsir-section">
+                <strong>1. Fase Malam (Saja):</strong> Kesunyian, tidak ada yang terjadi, tidak ada progress yang terlihat. Allah sedang bekerja di belakang layar. Ini fase persiapan—karakter diasah, kesabaran diuji. Jangan panik. Dhuha akan datang.
+            </div>
+            <div class="tafsir-section">
+                <strong>2. Transisi:</strong> Allah tidak meninggalkan, tidak membenci. Kesunyian bukan pengabaian. Ini strategi-Nya untuk membuat kita lebih matang, lebih siap.
+            </div>
+            <div class="tafsir-section">
+                <strong>3. Fase Dhuha:</strong> Cahaya datang, pintu terbuka, jalan keluar muncul. <strong>Yang kemudian lebih baik dari yang sekarang.</strong>
+            </div>
+            <div class="tafsir-section">
+                <strong>4. Puncak:</strong> Allah memberi hingga kita puas. Bukan sekadar cukup, tapi <strong>puas</strong>—tidak ada lagi yang kurang.
+            </div>
+
+            <h3>LANGKAH NYATA YANG BISA DIAMBIL:</h3>
+            <div class="langkah">
+                <strong>1. BUAT JURNAL NIKMAT</strong>
+                <p>Mulai sekarang, setiap hari tulis minimal tiga hal baik yang terjadi. Tujuannya: melatih otak untuk fokus pada nikmat, bukan masalah. Setelah sebulan, baca lagi. Kalian akan kaget betapa banyak hal baik yang sebenarnya terjadi.</p>
+            </div>
+            <div class="langkah">
+                <strong>2. LIHAT TRACK RECORD DENGAN ALLAH</strong>
+                <p>Tuliskan 5 momen terberat dalam hidup kalian. Lalu tulis bagaimana Allah membawa kalian keluar dari momen itu. Simpan daftar ini. Ketika kalian menghadapi masalah baru, baca lagi. Ini reminder: <strong>Allah yang sudah selamatkan kalian berkali-kali, pasti akan selamatkan lagi.</strong></p>
+            </div>
+            <div class="langkah">
+                <strong>3. TOLONG SATU ORANG YANG LEBIH LEMAH</strong>
+                <p>Identifikasi seseorang di sekitar kalian yang lebih lemah. Tolong mereka dengan cara apapun. Tujuannya: menginternalisasi empati dan meneruskan kebaikan yang pernah kalian terima. Kalian akan merasa lebih bersyukur.</p>
+            </div>
+            <div class="langkah">
+                <strong>4. CERITAKAN SATU NIKMAT SETIAP MINGGU</strong>
+                <p>Pilih satu platform dan ceritakan satu nikmat setiap minggu. Fokus pada kebaikan Allah, bukan kehebatan diri. Template: "Dulu aku [kondisi sulit], sekarang Allah kasih [nikmat]. Aku merasa tidak layak, tapi Allah kasih. Semoga berkah ini bisa aku gunakan untuk [hal baik]." Ini adalah dakwah paling efektif dan latihan syukur paling powerful.</p>
+            </div>
+            <div class="langkah">
+                <strong>5. BUAT DAFTAR "YANG KEMUDIAN LEBIH BAIK"</strong>
+                <p>Tulis hal-hal yang kalian minta ke Allah tapi tidak dikasih—lalu tulis apa yang akhirnya Allah kasih sebagai gantinya. Contoh: "Aku minta pasangan A, tidak dikasih. Akhirnya dapat pasangan B yang ternyata jauh lebih cocok." Daftar ini adalah bukti konkret bahwa <strong>Allah tahu yang terbaik.</strong></p>
+            </div>
+
+            <h3 style="text-align: center; margin-top: 40px; font-size: 22px;">Ad-Dhuha adalah jaminan bahwa kegelapan tidak akan abadi. Bahwa Allah tidak pernah meninggalkan. Bahwa yang akan datang lebih baik dari yang sekarang.</h3>
+        </section>
+
+        <!-- Epilog -->
+        <section class="epilog">
+            <h2>EPILOG PUITIS: SURAT UNTUK YANG SEDANG DI UJUNG TANDUK</h2>
+            
+            <div class="epilog-text">
+                <strong>Kamu yang Merasa Allah Menjauh</strong>
+                <br><br>
+                Mungkin sekarang kamu sedang di titik terendah. Mungkin doa sudah tidak terdengar lagi—atau setidaknya, terasa seperti itu. Mungkin setiap usaha seperti menghantam dinding, setiap harapan seperti sia-sia, setiap pagi terasa seperti beban baru.
+                <br><br>
+                Mungkin kamu sudah kirim ratusan CV tapi tidak ada yang respon. Mungkin kamu sudah berjuang keras di hubungan tapi tetap berakhir. Mungkin kamu sudah habis-habisan di usaha tapi tetap bangkrut. Mungkin kamu sudah berdoa bertahun-tahun tapi tidak ada tanda-tanda akan dikabulkan.
+                <br><br>
+                Dan yang paling menyakitkan: kamu lihat orang lain mendapat apa yang mereka inginkan dengan mudah. Sementara kamu? Masih di tempat yang sama, sudah bertahun-tahun.
+                <br><br>
+                Dan mulai muncul pertanyaan mengerikan di dalam hati: <em>Apa Allah meninggalkanku? Apa aku tidak cukup baik? Apa dosa-dosaku terlalu banyak?</em>
+            </div>
+
+            <div class="epilog-verse">✨ ✨ ✨</div>
+
+            <div class="epilog-text">
+                Dengar baik-baik.
+                <br><br>
+                <strong>Allah tidak meninggalkanmu. Dia tidak pernah, dan tidak akan pernah.</strong> Kesunyian yang kamu rasakan sekarang bukan tanda pengabaian—itu adalah tanda bahwa sesuatu besar sedang disiapkan.
+                <br><br>
+                Kamu tahu kenapa Allah diam? Bukan karena Dia tidak peduli. Tapi karena <strong>Dia sedang bekerja</strong>. Di belakang layar, Dia sedang atur semua puzzle—memindahkan orang, mengubah keadaan, membuka jalan—agar ketika waktunya tiba, semua akan sempurna.
+                <br><br>
+                Bayangkan seorang sutradara yang sedang menyiapkan adegan klimaks. Dia tidak buru-buru. Dia atur lighting dengan sempurna, dia pastikan semua aktor di posisi yang tepat, dia tes berkali-kali sebelum action. Dari luar, sepertinya tidak ada yang terjadi—tapi dia sedang memastikan adegan itu akan sempurna. <strong>Allah adalah sutradara terbaik. Hidupmu adalah karya masterpiece-Nya. Dia tidak akan buru-buru—Dia akan pastikan sempurna.</strong>
+                <br><br>
+                Kamu yang merasa doamu tidak didengar: <strong>Allah dengar setiap huruf yang kamu bisikkan.</strong> Setiap air mata yang jatuh di tengah malam, setiap doa yang kamu ucapkan sambil menahan tangis, setiap harapan yang kamu sampaikan—semua terekam, semua tersimpan, tidak ada yang sia-sia.
+                <br><br>
+                Allah tidak mengabulkan bukan karena Dia tidak sayang. Tapi karena <strong>Dia tahu timing yang tepat.</strong> Kalau dikasih sekarang, mungkin kamu belum siap. Kalau dikasih sekarang, mungkin akan jadi bencana. Allah tahan bukan karena Dia pelit—tapi karena <strong>Dia sedang siapkan yang lebih baik, dan Dia sedang siapkan kamu untuk itu.</strong>
+                <br><br>
+                Coba kamu pikir: berapa banyak hal yang dulu kamu minta dengan sangat, tapi tidak dikasih—dan sekarang kamu bersyukur karena tidak dikasih? <strong>Allah selamatkan kamu dengan menunda atau mengalihkan doamu. Itu bukan penolakan—itu perlindungan.</strong>
+            </div>
+
+            <div class="epilog-verse">✨ ✨ ✨</div>
+
+            <div class="epilog-text">
+                <strong>Kamu yang merasa stuck di tempat yang sama:</strong>
+                <br><br>
+                Kamu tidak stuck. Kamu sedang diasah. Ada perbedaan besar antara stuck dan diasah. Stuck itu stagnan, tidak ada pertumbuhan. Diasah itu terlihat seperti stagnan, tapi sebenarnya ada proses internal yang luar biasa—karakter dibangun, kesabaran ditempa, kekuatan dilatih.
+                <br><br>
+                Pedang yang bagus tidak dibuat dalam semalam. Dia dipanaskan, dipukul, dipanaskan lagi, dipukul lagi, berkali-kali, sampai akhirnya jadi pedang yang tajam dan kuat. <strong>Kamu sedang dalam proses itu. Allah sedang membentukmu jadi versi terbaik dari dirimu—dan itu butuh waktu.</strong>
+                <br><br>
+                Jangan bandingkan dirimu dengan orang lain. Mereka punya timeline sendiri, kamu punya timeline sendiri. Mungkin mereka cepat dapat yang mereka mau—tapi coba lihat nanti, apakah mereka bisa mempertahankan? Apakah mereka tumbuh? <strong>Kamu yang Allah asah lebih lama, justru akan lebih kuat, lebih matang, lebih siap untuk tanggung jawab yang lebih besar.</strong>
+            </div>
+
+            <div class="epilog-verse">✨ ✨ ✨</div>
+
+            <div class="epilog-text">
+                <strong>Kamu yang sudah lelah:</strong>
+                <br><br>
+                Boleh lelah. Boleh berhenti sejenak. Tapi jangan menyerah. Ada perbedaan besar antara istirahat dan menyerah. Istirahat itu untuk mengumpulkan tenaga lagi. Menyerah itu berhenti total.
+                <br><br>
+                Kalau kamu lelah, istirahat. Menangis tidak apa-apa. Curhat tidak apa-apa. Diam sejenak tidak apa-apa. Tapi setelah itu, <strong>bangkit lagi.</strong> Karena Ad-Dhuha adalah jaminan: <strong>malam akan berganti pagi. Gelap akan berganti terang. Susah akan berganti mudah.</strong>
+                <br><br>
+                Dan ingat: kamu sudah sejauh ini. Kamu sudah melewati banyak badai. Kamu sudah bertahan dari banyak ujian. <strong>Allah yang sudah membawamu sejauh ini, tidak akan membiarkanmu tenggelam sekarang.</strong> Dia akan selesaikan ceritamu dengan indah—percayalah.
+            </div>
+
+            <div class="epilog-verse">✨ ✨ ✨</div>
+
+            <div class="epilog-text">
+                Mungkin sekarang kamu masih di fase malam. Masih gelap, masih sunyi, masih terasa berat. Tapi dengarkan baik-baik bisikan angin di pagi hari—<strong>dhuha sedang dalam perjalanan.</strong> Cahaya sedang mendekat. Pintu sedang dibuka. Jalan sedang disiapkan.
+                <br><br>
+                Dan ketika dhuha akhirnya tiba—ketika cahaya akhirnya muncul, ketika jawaban akhirnya datang, ketika pintu akhirnya terbuka—kamu akan menangis. Bukan karena sedih, tapi karena lega yang luar biasa. Kamu akan melihat ke belakang dan berkata: "Ya Allah, ternyata ini yang Engkau siapkan. Ternyata penundaan itu adalah perlindungan. Ternyata semua ada hikmahnya."
+                <br><br>
+                Dan kamu akan bersyukur—bersyukur karena Allah tidak mengabulkan doamu yang dulu. Bersyukur karena Allah tidak kasih apa yang kamu minta. Karena ternyata, <strong>apa yang Allah kasih jauh lebih baik.</strong>
+            </div>
+
+            <div class="epilog-verse">✨ ✨ ✨</div>
+
+            <div class="epilog-text">
+                Jadi bertahanlah, saudara seperjuangan. Bertahanlah, kamu yang sedang di ujung tanduk. Bertahanlah, kamu yang merasa ini akhir. <strong>Ini bukan akhir. Ini adalah awal dari sesuatu yang jauh lebih besar.</strong>
+                <br><br>
+                Allah tidak meninggalkanmu. Dia tidak pernah, dan tidak akan pernah. Dia sedang di sini, bersamamu, melihatmu, mendengarmu, mengaturkan yang terbaik untukmu. <strong>Dan yang kemudian—percayalah—akan jauh lebih baik dari yang sekarang.</strong>
+                <br><br>
+                Dhuha akan datang. Seperti ia selalu datang setelah malam tergelap. <strong>Pasti.</strong>
+            </div>
+
+            <div class="epilog-verse">وَالضُّحَىٰ</div>
+
+            <div class="epilog-text" style="text-align: center; font-size: 18px; margin-top: 40px;">
+                Demi cahaya pagi yang akan datang—<strong>untuk kamu yang masih bertahan di malam.</strong>
+                <br><br>
+                Sebentar lagi, kamu akan melihatnya. Sebentar lagi, kamu akan merasakannya. Sebentar lagi, kamu akan bersyukur karena bertahan.
+                <br><br>
+                <strong style="font-size: 20px; color: #d4af37;">Bertahanlah. Dhuha sedang dalam perjalanan menujumu.</strong>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <h3 style="color: #d4af37; margin-bottom: 20px;">Bagikan Kebaikan Ini</h3>
+            <div class="download-section">
+                <a href="#" class="download-btn" onclick="downloadHTML()">📥 Download File HTML</a>
+                <a href="#" class="download-btn" onclick="downloadPDF()">📄 Download PDF</a>
+                <br><br>
+                <a href="#" class="share-btn" onclick="shareWhatsApp()">💬 Bagikan ke WhatsApp</a>
+                <a href="#" class="share-btn" onclick="shareCopy()">🔗 Copy Link</a>
+            </div>
+            <p style="margin-top: 30px; font-size: 14px;">© Tafsir Ad-Dhuha | Bangkit Dari Titik Terbawah</p>
+            <p style="font-size: 12px; margin-top: 10px; color: #888;">Dibuat dengan ❤️ untuk mereka yang sedang bertahan</p>
+        </footer>
+    </div>
+
+    <div class="scroll-indicator" onclick="scrollToTop()" title="Kembali ke atas">↑</div>
+
+    <script>
+        // Download HTML
+        function downloadHTML() {
+            const element = document.documentElement;
+            const html = element.outerHTML;
+            const blob = new Blob([html], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Tafsir-Ad-Dhuha-Bangkit-Dari-Titik-Terbawah.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('✅ File HTML berhasil didownload!');
+        }
+
+        // Download PDF (menggunakan print to PDF)
+        function downloadPDF() {
+            alert('Fitur download PDF: Gunakan Ctrl+P (atau Cmd+P di Mac), lalu pilih "Simpan sebagai PDF"');
+            window.print();
+        }
+
+        // Share ke WhatsApp
+        function shareWhatsApp() {
+            const text = 'Baca Tafsir Ad-Dhuha: "Bangkit Dari Titik Terbawah" - Surat untuk mereka yang sedang di ujung tanduk. Inspiratif dan menyentuh hati! 💛';
+            const url = `https://wa.me/?text=${encodeURIComponent(text + ' ' + window.location.href)}`;
+            window.open(url, '_blank');
+        }
+
+        // Copy Link
+        function shareCopy() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('✅ Link berhasil disalin ke clipboard!');
+            }).catch(() => {
+                alert('Link: ' + url);
+            });
+        }
+
+        // Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/hide scroll indicator
+        window.addEventListener('scroll', () => {
+            const indicator = document.querySelector('.scroll-indicator');
+            if (window.scrollY > 300) {
+                indicator.style.opacity = '1';
+            } else {
+                indicator.style.opacity = '0';
+            }
+        });
+    </script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

@@ -1,0 +1,762 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tafsir Al-Kautsar: Portal Kelimpahan dalam Simulasi Kehidupan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+            color: #e0e0e0;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border-radius: 30px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .arabic-title {
+            font-family: 'Amiri', serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tagline {
+            font-size: 1.3em;
+            color: #cbd5e1;
+            font-style: italic;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            padding: 0 20px;
+        }
+        
+        .section {
+            background: rgba(30, 30, 46, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+        }
+        
+        h2 {
+            font-size: 2em;
+            color: #a78bfa;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(139, 92, 246, 0.3);
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, #a78bfa 0%, transparent 100%);
+        }
+        
+        h3 {
+            font-size: 1.5em;
+            color: #60a5fa;
+            margin: 30px 0 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        h3::before {
+            content: '◆';
+            margin-right: 12px;
+            color: #fbbf24;
+            font-size: 0.8em;
+        }
+        
+        .arabic {
+            font-family: 'Amiri', serif;
+            font-size: 2em;
+            text-align: center;
+            color: #fbbf24;
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(251, 191, 36, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            line-height: 1.8;
+        }
+        
+        .translation {
+            text-align: center;
+            font-style: italic;
+            color: #94a3b8;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(148, 163, 184, 0.05);
+            border-radius: 10px;
+        }
+        
+        .keyword {
+            color: #fbbf24;
+            font-weight: 600;
+            background: rgba(251, 191, 36, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-left: 4px solid #60a5fa;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            font-style: italic;
+            color: #cbd5e1;
+        }
+        
+        .example-box {
+            background: rgba(34, 197, 94, 0.1);
+            border-left: 4px solid #22c55e;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+        }
+        
+        .example-box h4 {
+            color: #22c55e;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .quote {
+            font-size: 1.2em;
+            color: #fbbf24;
+            font-weight: 600;
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(251, 191, 36, 0.05);
+            border-radius: 15px;
+            border: 2px solid rgba(251, 191, 36, 0.2);
+            position: relative;
+        }
+        
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4em;
+            color: rgba(251, 191, 36, 0.3);
+            font-family: serif;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .info-card {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            text-align: center;
+        }
+        
+        .info-card strong {
+            display: block;
+            color: #a78bfa;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        ul, ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 15px 0;
+            color: #cbd5e1;
+        }
+        
+        li::marker {
+            color: #60a5fa;
+        }
+        
+        .action-list {
+            background: rgba(251, 191, 36, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            margin: 30px 0;
+        }
+        
+        .epilog {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+            padding: 60px 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            margin-top: 60px;
+            text-align: center;
+        }
+        
+        .epilog h2 {
+            font-size: 2.5em;
+            text-align: center;
+            border: none;
+        }
+        
+        .epilog p {
+            margin: 25px 0;
+            font-size: 1.1em;
+            line-height: 2;
+        }
+        
+        .closing {
+            font-size: 1.4em;
+            color: #fbbf24;
+            font-weight: 600;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(251, 191, 36, 0.3);
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 30px auto;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
+            display: block;
+            text-align: center;
+            max-width: 300px;
+            margin: 30px auto;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 15px;
+            }
+            
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .arabic-title {
+                font-size: 2.5em;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .section {
+                padding: 30px 20px;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="arabic-title">سورة الكوثر</div>
+            <h1>SURAT AL-KAUTSAR</h1>
+            <div class="tagline">Ketika yang terlihat sebagai kekurangan justru menjadi pintu menuju kelimpahan tak terbatas</div>
+        </div>
+
+        <div class="section">
+            <h2>INFORMASI DASAR</h2>
+            
+            <div class="info-grid">
+                <div class="info-card">
+                    <strong>Nama Surat</strong>
+                    Al-Kautsar (الكوثر)
+                </div>
+                <div class="info-card">
+                    <strong>Arti</strong>
+                    Nikmat yang Melimpah Ruah
+                </div>
+                <div class="info-card">
+                    <strong>Jumlah Ayat</strong>
+                    3 ayat
+                </div>
+                <div class="info-card">
+                    <strong>Kategori</strong>
+                    Surat Makkiyah
+                </div>
+                <div class="info-card">
+                    <strong>Urutan Turun</strong>
+                    Ke-15
+                </div>
+            </div>
+
+            <h3>Konteks Pewahyuan</h3>
+            <p>Surat ini turun ketika Rasulullah ﷺ kehilangan putra laki-lakinya yang bernama Al-Qasim. Di tengah masyarakat Arab yang sangat mengagungkan keturunan laki-laki, musuh-musuh beliau mengejek dengan sebutan "abtar" (terputus keturunannya). Mereka mengira kehilangan ini adalah tanda kesialan dan kegagalan.</p>
+            
+            <p>Di tengah kesedihan dan cercaan itulah, Allah menurunkan surat terpendek dalam Al-Qur'an yang justru membawa pesan paling padat tentang kelimpahan hakiki.</p>
+
+            <div class="highlight-box">
+                <strong>Tema Pembahasan:</strong> Portal Kelimpahan dalam Simulasi Kehidupan—bagaimana yang tampak sebagai kehilangan di mata manusia, justru menjadi pintu menuju kebaikan berlipat ganda yang tak pernah terbayangkan.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>AYAT 1</h2>
+            
+            <div class="arabic">إِنَّآ أَعْطَيْنَٰكَ ٱلْكَوْثَرَ</div>
+            <div class="translation">
+                "Innaa a'thoinaakal kautsar"<br>
+                "Sesungguhnya Kami telah memberikan kepadamu (Muhammad) nikmat yang melimpah ruah."
+            </div>
+
+            <h3>A. ENERGI KATA</h3>
+            
+            <p><span class="keyword">1. إِنَّا (Innaa) - "Sesungguhnya Kami"</span></p>
+            <p>Kata pembuka "Innaa" bukan sekadar kata pengantar biasa. Ini adalah penegasan dengan huruf "Inna" yang dalam bahasa Arab membawa energi ta'kid (penekanan kuat).</p>
+            
+            <p>Yang unik: Allah menggunakan kata ganti "Kami" (nahnu) dalam bentuk jamak yang menunjukkan keagungan—istilah yang dalam linguistik Arab disebut <em>dhamir ta'dhim</em> (kata ganti kebesaran). Ini seperti seorang raja yang berbicara dengan segala keagungan kerajaannya, bukan sebagai individu biasa.</p>
+
+            <p><span class="keyword">2. أَعْطَيْنَٰكَ (A'thainaka) - "Kami Berikan Kepadamu"</span></p>
+            <p>Kata kerja dalam bentuk <em>madhi</em> (lampau) yang menunjukkan sesuatu yang sudah pasti terjadi. Dalam tata bahasa Arab, menggunakan bentuk lampau untuk sesuatu yang akan datang menandakan kepastian absolut—seolah sudah terjadi, tidak bisa dibatalkan.</p>
+            
+            <div class="highlight-box">
+                Akar katanya: عطى (a-tha-ya) yang bermakna "memberi dengan cuma-cuma, tanpa diminta, tanpa syarat balik". Beda dengan meminjamkan (harus dikembalikan) atau menjual (ada transaksi).
+            </div>
+
+            <p><span class="keyword">3. ٱلْكَوْثَرَ (Al-Kautsar) - "Nikmat yang Melimpah Ruah"</span></p>
+            <p>Ini adalah kata kunci yang paling kaya makna. "Al-Kautsar" berasal dari akar kata كَثُرَ (katsura) yang berarti "banyak, melimpah". Bentuk "fau'al" (كوثر) dalam ilmu sharaf (morfologi Arab) menunjukkan <em>mubalaghah</em> (hiperbola)—kebanyakan yang luar biasa, kelimpahan di atas kelimpahan.</p>
+
+            <h3>B. TAFSIR MENDALAM</h3>
+            
+            <p>Bayangkan kamu kehilangan sesuatu yang menurut masyarakat sekitarmu adalah segalanya. Bagi Rasulullah ﷺ, itu adalah putra laki-laki di tengah budaya yang menganggap anak laki-laki sebagai penerus nama dan kehormatan keluarga.</p>
+            
+            <p>Di saat itulah turun ayat ini. Bukan ayat yang mengatakan "sabar ya", atau "ikhlas aja", tetapi ayat yang membuka tabir realitas: "Kami telah memberikan kepadamu kelimpahan."</p>
+
+            <div class="highlight-box">
+                <strong>Filosofi di Balik Ayat:</strong><br>
+                Allah sedang mengajarkan prinsip fundamental tentang realitas: apa yang manusia lihat sebagai kehilangan seringkali adalah ruang kosong yang Allah siapkan untuk diisi dengan sesuatu yang jauh lebih besar.
+            </div>
+
+            <h3>Relevansi Kekinian</h3>
+            
+            <div class="example-box">
+                <h4>Contoh 1: Kehilangan Pekerjaan Impian</h4>
+                <p>Seorang teman mengirimkan ratusan lamaran untuk pekerjaan di perusahaan multinasional bergengsi. Setelah sampai tahap akhir, dia ditolak. Dia merasa terpuruk, merasa hidupnya "terputus" dari kesuksesan. Enam bulan kemudian, dia memulai bisnis kecil-kecilan dari hobi fotografi. Tanpa disangka, bisnis itu berkembang dan memberinya kebebasan finansial dan kreatif yang tidak akan pernah dia dapatkan sebagai karyawan.</p>
+                <p><strong>Kehilangan "pekerjaan impian" ternyata adalah pintu menuju "kehidupan impian".</strong></p>
+            </div>
+
+            <div class="example-box">
+                <h4>Contoh 2: Hubungan yang Kandas</h4>
+                <p>Seseorang mengalami putus cinta setelah hubungan bertahun-tahun. Rasanya dunia runtuh. Semua rencana masa depan mendadak hilang. Tapi di masa "kosong" itulah, dia belajar mencintai dirinya sendiri, mengembangkan skill baru, dan menemukan passion yang selama ini terpendam. Ketika akhirnya bertemu pasangan yang tepat, dia datang sebagai versi dirinya yang jauh lebih utuh.</p>
+            </div>
+
+            <div class="action-list">
+                <h4>Aplikasi Praktis:</h4>
+                <ol>
+                    <li><strong>Reframing Kehilangan</strong> - Setiap kali mengalami kegagalan atau kehilangan, tanya pada diri sendiri: "Ruang kosong apa yang sedang Allah siapkan dalam hidupku? Kelimpahan apa yang mungkin sedang dalam perjalanan?"</li>
+                    <li><strong>Journaling Berkah Tersembunyi</strong> - Buat catatan tentang hal-hal yang dulu kamu anggap kegagalan tapi ternyata membawa berkah. Pola ini akan melatih matamu untuk melihat kehilangan dengan perspektif kelimpahan.</li>
+                </ol>
+            </div>
+
+            <h3>C. INTISARI</h3>
+            <div class="quote">
+                Kelimpahan sejati bukan tentang tidak pernah kehilangan, tetapi tentang melihat setiap kehilangan sebagai ruang yang Allah kosongkan untuk diisi dengan sesuatu yang lebih baik. Rasulullah ﷺ kehilangan putra biologis, mendapat umat yang tak terhitung. Kita kehilangan yang sementara, mendapat yang kekal. Mata duniawi melihat kekurangan, mata iman melihat kelimpahan.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>AYAT 2</h2>
+            
+            <div class="arabic">فَصَلِّ لِرَبِّكَ وَٱنْحَرْ</div>
+            <div class="translation">
+                "Fashalli lirabbika wanhar"<br>
+                "Maka laksanakanlah shalat karena Tuhanmu, dan berkorbanlah."
+            </div>
+
+            <h3>A. ENERGI KATA</h3>
+            
+            <p><span class="keyword">1. فَصَلِّ (Fashalli) - "Maka Shalatlah"</span></p>
+            <p>Huruf "Fa" di awal adalah <em>huruf ta'qib</em> (huruf yang menunjukkan urutan langsung). Artinya: segera setelah kamu tahu kamu diberi kelimpahan, hal pertama yang harus kamu lakukan adalah shalat.</p>
+
+            <p><span class="keyword">2. لِرَبِّكَ (Lirabbika) - "Karena Tuhanmu"</span></p>
+            <p>Kata "Rabbi" (Tuhanmu) berasal dari akar kata ربّ (rabba) yang berarti "memelihara, mendidik, mengembangkan secara bertahap". Ini bukan sekadar "pemilik" tetapi "pemelihara yang mengasuh dengan penuh perhatian".</p>
+
+            <p><span class="keyword">3. وَٱنْحَرْ (Wanhar) - "Dan Berkorbanlah"</span></p>
+            <p>Kata "nahr" dari akar نحر yang secara literal berarti "menyembelih hewan kurban pada bagian leher atas". "Nahr" melambangkan pengorbanan yang besar, berkelas, dan butuh keberanian. Bukan sekadar memberi sisa, tapi memberi yang terbaik dari yang terbaik.</p>
+
+            <h3>B. TAFSIR MENDALAM</h3>
+            
+            <div class="highlight-box">
+                <strong>Filosofi di Balik Ayat:</strong><br>
+                Ada dua perintah di sini yang saling melengkapi: Shalat (vertikal) - hubungan dengan Allah, dan Berkurban (horizontal) - hubungan dengan sesama. Ini adalah formula lengkap untuk mengelola kelimpahan: syukur kepada Pemberi (shalat) dan berbagi kepada makhluk-Nya (berkurban).
+            </div>
+
+            <h3>Relevansi Kekinian</h3>
+            
+            <div class="example-box">
+                <h4>Contoh 1: Dapat Bonus Kantor</h4>
+                <p>Bayangkan kamu dapat bonus besar dari kantor. Respons ayat ini:</p>
+                <ul>
+                    <li>Shalat syukur (menyadari ini dari Allah, bukan hasil kerja kerasku semata)</li>
+                    <li>"Nahr" (berkurban)—bisa berarti sedekahkan sebagian, traktir keluarga, bantu teman yang kesulitan</li>
+                </ul>
+                <p><strong>Ketika kamu shalat dulu, kamu tidak akan merasa "rugi" saat berbagi. Kamu akan merasa "menyalurkan" kelimpahan, bukan "mengurangi" harta.</strong></p>
+            </div>
+
+            <div class="action-list">
+                <h4>Aplikasi Praktis:</h4>
+                <ol>
+                    <li><strong>Ritual Shalat Syukur</strong> - Setiap kali dapat berkah (sekecil apa pun), langsung shalat sunnah dua rakaat.</li>
+                    <li><strong>Prinsip 10% untuk Nahr</strong> - Dari setiap rezeki yang datang, sisihkan minimal 10% untuk "disembelih" (disedekahkan).</li>
+                    <li><strong>Ego Audit</strong> - Setiap minggu, tanya pada diri sendiri: "Ego apa yang perlu aku 'sembelih' minggu ini?"</li>
+                </ol>
+            </div>
+
+            <h3>C. INTISARI</h3>
+            <div class="quote">
+                Kelimpahan yang tidak disyukuri akan menjadi bencana. Kelimpahan yang tidak dibagikan akan menjadi penjara. Shalat adalah cara kita mengingat: semua ini dari Allah. Berkurban adalah cara kita membuktikan: aku tidak pelit dengan apa yang bukan milikku sejak awal.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>AYAT 3</h2>
+            
+            <div class="arabic">إِنَّ شَانِئَكَ هُوَ ٱلْأَبْتَرُ</div>
+            <div class="translation">
+                "Inna syaani-aka huwal abtar"<br>
+                "Sesungguhnya orang-orang yang membencimu, dialah yang terputus."
+            </div>
+
+            <h3>A. ENERGI KATA</h3>
+            
+            <p><span class="keyword">1. شَانِئَكَ (Syaani-aka) - "Orang yang Membencimu"</span></p>
+            <p>Dari akar kata شنأ (syana-a) yang berarti "benci yang disertai penghinaan dan meremehkan". Bukan sekadar tidak suka, tapi kebencian yang dibarengi upaya menjatuhkan martabat.</p>
+
+            <p><span class="keyword">2. هُوَ ٱلْأَبْتَرُ (Huwal Abtar) - "Dialah yang Terputus"</span></p>
+            <p>"Abtar" dari akar بتر (batara) yang berarti "terputus, terpisah, tidak punya kelanjutan". Ironi yang sempurna: kata yang mereka gunakan untuk menghina Rasulullah ﷺ justru Allah kembalikan kepada mereka.</p>
+
+            <h3>B. TAFSIR MENDALAM</h3>
+            
+            <div class="highlight-box">
+                <strong>Filosofi di Balik Ayat:</strong><br>
+                Allah sedang mengajarkan prinsip balas karma yang paling adil: siapa yang mencoba memutus orang lain, dialah yang akan terputus. Tapi ada nuansa yang lebih dalam: Allah tidak memerintahkan Rasulullah ﷺ untuk membalas, tidak menyuruh untuk marah, tidak menganjurkan untuk dendam. Allah hanya bilang: "Tenang, biarkan Aku yang urus."
+            </div>
+
+            <h3>Relevansi Kekinian</h3>
+            
+            <div class="example-box">
+                <h4>Contoh 1: Di-bully di Media Sosial</h4>
+                <p>Seorang content creator membuat konten edukatif tentang kesehatan mental. Tiba-tiba ada sekelompok orang yang mengkritik habis-habisan, bahkan menuduh dia "pura-pura peduli" dan "cari sensasi".</p>
+                <p><strong>Respons yang sesuai ayat ini:</strong></p>
+                <ul>
+                    <li>Tidak perlu membalas dengan kebencian serupa</li>
+                    <li>Fokus pada karya yang bermanfaat</li>
+                    <li>Yakin bahwa waktu akan membuktikan</li>
+                </ul>
+                <p>Setahun kemudian: konten-kontennya telah membantu ribuan orang keluar dari depresi. Para pembully? Tidak ada yang ingat mereka.</p>
+            </div>
+
+            <div class="action-list">
+                <h4>Aplikasi Praktis:</h4>
+                <ol>
+                    <li><strong>Doa untuk yang Menyakiti</strong> - Setiap kali ada yang menyakitimu, doakan kebaikan untuknya. Ini untuk membersihkan hatimu dari racun kebencian.</li>
+                    <li><strong>Fokus pada Legacy, Bukan Likes</strong> - Fokus pada: "Apa yang ingin aku tinggalkan untuk dunia?" Nama yang baik terbangun dari karya nyata.</li>
+                    <li><strong>Cut the Drama</strong> - Ketika ada orang yang jelas-jelas toxic, kadang respons terbaik adalah diam dan menjauh.</li>
+                </ol>
+            </div>
+
+            <h3>C. INTISARI</h3>
+            <div class="quote">
+                Mereka yang mencoba memutus jejak kebaikanmu, sesungguhnya memutus jejak mereka sendiri. Kebencian adalah boomerang yang pasti kembali ke pelemparnya. Kamu tidak perlu membalas, cukup lanjutkan berbuat baik. Waktu akan membuktikan siapa yang benar-benar punya kelanjutan.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>REFLEKSI PENUTUP</h2>
+
+            <h3>Pola yang Bisa Diambil</h3>
+
+            <p><strong>1. Pola Inversi: Kehilangan → Kelimpahan</strong></p>
+            <p>Surat Al-Kautsar mengajarkan kita untuk melihat kehilangan dengan perspektif terbalik. Apa yang dunia sebut sebagai kegagalan, bisa jadi adalah pengalihan ilahi menuju sesuatu yang lebih besar.</p>
+
+            <div class="action-list">
+                <strong>Langkah Nyata:</strong>
+                <ul>
+                    <li>Buat "Loss to Gain Journal": Catat setiap kehilangan atau kegagalan yang kamu alami. Tiga bulan kemudian, review lagi dan cari "kelimpahan tersembunyi" yang muncul setelah kehilangan itu.</li>
+                    <li>Setiap kali gagal atau ditolak, ucapkan: "Inna a'thainaakal kautsar—Allah sedang menyiapkan kelimpahan yang lebih baik."</li>
+                </ul>
+            </div>
+
+            <p><strong>2. Pola Respons: Kelimpahan → Shalat + Kurban</strong></p>
+            <p>Kelimpahan bukan untuk ditimbun atau dipamerkan, tapi untuk disyukuri (shalat) dan dibagikan (kurban).</p>
+
+            <div class="action-list">
+                <strong>Langkah Nyata:</strong>
+                <ul>
+                    <li>Terapkan "Berkah Protocol": Setiap dapat rezeki → Shalat syukur 2 rakaat → Sedekahkan minimal 10%</li>
+                    <li>Buat "Nahr List" di awal bulan: Apa yang perlu aku "kurbankan" bulan ini?</li>
+                </ul>
+            </div>
+
+            <p><strong>3. Pola Pelepasan: Kebencian Orang Lain Bukan Urusanmu</strong></p>
+            <p>Kamu tidak perlu membuktikan apa-apa kepada orang yang membencimu. Fokusmu adalah pada karya dan integritas, bukan pada pendapat mereka.</p>
+
+            <div class="action-list">
+                <strong>Langkah Nyata:</strong>
+                <ul>
+                    <li>Praktikkan "72 Hours Rule": Ketika diserang atau dihina, tahan diri untuk tidak merespons selama 72 jam.</li>
+                    <li>Setiap kali merasa ingin membalas kebencian, baca ayat terakhir Al-Kautsar.</li>
+                </ul>
+            </div>
+
+            <div class="quote">
+                <strong>Closing Statement</strong><br><br>
+                Kelimpahan sejati bukan diukur dari apa yang kamu miliki, tapi dari apa yang kamu berikan.<br>
+                Kesuksesan sejati bukan tentang mengalahkan musuh, tapi tentang meninggalkan jejak kebaikan yang abadi.<br>
+                Kehilangan adalah ruang kosong yang Allah siapkan untuk kelimpahan berikutnya.
+            </div>
+        </div>
+
+        <div class="epilog">
+            <h2>Ketika Telaga Surga Mengalir di Hati yang Retak</h2>
+            
+            <p>Pernahkah kalian merasa begitu kosong, seolah semua yang kalian usahakan selama ini sia-sia? Seolah yang kalian kejar justru menjauh, yang kalian pegang justru lepas, dan yang kalian harapkan justru padam?</p>
+
+            <p>Rasulullah ﷺ merasakan itu. Ketika putranya yang masih kecil—Al-Qasim—meninggal dunia, beliau bukan hanya kehilangan anak, tapi juga kehilangan harapan masyarakat Arab tentang keturunan dan kelangsungan nama. Musuh-musuh bersorak, "Dia abtar! Terputus! Tidak punya masa depan!"</p>
+
+            <p>Tapi di saat semua orang melihat akhir, Allah melihat awal. Di saat semua orang melihat kekosongan, Allah melihat ruang untuk kelimpahan yang lebih besar.</p>
+
+            <p><strong>Untuk kalian yang sedang kehilangan:</strong><br>
+            Mungkin kalian kehilangan pekerjaan yang sudah kalian perjuangkan bertahun-tahun. Mungkin kehilangan orang yang kalian cintai. Mungkin kehilangan kesempatan yang rasanya hanya datang sekali seumur hidup.</p>
+
+            <p>Dengarlah bisikan Al-Kautsar: "Inna a'thainaakal kautsar"—Kami telah memberikan kepadamu kelimpahan.</p>
+
+            <p><strong>Untuk kalian yang sedang merasakan kelimpahan:</strong><br>
+            Mungkin kalian baru saja mencapai sesuatu yang luar biasa. Promosi jabatan, bisnis yang berkembang, pencapaian akademis, atau kebahagia personal.</p>
+
+            <p>Dengarlah bisikan Al-Kautsar: "Fashalli lirabbika wanhar"—Shalatlah dan berkorbanlah.</p>
+
+            <p><strong>Untuk kalian yang sedang disakiti:</strong><br>
+            Mungkin ada orang yang mencoba menjatuhkanmu, memfitnahmu, atau menghancurkan reputasimu.</p>
+
+            <p>Dengarlah bisikan Al-Kautsar: "Inna syaani-aka huwal abtar"—Sesungguhnya pembencimu, dialah yang terputus.</p>
+
+            <hr style="border: none; border-top: 1px solid rgba(139, 92, 246, 0.3); margin: 40px 0;">
+
+            <p><strong>Saudaraku,</strong></p>
+
+            <p>Al-Kautsar bukan hanya nama telaga di surga. Al-Kautsar adalah nama untuk setiap kelimpahan yang Allah siapkan untukmu—kelimpahan yang melampaui angka di rekening bank, melampaui gelar di kartu nama, melampaui likes di media sosial.</p>
+
+            <p>Al-Kautsar adalah kelimpahan cinta dalam keluarga yang harmonis.<br>
+            Al-Kautsar adalah kelimpahan ilmu yang bermanfaat.<br>
+            Al-Kautsar adalah kelimpahan kesehatan yang membuatmu bisa beribadah.<br>
+            Al-Kautsar adalah kelimpahan waktu untuk hal-hal bermakna.<br>
+            Al-Kautsar adalah kelimpahan kedamaian hati di tengah dunia yang chaos.</p>
+
+            <p><strong>Jadi, mulai hari ini:</strong></p>
+
+            <p>Setiap kali kamu kehilangan sesuatu, ingatlah: Allah sedang menyiapkan kelimpahan yang lebih besar.<br>
+            Setiap kali kamu mendapat sesuatu, ingatlah: syukuri dan bagikan.<br>
+            Setiap kali kamu disakiti seseorang, ingatlah: kamu tidak perlu membalas, cukup berbuat baik.</p>
+
+            <div class="closing">
+                Semoga telaga Al-Kautsar mengalir di hati kita semua.<br>
+                Semoga kelimpahan Allah mengiringi setiap langkah kita.<br>
+                Semoga nama kita tetap dikenang dalam doa-doa kebaikan, bahkan setelah jasad kita kembali ke tanah.<br><br>
+                <em>Aamiin yaa Rabbal 'aalamiin.</em><br><br>
+                <strong>Wallahu a'lam bishawab.</strong>
+            </div>
+        </div>
+
+        <a href="#" class="download-btn" onclick="downloadHTML()">📥 Download File HTML</a>
+    </div>
+
+    <script>
+        // Generate random stars
+        function generateStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 100;
+            
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        
+        generateStars();
+
+        // Download HTML function
+        function downloadHTML() {
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Tafsir_Al-Kautsar_Portal_Kelimpahan.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

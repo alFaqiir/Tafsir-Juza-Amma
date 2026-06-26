@@ -1,0 +1,684 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Ikhlas: Ketika Kesederhanaan Menjadi Kekuatan Tertinggi</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold1: #f5d67b;
+    --gold2: #c9922a;
+    --gold3: #fff0a0;
+    --gold4: #a0620a;
+    --bg:    #0a0a0a;
+    --bg2:   #111111;
+    --bg3:   #161616;
+    --card:  #131313;
+    --border:#2a2218;
+    --text:  #e8dcc8;
+    --muted: #9a8a6a;
+  }
+
+  @font-face {
+    font-family: 'TraditionalArabic';
+    src: local('Traditional Arabic');
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+
+  /* ── GOLD GRADIENT TEXT ── */
+  .gold {
+    background: linear-gradient(135deg, var(--gold2) 0%, var(--gold1) 45%, var(--gold3) 60%, var(--gold2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: relative;
+    padding: 80px 40px 70px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, #1c1400 0%, #0a0a0a 70%);
+    border-bottom: 1px solid #2a2010;
+  }
+
+  /* ornament grid */
+  .header::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle, rgba(197,147,42,.12) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: drift 40s linear infinite;
+    pointer-events:none;
+  }
+
+  /* glow center */
+  .header::after {
+    content:'';
+    position:absolute;
+    top:-80px; left:50%; transform:translateX(-50%);
+    width:600px; height:300px;
+    background: radial-gradient(ellipse, rgba(180,130,30,.18) 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  @keyframes drift { to { background-position: 40px 40px; } }
+
+  .header-bismillah {
+    font-family: 'Traditional Arabic', 'TraditionalArabic', 'Scheherazade New', serif;
+    font-size: 2em;
+    color: var(--gold1);
+    opacity: .6;
+    margin-bottom: 24px;
+    letter-spacing: 4px;
+    position: relative; z-index:1;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2em, 5vw, 3.4em);
+    font-weight: 700;
+    line-height: 1.2;
+    position: relative; z-index:1;
+    margin-bottom: 8px;
+  }
+
+  .header-sub {
+    font-size: 1em;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative; z-index:1;
+    margin-bottom: 28px;
+  }
+
+  .divider-gold {
+    width: 120px; height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold2), var(--gold1), var(--gold2), transparent);
+    margin: 20px auto;
+    position:relative; z-index:1;
+  }
+
+  .tagline {
+    font-style: italic;
+    font-size: 1.15em;
+    color: #c8b888;
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative; z-index:1;
+    line-height: 1.7;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 920px; margin: 0 auto; padding: 50px 24px 80px; }
+
+  /* ── AYAT SECTION ── */
+  .ayat-section {
+    position: relative;
+    background: linear-gradient(160deg, #161410, #111010);
+    border: 1px solid #2a2010;
+    border-left: 3px solid var(--gold2);
+    border-radius: 16px;
+    padding: 48px 44px;
+    margin-bottom: 52px;
+    box-shadow: 0 4px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(200,160,50,.06);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s ease, transform .7s ease, box-shadow .3s;
+  }
+  .ayat-section.visible { opacity:1; transform:translateY(0); }
+  .ayat-section:hover { box-shadow: 0 8px 50px rgba(0,0,0,.8), 0 0 0 1px rgba(197,147,42,.12); }
+
+  /* corner ornament */
+  .ayat-section::before {
+    content: '✦';
+    position:absolute; top:18px; right:22px;
+    color: var(--gold2); opacity:.25; font-size:1.4em;
+  }
+
+  /* ── SECTION TITLES ── */
+  .ayat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6em;
+    font-weight: 700;
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .ayat-number span {
+    display:inline-block;
+    width:38px; height:38px; line-height:36px; text-align:center;
+    border: 1px solid var(--gold2);
+    border-radius:50%;
+    font-size:.75em;
+    background: linear-gradient(135deg,#1e1600,#130e00);
+    color: var(--gold1);
+    flex-shrink:0;
+  }
+
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35em;
+    font-weight: 700;
+    margin: 36px 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2a2010;
+  }
+
+  h3.sub-title {
+    font-family: 'Lora', serif;
+    font-size: 1.05em;
+    font-weight: 600;
+    margin: 28px 0 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h3.sub-title::before {
+    content:'';
+    display:inline-block;
+    width:18px; height:2px;
+    background: linear-gradient(to right, var(--gold2), var(--gold1));
+    flex-shrink:0;
+  }
+
+  /* ── ARABIC ── */
+  .arabic-wrap {
+    text-align: center;
+    margin: 32px 0 10px;
+    padding: 28px 20px;
+    background: radial-gradient(ellipse at center, #1a1300 0%, #0d0d0d 80%);
+    border-radius: 12px;
+    border: 1px solid #2e2010;
+    position:relative;
+  }
+  .arabic-wrap::before, .arabic-wrap::after {
+    content:'❧';
+    position:absolute; top:50%; transform:translateY(-50%);
+    color:var(--gold2); opacity:.3; font-size:1.2em;
+  }
+  .arabic-wrap::before { left:18px; }
+  .arabic-wrap::after  { right:18px; transform:translateY(-50%) scaleX(-1); }
+
+  .arabic {
+    font-family: 'Traditional Arabic', 'TraditionalArabic', 'Scheherazade New', 'KFGQPC Uthmanic Script HAFS', serif;
+    font-size: clamp(2.4em, 6vw, 3.6em);
+    line-height: 2;
+    background: linear-gradient(135deg, var(--gold4) 0%, var(--gold1) 40%, var(--gold3) 60%, var(--gold2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    direction: rtl;
+  }
+
+  .translation {
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.05em;
+    margin: 10px 0 32px;
+  }
+
+  /* ── ENERGI KATA CHIP ── */
+  .energi-chip {
+    display: inline-block;
+    background: linear-gradient(135deg, #1e1600 0%, #2a1e00 100%);
+    border: 1px solid var(--gold4);
+    color: var(--gold1);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: .95em;
+    font-weight: 600;
+    margin: 18px 0 10px;
+    letter-spacing:.5px;
+  }
+
+  /* ── PARAGRAPHS ── */
+  p {
+    margin-bottom: 16px;
+    color: #d4c49e;
+    text-align: justify;
+    font-size: .97em;
+  }
+
+  strong { color: var(--gold1); font-weight:600; }
+  em { color: #c8b478; font-style: italic; }
+
+  /* ── RELEVANCE BOX ── */
+  .relevance-box {
+    background: linear-gradient(160deg,#13100a,#0e0c08);
+    border-left: 3px solid var(--gold3);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .relevance-label {
+    font-size:.8em;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:var(--gold2);
+    margin-bottom:10px;
+    font-family:'Playfair Display',serif;
+  }
+
+  /* ── INTISARI ── */
+  .intisari {
+    position:relative;
+    background: linear-gradient(160deg, #1a1400, #130f00);
+    border: 1px solid #3a2a10;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 28px 0 0;
+    color: #e0cc90;
+    font-size: .98em;
+    line-height: 1.95;
+  }
+  .intisari::before {
+    content: '"';
+    position:absolute; top:-16px; left:24px;
+    font-size:4em; line-height:1;
+    background: linear-gradient(to bottom, var(--gold1), var(--gold2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-family:'Playfair Display',serif;
+  }
+  .intisari-label {
+    font-size:.75em; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--gold2); margin-bottom:12px;
+    font-family:'Playfair Display',serif;
+  }
+
+  /* ── PENUTUP ── */
+  .penutup {
+    background: linear-gradient(160deg,#0f0d08,#0a0a08);
+    border: 1px solid #2a2010;
+    border-radius: 16px;
+    padding: 52px 44px;
+    margin-bottom: 48px;
+  }
+
+  .langkah {
+    background: linear-gradient(160deg,#151208,#0e0c06);
+    border: 1px solid #2a2010;
+    border-left: 3px solid var(--gold2);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 24px;
+    margin: 16px 0;
+    color: #d4c49e;
+    font-size:.96em;
+  }
+  .langkah .lnum {
+    display:inline-block;
+    background: linear-gradient(135deg, var(--gold2), var(--gold1));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-weight:700; font-family:'Playfair Display',serif;
+    font-size:1.1em; margin-bottom:4px;
+  }
+  .langkah p { margin-bottom:0; }
+
+  /* ── EPILOG ── */
+  .epilog {
+    background: radial-gradient(ellipse at 50% 0%, #1a1200 0%, #080808 60%);
+    border: 1px solid #2a2010;
+    border-top: 2px solid var(--gold2);
+    border-radius: 16px;
+    padding: 60px 44px;
+    text-align: center;
+  }
+  .epilog .epilog-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.4em,3vw,2em);
+    font-weight:700;
+    margin-bottom:40px;
+  }
+  .epilog p {
+    max-width:660px; margin:0 auto 18px;
+    color:#c8b888; text-align:center; font-style:italic;
+  }
+  .epilog .arabic-line {
+    font-family: 'Traditional Arabic','TraditionalArabic','Scheherazade New',serif;
+    font-size:clamp(1.6em,4vw,2.4em);
+    direction:rtl;
+    background: linear-gradient(135deg,var(--gold4),var(--gold1),var(--gold3),var(--gold2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    display:block; margin:28px auto 6px;
+  }
+  .epilog .latin-line {
+    font-style:italic; color:var(--gold1); font-size:1.05em;
+    margin-bottom:20px; display:block;
+  }
+  .epilog .closing {
+    margin-top:40px; font-style:normal;
+    font-family:'Playfair Display',serif;
+    font-size:1.1em; color:#e0cc90;
+    line-height:1.8;
+  }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position:fixed; bottom:28px; right:28px;
+    width:46px; height:46px;
+    background: linear-gradient(135deg,var(--gold4),var(--gold2));
+    color:#0a0800; font-size:1.2em; font-weight:700;
+    border:none; border-radius:50%;
+    cursor:pointer; display:none; align-items:center; justify-content:center;
+    box-shadow:0 4px 20px rgba(0,0,0,.5);
+    transition:transform .2s;
+    z-index:999;
+  }
+  #scrollTop:hover { transform:scale(1.1); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:640px){
+    .header { padding:60px 20px 50px; }
+    .ayat-section, .penutup, .epilog { padding:32px 20px; }
+    .container { padding:30px 14px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <h1 class="gold">Al-Ikhlas</h1>
+  <p class="header-sub">Surat 112 · 4 Ayat</p>
+  <div class="divider-gold"></div>
+  <p class="tagline">Dalam dunia yang terobsesi dengan kerumitan, empat ayat ini mengajarkan bahwa kedalaman sejati justru ditemukan dalam kesederhanaan yang menohok.</p>
+</div>
+
+<div class="container">
+
+  <!-- AYAT 1 -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span>١</span>
+      <span class="gold">Ayat Pertama</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">قُلۡ هُوَ ٱللَّهُ أَحَدٌ</div>
+    </div>
+    <p class="translation">"Katakanlah (Muhammad), 'Dia-lah Allah, Yang Maha Esa.'"</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">KATAKANLAH — قُلۡ</div>
+    <p>Ini bukan sekadar perintah bicara. Ini adalah undangan untuk menyatakan kebenaran dengan terang-terangan, tanpa tedeng aling-aling. Dalam permainan peran kehidupan, ini adalah momen ketika karaktermu memilih untuk tidak lagi menyembunyikan keyakinan di balik topeng sosial.</p>
+    <p>Bayangkan: berapa kali kita menyimpan prinsip dalam hati karena takut dianggap "terlalu religius" atau "tidak keren"? Perintah ini menampar kita untuk berani transparan.</p>
+
+    <div class="energi-chip">YANG MAHA ESA — أَحَدٌ</div>
+    <p>Bukan sekadar "satu" secara angka. <em>Ahad</em> adalah kesatuan yang mutlak—tidak terbagi, tidak tergantikan, tidak tersaingi. Ini adalah fondasi yang menentukan seluruh bangunan hidupmu. Ketika kamu paham bahwa hanya ada satu sumber mutlak, semua ketergantungan lain otomatis menjadi relatif.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Ayat pertama ini adalah layar pembuatan karakter dalam permainan peran spiritualmu. Sebelum memilih kemampuan, misi, atau perlengkapan, kamu harus mengunci satu hal: siapa yang menjadi Sutradara Agung dalam hidupmu?</p>
+    <p>Kita hidup di era yang menawarkan ribuan "tuhan" pengganti. Suka di media sosial menjadi pengukur harga diri. Saldo rekening menentukan ketenangan hati. Gelar akademis mendefinisikan identitas. Status hubungan mengukur keberhargaan. Semuanya berlomba menjadi "yang esa" dalam hidupmu—dan kamu terbelah dalam ribuan kepingan, mencoba memuaskan semuanya sekaligus.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Pernahkah kamu merasa lelah karena harus menjaga terlalu banyak "citra"? Versi dirimu di kantor, di keluarga, di media sosial, di komunitas—semuanya berbeda, semua menuntut. Inilah yang terjadi ketika kita tidak memiliki satu titik rujukan yang mutlak. <em>Al-Ikhlas</em> memulai dengan kejelasan yang keras: Ada SATU yang mutlak. Ketika kamu benar-benar mengunci ini sebagai fondasi, semua prioritas lain otomatis tersusun tingkatannya.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Dalam kehidupan yang menawarkan seribu cara untuk terpecah, keputusan pertama yang menentukan adalah: pada siapa kita menyatukan diri? Keberanian untuk "mengatakan" bukan hanya soal vokal, tapi soal menjadikan keyakinan itu sebagai sistem yang mengatur setiap keputusan. Ketika Yang Esa benar-benar menjadi Esa dalam hidupmu, kamu tidak lagi perlu menjadi segalanya bagi semua orang—karena kamu sudah punya satu kompas yang tidak pernah salah menunjuk arah.
+    </div>
+  </div>
+
+  <!-- AYAT 2 -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span>٢</span>
+      <span class="gold">Ayat Kedua</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">ٱللَّهُ ٱلصَّمَدُ</div>
+    </div>
+    <p class="translation">"Allah tempat bergantung segala sesuatu."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">الصَّمَدُ — Yang Tidak Membutuhkan Apa Pun</div>
+    <p>Ini adalah salah satu nama yang paling unik dan sulit diterjemahkan. <em>As-Shamad</em> berarti: Yang tidak membutuhkan apa pun, tapi segala sesuatu membutuhkan-Nya. Yang padat tanpa rongga. Yang mandiri secara mutlak. Dalam perspektif permainan peran: ini adalah karakter legendaris yang tingkatannya tak terbatas, yang semua misi pada akhirnya merujuk padanya, yang memiliki semua sumber daya tanpa batas.</p>
+
+    <div class="energi-chip">TEMPAT MEMINTA</div>
+    <p>Bukan sekadar "bisa dimintai tolong". Ini adalah tujuan akhir dari semua kebutuhan. Semua jalan pada akhirnya bermuara ke sini. Semua pencarian berakhir di titik ini.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Ini adalah ayat tentang ketergantungan yang sehat versus ketergantungan yang meracuni. Kita semua punya daftar ketergantungan dalam hidup. Orang yang kita mintai nasihat. Tempat yang kita datangi untuk pemulihan jiwa. Kegiatan yang kita andalkan untuk kebahagiaan. Dan tidak ada yang salah dengan memiliki sistem dukungan—bahkan itu dianjurkan.</p>
+    <p>Tapi pertanyaannya: apakah semua ketergantungan itu pada akhirnya merujuk pada satu sumber, atau justru saling berkompetisi menjadi "tuhan kecil" yang saling menarik kamu ke arah berbeda?</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Di era pengembangan diri dan "kamu melengkapi dirimu sendiri", kita dijual ilusi bahwa manusia bisa menjadi sepenuhnya mandiri. Yang berbahaya adalah ketika kita salah alamat dalam "meminta". Kita meminta ketenangan pada pengikut Instagram. Kita meminta pembenaran pada orang yang bahkan tidak tahu perjuangan kita. Kita meminta kebahagiaan pada hubungan yang sama rapuhnya dengan kita.</p>
+      <p><em>As-Shamad</em> mengingatkan: ada satu tempat yang tidak akan pernah kehabisan persediaan untuk kita ambil, tidak akan pernah bangkrut, tidak akan pernah muak dengan permintaan kita. Dan ketika kita memahami ini, kita justru bisa punya hubungan yang lebih sehat dengan manusia—karena kita tidak lagi membebani mereka dengan harapan untuk menjadi "penyedia segalanya".</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kita tidak diciptakan untuk menjadi pulau yang berdiri sendiri. Kita diciptakan dengan kebutuhan—dan itu bukan kelemahan, itu adalah rancangan. Masalahnya bukan pada "membutuhkan", tapi pada "meminta kepada siapa". Ketika kita salah memilih tempat bergantung, kita akan terus kecewa karena tidak ada makhluk yang punya kemampuan tak terbatas untuk memenuhi kebutuhan tak terbatas makhluk lain. As-Shamad adalah pengingat bahwa ada satu sumber yang memang dirancang untuk itu—tanpa ada rongga, tanpa kekurangan, tanpa batas. Tempat kita bisa meminta tanpa perlu merasa bersalah, tanpa takut membebani, tanpa khawatir ditolak.
+    </div>
+  </div>
+
+  <!-- AYAT 3 -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span>٣</span>
+      <span class="gold">Ayat Ketiga</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ</div>
+    </div>
+    <p class="translation">"(Dia) tidak beranak dan tidak pula diperanakkan."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">لَمۡ يَلِدۡ — Tidak Beranak</div>
+    <p>Ini bukan pembahasan biologis. Ini adalah penolakan terhadap konsep bahwa ada yang "keluar" dari Tuhan, yang menjadi bagian dari-Nya, yang mewarisi sifat-Nya. Tidak ada "setengah dewa" yang lahir dari perkawinan makhluk surgawi dengan manusia fana. Tidak ada "orang terpilih" yang punya darah Tuhan.</p>
+
+    <div class="energi-chip">وَلَمۡ يُولَدۡ — Tidak Diperanakkan</div>
+    <p>Juga bukan soal silsilah keluarga. Ini tentang kemandirian dalam wujud. Dia tidak muncul dari sesuatu. Tidak ada "versi percobaan" sebelumnya. Tidak ada perkembangan atau proses pembentukan.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Ini adalah ayat tentang memutus rantai proyeksi kemanusiaan terhadap Tuhan. Manusia punya kebiasaan membuat Tuhan mirip dengan dirinya—membuat Tuhan segambar dengan pengalaman kemanusiaannya. Karena kita berasal dari orang tua, kita bayangkan Tuhan juga pasti punya asal-usul. Karena kita bisa punya keturunan, kita proyeksikan bahwa Tuhan juga bisa "menurunkan" bagian dari diri-Nya.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Ada yang menganggap dirinya "anak emas" Tuhan—merasa punya akses khusus, merasa lebih didengar doanya, merasa punya keistimewaan spiritual karena keturunan atau prestasi tertentu. Ada juga yang sebaliknya: merasa seperti "anak tiri" takdir, merasa Tuhan pasti lebih sayang pada yang lebih saleh, lebih kaya, atau lebih beruntung.</p>
+      <p>Kedua ekstrem ini sama-sama salah. Ayat ini meluruskan: Tuhan tidak punya "pilih kasih keturunan". Semua pemain mulai dengan kedudukan yang sama di hadapan Sutradara Agung. Tidak ada yang "lebih istimewa" secara bawaan.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Ketika kita memahami bahwa Tuhan tidak beranak dan tidak diperanakkan, kita membebaskan diri dari dua ilusi sekaligus: ilusi keunggulan ("Aku istimewa karena lebih dekat dengan-Nya") dan ilusi rendah diri ("Aku tidak cukup baik untuk diperhatikan-Nya"). Tidak ada yang punya keistimewaan darah dalam spiritualitas. Tidak ada dinasti. Tidak ada warisan otomatis. Yang ada adalah undangan universal yang sama untuk semua: datang, berusaha, meminta, bertumbuh. Kita semua setara di hadapan Yang Maha Esa—dan itu seharusnya merendahkan yang sombong sekaligus mengangkat yang merasa hina.
+    </div>
+  </div>
+
+  <!-- AYAT 4 -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span>٤</span>
+      <span class="gold">Ayat Keempat</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدٌ</div>
+    </div>
+    <p class="translation">"Dan tidak ada sesuatu pun yang setara dengan-Nya."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">كُفُوًّا — Setara / Sepadan</div>
+    <p>Bukan sekadar "sama". <em>Kufu</em> adalah kesetaraan dalam kemampuan, dalam kualitas, dalam kedudukan. Dalam konteks pernikahan, istilah kufu dipakai untuk pasangan yang "sepadan". Di sini: tidak ada apa pun—baik makhluk, konsep, atau imajinasi—yang bisa berdiri sepadan dengan Tuhan.</p>
+
+    <div class="energi-chip">أَحَدٌ — Satu pun</div>
+    <p>Penekanan yang kuat. Bukan "tidak banyak yang setara", tapi "tidak ada SATU pun". Penolakan total. Pengecualian mutlak.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Ini adalah penutup yang mengunci semua ayat sebelumnya. Setelah menegaskan keesaan (ayat 1), kemandirian (ayat 2), dan ketidakberasalan (ayat 3), ayat terakhir ini menutup semua celah perbandingan. Tuhan tidak masuk dalam spektrum perbandingan. Dia bukan "versi terbaik" dari sesuatu yang kita kenal. Dia dalam kategori yang sepenuhnya berbeda.</p>
+    <p>Dalam bahasa permainan peran: ini seperti menyadari bahwa Sutradara Agung bukan "pemain paling jago" atau "karakter paling kuat". Sutradara itu di luar sistem yang dia ciptakan. Dia bisa ubah aturan, dia bisa jeda permainan, dia bisa tulis ulang cerita—karena dia bukan bagian dari permainan, dia adalah pencipta dan pengatur permainan.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di zaman di mana setiap hari kita dibombardir dengan standar perbandingan. Kisah kesuksesan di LinkedIn. Target hubungan ideal di Instagram. Peningkatan gaya hidup di TikTok. Dan tanpa sadar, kita membawa pola pikir ini ke dalam spiritualitas. Kita ukur ibadah kita dengan orang lain. Kita bandingkan doa yang terkabul dengan yang tidak.</p>
+      <p>Ayat ini menghentikan semua itu. Ada satu ranah di mana perbandingan bukan hanya tidak pantas—itu mustahil. Dan menerima itu adalah tanda kematangan spiritual yang sejati.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      "Tidak ada yang setara dengan-Nya" adalah pernyataan pembebasan yang paling membebaskan sekaligus paling merendahkan ego. Membebaskan, karena kita tidak perlu lagi membandingkan pengalaman spiritual kita dengan siapa pun—perjalanan kita unik, bentuk kedekatan kita dengan-Nya juga unik. Merendahkan, karena kita disadarkan bahwa semua perumpamaan, semua konsep, semua pemahaman kita tentang-Nya akan selalu kurang—dan harus selalu diakhiri dengan kerendahan hati: "Maha Suci Engkau dari segala yang kami persepsikan."
+    </div>
+  </div>
+
+  <!-- PENUTUP -->
+  <div class="penutup">
+    <h2 class="section-title gold" style="margin-top:0;">Refleksi: Pola yang Bisa Diambil</h2>
+
+    <div class="langkah">
+      <div class="lnum">1 — Kejelasan Sebelum Kerumitan</div>
+      <p>Sebelum kamu menambah kemampuan baru, misi baru, atau hubungan baru dalam permainan peran kehidupanmu, kunci dulu satu hal: siapa yang jadi pusat? Semua kebingungan hidup bisa ditelusuri ke satu akar: prioritas yang tidak jelas. Pahami dulu "Yang Satu", baru urus yang banyak.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">2 — Pemeriksaan Ketergantungan</div>
+      <p>Coba buat daftar: apa saja yang kamu mintai dalam hidup? Ketenangan dari mana? Pembenaran dari siapa? Harapan pada apa? Telusuri satu-satu. Apakah semua itu pada akhirnya merujuk pada satu sumber, atau justru berkompetisi menjadi "tuhan kecil" yang saling menarik kamu ke arah berbeda?</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">3 — Tingkatan Kekhawatiran</div>
+      <p>Ketika kamu paham tidak ada yang setara dengan-Nya, kamu bisa menyusun ulang tingkatan kekhawatiranmu. Kamu masih serius dengan pekerjaan, tapi tidak sampai kecemasan soal karir mengalahkan ketenangan hatimu. Kamu masih peduli hubungan, tapi tidak sampai takut ditinggalkan membuat kamu kehilangan jati diri.</p>
+    </div>
+
+    <h2 class="section-title gold">Langkah Nyata</h2>
+
+    <div class="langkah">
+      <div class="lnum">Tingkat 1 — Pernyataan Harian</div>
+      <p>Setiap pagi, sebelum melihat apapun di ponsel, katakan (bahkan cukup dalam hati): "Hari ini, aku pilih untuk menjadikan-Nya sebagai pusat." Cukup memusatkan kembali sebelum dunia menuntut perhatianmu ke seribu arah.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">Tingkat 2 — Titik Periksa Sebelum Memutuskan</div>
+      <p>Sebelum mengambil keputusan penting, tanya: "Kalau aku yakin ada Yang Maha Esa yang tahu, peduli, dan punya rencana lebih baik—apakah keputusan ini tetap sama?" Seringkali, pertanyaan ini mengubah sudut pandangmu secara drastis.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">Tingkat 3 — Pergeseran Ketergantungan</div>
+      <p>Identifikasi satu hal yang selama ini jadi "tempat meminta" utamamu. Tidak perlu langsung putus total, tapi coba geser ketergantungan utama ke sumber yang benar. Prosesnya bertahap, tapi dampaknya mendalam.</p>
+    </div>
+  </div>
+
+  <!-- EPILOG -->
+  <div class="epilog">
+    <h2 class="epilog-title gold">Ketika Empat Ayat Mengalahkan Ribuan Keraguan</h2>
+
+    <p>Ada malam-malam ketika semua terasa terlalu banyak. Terlalu banyak tuntutan. Terlalu banyak harapan. Terlalu banyak versi diri yang harus kamu jaga. Kamu merasa seperti teka-teki yang kepingannya tersebar di mana-mana, dan kamu sudah lupa seperti apa gambar utuhnya.</p>
+
+    <p>Di malam seperti itu, Al-Ikhlas tidak datang dengan solusi rumit. Hanya empat ayat yang bahkan seorang anak bisa hafal.</p>
+
+    <span class="arabic-line">قُلۡ هُوَ ٱللَّهُ أَحَدٌ</span>
+    <span class="latin-line">Qul Huwa Allahu Ahad</span>
+    <p>Katakanlah: ada Satu. Dan dalam pernyataan itu, semua kepingan teka-tekimu mulai menemukan tempat. Ada satu titik gravitasi yang tidak bergeser, tidak berubah, tidak kecewa, dan tidak akan pernah habis untuk kamu.</p>
+
+    <span class="arabic-line">ٱللَّهُ ٱلصَّمَدُ</span>
+    <span class="latin-line">Allahush Shamad</span>
+    <p>Semua jalan, pada akhirnya, bermuara ke sini. Tidak ada jalan yang terlalu jauh untuk tidak bisa kembali.</p>
+
+    <span class="arabic-line">لَمۡ يَلِدۡ وَلَمۡ يُولَدۡ</span>
+    <span class="latin-line">Lam yalid wa lam yuulad</span>
+    <p>Aksesmu ke-Nya? Sama dengan semua orang. Langsung. Tanpa perantara kalangan atas.</p>
+
+    <span class="arabic-line">وَلَمۡ يَكُن لَّهُۥ كُفُوًا أَحَدٌ</span>
+    <span class="latin-line">Wa lam yakul lahu kufuwan ahad</span>
+    <p>Tidak ada papan peringkat dalam kedekatan kepada-Nya. Hanya ada kamu, usahamu, dan rahmat-Nya yang tanpa batas.</p>
+
+    <div class="divider-gold" style="margin:40px auto;"></div>
+
+    <p class="closing">
+      Karena dalam dunia yang menjual segalanya sebagai rumit,<br>
+      Al-Ikhlas adalah pengingat:<br><br>
+      <span class="gold" style="-webkit-text-fill-color:unset; background:none; color:var(--gold1);">yang paling berkuasa justru yang paling sederhana.</span><br>
+      Yang paling dalam justru yang paling ringkas.<br>
+      Yang paling mengubah hidup justru yang bisa dihafal dalam lima menit,<br>
+      tapi butuh seumur hidup untuk benar-benar dipahami.<br><br>
+      <strong style="color:var(--gold1); font-size:1.1em;">Dan dalam keesaan-Nya, kamu menemukan keutuhan dirimu kembali.</strong>
+    </p>
+  </div>
+
+</div><!-- /container -->
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // scroll top button
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  // fade-in on scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.ayat-section').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</body>
+</html>

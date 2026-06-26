@@ -1,0 +1,897 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Buruuj: Ketika Langit Menjadi Saksi</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold1: #f5d67b;
+    --gold2: #c9922a;
+    --gold3: #fff0a0;
+    --gold4: #a0620a;
+    --ruby1: #c0392b;
+    --ruby2: #e74c3c;
+    --ruby3: #7b1515;
+    --jade1: #2e7d5c;
+    --jade2: #3aaf7f;
+    --jade3: #1a4d38;
+    --bg:    #080808;
+    --bg2:   #0f0f0f;
+    --bg3:   #141414;
+    --card:  #101010;
+    --border:#2a2218;
+    --text:  #e8dcc8;
+    --muted: #9a8a6a;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.95;
+    min-height: 100vh;
+  }
+
+  /* ── GOLD GRADIENT TEXT ── */
+  .gold {
+    background: linear-gradient(135deg, var(--gold2) 0%, var(--gold1) 45%, var(--gold3) 60%, var(--gold2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: relative;
+    padding: 90px 40px 76px;
+    text-align: center;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 50% -10%, #1e1000 0%, #080808 65%),
+      radial-gradient(ellipse at 20% 100%, #0a0a12 0%, transparent 60%);
+    border-bottom: 1px solid #2a2010;
+  }
+
+  /* star field */
+  .header::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle, rgba(245,214,123,.18) 1px, transparent 1px),
+      radial-gradient(circle, rgba(245,214,123,.08) 1.5px, transparent 1.5px);
+    background-size: 55px 55px, 120px 120px;
+    background-position: 0 0, 28px 28px;
+    animation: stardrift 60s linear infinite;
+    pointer-events:none;
+  }
+
+  /* glow center */
+  .header::after {
+    content:'';
+    position:absolute;
+    top:-60px; left:50%; transform:translateX(-50%);
+    width:700px; height:320px;
+    background: radial-gradient(ellipse, rgba(180,130,30,.15) 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  @keyframes stardrift { to { background-position: 55px 55px, 83px 83px; } }
+
+  .header-bismillah {
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    font-size: 2.1em;
+    color: var(--gold1);
+    opacity: .55;
+    margin-bottom: 26px;
+    letter-spacing: 4px;
+    position: relative; z-index:1;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4em, 5.5vw, 3.6em);
+    font-weight: 700;
+    line-height: 1.2;
+    position: relative; z-index:1;
+    margin-bottom: 10px;
+  }
+
+  .header-sub {
+    font-size: .95em;
+    color: var(--muted);
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    position: relative; z-index:1;
+    margin-bottom: 28px;
+    font-family: 'EB Garamond', serif;
+  }
+
+  .divider-gold {
+    width: 130px; height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold2), var(--gold1), var(--gold2), transparent);
+    margin: 22px auto;
+    position: relative; z-index:1;
+  }
+
+  .tagline {
+    font-style: italic;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2em;
+    color: #c8b888;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative; z-index:1;
+    line-height: 1.75;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 940px; margin: 0 auto; padding: 56px 24px 90px; }
+
+  /* ── THEME BADGE ── */
+  .theme-badge {
+    text-align:center;
+    margin-bottom: 50px;
+  }
+  .theme-badge span {
+    display:inline-block;
+    padding: 10px 28px;
+    border: 1px solid var(--gold4);
+    border-radius: 40px;
+    font-size:.82em;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: linear-gradient(135deg, #0e0c06, #14100a);
+  }
+
+  /* ── AYAT SECTION ── */
+  .ayat-section {
+    position: relative;
+    border-radius: 18px;
+    padding: 50px 46px;
+    margin-bottom: 56px;
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity .75s ease, transform .75s ease, box-shadow .3s;
+    overflow: hidden;
+  }
+  .ayat-section.visible { opacity:1; transform:translateY(0); }
+  .ayat-section:hover { box-shadow: 0 10px 60px rgba(0,0,0,.9); }
+
+  /* Accent variant — gold (default/wisdom) */
+  .ayat-section.accent-gold {
+    background: linear-gradient(160deg, #141208, #0c0c0a);
+    border: 1px solid #2a2010;
+    border-left: 3px solid var(--gold2);
+    box-shadow: 0 4px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(200,160,50,.05);
+  }
+  /* Accent variant — ruby (warning/suffering/fire) */
+  .ayat-section.accent-ruby {
+    background: linear-gradient(160deg, #130909, #0c0a0a);
+    border: 1px solid #2a1010;
+    border-left: 3px solid var(--ruby1);
+    box-shadow: 0 4px 40px rgba(0,0,0,.7), inset 0 1px 0 rgba(180,50,50,.05);
+  }
+  /* Accent variant — jade (hope/radiance/relief) */
+  .ayat-section.accent-jade {
+    background: linear-gradient(160deg, #080f0c, #0a0f0c);
+    border: 1px solid #102a1a;
+    border-left: 3px solid var(--jade1);
+    box-shadow: 0 4px 40px rgba(0,0,0,.6), inset 0 1px 0 rgba(50,180,100,.04);
+  }
+
+  /* corner ornament */
+  .ayat-section::before {
+    content: '✦';
+    position:absolute; top:20px; right:24px;
+    opacity:.2; font-size:1.4em;
+  }
+  .accent-gold::before { color: var(--gold2); }
+  .accent-ruby::before { color: var(--ruby2); }
+  .accent-jade::before { color: var(--jade2); }
+
+  /* group label */
+  .ayat-group-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65em;
+    font-weight: 700;
+    margin-bottom: 30px;
+    display: flex; align-items: center; gap: 16px;
+  }
+
+  .group-tag {
+    display:inline-flex; align-items:center; justify-content:center;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size:.62em;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    font-family:'EB Garamond',serif;
+    flex-shrink:0;
+  }
+  .accent-gold .group-tag { background: linear-gradient(135deg,#1e1600,#2a1e00); border:1px solid var(--gold4); color:var(--gold1); }
+  .accent-ruby .group-tag { background: linear-gradient(135deg,#1e0808,#2a1010); border:1px solid var(--ruby3); color:#e8a0a0; }
+  .accent-jade .group-tag { background: linear-gradient(135deg,#081410,#0e1e18); border:1px solid var(--jade3); color:#80d4b0; }
+
+  /* ── SECTION TITLES ── */
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.32em;
+    font-weight: 700;
+    margin: 38px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2a2010;
+  }
+  .accent-ruby h2.section-title { border-bottom-color: #2a1010; }
+  .accent-jade h2.section-title { border-bottom-color: #102a1a; }
+
+  h3.sub-title {
+    font-family: 'Lora', serif;
+    font-size: 1.06em;
+    font-weight: 600;
+    margin: 28px 0 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h3.sub-title::before {
+    content:'';
+    display:inline-block;
+    width:20px; height:2px;
+    flex-shrink:0;
+  }
+  .accent-gold h3.sub-title::before { background: linear-gradient(to right, var(--gold2), var(--gold1)); }
+  .accent-ruby h3.sub-title::before { background: linear-gradient(to right, var(--ruby1), var(--ruby2)); }
+  .accent-jade h3.sub-title::before { background: linear-gradient(to right, var(--jade1), var(--jade2)); }
+
+  /* ── ARABIC ── */
+  .arabic-wrap {
+    text-align: center;
+    margin: 34px 0 12px;
+    padding: 30px 24px;
+    background: radial-gradient(ellipse at center, #131000 0%, #080808 80%);
+    border-radius: 14px;
+    border: 1px solid #2e2010;
+    position:relative;
+  }
+  .accent-ruby .arabic-wrap {
+    background: radial-gradient(ellipse at center, #130808 0%, #080808 80%);
+    border-color: #2e1010;
+  }
+  .accent-jade .arabic-wrap {
+    background: radial-gradient(ellipse at center, #08120e 0%, #080808 80%);
+    border-color: #102e1a;
+  }
+  .arabic-wrap::before, .arabic-wrap::after {
+    content:'❧';
+    position:absolute; top:50%; transform:translateY(-50%);
+    opacity:.25; font-size:1.2em;
+  }
+  .arabic-wrap::before { left:18px; }
+  .arabic-wrap::after  { right:18px; transform:translateY(-50%) scaleX(-1); }
+  .accent-gold .arabic-wrap::before,
+  .accent-gold .arabic-wrap::after { color:var(--gold2); }
+  .accent-ruby .arabic-wrap::before,
+  .accent-ruby .arabic-wrap::after { color:var(--ruby1); }
+  .accent-jade .arabic-wrap::before,
+  .accent-jade .arabic-wrap::after { color:var(--jade1); }
+
+  .arabic {
+    font-family: 'Traditional Arabic', 'Scheherazade New', 'KFGQPC Uthmanic Script HAFS', serif;
+    font-size: clamp(2.2em, 5.5vw, 3.4em);
+    line-height: 2.1;
+    direction: rtl;
+  }
+  .accent-gold .arabic {
+    background: linear-gradient(135deg, var(--gold4) 0%, var(--gold1) 40%, var(--gold3) 60%, var(--gold2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .accent-ruby .arabic {
+    background: linear-gradient(135deg, #7b1515 0%, #e07070 40%, #ffc0c0 60%, #c0392b 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .accent-jade .arabic {
+    background: linear-gradient(135deg, #1a4d38 0%, #3aaf7f 40%, #b0ffd8 60%, #2e7d5c 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  .translation {
+    text-align: center;
+    font-style: italic;
+    font-family: 'EB Garamond', serif;
+    color: var(--muted);
+    font-size: 1.08em;
+    margin: 10px 0 34px;
+    line-height: 1.7;
+  }
+
+  /* ── ENERGI KATA CHIP ── */
+  .energi-chip {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: .94em;
+    font-weight: 600;
+    margin: 18px 0 10px;
+    letter-spacing:.5px;
+  }
+  .accent-gold .energi-chip {
+    background: linear-gradient(135deg, #1e1600 0%, #2a1e00 100%);
+    border: 1px solid var(--gold4);
+    color: var(--gold1);
+  }
+  .accent-ruby .energi-chip {
+    background: linear-gradient(135deg, #1e0808 0%, #2a1010 100%);
+    border: 1px solid var(--ruby3);
+    color: #e8a0a0;
+  }
+  .accent-jade .energi-chip {
+    background: linear-gradient(135deg, #081410 0%, #0e1e18 100%);
+    border: 1px solid var(--jade3);
+    color: #80d4b0;
+  }
+
+  /* ── PARAGRAPHS ── */
+  p {
+    margin-bottom: 17px;
+    color: #d4c49e;
+    text-align: justify;
+    font-size: .97em;
+  }
+  strong { color: var(--gold1); font-weight:600; }
+  em { color: #c8b478; font-style: italic; }
+
+  /* ── RELEVANCE BOX ── */
+  .relevance-box {
+    border-radius: 0 12px 12px 0;
+    padding: 22px 26px;
+    margin: 26px 0;
+  }
+  .accent-gold .relevance-box {
+    background: linear-gradient(160deg,#13100a,#0e0c08);
+    border-left: 3px solid var(--gold3);
+  }
+  .accent-ruby .relevance-box {
+    background: linear-gradient(160deg,#130a0a,#0e0808);
+    border-left: 3px solid var(--ruby2);
+  }
+  .accent-jade .relevance-box {
+    background: linear-gradient(160deg,#080f0c,#060c0a);
+    border-left: 3px solid var(--jade2);
+  }
+  .relevance-label {
+    font-size:.78em;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:12px;
+    font-family:'Playfair Display',serif;
+  }
+  .accent-gold .relevance-label { color: var(--gold2); }
+  .accent-ruby .relevance-label { color: var(--ruby2); }
+  .accent-jade .relevance-label { color: var(--jade2); }
+
+  /* ── INTISARI ── */
+  .intisari {
+    position:relative;
+    border-radius: 14px;
+    padding: 30px 34px;
+    margin: 30px 0 0;
+    font-size: .98em;
+    line-height: 2;
+    font-family: 'EB Garamond', serif;
+  }
+  .accent-gold .intisari {
+    background: linear-gradient(160deg, #1a1400, #130f00);
+    border: 1px solid #3a2a10;
+    color: #e0cc90;
+  }
+  .accent-ruby .intisari {
+    background: linear-gradient(160deg, #180c0c, #100808);
+    border: 1px solid #3a1a1a;
+    color: #e0b0b0;
+  }
+  .accent-jade .intisari {
+    background: linear-gradient(160deg, #091510, #07100c);
+    border: 1px solid #1a3a2a;
+    color: #a0e0c0;
+  }
+  .intisari::before {
+    content: '"';
+    position:absolute; top:-16px; left:26px;
+    font-size:4.2em; line-height:1;
+    font-family:'Playfair Display',serif;
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+  .accent-gold .intisari::before { background: linear-gradient(to bottom, var(--gold1), var(--gold2)); }
+  .accent-ruby .intisari::before { background: linear-gradient(to bottom, #e07070, #c0392b); }
+  .accent-jade .intisari::before { background: linear-gradient(to bottom, #3aaf7f, #2e7d5c); }
+
+  .intisari-label {
+    font-size:.76em; letter-spacing:2.5px; text-transform:uppercase;
+    margin-bottom:14px;
+    font-family:'Playfair Display',serif;
+  }
+  .accent-gold .intisari-label { color: var(--gold2); }
+  .accent-ruby .intisari-label { color: var(--ruby2); }
+  .accent-jade .intisari-label { color: var(--jade2); }
+
+  /* ── PENUTUP ── */
+  .penutup {
+    background: linear-gradient(160deg,#0e0c08,#090908);
+    border: 1px solid #2a2010;
+    border-radius: 18px;
+    padding: 56px 46px;
+    margin-bottom: 52px;
+  }
+
+  .langkah {
+    background: linear-gradient(160deg,#131108,#0c0c06);
+    border: 1px solid #2a2010;
+    border-left: 3px solid var(--gold2);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 26px;
+    margin: 18px 0;
+    color: #d4c49e;
+    font-size:.96em;
+  }
+  .langkah .lnum {
+    display:inline-block;
+    background: linear-gradient(135deg, var(--gold2), var(--gold1));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-weight:700; font-family:'Playfair Display',serif;
+    font-size:1.1em; margin-bottom:6px;
+  }
+  .langkah p { margin-bottom:0; }
+
+  /* ── EPILOG ── */
+  .epilog {
+    background: radial-gradient(ellipse at 50% 0%, #14100a 0%, #070707 60%);
+    border: 1px solid #2a2010;
+    border-top: 2px solid var(--gold2);
+    border-radius: 18px;
+    padding: 70px 46px;
+    text-align: center;
+  }
+  .epilog .epilog-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.5em,3.5vw,2.2em);
+    font-weight:700;
+    margin-bottom:46px;
+  }
+  .epilog p {
+    max-width: 680px; margin: 0 auto 20px;
+    color: #c8b888; text-align:center;
+    font-style:italic;
+    font-family:'EB Garamond',serif;
+    font-size:1.07em;
+    line-height:1.85;
+  }
+  .epilog .arabic-line {
+    font-family: 'Traditional Arabic','Scheherazade New',serif;
+    font-size:clamp(1.6em,4vw,2.4em);
+    direction:rtl;
+    background: linear-gradient(135deg,var(--gold4),var(--gold1),var(--gold3),var(--gold2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    display:block; margin:30px auto 8px;
+  }
+  .epilog .latin-line {
+    font-style:italic; color:var(--gold1); font-size:1.06em;
+    margin-bottom:22px; display:block;
+    font-family:'EB Garamond',serif;
+  }
+  .epilog .voice-tag {
+    display:block;
+    font-size:.76em; letter-spacing:2px; text-transform:uppercase;
+    color:var(--muted); margin-bottom:10px; margin-top:36px;
+    font-family:'Playfair Display',serif;
+  }
+  .epilog .closing {
+    margin-top:44px; font-style:normal;
+    font-family:'Playfair Display',serif;
+    font-size:1.12em; color:#e0cc90;
+    line-height:1.9;
+  }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position:fixed; bottom:28px; right:28px;
+    width:48px; height:48px;
+    background: linear-gradient(135deg,var(--gold4),var(--gold2));
+    color:#0a0800; font-size:1.2em; font-weight:700;
+    border:none; border-radius:50%;
+    cursor:pointer; display:none; align-items:center; justify-content:center;
+    box-shadow:0 4px 20px rgba(0,0,0,.5);
+    transition:transform .2s;
+    z-index:999;
+  }
+  #scrollTop:hover { transform:scale(1.1); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:640px){
+    .header { padding:66px 20px 54px; }
+    .ayat-section, .penutup, .epilog { padding:34px 18px; }
+    .container { padding:32px 14px 64px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <h1 class="gold">Al-Buruuj</h1>
+  <p class="header-sub">Surat 85 · 22 Ayat · Makkiyyah</p>
+  <div class="divider-gold"></div>
+  <p class="tagline">Ketika seluruh galaksi digugat sebagai saksi—bahwa api tidak pernah bisa membakar habis sesuatu yang sudah dipilih oleh langit.</p>
+</div>
+
+<div class="container">
+
+  <div class="theme-badge">
+    <span>✦ Peta Kesadaran dalam Permainan Semesta ✦</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       KELOMPOK AYAT 1–3 : SUMPAH LANGIT
+  ════════════════════════════════════════════════ -->
+  <div class="ayat-section accent-gold">
+    <div class="ayat-group-label">
+      <span class="group-tag">Ayat 1–3</span>
+      <span class="gold">Sumpah Langit yang Beranji-Beranji</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَٱلسَّمَآءِ ذَاتِ ٱلۡبُرُوجِ ۝ وَٱلۡيَوۡمِ ٱلۡمَوۡعُودِ ۝ وَشَاهِدٍ وَمَشۡهُودٍ</div>
+    </div>
+    <p class="translation">"Demi langit yang mempunyai gugusan bintang, demi hari yang dijanjikan, demi yang menyaksikan dan yang disaksikan."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">ٱلۡبُرُوجِ — Gugusan Bintang / Menara Langit</div>
+    <p><em>Al-Buruuj</em> secara harfiah adalah "menara-menara" atau "benteng-benteng". Para ahli tafsir memahaminya sebagai gugus bintang besar yang menjadi peta navigasi langit—dua belas rasi zodiak yang sudah dikenal sejak ribuan tahun sebelum masehi. Tapi di balik kata ini ada lapisan yang lebih dalam: <em>burj</em> juga berarti benteng yang tinggi, tempat pengawas berdiri untuk melihat segala arah.</p>
+    <p>Langit bukan sekadar latar belakang yang cantik. Langit adalah sistem pengawasan kosmis—dan Allah bersumpah demi sistem itu untuk mengatakan: <strong>ada yang selalu melihat apa yang terjadi di bumi ini.</strong></p>
+
+    <div class="energi-chip">شَاهِدٍ وَمَشۡهُودٍ — Yang Menyaksikan & Yang Disaksikan</div>
+    <p>Pasangan kata yang memukau. Para ulama berbeda pendapat—apakah "yang menyaksikan" itu manusia dan "yang disaksikan" itu hari Arafah? Atau Jumat dan hari Kiamat? Atau seluruh makhluk bersaksi tentang keagungan Sang Pencipta?</p>
+    <p>Yang indah dari ketidakpastian ini adalah pesannya tetap sama: <strong>ada kesaksian yang berlangsung tanpa henti di alam semesta ini.</strong> Setiap peristiwa dicatat. Setiap keadilan yang tertunda di dunia ini punya saksi di dimensi yang lebih tinggi.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Surat ini dibuka dengan tiga sumpah yang semuanya berkaitan dengan dimensi kesaksian: langit yang mengawasi, hari yang dijanjikan untuk perhitungan, dan dinamika antara yang melihat dan yang dilihat.</p>
+    <p>Mengapa Allah bersumpah? Dalam tradisi bahasa Arab, sumpah adalah penguatan terhadap sesuatu yang akan disampaikan—artinya apa yang mengikutinya adalah hal yang sangat penting, bahkan bagi orang yang meragukan. Dan apa yang Allah sumpahkan di sini? <em>Nasib orang-orang yang dibakar di parit karena keyakinan mereka.</em> Seolah Allah berkata: "Aku bersumpah dengan seluruh arsitektur kosmis ini—bahwa peristiwa itu nyata, bahwa kesaksian itu ada, dan bahwa kelanjutannya ada di tangan-Ku."</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Pernahkah kamu menyaksikan ketidakadilan yang tidak ada yang mau mengakui? Seseorang difitnah, karir dihancurkan, kebenaran dikubur dalam-dalam—dan dunia seakan menutup mata. Kamu sendiri mungkin pernah mengalami: usaha yang tidak dilihat, pengorbanan yang tidak diakui, loyalitas yang diinjak-injak.</p>
+      <p>Dalam kondisi seperti itu, sumpah pembuka Al-Buruuj bukan sekadar pembuka retoris. Ini adalah pernyataan kosmis: <strong>ada sistem pencatatan yang tidak pernah mati.</strong> Langit yang bertabur menara-menara bintang itu adalah simbol pengawasan yang melampaui kapasitas siapa pun untuk membungkam. Hari yang dijanjikan itu adalah tenggat waktu terakhir untuk semua rekening yang belum diselesaikan di dunia ini. Dan "yang menyaksikan dan yang disaksikan" adalah jaminan bahwa tidak ada peristiwa—sekecil apa pun—yang berlalu tanpa tercatat.</p>
+      <p>Praktisnya: dua hal bisa kamu ambil dari sini. <em>Pertama</em>, hentikan kebiasaan memendam amarah karena merasa tidak ada yang melihat perjuanganmu—ada yang melihat, dan pencatatannya jauh lebih akurat dari ingatan manusia mana pun. <em>Kedua</em>, hati-hati dengan keyakinan bahwa kamu bisa berbuat curang karena "tidak ada yang tahu"—struktur kosmis ini tidak pernah offline.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Ketika langit dijadikan saksi, artinya tidak ada peristiwa di muka bumi yang yatim piatu dari perhatian ilahi. Ketidakadilan yang tertunda bukan berarti ketidakadilan yang dilupakan—ia hanya menunggu persidangan yang lebih tinggi otoritasnya dari ruang pengadilan mana pun yang pernah kita kenal.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       KELOMPOK AYAT 4–9 : KISAH PARIT
+  ════════════════════════════════════════════════ -->
+  <div class="ayat-section accent-ruby">
+    <div class="ayat-group-label">
+      <span class="group-tag">Ayat 4–9</span>
+      <span style="background: linear-gradient(135deg, #c0392b 0%, #e07070 45%, #ffc0c0 60%, #c0392b 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Api yang Dipakai untuk Membungkam Langit</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">قُتِلَ أَصۡحَٰبُ ٱلۡأُخۡدُودِ ۝ ٱلنَّارِ ذَاتِ ٱلۡوَقُودِ ۝ إِذۡ هُمۡ عَلَيۡهَا قُعُودٌ ۝ وَهُمۡ عَلَىٰ مَا يَفۡعَلُونَ بِٱلۡمُؤۡمِنِينَ شُهُودٌ ۝ وَمَا نَقَمُواْ مِنۡهُمۡ إِلَّآ أَن يُؤۡمِنُواْ بِٱللَّهِ ٱلۡعَزِيزِ ٱلۡحَمِيدِ</div>
+    </div>
+    <p class="translation">"Binasalah orang-orang yang membuat parit, yang berapi (dan mempunyai) kayu bakar, ketika mereka duduk di sekelilingnya, dan mereka menyaksikan apa yang mereka perbuat terhadap orang-orang yang beriman. Dan tidaklah mereka menyiksa orang beriman itu melainkan karena (orang-orang beriman itu) beriman kepada Allah Yang Mahaperkasa, Maha Terpuji."</p>
+
+    <h2 class="section-title" style="background: linear-gradient(135deg, #c0392b, #e07070); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; border-bottom-color:#2a1010;">Energi Kata</h2>
+
+    <div class="energi-chip">ٱلۡأُخۡدُودِ — Parit yang Digali</div>
+    <p><em>Al-Ukhdud</em> adalah parit yang sengaja digali—ini bukan luka yang tidak disengaja, bukan bencana alam, bukan kecelakaan sejarah. Ini adalah persediaan yang direncanakan. Ada orang yang bangun pagi, mengambil cangkul, dan menggali lubang untuk membakar sesama manusia di dalamnya. Kata ini menohok karena kejahatan paling mengerikan dalam sejarah selalu dimulai dari perencanaan sistematis, bukan amarah spontan.</p>
+
+    <div class="energi-chip">شُهُودٌ — Mereka Menyaksikan</div>
+    <p>Kata yang sama dari ayat 3 (<em>syahid</em>) kini muncul lagi, tapi dalam konteks yang mendinginkan darah: para penguasa zalim itu duduk mengelilingi api sambil <em>menonton</em> orang-orang beriman dibakar. Mereka adalah saksi atas kejahatan mereka sendiri. Al-Qur'an seolah membangun bukti langsung: kelak di hari perhitungan, tidak ada yang bisa berkata "aku tidak tahu apa yang terjadi"—karena mereka sendiri yang menyaksikannya.</p>
+
+    <div class="energi-chip">إِلَّآ أَن يُؤۡمِنُواْ — Kecuali Karena Beriman</div>
+    <p>Tiga kata Arab ini adalah salah satu kalimat paling menghantam dalam seluruh Al-Qur'an. Satu-satunya dosa para korban itu adalah: mereka percaya kepada Tuhan. Tidak mencuri, tidak membunuh, tidak membuat kerusuhan. Hanya percaya. Dan itu cukup untuk membuat penguasa zalim merasa terancam.</p>
+
+    <h2 class="section-title" style="background: linear-gradient(135deg, #c0392b, #e07070); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; border-bottom-color:#2a1010;">Tafsir Mendalam</h2>
+    <p>Para ulama mengaitkan kisah parit ini dengan peristiwa sejarah di Najran, Yaman, sekitar abad ke-6 Masehi—ketika seorang penguasa bernama Dzu Nuwas memaksa penduduk Kristen untuk meninggalkan keyakinan mereka, dan membakar hidup-hidup mereka yang menolak. Tapi Al-Qur'an tidak menyebut nama, tidak menyebut tempat spesifik—karena kisah ini bukan tentang satu peristiwa, melainkan tentang satu pola yang berulang dalam sejarah manusia.</p>
+    <p>Pola itu adalah ini: <strong>kekuasaan yang merasa terancam oleh iman selalu mencari cara untuk memadamkannya—dan selalu gagal.</strong> Api bisa membakar tubuh, tapi tidak bisa membakar keyakinan yang sudah menyatu dengan ruh seseorang.</p>
+    <p>Yang paling menggetarkan adalah pertanyaan teologis yang tidak diucapkan tapi terasa sangat keras: mengapa Allah tidak menghentikan ini? Mengapa orang-orang yang beriman kepada-Nya dibiarkan terbakar? Al-Buruuj tidak menjawab pertanyaan itu dengan argumentasi logis—ia menjawab dengan konteks yang lebih besar: ada hari yang dijanjikan, ada saksi yang mencatat, ada balasan yang sudah disiapkan.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Api tidak selalu berwujud api. Di zaman kita, "parit" bisa berbentuk kampanye daring yang terkoordinasi untuk menghancurkan nama seseorang. "Api" bisa berbentuk tekanan institusional yang memaksa seseorang memilih antara keyakinan dan karir. Orang-orang yang dibakar bisa jadi adalah mereka yang kehilangan pekerjaan karena menolak kompromi nilai, yang dikucilkan dari komunitas karena mempertahankan prinsip, yang karir akademisnya dihambat karena bersuara tentang kebenaran.</p>
+      <p><em>Pertama</em>, kisah parit mengajarkan bahwa ketika seseorang disakiti semata karena keyakinan baiknya, itu bukan tanda bahwa ia salah—justru sebaliknya. Tekanan terkuat sering datang tepat pada keyakinan yang paling benar. <em>Kedua</em>, frasa "mereka menyaksikan apa yang mereka lakukan" adalah pengingat bahwa manusia yang zalim itu tahu—mereka bukan buta. Ini penting supaya kita tidak menghabiskan energi untuk "menyadarkan" mereka yang sebenarnya sudah sangat sadar; energi itu lebih baik digunakan untuk mempertahankan diri dan komunitas yang rentan.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Ketika satu-satunya kesalahan yang bisa ditemukan padamu adalah bahwa kamu percaya—itu bukan tentang kesalahanmu. Itu tentang ancaman yang kamu hadirkan hanya dengan cara hidupmu. Dan sesuatu yang begitu mengancam bagi kegelapan, biasanya memang membawa cahaya yang nyata.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       KELOMPOK AYAT 10–16 : BALASAN DAN SIFAT ALLAH
+  ════════════════════════════════════════════════ -->
+  <div class="ayat-section accent-gold">
+    <div class="ayat-group-label">
+      <span class="group-tag">Ayat 10–16</span>
+      <span class="gold">Ketika Langit Menutup Buku Rekening</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">إِنَّ ٱلَّذِينَ فَتَنُواْ ٱلۡمُؤۡمِنِينَ وَٱلۡمُؤۡمِنَٰتِ ثُمَّ لَمۡ يَتُوبُواْ فَلَهُمۡ عَذَابُ جَهَنَّمَ وَلَهُمۡ عَذَابُ ٱلۡحَرِيقِ ۝ إِنَّ ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ لَهُمۡ جَنَّٰتٌ تَجۡرِي مِن تَحۡتِهَا ٱلۡأَنۡهَٰرُ ۚ ذَٰلِكَ ٱلۡفَوۡزُ ٱلۡكَبِيرُ</div>
+    </div>
+    <p class="translation">"Sesungguhnya orang-orang yang mendatangkan cobaan kepada orang-orang yang mukmin, laki-laki dan perempuan, kemudian mereka tidak bertaubat, maka bagi mereka azab jahannam dan bagi mereka azab (neraka) yang membakar. Sesungguhnya orang-orang yang beriman dan mengerjakan amal-amal yang saleh, bagi mereka surga yang mengalir di bawahnya sungai-sungai; itulah keberuntungan yang besar."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">فَتَنُواْ — Mendatangkan Cobaan / Menyiksa</div>
+    <p><em>Fatanu</em> dari akar kata <em>fitnah</em>—yang secara asali bukan berarti gosip, melainkan proses membakar logam untuk menguji kemurniannya, seperti memasukkan emas ke dalam api untuk melihat apakah emas itu asli atau palsu. Maka para penyiksa itu secara tidak sadar sedang "menguji" para korban—dan hasilnya? Korban terbukti emas murni, sementara para pengujinya sendiri yang terbakar di akhirat.</p>
+
+    <div class="energi-chip">ذَٰلِكَ ٱلۡفَوۡزُ ٱلۡكَبِيرُ — Itulah Kemenangan yang Besar</div>
+    <p><em>Al-Fawz al-kabir</em>—"kemenangan yang besar". Bukan "hadiah yang lumayan" atau "kompensasi yang setimpal". <em>Fawz</em> adalah kemenangan yang tidak terbantahkan, yang menyeluruh, yang tuntas. Al-Qur'an menggunakan kata ini untuk membingkai ulang apa yang tampak seperti kekalahan di dunia menjadi apa yang sesungguhnya terjadi secara kosmis.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Ayat 10 menyimpan satu detail yang sering terlewat: <em>"kemudian mereka tidak bertaubat."</em> Allah membuka pintu, bahkan untuk para pelaku kekejaman parit itu. Bahkan untuk mereka yang sudah membakar manusia hidup-hidup. Ini bukan kelemahan sistem keadilan ilahi—ini adalah kedalaman rahmah-Nya yang melampaui nalar manusia.</p>
+    <p>Tapi pintu itu tidak terbuka selamanya. Dan ketika ditutup, penutupannya adalah yang paling final dari semua yang pernah ada.</p>
+    <p>Ayat 11 kemudian membalik seluruh narasi. Dari adegan api yang membakar jiwa-jiwa yang tegar, kamera Al-Qur'an beralih ke sungai-sungai yang mengalir tenang di bawah taman yang rindang. Kontrasnya disengaja. Tajam. Untuk mengatakan: <strong>narasi yang tampak berakhir dengan kalah sesungguhnya sedang dalam perjalanan menuju pemenangan yang tidak ada tandingannya.</strong></p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era di mana "kemenangan" didefinisikan oleh metrik yang terukur sekarang: jabatan, viral, pengakuan publik, rekening yang meluap. Orang yang "kalah" secara sosial—yang mundur dari posisi karena menolak berkompromi, yang bisnisnya bangkrut karena menolak cara haram, yang popularitasnya anjlok karena bersuara benar—sering dianggap sebagai kisah kegagalan.</p>
+      <p>Al-Buruuj menawarkan kerangka waktu yang berbeda. <em>Pertama</em>, ini bukan tentang menjadi pasif—Al-Qur'an menyebut "beriman DAN mengerjakan amal saleh", bukan beriman lalu diam menunggu balasan. Perjuangan tetap dilakukan, tapi definisi "kemenangan" tidak lagi ditentukan oleh hasil jangka pendek. <em>Kedua</em>, kata "kemenangan yang besar" ini secara implisit mengundang kita untuk mengevaluasi ulang: apa yang kita kejar sekarang—apakah itu termasuk dalam kategori <em>fawz kabir</em> yang sesungguhnya, atau sekadar <em>fawz saghir</em> (kemenangan kecil) yang akan terasa hampa ketika semua rekening ditutup?</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Proses yang tampak seperti pengujian yang menyakitkan bisa jadi adalah proses pemurnian yang membuktikan kualitasmu. Yang benar-benar terbakar dalam "parit" itu bukan orang-orang beriman—melainkan semua yang bukan emas dalam diri mereka. Yang tersisa adalah yang paling berharga.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       KELOMPOK AYAT 12–16 : SIFAT ALLAH
+  ════════════════════════════════════════════════ -->
+  <div class="ayat-section accent-gold">
+    <div class="ayat-group-label">
+      <span class="group-tag">Ayat 12–16</span>
+      <span class="gold">Kenali Siapa yang Kamu Percayai</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">إِنَّ بَطۡشَ رَبِّكَ لَشَدِيدٌ ۝ إِنَّهُۥ هُوَ يُبۡدِئُ وَيُعِيدُ ۝ وَهُوَ ٱلۡغَفُورُ ٱلۡوَدُودُ ۝ ذُو ٱلۡعَرۡشِ ٱلۡمَجِيدُ ۝ فَعَّالٌ لِّمَا يُرِيدُ</div>
+    </div>
+    <p class="translation">"Sesungguhnya azab Tuhanmu benar-benar keras. Sesungguhnya Dialah yang menciptakan (makhluk) dari permulaan dan menghidupkannya kembali. Dan Dialah Yang Maha Pengampun, Maha Pengasih. Yang mempunyai 'Arsy, lagi Mahamulia. Maha Kuasa berbuat apa yang Dia kehendaki."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">ٱلۡغَفُورُ ٱلۡوَدُودُ — Yang Maha Pengampun & Maha Mengasihi</div>
+    <p>Setelah bicara tentang azab yang sangat keras, tiba-tiba Al-Qur'an menyebut dua nama ini secara berdampingan—dan urutan ini sangat bermakna. <em>Al-Ghafur</em> adalah pengampun yang menutupi kesalahan; <em>Al-Wadud</em> adalah kasih sayang yang aktif, yang mencari, yang rindu. Bukan sekadar "menerima kalau diminta", tapi kasih sayang yang bergerak menghampiri. Ini adalah Tuhan yang sama yang azab-Nya keras itu—dan keduanya nyata, bukan kontradiksi.</p>
+
+    <div class="energi-chip">فَعَّالٌ لِّمَا يُرِيدُ — Maha Kuasa atas Apa yang Dikehendaki-Nya</div>
+    <p>Kata <em>fa''al</em> adalah bentuk intensif—bukan hanya "bisa melakukan" tapi "selalu melaksanakan". Apa yang Allah kehendaki, pasti terjadi. Tanpa hambatan, tanpa negosiasi, tanpa kemungkinan gagal. Ini adalah dasar kepercayaan yang paling kokoh: ketika janji dibuat oleh entitas yang memiliki kapasitas penuh untuk menepatinya.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Lima ayat ini memperkenalkan kita kepada Tuhan yang baru saja disaksikan membiarkan orang-orang beriman dibakar hidup-hidup—dan alih-alih memberikan pembelaan diri, Allah memperkenalkan diri dengan empat sifat yang tampak kontradiktif tapi justru membentuk gambaran yang utuh.</p>
+    <p>Pertama: azab-Nya keras. Tidak ada minimisasi. Tidak ada "tapi pada akhirnya tidak ada apa-apa yang terjadi". Kedua: Dia adalah Pemula dan Pemulih—yang memulai segalanya dan yang akan mengembalikan segalanya. Ketiga: Dia Maha Pengampun dan Maha Mengasihi. Keempat: Dia berkuasa penuh atas apa yang dikehendaki-Nya.</p>
+    <p>Gabungkan keempatnya dan kamu mendapat gambaran ini: <strong>ini bukan Tuhan yang tidak mampu menghentikan kekejaman—ini Tuhan yang memilih untuk membiarkan kisah berlanjut karena ada bab-bab yang belum ditulis yang akan membuat segalanya masuk akal.</strong></p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Salah satu krisis iman terbesar di era kita adalah pertanyaan: "Kalau Allah Mahakuasa dan Maha Pengasih, mengapa bencana ini dibiarkan terjadi?" Pertanyaan yang valid, yang jujur, dan yang tidak boleh dijawab dengan formula kosong.</p>
+      <p>Al-Buruuj tidak menjawab pertanyaan itu dengan argumen intelektual. Ia menjawab dengan menampilkan sifat-sifat Allah secara bersamaan: keras dan pengampun, berkuasa dan mengasihi. <em>Pertama</em>, ini mengundang kita untuk tahan dengan tegangan itu—tidak semua pertanyaan butuh dijawab sekarang, beberapa butuh kerangka waktu yang lebih panjang untuk dipahami. <em>Kedua</em>, kata <em>Al-Wadud</em>—kasih sayang yang aktif mencari—adalah pengingat bahwa dalam keheningan terburuk sekalipun, ada yang sedang bergerak menghampiri, bukan menjauh. Ini bukan pasrah buta, tapi kepercayaan yang dibangun di atas pengenalan mendalam terhadap siapa yang kita percayai.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Tuhan yang keras azab-Nya dan Tuhan yang kasih sayang-Nya aktif mencari—itu Tuhan yang sama. Memilih hanya melihat satu sisi adalah seperti memotret lautan hanya dari tepian: kamu mendapat gambar yang nyata, tapi bukan gambar yang utuh.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       KELOMPOK AYAT 17–22 : KISAH SEBAGAI CERMIN
+  ════════════════════════════════════════════════ -->
+  <div class="ayat-section accent-jade">
+    <div class="ayat-group-label">
+      <span class="group-tag">Ayat 17–22</span>
+      <span style="background: linear-gradient(135deg, #1a4d38 0%, #3aaf7f 45%, #b0ffd8 60%, #2e7d5c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Kisah yang Tidak Berakhir di Sini</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">هَلۡ أَتَىٰكَ حَدِيثُ ٱلۡجُنُودِ ۝ فِرۡعَوۡنَ وَثَمُودَ ۝ بَلِ ٱلَّذِينَ كَفَرُواْ فِي تَكۡذِيبٍ ۝ وَٱللَّهُ مِن وَرَآئِهِم مُّحِيطٌ ۝ بَلۡ هُوَ قُرۡءَانٌ مَّجِيدٌ ۝ فِي لَوۡحٍ مَّحۡفُوظٍ</div>
+    </div>
+    <p class="translation">"Sudahkah sampai kepadamu berita tentang bala tentara (yang menentang rasul-rasul), Fir'aun dan (kaum) Tsamud? Sebenarnya orang-orang kafir (selalu) mendustakan, dan Allah mengepung mereka dari belakang mereka. Bahkan (yang didustakan itu) adalah Al-Qur'an yang mulia, yang (tersimpan) di Lauh Mahfuz."</p>
+
+    <h2 class="section-title" style="background: linear-gradient(135deg, #1a4d38, #3aaf7f); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; border-bottom-color:#102a1a;">Energi Kata</h2>
+
+    <div class="energi-chip">مُّحِيطٌ — Mengepung / Meliputi Sepenuhnya</div>
+    <p><em>Muhith</em> bukan sekadar "mengawasi dari jauh". Ini adalah lingkaran yang menutup sempurna—seperti lautan yang mengelilingi pulau. Tidak ada sisi yang terbuka. Tidak ada celah untuk kabur. Kekuasaan Allah melingkupi para penentang itu dari semua arah, bahkan ketika mereka pikir mereka sedang menguasai situasi.</p>
+    <p>Kata ini sangat kuat sebagai pengingat: setiap strategi manusia untuk lepas dari konsekuensi itu beroperasi <em>di dalam</em> lingkaran pengepungan Allah, bukan di luarnya.</p>
+
+    <div class="energi-chip">لَوۡحٍ مَّحۡفُوظٍ — Lauh Mahfuz: Papan yang Terjaga</div>
+    <p>Penutup surat ini adalah salah satu pernyataan paling dahsyat tentang Al-Qur'an itu sendiri: ia tersimpan di <em>Lauh Mahfuz</em>—papan yang terjaga, terlindungi dari perubahan, dari pemalsuan, dari kepunahan. Para penyiksa membakar manusia. Para penguasa melarang. Peradaban berganti. Tapi sumber dari semua yang menghidupi para korban itu? Tidak bisa dibakar. Tidak bisa dimusnahkan.</p>
+
+    <h2 class="section-title" style="background: linear-gradient(135deg, #1a4d38, #3aaf7f); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; border-bottom-color:#102a1a;">Tafsir Mendalam</h2>
+    <p>Di penghujung surat, Allah menggeser perspektif ke ketinggian sejarah. "Sudahkah kamu mendengar tentang Fir'aun dan Tsamud?" Ini bukan sekadar pertanyaan retoris. Ini adalah pertanyaan yang mengundang pembaca untuk menghitung: berapa banyak peradaban yang sudah mencoba memadamkan kebenaran? Dan berapa banyak yang masih berdiri hari ini?</p>
+    <p>Fir'aun memiliki tentara terkuat zamannya, sistem birokrasi yang mengontrol seluruh perekonomian, dan klaim keilahian diri sendiri. Tsamud memiliki teknologi arsitektur yang dipahat langsung ke gunung-gunung batu. Keduanya sudah menjadi cerita sejarah. Sementara apa yang mereka coba musnahkan? Masih dibaca, dihafal, dan dihidupi oleh ratusan juta orang sampai hari ini.</p>
+    <p>Penutup surat dengan <em>Lauh Mahfuz</em> bukan sekadar pernyataan tentang keaslian Al-Qur'an. Ini adalah pernyataan kosmis tentang <strong>apa yang pada akhirnya bertahan dan apa yang pada akhirnya tidak.</strong></p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di zaman ketika informasi bisa dimanipulasi dengan kecepatan dan skala yang belum pernah ada sebelumnya. Revisionisme sejarah, narasi yang dikontrol, kebenaran yang dibungkam oleh algoritma. Ada perasaan bahwa kebenaran semakin mudah dikubur—dan semakin mahal untuk dipertahankan.</p>
+      <p>Dua hal bisa diambil dari penutup Al-Buruuj ini. <em>Pertama</em>, perspektif panjang: ketika kamu merasa sedang "kalah" dalam pertarungan narasi sekarang, ingat bahwa Fir'aun pun pernah merasa menang sepenuhnya—dan lihat di mana narasi itu sekarang. Kebenaran yang bertahan tidak selalu menang dengan cepat, tapi ia menang dengan tuntas. <em>Kedua</em>, kata <em>muhith</em> (mengepung) adalah pengingat bahwa setiap sistem yang membangun dirinya di atas penindasan itu, sesungguhnya sedang membangun di dalam pagar yang sudah mengepungnya—ia hanya belum menyadarinya.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Lauh Mahfuz bukan hanya tentang Al-Qur'an yang tersimpan aman—ini tentang kenyataan bahwa ada sesuatu yang kekal di balik semua yang sementara. Ketika yang sementara mencoba menghancurkan yang kekal, ia sedang bergulat dengan sesuatu yang—secara definisi—tidak bisa ia hancurkan.
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       PENUTUP
+  ════════════════════════════════════════════════ -->
+  <div class="penutup">
+    <h2 class="section-title gold" style="margin-top:0;">Refleksi: Pola yang Bisa Diambil</h2>
+
+    <div class="langkah">
+      <div class="lnum">1 — Kalibrasi Ulang Definisi "Kemenangan"</div>
+      <p>Tanyakan pada dirimu: apa yang kamu kejar sekarang—apakah itu masuk dalam kategori <em>fawz kabir</em> (kemenangan besar) atau sekadar pengakuan sementara? Bukan untuk menihilkan usaha duniawi, tapi untuk memastikan energimu tidak habis demi hal-hal yang akan terasa hampa ketika semua rekening ditutup. Coba tuliskan tiga hal yang paling kamu perjuangkan sekarang, lalu beri label: apakah ini masih relevan dalam jangka waktu dua puluh tahun? Lima puluh tahun? Setelah mati?</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">2 — Bangun "Kesadaran Langit" Dalam Rutinitas Harian</div>
+      <p>Al-Buruuj dibuka dengan sumpah atas langit yang menjadi saksi. Jadikan ini latihan konkret: sebelum mengambil keputusan yang melibatkan kejujuran, tanyakan dalam hati—"kalau langit menyaksikan ini, apakah aku masih melakukannya dengan cara yang sama?" Ini bukan paranoia, tapi kesadaran yang secara sains pun terbukti memperbaiki kualitas keputusan moral seseorang.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">3 — Ubah Cara Membaca Penderitaan</div>
+      <p>Ketika menghadapi tekanan atau pengujian karena nilai-nilai yang kamu pegang, coba ganti pertanyaan dari "mengapa ini terjadi padaku?" menjadi "apa yang sedang diuji di sini, dan bagaimana aku mau keluar dari pengujian ini?" Proses <em>fitnah</em> (pengujian) selalu membuka dua kemungkinan: terbukti murni, atau terbukti bercampur. Kamu yang memilih hasilnya.</p>
+    </div>
+
+    <h2 class="section-title gold">Langkah Nyata</h2>
+
+    <div class="langkah">
+      <div class="lnum">Langkah 1 — Jurnal "Saksi Harian"</div>
+      <p>Setiap malam, tulis satu hal yang terjadi hari ini yang terasa tidak adil—baik yang kamu alami, atau yang kamu saksikan. Bukan untuk memperburuk perasaan, tapi untuk melatih kepercayaan: tuliskan juga satu kalimat yang menegaskan bahwa hal ini sudah "tercatat". Latihan kecil ini membangun orientasi bahwa keadilan bukan hanya urusan sistem manusia—dan itu sangat membantu mencegah akumulasi kemarahan yang meracuni diri sendiri.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">Langkah 2 — Perspektif Sejarah Sebagai Terapi</div>
+      <p>Ketika merasa kebenaran sedang "kalah", luangkan sepuluh menit untuk membaca satu kisah sejarah tentang peradaban atau tokoh yang tampak "kalah" tapi kemudian terbukti benar oleh waktu. Fir'aun, apartheid, tokoh-tokoh ilmu pengetahuan yang dihukum lalu dibenarkan sejarah. Ini bukan pelarian dari realita, tapi cara aktif untuk membangun perspektif panjang yang Al-Buruuj ajarkan.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">Langkah 3 — Identifikasi "Api" di Sekitarmu</div>
+      <p>Apakah ada tekanan di lingkunganmu sekarang yang memaksamu memilih antara keyakinan dan kenyamanan? Bisa di tempat kerja, keluarga, atau komunitas. Bukan untuk langsung konfrontasi—tapi untuk pertama-tama jujur pada diri sendiri: apakah selama ini kamu menghindari pengakuan itu? Karena langkah pertama menghadapi "parit" adalah berhenti berpura-pura tidak melihatnya.</p>
+    </div>
+
+    <p style="margin-top: 36px; color: var(--muted); font-style: italic; text-align: center; border-top: 1px solid #2a2010; padding-top: 28px;">
+      Al-Buruuj tidak memberikan janji bahwa api tidak akan panas. Ia memberikan sesuatu yang lebih kuat: kepastian bahwa api tidak punya kata terakhir.
+    </p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       EPILOG
+  ════════════════════════════════════════════════ -->
+  <div class="epilog">
+    <h2 class="epilog-title gold">Kepada Semua yang Pernah Merasa Terbakar</h2>
+
+    <p>Ada momen-momen dalam hidup ketika kamu merasa seperti berdiri di tepi parit yang menyala—bukan karena kamu berbuat salah, tapi justru karena kamu tidak mau.</p>
+
+    <p>Karir yang mandek karena kamu tidak mau ikut cara yang kotor. Persahabatan yang berakhir karena kamu bersuara ketika semua orang memilih diam. Peluang yang terlewat karena kamu tidak mau kompromi pada hal yang tidak bisa kamu kompromikan.</p>
+
+    <span class="arabic-line">وَٱلسَّمَآءِ ذَاتِ ٱلۡبُرُوجِ</span>
+    <span class="latin-line">Was-samaa'i dzaatil buruuj</span>
+
+    <p>Di momen itu, langit masih penuh dengan menara-menaranya. Masih mencatat. Masih menjadi saksi. Tidak ada yang berlalu tanpa terekam.</p>
+
+    <span class="voice-tag">— Untuk kamu yang merasa tidak terlihat —</span>
+
+    <p>Kamu yang sudah lama bekerja keras dan tidak ada yang mengakuinya. Yang sudah lama menjaga integritas dan rasanya tidak ada bedanya. Yang sudah lama berdoa dan langit terasa seperti plafon beton—Al-Buruuj berkata: bukan plafon. Itu adalah menara pengawasan yang tidak pernah redup.</p>
+
+    <span class="voice-tag">— Untuk kamu yang sedang dalam pengujian yang menyakitkan —</span>
+
+    <span class="arabic-line">إِنَّ ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ لَهُمۡ جَنَّٰتٌ</span>
+    <span class="latin-line">Innalladzina aamanu wa 'amilush-shalihaati lahum jannaatun</span>
+
+    <p>Proses yang menyakitkan itu bukan hukuman—itu pengujian. Dan emas yang sudah diuji api adalah emas yang tidak perlu membuktikan dirinya lagi. Kemurnianmu sudah terbukti. Oleh api yang sama yang dikira akan menghancurkanmu.</p>
+
+    <span class="voice-tag">— Untuk kamu yang mempertanyakan keadilan —</span>
+
+    <p>Ada yang kamu lihat tidak adil dan tidak bisa kamu ubah. Ada yang sudah kamu coba dan tidak berhasil. Ada yang diinjak-injak dan dunia seakan berpura-pura tidak melihat. Al-Buruuj tidak menjawab "mengapa"—ia menawarkan sesuatu yang lebih kokoh: kepastian tentang "apa yang terjadi kemudian".</p>
+
+    <span class="arabic-line">وَٱللَّهُ مِن وَرَآئِهِم مُّحِيطٌ</span>
+    <span class="latin-line">Wallahu miw waraa'ihim muhiith</span>
+
+    <p>Allah mengepung mereka—para pelaku itu—dari semua sisi. Mereka pikir mereka menguasai situasi. Mereka pikir mereka menulis akhir cerita. Tapi mereka beroperasi di dalam lingkaran yang tidak mereka sadari menutup di sekeliling mereka.</p>
+
+    <span class="voice-tag">— Kepada semua —</span>
+
+    <div class="divider-gold" style="margin:42px auto;"></div>
+
+    <p class="closing">
+      Al-Buruuj adalah surat yang diturunkan kepada orang-orang yang baru saja mendengar berita buruk—<br>
+      bahwa di tempat yang jauh, saudara seiman mereka dibakar hidup-hidup,<br>
+      dan tidak ada yang menghentikannya.<br><br>
+      Dan surat itu tidak memberi mereka rencana balas dendam.<br>
+      Tidak memberi mereka garansi keamanan dunia.<br><br>
+      Yang diberikan adalah ini:<br><br>
+      <span class="gold" style="-webkit-text-fill-color:unset; background:none; color:var(--gold1);">Langit menjadi saksinya.</span><br>
+      Hari yang dijanjikan sedang mendekat.<br>
+      Yang menentang sudah terkepung—meski belum menyadarinya.<br>
+      Dan Al-Qur'an yang menghidupi para korban itu?<br>
+      Tersimpan di tempat yang tidak ada api di dunia ini bisa menjangkaunya.<br><br>
+      <strong style="color:var(--gold1); font-size:1.12em;">Bukan karena api tidak panas.<br>Tapi karena ada yang lebih kekal dari panasnya api.</strong>
+    </p>
+  </div>
+
+</div><!-- /container -->
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.ayat-section').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

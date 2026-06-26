@@ -1,0 +1,1525 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menembus Kedalaman Juz Amma</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #040508;
+    --bg-card: rgba(10, 13, 22, 0.75);
+    --border-color: rgba(255, 255, 255, 0.06);
+    --gold-1: #f3d27a;
+    --gold-2: #c9922a;
+    --gold-3: #fff0a0;
+    --text-primary: #e2d5bc;
+    --text-muted: #8a7a5e;
+    --cyan: #4fc3d4;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.8;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* LUXURY COSMIC BACKGROUND */
+  .stars-overlay {
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(243, 210, 122, 0.12) 1px, transparent 1px),
+      radial-gradient(circle, rgba(79, 195, 212, 0.06) 1.5px, transparent 1.5px);
+    background-size: 80px 80px, 130px 130px;
+    background-position: 0 0, 40px 40px;
+    animation: backgroundDrift 120s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glow-orb-top {
+    position: absolute;
+    top: -15%; left: 50%; transform: translateX(-50%);
+    width: 90vw; height: 500px;
+    background: radial-gradient(ellipse, rgba(201, 146, 42, 0.1) 0%, rgba(79, 195, 212, 0.04) 50%, transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes backgroundDrift {
+    0% { background-position: 0 0, 40px 40px; }
+    100% { background-position: 80px 80px, 170px 170px; }
+  }
+
+  .gold-gradient-text {
+    background: linear-gradient(135deg, var(--gold-2) 0%, var(--gold-1) 40%, var(--gold-3) 60%, var(--gold-2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* MAIN HEADER */
+  .hero {
+    position: relative;
+    padding: 100px 24px 40px;
+    text-align: center;
+    z-index: 1;
+  }
+
+  .bismillah-art {
+    font-family: 'Amiri', serif;
+    font-size: 2.4em;
+    color: var(--gold-1);
+    opacity: .8;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+  }
+
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.2em, 5vw, 3.8em);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+  }
+
+  .hero-sub {
+    font-size: 1.05em;
+    color: var(--text-muted);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .divider-main {
+    width: 220px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-2), var(--gold-1), var(--gold-2), transparent);
+    margin: 20px auto;
+    position: relative;
+  }
+
+  .divider-main::after {
+    content: '✦';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold-1);
+    font-size: .8em;
+    background: var(--bg-dark);
+    padding: 0 10px;
+  }
+
+  .hero-desc {
+    font-style: italic;
+    font-size: 1.2em;
+    color: #c4bca2;
+    max-width: 800px;
+    margin: 12px auto 0;
+    line-height: 1.7;
+  }
+
+  /* REFLECTION WIDGET */
+  .reflection-widget {
+    max-width: 800px;
+    margin: 20px auto 40px;
+    background: rgba(12, 16, 26, 0.45);
+    border: 1px solid rgba(243, 210, 122, 0.12);
+    border-radius: 16px;
+    padding: 24px 32px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 1;
+  }
+
+  .reflection-widget em {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72em;
+    letter-spacing: 2.5px;
+    color: var(--gold-1);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
+    font-style: normal;
+  }
+
+  .reflection-text {
+    font-style: italic;
+    color: #d2c8ab;
+    font-size: 1.08em;
+    line-height: 1.7;
+    transition: opacity 0.3s;
+  }
+
+  .reflection-source {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: var(--cyan);
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+  }
+
+  .refresh-btn {
+    position: absolute;
+    bottom: 12px; right: 20px;
+    background: none; border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.8em;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+  }
+  .refresh-btn:hover { color: var(--gold-1); }
+
+  /* CONTROLS PANEL */
+  .dashboard-controls {
+    max-width: 1120px;
+    margin: 0 auto 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .search-wrapper {
+    position: relative;
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    background: rgba(14, 17, 26, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    color: var(--text-primary);
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1em;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: var(--gold-2);
+    box-shadow: 0 0 15px rgba(201, 146, 42, 0.15);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 18px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    width: 16px; height: 16px;
+    pointer-events: none;
+  }
+
+  .filter-tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: none;
+  }
+  .filter-tabs::-webkit-scrollbar { display: none; }
+
+  .filter-tab {
+    padding: 8px 16px;
+    background: rgba(14, 17, 26, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    color: var(--text-muted);
+    font-family: 'Cinzel', serif;
+    font-size: 0.72em;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+
+  .filter-tab.active, .filter-tab:hover {
+    color: var(--gold-1);
+    border-color: var(--gold-1);
+    background: rgba(201, 146, 42, 0.08);
+  }
+
+  .progress-stats {
+    background: rgba(14, 17, 26, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+    color: var(--cyan);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* SURAH GRID & CARDS */
+  .grid-container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .surah-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  .surah-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .surah-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, var(--card-glow, rgba(79, 195, 212, 0.03)) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .surah-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--card-border-hover, #c9922a);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55), 0 0 15px var(--card-shadow, rgba(201, 146, 42, 0.1));
+  }
+
+  .surah-card:hover::before { opacity: 1; }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .surah-meta-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .surah-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8em;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .surah-arabic-title {
+    font-family: 'Amiri', serif;
+    font-size: 2.1em;
+    color: var(--card-arabic-color, var(--gold-1));
+    line-height: 1;
+    margin-top: -6px;
+  }
+
+  .surah-type {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.65em;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: var(--text-muted);
+    width: fit-content;
+  }
+
+  .card-body {
+    margin-bottom: 20px;
+  }
+
+  .surah-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+  }
+
+  .surah-card:hover .surah-title {
+    color: var(--card-title-hover, var(--gold-1));
+  }
+
+  .surah-subtitle {
+    font-size: 0.88em;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+
+  .surah-preview-quote {
+    font-size: 0.92em;
+    color: #ccc0a8;
+    line-height: 1.5;
+    border-left: 2px solid var(--card-border-hover, var(--gold-2));
+    padding-left: 10px;
+    margin-top: 12px;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 16px;
+    margin-top: auto;
+  }
+
+  .surah-length {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72em;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+  }
+
+  .read-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .checkbox-custom {
+    width: 15px; height: 15px;
+    border: 1px solid var(--text-muted);
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .read-status.checked .checkbox-custom {
+    background: var(--card-border-hover, var(--gold-1));
+    border-color: var(--card-border-hover, var(--gold-1));
+  }
+
+  .read-status.checked .checkbox-custom::after {
+    content: '✓';
+    color: #05060a;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  .read-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .read-status.checked .read-label {
+    color: var(--card-title-hover, var(--gold-1));
+  }
+
+  #scrollTop {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--gold-2);
+    color: var(--gold-1);
+    font-size: 1.2em;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: background 0.2s, color 0.2s;
+  }
+  #scrollTop:hover {
+    background: var(--gold-2);
+    color: #000;
+  }
+</style>
+</head>
+<body>
+
+<div class="stars-overlay"></div>
+<div class="glow-orb-top"></div>
+
+<!-- HERO SECTION -->
+<div class="hero">
+  <div class="bismillah-art">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <h1><span class="gold-gradient-text">MENEMBUS KEDALAMAN JUZ 'AMMA</span></h1>
+  <p class="hero-sub">Eksplorasi Spiritual Lengkap · Juz 30 & Al-Fatihah</p>
+  <div class="divider-main"></div>
+  <p class="hero-desc">Bukan sekadar membaca baris-baris kalimat, melainkan meresapi detak makna kosmik, moralitas sosial, dan refleksi batiniah penenteram kalbu.</p>
+</div>
+
+<!-- DAILY REFLECTION WIDGET -->
+<div class="reflection-widget">
+  <em>Refleksi Jiwa Hari Ini</em>
+  <div class="reflection-text" id="quoteText">"Ketaatan yang paling membebaskan adalah ketaatan yang berakar dari pemahaman cinta kasih, bukan sekadar ketakutan yang membutakan."</div>
+  <div class="reflection-source" id="quoteSource">Surat Al-Fatihah · Ayat 5</div>
+  <button class="refresh-btn" id="newQuoteBtn" onclick="generateNewQuote()">Tadabbur Lain ✦</button>
+</div>
+
+<!-- CONTROLS & DASHBOARD PANEL -->
+<div class="dashboard-controls">
+  <!-- Live Search -->
+  <div class="search-wrapper">
+    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="searchInput" class="search-input" placeholder="Cari Surah, arti, atau tema... (contoh: Kiamat, Jiwa, Malam)" oninput="filterSurahs()">
+  </div>
+
+  <!-- Filters -->
+  <div class="filter-tabs">
+    <button class="filter-tab active" onclick="setCategory('semua', this)">Semua (38)</button>
+    <button class="filter-tab" onclick="setCategory('tauhid', this)">Doa & Tauhid</button>
+    <button class="filter-tab" onclick="setCategory('eskatologi', this)">Eskatologi</button>
+    <button class="filter-tab" onclick="setCategory('moral', this)">Moral & Sikap</button>
+    <button class="filter-tab" onclick="setCategory('kosmis', this)">Sumpah Kosmis</button>
+  </div>
+
+  <!-- Stats -->
+  <div class="progress-stats">
+    <span>Tadabbur Selesai:</span>
+    <span id="progressCount" style="font-weight: 700; color: var(--gold-1)">0</span> / 38
+  </div>
+</div>
+
+<!-- SURAH GRID -->
+<div class="container grid-container">
+  <div class="surah-grid" id="surahGrid">
+    
+    <!-- CARD SURAH 1: Al-Fatihah -->
+    <a href="1.html" class="surah-card" data-surah="1" data-category="tauhid" style="--card-glow: rgba(243, 210, 122, 0.08); --card-border-hover: #f3d27a; --card-shadow: rgba(243, 210, 122, 0.15); --card-title-hover: #ffe8a0; --card-arabic-color: #f3d27a;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 1 · Makkiyyah</span>
+          <span class="surah-type">Doa & Tauhid</span>
+        </div>
+        <div class="surah-arabic-title">الفاتحة</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Fatihah</h2>
+        <p class="surah-subtitle">"Gerbang Utama Kesadaran Hubungan Hamba & Tuhan"</p>
+        <p class="surah-preview-quote">Awal mula dialog konstan; di mana cinta, harapan, dan kepasrahan dilebur dalam bimbingan menuju jalan yang lurus.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('1');">
+        <span class="surah-length">7 Ayat</span>
+        <div class="read-status" id="status-1">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 78: An-Naba' -->
+    <a href="78.html" class="surah-card" data-surah="78" data-category="eskatologi" style="--card-glow: rgba(42, 184, 201, 0.08); --card-border-hover: #2ab8c9; --card-shadow: rgba(42, 184, 201, 0.15); --card-title-hover: #7ee8e0; --card-arabic-color: #f3d27a;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 78 · Makkiyyah</span>
+          <span class="surah-type">Eskatologi</span>
+        </div>
+        <div class="surah-arabic-title">النبأ</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">An-Naba'</h2>
+        <p class="surah-subtitle">"Membongkar Source Code Permainan Kehidupan"</p>
+        <p class="surah-preview-quote">Dunia sibuk berdebat tentang kegaduhan kecil, lupa bahwa ada hari keputusan agung yang terjadwal pasti secara kosmis.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('78');">
+        <span class="surah-length">40 Ayat</span>
+        <div class="read-status" id="status-78">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 79: An-Nazi'at -->
+    <a href="79.html" class="surah-card" data-surah="79" data-category="eskatologi" style="--card-glow: rgba(125, 211, 252, 0.08); --card-border-hover: #6b46c1; --card-shadow: rgba(107, 70, 193, 0.15); --card-title-hover: #a78bfa; --card-arabic-color: #7dd3fc;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 79 · Makkiyyah</span>
+          <span class="surah-type">Eskatologi</span>
+        </div>
+        <div class="surah-arabic-title">النازعات</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">An-Nazi'at</h2>
+        <p class="surah-subtitle">"Saat Sistem Kehidupan Melakukan Logout Paksa"</p>
+        <p class="surah-preview-quote">Ketika nyawa dicabut, kelonggokan atau kesiapan batin menentukan apakah transisi ruh tersebut lembut atau penuh pergolakan.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('79');">
+        <span class="surah-length">46 Ayat</span>
+        <div class="read-status" id="status-79">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 80: 'Abasa -->
+    <a href="80.html" class="surah-card" data-surah="80" data-category="moral" style="--card-glow: rgba(201, 120, 74, 0.08); --card-border-hover: #c9784a; --card-shadow: rgba(201, 120, 74, 0.15); --card-title-hover: #e8a96b; --card-arabic-color: #8fa68a;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 80 · Makkiyyah</span>
+          <span class="surah-type">Moral & Sikap</span>
+        </div>
+        <div class="surah-arabic-title">عبس</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">'Abasa</h2>
+        <p class="surah-subtitle">"Ketika Nilai Tidak Ditentukan oleh Tampilan"</p>
+        <p class="surah-preview-quote">Teguran agung ketika manusia berpaling dari ketulusan kaum papa hanya demi mengejar kilau kehormatan sosial semata.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('80');">
+        <span class="surah-length">42 Ayat</span>
+        <div class="read-status" id="status-80">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 81: At-Takwir -->
+    <a href="81.html" class="surah-card" data-surah="81" data-category="kosmis eskatologi" style="--card-glow: rgba(79, 195, 212, 0.08); --card-border-hover: #b87d2a; --card-shadow: rgba(232, 201, 122, 0.15); --card-title-hover: #e8c97a; --card-arabic-color: #4fc3d4;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 81 · Makkiyyah</span>
+          <span class="surah-type">Kosmis / Akhirat</span>
+        </div>
+        <div class="surah-arabic-title">التكوير</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">At-Takwir</h2>
+        <p class="surah-subtitle">"Ketika Sistem Operasi Semesta Dinonaktifkan"</p>
+        <p class="surah-preview-quote">Saat fajar digulung dan bintang berjatuhan, semesta berhenti hanya untuk menegakkan keadilan bagi jiwa terkecil sekalipun.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('81');">
+        <span class="surah-length">29 Ayat</span>
+        <div class="read-status" id="status-81">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 82: Al-Infithar -->
+    <a href="82.html" class="surah-card" data-surah="82" data-category="eskatologi" style="--card-glow: rgba(140, 100, 230, 0.08); --card-border-hover: #7a4fc2; --card-shadow: rgba(120, 80, 210, 0.15); --card-title-hover: #b8a0e8; --card-arabic-color: #d4af70;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 82 · Makkiyyah</span>
+          <span class="surah-type">Eskatologi</span>
+        </div>
+        <div class="surah-arabic-title">الانفطار</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Infithar</h2>
+        <p class="surah-subtitle">"Ketika Langit Terbuka Lebar"</p>
+        <p class="surah-preview-quote">Mengingat kembali keagungan Sang Pencipta yang telah menyempurnakan struktur penciptaan dirimu dengan begitu seimbang.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('82');">
+        <span class="surah-length">19 Ayat</span>
+        <div class="read-status" id="status-82">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 83: Al-Muthaffifin -->
+    <a href="83.html" class="surah-card" data-surah="83" data-category="moral" style="--card-glow: rgba(232, 115, 58, 0.08); --card-border-hover: #e8733a; --card-shadow: rgba(232, 115, 58, 0.15); --card-title-hover: #f5a878; --card-arabic-color: #c94f8a;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 83 · Makkiyyah</span>
+          <span class="surah-type">Moral & Sikap</span>
+        </div>
+        <div class="surah-arabic-title">المطففين</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Muthaffifin</h2>
+        <p class="surah-subtitle">"Dosa yang Mengikis Keberkahan Hidup"</p>
+        <p class="surah-preview-quote">Standar ganda perilaku: menuntut keadilan mutlak dari orang lain, namun membenarkan kelicikan kecil diri sendiri.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('83');">
+        <span class="surah-length">36 Ayat</span>
+        <div class="read-status" id="status-83">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 84: Al-Insyiqaq -->
+    <a href="84.html" class="surah-card" data-surah="84" data-category="kosmis eskatologi" style="--card-glow: rgba(240, 192, 96, 0.08); --card-border-hover: #c88a20; --card-shadow: rgba(200, 138, 32, 0.15); --card-title-hover: #f0c060; --card-arabic-color: #ffe8a0;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 84 · Makkiyyah</span>
+          <span class="surah-type">Kosmis & Kiamat</span>
+        </div>
+        <div class="surah-arabic-title">الانشقاق</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Insyiqaq</h2>
+        <p class="surah-subtitle">"Kepasrahan Jagat Raya yang Tunduk Patuh"</p>
+        <p class="surah-preview-quote">Saat semesta menuruti perintah Penciptanya secara total, menyadarkan manusia akan perjalanan panjangnya menemui Tuhan.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('84');">
+        <span class="surah-length">25 Ayat</span>
+        <div class="read-status" id="status-84">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 85: Al-Buruuj -->
+    <a href="85.html" class="surah-card" data-surah="85" data-category="kosmis moral" style="--card-glow: rgba(192, 48, 48, 0.08); --card-border-hover: #c0392b; --card-shadow: rgba(231, 76, 60, 0.15); --card-title-hover: #e74c3c; --card-arabic-color: #f5d67b;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 85 · Makkiyyah</span>
+          <span class="surah-type">Sejarah & Keteguhan</span>
+        </div>
+        <div class="surah-arabic-title">البروج</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Buruuj</h2>
+        <p class="surah-subtitle">"Gugusan Bintang dan Keteguhan Iman"</p>
+        <p class="surah-preview-quote">Mengenang kisah parit membara; keteguhan keyakinan yang tak goyah meski dihadapkan pada ancaman api tirani dunia.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('85');">
+        <span class="surah-length">22 Ayat</span>
+        <div class="read-status" id="status-85">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 86: At-Thariq -->
+    <a href="86.html" class="surah-card" data-surah="86" data-category="kosmis" style="--card-glow: rgba(142, 207, 234, 0.08); --card-border-hover: #4aa8d4; --card-shadow: rgba(142, 207, 234, 0.15); --card-title-hover: #8ecfea; --card-arabic-color: #f5d67b;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 86 · Makkiyyah</span>
+          <span class="surah-type">Sumpah Kosmis</span>
+        </div>
+        <div class="surah-arabic-title">الطارق</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">At-Thariq</h2>
+        <p class="surah-subtitle">"Ketukan Bintang Malam Penembus Gulita"</p>
+        <p class="surah-preview-quote">Di balik kegelapan terdalam, selalu ada cahaya penjaga kosmis yang setia mengiringi dan menembus selimut jiwamu.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('86');">
+        <span class="surah-length">17 Ayat</span>
+        <div class="read-status" id="status-86">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 87: Al-A'la -->
+    <a href="87.html" class="surah-card" data-surah="87" data-category="kosmis" style="--card-glow: rgba(46, 204, 113, 0.08); --card-border-hover: #2ecc71; --card-shadow: rgba(46, 204, 113, 0.15); --card-title-hover: #58d68d; --card-arabic-color: #f1c40f;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 87 · Makkiyyah</span>
+          <span class="surah-type">Ketuhanan & Penyucian</span>
+        </div>
+        <div class="surah-arabic-title">الأعلى</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-A'la</h2>
+        <p class="surah-subtitle">"Menuju Puncak Kesadaran Yang Maha Tinggi"</p>
+        <p class="surah-preview-quote">Keberuntungan spiritual berpihak pada ia yang menyucikan diri dan berpaling dari jebakan fatamorgana duniawi.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('87');">
+        <span class="surah-length">19 Ayat</span>
+        <div class="read-status" id="status-87">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 88: Al-Ghasyiyah -->
+    <a href="88.html" class="surah-card" data-surah="88" data-category="eskatologi" style="--card-glow: rgba(155, 89, 182, 0.08); --card-border-hover: #9b59b6; --card-shadow: rgba(155, 89, 182, 0.15); --card-title-hover: #af7ac5; --card-arabic-color: #f3d27a;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 88 · Makkiyyah</span>
+          <span class="surah-type">Eskatologi</span>
+        </div>
+        <div class="surah-arabic-title">الغاشية</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Ghasyiyah</h2>
+        <p class="surah-subtitle">"Peristiwa Dahsyat yang Menutupi Kesadaran"</p>
+        <p class="surah-preview-quote">Pilihan akhir yang mutlak: wajah yang tunduk letih dalam kehinaan, atau wajah cerah yang rida dengan hasil usahanya.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('88');">
+        <span class="surah-length">26 Ayat</span>
+        <div class="read-status" id="status-88">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 89: Al-Fajr -->
+    <a href="89.html" class="surah-card" data-surah="89" data-category="moral" style="--card-glow: rgba(22, 160, 133, 0.08); --card-border-hover: #16a085; --card-shadow: rgba(22, 160, 133, 0.15); --card-title-hover: #1abc9c; --card-arabic-color: #f39c12;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 89 · Makkiyyah</span>
+          <span class="surah-type">Sejarah & Jiwa</span>
+        </div>
+        <div class="surah-arabic-title">الفجر</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Fajr</h2>
+        <p class="surah-subtitle">"Sinar Fajar Kejujuran Melawan Tirani Ego"</p>
+        <p class="surah-preview-quote">Seruan indah bagi jiwa yang tenang: kembalilah kepada Tuhanmu dalam keadaan rida, diridai, dan masukilah surga-Nya.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('89');">
+        <span class="surah-length">30 Ayat</span>
+        <div class="read-status" id="status-89">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 90: Al-Balad -->
+    <a href="90.html" class="surah-card" data-surah="90" data-category="moral" style="--card-glow: rgba(211, 84, 0, 0.08); --card-border-hover: #d35400; --card-shadow: rgba(211, 84, 0, 0.15); --card-title-hover: #e67e22; --card-arabic-color: #ecf0f1;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 90 · Makkiyyah</span>
+          <span class="surah-type">Moral & Sikap</span>
+        </div>
+        <div class="surah-arabic-title">البلد</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Balad</h2>
+        <p class="surah-subtitle">"Melintasi Jalan Mendaki yang Sarat Tantangan"</p>
+        <p class="surah-preview-quote">Hakikat kebebasan sejati adalah keberanian batin melepaskan belenggu penderitaan sosial di sekeliling kita.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('90');">
+        <span class="surah-length">20 Ayat</span>
+        <div class="read-status" id="status-90">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 91: Asy-Syams -->
+    <a href="91.html" class="surah-card" data-surah="91" data-category="kosmis" style="--card-glow: rgba(241, 196, 15, 0.08); --card-border-hover: #f1c40f; --card-shadow: rgba(241, 196, 15, 0.15); --card-title-hover: #f4d03f; --card-arabic-color: #e67e22;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 91 · Makkiyyah</span>
+          <span class="surah-type">Sumpah Kosmis</span>
+        </div>
+        <div class="surah-arabic-title">الشمس</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Asy-Syams</h2>
+        <p class="surah-subtitle">"Sumpah Matahari Demi Keseimbangan Jiwa"</p>
+        <p class="surah-preview-quote">Beruntunglah jiwa yang konsisten bersuci, dan merugilah ia yang memendam batinnya dalam debu-debu keserakahan.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('91');">
+        <span class="surah-length">15 Ayat</span>
+        <div class="read-status" id="status-91">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 92: Al-Lail -->
+    <a href="92.html" class="surah-card" data-surah="92" data-category="moral" style="--card-glow: rgba(52, 73, 94, 0.08); --card-border-hover: #34495e; --card-shadow: rgba(52, 73, 94, 0.15); --card-title-hover: #5d6d7e; --card-arabic-color: #f3d27a;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 92 · Makkiyyah</span>
+          <span class="surah-type">Moral & Pilihan</span>
+        </div>
+        <div class="surah-arabic-title">الليل</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Lail</h2>
+        <p class="surah-subtitle">"Misteri Malam dan Beragamnya Usaha Manusia"</p>
+        <p class="surah-preview-quote">Kemudahan batin dirancang khusus bagi mereka yang gemar memberi secara tulus dan membenarkan jalan kebaikan.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('92');">
+        <span class="surah-length">21 Ayat</span>
+        <div class="read-status" id="status-92">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 93: Ad-Duha -->
+    <a href="93.html" class="surah-card" data-surah="93" data-category="tauhid" style="--card-glow: rgba(230, 126, 34, 0.08); --card-border-hover: #e67e24; --card-shadow: rgba(230, 126, 34, 0.15); --card-title-hover: #f39c12; --card-arabic-color: #f1c40f;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 93 · Makkiyyah</span>
+          <span class="surah-type">Penghiburan Jiwa</span>
+        </div>
+        <div class="surah-arabic-title">الضحى</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Ad-Duha</h2>
+        <p class="surah-subtitle">"Cahaya Dhuha untuk Kalbu yang Sedang Gundah"</p>
+        <p class="surah-preview-quote">Tuhanmu tidak meninggalkanmu, dan tidak pula mengabaikanmu. Hari esok pasti jauh lebih indah dari hari ini.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('93');">
+        <span class="surah-length">11 Ayat</span>
+        <div class="read-status" id="status-93">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 94: Asy-Syarh -->
+    <a href="94.html" class="surah-card" data-surah="94" data-category="tauhid" style="--card-glow: rgba(26, 188, 156, 0.08); --card-border-hover: #1abc9c; --card-shadow: rgba(26, 188, 156, 0.15); --card-title-hover: #48c9b0; --card-arabic-color: #fff;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 94 · Makkiyyah</span>
+          <span class="surah-type">Penghiburan Jiwa</span>
+        </div>
+        <div class="surah-arabic-title">الشرح</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Asy-Syarh</h2>
+        <p class="surah-subtitle">"Kelapangan Dada di Tengah Sempitnya Keadaan"</p>
+        <p class="surah-preview-quote">Sesungguhnya, persis di dalam satu kesulitan itu, ada kemudahan ganda yang sedang mendewasakan kepribadianmu.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('94');">
+        <span class="surah-length">8 Ayat</span>
+        <div class="read-status" id="status-94">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 95: At-Tin -->
+    <a href="95.html" class="surah-card" data-surah="95" data-category="moral" style="--card-glow: rgba(141, 110, 99, 0.08); --card-border-hover: #8d6e63; --card-shadow: rgba(141, 110,  brown); --card-title-hover: #a1887f; --card-arabic-color: #f3d27a;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 95 · Makkiyyah</span>
+          <span class="surah-type">Penciptaan Manusia</span>
+        </div>
+        <div class="surah-arabic-title">التين</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">At-Tin</h2>
+        <p class="surah-subtitle">"Morfologi Sejati Harkat dan Derajat Manusia"</p>
+        <p class="surah-preview-quote">Dicipta dalam rupa terbaik fisik maupun batiniah, namun bisa merosot hina jika tak berlandaskan iman dan pengabdian nyata.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('95');">
+        <span class="surah-length">8 Ayat</span>
+        <div class="read-status" id="status-95">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 96: Al-'Alaq -->
+    <a href="96.html" class="surah-card" data-surah="96" data-category="tauhid" style="--card-glow: rgba(41, 128, 185, 0.08); --card-border-hover: #2980b9; --card-shadow: rgba(41, 128, 185, 0.15); --card-title-hover: #5499c7; --card-arabic-color: #e74c3c;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 96 · Makkiyyah</span>
+          <span class="surah-type">Ilmu & Kesadaran</span>
+        </div>
+        <div class="surah-arabic-title">العلق</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-'Alaq</h2>
+        <p class="surah-subtitle">"Langkah Peradaban Lewat Iqra' Yang Suci"</p>
+        <p class="surah-preview-quote">Membaca fenomena makrokosmos dan mikrokosmos atas nama Tuhanmu, melunturkan ego kesombongan hewani manusia.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('96');">
+        <span class="surah-length">19 Ayat</span>
+        <div class="read-status" id="status-96">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 97: Al-Qadr -->
+    <a href="97.html" class="surah-card" data-surah="97" data-category="kosmis" style="--card-glow: rgba(243, 156, 18, 0.08); --card-border-hover: #f39c12; --card-shadow: rgba(243, 156, 18, 0.15); --card-title-hover: #f5b041; --card-arabic-color: #5dade2;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 97 · Makkiyyah</span>
+          <span class="surah-type">Kemuliaan Waktu</span>
+        </div>
+        <div class="surah-arabic-title">القدر</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Qadr</h2>
+        <p class="surah-subtitle">"Malam Berlimpahnya Energi Suci Kedamaian"</p>
+        <p class="surah-preview-quote">Satu malam bermuatan kedamaian agung yang mengalahkan nilai seribu bulan, mengantar hamba pada kesucian spiritual.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('97');">
+        <span class="surah-length">5 Ayat</span>
+        <div class="read-status" id="status-97">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 98: Al-Bayyinah -->
+    <a href="98.html" class="surah-card" data-surah="98" data-category="moral" style="--card-glow: rgba(39, 174, 96, 0.08); --card-border-hover: #27ae60; --card-shadow: rgba(39, 174, 96, 0.15); --card-title-hover: #58d68d; --card-arabic-color: #f4d03f;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 98 · Madaniyyah</span>
+          <span class="surah-type">Bukti Kebenaran</span>
+        </div>
+        <div class="surah-arabic-title">البينة</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Bayyinah</h2>
+        <p class="surah-subtitle">"Pemisah yang Jelas Antara Ilusi dan Realitas"</p>
+        <p class="surah-preview-quote">Ketika bukti kebenaran terpampang terang, ia meruntuhkan dalih prasangka sektarian yang merusak tatanan batin.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('98');">
+        <span class="surah-length">8 Ayat</span>
+        <div class="read-status" id="status-98">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 99: Az-Zalzalah -->
+    <a href="99.html" class="surah-card" data-surah="99" data-category="eskatologi" style="--card-glow: rgba(142, 68, 173, 0.08); --card-border-hover: #8e44ad; --card-shadow: rgba(142, 68, 173, 0.15); --card-title-hover: #a569bd; --card-arabic-color: #ecf0f1;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 99 · Madaniyyah</span>
+          <span class="surah-type">Eskatologi</span>
+        </div>
+        <div class="surah-arabic-title">الزلزلة</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Az-Zalzalah</h2>
+        <p class="surah-subtitle">"Ketika Bumi Mengungkapkan Seluruh Memori"</p>
+        <p class="surah-preview-quote">Bumi berguncang melepas bebannya, bersaksi secara jujur atas amal kebaikan ataupun kecurangan sekecil zarah.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('99');">
+        <span class="surah-length">8 Ayat</span>
+        <div class="read-status" id="status-99">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 100: Al-'Adiyat -->
+    <a href="100.html" class="surah-card" data-surah="100" data-category="kosmis moral" style="--card-glow: rgba(230, 126, 34, 0.08); --card-border-hover: #e67e22; --card-shadow: rgba(230, 126, 34, 0.15); --card-title-hover: #f39c12; --card-arabic-color: #d35400;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 100 · Makkiyyah</span>
+          <span class="surah-type">Sikap & Nafsu</span>
+        </div>
+        <div class="surah-arabic-title">العاديات</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-'Adiyat</h2>
+        <p class="surah-subtitle">"Deru Kuda Perang dan Kedurhakaan Jiwa"</p>
+        <p class="surah-preview-quote">Analogi ketergesaan makhluk yang sangat kikir dan kufur atas nikmat Pencipta demi ambisi dunia yang semu.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('100');">
+        <span class="surah-length">11 Ayat</span>
+        <div class="read-status" id="status-100">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 101: Al-Qari'ah -->
+    <a href="101.html" class="surah-card" data-surah="101" data-category="eskatologi" style="--card-glow: rgba(192, 57, 43, 0.08); --card-border-hover: #c0392b; --card-shadow: rgba(192, 57, 43, 0.15); --card-title-hover: #e74c3c; --card-arabic-color: #f1c40f;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 101 · Makkiyyah</span>
+          <span class="surah-type">Eskatologi</span>
+        </div>
+        <div class="surah-arabic-title">القارعة</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Qari'ah</h2>
+        <p class="surah-subtitle">"Dentuman Keras yang Mengguncang Tatanan"</p>
+        <p class="surah-preview-quote">Saat manusia berhamburan bagai laron yang bimbang, timbangan amal batiniah menentukan tempat peristirahatan akhirmu.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('101');">
+        <span class="surah-length">11 Ayat</span>
+        <div class="read-status" id="status-101">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 102: At-Takasur -->
+    <a href="102.html" class="surah-card" data-surah="102" data-category="moral" style="--card-glow: rgba(127, 140, 141, 0.08); --card-border-hover: #7f8c8d; --card-shadow: rgba(127, 140, 141, 0.15); --card-title-hover: #bdc3c7; --card-arabic-color: #f3d27a;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 102 · Makkiyyah</span>
+          <span class="surah-type">Kritik Sosial</span>
+        </div>
+        <div class="surah-arabic-title">التكاثر</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">At-Takasur</h2>
+        <p class="surah-subtitle">"Tragedi Terlena dalam Megahnya Angka-Angka"</p>
+        <p class="surah-preview-quote">Perlombaan menimbun materi dan gengsi sosial yang baru terhenti ketika jasad mulai disentuh sunyinya liang lahat.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('102');">
+        <span class="surah-length">8 Ayat</span>
+        <div class="read-status" id="status-102">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 103: Al-'Asr -->
+    <a href="103.html" class="surah-card" data-surah="103" data-category="moral" style="--card-glow: rgba(22, 160, 133, 0.08); --card-border-hover: #16a085; --card-shadow: rgba(22, 160, 133, 0.15); --card-title-hover: #1abc9c; --card-arabic-color: #fff;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 103 · Makkiyyah</span>
+          <span class="surah-type">Esensi Waktu</span>
+        </div>
+        <div class="surah-arabic-title">العصر</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-'Asr</h2>
+        <p class="surah-subtitle">"Hanyutnya Jiwa di Arus Dimensi Waktu"</p>
+        <p class="surah-preview-quote">Kerugian manusia bersifat mutlak, kecuali mereka yang berpegang pada kebenaran dan saling memperkuat dalam kesabaran.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('103');">
+        <span class="surah-length">3 Ayat</span>
+        <div class="read-status" id="status-103">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 104: Al-Humazah -->
+    <a href="104.html" class="surah-card" data-surah="104" data-category="moral" style="--card-glow: rgba(231, 76, 60, 0.08); --card-border-hover: #e74c3c; --card-shadow: rgba(231, 76, 60, 0.15); --card-title-hover: #f1948a; --card-arabic-color: #f39c12;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 104 · Makkiyyah</span>
+          <span class="surah-type">Bahaya Lisan</span>
+        </div>
+        <div class="surah-arabic-title">الهمزة</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Humazah</h2>
+        <p class="surah-subtitle">"Siksa Hati Pencela dan Pengumpul Materi"</p>
+        <p class="surah-preview-quote">Kehancuran karakter yang senang menjatuhkan reputasi orang lain dan merasa takhta hartanya akan abadi selamanya.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('104');">
+        <span class="surah-length">9 Ayat</span>
+        <div class="read-status" id="status-104">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 105: Al-Fil -->
+    <a href="105.html" class="surah-card" data-surah="105" data-category="kosmis" style="--card-glow: rgba(120, 144, 156, 0.08); --card-border-hover: #78909c; --card-shadow: rgba(120, 144, 156, 0.15); --card-title-hover: #b0bec5; --card-arabic-color: #cfd8dc;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 105 · Makkiyyah</span>
+          <span class="surah-type">Peristiwa Sejarah</span>
+        </div>
+        <div class="surah-arabic-title">الفيل</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Fil</h2>
+        <p class="surah-subtitle">"Gugurnya Keangkuhan Skuadron Militer Gajah"</p>
+        <p class="surah-preview-quote">Skenario kekuatan besar yang remuk redam seketika oleh kiriman takdir tak terduga yang amat kecil dari langit.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('105');">
+        <span class="surah-length">5 Ayat</span>
+        <div class="read-status" id="status-105">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 106: Quraisy -->
+    <a href="106.html" class="surah-card" data-surah="106" data-category="moral" style="--card-glow: rgba(26, 188, 156, 0.08); --card-border-hover: #1abc9c; --card-shadow: rgba(26, 188, 156, 0.15); --card-title-hover: #76d7c4; --card-arabic-color: #f1c40f;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 106 · Makkiyyah</span>
+          <span class="surah-type">Rasa Syukur</span>
+        </div>
+        <div class="surah-arabic-title">قريش</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Quraisy</h2>
+        <p class="surah-subtitle">"Keamanan Finansial dan Kewajiban Khidmat"</p>
+        <p class="surah-preview-quote">Ketenangan perjalanan niaga dan kecukupan pangan adalah nikmat agung yang menuntut kepasrahan kepada Pemilik Baitullah.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('106');">
+        <span class="surah-length">4 Ayat</span>
+        <div class="read-status" id="status-106">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 107: Al-Ma'un -->
+    <a href="107.html" class="surah-card" data-surah="107" data-category="moral" style="--card-glow: rgba(230, 126, 34, 0.08); --card-border-hover: #e67e22; --card-shadow: rgba(230, 126, 34, 0.15); --card-title-hover: #f5b041; --card-arabic-color: #e74c3c;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 107 · Makkiyyah</span>
+          <span class="surah-type">Keadilan Sosial</span>
+        </div>
+        <div class="surah-arabic-title">الماعون</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Ma'un</h2>
+        <p class="surah-subtitle">"Kritik Telak Atas Ritual yang Minim Kepedulian"</p>
+        <p class="surah-preview-quote">Definisi pendusta agama yang sejati: mereka yang tekun bersujud, namun membiarkan anak yatim menderita kelaparan.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('107');">
+        <span class="surah-length">7 Ayat</span>
+        <div class="read-status" id="status-107">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 108: Al-Kausar -->
+    <a href="108.html" class="surah-card" data-surah="108" data-category="tauhid" style="--card-glow: rgba(241, 196, 15, 0.08); --card-border-hover: #f1c40f; --card-shadow: rgba(241, 196, 15, 0.15); --card-title-hover: #f9e79f; --card-arabic-color: #fff;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 108 · Makkiyyah</span>
+          <span class="surah-type">Kelimpahan Syukur</span>
+        </div>
+        <div class="surah-arabic-title">الكوثر</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Kausar</h2>
+        <p class="surah-subtitle">"Sungai Kebajikan Melimpah Pemutus Kebencian"</p>
+        <p class="surah-preview-quote">Maka dirikanlah shalat dan berkurbanlah; sesungguhnya energi kebencian musuhmu yang kelak akan terputus dari sejarah.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('108');">
+        <span class="surah-length">3 Ayat</span>
+        <div class="read-status" id="status-108">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 109: Al-Kafirun -->
+    <a href="109.html" class="surah-card" data-surah="109" data-category="tauhid" style="--card-glow: rgba(52, 152, 219, 0.08); --card-border-hover: #3498db; --card-shadow: rgba(52, 152, 219, 0.15); --card-title-hover: #85c1e9; --card-arabic-color: #ecf0f1;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 109 · Makkiyyah</span>
+          <span class="surah-type">Ketegasan Sikap</span>
+        </div>
+        <div class="surah-arabic-title">الكافرون</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Kafirun</h2>
+        <p class="surah-subtitle">"Batas Jelas Pluralitas Tanpa Peleburan Iman"</p>
+        <p class="surah-preview-quote">Formula toleransi terindah: Bagimu prinsip keyakinanmu, bagiku kesucian ibadah batiniahku.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('109');">
+        <span class="surah-length">6 Ayat</span>
+        <div class="read-status" id="status-109">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 110: An-Nasr -->
+    <a href="110.html" class="surah-card" data-surah="110" data-category="moral" style="--card-glow: rgba(46, 204, 113, 0.08); --card-border-hover: #2ecc71; --card-shadow: rgba(46, 204, 113, 0.15); --card-title-hover: #82e0aa; --card-arabic-color: #f3d27a;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 110 · Madaniyyah</span>
+          <span class="surah-type">Kemenangan & Istighfar</span>
+        </div>
+        <div class="surah-arabic-title">النصر</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">An-Nasr</h2>
+        <p class="surah-subtitle">"Puncak Kejayaan dan Pentingnya Rendah Hati"</p>
+        <p class="surah-preview-quote">Saat pertolongan agung tiba, sambutlah bukan dengan takabur, melainkan dengan bertasbih memuji-Nya dan memohon ampun.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('110');">
+        <span class="surah-length">3 Ayat</span>
+        <div class="read-status" id="status-110">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 111: Al-Masad -->
+    <a href="111.html" class="surah-card" data-surah="111" data-category="moral" style="--card-glow: rgba(231, 76, 60, 0.08); --card-border-hover: #e74c3c; --card-shadow: rgba(231, 76, 60, 0.15); --card-title-hover: #f1948a; --card-arabic-color: #d35400;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 111 · Makkiyyah</span>
+          <span class="surah-type">Akibat Kebencian</span>
+        </div>
+        <div class="surah-arabic-title">المسد</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Masad</h2>
+        <p class="surah-subtitle">"Jerat Kebencian dan Sia-Sianya Jerih Payah"</p>
+        <p class="surah-preview-quote">Materi melimpah yang justru berubah menjadi belenggu duri kehancuran akibat ego yang menantang kebenaran.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('111');">
+        <span class="surah-length">5 Ayat</span>
+        <div class="read-status" id="status-111">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 112: Al-Ikhlas -->
+    <a href="112.html" class="surah-card" data-surah="112" data-category="tauhid" style="--card-glow: rgba(243, 210, 122, 0.08); --card-border-hover: #f3d27a; --card-shadow: rgba(243, 210, 122, 0.15); --card-title-hover: #fff0a0; --card-arabic-color: #f3d27a;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 112 · Makkiyyah</span>
+          <span class="surah-type">Puncak Tauhid</span>
+        </div>
+        <div class="surah-arabic-title">الإخلاص</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Ikhlas</h2>
+        <p class="surah-subtitle">"Kemurnian Esensi Ketuhanan yang Absolut"</p>
+        <p class="surah-preview-quote">Tuhan adalah tumpuan segala asa. Maha Tunggal, tidak melahirkan, tidak dilahirkan, dan tak ada sekutu bagi-Nya.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('112');">
+        <span class="surah-length">4 Ayat</span>
+        <div class="read-status" id="status-112">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 113: Al-Falaq -->
+    <a href="113.html" class="surah-card" data-surah="113" data-category="tauhid" style="--card-glow: rgba(46, 204, 113, 0.08); --card-border-hover: #2ecc71; --card-shadow: rgba(46, 204, 113, 0.15); --card-title-hover: #a3e4d7; --card-arabic-color: #5dade2;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 113 · Makkiyyah</span>
+          <span class="surah-type">Doa Perlindungan</span>
+        </div>
+        <div class="surah-arabic-title">الفلق</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">Al-Falaq</h2>
+        <p class="surah-subtitle">"Benteng Penjaga dari Pekatnya Kegelapan Malam"</p>
+        <p class="surah-preview-quote">Perlindungan hakiki dari kejahatan makhluk di kala gulita, bisikan dengki batin, serta hasad yang merusak jiwa.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('113');">
+        <span class="surah-length">5 Ayat</span>
+        <div class="read-status" id="status-113">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD SURAH 114: An-Nas -->
+    <a href="114.html" class="surah-card" data-surah="114" data-category="tauhid" style="--card-glow: rgba(52, 152, 219, 0.08); --card-border-hover: #3498db; --card-shadow: rgba(52, 152, 219, 0.15); --card-title-hover: #a9cce3; --card-arabic-color: #f3d27a;">
+      <div class="card-top">
+        <div class="surah-meta-box">
+          <span class="surah-num">Surat 114 · Makkiyyah</span>
+          <span class="surah-type">Doa Perlindungan</span>
+        </div>
+        <div class="surah-arabic-title">الناس</div>
+      </div>
+      <div class="card-body">
+        <h2 class="surah-title">An-Nas</h2>
+        <p class="surah-subtitle">"Benteng Terakhir dari Bisikan Sunyi Dada Manusia"</p>
+        <p class="surah-preview-quote">Melindungi kedaulatan berpikir manusia dari godaan bisikan halus beracun, baik dari golongan jin maupun sesama manusia.</p>
+      </div>
+      <div class="card-footer" onclick="event.preventDefault(); toggleRead('114');">
+        <span class="surah-length">6 Ayat</span>
+        <div class="read-status" id="status-114">
+          <span class="checkbox-custom"></span>
+          <span class="read-label">Tadabbur</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<div class="index-footer">
+  ✦ Khazanah Tadabbur Juz 30 & Al-Fatihah · Menembus Tirai Kehidupan dengan Kejujuran Batin ✦
+</div>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // QUOTES FOR INTERACTIVE WIDGET (Expanded to cover the whole 38 Surah spectrum)
+  const reflections = [
+    { text: "Ketaatan yang paling bebas adalah ketaatan yang sudah kamu pahami alasannya — bukan sekadar mengikuti aturan.", src: "Surat Al-Insyiqaq · Ayat 2" },
+    { text: "Yang paling kokoh dalam hidupmu pun hanyalah pinjaman — ditarik kembali ketika tiba waktunya agar kamu ingat Sang Pemilik sejati.", src: "Surat Al-Insyiqaq · Ayat 1" },
+    { text: "Bila satu-satunya kesalahanmu di mata dunia adalah karena kamu percaya, maka itu adalah tanda bahwa cahaya dalam dirimu mengancam kegelapan mereka.", src: "Surat Al-Buruuj · Ayat 8" },
+    { text: "Kebaikan yang paling sunyi adalah yang paling terjaga, dicatat oleh saksi yang tidak pernah butuh validasi atau tombol menyukai.", src: "Surat Al-Infithar · Ayat 11" },
+    { text: "Sijjin adalah penjara batin di mana setiap kebohongan kecil dan pengurangan hak yang kamu tumpuk terus-menerus mengurungmu perlahan.", src: "Surat Al-Muthaffifin · Ayat 7" },
+    { text: "Jangan menunda kebaikan dengan alasan 'belum siap'. Seluruh hidup dunia kita ini, di akhirat kelak, akan terasa hanya sesingkat satu sore saja.", src: "Surat An-Nazi'at · Ayat 46" },
+    { text: "Kebenaran sejati tidak butuh persetujuan mayoritas untuk menjadi benar. Angka yang berkumpul hanyalah bukti kekuatan massa, bukan kepastian arah.", src: "Surat An-Nazi'at · Ayat 23" },
+    { text: "Karat di hati tidak datang dengan satu kesalahan besar — ia menumpuk dari penolakan-penolakan kecil terhadap suara kebenaran yang terus kamu abaikan.", src: "Surat Al-Muthaffifin · Ayat 14" },
+    { text: "Ketika kamu menghormati batas dan menolak menuruti hawa nafsu yang menjerumuskan, kamu sedang membangun jalan pulang kembali ke surga.", src: "Surat An-Nazi'at · Ayat 40" },
+    { text: "Setiap kegelapan malam keputusasaan yang kamu lalui pasti akan berujung pada fajar harapan baru yang telah disiapkan-Nya.", src: "Surat Ad-Duha · Ayat 1-3" },
+    { text: "Tuhan adalah tumpuan sejati tempat kita memulangkan segala keletihan hidup. Hanya kepada-Nya segala puncak kepasrahan bermuara.", src: "Surat Al-Ikhlas · Ayat 2" },
+    { text: "Bencana terbesar suatu bangsa bukan sekadar kemiskinan materi, melainkan tumpukan ibadah formal yang diiringi dengan abainya hak kemanusiaan.", src: "Surat Al-Ma'un · Ayat 1-3" }
+  ];
+
+  function generateNewQuote() {
+    const quoteTextEl = document.getElementById('quoteText');
+    const quoteSourceEl = document.getElementById('quoteSource');
+    
+    quoteTextEl.style.opacity = 0;
+    quoteSourceEl.style.opacity = 0;
+    
+    setTimeout(() => {
+      const randomIndex = Math.floor(Math.random() * reflections.length);
+      const selected = reflections[randomIndex];
+      quoteTextEl.innerText = `"${selected.text}"`;
+      quoteSourceEl.innerText = selected.src;
+      
+      quoteTextEl.style.opacity = 1;
+      quoteSourceEl.style.opacity = 1;
+    }, 300);
+  }
+
+  // INTERACTIVE PROGRESS TRACKING via LocalStorage
+  let readSurahs = JSON.parse(localStorage.getItem('tadabbur_read_surahs')) || [];
+
+  function updateStats() {
+    document.getElementById('progressCount').innerText = readSurahs.length;
+    
+    // Apply visual checklist to cards
+    const statuses = document.querySelectorAll('.read-status');
+    statuses.forEach(status => {
+      const surahId = status.id.split('-')[1];
+      if (readSurahs.includes(surahId)) {
+        status.classList.add('checked');
+      } else {
+        status.classList.remove('checked');
+      }
+    });
+  }
+
+  function toggleRead(surahId) {
+    const index = readSurahs.indexOf(surahId);
+    if (index > -1) {
+      readSurahs.splice(index, 1);
+    } else {
+      readSurahs.push(surahId);
+    }
+    localStorage.setItem('tadabbur_read_surahs', JSON.stringify(readSurahs));
+    updateStats();
+  }
+
+  // SEARCH AND FILTER SYSTEM
+  let currentCategory = 'semua';
+
+  function setCategory(category, tabBtn) {
+    currentCategory = category;
+    
+    // Update active tab styling
+    document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+    tabBtn.classList.add('active');
+    
+    filterSurahs();
+  }
+
+  function filterSurahs() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.surah-card');
+    
+    cards.forEach(card => {
+      const title = card.querySelector('.surah-title').innerText.toLowerCase();
+      const subtitle = card.querySelector('.surah-subtitle').innerText.toLowerCase();
+      const preview = card.querySelector('.surah-preview-quote').innerText.toLowerCase();
+      const categories = card.getAttribute('data-category');
+      const num = card.getAttribute('data-surah');
+      
+      const matchesSearch = title.includes(query) || subtitle.includes(query) || preview.includes(query) || num === query;
+      const matchesCategory = currentCategory === 'semua' || categories.includes(currentCategory);
+      
+      if (matchesSearch && matchesCategory) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  // SCROLL TO TOP BUTTON
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  // INITIALIZE
+  window.onload = function() {
+    updateStats();
+    generateNewQuote();
+  };
+</script>
+</body>
+</html>

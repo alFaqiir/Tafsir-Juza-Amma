@@ -1,0 +1,698 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tafsir Surat At-Tin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            color: #e0e0e0;
+            font-family: 'Lora', serif;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(180deg, rgba(212,175,55,0.1) 0%, transparent 100%);
+            border-bottom: 2px solid rgba(212,175,55,0.3);
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            color: #d4af37;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(212,175,55,0.5);
+            font-family: 'Amiri', serif;
+        }
+
+        .tagline {
+            font-size: 1.3em;
+            color: #b8b8b8;
+            font-style: italic;
+            margin-top: 15px;
+            padding: 0 30px;
+        }
+
+        .divider {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 30px auto;
+        }
+
+        h2 {
+            color: #d4af37;
+            font-size: 2em;
+            margin: 50px 0 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(212,175,55,0.3);
+            font-family: 'Amiri', serif;
+        }
+
+        h3 {
+            color: #c9a84d;
+            font-size: 1.5em;
+            margin: 35px 0 20px 0;
+            font-family: 'Amiri', serif;
+        }
+
+        .ayat-arabic {
+            font-family: 'Traditional Arabic', 'Amiri', serif;
+            font-size: 2.2em;
+            color: #d4af37;
+            text-align: center;
+            direction: rtl;
+            line-height: 2;
+            margin: 30px 0;
+            padding: 30px;
+            background: rgba(212,175,55,0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(212,175,55,0.2);
+            text-shadow: 0 0 10px rgba(212,175,55,0.3);
+        }
+
+        .ayat-translation {
+            font-style: italic;
+            color: #b8b8b8;
+            text-align: center;
+            margin: 20px 0 40px 0;
+            font-size: 1.1em;
+            padding: 0 30px;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 25px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .highlight {
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        .keyword-box {
+            background: rgba(212,175,55,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+
+        .keyword-title {
+            color: #d4af37;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-family: 'Amiri', serif;
+        }
+
+        .intisari-box {
+            background: linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0.05) 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 2px solid rgba(212,175,55,0.4);
+            font-style: italic;
+            color: #d0d0d0;
+        }
+
+        .refleksi-box {
+            background: rgba(212,175,55,0.08);
+            padding: 35px;
+            border-radius: 10px;
+            margin: 40px 0;
+            border: 2px solid rgba(212,175,55,0.5);
+        }
+
+        .epilog {
+            background: linear-gradient(180deg, rgba(212,175,55,0.05) 0%, transparent 50%, rgba(212,175,55,0.05) 100%);
+            padding: 50px 30px;
+            margin: 60px 0;
+            border-radius: 15px;
+            border: 2px solid rgba(212,175,55,0.3);
+        }
+
+        .epilog p {
+            margin: 25px 0;
+            font-size: 1.1em;
+            line-height: 2;
+        }
+
+        ul, ol {
+            margin: 20px 0 20px 40px;
+            color: #c0c0c0;
+        }
+
+        li {
+            margin: 12px 0;
+        }
+
+        strong {
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        .ornament {
+            text-align: center;
+            color: #d4af37;
+            font-size: 1.5em;
+            margin: 40px 0;
+        }
+
+        .download-btn {
+            display: block;
+            width: 250px;
+            margin: 40px auto;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #d4af37 0%, #c9a84d 100%);
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1em;
+            box-shadow: 0 5px 20px rgba(212,175,55,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212,175,55,0.6);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #808080;
+            font-style: italic;
+            border-top: 1px solid rgba(212,175,55,0.2);
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .ayat-arabic {
+                font-size: 1.8em;
+                padding: 20px;
+            }
+            
+            h2 {
+                font-size: 1.6em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>سورة التين</h1>
+            <h1>SURAT AT-TIN</h1>
+            <div class="divider"></div>
+            <p class="tagline">Antara Mulia dan Hina, Pilihan Ada di Tangan Kita</p>
+            <p style="margin-top: 20px; color: #999; font-size: 0.9em;">Di antara semua makhluk, hanya manusia yang bisa memilih jatuh atau bangkit—dan itulah ujian terbesarnya.</p>
+        </div>
+
+        <div class="ornament">۞ ۞ ۞</div>
+
+        <h2>AYAT 1-3: Sumpah Tiga Buah dan Tanah Suci</h2>
+        
+        <div class="ayat-arabic">
+            وَالتِّينِ وَالزَّيْتُونِ ۞ وَطُورِ سِينِينَ ۞ وَهَٰذَا الْبَلَدِ الْأَمِينِ
+        </div>
+        
+        <p class="ayat-translation">"Demi (buah) Tin dan (buah) Zaitun, demi Gunung Sinai, dan demi negeri (Mekah) yang aman ini."</p>
+
+        <div class="section">
+            <h3>1. ENERGI KATA</h3>
+            
+            <div class="keyword-box">
+                <div class="keyword-title">التِّين (At-Tin) - Buah Tin</div>
+                <p>Tin bukan sekadar buah biasa dalam tradisi Timur Tengah. Kata "tin" berasal dari akar kata yang bermakna "sesuatu yang matang dengan sempurna." Dalam bahasa Arab klasik, tin melambangkan kelembutan, kemanisan yang datang tanpa kepahitan, dan kesempurnaan alami. Berbeda dengan buah yang memerlukan proses rumit untuk dimakan, tin bisa langsung dinikmati—simbol kemudahan dan keberkahan.</p>
+                
+                <p>Yang menarik, tin juga disebutkan dalam kitab-kitab terdahulu sebagai buah yang tumbuh di tanah Palestina, tempat Nabi Isa mengajarkan kebajikan. Ada makna simbolis: kemurnian ajaran yang mudah dicerna, tanpa ritual yang berbelit.</p>
+            </div>
+
+            <div class="keyword-box">
+                <div class="keyword-title">الزَّيْتُون (Az-Zaitun) - Buah Zaitun</div>
+                <p>Zaitun punya karakter berbeda: pahit sebelum diolah, tapi menghasilkan minyak yang menerangi. Akar katanya berkaitan dengan "cahaya" dan "berkah yang berlimpah." Zaitun tidak bisa dimakan langsung—butuh proses, kesabaran, pengolahan. Ini simbol dari perjuangan yang menghasilkan cahaya.</p>
+                
+                <p>Dalam konteks historis, zaitun tumbuh subur di tanah tempat Nabi Isa menyebarkan ajaran. Minyak zaitun digunakan untuk menerangi tempat ibadah. Jadi, zaitun adalah metafora: sesuatu yang awalnya pahit, melalui proses, menjadi sumber cahaya.</p>
+            </div>
+
+            <div class="keyword-box">
+                <div class="keyword-title">طُور سِينِين (Thur Sinin) - Gunung Sinai</div>
+                <p>Tempat Nabi Musa menerima wahyu, tempat dialog langsung antara manusia dan Tuhan. "Thur" berarti gunung yang kokoh, "Sinin" adalah nama yang bermakna "batu yang keras" atau "tempat yang terjal." Gunung Sinai melambangkan keteguhan prinsip, ketinggian spiritual, dan keberanian menghadapi Tuhan tanpa perantara.</p>
+            </div>
+
+            <div class="keyword-box">
+                <div class="keyword-title">البَلَد الأَمِين (Al-Balad Al-Amin) - Negeri yang Aman (Mekah)</div>
+                <p>"Balad" artinya negeri atau wilayah, "Amin" dari akar kata "amana" yang berarti aman, terpercaya, dan memberi perlindungan. Mekah disebut "Al-Amin" bukan hanya karena secara geografis dilindungi, tapi karena sejak zaman Ibrahim, tempat ini menjadi simbol keamanan spiritual—tempat orang berlindung dari kebodohan, kesyirikan, dan kesesatan.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>2. TAFSIR MENDALAM</h3>
+            
+            <p>Allah memulai surat ini dengan sumpah. Dalam tradisi Arab, sumpah menunjukkan betapa pentingnya sesuatu yang akan disampaikan. Tapi mengapa sumpah dengan buah dan tempat? Karena ketiganya—tin, zaitun, Sinai, dan Mekah—mewakili tonggak perjalanan kenabian dan peradaban manusia.</p>
+
+            <p><strong>Tin</strong> melambangkan Nabi Isa dan kesederhanaan ajarannya. <strong>Zaitun</strong> melambangkan perjuangan yang menghasilkan cahaya, juga dikaitkan dengan Nabi Isa. <strong>Gunung Sinai</strong> adalah tempat Nabi Musa menerima Sepuluh Perintah—tonggak hukum moral pertama. <strong>Mekah</strong> adalah tempat Nabi Muhammad menyempurnakan risalah—puncak dari semua ajaran sebelumnya.</p>
+
+            <p>Jadi, Allah sedang mengingatkan: "Lihat perjalanan panjang umat manusia. Dari Isa yang mengajarkan kasih, Musa yang membawa hukum, hingga Muhammad yang menyempurnakan—semua ini untuk satu tujuan: memuliakan manusia."</p>
+
+            <div class="keyword-box">
+                <h4 class="highlight">Relevansi Kekinian:</h4>
+                <p>Kenapa kita hari ini sering merasa kehilangan arah? Karena kita lupa pada <em>tonggak-tonggak</em> itu. Kita hidup tanpa kesederhanaan (tin), tanpa kesabaran dalam proses (zaitun), tanpa prinsip yang kokoh (Sinai), dan tanpa landasan spiritual yang aman (Mekah).</p>
+
+                <p><strong>Contoh 1:</strong> Banyak anak muda yang merasa hampa meski punya gelar dan pekerjaan bagus. Mengapa? Karena mereka mengejar kesuksesan tanpa proses yang bermakna (zaitun). Mereka mau langsung enak tanpa mau melalui pahitnya perjuangan yang menghasilkan cahaya. Akibatnya, kesuksesan terasa kosong.</p>
+
+                <p><strong>Contoh 2:</strong> Media sosial membuat kita mudah terprovokasi, mudah marah, mudah menghakimi. Itu karena kita kehilangan "Gunung Sinai" dalam diri kita—tidak ada lagi prinsip kokoh yang membuat kita teguh. Kita jadi reaktif, bukan reflektif.</p>
+            </div>
+        </div>
+
+        <div class="intisari-box">
+            <h3>3. INTISARI</h3>
+            <p>Allah bersumpah dengan buah tin yang lembut, zaitun yang melalui proses, gunung yang kokoh, dan negeri yang aman. Ini bukan sekadar sumpah geografis, tapi sumpah atas perjalanan manusia menuju kemuliaan. Kesederhanaan, proses yang sabar, prinsip yang kokoh, dan landasan spiritual—itulah empat pilar yang membuat manusia bisa mulia. Tanpa keempatnya, kita akan jatuh ke jurang kehampaan.</p>
+        </div>
+
+        <div class="ornament">۞ ۞ ۞</div>
+
+        <h2>AYAT 4: Ciptaan Terbaik</h2>
+        
+        <div class="ayat-arabic">
+            لَقَدْ خَلَقْنَا الْإِنسَانَ فِي أَحْسَنِ تَقْوِيمٍ
+        </div>
+        
+        <p class="ayat-translation">"Sungguh, Kami telah menciptakan manusia dalam bentuk yang sebaik-baiknya."</p>
+
+        <div class="section">
+            <h3>1. ENERGI KATA</h3>
+            
+            <div class="keyword-box">
+                <div class="keyword-title">أَحْسَن (Ahsan) - Yang Terbaik</div>
+                <p>Kata "ahsan" bukan sekadar "baik," tapi "yang paling baik, yang paling indah, yang paling sempurna." Ini dari akar kata "husn" yang bermakna keindahan yang fungsional—bukan hanya indah dipandang, tapi juga indah dalam fungsinya. Berbeda dengan kata "jayyid" (bagus) atau "thayyib" (baik), "ahsan" menekankan kesempurnaan di segala aspek.</p>
+            </div>
+
+            <div class="keyword-box">
+                <div class="keyword-title">تَقْوِيم (Taqwim) - Bentuk/Struktur/Keseimbangan</div>
+                <p>"Taqwim" dari akar kata "qawama" yang berarti "berdiri tegak, seimbang, proporsional." Ini bukan hanya soal fisik, tapi juga soal struktur mental, emosional, dan spiritual. Manusia diciptakan dengan taqwim artinya: tubuh yang seimbang, akal yang bisa berpikir, hati yang bisa merasakan, dan roh yang bisa terhubung dengan Tuhan.</p>
+                
+                <p>Bandingkan dengan kata "shakl" (bentuk) atau "shura" (wujud). "Taqwim" lebih dalam—ini bicara soal <em>desain sempurna</em> yang membuat manusia bisa berdiri tegak, berbeda dari hewan yang membungkuk.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>2. TAFSIR MENDALAM</h3>
+            
+            <p>Ayat ini adalah pernyataan cinta Allah pada manusia. Di antara semua ciptaan, manusia diberi <em>ahsan taqwim</em>—bentuk terbaik. Apa maksudnya?</p>
+
+            <p><strong>Pertama, fisik:</strong> Manusia berdiri tegak, punya tangan yang bisa mencipta, otak yang luar biasa kompleks. Tapi lebih dari itu...</p>
+
+            <p><strong>Kedua, akal:</strong> Manusia diberi kemampuan berpikir abstrak, merencanakan masa depan, belajar dari masa lalu. Hewan punya naluri, manusia punya akal.</p>
+
+            <p><strong>Ketiga, nurani:</strong> Manusia punya hati nurani yang bisa membedakan baik dan buruk, bahkan ketika tidak ada yang melihat. Ini yang membedakan manusia dari makhluk lain.</p>
+
+            <p><strong>Keempat, potensi spiritual:</strong> Manusia punya roh yang bisa terhubung dengan Sang Pencipta. Kita bisa merasa rindu pada sesuatu yang lebih besar dari diri kita.</p>
+
+            <p>Tapi perhatikan, Allah bilang "خَلَقْنَا" (kami ciptakan), bukan "خَلَقَ" (Dia ciptakan). Kenapa? Karena penciptaan manusia begitu istimewa sampai Allah menggunakan kata ganti plural yang menunjukkan keagungan dan perhatian khusus.</p>
+
+            <div class="keyword-box">
+                <h4 class="highlight">Relevansi Kekinian:</h4>
+                <p>Kita hidup di zaman yang paradoks. Di satu sisi, manusia mencapai kemajuan luar biasa: teknologi, kedokteran, ilmu pengetahuan. Tapi di sisi lain, banyak manusia merasa tidak berharga, tidak cukup, tidak penting.</p>
+
+                <p><strong>Contoh 1:</strong> Seorang mahasiswa yang merasa bodoh karena nilai IPK-nya tidak sempurna. Padahal, "ahsan taqwim" bukan soal IPK. Ini soal potensi yang Allah tanamkan dalam dirinya—kemampuan berpikir, berkarya, berkontribusi. Sistem pendidikan kadang membuat kita lupa bahwa kita diciptakan sempurna, bukan untuk jadi sempurna menurut standar orang lain.</p>
+
+                <p><strong>Contoh 2:</strong> Seseorang yang insecure dengan penampilannya, sampai rela mengeluarkan puluhan juta untuk operasi plastik. Padahal, "ahsan taqwim" artinya Allah sudah mendesain kita dengan sempurna—bukan untuk terlihat seperti selebriti, tapi untuk menjalankan fungsi kita sebagai manusia yang berpikir, berkarya, dan beribadah.</p>
+
+                <p><strong>Aplikasi praktis:</strong></p>
+                <ul>
+                    <li><strong>Hargai tubuhmu:</strong> Jaga kesehatan, bukan untuk narcissism, tapi karena ini amanah "ahsan taqwim."</li>
+                    <li><strong>Asah akalmu:</strong> Baca, belajar, diskusi. Jangan biarkan otak yang sempurna ini hanya untuk scroll media sosial.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="intisari-box">
+            <h3>3. INTISARI</h3>
+            <p>Allah menciptakan manusia dalam bentuk yang paling sempurna—fisik yang proporsional, akal yang bisa berpikir, hati yang bisa merasakan, dan roh yang bisa terhubung dengan-Nya. Ini bukan soal tampang atau IQ, tapi soal desain sempurna yang membuat kita punya <em>potensi</em> untuk mulia. Masalahnya, banyak dari kita tidak sadar akan kesempurnaan ini, sehingga kita menghakimi diri sendiri dengan standar yang salah.</p>
+        </div>
+
+        <div class="ornament">۞ ۞ ۞</div>
+
+        <h2>AYAT 5-6: Jatuh atau Bangkit?</h2>
+        
+        <div class="ayat-arabic">
+            ثُمَّ رَدَدْنَاهُ أَسْفَلَ سَافِلِينَ ۞ إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ فَلَهُمْ أَجْرٌ غَيْرُ مَمْنُونٍ
+        </div>
+        
+        <p class="ayat-translation">"Kemudian Kami kembalikan dia ke tempat yang serendah-rendahnya, kecuali orang-orang yang beriman dan mengerjakan kebajikan; maka mereka akan mendapat pahala yang tidak putus-putusnya."</p>
+
+        <div class="section">
+            <h3>1. ENERGI KATA</h3>
+            
+            <div class="keyword-box">
+                <div class="keyword-title">أَسْفَل سَافِلِين (Asfala Safilin) - Tempat yang Serendah-rendahnya</div>
+                <p>Ini bentuk superlatif ganda dalam bahasa Arab—seperti bilang "paling rendah dari yang rendah." "Asfal" artinya rendah, "safilin" juga rendah, tapi ketika digabung dengan bentuk ini, maknanya jadi: <em>jurang terdalam dari semua jurang</em>.</p>
+                
+                <p>Tapi "asfal" bukan cuma bicara soal posisi geografis. Ini bicara soal <em>degradasi martabat</em>. Manusia yang diciptakan mulia, tapi bisa jatuh sampai lebih rendah dari hewan. Hewan hidup sesuai naluri, tidak bisa salah. Tapi manusia yang punya akal dan nurani, kalau memilih jalan salah, jatuhnya lebih dalam dari hewan.</p>
+            </div>
+
+            <div class="keyword-box">
+                <div class="keyword-title">غَيْر مَمْنُون (Ghairu Mamnun) - Tidak Putus-putusnya</div>
+                <p>"Mamnun" dari akar kata yang berarti "dipotong, dibatasi, atau diberi dengan mengharap balasan." Jadi, "ghairu mamnun" artinya pahala yang tidak terputus, tidak terbatas, dan diberikan tanpa mengharap balas budi. Ini bukan gaji bulanan yang bisa habis, tapi investasi abadi.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>2. TAFSIR MENDALAM</h3>
+            
+            <p>Inilah inti dari Surat At-Tin: manusia punya dua kemungkinan ekstrem.</p>
+
+            <p><strong>Kemungkinan 1: Jatuh ke "asfala safilin"</strong></p>
+            
+            <p>Bagaimana manusia yang diciptakan sempurna bisa jatuh ke jurang terdalam? Jawabannya: ketika manusia mengabaikan tiga hal yang membuat dia manusia—akal, nurani, dan spiritualitas.</p>
+
+            <p>Ketika manusia hidup hanya dengan nafsu, dia jadi lebih rendah dari hewan. Hewan makan karena lapar, kawin karena naluri. Tapi manusia bisa makan sampai obesitas, selingkuh karena bosan, korupsi karena serakah. Itu "asfala safilin."</p>
+
+            <p><strong>Kemungkinan 2: Naik ke derajat tertinggi</strong></p>
+            
+            <p>Tapi Allah memberi pengecualian: "Kecuali orang yang beriman dan beramal saleh." Ini bukan cuma beriman KTP, tapi beriman yang menghasilkan <em>amal saleh</em>—perbuatan yang memperbaiki diri dan lingkungan.</p>
+
+            <p>Dan pahalanya? "Ghairu mamnun"—tidak terputus. Artinya, ketika kita memilih jalan kebaikan, dampaknya tidak cuma di akhirat, tapi juga di dunia: ketenangan hati, keberkahan hidup, dan warisan baik yang terus mengalir.</p>
+
+            <div class="keyword-box">
+                <h4 class="highlight">Relevansi Kekinian:</h4>
+                <p>Kita hidup di zaman yang penuh godaan untuk jatuh ke "asfala safilin," tapi juga penuh peluang untuk naik ke derajat tinggi.</p>
+
+                <p><strong>Contoh 1: Jatuh</strong></p>
+                <p>Seorang pejabat yang korupsi milyaran rupiah. Secara materi dia kaya, tapi secara martabat? Dia sudah jatuh ke "asfala safilin." Kenapa? Karena dia menggunakan akal—yang seharusnya untuk kebaikan—untuk merancang kejahatan. Dia mengabaikan nurani yang seharusnya memperingatkannya.</p>
+
+                <p>Atau seseorang yang kerjaannya nge-bully orang di media sosial, nyebar hoax, fitnah. Secara teknologi dia canggih, tapi secara kemanusiaan? Asfala safilin.</p>
+
+                <p><strong>Contoh 2: Bangkit</strong></p>
+                <p>Sebaliknya, ada orang-orang yang memilih tetap di jalan kebaikan meski sulit. Misalnya, seorang guru di pelosok yang gajinya pas-pasan, tapi tetap mengabdi karena tahu pendidikan itu investasi masa depan. Atau seorang relawan yang rela meluangkan waktu untuk membantu sesama. Mereka mendapat "ajrun ghairu mamnun"—pahala yang tidak terputus, dalam bentuk ketenangan hati, rasa bermakna, dan keberkahan hidup.</p>
+
+                <p><strong>Aplikasi praktis:</strong></p>
+                <ul>
+                    <li><strong>Cek niatmu setiap hari:</strong> Apakah kamu hari ini lebih dekat ke "ahsan taqwim" atau "asfala safilin"?</li>
+                    <li><strong>Pilih satu kebaikan konsisten:</strong> Tidak perlu besar, tapi konsisten. Misalnya, setiap hari berbuat baik pada satu orang, atau setiap minggu menyisihkan waktu untuk belajar sesuatu yang bermanfaat.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="intisari-box">
+            <h3>3. INTISARI</h3>
+            <p>Manusia yang diciptakan sempurna punya dua jalan: jatuh ke jurang terdalam atau naik ke derajat tertinggi. Jatuh terjadi ketika kita hidup hanya dengan nafsu, mengabaikan akal dan nurani. Bangkit terjadi ketika kita memilih beriman dan berbuat baik, meski sulit. Dan kebaikan itu memberikan pahala yang tidak terputus—bukan hanya di akhirat, tapi juga ketenangan dan keberkahan di dunia.</p>
+        </div>
+
+        <div class="ornament">۞ ۞ ۞</div>
+
+        <h2>AYAT 7-8: Pertanyaan yang Menohok</h2>
+        
+        <div class="ayat-arabic">
+            فَمَا يُكَذِّبُكَ بَعْدُ بِالدِّينِ ۞ أَلَيْسَ اللَّهُ بِأَحْكَمِ الْحَاكِمِينَ
+        </div>
+        
+        <p class="ayat-translation">"Maka apa yang menyebabkan kamu mendustakan (hari) pembalasan setelah (kamu mengetahui) itu? Bukankah Allah hakim yang paling adil?"</p>
+
+        <div class="section">
+            <h3>1. ENERGI KATA</h3>
+            
+            <div class="keyword-box">
+                <div class="keyword-title">يُكَذِّبُكَ (Yukadzibu) - Mendustakan</div>
+                <p>Kata ini dari akar "kadzaba" yang berarti mendustakan, menolak, atau tidak percaya. Tapi bentuk "yukadzibu" dalam konteks ini bukan sekadar "tidak percaya," tapi "memilih untuk mendustakan meski tahu kebenarannya." Ini tentang <em>penolakan sadar</em>, bukan ketidaktahuan.</p>
+            </div>
+
+            <div class="keyword-box">
+                <div class="keyword-title">الدِّين (Ad-Din) - Pembalasan/Agama/Hari Perhitungan</div>
+                <p>"Din" punya banyak makna: agama, pembalasan, hari perhitungan, atau sistem kehidupan yang adil. Dalam konteks ayat ini, "din" merujuk pada <em>hari pembalasan</em>—hari ketika semua perbuatan dihitung. Tapi lebih luas, "din" juga berarti sistem hidup yang mengatur hubungan manusia dengan Tuhan, sesama, dan diri sendiri.</p>
+            </div>
+
+            <div class="keyword-box">
+                <div class="keyword-title">أَحْكَم الْحَاكِمِين (Ahkam Al-Hakimin) - Hakim yang Paling Adil</div>
+                <p>"Ahkam" adalah bentuk superlatif dari "hakim" (yang bijaksana). "Hakimin" adalah bentuk plural. Jadi, "ahkam al-hakimin" artinya: <em>yang paling bijaksana di antara semua yang bijaksana</em>. Allah bukan cuma adil, tapi <em>paling</em> adil—tidak ada kebijaksanaan yang melebihi kebijaksanaan-Nya.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>2. TAFSIR MENDALAM</h3>
+            
+            <p>Setelah menjelaskan bahwa manusia diciptakan sempurna tapi bisa jatuh atau bangkit, Allah menutup surat ini dengan dua pertanyaan retoris yang menohok:</p>
+
+            <p><strong>Pertanyaan 1: "Maka apa yang membuatmu mendustakan hari pembalasan?"</strong></p>
+            
+            <p>Allah seolah berkata: "Aku sudah tunjukkan bukti—kamu diciptakan sempurna, kamu punya akal dan nurani. Kamu tahu ada yang benar dan salah. Kamu merasakan ketenangan ketika berbuat baik dan gelisah ketika berbuat salah. Lalu kenapa kamu masih mendustakan bahwa suatu hari semua ini akan dihitung?"</p>
+
+            <p>Ini bukan pertanyaan untuk orang yang tidak tahu, tapi untuk orang yang <em>tahu tapi memilih tidak peduli</em>.</p>
+
+            <p><strong>Pertanyaan 2: "Bukankah Allah hakim yang paling adil?"</strong></p>
+            
+            <p>Ini menenangkan sekaligus mengingatkan. Menenangkan bagi mereka yang dizalimi: "Tenang, ada Hakim yang paling adil yang akan membalas kebaikanmu." Mengingatkan bagi mereka yang berbuat zalim: "Jangan senang dulu, ada Hakim yang tidak bisa disuap atau ditipu."</p>
+
+            <div class="keyword-box">
+                <h4 class="highlight">Relevansi Kekinian:</h4>
+                <p>Di zaman sekarang, banyak orang yang hidup seolah-olah tidak ada hari pembalasan. Mereka berbuat sekehendak hati—menipu, menindas, korupsi—karena merasa tidak akan ada konsekuensi.</p>
+
+                <p><strong>Contoh 1:</strong></p>
+                <p>Seseorang yang berbuat curang di bisnis—mengurangi timbangan, menjual barang palsu, menipu konsumen. Dia merasa aman karena hukum dunia bisa diakali dengan uang atau koneksi. Tapi ayat ini mengingatkan: ada Hakim yang paling adil yang tidak bisa disuap.</p>
+
+                <p><strong>Contoh 2:</strong></p>
+                <p>Atau seseorang yang merasa hidupnya tidak adil—kerja keras tapi hasilnya pas-pasan, sementara orang lain yang korupsi malah makmur. Ayat ini menenangkan: "Bukankah Allah hakim yang paling adil?" Dia tahu perjuanganmu, dan pembalasan-Nya akan datang—mungkin tidak di dunia, tapi pasti di akhirat.</p>
+
+                <p><strong>Aplikasi praktis:</strong></p>
+                <ul>
+                    <li><strong>Hidup dengan kesadaran "Din":</strong> Setiap tindakanmu dicatat. Ini bukan untuk membuatmu paranoid, tapi untuk membuatmu lebih hati-hati dan bertanggung jawab.</li>
+                    <li><strong>Percaya pada keadilan Allah:</strong> Ketika kamu dizalimi, jangan balas dengan kezaliman. Serahkan pada Allah, Hakim yang paling adil.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="intisari-box">
+            <h3>3. INTISARI</h3>
+            <p>Allah menutup surat dengan dua pertanyaan yang menohok: Kenapa kamu mendustakan hari pembalasan, padahal bukti-buktinya ada di dirimu sendiri? Dan bukankah Allah adalah hakim yang paling adil? Pertanyaan ini mengingatkan kita untuk hidup dengan tanggung jawab, karena semua akan dihitung. Sekaligus menenangkan, karena keadilan Allah pasti datang—jika tidak di dunia, pasti di akhirat.</p>
+        </div>
+
+        <div class="ornament">۞ ۞ ۞</div>
+
+        <div class="refleksi-box">
+            <h2>REFLEKSI: Pola yang Bisa Diambil dan Langkah Nyata</h2>
+            
+            <h3 style="color: #d4af37;">Pola yang Bisa Diambil:</h3>
+            
+            <p>Surat At-Tin mengajarkan pola sederhana tapi mendalam:</p>
+            
+            <ol>
+                <li><strong>Kita diciptakan sempurna</strong> (ahsan taqwim) dengan potensi luar biasa.</li>
+                <li><strong>Kita punya dua pilihan:</strong> jatuh ke jurang terdalam (asfala safilin) atau naik ke derajat tertinggi (dengan iman dan amal saleh).</li>
+                <li><strong>Semua pilihan kita akan dihitung</strong> (din), dan Allah adalah hakim yang paling adil (ahkam al-hakimin).</li>
+            </ol>
+
+            <p>Pola ini mengajarkan bahwa hidup adalah tentang <em>pilihan</em> dan <em>tanggung jawab</em>. Kita tidak bisa menyalahkan takdir, orang tua, atau lingkungan sepenuhnya. Ya, faktor eksternal ada, tapi <em>pilihan</em> tetap di tangan kita.</p>
+
+            <h3 style="color: #d4af37; margin-top: 30px;">Langkah Nyata:</h3>
+            
+            <p><strong>1. Kenali potensi "ahsan taqwim" dalam dirimu</strong></p>
+            
+            <p>Luangkan waktu untuk refleksi: apa kelebihanmu? Apa bakat atau minat yang Allah tanamkan dalam dirimu? Jangan bandingkan dirimu dengan orang lain. Setiap orang punya "ahsan taqwim" yang unik.</p>
+
+            <p><em>Langkah konkret:</em> Buat jurnal kecil. Setiap hari, tulis satu hal yang kamu syukuri dari dirimu sendiri—bisa kemampuan berpikir, kesabaran, kreativitas, atau apapun.</p>
+
+            <p><strong>2. Pilih satu kebaikan konsisten</strong></p>
+            
+            <p>Tidak perlu besar, tapi konsisten. Misalnya:</p>
+            <ul>
+                <li>Setiap hari, berbuat baik pada satu orang (senyum, bantu, atau sekadar mendengarkan).</li>
+                <li>Setiap minggu, sisihkan waktu untuk belajar sesuatu yang bermanfaat (baca buku, ikut kelas online, diskusi).</li>
+                <li>Setiap bulan, sisihkan sebagian rezeki untuk sedekah atau membantu yang membutuhkan.</li>
+            </ul>
+
+            <p>Ingat, "ajrun ghairu mamnun"—pahala yang tidak terputus. Kebaikan kecil yang konsisten lebih bermakna daripada kebaikan besar yang sesekali.</p>
+
+            <p><strong>3. Hidup dengan kesadaran "Din"</strong></p>
+            
+            <p>Setiap malam sebelum tidur, tanya pada diri sendiri: "Hari ini, apakah aku lebih dekat ke 'ahsan taqwim' atau 'asfala safilin'?" Ini bukan untuk menghakimi diri, tapi untuk evaluasi jujur.</p>
+
+            <p>Jika ada yang salah, segera perbaiki. Jika ada yang baik, syukuri dan tingkatkan. Hidup dengan kesadaran bahwa semua akan dihitung membuat kita lebih berhati-hati dan bertanggung jawab.</p>
+
+            <h3 style="color: #d4af37; margin-top: 30px;">Closing Statement:</h3>
+            
+            <p><strong>Di antara semua makhluk, hanya manusia yang diberi pilihan—dan itulah ujian terbesar sekaligus anugerah terbesar. Kita bisa jatuh lebih rendah dari hewan, atau naik lebih tinggi dari malaikat. Pilihannya ada di tangan kita. Setiap detik, setiap keputusan, adalah kesempatan untuk memilih: mulia atau hina. Dan Allah, Hakim yang paling adil, sedang menunggu—bukan untuk menghukum, tapi untuk memberi kita kesempatan untuk bangkit, lagi dan lagi, sampai kita menemukan jalan pulang kepada-Nya.</strong></p>
+        </div>
+
+        <div class="ornament">۞ ۞ ۞</div>
+
+        <div class="epilog">
+            <h2 style="text-align: center; color: #d4af37; margin-bottom: 30px;">EPILOG PUITIS</h2>
+            <h3 style="text-align: center; color: #c9a84d; font-style: italic; margin-bottom: 40px;">Antara Tin dan Zaitun, Kita Belajar Memilih</h3>
+            
+            <p>Ada yang bilang, hidup ini tidak adil. Ada yang lahir dengan privilege, ada yang lahir dalam kesulitan. Ada yang cantik, ada yang biasa saja. Ada yang jenius, ada yang biasa-biasa saja.</p>
+
+            <p>Tapi Surat At-Tin mengajarkan sesuatu yang lebih dalam: bukan soal apa yang kita terima, tapi soal apa yang kita pilih untuk lakukan dengan apa yang kita terima.</p>
+
+            <p>Lihat tin—buah yang lembut, manis, mudah. Tapi lihat juga zaitun—pahit, butuh proses, tapi menghasilkan cahaya. Keduanya buah, keduanya berkah, tapi prosesnya beda. Dan kamu, kamu boleh memilih: mau jadi seperti tin yang mudah, atau seperti zaitun yang melalui proses?</p>
+
+            <p>Banyak dari kita ingin jalan yang mudah. Kita ingin kesuksesan instan, kebahagiaan tanpa perjuangan, pahala tanpa pengorbanan. Tapi Surat At-Tin mengingatkan: kemuliaan tidak datang dengan mudah. Kemuliaan datang dari pilihan—untuk tetap beriman ketika dunia menggodamu untuk kufur, untuk tetap berbuat baik ketika orang lain berbuat jahat, untuk tetap berdiri tegak ketika orang lain memilih membungkuk pada hawa nafsu.</p>
+
+            <h3 style="color: #d4af37; margin-top: 40px;">Kepada Kalian yang Merasa Tidak Cukup</h3>
+            
+            <p>Mungkin ada yang membaca ini sambil merasa: "Aku tidak sempurna. Aku banyak dosa. Aku sering salah. Aku bukan orang baik."</p>
+
+            <p>Dengar.</p>
+
+            <p>Allah bilang: "Kami ciptakan manusia dalam bentuk yang sebaik-baiknya." Bukan "Kami ciptakan manusia yang sudah sempurna," tapi "Kami ciptakan manusia dengan <em>potensi</em> untuk sempurna."</p>
+
+            <p>Itu artinya, kesalahan adalah bagian dari proses. Jatuh adalah bagian dari perjalanan. Yang penting, kamu tidak tinggal di sana. Yang penting, setiap kali jatuh, kamu bangun. Setiap kali salah, kamu belajar. Setiap kali gelap, kamu mencari cahaya.</p>
+
+            <p>"Asfala safilin" bukan tentang orang yang pernah salah, tapi tentang orang yang memilih untuk <em>terus</em> salah, dan tidak peduli. Selama masih ada kesadaran, selama masih ada penyesalan, selama masih ada keinginan untuk memperbaiki diri—kamu belum jatuh ke "asfala safilin." Kamu masih dalam perjalanan.</p>
+
+            <h3 style="color: #d4af37; margin-top: 40px;">Kepada Kalian yang Merasa Dizalimi</h3>
+            
+            <p>Mungkin ada yang membaca ini sambil merasakan luka. Kamu kerja keras, tapi hasil tidak seimbang. Kamu berbuat baik, tapi dikhianati. Kamu jujur, tapi orang curang yang menang.</p>
+
+            <p>Dengar.</p>
+
+            <p>Allah menutup surat ini dengan janji: "Bukankah Allah hakim yang paling adil?"</p>
+
+            <p>Itu bukan janji kosong. Itu pengingat bahwa keadilan tidak selalu datang di dunia, tapi pasti datang. Mungkin tidak hari ini, mungkin tidak tahun ini, tapi pasti.</p>
+
+            <p>Dan sementara menunggu keadilan itu, kamu tidak perlu balas kezaliman dengan kezaliman. Kamu tidak perlu jadi seperti orang yang menzalimimu. Karena jika kamu balas dengan cara yang sama, lalu apa bedanya kamu dengan mereka?</p>
+
+            <p>Tetaplah di jalan kebaikan, meski sulit. Karena pahalamu "ghairu mamnun"—tidak terputus, tidak terbatas. Kebaikanmu tidak sia-sia, meski kadang rasanya seperti itu.</p>
+
+            <h3 style="color: #d4af37; margin-top: 40px;">Kepada Kalian yang Sedang Memilih</h3>
+            
+            <p>Setiap hari, kita dihadapkan pada puluhan, ratusan pilihan kecil. Bangun atau tidur lagi. Jujur atau berbohong. Sabar atau marah. Bersyukur atau mengeluh. Membantu atau acuh.</p>
+
+            <p>Pilihan-pilihan kecil itu terlihat sepele, tapi itulah yang membentuk siapa kita. Itu yang menentukan: apakah kita bergerak ke arah "ahsan taqwim" atau "asfala safilin."</p>
+
+            <p>Tidak perlu langsung sempurna. Tidak perlu langsung jadi orang saleh. Mulai dari pilihan kecil, hari ini, saat ini. Pilih untuk tersenyum pada orang yang kamu temui. Pilih untuk mengucap syukur untuk hal-hal kecil. Pilih untuk sabar ketika orang lain membuatmu kesal.</p>
+
+            <p>Karena setiap pilihan baik, sekecil apapun, adalah investasi untuk dirimu di akhirat. Dan Allah, Hakim yang paling adil, sedang mencatat—bukan untuk menghukummu, tapi untuk membalasmu dengan sesuatu yang jauh lebih baik dari yang kamu bayangkan.</p>
+
+            <h3 style="color: #d4af37; margin-top: 40px;">Penutup: Kamu Diciptakan untuk Mulia</h3>
+            
+            <p>Surat At-Tin dimulai dengan sumpah—demi tin, demi zaitun, demi Gunung Sinai, demi Mekah. Dan diakhiri dengan pertanyaan: "Bukankah Allah hakim yang paling adil?"</p>
+
+            <p>Di antara sumpah dan pertanyaan itu, ada satu pesan besar: <strong>Kamu diciptakan untuk mulia. Jangan biarkan dirimu jatuh.</strong></p>
+
+            <p>Kemuliaan bukan soal gelar, harta, atau jabatan. Kemuliaan adalah tentang bagaimana kamu memperlakukan dirimu sendiri, bagaimana kamu memperlakukan orang lain, dan bagaimana kamu menjalani hidup dengan kesadaran bahwa ada Tuhan yang menciptakanmu dengan penuh cinta.</p>
+
+            <p>Jadi, setiap kali kamu merasa jatuh, ingat: kamu diciptakan dalam "ahsan taqwim"—bentuk yang sebaik-baiknya. Bangkit bukan karena kamu sempurna, tapi karena kamu punya potensi untuk itu.</p>
+
+            <p>Setiap kali kamu merasa lemah, ingat: kamu punya pilihan untuk bangkit, lagi dan lagi.</p>
+
+            <p>Setiap kali kamu merasa sendiri, ingat: Allah, Hakim yang paling adil, sedang menyaksikan perjuanganmu. Dia tahu. Dia mencatat. Dan Dia akan membalas dengan cara yang jauh lebih indah dari yang kamu bayangkan.</p>
+
+            <div class="divider" style="margin: 50px auto;"></div>
+
+            <p style="text-align: center; font-size: 1.3em; color: #d4af37; font-weight: 600;"><strong>Jadi, apa yang akan kamu pilih hari ini?</strong></p>
+
+            <p style="text-align: center;">Antara tin dan zaitun, antara Sinai dan Mekah, antara "ahsan taqwim" dan "asfala safilin"—kamu diberi kebebasan untuk memilih.</p>
+
+            <p style="text-align: center;">Dan pilihan itu, sekecil apapun, akan menentukan: apakah kamu akan menjadi manusia yang mulia, atau manusia yang jatuh.</p>
+
+            <p style="text-align: center;">Tapi ingat, selama napas masih mengalir, pilihan untuk bangkit selalu ada.</p>
+
+            <p style="text-align: center;">Selama hati masih berdetak, kesempatan untuk memperbaiki diri selalu terbuka.</p>
+
+            <p style="text-align: center;">Selama Allah masih memberimu hari esok, harapan untuk jadi lebih baik selalu nyata.</p>
+
+            <p style="text-align: center; font-size: 1.2em; color: #d4af37; margin-top: 40px;"><strong>Jadi, bangkit. Pilih. Dan percaya—bahwa Allah, Hakim yang paling adil, sedang menunggu untuk menyaksikan kebangkitanmu.</strong></p>
+
+            <p style="text-align: center; margin-top: 30px;">Karena kamu, iya kamu yang sedang membaca ini—kamu diciptakan untuk mulia. Jangan pernah lupa itu.</p>
+        </div>
+
+        <div class="ornament">۞ ۞ ۞</div>
+
+        <div class="footer">
+            <p style="font-size: 1.2em; color: #d4af37; margin-bottom: 10px;"><em>وَاللَّهُ أَعْلَمُ بِالصَّوَابِ</em></p>
+            <p><em>Wa Allahu a'lam bishowab</em></p>
+            <p>Dan Allah yang lebih mengetahui kebenaran</p>
+        </div>
+
+        <a href="#" class="download-btn" onclick="downloadHTML(); return false;">📥 Download Tafsir (HTML)</a>
+    </div>
+
+    <script>
+        function downloadHTML() {
+            const content = document.documentElement.outerHTML;
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Tafsir_Surat_At-Tin.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

@@ -1,0 +1,1521 @@
+﻿<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Qori'ah — Ketukan yang Membangunkan Jiwa</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C8A84B;
+    --gold-light: #E8C96A;
+    --gold-pale: #F5E8B0;
+    --gold-dim: #8B6914;
+    --black: #000000;
+    --near-black: #080808;
+    --deep: #0D0D0D;
+    --panel: #111111;
+    --panel2: #161616;
+    --white: #FFFFFF;
+    --text: #D4C5A0;
+    --text-dim: #8A7A5A;
+    --text-muted: #5A5040;
+    --red: #C0392B;
+    --red-soft: #E74C3C;
+    --green: #1E8449;
+    --blue: #1B4F72;
+    --blue-soft: #2E86C1;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.9;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+  /* ── GOLD GRADIENT TEXT UTILITY ── */
+  .gold-text {
+    background: linear-gradient(135deg, var(--gold-dim) 0%, var(--gold) 40%, var(--gold-light) 60%, var(--gold-pale) 80%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ══════════════════════════════════════
+     COVER / HERO
+  ══════════════════════════════════════ */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 20px;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, #1A1200 0%, #0A0900 50%, #000000 100%);
+  }
+
+  /* Geometric ornamental rings */
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,168,75,0.08);
+    animation: rotateRing 60s linear infinite;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,168,75,0.12);
+    animation: rotateRing 40s linear infinite reverse;
+  }
+
+  @keyframes rotateRing {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .cover-inner {
+    position: relative; z-index: 2;
+    text-align: center;
+    max-width: 860px;
+  }
+
+  .bismillah {
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeDown 1.2s ease forwards 0.3s;
+    text-shadow: 0 0 40px rgba(200,168,75,0.3);
+  }
+
+  .cover-label {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(0.55rem, 1.5vw, 0.75rem);
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeDown 1s ease forwards 0.6s;
+  }
+
+  .cover-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeDown 1.2s ease forwards 0.9s;
+    text-shadow: 0 0 80px rgba(200,168,75,0.2);
+  }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1rem, 3vw, 1.6rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--gold-pale);
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeDown 1s ease forwards 1.2s;
+  }
+
+  .cover-divider {
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 2.5rem;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards 1.5s;
+  }
+
+  .cover-tagline {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-style: italic;
+    color: var(--text-dim);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1.8s;
+    line-height: 1.7;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 2.1s;
+  }
+
+  .cover-meta span {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    border: 1px solid var(--text-muted);
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 2.5s;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+  }
+
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  /* ══════════════════════════════════════
+     MAIN LAYOUT
+  ══════════════════════════════════════ */
+  .main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* ══════════════════════════════════════
+     SECTION BLOCKS
+  ══════════════════════════════════════ */
+  .section {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid rgba(200,168,75,0.08);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── INFO DASAR ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(200,168,75,0.1);
+    border: 1px solid rgba(200,168,75,0.1);
+    margin: 2rem 0;
+    overflow: hidden;
+  }
+
+  .info-item {
+    background: var(--panel);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .info-item .label {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: 3px;
+    min-width: 80px;
+  }
+
+  .info-item .value {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── PHILOSOPHICAL BOX ── */
+  .philo-box {
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, rgba(200,168,75,0.05) 0%, rgba(200,168,75,0.02) 100%);
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .philo-box::before {
+    content: '❝';
+    position: absolute;
+    top: -10px; right: 20px;
+    font-size: 5rem;
+    color: rgba(200,168,75,0.06);
+    font-family: serif;
+    line-height: 1;
+  }
+
+  .philo-box p {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold-pale);
+    font-weight: 300;
+  }
+
+  /* ══════════════════════════════════════
+     AYAT BLOCK
+  ══════════════════════════════════════ */
+  .ayat-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 60px 0 40px;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(90deg, rgba(27,79,114,0.3) 0%, rgba(27,79,114,0.1) 60%, transparent 100%);
+    border-left: 4px solid var(--blue-soft);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ayat-header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(27,79,114,0.05), transparent);
+    pointer-events: none;
+  }
+
+  .ayat-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .ayat-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: rgba(200,200,255,0.7);
+    font-weight: 300;
+  }
+
+  /* ── ARABIC VERSE CARD ── */
+  .verse-card {
+    text-align: right;
+    padding: 2rem 2.5rem 1.5rem;
+    background: linear-gradient(135deg, #0D0A00 0%, #080600 100%);
+    border: 1px solid rgba(200,168,75,0.2);
+    border-right: 4px solid var(--gold);
+    margin: 1.5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verse-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.4;
+  }
+
+  .verse-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    opacity: 0.3;
+  }
+
+  .arabic-text {
+    font-family: 'Traditional Arabic', 'Amiri', 'Scheherazade New', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.8;
+    color: var(--gold-light);
+    display: block;
+    text-shadow: 0 0 30px rgba(200,168,75,0.2);
+    direction: rtl;
+  }
+
+  .ayat-number {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.7rem;
+    color: var(--gold-dim);
+    margin-top: 0.5rem;
+    text-align: right;
+  }
+
+  .transliteration {
+    text-align: center;
+    font-style: italic;
+    color: var(--blue-soft);
+    font-size: 0.95rem;
+    margin: 0.5rem 0 0.25rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  .translation {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold-pale);
+    font-style: italic;
+    margin: 0.25rem 0 1.5rem;
+    padding: 0 2rem;
+  }
+
+  /* ══════════════════════════════════════
+     SECTION BADGES
+  ══════════════════════════════════════ */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 6px 16px;
+    background: var(--panel2);
+    border: 1px solid rgba(200,168,75,0.25);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin: 2rem 0 1rem;
+  }
+
+  .badge::before {
+    content: '◈';
+    color: var(--gold);
+  }
+
+  /* ══════════════════════════════════════
+     KEYWORD BLOCKS
+  ══════════════════════════════════════ */
+  .keyword {
+    margin: 1.5rem 0;
+    border-left: 2px solid var(--gold-dim);
+    padding-left: 1.5rem;
+  }
+
+  .keyword-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .keyword-arabic {
+    font-family: 'Traditional Arabic', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    direction: rtl;
+    line-height: 1.3;
+  }
+
+  .keyword-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold-pale);
+  }
+
+  .keyword-akar {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 2px 8px;
+    border: 1px solid rgba(200,168,75,0.15);
+    border-radius: 2px;
+  }
+
+  .keyword-body {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.8;
+    padding-left: 0.5rem;
+  }
+
+  /* ══════════════════════════════════════
+     BODY TEXT
+  ══════════════════════════════════════ */
+  .body-text {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.9;
+    margin: 0.8rem 0;
+    text-align: justify;
+  }
+
+  .subheading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--blue-soft);
+    margin: 2rem 0 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .subheading.red { color: var(--red-soft); }
+  .subheading.gold { color: var(--gold); }
+  .subheading.green { color: #27AE60; }
+
+  /* ══════════════════════════════════════
+     CONTOH PRAKTIS
+  ══════════════════════════════════════ */
+  .contoh {
+    margin: 1.2rem 0;
+    padding: 1.2rem 1.5rem;
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid var(--red-soft);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .contoh-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.65rem;
+    color: var(--red-soft);
+    letter-spacing: 0.2em;
+    margin-bottom: 0.3rem;
+  }
+
+  .contoh-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold-pale);
+    margin-bottom: 0.5rem;
+  }
+
+  .contoh-body {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* ══════════════════════════════════════
+     INTISARI CARDS
+  ══════════════════════════════════════ */
+  .intisari-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 1.5rem 0;
+  }
+
+  .intisari-item {
+    padding: 1rem 1.5rem;
+    background: rgba(30,132,73,0.07);
+    border-left: 3px solid var(--green);
+    font-style: italic;
+    font-size: 0.98rem;
+    color: var(--text);
+    line-height: 1.8;
+    position: relative;
+  }
+
+  .intisari-item::before {
+    content: '❝';
+    color: rgba(30,132,73,0.3);
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+    vertical-align: -0.2em;
+  }
+
+  /* ══════════════════════════════════════
+     ORNAMENTAL DIVIDERS
+  ══════════════════════════════════════ */
+  .ornament {
+    text-align: center;
+    margin: 3rem 0;
+    color: var(--gold-dim);
+    font-size: 1.2rem;
+    letter-spacing: 0.5em;
+    opacity: 0.6;
+    user-select: none;
+  }
+
+  .line-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,168,75,0.3), transparent);
+    margin: 2.5rem 0;
+  }
+
+  /* ══════════════════════════════════════
+     LANGKAH NYATA
+  ══════════════════════════════════════ */
+  .langkah {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: var(--panel);
+    border: 1px solid rgba(200,168,75,0.1);
+    position: relative;
+  }
+
+  .langkah::before {
+    content: attr(data-num);
+    position: absolute;
+    top: -14px; left: 20px;
+    background: var(--black);
+    padding: 0 10px;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+  }
+
+  .langkah-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--gold-pale);
+    margin-bottom: 0.8rem;
+  }
+
+  .langkah-title span {
+    color: var(--green);
+    margin-right: 0.5rem;
+  }
+
+  .langkah-body {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* ══════════════════════════════════════
+     CLOSING STATEMENT
+  ══════════════════════════════════════ */
+  .closing {
+    padding: 2.5rem 3rem;
+    background: linear-gradient(135deg, rgba(27,79,114,0.15) 0%, rgba(200,168,75,0.05) 100%);
+    border: 1px solid rgba(200,168,75,0.2);
+    border-top: 3px solid var(--gold);
+    border-bottom: 3px solid var(--gold);
+    margin: 3rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing::before, .closing::after {
+    content: '◈';
+    position: absolute;
+    font-size: 3rem;
+    color: rgba(200,168,75,0.05);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .closing::before { left: 20px; }
+  .closing::after { right: 20px; }
+
+  .closing p {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold-pale);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  /* ══════════════════════════════════════
+     EPILOG
+  ══════════════════════════════════════ */
+  .epilog-section {
+    padding: 80px 0 100px;
+    text-align: center;
+    position: relative;
+    background: radial-gradient(ellipse 80% 50% at 50% 50%, #0D0A00 0%, var(--black) 70%);
+  }
+
+  .epilog-label {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.5em;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+
+  .epilog-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--gold-pale);
+    margin-bottom: 3rem;
+    line-height: 1.3;
+  }
+
+  .epilog-body {
+    max-width: 660px;
+    margin: 0 auto;
+  }
+
+  .epilog-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    color: var(--text-dim);
+    line-height: 2;
+    display: block;
+    margin: 0.2rem 0;
+  }
+
+  .epilog-line.blue { color: var(--blue-soft); font-style: italic; }
+  .epilog-line.gold { color: var(--gold); font-weight: 600; font-style: normal; }
+  .epilog-line.bold { color: var(--gold-pale); font-weight: 700; font-style: normal; font-size: 1.2em; }
+  .epilog-line.highlight { color: var(--red-soft); font-weight: 600; font-size: 1.2em; font-style: italic; }
+  .epilog-line.white { color: var(--text); font-style: normal; }
+  .epilog-line.green { color: #2ECC71; font-weight: 600; font-size: 1.1em; }
+  .epilog-line.big { font-size: 1.6em; font-weight: 700; color: var(--gold); font-style: normal; letter-spacing: 0.05em; }
+  .epilog-line.final { color: var(--blue-soft); font-size: 0.95em; }
+
+  .epilog-gap { display: block; height: 1.5rem; }
+
+  .epilog-closer {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(200,168,75,0.15);
+  }
+
+  .khatimah {
+    font-family: 'Traditional Arabic', serif;
+    font-size: 2.5rem;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px rgba(200,168,75,0.2);
+  }
+
+  .khatimah-trans {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  /* ══════════════════════════════════════
+     SECTION HEADINGS
+  ══════════════════════════════════════ */
+  .section-heading {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .section-sub {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  /* ══════════════════════════════════════
+     DOWNLOAD BUTTON
+  ══════════════════════════════════════ */
+  .download-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(200,168,75,0.15);
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
+  }
+
+  .download-bar.visible {
+    transform: translateY(0);
+  }
+
+  .bar-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .dl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dl-btn:hover {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  .dl-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+  /* Big download CTA at cover */
+  .cover-dl {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 32px;
+    background: transparent;
+    border: 1px solid rgba(200,168,75,0.5);
+    color: var(--gold);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 2.4s;
+  }
+
+  .cover-dl:hover {
+    background: rgba(200,168,75,0.12);
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(200,168,75,0.1);
+  }
+
+  /* ══════════════════════════════════════
+     ANIMATIONS
+  ══════════════════════════════════════ */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════ */
+  @media (max-width: 600px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .verse-card { padding: 1.5rem; }
+    .arabic-text { font-size: 2rem; }
+    .closing { padding: 2rem 1.5rem; }
+    .cover-dl { font-size: 0.55rem; padding: 10px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- DOWNLOAD BAR (appears on scroll) -->
+<div class="download-bar" id="dlBar">
+  <span class="bar-title">Al-Qori'ah — Tafsir Mendalam</span>
+  <a href="#" id="dlBarBtn" class="dl-btn" onclick="downloadHTML(event)">
+    <svg viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-6 4h12v-2H6v2z"/></svg>
+    Unduh File HTML
+  </a>
+</div>
+
+<!-- ════════════════════════════════════════
+     COVER
+════════════════════════════════════════ -->
+<section class="cover">
+  <div class="cover-inner">
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+    <div class="cover-label">Tafsir Mendalam · Surat ke-101 · 11 Ayat · Makkiyah</div>
+    <h1 class="cover-title gold-text">AL-QORI'AH</h1>
+    <p class="cover-subtitle">Ketukan yang Membangunkan Jiwa</p>
+    <div class="cover-divider"></div>
+    <p class="cover-tagline">
+      Ketika bumi bergetar dan gunung-gunung beterbangan —<br>
+      kamu sibuk scroll feed yang sama untuk keseratus kalinya.
+    </p>
+    <div class="cover-meta">
+      <span>Surat 101</span>
+      <span>Juz 30</span>
+      <span>11 Ayat</span>
+      <span>Makkiyah</span>
+    </div>
+    <a href="#" class="cover-dl" onclick="downloadHTML(event)">
+      <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24"><path d="M12 16l-5-5h3V4h4v7h3l-5 5zm-6 4h12v-2H6v2z"/></svg>
+      Unduh File HTML Ini
+    </a>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<!-- ════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════ -->
+<div class="main">
+
+  <!-- ── PENGANTAR ── -->
+  <section class="section" id="pengantar">
+    <div class="badge">Pengantar</div>
+    <h2 class="section-heading gold-text">Sebelum Kita Mulai</h2>
+    <p class="section-sub">Bukan sekadar kiamat di luar, tapi juga kiamat di dalam diri.</p>
+
+    <div class="philo-box">
+      <p>Ada surat dalam Al-Qur'an yang terasa seperti alarm — bukan alarm yang bisa di-snooze, bukan notifikasi yang bisa diabaikan. Al-Qori'ah adalah ketukan di pintu kesadaran kita. Keras. Berulang. Tak kenal kompromi.</p>
+    </div>
+
+    <p class="body-text">Tapi anehnya, surat ini bukan untuk menakut-nakuti. Ia datang untuk membangunkan. Ada perbedaan besar antara takut dan sadar. Orang yang takut berlari. Orang yang sadar — bergerak dengan bijaksana.</p>
+    <p class="body-text">Sebelum masuk ke ayat demi ayat, mari kita tanyakan pada diri sendiri: sudah berapa lama kita hidup tanpa benar-benar merasakan bahwa setiap hari adalah investasi yang akan dihitung? Bahwa timbangan itu nyata — bukan metafora?</p>
+    <p class="body-text">Al-Qori'ah mengajak kita pada perjalanan reflektif yang tidak nyaman tapi perlu. Seperti cermin yang tidak bisa berbohong.</p>
+  </section>
+
+  <!-- ── INFORMASI DASAR ── -->
+  <section class="section" id="info">
+    <div class="badge">Informasi Dasar</div>
+    <h2 class="section-heading gold-text">Mengenal Surat Ini</h2>
+
+    <div class="info-grid">
+      <div class="info-item"><span class="label">Nama</span><span class="value">Al-Qori'ah (القارعة)</span></div>
+      <div class="info-item"><span class="label">Arti</span><span class="value">Yang Mengetuk Keras / Yang Memukul Dahsyat</span></div>
+      <div class="info-item"><span class="label">Ayat</span><span class="value">11 Ayat</span></div>
+      <div class="info-item"><span class="label">Periode</span><span class="value">Makkiyah — saat jiwa-jiwa baru mula sadar</span></div>
+      <div class="info-item"><span class="label">Juz</span><span class="value">Juz 30 (Juz 'Amma)</span></div>
+      <div class="info-item"><span class="label">Tema</span><span class="value">Hari Kiamat & Neraca Amal yang Menentukan Nasib</span></div>
+    </div>
+
+    <div class="philo-box">
+      <p>Filosofi Utama: Bukan sekadar kiamat di luar, tapi juga kiamat di dalam diri. Setiap hari ada 'ketukan' dalam hidup kita — kehilangan yang tiba-tiba, momen di mana kita tersadar betapa fana semua ini.</p>
+    </div>
+
+    <p class="body-text">Al-Qori'ah adalah surat tentang ketukan terbesar: hari ketika segala sesuatu yang kita andalkan runtuh, dan yang tersisa hanya apa yang benar-benar kita kerjakan.</p>
+  </section>
+
+  <hr class="line-divider">
+
+  <!-- ════════════ AYAT 1–3 ════════════ -->
+  <section class="section" id="ayat1">
+    <div class="ayat-header">
+      <div class="ayat-num gold-text">AYAT<br>1 — 3</div>
+      <div class="ayat-title">Tiga Pukulan yang Membangunkan</div>
+    </div>
+
+    <div class="verse-card">
+      <span class="arabic-text">الْقَارِعَةُ</span>
+      <div class="ayat-number">Ayat 1</div>
+    </div>
+    <p class="transliteration">Al-Qāri'ah</p>
+    <p class="translation">"Al-Qori'ah (Hari Kiamat yang mengguncang)"</p>
+
+    <div class="verse-card">
+      <span class="arabic-text">مَا الْقَارِعَةُ</span>
+      <div class="ayat-number">Ayat 2</div>
+    </div>
+    <p class="transliteration">Mal-Qāri'ah</p>
+    <p class="translation">"Apakah Al-Qori'ah itu?"</p>
+
+    <div class="verse-card">
+      <span class="arabic-text">وَمَا أَدْرَاكَ مَا الْقَارِعَةُ</span>
+      <div class="ayat-number">Ayat 3</div>
+    </div>
+    <p class="transliteration">Wa mā adrāka mal-Qāri'ah</p>
+    <p class="translation">"Dan tahukah kamu apakah Al-Qori'ah itu?"</p>
+
+    <!-- ENERGI KATA -->
+    <div class="badge">1 · Energi Kata</div>
+
+    <div class="keyword">
+      <div class="keyword-head">
+        <span class="keyword-arabic">القارعة</span>
+        <span class="keyword-name">Al-Qāri'ah</span>
+        <span class="keyword-akar">Akar: ق-ر-ع (qa-ra-'a)</span>
+      </div>
+      <p class="keyword-body">Akar katanya adalah 'mengetuk dengan keras', 'memukul sampai bergema'. Dalam bahasa Arab, qa-ra-'a dipakai untuk suara besi yang dipukul ke besi — dentingan yang membekukan. Berbeda dengan 'az-zalzalah' yang berarti guncangan, al-qari'ah adalah bunyi yang menembus — seperti bel yang tidak bisa diabaikan. Kata ini berulang tiga kali berturut-turut: pernyataan, pertanyaan, pertanyaan yang lebih mendalam — seperti seseorang yang mengetuk pintu, lalu mengetuk lagi, lalu bertanya "apakah kamu sungguh tidak mendengar?"</p>
+    </div>
+
+    <div class="keyword">
+      <div class="keyword-head">
+        <span class="keyword-arabic">مَا أَدْرَاكَ</span>
+        <span class="keyword-name">Mā Adrāka</span>
+        <span class="keyword-akar">Akar: د-ر-ي (da-ra-ya)</span>
+      </div>
+      <p class="keyword-body">Frasa ini unik: "apakah yang memberitahumu?" — bukan sekadar "apakah kamu tahu". Kata 'adrā' mengandung makna pengetahuan yang datang dari sumber luar, bukan hasil pemikiran sendiri. Dalam 30 surat Al-Qur'an, frasa ini selalu muncul untuk hal yang melampaui kapasitas pikiran manusia biasa. Ini bukan pertanyaan biasa — ini undangan untuk mengakui: ada hal-hal yang tidak akan pernah benar-benar kita pahami sampai kita mengalaminya sendiri.</p>
+    </div>
+
+    <!-- TAFSIR MENDALAM -->
+    <div class="badge">2 · Tafsir Mendalam</div>
+    <p class="subheading">Konteks dan Filosofi</p>
+    <p class="body-text">Surat ini dibuka dengan sebuah gaya retorika yang para ulama sebut 'takhwif' — menciptakan rasa getar melalui pengulangan. Kata Al-Qori'ah disebut tiga kali dalam tiga ayat pertama, menciptakan ritme seperti degup jantung yang semakin cepat.</p>
+    <p class="body-text">Pengulangan ini bukan kebetulan. Ia mencerminkan cara manusia memproses sesuatu yang luar biasa: pertama kita dengar, lalu kita bertanya, lalu kita sadar bahwa pertanyaan kita pun tidak cukup untuk menjawab dahsyatnya.</p>
+    <p class="body-text">Para mufassir seperti Ibnu Katsir menjelaskan bahwa pembukaan yang menggunakan pertanyaan justru lebih kuat dari sekadar pernyataan. Karena pertanyaan memaksa pikiran kita ikut bekerja — kita tidak bisa pasif.</p>
+
+    <p class="subheading red">Relevansi Kekinian</p>
+
+    <div class="contoh">
+      <div class="contoh-num">Contoh Praktis · 01</div>
+      <div class="contoh-title">Bencana yang Tiba-tiba</div>
+      <p class="contoh-body">Kita hidup di era di mana bencana hadir tanpa ijin: gempa bumi, pandemi, kehilangan mendadak. Setiap kali kita membaca berita "ribuan korban jiwa dalam sekejap", kita sesungguhnya sedang membaca mini-versi dari Al-Qori'ah. Alam semesta sedang berkata: "apakah kamu sungguh siap?" Tapi kebanyakan kita menutup tab browser dan lanjut nonton konten hiburan.</p>
+    </div>
+
+    <div class="contoh">
+      <div class="contoh-num">Contoh Praktis · 02</div>
+      <div class="contoh-title">Diagnosis Mengejutkan dari Dokter</div>
+      <p class="contoh-body">Bayangkan seseorang yang aktif, produktif, tiba-tiba mendapat kabar dari dokter bahwa ada yang tidak beres. Dalam sekejap, semua rencana — liburan, karir, impian — terasa seperti gunung yang bisa bergeser. Itulah Al-Qori'ah dalam skala personal: ketukan yang memaksa kita berhenti dan bertanya — apa yang benar-benar penting?</p>
+    </div>
+
+    <!-- INTISARI -->
+    <div class="badge">3 · Intisari</div>
+    <div class="intisari-grid">
+      <div class="intisari-item">Ketukan paling keras bukan selalu yang paling bising — kadang ia berbunyi dalam senyap, di malam ketika kamu tidak bisa tidur.</div>
+      <div class="intisari-item">Allah tidak hanya menggambarkan kiamat — Ia mengajak kita merasakannya dengan imajinasi, supaya kita tidak perlu merasakannya dalam ketidaksiapan.</div>
+      <div class="intisari-item">Pertanyaan "apakah kamu tahu?" bukan meremehkan — ia adalah undangan untuk jujur: kita tidak tahu. Dan dari ketidaktahuan itulah, tawadhu' dan kesiapan lahir.</div>
+    </div>
+  </section>
+
+  <div class="ornament">◈ · · · ◈ · · · ◈</div>
+
+  <!-- ════════════ AYAT 4–5 ════════════ -->
+  <section class="section" id="ayat4">
+    <div class="ayat-header">
+      <div class="ayat-num gold-text">AYAT<br>4 — 5</div>
+      <div class="ayat-title">Anai-anai dan Bulu Gunung</div>
+    </div>
+
+    <div class="verse-card">
+      <span class="arabic-text">يَوْمَ يَكُونُ النَّاسُ كَالْفَرَاشِ الْمَبْثُوثِ</span>
+      <div class="ayat-number">Ayat 4</div>
+    </div>
+    <p class="transliteration">Yawma yakūnun-nāsu kal-farāshil-mabthūth</p>
+    <p class="translation">"Pada hari itu manusia seperti anai-anai yang bertebaran"</p>
+
+    <div class="verse-card">
+      <span class="arabic-text">وَتَكُونُ الْجِبَالُ كَالْعِهْنِ الْمَنفُوشِ</span>
+      <div class="ayat-number">Ayat 5</div>
+    </div>
+    <p class="transliteration">Wa takūnul-jibālu kal-'ihnil-manfūsh</p>
+    <p class="translation">"Dan gunung-gunung seperti bulu (wol) yang dihambur-hamburkan"</p>
+
+    <div class="badge">1 · Energi Kata</div>
+
+    <div class="keyword">
+      <div class="keyword-head">
+        <span class="keyword-arabic">الفراش المبثوث</span>
+        <span class="keyword-name">Al-Farāsh Al-Mabthūth</span>
+        <span class="keyword-akar">Akar: ف-ر-ش / ب-ث-ث</span>
+      </div>
+      <p class="keyword-body">'Farāsh' dalam bahasa Arab bisa berarti kupu-kupu kecil atau anai-anai. Para ulama menjelaskan bahwa di sini lebih tepat bermakna serangga kecil yang bertebaran tanpa arah — bukan kupu-kupu yang terbang anggun, melainkan makhluk yang kalang kabut dan tidak punya tujuan. Kata 'mabthūth' dari akar 'batstsa' berarti tersebar luas dan acak. Perpaduan keduanya menggambarkan manusia yang kehilangan arah, identitas, dan koneksi satu sama lain.</p>
+    </div>
+
+    <div class="keyword">
+      <div class="keyword-head">
+        <span class="keyword-arabic">العهن المنفوش</span>
+        <span class="keyword-name">Al-'Ihn Al-Manfūsh</span>
+        <span class="keyword-akar">Akar: ع-ه-ن / ن-ف-ش</span>
+      </div>
+      <p class="keyword-body">'Ihn adalah wol yang sudah berwarna — bukan kapas biasa. Ini detail yang bermakna: gunung-gunung yang selama ini tampak abadi dan kokoh, digambarkan seperti wol berwarna yang "di-fluff" — dihambur-hamburkan hingga menjadi serpihan ringan. 'Manfūsh' dari akar 'nafasha' berarti mengurai serat-serat hingga terpisah sempurna. Bayangkan bantal bulu yang disobek: itulah gunung di hari itu.</p>
+    </div>
+
+    <div class="badge">2 · Tafsir Mendalam</div>
+    <p class="subheading">Konteks dan Filosofi</p>
+    <p class="body-text">Dua ayat ini adalah kontras yang disengaja: manusia yang selama ini merasa besar dan gunung yang selama ini menjadi simbol kekekalan — keduanya runtuh dalam bentuk yang paling tak bermartabat.</p>
+    <p class="body-text">Mengapa manusia digambarkan seperti 'farāsh' — serangga kecil yang acak? Karena di dunia ini kita sering merasa punya kendali: atas jadwal kita, atas rencana kita, atas narasi hidup kita. Di hari itu, semua ilusi kendali itu sirna.</p>
+    <p class="body-text">Dan mengapa gunung? Gunung adalah hal yang manusia jadikan metafora keteguhan: "sekuat batu karang", "seteguh gunung". Tapi Al-Qori'ah berkata: hal yang paling stabil pun bisa menjadi serpihan ringan. Tidak ada yang benar-benar permanen.</p>
+
+    <p class="subheading red">Relevansi Kekinian</p>
+
+    <div class="contoh">
+      <div class="contoh-num">Contoh Praktis · 01</div>
+      <div class="contoh-title">Krisis Identitas Generasi Sekarang</div>
+      <p class="contoh-body">Di era media sosial, kita membangun "gunung" berupa branding diri, follower count, prestasi yang dipajang. Tapi satu momen kehilangan pekerjaan, satu skandal, satu kegagalan publik — dan semua itu bisa beterbangan seperti wol yang dihambur. Berapa banyak orang terkenal yang tiba-tiba "cancel" dan tidak tahu siapa dirinya tanpa validasi orang lain? Itulah mini-qori'ah personal.</p>
+    </div>
+
+    <div class="contoh">
+      <div class="contoh-num">Contoh Praktis · 02</div>
+      <div class="contoh-title">Kepanikan Kolektif saat Krisis</div>
+      <p class="contoh-body">Ingat awal pandemi 2020? Toko-toko kosong, antrian panjang, orang berlari tidak tahu ke mana. Dalam skala kecil, kita sudah merasakan gambaran "manusia seperti anai-anai". Bayangkan ketika bukan hanya satu kota, tapi seluruh alam semesta mengalaminya serentak. Al-Qori'ah mengingatkan: kepanikan massal itu nyata, dan satu-satunya yang bisa menenangkan adalah keyakinan yang sudah dibangun jauh sebelumnya.</p>
+    </div>
+
+    <div class="badge">3 · Intisari</div>
+    <div class="intisari-grid">
+      <div class="intisari-item">Ketika yang paling besar pun bisa menjadi serpihan, apa yang sebenarnya sedang kamu bangun dan andalkan hari ini?</div>
+      <div class="intisari-item">Gunung tidak hancur tiba-tiba — ia terurai perlahan. Begitu pula keyakinan yang tidak dipupuk: tidak roboh sekaligus, tapi mengurai sedikit demi sedikit.</div>
+      <div class="intisari-item">Manusia yang "kalang kabut" di hari itu bukan karena tidak pernah diperingatkan — tapi karena tidak pernah benar-benar percaya.</div>
+    </div>
+  </section>
+
+  <div class="ornament">◈ · · · ◈ · · · ◈</div>
+
+  <!-- ════════════ AYAT 6–7 ════════════ -->
+  <section class="section" id="ayat6">
+    <div class="ayat-header">
+      <div class="ayat-num gold-text">AYAT<br>6 — 7</div>
+      <div class="ayat-title">Neraca yang Berat: Kehidupan yang Memuaskan</div>
+    </div>
+
+    <div class="verse-card">
+      <span class="arabic-text">فَأَمَّا مَن ثَقُلَتْ مَوَازِينُهُ</span>
+      <div class="ayat-number">Ayat 6</div>
+    </div>
+    <p class="transliteration">Fa-ammā man thaqulat mawāzīnuh</p>
+    <p class="translation">"Adapun orang yang berat timbangan (kebaikan)nya"</p>
+
+    <div class="verse-card">
+      <span class="arabic-text">فَهُوَ فِي عِيشَةٍ رَّاضِيَةٍ</span>
+      <div class="ayat-number">Ayat 7</div>
+    </div>
+    <p class="transliteration">Fa-huwa fī 'īshatin rādhiyah</p>
+    <p class="translation">"Maka ia berada dalam kehidupan yang memuaskan"</p>
+
+    <div class="badge">1 · Energi Kata</div>
+
+    <div class="keyword">
+      <div class="keyword-head">
+        <span class="keyword-arabic">مَوَازِين</span>
+        <span class="keyword-name">Mawāzīn — Timbangan-timbangan</span>
+        <span class="keyword-akar">Akar: و-ز-ن (wa-za-na)</span>
+      </div>
+      <p class="keyword-body">Bentuk jamak dari 'mīzān' — timbangan. Tapi bukan timbangan biasa. Para ulama menjelaskan penggunaan jamak ini: setiap amal ditimbang, setiap niat ditimbang, setiap kata ditimbang. Bukan total akhir yang satu — melainkan ribuan neraca kecil yang bekerja serentak. Artinya: tidak ada "satu dosa besar yang menghapus semua", dan tidak ada "satu amal besar yang menutup semua". Setiap hal punya bobotnya sendiri.</p>
+    </div>
+
+    <div class="keyword">
+      <div class="keyword-head">
+        <span class="keyword-arabic">عِيشَةٍ رَاضِيَة</span>
+        <span class="keyword-name">'Īshah Rādhiyah — Kehidupan yang Memuaskan</span>
+        <span class="keyword-akar">Akar: ع-ي-ش / ر-ض-ي</span>
+      </div>
+      <p class="keyword-body">'Īshah dari 'āsha' berarti 'cara hidup' — bukan sekadar 'hidup'. Rādhiyah dari 'radhiya' berarti 'yang diridhai', tapi juga bisa berarti 'yang membuat ridha' — ada dua arah: kehidupan yang disukai dan kehidupan yang membuat pelakunya puas. Ini berbeda dari sekadar 'senang' (sa'īd) atau 'mewah' (munā'am). 'Rādhiyah' mengandung kepuasan yang dalam — bukan kesenangan dangkal.</p>
+    </div>
+
+    <div class="badge">2 · Tafsir Mendalam</div>
+    <p class="subheading">Konteks dan Filosofi</p>
+    <p class="body-text">Dua ayat ini adalah pengumuman hasil — seperti papan skor di akhir pertandingan. Tapi gambarannya tidak terburu-buru: tidak langsung disebutkan surga atau neraka. Pertama disebut kondisinya: "berat timbangan", lalu hasilnya: "kehidupan yang memuaskan".</p>
+    <p class="body-text">Imam Ar-Razi dalam tafsirnya menjelaskan bahwa urutan ini penting: Allah mendahulukan kondisi (amal yang berat) sebelum hasil (kehidupan baik). Ini mengajarkan bahwa kebahagiaan sejati bukan hadiah yang jatuh dari langit, melainkan konsekuensi alami dari pilihan-pilihan yang kita buat.</p>
+    <p class="body-text">Kata 'thaqulat' (berat) juga menarik. Dalam konteks sehari-hari, 'berat' sering kita anggap negatif: beban berat, tugas berat. Tapi di sini, 'berat' adalah kabar baik. Ini membalikkan perspektif kita tentang 'beban': amal yang terasa berat di dunia justru yang membuat timbangan kita berat di akhirat.</p>
+
+    <p class="subheading red">Relevansi Kekinian</p>
+
+    <div class="contoh">
+      <div class="contoh-num">Contoh Praktis · 01</div>
+      <div class="contoh-title">Budaya "Kelihatan Sibuk" tapi Kosong</div>
+      <p class="contoh-body">Kita hidup di era yang mendewakan hustle culture: jam kerja panjang, jadwal padat, pencapaian yang dipamerkan. Tapi apakah semua kesibukan itu "berat di neraca"? Bisa jadi seseorang bekerja 16 jam sehari untuk ego, tapi hanya 5 menit sehari untuk merawat hubungan dengan Allah dan manusia. Mawāzīn tidak peduli kamu terlihat sibuk — ia menimbang apa yang benar-benar berarti.</p>
+    </div>
+
+    <div class="contoh">
+      <div class="contoh-num">Contoh Praktis · 02</div>
+      <div class="contoh-title">Kepuasan yang Dicari di Tempat Salah</div>
+      <p class="contoh-body">'Īshah rādhiyah — kehidupan yang memuaskan. Berapa banyak orang yang sudah punya segalanya secara materi, tapi masih merasa hampa? Berapa banyak yang sudah mengejar kepuasan lewat pengakuan, uang, dan pengalaman, tapi tetap gelisah? Al-Qori'ah memberitahu: "kehidupan yang memuaskan" itu bukan tentang apa yang kamu punya — tapi tentang seberapa berat neraca amalmu.</p>
+    </div>
+
+    <div class="badge">3 · Intisari</div>
+    <div class="intisari-grid">
+      <div class="intisari-item">Neraca tidak bisa dibeli, dimanipulasi, atau dilobi. Ia hanya bisa diisi — satu amal pada satu waktu.</div>
+      <div class="intisari-item">Kehidupan yang memuaskan bukan tentang apa yang kamu miliki, tapi tentang apa yang kamu tinggalkan di neraca kebaikan.</div>
+      <div class="intisari-item">Pertanyaan hariannya bukan "apakah aku cukup produktif?" tapi "apakah apa yang kulakukan hari ini, berat di hadapan Allah?"</div>
+    </div>
+  </section>
+
+  <div class="ornament">◈ · · · ◈ · · · ◈</div>
+
+  <!-- ════════════ AYAT 8–9 ════════════ -->
+  <section class="section" id="ayat8">
+    <div class="ayat-header">
+      <div class="ayat-num gold-text">AYAT<br>8 — 9</div>
+      <div class="ayat-title">Neraca Ringan: Jurang yang Terbuka</div>
+    </div>
+
+    <div class="verse-card">
+      <span class="arabic-text">وَأَمَّا مَنْ خَفَّتْ مَوَازِينُهُ</span>
+      <div class="ayat-number">Ayat 8</div>
+    </div>
+    <p class="transliteration">Wa ammā man khaffat mawāzīnuh</p>
+    <p class="translation">"Adapun orang yang ringan timbangan (kebaikan)nya"</p>
+
+    <div class="verse-card">
+      <span class="arabic-text">فَأُمُّهُ هَاوِيَةٌ</span>
+      <div class="ayat-number">Ayat 9</div>
+    </div>
+    <p class="transliteration">Fa-ummuhū hāwiyah</p>
+    <p class="translation">"Maka tempat kembalinya adalah Hawiyah (neraka yang dalam)"</p>
+
+    <div class="badge">1 · Energi Kata</div>
+
+    <div class="keyword">
+      <div class="keyword-head">
+        <span class="keyword-arabic">خَفَّتْ</span>
+        <span class="keyword-name">Khaffat — Menjadi Ringan</span>
+        <span class="keyword-akar">Akar: خ-ف-ف (kha-fa-fa)</span>
+      </div>
+      <p class="keyword-body">'Khaffat' berarti 'menjadi ringan'. Antonym dari 'thaqulat'. Tapi perhatikan: bukan 'nihil' — bukan tidak ada sama sekali. Ringan berarti ada isian, tapi tidak cukup berat. Ini lebih menggelisahkan dari kosong sama sekali: artinya orang ini mungkin punya amal, mungkin pernah berbuat baik — tapi tidak cukup. Seperti rekening yang ada saldonya, tapi melebihi utang.</p>
+    </div>
+
+    <div class="keyword">
+      <div class="keyword-head">
+        <span class="keyword-arabic">هَاوِيَة</span>
+        <span class="keyword-name">Hāwiyah — Jurang Tak Berdasar</span>
+        <span class="keyword-akar">Akar: ه-و-ي (ha-wa-ya)</span>
+      </div>
+      <p class="keyword-body">Akar kata hawa/hawā berarti 'jatuh ke bawah', 'terombang-ambing di udara', atau 'kosong'. Hāwiyah adalah jurang yang tidak berdasar — sebuah kekosongan yang terus jatuh. Para ulama tafsir menyebut Hāwiyah sebagai salah satu nama neraka yang paling dalam. Yang menghantui dari kata ini: ia juga satu akar dengan 'hawā' yang berarti 'keinginan nafsu'. Seolah: mereka yang jatuh ke dalam Hāwiyah adalah mereka yang terlalu lama jatuh pada keinginan sendiri.</p>
+    </div>
+
+    <div class="keyword">
+      <div class="keyword-head">
+        <span class="keyword-arabic">أُمُّهُ</span>
+        <span class="keyword-name">Ummuh — Ibunya</span>
+        <span class="keyword-akar">Akar: أ-م-م ('a-ma-ma)</span>
+      </div>
+      <p class="keyword-body">Ini adalah ekspresi yang sangat unik dan penuh nuansa: "tempat kembalinya seperti ibu". Dalam budaya Arab, 'ibu' adalah tempat pulang, tempat berlindung, tempat yang paling fundamental. Penggunaan kata 'umm' di sini oleh para ulama ditafsirkan dengan dua cara: (1) ironi — tempat yang 'memeluk' mereka justru adalah neraka; (2) kepastian — sebagaimana seorang anak pasti kembali pada ibunya, mereka yang ringan timbangan pasti berakhir di Hāwiyah.</p>
+    </div>
+
+    <div class="badge">2 · Tafsir Mendalam</div>
+    <p class="subheading">Konteks dan Filosofi</p>
+    <p class="body-text">Dua ayat ini adalah pasangan yang kontras dengan ayat 6-7. Tapi Al-Qur'an tidak berlebihan dalam menggambarkan nasib buruk ini — cukup dua ayat, singkat, padat. Seolah Allah tidak ingin kita berlama-lama dalam ketakutan, melainkan segera berpaling ke tindakan.</p>
+    <p class="body-text">Yang paling menyentuh adalah pilihan kata 'ummuh' — ibunya. Di sini tersimpan kesedihan yang dalam: seseorang yang ringan neracanya tidak pulang ke 'rumah' dalam arti yang indah. Ia 'pulang' ke Hāwiyah — sebuah ironi yang menyayat.</p>
+    <p class="body-text">Para ulama seperti Imam Qurtubi menjelaskan bahwa kata 'Hāwiyah' mengandung makna yang membuat kita diam: tempat itu terus jatuh, tidak ada dasarnya. Bukan sekadar gelap, tapi terus turun. Kebalikan dari 'naik' yang menjadi simbol pertumbuhan rohani.</p>
+
+    <p class="subheading red">Relevansi Kekinian</p>
+
+    <div class="contoh">
+      <div class="contoh-num">Contoh Praktis · 01</div>
+      <div class="contoh-title">Generasi yang "Ada tapi Tidak Berisi"</div>
+      <p class="contoh-body">Banyak orang muda yang "aktif secara digital" tapi sepi secara makna. Ada followers, ada likes, ada pencapaian — tapi kalau ditanya "apa yang benar-benar bermakna dalam hidupmu?", mereka diam. Neraca yang "ringan" bukan berarti kosong — bisa saja penuh dengan hal-hal yang tidak memiliki bobot akhirat. Scrolling ribuan jam, drama yang tidak membangun, rutinitas tanpa niat yang jelas.</p>
+    </div>
+
+    <div class="contoh">
+      <div class="contoh-num">Contoh Praktis · 02</div>
+      <div class="contoh-title">Pulang ke "Tempat yang Salah"</div>
+      <p class="contoh-body">Ada orang yang seumur hidup mencari ketenangan di tempat yang salah: dalam kekuasaan, dalam akumulasi harta, dalam validasi sosial. Di ujung hidup mereka, "tempat pulang" itu tidak memberikan ketenangan yang dijanjikan. Hāwiyah dalam dimensi duniawi juga nyata: ketika kamu akhirnya mendapat semua yang kamu kejar, dan kamu sadar itu bukan rumah.</p>
+    </div>
+
+    <div class="badge">3 · Intisari</div>
+    <div class="intisari-grid">
+      <div class="intisari-item">Lebih baik sedikit yang berat daripada banyak yang ringan. Satu ketulusan yang mendalam, lebih berharga dari seribu rutinitas yang kosong.</div>
+      <div class="intisari-item">Kata "ibu" dalam ayat ini adalah peringatan paling lembut sekaligus paling dalam: tempat yang kita anggap "pulang" menentukan siapa kita.</div>
+      <div class="intisari-item">Hāwiyah bukan hanya tentang akhirat — setiap hari kita bisa memilih: apakah kita sedang naik, atau sedang jatuh perlahan ke kedalaman yang tidak berdasar?</div>
+    </div>
+  </section>
+
+  <div class="ornament">◈ · · · ◈ · · · ◈</div>
+
+  <!-- ════════════ AYAT 10–11 ════════════ -->
+  <section class="section" id="ayat10">
+    <div class="ayat-header">
+      <div class="ayat-num gold-text">AYAT<br>10 — 11</div>
+      <div class="ayat-title">Pertanyaan Pamungkas: Api yang Menyala</div>
+    </div>
+
+    <div class="verse-card">
+      <span class="arabic-text">وَمَا أَدْرَاكَ مَا هِيَهْ</span>
+      <div class="ayat-number">Ayat 10</div>
+    </div>
+    <p class="transliteration">Wa mā adrāka mā hiyah</p>
+    <p class="translation">"Dan tahukah kamu apakah itu (Hawiyah)?"</p>
+
+    <div class="verse-card">
+      <span class="arabic-text">نَارٌ حَامِيَةٌ</span>
+      <div class="ayat-number">Ayat 11</div>
+    </div>
+    <p class="transliteration">Nārun hāmiyah</p>
+    <p class="translation">"(Yaitu) api yang sangat panas menyala-nyala"</p>
+
+    <div class="badge">1 · Energi Kata</div>
+
+    <div class="keyword">
+      <div class="keyword-head">
+        <span class="keyword-arabic">مَا هِيَه</span>
+        <span class="keyword-name">Mā Hiyah — Apakah Itu?</span>
+        <span class="keyword-akar">Kata ganti penuh misteri</span>
+      </div>
+      <p class="keyword-body">Perhatikan frasa 'mā hiyah' — ia menggunakan kata ganti yang tidak spesifik: "apakah dia?". Ini adalah teknik retorika yang kuat: seolah-olah Allah berkata, "Hāwiyah itu melampaui nama apa pun yang bisa aku berikan, makanya aku tanyakan kembali — apakah kamu benar-benar mau tahu?" Ada jeda yang disengaja antara pertanyaan (ayat 10) dan jawaban (ayat 11) — jeda itu adalah ruang bagi pembaca untuk benar-benar merasakan kehawatiran.</p>
+    </div>
+
+    <div class="keyword">
+      <div class="keyword-head">
+        <span class="keyword-arabic">نَارٌ حَامِيَة</span>
+        <span class="keyword-name">Nārun Hāmiyah — Api yang Menjaga Panasnya</span>
+        <span class="keyword-akar">Akar: ن-و-ر / ح-م-ي</span>
+      </div>
+      <p class="keyword-body">'Nār' adalah api. 'Hāmiyah' dari akar 'hamā' yang berarti 'sangat panas', 'menjaga dengan kekerasan', atau 'yang mendidih'. Berbeda dengan api biasa yang bisa padam — 'hāmiyah' adalah api yang terus menjaga suhunya, tidak pernah padam, tidak pernah dingin. Imam Ibnu Qayyim menggambarkan: panasnya melebihi tujuh puluh kali api dunia.</p>
+    </div>
+
+    <div class="badge">2 · Tafsir Mendalam</div>
+    <p class="subheading">Konteks dan Filosofi</p>
+    <p class="body-text">Surat ini ditutup dengan cara yang sangat khas Al-Qur'an: pertanyaan diikuti jawaban yang ringkas tapi mengguncang. Ayat 10 mengulang formula 'wa mā adrāka' yang sudah muncul di ayat 3 — ini adalah teknik 'framing': antara pembukaan dan penutupan surat, ada simetri yang indah.</p>
+    <p class="body-text">'Nārun hāmiyah' — hanya dua kata. Tapi dua kata ini adalah penutup yang tidak butuh ornamen. Kadang, kebenaran yang paling besar bisa diungkapkan dengan cara yang paling sederhana. Al-Qori'ah tidak berbelit-belit di akhirnya.</p>
+    <p class="body-text">Para ulama juga menunjukkan bahwa surat yang dimulai dengan 'ketukan' (Al-Qori'ah) berakhir dengan 'api' — sebuah perjalanan dari peringatan ke konsekuensi. Seluruh surat adalah undangan: dengar ketukannya, persiapkan neracamu, atau hadapi apinya.</p>
+
+    <p class="subheading red">Relevansi Kekinian</p>
+
+    <div class="contoh">
+      <div class="contoh-num">Contoh Praktis · 01</div>
+      <div class="contoh-title">Jawaban Singkat untuk Pertanyaan Besar</div>
+      <p class="contoh-body">Kita hidup di era yang mendewakan penjelasan panjang, data, dan nuansa. Tapi terkadang kebenaran paling dalam adalah yang paling sederhana. "Nārun hāmiyah" — api yang menyala. Tidak perlu penjelasan filosofis berlapis. Begitu pula kebenaran tentang konsekuensi pilihan hidup: tidak selalu butuh debat panjang. Pilih amal berat atau pilih kelalaian — konsekuensinya nyata.</p>
+    </div>
+
+    <div class="contoh">
+      <div class="contoh-num">Contoh Praktis · 02</div>
+      <div class="contoh-title">Api yang Sudah Kita Rasakan</div>
+      <p class="contoh-body">Penyesalan adalah api yang 'hāmiyah' versi dunia: ia terus menyala, tidak padam begitu saja. Orang yang terlambat merawat orang tua, yang menyia-nyiakan waktu muda, yang mengabaikan hubungan yang berharga — mereka tahu rasanya api yang tidak padam. Al-Qori'ah mengingatkan: api akhirat jauh lebih intensif. Tapi kita masih punya waktu untuk tidak menambah bahan bakarnya.</p>
+    </div>
+
+    <div class="badge">3 · Intisari</div>
+    <div class="intisari-grid">
+      <div class="intisari-item">Dua kata bisa menutup seribu pertanyaan: Nārun hāmiyah. Kebenaran tidak selalu butuh penjelasan panjang.</div>
+      <div class="intisari-item">Api yang paling berbahaya bukan yang membakar tubuh, tapi yang membakar jiwa: api penyesalan, api kekosongan, api kehilangan makna.</div>
+      <div class="intisari-item">Surat ini dimulai dengan ketukan dan berakhir dengan api — dan di antaranya, ada timbangan. Kita sedang berdiri di titik tengah itu: sekarang.</div>
+    </div>
+  </section>
+
+  <hr class="line-divider">
+
+  <!-- ════════════ REFLEKSI PENUTUP ════════════ -->
+  <section class="section" id="refleksi">
+    <div class="badge">Refleksi Penutup</div>
+    <h2 class="section-heading gold-text">Pola & Langkah Nyata</h2>
+
+    <p class="subheading gold">Pola 1: Dari Ketukan ke Kesadaran</p>
+    <p class="body-text">Al-Qori'ah mengajarkan bahwa peringatan bekerja dalam tiga gelombang: pertama kita dengar, lalu kita bertanya, lalu kita sadar. Jangan berhenti di gelombang pertama (sekadar dengar) atau kedua (sekadar bertanya). Tantanglah diri untuk sampai ke gelombang ketiga: kesadaran yang mengubah.</p>
+
+    <p class="subheading gold">Pola 2: Dua Jalan, Satu Pilihan</p>
+    <p class="body-text">Surat ini tidak memberikan jalan ketiga. Ada yang berat, ada yang ringan. Kehidupan modern sering menawarkan ilusi "abu-abu" dan "nanti-nanti". Al-Qori'ah menegaskan: pada akhirnya, semua pilihan kita bermuara pada salah satu dari dua timbangan.</p>
+
+    <p class="subheading gold">Pola 3: Yang Besar Bisa Jadi Kecil, yang Kecil Bisa Jadi Besar</p>
+    <p class="body-text">Gunung jadi wol. Manusia jadi anai-anai. Tapi di sisi lain — satu sujud yang tulus bisa menjadi 'berat' di timbangan. Jangan meremehkan amal kecil yang konsisten dan tulus. Dan jangan mengandalkan 'gunung' pencapaian yang mungkin di hadapan-Nya seperti wol.</p>
+
+    <div class="langkah" data-num="LANGKAH NYATA · 01">
+      <div class="langkah-title"><span>→</span> Audit Neraca Mingguan</div>
+      <p class="langkah-body">Setiap akhir pekan, luangkan 15 menit untuk satu pertanyaan sederhana: "Apa yang sudah aku lakukan minggu ini yang benar-benar berat di timbangan?" Bukan seberapa produktif, bukan seberapa populer, bukan seberapa untung. Tapi: apakah ada kebaikan yang tulus, ibadah yang hadir, kebaikan ke sesama yang tidak diminta balasannya? Tulis tiga hal di buku catatan. Lihat polanya selama sebulan. Apakah timbangan makin berat, atau makin ringan?</p>
+    </div>
+
+    <div class="langkah" data-num="LANGKAH NYATA · 02">
+      <div class="langkah-title"><span>→</span> Latihan "Mendengar Ketukan"</div>
+      <p class="langkah-body">Setiap kali ada peristiwa yang mengejutkan — berita bencana, kehilangan seseorang, atau sekadar momen sunyi tiba-tiba — jadikan itu sebagai "ketukan Al-Qori'ah" versi kecil. Hentikan aktivitas, tarik napas, dan tanyakan: "Jika ini adalah saat terakhirku, apa yang aku sesali? Apa yang akan aku ubah?" Ini bukan untuk membuat kita depresif — ini untuk membuat kita hidup lebih sadar dan terarah.</p>
+    </div>
+
+    <div class="langkah" data-num="LANGKAH NYATA · 03">
+      <div class="langkah-title"><span>→</span> Ringankan Beban Orang Lain</div>
+      <p class="langkah-body">Salah satu amal yang paling berat di timbangan adalah meringankan beban orang lain. Pilih satu orang setiap minggu yang bisa kamu bantu — entah dengan tenaga, waktu, doa, atau perhatian. Tidak perlu besar. Sebuah pesan yang tulus ke teman yang sedang susah, membantu tetangga, atau sekadar hadir ketika dibutuhkan.</p>
+    </div>
+
+    <div class="closing">
+      <p>Al-Qori'ah adalah undangan, bukan vonis. Selama timbangan belum ditutup — selama kita masih bernapas — kita masih bisa memberatkan sisi kebaikan. Ketukan itu terdengar setiap hari, dalam setiap pilihan, dalam setiap momen. Pertanyaannya bukan apakah kita mendengarnya. Pertanyaannya adalah: apa yang kita lakukan setelah mendengarnya?</p>
+    </div>
+  </section>
+
+</div> <!-- end .main -->
+
+<!-- ════════════════════════════════════════
+     EPILOG
+════════════════════════════════════════ -->
+<section class="epilog-section" id="epilog">
+  <div class="main">
+    <div class="epilog-label">— Epilog —</div>
+    <h2 class="epilog-title">Surat kepada Dirimu<br>yang Sedang Sibuk</h2>
+
+    <div class="epilog-body">
+      <span class="epilog-line">Ada hari-hari ketika hidup terasa seperti daftar tugas yang tidak berakhir.</span>
+      <span class="epilog-line">Bangun. Cek notifikasi. Kerja. Makan. Scroll. Tidur. Ulangi.</span>
+      <span class="epilog-line">Dan di tengah putaran itu, ada suara yang sangat halus —</span>
+      <span class="epilog-line">hampir tidak terdengar di antara derau dunia —</span>
+      <span class="epilog-line blue">suara yang berkata: "apakah ini yang benar-benar kamu inginkan?"</span>
+
+      <span class="epilog-gap"></span>
+
+      <span class="epilog-line white">Kepada kamu yang sedang mengejar sesuatu yang terus bergerak maju,</span>
+      <span class="epilog-line white">yang kelelahan tapi tidak tahu apa yang kamu kejar,</span>
+      <span class="epilog-line white">yang punya segalanya di mata orang lain tapi masih merasakan kekosongan di dalam:</span>
+
+      <span class="epilog-gap"></span>
+      <span class="epilog-line gold">Al-Qori'ah hadir bukan untuk menakutimu.</span>
+      <span class="epilog-line gold">Ia hadir karena kamu layak untuk diingatkan.</span>
+      <span class="epilog-gap"></span>
+
+      <span class="epilog-line white">Kepada kamu yang sudah berkali-kali berjanji akan "lebih baik mulai besok",</span>
+      <span class="epilog-line white">yang tahu shalat itu penting tapi selalu ada alasan untuk menunda,</span>
+      <span class="epilog-line white">yang sudah lama tidak benar-benar duduk diam dan bertanya pada diri sendiri:</span>
+      <span class="epilog-gap"></span>
+      <span class="epilog-line highlight">"Jika hari ini adalah hari terakhirku, apa yang tersisa di neracaku?"</span>
+      <span class="epilog-gap"></span>
+
+      <span class="epilog-line white">Gunung-gunung yang terasa abadi itu — suatu hari akan jadi wol yang beterbangan.</span>
+      <span class="epilog-line white">Kesibukan yang terasa penting itu — suatu hari akan ditimbang satu per satu.</span>
+      <span class="epilog-line white">Dan kamu — bukan sebagai profesional, bukan sebagai orang tua, bukan sebagai siapapun —</span>
+      <span class="epilog-line white">hanya sebagai jiwa yang berdiri di hadapan timbangan —</span>
+      <span class="epilog-line bold">kamu akan bertanya: apakah cukup?</span>
+
+      <span class="epilog-gap"></span>
+
+      <span class="epilog-line">Tapi inilah yang Al-Qori'ah tidak katakan, tapi tersirat dalam setiap ayatnya:</span>
+      <span class="epilog-gap"></span>
+      <span class="epilog-line green">Kamu masih di sini. Masih bernapas. Masih bisa.</span>
+      <span class="epilog-line green">Ketukan itu belum berhenti.</span>
+      <span class="epilog-gap"></span>
+
+      <span class="epilog-line white">Masih ada waktu untuk memberatkan timbangan.</span>
+      <span class="epilog-line white">Masih ada waktu untuk sujud yang lebih dalam.</span>
+      <span class="epilog-line white">Masih ada waktu untuk bicara baik kepada orang yang kamu cintai.</span>
+      <span class="epilog-line white">Masih ada waktu untuk menjadi versi dirimu yang tidak akan kamu sesali.</span>
+
+      <span class="epilog-gap"></span>
+      <span class="epilog-line">Maka ketika kamu mendengar ketukan itu hari ini —</span>
+      <span class="epilog-line">dalam sepi sebelum tidur, dalam adzan yang lewat begitu saja,</span>
+      <span class="epilog-line">dalam senyum anak kecil yang belum tercemar kesibukan dunia —</span>
+      <span class="epilog-gap"></span>
+      <span class="epilog-line big">Berhentilah sejenak.</span>
+      <span class="epilog-line big">Dengarkan.</span>
+      <span class="epilog-line big">Dan pilih untuk memberatkan timbangan.</span>
+      <span class="epilog-gap"></span>
+
+      <span class="epilog-line final">Karena kelak, bukan seberapa terkenal kamu,</span>
+      <span class="epilog-line final">bukan seberapa kaya, bukan seberapa sibuk —</span>
+      <span class="epilog-line final">yang akan menentukan di mana kamu pulang.</span>
+
+      <span class="epilog-gap"></span>
+      <span class="epilog-line bold" style="font-size:1.4em">Tapi seberapa berat neracamu.</span>
+      <span class="epilog-gap"></span>
+      <span class="epilog-line" style="font-style:italic;color:var(--gold)">Satu amal pada satu waktu.</span>
+      <span class="epilog-line final">Sampai timbangan itu berat, dan kehidupan yang memuaskan menyambutmu.</span>
+
+      <div class="epilog-closer">
+        <span class="khatimah">وَاللَّهُ أَعْلَمُ</span>
+        <span class="khatimah-trans">Dan Allah lebih mengetahui.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════ -->
+<script>
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+
+  // ── Navbar on scroll ──
+  const bar = document.getElementById('dlBar');
+  window.addEventListener('scroll', () => {
+    bar.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // ── Download function ──
+  function downloadHTML(e) {
+    e.preventDefault();
+    const html = document.documentElement.outerHTML;
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'AlQariah_TafsirMendalam.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

@@ -1,0 +1,1189 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tafsir Al-'Ashr — Waktu: Blueprint Permainan Kehidupan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #D4AF37;
+    --gold-light: #F0D060;
+    --gold-dim: #9A7D20;
+    --gold-pale: #3A2E0A;
+    --white: #F5F0E8;
+    --off-white: #DDD5C0;
+    --gray: #888070;
+    --bg: #0A0906;
+    --bg2: #100E0A;
+    --bg3: #181410;
+    --bg4: #201C16;
+    --border: rgba(212,175,55,0.25);
+    --border-strong: rgba(212,175,55,0.55);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--off-white);
+    font-family: 'Lato', 'Segoe UI', sans-serif;
+    font-weight: 300;
+    line-height: 1.85;
+    font-size: 16px;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+
+  /* ── ARABIC ── */
+  .arabic {
+    font-family: 'Traditional Arabic', 'Scheherazade New', 'Amiri', serif;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    color: var(--gold-light);
+    text-align: center;
+  }
+  .arabic-xl { font-size: clamp(52px, 8vw, 88px); line-height: 1.4; letter-spacing: 0.02em; }
+  .arabic-lg { font-size: clamp(38px, 6vw, 64px); line-height: 1.5; }
+  .arabic-md { font-size: clamp(28px, 4.5vw, 48px); line-height: 1.5; }
+  .arabic-sm { font-size: clamp(22px, 3.5vw, 36px); line-height: 1.6; }
+
+  /* ── GOLD HEADINGS ── */
+  .title-main {
+    font-family: 'Cinzel Decorative', 'Palatino Linotype', serif;
+    color: var(--gold);
+    text-align: center;
+    letter-spacing: 0.06em;
+  }
+  .title-xl { font-size: clamp(28px, 5vw, 52px); font-weight: 700; }
+  .title-lg { font-size: clamp(22px, 3.5vw, 36px); font-weight: 700; }
+  .title-md { font-size: clamp(17px, 2.5vw, 24px); font-weight: 400; }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .st-xl { font-size: clamp(24px, 4vw, 40px); }
+  .st-lg { font-size: clamp(20px, 3vw, 30px); }
+  .st-md { font-size: clamp(17px, 2.5vw, 22px); }
+
+  .label {
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+
+  /* ── GOLD RULE ── */
+  .rule {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 auto;
+  }
+  .rule-full { width: 100%; }
+  .rule-80  { width: 80%; }
+  .rule-50  { width: 50%; }
+  .rule-30  { width: 30%; }
+  .rule-thick {
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+  .container-wide { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+
+  /* ── COVER ── */
+  #cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 60%, #1a1408 0%, var(--bg) 70%);
+  }
+  #cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(212,175,55,0.03) 80px),
+      repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(212,175,55,0.03) 80px);
+  }
+  .cover-ornament {
+    color: var(--gold);
+    font-size: 28px;
+    letter-spacing: 0.4em;
+    opacity: 0.5;
+    margin: 1.2rem 0;
+  }
+  .cover-tagline {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    color: var(--gold-dim);
+    font-size: clamp(14px, 2vw, 18px);
+    text-align: center;
+    max-width: 600px;
+    line-height: 1.8;
+    margin: 1.2rem auto 0;
+  }
+  .cover-subtitle {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    color: var(--gray);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 0.6rem;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold-dim);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  .scroll-arrow { display: block; text-align: center; font-size: 20px; margin-top: 4px; color: var(--gold-dim); }
+  @keyframes pulse { 0%,100%{opacity:0.35} 50%{opacity:0.85} }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,9,6,0.94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.7rem 2rem;
+  }
+  .nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .nav-brand {
+    font-family: 'Traditional Arabic', serif;
+    color: var(--gold);
+    font-size: 22px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap; }
+  .nav-links a {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .btn-download {
+    background: var(--gold-pale);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold-light) !important;
+    padding: 0.35rem 1rem;
+    border-radius: 3px;
+    font-size: 11px !important;
+    letter-spacing: 0.16em !important;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    text-decoration: none;
+  }
+  .btn-download:hover { background: rgba(212,175,55,0.18) !important; border-color: var(--gold) !important; color: var(--gold-light) !important; }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  .bg-alt { background: var(--bg2); }
+  .bg-alt2 { background: var(--bg3); }
+
+  /* ── INFO TABLE ── */
+  .info-table { width: 100%; border-collapse: collapse; }
+  .info-table tr { border-bottom: 1px solid var(--border); }
+  .info-table tr:last-child { border-bottom: none; }
+  .info-table td { padding: 0.85rem 1rem; vertical-align: top; }
+  .info-table td:first-child {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    font-weight: 700;
+    white-space: nowrap;
+    width: 160px;
+    padding-right: 1.5rem;
+  }
+  .info-table td:last-child { color: var(--off-white); font-size: 15px; }
+
+  /* ── AYAT CARD ── */
+  .ayat-card {
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--gold);
+    border-radius: 2px;
+    padding: 2.5rem 2rem;
+    margin: 2rem 0;
+  }
+  .transliteration {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    color: var(--gold-dim);
+    text-align: center;
+    font-size: 15px;
+    margin: 0.4rem 0 0.8rem;
+    letter-spacing: 0.05em;
+  }
+  .translation {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--off-white);
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ── ENERGI KATA ── */
+  .kata-block {
+    background: var(--bg4);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 2px 2px 0;
+    padding: 1.5rem 1.8rem;
+    margin: 1.8rem 0;
+  }
+  .kata-block .arabic { text-align: left; color: var(--gold-light); }
+  .kata-block .arabic-sm { font-size: 36px; }
+  .kata-label {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+  .kata-meaning {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--gold-light);
+    font-size: 18px;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .kata-body { color: var(--off-white); font-size: 15px; line-height: 1.85; }
+
+  /* ── CONTENT ── */
+  .prose { color: var(--off-white); font-size: 16px; line-height: 1.9; }
+  .prose + .prose { margin-top: 1rem; }
+  .prose-indent { text-indent: 2em; }
+
+  .highlight-quote {
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--gold-pale);
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    color: var(--gold-light);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .relevance-block {
+    background: rgba(212,175,55,0.04);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 1.8rem;
+    margin: 2rem 0;
+  }
+  .relevance-block .relevance-title {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── INTISARI BOX ── */
+  .intisari-box {
+    border: 1px solid var(--gold);
+    border-radius: 2px;
+    padding: 2rem 2.2rem;
+    margin: 2.5rem 0;
+    background: linear-gradient(135deg, var(--gold-pale) 0%, var(--bg4) 100%);
+    position: relative;
+  }
+  .intisari-box::before {
+    content: '✦  INTISARI  ✦';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg);
+    padding: 0 1rem;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+    white-space: nowrap;
+  }
+  .intisari-line {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    color: var(--gold-light);
+    font-size: 15px;
+    line-height: 1.85;
+  }
+  .intisari-line + .intisari-line { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid var(--border); }
+
+  /* ── NUMBERED LIST ── */
+  .num-list { list-style: none; padding: 0; margin: 1.2rem 0; }
+  .num-list li {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+  }
+  .num-badge {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    border: 1px solid var(--gold-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+  .num-content { color: var(--off-white); font-size: 15px; line-height: 1.85; }
+  .num-content strong { color: var(--gold-light); font-weight: 700; }
+
+  /* ── BULLET LIST ── */
+  .diamond-list { list-style: none; padding: 0; margin: 1.2rem 0; }
+  .diamond-list li {
+    padding: 0.4rem 0 0.4rem 1.8rem;
+    position: relative;
+    color: var(--off-white);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .diamond-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--gold-dim);
+    font-size: 11px;
+    top: 0.58rem;
+  }
+
+  /* ── BLUEPRINT TABLE ── */
+  .blueprint-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+  .blueprint-table thead tr { background: var(--gold-pale); }
+  .blueprint-table thead th {
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    border: 1px solid var(--border);
+  }
+  .blueprint-table tbody tr { border: 1px solid var(--border); }
+  .blueprint-table tbody tr:nth-child(odd) { background: rgba(212,175,55,0.03); }
+  .blueprint-table tbody tr:nth-child(even) { background: var(--bg4); }
+  .blueprint-table tbody td {
+    padding: 0.75rem 1rem;
+    font-size: 14px;
+    color: var(--off-white);
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .blueprint-table tbody td:first-child { color: var(--gold-dim); font-weight: 700; font-size: 12px; }
+  .blueprint-table tbody td .arabic { font-size: 22px; text-align: left; }
+
+  /* ── ACTION STEPS ── */
+  .action-step {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.6rem;
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    margin: 1.2rem 0;
+    align-items: flex-start;
+  }
+  .action-step-num {
+    flex-shrink: 0;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 28px;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 36px;
+    text-align: center;
+    padding-top: 4px;
+  }
+  .action-step-content { flex: 1; }
+  .action-timing {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .action-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: var(--gold-light);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+  .action-body { color: var(--off-white); font-size: 15px; line-height: 1.85; }
+
+  /* ── FONDASI CARDS ── */
+  .fondasi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; margin: 2rem 0; }
+  .fondasi-card {
+    background: var(--bg4);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--gold-dim);
+    padding: 1.6rem;
+    border-radius: 2px;
+    text-align: center;
+  }
+  .fondasi-number {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 36px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .fondasi-arabic { font-family: 'Traditional Arabic', serif; font-size: 28px; color: var(--gold-light); direction: rtl; margin-bottom: 0.5rem; }
+  .fondasi-name { font-family: 'Playfair Display', serif; color: var(--off-white); font-size: 16px; font-weight: 600; margin-bottom: 0.3rem; }
+  .fondasi-desc { color: var(--gray); font-size: 13px; line-height: 1.7; }
+
+  /* ── CLOSING STATEMENT ── */
+  .closing-block {
+    background: linear-gradient(135deg, var(--gold-pale), var(--bg4));
+    border: 1px solid var(--gold);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin: 3rem 0;
+    position: relative;
+  }
+  .closing-block::before, .closing-block::after {
+    content: '✦';
+    position: absolute;
+    color: var(--gold);
+    font-size: 18px;
+  }
+  .closing-block::before { top: 1rem; left: 1.5rem; }
+  .closing-block::after  { bottom: 1rem; right: 1.5rem; }
+
+  /* ── EPILOG ── */
+  #epilog { background: var(--bg); }
+  .epilog-line {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    color: var(--off-white);
+    font-size: clamp(15px, 2vw, 17px);
+    line-height: 2;
+    text-align: center;
+    display: block;
+  }
+  .epilog-line.emphasis { color: var(--gold-light); font-size: clamp(16px, 2.2vw, 19px); }
+  .epilog-line.dim { color: var(--gray); font-size: 15px; }
+  .epilog-gap { display: block; height: 1.6rem; }
+
+  /* ── BACK TO TOP ── */
+  .back-top {
+    display: block;
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--gold-dim);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .back-top:hover { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .container, .container-wide { padding: 0 1.2rem; }
+    section { padding: 3.5rem 0; }
+    .info-table td:first-child { width: 110px; font-size: 11px; }
+    .action-step { flex-direction: column; gap: 0.8rem; }
+    .fondasi-grid { grid-template-columns: 1fr; }
+    nav { padding: 0.6rem 1.2rem; }
+    .nav-links { gap: 0.8rem; }
+  }
+
+  @media print {
+    nav { display: none; }
+    #cover { min-height: auto; padding: 3rem 2rem; background: #000 !important; }
+    body { background: #000 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ COVER ═══════════════════════════════════════════════════════════════ -->
+<section id="cover">
+  <div style="position:relative;z-index:1;text-align:center;width:100%">
+    <div class="label" style="margin-bottom:1.5rem">Tafsir Mendalam · Refleksi Kehidupan</div>
+
+    <div class="arabic arabic-xl" style="margin-bottom:0.5rem">وَالْعَصْرِ</div>
+
+    <div class="cover-ornament">— ✦ ✦ ✦ —</div>
+
+    <h1 class="title-main title-xl" style="margin-bottom:0.4rem">Surat Al-'Ashr</h1>
+    <p class="title-main title-md" style="margin-bottom:1.5rem;color:var(--gold-dim)">Waktu: Blueprint Permainan Kehidupan</p>
+
+    <hr class="rule rule-50 rule-thick" style="margin:1.5rem auto">
+
+    <p class="cover-tagline">
+      "Kamu tidak kekurangan waktu — kamu kekurangan arah.<br>
+      Dan Al-'Ashr datang untuk memberimu peta."
+    </p>
+
+    <p class="cover-subtitle" style="margin-top:2rem">Tiga Ayat · Seratus Empat Belas Karakter · Seumur Hidup Petunjuk</p>
+
+    <div class="cover-ornament" style="margin-top:2rem">✦</div>
+  </div>
+  <div class="scroll-hint">Gulir ke bawah<span class="scroll-arrow">↓</span></div>
+</section>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#cover" class="nav-brand">الْعَصْر</a>
+    <div class="nav-links">
+      <a href="#info">Dasar</a>
+      <a href="#teks">Teks Surat</a>
+      <a href="#ayat1">Ayat 1</a>
+      <a href="#ayat2">Ayat 2</a>
+      <a href="#ayat3">Ayat 3</a>
+      <a href="#refleksi">Refleksi</a>
+      <a href="#epilog">Epilog</a>
+      <a href="Tafsir_Al-Ashr_Blueprint_Kehidupan.html" download class="btn-download">⬇ Unduh HTML</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ KATA PENGANTAR ══════════════════════════════════════════════════════ -->
+<section id="pengantar" class="bg-alt">
+  <div class="container">
+    <div class="label" style="margin-bottom:0.8rem">Kata Pengantar</div>
+    <h2 class="section-title st-lg" style="margin-bottom:2rem">Sebuah Kotak Misterius</h2>
+    <hr class="rule rule-full" style="margin-bottom:2rem">
+
+    <p class="prose prose-indent">Bayangkan seseorang memberimu sebuah kotak misterius. Di dalamnya ada semua yang kamu butuhkan untuk menang dalam kehidupan — bukan hanya di akhirat, tapi di sini, sekarang, di tengah hiruk-pikuk dunia modern yang sering membuatmu merasa kewalahan.</p>
+    <p class="prose prose-indent" style="margin-top:1rem">Kotak itu bukan barang mahal. Bukan aplikasi canggih. Bukan kursus ribuan dolar. Kotak itu adalah tiga ayat — seratus empat belas karakter Arab — yang oleh Imam Syafi'i pernah dinyatakan: <em style="color:var(--gold-light)">"Seandainya manusia merenungkan surat ini saja, niscaya itu cukup sebagai pedoman hidup mereka."</em></p>
+    <p class="prose prose-indent" style="margin-top:1rem">Surat Al-'Ashr adalah surat terpendek kedua dalam Al-Qur'an. Tapi jangan tertipu oleh singkatnya. Di balik tiga ayatnya tersimpan sebuah cetak biru kehidupan yang lengkap — diagnosis paling jujur tentang kondisi manusia, dan sekaligus resep paling komprehensif untuk mengatasinya.</p>
+    <p class="prose prose-indent" style="margin-top:1rem">Ini bukan kajian akademis yang kaku. Ini adalah percakapan — antara teks suci yang berusia empat belas abad dengan realitas hidupmu hari ini.</p>
+
+    <div style="text-align:center;margin-top:3rem">
+      <div class="arabic arabic-md" style="margin-bottom:0.4rem">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold-dim);font-size:14px">Dengan nama Allah Yang Maha Pengasih, Maha Penyayang</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ INFORMASI DASAR ══════════════════════════════════════════════════════ -->
+<section id="info">
+  <div class="container">
+    <div class="label" style="margin-bottom:0.8rem">Informasi Dasar</div>
+    <h2 class="section-title st-lg" style="margin-bottom:2rem">Mengenal Surat Al-'Ashr</h2>
+    <hr class="rule rule-full" style="margin-bottom:2.5rem">
+
+    <table class="info-table">
+      <tr><td>Nama Surat</td><td><span class="arabic" style="font-size:22px;text-align:left;display:inline">الْعَصْر</span> &nbsp;·&nbsp; Al-'Ashr (Waktu / Masa)</td></tr>
+      <tr><td>Urutan</td><td>Surat ke-103 dalam Al-Qur'an</td></tr>
+      <tr><td>Jumlah Ayat</td><td>3 Ayat</td></tr>
+      <tr><td>Periode</td><td>Makkiyyah (turun di Mekkah, sebelum Hijrah)</td></tr>
+      <tr><td>Jumlah Kata</td><td>14 kata</td></tr>
+      <tr><td>Jumlah Huruf</td><td>68 huruf</td></tr>
+      <tr><td>Tema Sentral</td><td>Keselamatan manusia dari kerugian melalui empat fondasi</td></tr>
+      <tr><td>Keistimewaan</td><td><em style="color:var(--gold-dim)">"Seandainya hanya surat ini yang diturunkan, sudah cukup sebagai petunjuk."</em><br><span style="font-size:13px;color:var(--gray)">— Imam Syafi'i</span></td></tr>
+    </table>
+
+    <div class="closing-block" style="margin-top:3rem;padding:2rem">
+      <p class="label" style="margin-bottom:0.5rem">Tagline</p>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold-light);font-size:clamp(15px,2.2vw,20px);line-height:1.8">
+        "Kamu tidak kekurangan waktu — kamu kekurangan arah.<br>Dan Al-'Ashr datang untuk memberimu peta."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TEKS SURAT ═══════════════════════════════════════════════════════════ -->
+<section id="teks" class="bg-alt">
+  <div class="container">
+    <div class="label" style="margin-bottom:0.8rem">Teks Surat Al-'Ashr</div>
+    <h2 class="section-title st-lg" style="margin-bottom:2rem">Bacaan Lengkap</h2>
+    <hr class="rule rule-full" style="margin-bottom:2.5rem">
+
+    <div class="ayat-card">
+      <p class="label" style="text-align:center;margin-bottom:1rem">Ayat 1</p>
+      <div class="arabic arabic-xl">وَالْعَصْرِ</div>
+      <p class="transliteration">Wal-'ashr(i)</p>
+      <p class="translation">Demi waktu,</p>
+    </div>
+
+    <div class="ayat-card">
+      <p class="label" style="text-align:center;margin-bottom:1rem">Ayat 2</p>
+      <div class="arabic arabic-lg">إِنَّ الْإِنسَانَ لَفِي خُسْرٍ</div>
+      <p class="transliteration">Innal-insaana lafii khusr(in)</p>
+      <p class="translation">Sungguh, manusia benar-benar berada dalam kerugian,</p>
+    </div>
+
+    <div class="ayat-card">
+      <p class="label" style="text-align:center;margin-bottom:1rem">Ayat 3</p>
+      <div class="arabic arabic-sm" style="font-size:clamp(20px,3.5vw,36px);line-height:1.9">إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ</div>
+      <p class="transliteration">Illalladziina aamanuu wa 'amilush-shaalihaati wa tawaashau bilhaqqi wa tawaashau bish-shabr(i)</p>
+      <p class="translation">kecuali orang-orang yang beriman, mengerjakan kebajikan, saling menasihati untuk kebenaran, dan saling menasihati untuk kesabaran.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AYAT 1 ════════════════════════════════════════════════════════════════ -->
+<section id="ayat1">
+  <div class="container">
+    <div class="label" style="margin-bottom:0.6rem">Ayat Pertama</div>
+    <div class="arabic arabic-lg" style="margin-bottom:0.4rem">وَالْعَصْرِ</div>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold-dim);text-align:center;font-size:16px;margin-bottom:2rem">"Demi waktu"</p>
+    <hr class="rule rule-full rule-thick" style="margin-bottom:3rem">
+
+    <!-- ENERGI KATA -->
+    <div class="label" style="margin-bottom:0.8rem">1 · Energi Kata</div>
+    <h3 class="section-title st-md" style="margin-bottom:1.5rem">Memahami Kata-Kata Kunci Ayat Pertama</h3>
+
+    <div class="kata-block">
+      <p class="kata-label">Huruf Qasam</p>
+      <div class="arabic" style="text-align:left;font-size:42px">وَ</div>
+      <p class="kata-meaning">Huruf Sumpah — Tanda Keseriusan Ilahi</p>
+      <p class="kata-body">Huruf "Waw" di sini adalah <em>waw qasam</em> — huruf yang digunakan untuk bersumpah. Ketika Allah berfirman dengan "Wal...", itu adalah sumpah Ilahi yang paling serius. Cara Al-Qur'an mengatakan: <em style="color:var(--gold-light)">"Hei, dengarkan ini. Sungguh-sungguh. Ini bukan main-main."</em></p>
+    </div>
+
+    <div class="kata-block">
+      <p class="kata-label">Kata Kunci Utama</p>
+      <div class="arabic" style="text-align:left;font-size:42px">الْعَصْر</div>
+      <p class="kata-meaning">Waktu / Zaman / Sore Hari — Berlapis Tiga Makna</p>
+      <p class="kata-body">Kata 'Ashr berasal dari akar kata <strong style="color:var(--gold-light)">ع-ص-ر</strong> yang memiliki tiga makna berlapis:</p>
+      <ul class="num-list" style="margin-top:1rem">
+        <li><span class="num-badge">١</span><span class="num-content"><strong>Waktu sore hari</strong> — antara tengah hari dan magrib; matahari condong ke barat, hari hampir habis.</span></li>
+        <li><span class="num-badge">٢</span><span class="num-content"><strong>Zaman secara umum</strong> — seluruh rentang waktu yang diberikan kepada manusia dalam kehidupan dunia.</span></li>
+        <li><span class="num-badge">٣</span><span class="num-content"><strong>Sesuatu yang diperas</strong> — seperti buah yang diperas untuk diambil sarinya. Waktu harus "diperas" agar tidak terbuang sia-sia.</span></li>
+      </ul>
+    </div>
+
+    <!-- Tabel Sinonim -->
+    <h4 class="section-title" style="font-size:16px;margin:2.5rem 0 1rem">Perbandingan dengan Sinonim</h4>
+    <div style="overflow-x:auto">
+    <table class="blueprint-table">
+      <thead><tr><th>Kata Arab</th><th>Arti Dasar</th><th>Nuansa Khusus</th></tr></thead>
+      <tbody>
+        <tr><td><span class="arabic" style="font-size:20px;text-align:left">الْعَصْر</span></td><td>Waktu sore / masa</td><td>Waktu yang harus diperas nilainya; ada batas yang terasa</td></tr>
+        <tr><td><span class="arabic" style="font-size:20px;text-align:left">الزَّمَان</span></td><td>Waktu umum</td><td>Waktu abstrak tanpa batas, lebih filosofis</td></tr>
+        <tr><td><span class="arabic" style="font-size:20px;text-align:left">الْوَقْت</span></td><td>Waktu tertentu</td><td>Waktu yang sudah ditentukan untuk suatu hal</td></tr>
+        <tr><td><span class="arabic" style="font-size:20px;text-align:left">الدَّهْر</span></td><td>Zaman panjang / era</td><td>Waktu yang sangat panjang, hampir tanpa batas</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- TAFSIR -->
+    <div class="label" style="margin:3rem 0 0.8rem">2 · Tafsir Mendalam</div>
+    <h3 class="section-title st-md" style="margin-bottom:1.5rem">Mengapa Allah Bersumpah dengan Waktu?</h3>
+    <hr class="rule rule-full" style="margin-bottom:1.5rem">
+
+    <p class="prose prose-indent">Ayat pertama ini berdiri sendiri sebagai sebuah sumpah. Hanya dua kata — tapi kekuatannya luar biasa. Allah, Sang Pencipta segala sesuatu, bersumpah dengan salah satu ciptaan-Nya yang paling tidak bisa dipegang, tidak bisa dihentikan, dan tidak bisa dikembalikan: waktu.</p>
+    <p class="prose prose-indent" style="margin-top:1rem">Ketika Allah bersumpah dengan waktu, ada pesan tersirat: waktu adalah saksi atas semua yang pernah terjadi. Waktu mencatat setiap detik pilihan manusia — waktu tahu siapa yang memanfaatkannya dengan baik, dan siapa yang menyia-nyiakannya.</p>
+
+    <div class="relevance-block">
+      <p class="relevance-title">✦ Relevansi Kekinian</p>
+      <p class="prose" style="margin-bottom:1rem">Kita hidup di era di mana waktu terasa semakin cepat — tapi ironisnya, banyak dari kita merasa semakin tidak produktif. Notifikasi yang terus berdatangan, konten yang tidak ada habisnya, dan tekanan sosial untuk selalu "terlihat sibuk" — semuanya mencuri waktu kita dalam porsi kecil-kecil yang hampir tidak terasa. Seperti keran air yang menetes pelan: tidak terasa bocor, tapi lama-lama tempat airmu habis.</p>
+      <ul class="num-list">
+        <li><span class="num-badge">1</span><span class="num-content"><strong>Time audit pribadi:</strong> Selama 3 hari, catat apa yang kamu lakukan setiap jam. Bukan untuk menghakimi diri sendiri, tapi untuk melihat fakta. Berapa jam yang benar-benar membawamu maju?</span></li>
+        <li><span class="num-badge">2</span><span class="num-content"><strong>Renungan "waktu sore":</strong> Setiap hari sekitar pukul 15.00–16.00, ambil tiga menit untuk bertanya: "Dari tadi pagi, sudah apa saja yang bermakna yang aku lakukan?"</span></li>
+      </ul>
+      <div class="highlight-quote" style="margin-top:1.2rem">Jika kamu tahu persis berapa jam hidupmu yang tersisa — katakanlah, layar besar menunjukkan hitungan mundur tepat di depan matamu — apa yang pertama kali kamu ubah dari rutinitas harianmu?</div>
+    </div>
+
+    <div class="intisari-box">
+      <p class="intisari-line">Waktu adalah satu-satunya sumber daya yang, ketika hilang, tidak bisa dibeli kembali dengan uang, jabatan, atau hubungan apapun.</p>
+      <p class="intisari-line">Allah bersumpah dengan waktu bukan untuk menakut-nakutimu — tapi untuk mengajakmu sadar bahwa setiap detik adalah anugerah yang sedang kamu jalani, bukan sekadar latar belakang kehidupan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AYAT 2 ════════════════════════════════════════════════════════════════ -->
+<section id="ayat2" class="bg-alt">
+  <div class="container">
+    <div class="label" style="margin-bottom:0.6rem">Ayat Kedua</div>
+    <div class="arabic arabic-md" style="margin-bottom:0.4rem">إِنَّ الْإِنسَانَ لَفِي خُسْرٍ</div>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold-dim);text-align:center;font-size:16px;margin-bottom:2rem">"Sungguh, manusia benar-benar berada dalam kerugian"</p>
+    <hr class="rule rule-full rule-thick" style="margin-bottom:3rem">
+
+    <div class="label" style="margin-bottom:0.8rem">1 · Energi Kata</div>
+    <h3 class="section-title st-md" style="margin-bottom:1.5rem">Tiga Kata yang Mengguncang Kesadaran</h3>
+
+    <div class="kata-block">
+      <p class="kata-label">Penekanan Berlapis</p>
+      <div class="arabic" style="text-align:left;font-size:42px">إِنَّ</div>
+      <p class="kata-meaning">Sesungguhnya — Taukid Ganda</p>
+      <p class="kata-body">Inna adalah huruf penekanan yang sangat kuat. Ditambah dengan <em style="color:var(--gold-light)">Lam (لَ)</em> pada "lafi" — ada dua penekanan sekaligus dalam satu kalimat. Dalam ilmu Balaghah, ini disebut <em>tawkid muta'addid</em> — penekanan berlapis yang menunjukkan betapa seriusnya realita ini.</p>
+    </div>
+
+    <div class="kata-block">
+      <p class="kata-label">Subjek Universal</p>
+      <div class="arabic" style="text-align:left;font-size:42px">الْإِنسَان</div>
+      <p class="kata-meaning">Manusia — Mencakup Semua Tanpa Terkecuali</p>
+      <p class="kata-body">Al-Insan menggunakan <em>alif-lam</em> yang menggeneralisasi — mencakup semua manusia. Akar katanya dari <strong style="color:var(--gold-light)">uns (أُنْس)</strong> — keakraban dan kehangatan sosial; ada juga dari <strong style="color:var(--gold-light)">nisyan (نِسْيَان)</strong> — lupa. Dua sifat dasar manusia: rindu kedekatan dan mudah lupa — keduanya bisa menjadi pintu kerugian.</p>
+    </div>
+
+    <div class="kata-block">
+      <p class="kata-label">Inti Diagnosis</p>
+      <div class="arabic" style="text-align:left;font-size:42px">خُسْر</div>
+      <p class="kata-meaning">Kerugian Aktif — Bukan Sekadar "Tidak Untung"</p>
+      <p class="kata-body">Khusr berasal dari dunia perdagangan — kondisi di mana modal yang dikeluarkan tidak mendapat imbal balik yang seimbang, bahkan terus menyusut. Ini bukan ledakan bencana seketika, tapi <em>erosi perlahan yang mematikan</em>. Dan modal yang dimaksud? <strong style="color:var(--gold-light)">Waktu hidupmu.</strong></p>
+    </div>
+
+    <div class="label" style="margin:3rem 0 0.8rem">2 · Tafsir Mendalam</div>
+    <h3 class="section-title st-md" style="margin-bottom:1.5rem">Diagnosis Paling Jujur tentang Kondisi Manusia</h3>
+    <hr class="rule rule-full" style="margin-bottom:1.5rem">
+
+    <p class="prose prose-indent">Ayat ini adalah diagnosis, bukan hukuman. Ada perbedaan besar di antara keduanya. Hukuman datang dari luar dan membuatmu merasa bersalah. Diagnosis datang dari kepedulian dan membuatmu ingin berubah.</p>
+    <p class="prose prose-indent" style="margin-top:1rem">Surat Al-'Ashr pada dasarnya adalah surat tentang <em style="color:var(--gold-light)">default setting</em> manusia. Tanpa upaya sadar, manusia akan "mengalir" menuju kerugian — bukan karena jahat, tapi karena memang begitulah kecenderungan alamiah: mencari kenyamanan, menghindari ketidaknyamanan, hidup tanpa arah yang jelas.</p>
+
+    <div class="relevance-block">
+      <p class="relevance-title">✦ Wajah Khusr di Zaman Sekarang</p>
+      <p class="prose" style="margin-bottom:1rem">Khusr hari ini tidak selalu terlihat seperti kegagalan dramatis. Justru seringkali ia hadir dalam wajah yang sangat biasa:</p>
+      <ul class="diamond-list">
+        <li>Menghabiskan tiga jam scrolling media sosial tanpa sadar, lalu merasa kosong dan tidak puas</li>
+        <li>Mengejar pencapaian demi pengakuan orang lain, bukan karena makna yang sesungguhnya</li>
+        <li>Tahu apa yang harus dilakukan, tapi terus menundanya — prokrastinasi kronis yang memakan modal waktu</li>
+        <li>Sibuk dengan banyak hal kecil yang tidak penting, sementara hal-hal besar yang bermakna terabaikan</li>
+        <li>Hidup dalam "autopilot" — bangun, bekerja, tidur, ulangi — tanpa pernah bertanya: ini untuk apa?</li>
+      </ul>
+      <ul class="num-list" style="margin-top:1.5rem">
+        <li><span class="num-badge">1</span><span class="num-content"><strong>Neraca waktu mingguan:</strong> Di akhir setiap minggu, tanyakan — dari 168 jam yang ada, berapa jam yang digunakan untuk sesuatu yang benar-benar bermakna?</span></li>
+        <li><span class="num-badge">2</span><span class="num-content"><strong>Identifikasi "time drain" terbesarmu:</strong> Satu kebiasaan apa yang paling banyak memakan waktu tanpa memberikan nilai nyata? Bukan untuk langsung dihapus — tapi untuk pertama kali diakui.</span></li>
+      </ul>
+      <div class="highlight-quote" style="margin-top:1.2rem">Jika hidupmu adalah sebuah bisnis, dan waktumu adalah modalnya — apakah bisnis itu sedang untung atau rugi? Dan perubahan kecil apa yang bisa kamu buat minggu ini?</div>
+    </div>
+
+    <div class="intisari-box">
+      <p class="intisari-line">Kerugian bukan selalu tentang bencana besar — ia bisa hadir dalam bentuk detik demi detik yang berlalu tanpa makna, hari demi hari yang terisi tapi terasa kosong.</p>
+      <p class="intisari-line">Allah mendiagnosis kondisi manusia bukan untuk menghukum, tapi karena tidak ada yang lebih peduli pada keselamatanmu daripada Penciptamu sendiri.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AYAT 3 ════════════════════════════════════════════════════════════════ -->
+<section id="ayat3">
+  <div class="container">
+    <div class="label" style="margin-bottom:0.6rem">Ayat Ketiga</div>
+    <div class="arabic" style="font-family:'Traditional Arabic',serif;font-size:clamp(19px,3.2vw,32px);line-height:2;color:var(--gold-light);text-align:center;margin-bottom:0.4rem;direction:rtl">إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ</div>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold-dim);text-align:center;font-size:15px;margin-bottom:2rem;line-height:1.8">"kecuali orang-orang yang beriman, mengerjakan kebajikan,<br>saling menasihati untuk kebenaran, dan saling menasihati untuk kesabaran"</p>
+    <hr class="rule rule-full rule-thick" style="margin-bottom:3rem">
+
+    <p class="prose prose-indent" style="margin-bottom:2.5rem">Setelah ayat pertama bersumpah dengan waktu, dan ayat kedua mendiagnosis kerugian manusia — kini ayat ketiga hadir dengan jawaban yang diawali <em style="color:var(--gold-light)">ILLA</em> (kecuali). Ada pengecualian. Ada jalan keluar. Empat fondasi yang konkret dan bisa dikerjakan oleh siapa saja.</p>
+
+    <!-- FONDASI OVERVIEW -->
+    <div class="fondasi-grid">
+      <div class="fondasi-card">
+        <div class="fondasi-number">I</div>
+        <div class="fondasi-arabic">آمَنُوا</div>
+        <div class="fondasi-name">Iman</div>
+        <div class="fondasi-desc">Fondasi akar yang tidak tergoyahkan — sistem navigasi jiwa</div>
+      </div>
+      <div class="fondasi-card">
+        <div class="fondasi-number">II</div>
+        <div class="fondasi-arabic">الصَّالِحَات</div>
+        <div class="fondasi-name">Amal Shalih</div>
+        <div class="fondasi-desc">Iman yang bergerak dan mewujud dalam tindakan nyata</div>
+      </div>
+      <div class="fondasi-card">
+        <div class="fondasi-number">III</div>
+        <div class="fondasi-arabic">بِالْحَقّ</div>
+        <div class="fondasi-name">Saling Jujur</div>
+        <div class="fondasi-desc">Komunitas yang cukup peduli untuk berkata benar</div>
+      </div>
+      <div class="fondasi-card">
+        <div class="fondasi-number">IV</div>
+        <div class="fondasi-arabic">بِالصَّبْر</div>
+        <div class="fondasi-name">Saling Sabar</div>
+        <div class="fondasi-desc">Komunitas yang saling menopang dalam ketahanan aktif</div>
+      </div>
+    </div>
+
+    <hr class="rule rule-full" style="margin:3rem 0">
+
+    <!-- FONDASI 1: IMAN -->
+    <div class="label" style="margin-bottom:0.8rem">Fondasi Pertama · Iman</div>
+    <div class="kata-block">
+      <p class="kata-label">Kata Kunci</p>
+      <div class="arabic" style="text-align:left;font-size:42px">آمَنُوا</div>
+      <p class="kata-meaning">Beriman — Rasa Aman yang Mengakar</p>
+      <p class="kata-body">Kata Aamanuu berakar dari <strong style="color:var(--gold-light)">amn (أَمْن)</strong> — rasa aman, ketenangan, dan kepercayaan. Iman bukan hanya keyakinan teologis di kepala — ia adalah <em>rasa aman di hati</em>. Orang yang benar-benar beriman adalah orang yang hidupnya memiliki fondasi yang tidak tergoyahkan.</p>
+    </div>
+    <p class="prose prose-indent">Bayangkan pesawat dalam badai lebat — langit gelap, turbulensi keras, tidak ada bintang yang terlihat. Yang membuat pesawat tetap menuju tujuan bukan mata pilot, tapi instrumen navigasi. <em style="color:var(--gold-light)">Iman bekerja seperti itu.</em> Dalam kegelapan situasi apapun, iman memberikan navigasi internal yang membisikkan: "Kamu tahu tujuanmu. Kamu tahu siapa yang memegang kendali."</p>
+    <div class="relevance-block" style="margin-top:1.5rem">
+      <p class="relevance-title">✦ Relevansi Kekinian</p>
+      <ul class="num-list">
+        <li><span class="num-badge">1</span><span class="num-content"><strong>Iman sebagai "why" terdalam:</strong> Saat kelelahan mengejar sesuatu, iman mengingatkan mengapa kamu mulai — bukan untuk pamer, tapi karena hidup ini amanah yang harus dijaga sebaik-baiknya.</span></li>
+        <li><span class="num-badge">2</span><span class="num-content"><strong>Iman sebagai ketahanan mental:</strong> Penelitian psikologi modern menemukan bahwa orang dengan spiritualitas yang kuat memiliki resiliensi yang lebih tinggi. Ini bukan kebetulan.</span></li>
+      </ul>
+    </div>
+
+    <hr class="rule rule-50" style="margin:2.5rem auto">
+
+    <!-- FONDASI 2: AMAL -->
+    <div class="label" style="margin-bottom:0.8rem">Fondasi Kedua · Amal Shalih</div>
+    <div class="kata-block">
+      <p class="kata-label">Kata Kunci</p>
+      <div class="arabic" style="text-align:left;font-size:42px">الصَّالِحَات</div>
+      <p class="kata-meaning">Kebajikan-kebajikan — Semua Tindakan yang Baik dan Berfungsi</p>
+      <p class="kata-body">Shalih dari akar <strong style="color:var(--gold-light)">shalaha (صَلَحَ)</strong> — baik, tepat, berfungsi dengan benar. Bentuk jamaknya (<em>Ash-Shaalihaat</em>) menunjukkan bukan hanya satu amal besar, tapi kumpulan kebajikan dalam berbagai ukuran dan bentuk. Dan iman disebutkan lebih dulu, baru amal — iman adalah akar; amal adalah buah.</p>
+    </div>
+    <p class="prose prose-indent">Ada kesalahan berpikir yang sering terjadi: orang mengira bahwa iman yang kuat cukup untuk menyelamatkan. Padahal Al-'Ashr sangat jelas — iman saja tidak cukup. Ia harus diiringi amal. <em style="color:var(--gold-light)">Iman yang tidak bergerak adalah iman yang sedang sakit.</em></p>
+    <div class="relevance-block" style="margin-top:1.5rem">
+      <p class="relevance-title">✦ Relevansi Kekinian</p>
+      <ul class="num-list">
+        <li><span class="num-badge">1</span><span class="num-content"><strong>Kualitas di atas kuantitas:</strong> Satu pekerjaan yang dilakukan dengan penuh perhatian dan ketulusan lebih bernilai dari sepuluh pekerjaan yang dikerjakan secara asal-asalan.</span></li>
+        <li><span class="num-badge">2</span><span class="num-content"><strong>Luaskan definisi ibadah:</strong> Memasak untuk keluarga, membalas pesan teman yang sedang kesulitan, bekerja dengan jujur meski tidak diawasi — semuanya amal shalih.</span></li>
+      </ul>
+    </div>
+
+    <hr class="rule rule-50" style="margin:2.5rem auto">
+
+    <!-- FONDASI 3: HAQQ -->
+    <div class="label" style="margin-bottom:0.8rem">Fondasi Ketiga · Saling Menasihati dalam Kebenaran</div>
+    <div class="kata-block">
+      <p class="kata-label">Kata Kunci</p>
+      <div class="arabic" style="text-align:left;font-size:36px">تَوَاصَوْا بِالْحَقّ</div>
+      <p class="kata-meaning">Saling Berwasiat dalam Kebenaran — Timbal Balik, Bukan Satu Arah</p>
+      <p class="kata-body">Kata Tawaashau dari bentuk <em>tafaa'ul</em> — menunjukkan tindakan yang saling dan timbal balik. Bukan guru yang menasihati murid. Ini adalah perubahan paradigma besar: setelah dua fondasi individual (iman dan amal), Al-Qur'an beralih ke fondasi yang bersifat sosial. <em style="color:var(--gold-light)">Kamu tidak bisa selamat sendirian.</em></p>
+    </div>
+    <p class="prose prose-indent">Kita hidup di era "gelembung" — dikelilingi hanya oleh orang-orang yang setuju dengan kita. Media sosial memperparah ini dengan algoritma yang terus memberi kita konten yang kita sukai, bukan yang kita butuhkan.</p>
+    <div class="relevance-block" style="margin-top:1.5rem">
+      <p class="relevance-title">✦ Relevansi Kekinian</p>
+      <ul class="num-list">
+        <li><span class="num-badge">1</span><span class="num-content"><strong>Bangun lingkaran jujur:</strong> Cari dua atau tiga orang yang benar-benar bisa kamu percaya untuk berkata jujur — orang yang peduli cukup untuk mengatakan, "Menurutku kamu keliru di sini."</span></li>
+        <li><span class="num-badge">2</span><span class="num-content"><strong>Jadilah penyampai kebenaran yang lembut:</strong> Cara menyampaikan kebenaran sama pentingnya dengan kebenaran itu sendiri. Kebenaran yang disampaikan dengan kasar sering tidak sampai.</span></li>
+      </ul>
+    </div>
+
+    <hr class="rule rule-50" style="margin:2.5rem auto">
+
+    <!-- FONDASI 4: SABR -->
+    <div class="label" style="margin-bottom:0.8rem">Fondasi Keempat · Saling Menasihati dalam Kesabaran</div>
+    <div class="kata-block">
+      <p class="kata-label">Kata Kunci</p>
+      <div class="arabic" style="text-align:left;font-size:36px">تَوَاصَوْا بِالصَّبْر</div>
+      <p class="kata-meaning">Kesabaran — Bukan Pasif, tapi Ketahanan Aktif</p>
+      <p class="kata-body">Shabr dari akar <strong style="color:var(--gold-light)">ش-ب-ر</strong> — salah satu maknanya adalah pohon lidah buaya yang hidup di kondisi kering dan gersang, tapi tetap tumbuh dan memberikan manfaat. Itulah gambaran Shabr yang sesungguhnya: <em>kemampuan untuk tetap produktif dan bermakna di tengah kondisi yang tidak ideal.</em> Ada tiga jenisnya: sabar menjalankan ketaatan, sabar menjauhi larangan, dan sabar menghadapi ujian.</p>
+    </div>
+    <p class="prose prose-indent">Mengapa kesabaran disebutkan terakhir? Mungkin karena ia adalah yang paling sulit. Beriman itu bisa dilakukan dalam kesenangan. Beramal bisa dilakukan ketika kondisi mendukung. Tapi bersabar — tetap teguh, tetap bermartabat, tetap bergerak maju — di tengah rasa sakit yang nyata dan berkepanjangan? <em style="color:var(--gold-light)">Itu adalah puncak dari segalanya.</em></p>
+    <div class="relevance-block" style="margin-top:1.5rem">
+      <p class="relevance-title">✦ Relevansi Kekinian</p>
+      <ul class="num-list">
+        <li><span class="num-badge">1</span><span class="num-content"><strong>Latih otot kesabaran dalam hal kecil:</strong> Tunda satu kepuasan kecil setiap hari — simpan dessert untuk nanti, selesaikan satu tugas sebelum membuka media sosial. Otot kesabaran dibangun dari latihan-latihan kecil.</span></li>
+        <li><span class="num-badge">2</span><span class="num-content"><strong>Saling topang dalam komunitas:</strong> Ketika temanmu sedang dalam proses panjang yang belum berbuah — startup yang belum untung, pengobatan yang belum selesai — hadirkan dirimu. Bukan dengan solusi, tapi dengan kehadiran.</span></li>
+      </ul>
+    </div>
+
+    <div class="intisari-box" style="margin-top:3rem">
+      <p class="intisari-line">Empat fondasi Al-'Ashr adalah jawaban lengkap: akar dalam iman, wujud dalam amal, ditopang oleh komunitas kejujuran, dan dikuatkan oleh tradisi saling menguatkan dalam sabar.</p>
+      <p class="intisari-line">Tidak ada satu pun dari keempatnya yang bisa berdiri sendiri. Mereka adalah ekosistem — keempat-empatnya harus hadir agar kehidupan yang bermakna bisa tumbuh.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REFLEKSI PENUTUP ══════════════════════════════════════════════════════ -->
+<section id="refleksi" class="bg-alt">
+  <div class="container">
+    <div class="label" style="margin-bottom:0.8rem">Refleksi Penutup</div>
+    <h2 class="section-title st-lg" style="margin-bottom:2rem">Blueprint Kehidupan dalam Tiga Ayat</h2>
+    <hr class="rule rule-full" style="margin-bottom:2.5rem">
+
+    <div class="label" style="margin-bottom:1rem">Pola yang Bisa Diambil</div>
+    <div style="overflow-x:auto;margin-bottom:3rem">
+    <table class="blueprint-table">
+      <thead>
+        <tr><th>Bagian</th><th>Arab</th><th>Label</th><th>Makna Praktis</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Ayat 1</td><td><span class="arabic" style="font-size:20px;text-align:left">وَالْعَصْرِ</span></td><td>Sumpah dengan Waktu</td><td>Kamu hidup dalam ruang waktu yang terbatas</td></tr>
+        <tr><td>Ayat 2</td><td><span class="arabic" style="font-size:20px;text-align:left">إِنَّ الْإِنسَانَ لَفِي خُسْرٍ</span></td><td>Diagnosis Universal</td><td>Tanpa arahan, manusia menuju kerugian</td></tr>
+        <tr><td>Ayat 3a</td><td><span class="arabic" style="font-size:20px;text-align:left">آمَنُوا</span></td><td>Fondasi 1: Iman</td><td>Bangun akar yang tidak goyah</td></tr>
+        <tr><td>Ayat 3b</td><td><span class="arabic" style="font-size:20px;text-align:left">عَمِلُوا الصَّالِحَاتِ</span></td><td>Fondasi 2: Amal</td><td>Gerakkan iman menjadi tindakan nyata</td></tr>
+        <tr><td>Ayat 3c</td><td><span class="arabic" style="font-size:20px;text-align:left">تَوَاصَوْا بِالْحَقِّ</span></td><td>Fondasi 3: Jujur</td><td>Bangun komunitas kejujuran</td></tr>
+        <tr><td>Ayat 3d</td><td><span class="arabic" style="font-size:20px;text-align:left">تَوَاصَوْا بِالصَّبْرِ</span></td><td>Fondasi 4: Sabar</td><td>Bangun komunitas ketahanan</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="label" style="margin-bottom:1rem">Langkah Nyata</div>
+    <h3 class="section-title st-md" style="margin-bottom:1.5rem">Dari Pemahaman ke Tindakan</h3>
+
+    <div class="action-step">
+      <div class="action-step-num">1</div>
+      <div class="action-step-content">
+        <p class="action-timing">Mulai Hari Ini</p>
+        <p class="action-title">Lakukan Time Audit Sederhana</p>
+        <p class="action-body">Ambil selembar kertas. Tulis semua yang kamu lakukan kemarin dari pagi hingga malam. Tandai mana yang bermakna (M), mana yang netral (N), dan mana yang merugikan (R). Tidak perlu sempurna. Cukup jujur.</p>
+      </div>
+    </div>
+
+    <div class="action-step">
+      <div class="action-step-num">2</div>
+      <div class="action-step-content">
+        <p class="action-timing">Minggu Ini</p>
+        <p class="action-title">Temukan atau Perkuat Satu Komunitas</p>
+        <p class="action-body">Hubungi satu orang yang kamu percaya dan katakan: "Aku ingin kita saling mengingatkan untuk hal-hal yang baik." Ini bisa dilakukan via chat. Tidak perlu formal. Bahkan satu teman yang jujur sudah cukup untuk memulai.</p>
+      </div>
+    </div>
+
+    <div class="action-step">
+      <div class="action-step-num">3</div>
+      <div class="action-step-content">
+        <p class="action-timing">Bulan Ini</p>
+        <p class="action-title">Bangun Satu Kebiasaan Amal Shalih yang Konsisten</p>
+        <p class="action-body">Pilih satu kebiasaan kecil yang bisa kamu lakukan setiap hari — membaca, bersedekah, mengucapkan terima kasih secara nyata, atau menolong satu orang. Kecil tidak apa-apa. Yang penting konsisten.</p>
+      </div>
+    </div>
+
+    <div class="action-step">
+      <div class="action-step-num">4</div>
+      <div class="action-step-content">
+        <p class="action-timing">Seumur Hidup</p>
+        <p class="action-title">Jadikan Kesabaran sebagai Identitas, Bukan Reaksi</p>
+        <p class="action-body">Mulailah melihat dirimu sebagai orang yang sabar — bukan karena kamu sering gagal, tapi karena kamu memilih untuk tetap bergerak meski sulit. Identitas ini akan membentuk cara kamu merespons semua tantangan yang datang.</p>
+      </div>
+    </div>
+
+    <div class="closing-block" style="margin-top:3rem">
+      <p class="label" style="margin-bottom:1rem">Closing Statement</p>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold-light);font-size:clamp(15px,2vw,18px);line-height:1.9;max-width:620px;margin:0 auto">
+        "Surat Al-'Ashr adalah cermin. Ia tidak menghakimimu — ia hanya menunjukkan kondisimu yang sesungguhnya, lalu memberikan peta untuk bergerak ke tempat yang lebih baik. Tiga ayat. Empat fondasi. Satu kebenaran: kamu punya semua yang dibutuhkan untuk tidak rugi — kamu hanya perlu mulai, bersama, dan bertahan."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EPILOG ════════════════════════════════════════════════════════════════ -->
+<section id="epilog">
+  <div class="container" style="max-width:700px">
+    <div class="label" style="text-align:center;margin-bottom:0.8rem">Epilog</div>
+    <h2 class="section-title st-lg" style="text-align:center;margin-bottom:0.4rem">Tentang Pasir yang Tidak Bisa Ditahan</h2>
+    <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold-dim);text-align:center;font-size:14px;margin-bottom:2.5rem">Sebuah narasi penutup</p>
+    <hr class="rule rule-50" style="margin-bottom:3rem">
+
+    <span class="epilog-line">Ada sesuatu yang terus mengalir di genggaman tanganmu.</span>
+    <span class="epilog-line">Kamu merasa menyentuhnya — tapi ketika kamu membuka kepalan,</span>
+    <span class="epilog-line">yang tersisa hanya bekas hangatnya.</span>
+    <span class="epilog-gap"></span>
+    <span class="epilog-line emphasis">Itulah waktu.</span>
+    <span class="epilog-gap"></span>
+    <span class="epilog-line">Tidak ada yang bisa menghentikannya.</span>
+    <span class="epilog-line">Tidak ada uang yang bisa membelinya kembali.</span>
+    <span class="epilog-line">Tidak ada kekuasaan yang bisa memintanya untuk menunggu.</span>
+    <span class="epilog-gap"></span>
+    <span class="epilog-line dim">Dan kamu —</span>
+    <span class="epilog-line dim">kamu yang membaca kata-kata ini sekarang —</span>
+    <span class="epilog-line dim">kamu sedang menggunakannya.</span>
+    <span class="epilog-line dim">Detik demi detik. Mau atau tidak mau.</span>
+    <span class="epilog-gap"></span>
+    <span class="epilog-line emphasis">Pertanyaannya bukan apakah kamu menggunakan waktu.</span>
+    <span class="epilog-line emphasis">Pertanyaannya adalah: untuk apa?</span>
+    <span class="epilog-gap"></span>
+
+    <hr class="rule rule-30" style="margin:1.5rem auto">
+
+    <span class="epilog-line" style="margin-top:1.5rem">Ada yang menggunakannya untuk mengejar bayangan —</span>
+    <span class="epilog-line dim">pengakuan yang tidak pernah cukup,</span>
+    <span class="epilog-line dim">kesenangan yang selalu meminta lebih,</span>
+    <span class="epilog-line dim">kesibukan tanpa arah yang terasa seperti gerak maju.</span>
+    <span class="epilog-gap"></span>
+    <span class="epilog-line">Ada yang menggunakannya untuk membangun —</span>
+    <span class="epilog-line" style="color:var(--gold-light)">iman yang menancap dalam seperti akar pohon di musim badai,</span>
+    <span class="epilog-line" style="color:var(--gold-light)">amal yang kecil tapi konsisten seperti tetesan yang melubangi batu,</span>
+    <span class="epilog-line" style="color:var(--gold-light)">kejujuran yang lembut tapi kuat antara hati yang saling percaya,</span>
+    <span class="epilog-line" style="color:var(--gold-light)">kesabaran yang bukan pasrah — tapi bertahan sambil terus bergerak.</span>
+    <span class="epilog-gap"></span>
+
+    <hr class="rule rule-30" style="margin:1.5rem auto">
+
+    <span class="epilog-line" style="margin-top:1.5rem">Al-'Ashr tidak datang untuk menakut-nakutimu.</span>
+    <span class="epilog-line">Ia datang seperti seorang sahabat yang duduk di sampingmu</span>
+    <span class="epilog-line">dan berkata dengan suara tenang:</span>
+    <span class="epilog-gap"></span>
+    <span class="epilog-line emphasis">'Waktu terus berjalan. Aku tahu.</span>
+    <span class="epilog-line emphasis">Kamu merasa sudah terlambat. Aku mengerti.</span>
+    <span class="epilog-line emphasis">Tapi selama masih ada nafas yang kamu hirup —</span>
+    <span class="epilog-line emphasis">selama sore ini belum berubah menjadi malam —</span>
+    <span class="epilog-line emphasis">masih ada kesempatan. Selalu ada.'</span>
+    <span class="epilog-gap"></span>
+
+    <hr class="rule rule-30" style="margin:1.5rem auto">
+
+    <span class="epilog-line" style="margin-top:1.5rem;color:var(--off-white)">Jadi kepada kamu yang kelelahan mengejar hal-hal yang belum pasti:</span>
+    <span class="epilog-line dim">fondasi pertamamu adalah bukan kecepatan, tapi akar.</span>
+    <span class="epilog-gap"></span>
+    <span class="epilog-line" style="color:var(--off-white)">Kepada kamu yang merasa niat baikmu tidak pernah terwujud nyata:</span>
+    <span class="epilog-line dim">iman yang tidak bergerak adalah iman yang sedang lapar.</span>
+    <span class="epilog-line dim">Berilah ia makan dengan satu tindakan nyata hari ini — sekecil apapun.</span>
+    <span class="epilog-gap"></span>
+    <span class="epilog-line" style="color:var(--off-white)">Kepada kamu yang merasa sendirian dalam perjalanan ini:</span>
+    <span class="epilog-line dim">kamu tidak harus menempuhnya sendiri.</span>
+    <span class="epilog-line dim">Ada orang-orang di sekitarmu yang juga sedang berjuang,</span>
+    <span class="epilog-line dim">yang juga membutuhkan seseorang untuk mengingatkan mereka.</span>
+    <span class="epilog-line emphasis">Jadilah orang itu untuk mereka.</span>
+    <span class="epilog-line emphasis">Dan biarkan mereka menjadi orang itu untukmu.</span>
+    <span class="epilog-gap"></span>
+    <span class="epilog-line" style="color:var(--off-white)">Kepada kamu yang hampir menyerah —</span>
+    <span class="epilog-line dim">yang prosesnya sudah panjang tapi hasilnya belum kelihatan,</span>
+    <span class="epilog-line dim">yang doanya sudah banyak tapi jawaban belum tiba,</span>
+    <span class="epilog-line dim">yang sudah lelah tapi tidak tahu bagaimana caranya berhenti:</span>
+    <span class="epilog-gap"></span>
+    <span class="epilog-line emphasis">Sabr bukan tanda kelemahan.</span>
+    <span class="epilog-line emphasis">Sabr adalah kekuatan yang paling jujur yang bisa kamu tunjukkan —</span>
+    <span class="epilog-line" style="color:var(--gold-light)">kekuatan untuk tetap hadir, tetap bermartabat, tetap bergerak,</span>
+    <span class="epilog-line" style="color:var(--gold-light)">di tengah semua yang belum selesai.</span>
+    <span class="epilog-gap"></span>
+
+    <hr class="rule rule-50" style="margin:2rem auto">
+
+    <span class="epilog-line" style="margin-top:1.5rem">Waktu terus mengalir.</span>
+    <span class="epilog-line">Ia tidak akan menunggumu.</span>
+    <span class="epilog-line">Tapi ia ada bersamamu — setiap detiknya —</span>
+    <span class="epilog-line">menawarkan kesempatan yang sama:</span>
+    <span class="epilog-gap"></span>
+    <span class="epilog-line emphasis" style="font-size:clamp(17px,2.5vw,22px)">Untuk memilih.</span>
+    <span class="epilog-line emphasis" style="font-size:clamp(17px,2.5vw,22px)">Untuk bergerak.</span>
+    <span class="epilog-line emphasis" style="font-size:clamp(17px,2.5vw,22px)">Untuk tidak rugi.</span>
+    <span class="epilog-gap"></span>
+
+    <div style="text-align:center;margin-top:3rem">
+      <div class="arabic arabic-lg" style="margin-bottom:0.6rem">وَالْعَصْرِ</div>
+      <p style="font-family:'Playfair Display',serif;font-style:italic;color:var(--gold-dim);font-size:14px;line-height:1.9">Demi Waktu —<br>yang menjadi saksi atas setiap pilihan yang pernah kamu buat,<br>dan yang masih memberikanmu kesempatan untuk membuat pilihan berikutnya.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:3rem">
+      <p style="color:var(--gold);font-size:22px;letter-spacing:0.4em">— ✦ ✦ ✦ —</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════════════════════ -->
+<footer style="background:var(--bg2);border-top:1px solid var(--border);padding:2rem;text-align:center">
+  <div class="arabic" style="font-size:32px;margin-bottom:0.6rem">الْعَصْر</div>
+  <p style="font-size:12px;letter-spacing:0.16em;color:var(--gray);text-transform:uppercase;margin-bottom:1rem">Tafsir Mendalam · Waktu: Blueprint Permainan Kehidupan</p>
+  <p style="font-size:13px;color:var(--gray);font-style:italic;margin-bottom:1.5rem">"Seandainya manusia merenungkan surat ini saja, niscaya itu cukup sebagai pedoman hidup mereka." — Imam Syafi'i</p>
+  <a href="Tafsir_Al-Ashr_Blueprint_Kehidupan.html" download
+     style="display:inline-block;background:var(--gold-pale);border:1px solid var(--gold-dim);color:var(--gold-light);padding:0.6rem 1.8rem;border-radius:3px;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;transition:all 0.2s"
+     onmouseover="this.style.background='rgba(212,175,55,0.18)';this.style.borderColor='var(--gold)'"
+     onmouseout="this.style.background='var(--gold-pale)';this.style.borderColor='var(--gold-dim)'">
+    ⬇&nbsp; Unduh File HTML
+  </a>
+  <a href="#cover" class="back-top" style="display:block;margin-top:1.5rem">↑ Kembali ke Atas</a>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      const t=document.querySelector(a.getAttribute('href'));
+      if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+    });
+  });
+
+  const nav=document.querySelector('nav');
+  const sections=document.querySelectorAll('section[id], footer');
+  const links=document.querySelectorAll('.nav-links a[href^="#"]');
+
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(l=>l.style.color='');
+        const active=document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+        if(active) active.style.color='var(--gold)';
+      }
+    });
+  },{threshold:0.3,rootMargin:'-80px 0px -60% 0px'});
+
+  sections.forEach(s=>obs.observe(s));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

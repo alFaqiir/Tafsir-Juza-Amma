@@ -1,0 +1,1091 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>At-Thariq: Game Ini Diawasi dari Langit</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold1:   #f5d67b;
+    --gold2:   #c9922a;
+    --gold3:   #fff0a0;
+    --gold4:   #a0620a;
+    --ice:     #8ecfea;
+    --ice2:    #4aa8d4;
+    --ice3:    #cdeeff;
+    --crimson: #c24444;
+    --crimson2:#8b1a1a;
+    --jade:    #4dab7e;
+    --jade2:   #276646;
+    --bg:      #07090c;
+    --bg2:     #0d0f13;
+    --bg3:     #111318;
+    --card:    #0e1014;
+    --border:  #1e2230;
+    --text:    #dce6f0;
+    --muted:   #7a8a9e;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.9;
+    min-height: 100vh;
+  }
+
+  /* ── GOLD GRADIENT TEXT ── */
+  .gold {
+    background: linear-gradient(135deg, var(--gold2) 0%, var(--gold1) 45%, var(--gold3) 60%, var(--gold2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .ice-text {
+    background: linear-gradient(135deg, var(--ice2) 0%, var(--ice) 50%, var(--ice3) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: relative;
+    padding: 90px 40px 80px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% -10%, #090e18 0%, #07090c 65%);
+    border-bottom: 1px solid #151b28;
+  }
+
+  /* star-grid */
+  .header::before {
+    content:'';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(142,207,234,.18) 1px, transparent 1px),
+      radial-gradient(circle, rgba(197,147,42,.08) 1.5px, transparent 1.5px);
+    background-size: 48px 48px, 97px 97px;
+    background-position: 0 0, 24px 24px;
+    animation: drift 60s linear infinite;
+    pointer-events: none;
+  }
+
+  /* glow */
+  .header::after {
+    content:'';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 320px;
+    background: radial-gradient(ellipse, rgba(74,168,212,.10) 0%, rgba(180,130,30,.08) 40%, transparent 70%);
+    pointer-events: none;
+  }
+
+  @keyframes drift { to { background-position: 48px 48px, 121px 121px; } }
+
+  .header-bismillah {
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    font-size: 2em;
+    color: var(--ice);
+    opacity: .5;
+    margin-bottom: 24px;
+    letter-spacing: 4px;
+    position: relative; z-index: 1;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4em, 5.5vw, 3.6em);
+    font-weight: 700;
+    line-height: 1.15;
+    position: relative; z-index: 1;
+    margin-bottom: 8px;
+  }
+
+  .header-sub {
+    font-size: .95em;
+    color: var(--muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative; z-index: 1;
+    margin-bottom: 28px;
+  }
+
+  .divider-ice {
+    width: 140px; height: 2px;
+    background: linear-gradient(to right, transparent, var(--ice2), var(--ice), var(--ice2), transparent);
+    margin: 20px auto;
+    position: relative; z-index: 1;
+  }
+  .divider-gold {
+    width: 120px; height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold2), var(--gold1), var(--gold2), transparent);
+    margin: 20px auto;
+    position: relative; z-index: 1;
+  }
+
+  .tagline {
+    font-style: italic;
+    font-size: 1.15em;
+    color: #a8c4da;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative; z-index: 1;
+    line-height: 1.75;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 940px; margin: 0 auto; padding: 56px 24px 90px; }
+
+  /* ── INTRO ── */
+  .intro-block {
+    background: linear-gradient(160deg, #0d1018, #090c10);
+    border: 1px solid #1e2535;
+    border-top: 2px solid var(--ice2);
+    border-radius: 16px;
+    padding: 40px 44px;
+    margin-bottom: 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .intro-block::before {
+    content:'';
+    position: absolute; top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle at top right, rgba(74,168,212,.07), transparent 70%);
+    pointer-events: none;
+  }
+  .intro-block p {
+    color: #b0c4d8;
+    font-size: .98em;
+    text-align: justify;
+  }
+
+  /* ── AYAT SECTION ── */
+  .ayat-section {
+    position: relative;
+    background: linear-gradient(160deg, #0d1016, #090c10);
+    border: 1px solid #1a2030;
+    border-left: 3px solid var(--ice2);
+    border-radius: 16px;
+    padding: 50px 46px;
+    margin-bottom: 52px;
+    box-shadow: 0 4px 40px rgba(0,0,0,.7), inset 0 1px 0 rgba(74,168,212,.06);
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s ease, transform .7s ease, box-shadow .3s;
+  }
+  .ayat-section.visible { opacity:1; transform:translateY(0); }
+  .ayat-section:hover { box-shadow: 0 8px 50px rgba(0,0,0,.85), 0 0 0 1px rgba(74,168,212,.10); }
+
+  /* corner ornament */
+  .ayat-section::before {
+    content: '✦';
+    position: absolute; top: 18px; right: 22px;
+    color: var(--ice2); opacity: .2; font-size: 1.4em;
+  }
+
+  /* gold-border variant */
+  .ayat-section.gold-border {
+    border-left-color: var(--gold2);
+    background: linear-gradient(160deg, #111008, #0c0e08);
+    border-color: #201e12;
+  }
+  .ayat-section.gold-border::before { color: var(--gold2); }
+
+  /* ── GROUP LABEL ── */
+  .group-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55em;
+    font-weight: 700;
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .group-badge {
+    display: inline-block;
+    padding: 4px 16px;
+    border: 1px solid var(--ice2);
+    border-radius: 30px;
+    font-size: .6em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice);
+    background: linear-gradient(135deg, #0c111a, #080d14);
+    flex-shrink: 0;
+    font-family: 'Lora', serif;
+    font-weight: 400;
+  }
+  .group-badge.gold-badge {
+    border-color: var(--gold2);
+    color: var(--gold1);
+    background: linear-gradient(135deg, #120f00, #0d0a00);
+  }
+
+  /* ── SECTION TITLES ── */
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3em;
+    font-weight: 700;
+    margin: 38px 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1a2030;
+  }
+  h2.section-title.gold-title { border-bottom-color: #201e12; }
+
+  h3.sub-title {
+    font-family: 'Lora', serif;
+    font-size: 1.05em;
+    font-weight: 600;
+    margin: 28px 0 10px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  h3.sub-title::before {
+    content:'';
+    display: inline-block;
+    width: 18px; height: 2px;
+    background: linear-gradient(to right, var(--ice2), var(--ice));
+    flex-shrink: 0;
+  }
+  h3.sub-title.gold-sub::before {
+    background: linear-gradient(to right, var(--gold2), var(--gold1));
+  }
+
+  /* ── ARABIC ── */
+  .arabic-wrap {
+    text-align: center;
+    margin: 32px 0 10px;
+    padding: 28px 20px;
+    background: radial-gradient(ellipse at center, #0d1320 0%, #07090c 80%);
+    border-radius: 12px;
+    border: 1px solid #1e2a3a;
+    position: relative;
+  }
+  .arabic-wrap::before, .arabic-wrap::after {
+    content: '❧';
+    position: absolute; top: 50%; transform: translateY(-50%);
+    color: var(--ice2); opacity: .25; font-size: 1.2em;
+  }
+  .arabic-wrap::before { left: 18px; }
+  .arabic-wrap::after  { right: 18px; transform: translateY(-50%) scaleX(-1); }
+
+  .arabic-wrap.gold-arabic {
+    background: radial-gradient(ellipse at center, #131000 0%, #07090c 80%);
+    border-color: #2a2010;
+  }
+  .arabic-wrap.gold-arabic::before,
+  .arabic-wrap.gold-arabic::after { color: var(--gold2); }
+
+  .arabic {
+    font-family: 'Traditional Arabic', 'Scheherazade New', 'KFGQPC Uthmanic Script HAFS', serif;
+    font-size: clamp(2.2em, 5.5vw, 3.4em);
+    line-height: 2.1;
+    background: linear-gradient(135deg, var(--ice2) 0%, var(--ice) 45%, var(--ice3) 65%, var(--ice2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    direction: rtl;
+  }
+  .arabic.gold-arabic-text {
+    background: linear-gradient(135deg, var(--gold4) 0%, var(--gold1) 40%, var(--gold3) 60%, var(--gold2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .arabic-ayat-small {
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    font-size: clamp(1.6em, 4vw, 2.4em);
+    line-height: 2;
+    direction: rtl;
+    display: block;
+    background: linear-gradient(135deg, var(--ice2) 0%, var(--ice) 50%, var(--ice3) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .arabic-ayat-small.gold { 
+    background: linear-gradient(135deg, var(--gold4) 0%, var(--gold1) 40%, var(--gold3) 60%, var(--gold2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .translation {
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.02em;
+    margin: 10px 0 32px;
+  }
+
+  /* ── AYAT LIST (for grouped sections) ── */
+  .ayat-list {
+    display: flex; flex-direction: column; gap: 0;
+    margin: 0 0 28px;
+  }
+  .ayat-item {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 0 18px;
+    padding: 20px 0;
+    border-bottom: 1px solid #141820;
+    align-items: start;
+  }
+  .ayat-item:last-child { border-bottom: none; }
+  .ayat-num-badge {
+    width: 34px; height: 34px; line-height: 32px; text-align: center;
+    border: 1px solid var(--ice2);
+    border-radius: 50%;
+    font-size: .75em;
+    background: linear-gradient(135deg, #0c131e, #08101a);
+    color: var(--ice);
+    flex-shrink: 0;
+    font-family: 'Playfair Display', serif;
+    margin-top: 4px;
+  }
+  .ayat-num-badge.gold-num {
+    border-color: var(--gold2);
+    color: var(--gold1);
+    background: linear-gradient(135deg, #140f00, #0e0900);
+  }
+  .ayat-content {}
+  .ayat-arabic-line {
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    font-size: clamp(1.5em, 4vw, 2.1em);
+    line-height: 2;
+    direction: rtl;
+    display: block;
+    text-align: right;
+    background: linear-gradient(135deg, var(--ice2) 0%, var(--ice) 50%, var(--ice3) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+  }
+  .ayat-arabic-line.gold {
+    background: linear-gradient(135deg, var(--gold4) 0%, var(--gold1) 40%, var(--gold3) 60%, var(--gold2) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .ayat-trans-line {
+    font-style: italic;
+    color: var(--muted);
+    font-size: .93em;
+  }
+
+  /* ── ENERGI KATA CHIP ── */
+  .energi-chip {
+    display: inline-block;
+    background: linear-gradient(135deg, #0a1218 0%, #0e1822 100%);
+    border: 1px solid var(--ice2);
+    color: var(--ice);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: .93em;
+    font-weight: 600;
+    margin: 18px 0 10px;
+    letter-spacing: .5px;
+  }
+  .energi-chip.gold-chip {
+    background: linear-gradient(135deg, #1e1600 0%, #2a1e00 100%);
+    border-color: var(--gold4);
+    color: var(--gold1);
+  }
+
+  /* ── PARAGRAPHS ── */
+  p {
+    margin-bottom: 16px;
+    color: #b8cad8;
+    text-align: justify;
+    font-size: .97em;
+  }
+  .gold-border p { color: #c8b888; }
+
+  strong { color: var(--ice); font-weight: 600; }
+  .gold-border strong { color: var(--gold1); }
+  em { color: #8ecfea; font-style: italic; }
+  .gold-border em { color: #c8b478; }
+
+  /* ── RELEVANCE BOX ── */
+  .relevance-box {
+    background: linear-gradient(160deg, #0a1018, #070c12);
+    border-left: 3px solid var(--ice3);
+    border-radius: 0 10px 10px 0;
+    padding: 22px 26px;
+    margin: 24px 0;
+  }
+  .relevance-box.gold-rel {
+    background: linear-gradient(160deg, #10100a, #0b0c06);
+    border-left-color: var(--gold3);
+  }
+  .relevance-label {
+    font-size: .78em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice2);
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+  }
+  .relevance-label.gold-label { color: var(--gold2); }
+
+  /* ── INTISARI ── */
+  .intisari {
+    position: relative;
+    background: linear-gradient(160deg, #0b1520, #080e18);
+    border: 1px solid #1e2d3e;
+    border-radius: 12px;
+    padding: 28px 32px 28px 36px;
+    margin: 28px 0 0;
+    color: #a8d0e8;
+    font-size: .98em;
+    line-height: 1.95;
+  }
+  .intisari.gold-intisari {
+    background: linear-gradient(160deg, #151000, #0e0b00);
+    border-color: #2e2410;
+    color: #e0cc90;
+  }
+  .intisari::before {
+    content: '"';
+    position: absolute; top: -14px; left: 22px;
+    font-size: 4em; line-height: 1;
+    background: linear-gradient(to bottom, var(--ice), var(--ice2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Playfair Display', serif;
+  }
+  .intisari.gold-intisari::before {
+    background: linear-gradient(to bottom, var(--gold1), var(--gold2));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .intisari-label {
+    font-size: .75em; letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--ice2); margin-bottom: 12px;
+    font-family: 'Playfair Display', serif;
+  }
+  .intisari-label.gold-label { color: var(--gold2); }
+
+  /* ── PENUTUP ── */
+  .penutup {
+    background: linear-gradient(160deg, #0a0e14, #070a0e);
+    border: 1px solid #191f2a;
+    border-radius: 16px;
+    padding: 54px 46px;
+    margin-bottom: 48px;
+  }
+
+  .langkah {
+    background: linear-gradient(160deg, #0c1018, #08090e);
+    border: 1px solid #1a2030;
+    border-left: 3px solid var(--ice2);
+    border-radius: 0 10px 10px 0;
+    padding: 20px 26px;
+    margin: 16px 0;
+    color: #b0c4d8;
+    font-size: .96em;
+  }
+  .langkah.gold-langkah {
+    background: linear-gradient(160deg, #111008, #0a0c06);
+    border-color: #201e12;
+    border-left-color: var(--gold2);
+    color: #c8b888;
+  }
+  .langkah .lnum {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--ice2), var(--ice));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700; font-family: 'Playfair Display', serif;
+    font-size: 1.05em; margin-bottom: 6px; display: block;
+  }
+  .langkah.gold-langkah .lnum {
+    background: linear-gradient(135deg, var(--gold2), var(--gold1));
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .langkah p { margin-bottom: 0; }
+
+  /* ── EPILOG ── */
+  .epilog {
+    background: radial-gradient(ellipse at 50% 0%, #0a0e18 0%, #060809 60%);
+    border: 1px solid #161d2a;
+    border-top: 2px solid var(--ice2);
+    border-radius: 16px;
+    padding: 64px 46px;
+    text-align: center;
+  }
+  .epilog .epilog-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4em, 3vw, 2em);
+    font-weight: 700;
+    margin-bottom: 44px;
+    line-height: 1.3;
+  }
+  .epilog p {
+    max-width: 680px; margin: 0 auto 20px;
+    color: #9ab4cc; text-align: center; font-style: italic;
+  }
+  .epilog .arabic-line {
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    font-size: clamp(1.6em, 4vw, 2.4em);
+    direction: rtl;
+    background: linear-gradient(135deg, var(--ice2), var(--ice), var(--ice3), var(--ice2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block; margin: 28px auto 6px;
+  }
+  .epilog .latin-line {
+    font-style: italic; color: var(--ice); font-size: 1.02em;
+    margin-bottom: 20px; display: block;
+  }
+  .epilog .voice-block {
+    max-width: 660px;
+    margin: 0 auto 18px;
+    padding: 18px 24px;
+    background: linear-gradient(160deg, #0c1220, #080d18);
+    border: 1px solid #1a2535;
+    border-left: 2px solid var(--ice2);
+    border-radius: 0 10px 10px 0;
+    text-align: left;
+  }
+  .epilog .voice-block p {
+    color: #8ab2cc;
+    text-align: left;
+    margin: 0;
+  }
+  .epilog .voice-label {
+    font-size: .75em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ice2);
+    margin-bottom: 8px;
+    font-family: 'Playfair Display', serif;
+    display: block;
+  }
+  .epilog .closing {
+    margin-top: 44px; font-style: normal;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1em; color: #a8c8e0;
+    line-height: 1.9;
+  }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position: fixed; bottom: 28px; right: 28px;
+    width: 46px; height: 46px;
+    background: linear-gradient(135deg, var(--ice2), var(--ice));
+    color: #040608; font-size: 1.2em; font-weight: 700;
+    border: none; border-radius: 50%;
+    cursor: pointer; display: none; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,.5);
+    transition: transform .2s;
+    z-index: 999;
+  }
+  #scrollTop:hover { transform: scale(1.1); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:640px){
+    .header { padding: 60px 20px 50px; }
+    .ayat-section, .penutup, .epilog, .intro-block { padding: 32px 20px; }
+    .container { padding: 30px 14px 60px; }
+    .ayat-item { grid-template-columns: 30px 1fr; gap: 0 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <h1 class="ice-text">At-Thariq</h1>
+  <p class="header-sub">Surat 86 · 17 Ayat · Makkiyyah</p>
+  <div class="divider-ice"></div>
+  <p class="tagline"><em>Setiap Pikiran Terekam, Setiap Rahasia Tersimpan, Setiap Skema Sudah Diketahui.</em></p>
+</div>
+
+<div class="container">
+
+  <!-- INTRO -->
+  <div class="intro-block">
+    <p>Ada suatu kepercayaan yang tersebar luas di kalangan kita: bahwa apa yang tidak dilihat orang lain, tidak perlu dipertanggungjawabkan. Bahwa ruang privat adalah ruang bebas. Bahwa pikiran yang tidak diucapkan adalah milik kita sepenuhnya, tanpa saksi, tanpa catatan.</p>
+    <p>Surah At-Thariq — <em>Yang Mengetuk di Malam Hari</em> — datang untuk membalik asumsi itu dari dasarnya. Dengan gambaran bintang yang membelah kegelapan paling pekat, surat ini menegaskan: tidak ada sudut semesta yang benar-benar gelap. Tidak ada pikiran yang luput dari rekaman. Tidak ada jiwa tanpa penjaganya.</p>
+    <p>Ini bukan intimidasi. Ini adalah berita terbesar yang pernah kamu terima: <strong>kamu tidak pernah sendirian</strong>, bahkan di titik terbawahmu.</p>
+  </div>
+
+  <!-- ===========================
+       KELOMPOK I: AYAT 1–4
+       Sumpah & Penjaga
+       =========================== -->
+  <div class="ayat-section" id="group1">
+    <div class="group-label">
+      <span class="group-badge">Ayat 1 – 4</span>
+      <span class="ice-text">Sumpah Kosmik: Ada yang Membelah Langit Untukmu</span>
+    </div>
+
+    <div class="ayat-list">
+      <div class="ayat-item">
+        <div class="ayat-num-badge">١</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line">وَٱلسَّمَآءِ وَٱلطَّارِقِ</span>
+          <span class="ayat-trans-line">"Demi langit dan yang datang pada malam hari,"</span>
+        </div>
+      </div>
+      <div class="ayat-item">
+        <div class="ayat-num-badge">٢</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line">وَمَآ أَدۡرَىٰكَ مَا ٱلطَّارِقُ</span>
+          <span class="ayat-trans-line">"Dan tahukah kamu apakah yang datang pada malam hari itu?"</span>
+        </div>
+      </div>
+      <div class="ayat-item">
+        <div class="ayat-num-badge">٣</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line">ٱلنَّجۡمُ ٱلثَّاقِبُ</span>
+          <span class="ayat-trans-line">"(Yaitu) bintang yang cahayanya menembus (kegelapan)."</span>
+        </div>
+      </div>
+      <div class="ayat-item">
+        <div class="ayat-num-badge">٤</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line">إِن كُلُّ نَفۡسٍ لَّمَّا عَلَيۡهَا حَافِظٌ</span>
+          <span class="ayat-trans-line">"Setiap jiwa pasti ada penjaganya."</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title ice-text">Energi Kata</h2>
+
+    <div class="energi-chip">الطَّارِقُ — Yang Mengetuk di Malam</div>
+    <p><em>Ath-Thariq</em> berasal dari akar kata <em>ṭaraqa</em> yang berarti mengetuk, menempa, atau memukul. Di kebudayaan Arab kuno, kata ini merujuk pada musafir yang tiba malam-malam dan mengetuk pintu untuk meminta tempat berlindung — selalu tak terduga, selalu menembus keheningan. Nama surat ini bukan sekadar "bintang"; ia menyiratkan sesuatu yang <strong>hadir tanpa permisi</strong>, yang menembus tanpa bisa ditolak.</p>
+    <p>Ada nuansa mengagetkan di sini. Bintang ini tidak menunggu undangan. Ia menerobos langit malam yang paling gelap — seperti kebenaran yang tidak bisa terus-menerus ditahan oleh keramaian siang hari.</p>
+
+    <div class="energi-chip">ٱلنَّجۡمُ ٱلثَّاقِبُ — Bintang Pembelah</div>
+    <p><em>An-Najm ath-Thaqib</em>: <em>thaqib</em> dari akar <em>thaqaba</em> artinya melubangi, menusuk tembus, membuat lubang di sesuatu yang padat. Bukan sekadar "bersinar" — ia <strong>membelah</strong>. Ini bukan cahaya yang lembut menerangi; ini cahaya yang menembus tirai kegelapan seperti jarum tembus kain. Bayangkan cahaya bintang yang kamu lihat malam ini: ia telah menempuh perjalanan ribuan tahun cahaya, melewati kegelapan semesta yang hampir tak terbatas, untuk tiba tepat di matamu.</p>
+
+    <div class="energi-chip">حَافِظٌ — Penjaga yang Tak Pernah Absen</div>
+    <p><em>Hafizh</em> bukan watchman yang bisa mengantuk, bukan kamera yang bisa dirusak, bukan saksi yang bisa dibungkam. <em>Hafizh</em> adalah penjaga yang aktif mencatat dan melindungi sekaligus. Kata yang sama dipakai untuk orang yang hafal Al-Qur'an — tidak sekadar "tahu di luar kepala", melainkan menjaga dengan penuh kesadaran. Setiap jiwa, tanpa kecuali, memiliki penjaga semacam ini.</p>
+
+    <h2 class="section-title ice-text">Tafsir Mendalam</h2>
+    <p>Surat ini dibuka dengan sumpah yang dramatis. Allah bersumpah <em>demi langit</em> — yang tak terhingga — dan demi sesuatu yang datang malam-malam, yang kemudian diperkenalkan dengan pertanyaan retorik yang mengundang rasa ingin tahu: "Tahukah kamu apa itu?" Gaya ini khas Al-Qur'an: sebelum memberitahu, ia membuatmu berhenti dan bertanya.</p>
+    <p>Jawaban yang diberikan justru lebih besar dari pertanyaannya. <em>Ath-Thariq</em> ternyata adalah <em>An-Najm ath-Thaqib</em> — bintang pembelah kegelapan. Dan dari gambaran kosmik yang megah ini, Allah melompat ke kesimpulan yang sangat personal: <strong>setiap jiwa punya penjaganya</strong>. Langit dengan segala kemegahannya, bintang dengan kemampuan menembus gelapnya — semua itu adalah isyarat untuk satu kebenaran sederhana yang kamu butuhkan ketika segalanya terasa gelap.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita adalah generasi yang percaya bahwa <em>apa yang tidak di-posting tidak terjadi</em>. Yang tidak tercatat tidak nyata. Yang tidak divalidasi tidak berharga. Maka ketika kita melakukan kebaikan tanpa yang melihat — menolong diam-diam, menahan diri ketika tidak ada yang mengawasi, memilih jujur ketika kebohongan lebih mudah — seringkali muncul bisikan: <em>untuk apa?</em></p>
+      <p>At-Thariq menjawab dengan lantang: <strong>ada yang melihat</strong>. Bukan dalam arti mengintai yang menakutkan, tapi dalam arti tidak ada satu pun kebaikan yang gugur tanpa jejak, tidak ada satu pun perjuangan diam yang tidak tercatat. Hafizh itu tidak butuh koneksi internet untuk menyimpan datamu.</p>
+      <p>Di sisi lain, ada yang hidup dengan keyakinan bahwa dosa yang rapi tidak berbeda dengan tidak berdosa. Kecurangan yang terstruktur. Pengkhianatan yang taktis. Keburukan yang dikemas cantik. Ayat ini adalah alarm yang berbunyi pelan tapi jernih: <em>ada penjaga yang tidak bisa di-bypass</em>.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Bintang yang menembus kegelapan paling pekat adalah pengingat bahwa tidak ada malam yang cukup gelap untuk menyembunyikan sebuah jiwa dari Penjaganya. Kamu tidak pernah sekali pun benar-benar tidak terlihat — dan itu adalah berita terbaik sekaligus tantangan terbesar yang bisa diterima seseorang hari ini.
+    </div>
+  </div>
+
+  <!-- ===========================
+       KELOMPOK II: AYAT 5–8
+       Asal Usul & Kemampuan Kembali
+       =========================== -->
+  <div class="ayat-section" id="group2">
+    <div class="group-label">
+      <span class="group-badge">Ayat 5 – 8</span>
+      <span class="ice-text">Dari Mana Kamu Berasal, Ke Mana Kamu Kembali</span>
+    </div>
+
+    <div class="ayat-list">
+      <div class="ayat-item">
+        <div class="ayat-num-badge">٥</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line">فَلۡيَنظُرِ ٱلۡإِنسَٰنُ مِمَّ خُلِقَ</span>
+          <span class="ayat-trans-line">"Maka hendaklah manusia memperhatikan dari apa dia diciptakan."</span>
+        </div>
+      </div>
+      <div class="ayat-item">
+        <div class="ayat-num-badge">٦</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line">خُلِقَ مِن مَّآءٍ دَافِقٍ</span>
+          <span class="ayat-trans-line">"Dia diciptakan dari air yang terpancar,"</span>
+        </div>
+      </div>
+      <div class="ayat-item">
+        <div class="ayat-num-badge">٧</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line">يَخۡرُجُ مِنۢ بَيۡنِ ٱلصُّلۡبِ وَٱلتَّرَآئِبِ</span>
+          <span class="ayat-trans-line">"Yang keluar dari antara tulang sulbi dan tulang dada."</span>
+        </div>
+      </div>
+      <div class="ayat-item">
+        <div class="ayat-num-badge">٨</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line">إِنَّهُۥ عَلَىٰ رَجۡعِهِۦ لَقَادِرٌ</span>
+          <span class="ayat-trans-line">"Sungguh, Allah benar-benar kuasa untuk mengembalikannya (hidup setelah mati)."</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title ice-text">Energi Kata</h2>
+
+    <div class="energi-chip">فَلۡيَنظُرِ — Maka Hendaklah Memperhatikan</div>
+    <p><em>Falyanzur</em> bukan sekadar "lihat" secara pasif. Akar kata <em>nazara</em> menyiratkan pengamatan yang cermat, penyelidikan yang sungguh-sungguh, memikirkan dengan mendalam. Ini adalah ajakan untuk melakukan <strong>investigasi jujur terhadap diri sendiri</strong>. Bukan untuk merendahkan, tapi untuk menempatkan diri secara proporsional di alam semesta.</p>
+
+    <div class="energi-chip">مَآءٍ دَافِقٍ — Air yang Terpancar</div>
+    <p><em>Dafiq</em> dari akar <em>dafaqa</em> — mengalir dengan deras, memancar dengan kuat. Bukan tetesan biasa; ada energi kinetis di sini. Kata ini mengandung gambaran kehidupan yang datang dengan penuh gairah dan kekuatan — paradoks yang indah: dari sesuatu yang terlihat sederhana, lahirlah kompleksitas terbesar yang disebut manusia.</p>
+
+    <div class="energi-chip">رَجۡعِهِۦ — Pengembaliannya</div>
+    <p><em>Raj'ihi</em> dari <em>raja'a</em> artinya kembali, dipulihkan ke keadaan semula. Kata ini dipilih dengan sangat presisi: bukan "menciptakan ulang" dari nol, tapi <strong>mengembalikan</strong> — seolah eksistensimu sudah ada catatannya, dan kebangkitan adalah pemanggilan kembali dari arsip yang sempurna. Yang sudah menciptakan dari ketiadaan, tentu berkuasa mengembalikan dari kematian.</p>
+
+    <h2 class="section-title ice-text">Tafsir Mendalam</h2>
+    <p>Setelah menetapkan bahwa ada penjaga atas setiap jiwa, surat ini mengajukan pertanyaan yang paling dasar dan paling jarang kita tanyakan kepada diri sendiri: <em>dari apa kamu dibuat?</em> Ini bukan pertanyaan biologi semata. Ini adalah undangan untuk merenungkan kerendahan asal usul kita — bukan untuk hina, tapi untuk jujur.</p>
+    <p>Manusia yang paling berkuasa di muka bumi pun berasal dari proses yang sama dengan manusia paling sederhana. Tidak ada yang lahir lebih "premium" secara material. Kesadaran ini seharusnya meluruhkan kesombongan tanpa harus melecehkan kemuliaan — karena ayat 8 langsung menyambung: Yang menciptakanmu dari sesuatu yang tampak sederhana itu, <strong>sepenuhnya mampu mengembalikanmu</strong>. Jika proses pembentukan pertamamu saja sudah terancang dengan presisi luar biasa, mengapa meragukan proses selanjutnya?</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era personal branding yang intens. Profil LinkedIn yang dipoles. CV yang dioptimasi. Highlight reel kehidupan yang disusun dengan hati-hati. Ada kecenderungan kuat untuk lupa — atau sengaja melupakan — dari mana kita memulai, siapa kita tanpa semua lapisan atribut sosial itu.</p>
+      <p>Perenungan atas asal usul bukan ajakan untuk rendah diri yang paralisasi. Ia adalah <strong>pembumi</strong>. Ketika kamu ingat bahwa kamu dimulai dari proses yang sama dengan semua manusia lain, dua hal terjadi sekaligus: kamu lebih sulit menjadi congkak terhadap yang "di bawahmu", dan kamu lebih mudah berdamai ketika seseorang yang kamu anggap "di bawahmu" ternyata melampaui pencapaianmu.</p>
+      <p>Dan soal kebangkitan — keraguan tentang kehidupan setelah mati bukan hanya pertanyaan teologis di era ini. Ia adalah pertanyaan yang berpengaruh langsung pada cara seseorang mengambil keputusan. Orang yang tidak percaya ada pertanggungjawaban akan bertindak berbeda dari yang percaya. Ayat ini tidak berdebat panjang; ia cukup menunjuk ke proses penciptaanmu sendiri sebagai argumen yang tak terbantahkan.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Manusia yang paling sering lupa diri adalah yang paling jarang merenungkan asal usulnya. Bukan untuk dilecehkan, tapi untuk diingat: Yang memulaimu dari kesederhanaan itu tidak pernah salah merencanakan, dan Dia sepenuhnya mampu menuntaskan apa yang sudah Dia mulai — termasuk perjalananmu yang belum selesai.
+    </div>
+  </div>
+
+  <!-- ===========================
+       KELOMPOK III: AYAT 9–10
+       Hari Tanpa Penutup
+       =========================== -->
+  <div class="ayat-section gold-border" id="group3">
+    <div class="group-label">
+      <span class="group-badge gold-badge">Ayat 9 – 10</span>
+      <span class="gold">Hari Ketika Tidak Ada Tempat Sembunyi</span>
+    </div>
+
+    <div class="ayat-list">
+      <div class="ayat-item">
+        <div class="ayat-num-badge gold-num">٩</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line gold">يَوۡمَ تُبۡلَى ٱلسَّرَآئِرُ</span>
+          <span class="ayat-trans-line">"Pada hari ketika segala rahasia diuji (diungkapkan),"</span>
+        </div>
+      </div>
+      <div class="ayat-item">
+        <div class="ayat-num-badge gold-num">١٠</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line gold">فَمَا لَهُۥ مِن قُوَّةٍ وَلَا نَاصِرٍ</span>
+          <span class="ayat-trans-line">"Maka tidak ada baginya kekuatan dan tidak ada penolong."</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title gold gold-title">Energi Kata</h2>
+
+    <div class="energi-chip gold-chip">تُبۡلَى ٱلسَّرَآئِرُ — Rahasia yang Diuji</div>
+    <p>Ini adalah ayat yang paling menusuk dalam surat ini. <em>Tubla</em> dari akar <em>balaa</em> — menguji, memeriksa, mengekspos melalui proses pengujian. Kata yang sama dipakai untuk logam yang diuji dalam api untuk menentukan kemurniannya. <em>As-Sara'ir</em> adalah bentuk jamak dari <em>sirr</em> — rahasia, yang tersembunyi, yang ada di dalam batin.</p>
+    <p>Perhatikan pilihan katanya: bukan <em>tukasyafu</em> (sekadar disingkap) atau <em>tu'lanu</em> (diumumkan), tapi <em>tubla</em> — <strong>diuji kemurniannya</strong>. Rahasia tidak hanya dibuka, tapi juga dinilai kualitasnya. Niat di balik tindakan. Ketulusan di balik penampilan. Motif di balik kebaikan.</p>
+
+    <div class="energi-chip gold-chip">قُوَّةٍ وَلَا نَاصِرٍ — Tidak Ada Kekuatan, Tidak Ada Penolong</div>
+    <p><em>Quwwah</em> adalah kekuatan dari dalam — modal, kemampuan, koneksi yang selama ini kamu andalkan. <em>Nashir</em> adalah penolong dari luar — orang berpengaruh, jaringan, "orang dalam". Dua hal inilah yang membuat manusia merasa aman dalam kecurangan dan nyaman dalam kemunafikan. Ayat ini menghapus keduanya dalam satu tarikan napas.</p>
+
+    <h2 class="section-title gold gold-title">Tafsir Mendalam</h2>
+    <p>Dua ayat ini adalah jantung dari seluruh surat. Jika ayat-ayat sebelumnya membangun kesadaran bahwa ada penjaga atas setiap jiwa, maka ayat 9-10 menjelaskan momen ketika semua catatan penjaga itu dibuka: hari ketika <em>as-sara'ir</em> — segala yang tersimpan dalam batin — diuji kemurniannya.</p>
+    <p>Yang membuat ayat ini luar biasa adalah kata <em>tubla</em>. Rahasia bukan sekadar diungkap seperti membuka laci — ia <em>diuji</em>. Artinya, ada proses verifikasi. Apakah kebaikanmu benar-benar kebaikan, atau hanya penampakan kebaikan? Apakah penyesalanmu sungguh-sungguh, atau sekadar reaksi terhadap konsekuensi? Apakah imanmu mengakar, atau hanya selubung kultural? <em>Tubla</em> tidak bisa ditipu.</p>
+
+    <div class="relevance-box gold-rel">
+      <div class="relevance-label gold-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era yang sangat mahir dalam memisahkan <em>tampilan</em> dari <em>kenyataan</em>. Donasi yang dipublikasikan untuk keperluan citra. Postingan ibadah yang dihitung engagement-nya. Kebaikan yang dilakukan hanya ketika ada kamera. Kita bahkan sudah punya istilah untuk ini: <em>performative goodness</em> — kebaikan pertunjukan.</p>
+      <p>Yang lebih halus lagi: kita seringkali melakukan kebaikan sejati sambil berharap dilihat, atau menghindari kejahatan karena takut ketahuan — bukan karena benar-benar tidak mau. Niat itu tersembunyi bahkan dari diri sendiri. <em>Tubla as-sara'ir</em> bekerja sampai di sana: bukan hanya apa yang kamu lakukan, tapi <strong>mengapa kamu melakukannya</strong>.</p>
+      <p>Di sisi lain, ada yang merancang kejahatan dengan sangat rapi. Korupsi yang berlapis-lapis skema. Pengkhianatan yang dibungkus argumen rasional. Kekejaman yang dilegitimasi dengan narasi. Mereka tahu bahwa <em>quwwah</em> — kekuatan dan modal — dan <em>nashir</em> — jaringan pelindung — ada di pihak mereka. Ayat 10 berkata dengan tenang: pada hari itu, keduanya tidak berlaku.</p>
+    </div>
+
+    <div class="intisari gold-intisari">
+      <div class="intisari-label gold-label">✦ Intisari</div>
+      Ada hari di mana seluruh arsip batin dibuka — bukan untuk mempermalukan, tapi untuk menyempurnakan keadilan yang tidak pernah bisa dituntaskan di dunia. Pada hari itu, yang kamu andalkan bukan koneksimu atau modalmu, tapi apa yang selama ini kamu simpan dengan jujur di dalam.
+    </div>
+  </div>
+
+  <!-- ===========================
+       KELOMPOK IV: AYAT 11–14
+       Langit & Bumi Sebagai Saksi
+       =========================== -->
+  <div class="ayat-section" id="group4">
+    <div class="group-label">
+      <span class="group-badge">Ayat 11 – 14</span>
+      <span class="ice-text">Semesta Pun Ikut Bersaksi</span>
+    </div>
+
+    <div class="ayat-list">
+      <div class="ayat-item">
+        <div class="ayat-num-badge">١١</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line">وَٱلسَّمَآءِ ذَاتِ ٱلرَّجۡعِ</span>
+          <span class="ayat-trans-line">"Demi langit yang mengandung hujan,"</span>
+        </div>
+      </div>
+      <div class="ayat-item">
+        <div class="ayat-num-badge">١٢</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line">وَٱلۡأَرۡضِ ذَاتِ ٱلصَّدۡعِ</span>
+          <span class="ayat-trans-line">"Dan bumi yang mempunyai tumbuh-tumbuhan (yang merekah),"</span>
+        </div>
+      </div>
+      <div class="ayat-item">
+        <div class="ayat-num-badge">١٣</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line">إِنَّهُۥ لَقَوۡلٌ فَصۡلٌ</span>
+          <span class="ayat-trans-line">"Sungguh, Al-Qur'an itu benar-benar perkataan yang memisahkan (hak dan batil),"</span>
+        </div>
+      </div>
+      <div class="ayat-item">
+        <div class="ayat-num-badge">١٤</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line">وَمَا هُوَ بِٱلۡهَزۡلِ</span>
+          <span class="ayat-trans-line">"Dan itu bukan senda gurau."</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title ice-text">Energi Kata</h2>
+
+    <div class="energi-chip">ذَاتِ ٱلرَّجۡعِ — Yang Mengandung Ruju'/Kembali</div>
+    <p><em>Ar-raj'</em> menyimpan dua makna yang saling memperkaya: <em>hujan yang kembali</em> (siklus air — evaporasi, kondensasi, turun kembali) dan <em>sesuatu yang berputar kembali ke asalnya</em>. Para mufasir memaknai ini sebagai langit yang "mengembalikan" — mengirim hujan, mendukung kehidupan, berputar dalam siklus yang tidak pernah gagal. Ada keandalan yang luar biasa di sini: langit tidak pernah lupa giliran untuk menurunkan hujan.</p>
+
+    <div class="energi-chip">ذَاتِ ٱلصَّدۡعِ — Yang Merekah</div>
+    <p><em>Ash-shad'</em> — retakan, rekahan, celah yang terbuka. Ini adalah gambaran tanah yang terbelah saat tanaman menembus permukaannya. Gunakan imajinasimu: benih di bawah tanah, dalam gelap, tampaknya tidak bergerak — lalu tiba-tiba merekahkan bumi untuk keluar ke cahaya. <strong>Kehidupan yang paling gigih justru tumbuh dari bawah tekanan, dari bawah tanah, dari kegelapan yang tampak mustahil.</strong></p>
+
+    <div class="energi-chip">قَوۡلٌ فَصۡلٌ — Perkataan Pemisah</div>
+    <p><em>Qaul fashl</em>: <em>fashl</em> dari <em>fashala</em> artinya memisahkan, membedakan dengan tegas, memutuskan dengan tajam. Ini adalah keputusan pengadilan yang tidak ada banding. Al-Qur'an bukan koleksi filosofi yang bisa diperdebatkan tanpa akhir — ia adalah <em>pembeda</em>: antara benar dan salah, antara nyata dan ilusi, antara yang menyelamatkan dan yang menghancurkan.</p>
+
+    <h2 class="section-title ice-text">Tafsir Mendalam</h2>
+    <p>Setelah membangun argumen tentang penjagaan, asal usul, dan hari pertanggungjawaban, surat ini kembali bersumpah — kali ini dengan dua fenomena alam yang paling dekat dengan kehidupan manusia: <em>langit yang menurunkan hujan</em> dan <em>bumi yang merekah untuk menumbuhkan.</em></p>
+    <p>Ini bukan hiasan sastra. Ini adalah argumen. Langit yang tidak pernah lupa mengembalikan air, bumi yang tidak pernah gagal membelah diri untuk kehidupan — keduanya adalah saksi bisu atas satu kenyataan: <strong>sistem yang diciptakan Allah bekerja dengan presisi dan kesetiaan yang tidak pernah ingkar.</strong> Lalu mengapa Al-Qur'an — yang datang dari Pencipta sistem yang sama — diragukan?</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Ada paradoks menarik di generasi kita: kita sangat mempercayai sains — yang pada dasarnya adalah studi atas keteraturan ciptaan Allah — tapi seringkali skeptis terhadap firman-Nya sendiri. Kita percaya siklus hidrologi, kita percaya proses fotosintesis, kita percaya hukum gravitasi — semua keteraturan yang tidak pernah bohong. Tapi ketika Al-Qur'an berkata tentang konsekuensi pilihan moral, tentang kebangkitan, tentang keadilan yang pasti datang — tiba-tiba muncul "rasanya kok tidak masuk akal".</p>
+      <p>Ayat 11-12 menunjuk ke fenomena yang sudah kita verifikasi sendiri: <em>kalau langit dan bumi bisa sekonsisten itu, mengapa Firman dari Pencipta mereka tidak?</em> Dan ayat 14 menutup celah pelarian terakhir: <em>ini bukan senda gurau</em>. Al-Qur'an tidak bermain-main dengan takdir hidupmu.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Tanaman yang paling keras kepala adalah yang membelah batu untuk tumbuh. Semesta yang paling andal adalah yang mengirim hujan tanpa lupa musim. Dan firman yang paling layak dipercaya adalah yang datang dari Pemilik semua keteraturan itu — perkataan yang memisahkan, bukan menghibur; yang membebaskan, bukan meninabobokan.
+    </div>
+  </div>
+
+  <!-- ===========================
+       KELOMPOK V: AYAT 15–17
+       Mereka Punya Rencana, Allah Punya Rencana
+       =========================== -->
+  <div class="ayat-section gold-border" id="group5">
+    <div class="group-label">
+      <span class="group-badge gold-badge">Ayat 15 – 17</span>
+      <span class="gold">Mereka Merancang, Tapi Siapa yang Menentukan?</span>
+    </div>
+
+    <div class="ayat-list">
+      <div class="ayat-item">
+        <div class="ayat-num-badge gold-num">١٥</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line gold">إِنَّهُمۡ يَكِيدُونَ كَيۡدًا</span>
+          <span class="ayat-trans-line">"Sungguh, mereka (orang-orang kafir) itu membuat tipu daya,"</span>
+        </div>
+      </div>
+      <div class="ayat-item">
+        <div class="ayat-num-badge gold-num">١٦</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line gold">وَأَكِيدُ كَيۡدًا</span>
+          <span class="ayat-trans-line">"Dan Aku pun membuat rencana yang kokoh."</span>
+        </div>
+      </div>
+      <div class="ayat-item">
+        <div class="ayat-num-badge gold-num">١٧</div>
+        <div class="ayat-content">
+          <span class="ayat-arabic-line gold">فَمَهِّلِ ٱلۡكَٰفِرِينَ أَمۡهِلۡهُمۡ رُوَيۡدًا</span>
+          <span class="ayat-trans-line">"Maka berilah tangguh kepada orang-orang kafir itu, beri tangguhlah mereka itu barang sebentar."</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title gold gold-title">Energi Kata</h2>
+
+    <div class="energi-chip gold-chip">يَكِيدُونَ كَيۡدًا — Merancang Tipu Daya</div>
+    <p><em>Kayd</em> adalah tipu daya yang direncanakan — bukan kecelakaan, bukan impuls, tapi strategi yang disusun. Penggunaan dua kali (<em>yakiduna kaydan</em> — pola infinitif mutlak) memberi penekanan keras: mereka tidak main-main, mereka serius, mereka sungguh-sungguh merancang. Ini adalah pengakuan terbuka di dalam Al-Qur'an bahwa musuh kebenaran itu nyata, terorganisir, dan punya kesungguhan.</p>
+    <p>Tapi yang mengejutkan: kata <em>kayd</em> yang sama kemudian digunakan untuk Allah di ayat berikutnya. Seolah berkata: kamu ingin bermain di ranah rencana? Mari kita bicara tentang rencana.</p>
+
+    <div class="energi-chip gold-chip">وَأَكِيدُ كَيۡدًا — Rencana Allah yang Tak Tertandingi</div>
+    <p>Ini adalah salah satu ayat yang paling menggetarkan jiwa dalam Al-Qur'an. Allah berbicara dalam orang pertama tunggal langsung: <em>"Aku pun memiliki rencana."</em> Penggunaan kata <em>kayd</em> yang sama bukan kebetulan — ini adalah <em>mukaabalah</em>, pembalasan dengan kosakata yang sama untuk menunjukkan betapa berbedanya skala antara rencana manusia dan rencana-Nya. Mereka punya strategi berlapis. Allah punya strategi yang tidak bisa dibaca, tidak bisa diprediksi, dan tidak bisa digagalkan.</p>
+
+    <div class="energi-chip gold-chip">رُوَيۡدًا — Sebentar Saja</div>
+    <p><em>Ruwaydan</em> — bentuk tasgir (pengecil) dari kata yang berarti "perlahan". Ini adalah bentuk yang mengandung nuansa meremehkan yang halus: <em>beri mereka waktu — tapi hanya sedikit</em>. Seperti seorang yang sudah tahu pertandingan akan selesai, dengan tenang mempersilakan lawannya menyelesaikan giliran terakhirnya. Ada ketenangan yang sangat kuat di sini.</p>
+
+    <h2 class="section-title gold gold-title">Tafsir Mendalam</h2>
+    <p>Surat ini berakhir dengan sebuah deklarasi yang terasa seperti akhir dari narasi besar. Konteks historisnya: Nabi Muhammad ﷺ di Mekah dikelilingi oleh mereka yang secara aktif merancang untuk menghentikan risalah. Bukan secara diam-diam — secara terorganisir, dengan sumber daya, dengan pengaruh. Mereka percaya bahwa kekuatan, uang, dan jaringan mereka cukup.</p>
+    <p>Ayat 15-16 datang bukan untuk menghibur dengan klise. Ia datang dengan argumen yang konkret: <em>ya, mereka punya rencana — dan Aku juga punya rencana.</em> Tidak ada penyangkalan bahwa ancaman itu nyata. Tidak ada janji bahwa prosesnya akan mudah. Hanya keyakinan yang jernih: <strong>di atas semua skema manusia, ada Pengatur yang tidak pernah lengah.</strong></p>
+    <p>Dan kemudian ayat 17 — yang mungkin paling halus dan paling dalam: <em>beri mereka waktu sebentar.</em> Ini bukan kelemahan atau penundaan. Ini adalah sikap orang yang sudah tahu bagaimana cerita berakhir, yang membiarkan proses berjalan bukan karena tidak mampu menghentikannya, tapi karena ada hikmah dalam setiap babnya.</p>
+
+    <div class="relevance-box gold-rel">
+      <div class="relevance-label gold-label">✦ Relevansi Kekinian</div>
+      <p>Pernahkah kamu menyaksikan orang yang tidak jujur justru tampak sukses? Sistem yang korup justru tampak kokoh? Kebenaran yang terus-menerus kalah dalam jangka pendek? Ini adalah krisis iman yang sangat nyata — dan sangat manusiawi. Ketika kamu sudah berusaha dengan jujur tapi disingkirkan oleh yang bermain curang, ketika kamu sudah menjaga integritas tapi yang mengorbankan nilai tampak lebih maju — pikiran yang wajar pun mulai bertanya: <em>apakah ini sia-sia?</em></p>
+      <p>At-Thariq 15-17 tidak menjawab dengan "bersabarlah dan semua akan baik-baik saja" yang klise. Ia menjawab dengan sesuatu yang lebih kokoh: <em>aku tahu mereka punya rencana. Dan Aku pun punya rencana.</em> Skema manusia, seberapapun cerdasnya, bekerja dalam batasan yang telah ditentukan. Dan <em>ruwaydan</em> — waktu yang terasa lama bagimu — hanyalah sebentar dalam perspektif yang lebih besar.</p>
+      <p>Ini juga relevan bagi mereka yang sedang membangun sesuatu di tengah tekanan: perintis yang dikucilkan, pejuang kebenaran yang dimusuhi, orang-orang yang memilih jalan sulit karena itu satu-satunya jalan yang bisa mereka pertanggungjawabkan. Ayat ini adalah kepastian dari Yang Maha Mengatur: <strong>rencanamu yang baik tidak berdiri sendiri.</strong></p>
+    </div>
+
+    <div class="intisari gold-intisari">
+      <div class="intisari-label gold-label">✦ Intisari</div>
+      Tidak ada tipu daya yang cukup rumit untuk tidak bisa dilihat, dan tidak ada rencana manusia yang cukup besar untuk tidak muat di dalam rencana Allah yang lebih besar. Mereka diberi waktu — tapi hanya sebentar. Dan kamu yang memilih jalan yang lebih berat? Kamu tidak berjalan sendiri dalam rencana itu.
+    </div>
+  </div>
+
+  <!-- PENUTUP -->
+  <div class="penutup">
+    <h2 class="section-title ice-text" style="margin-top:0; border-bottom-color: #1e2535;">Refleksi: Pola yang Bisa Diambil</h2>
+
+    <div class="langkah">
+      <span class="lnum">1 — Audit Ruang Privat</span>
+      <p>Setiap minggu, luangkan waktu 10 menit untuk meninjau satu keputusan yang kamu ambil "ketika tidak ada yang melihat". Bukan untuk menyiksa diri — tapi untuk melatih konsistensi antara ruang publik dan ruang privat. Tanyakan: apakah aku akan melakukan hal yang sama kalau orang yang paling aku hormati melihatnya langsung? Kalau jawabannya tidak, itu adalah titik awal yang berharga.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">2 — Rekalibasi Niat Sebelum Berbuat</span>
+      <p>Sebelum melakukan kebaikan apa pun yang melibatkan publik — memposting sesuatu yang baik, membantu orang lain, berbagi pencapaian — berhenti sejenak dan tanyakan: <em>siapa yang sebenarnya aku ingin tahu tentang ini?</em> Bukan untuk menghentikan tindakannya, tapi untuk membersihkan niat di baliknya. Kebaikan dengan niat yang bersih meninggalkan bekas yang berbeda — pada orang lain maupun pada dirimu sendiri.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">3 — Tenangkan Diri dengan Rencana yang Lebih Besar</span>
+      <p>Ketika kamu menyaksikan ketidakadilan yang tampaknya tidak tertuntaskan, atau ketika usaha jujurmu tampak kalah oleh skema licik, kembalilah ke ayat 15-16. Bacalah pelan-pelan. Rasakan beratnya: <em>mereka memang punya rencana — tapi ada Rencana di atasnya</em>. Ini bukan pasifitas. Ini adalah ketenangan yang memberimu energi untuk terus bergerak tanpa dikonsumsi rasa frustrasi.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">4 — Jadikan Rasa Diawasi sebagai Pembebas, Bukan Penjara</span>
+      <p>Kesadaran bahwa setiap jiwa ada penjaganya bisa terasa seperti tekanan — atau seperti pembebasan. Pilihannya ada di caramu merespons. Orang yang takut pada pengawasan akan terus-menerus stres. Orang yang merasa disayangi oleh Penjaganya akan menemukan keberanian untuk melakukan yang benar bahkan ketika tidak ada yang memuji, dan ketenangan untuk melepaskan apa yang memang bukan urusannya. <strong>Kesadaran akan hafizh itu bukan surveillance yang mencekam — ia adalah bukti bahwa tidak satu pun langkahmu yang tidak berarti.</strong></p>
+    </div>
+
+    <h2 class="section-title ice-text" style="border-bottom-color: #1e2535;">Langkah Nyata</h2>
+
+    <div class="langkah">
+      <span class="lnum">Mulai Hari Ini — Satu Amal Tanpa Saksi</span>
+      <p>Lakukan satu kebaikan kecil hari ini yang <em>tidak akan pernah kamu ceritakan</em> kepada siapa pun. Tidak di media sosial, tidak dalam obrolan, tidak sebagai contoh yang kamu banggakan. Biarkan ia menjadi sesuatu yang hanya kamu dan Penjagamu yang tahu. Rasakan perbedaannya — ada rasa bersih yang berbeda dari kebaikan yang tak ternoda keinginan untuk dilihat.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">Minggu Ini — Satu Kejujuran yang Mahal</span>
+      <p>Identifikasi satu situasi di mana kamu sedang memilih jalan yang lebih mudah dengan mengorbankan sedikit kejujuran. Mungkin laporan yang dimanipulasi kecil-kecilan. Mungkin sikap yang disesuaikan dengan kepentingan. Mungkin diam yang strategis. Lakukan koreksi satu langkah — bukan sekaligus, tapi satu langkah nyata ke arah yang bisa kamu pertanggungjawabkan di hari ketika <em>tubla as-sara'ir</em>.</p>
+    </div>
+  </div>
+
+  <!-- EPILOG -->
+  <div class="epilog">
+    <h2 class="epilog-title ice-text">Ketika Bintang Menembus Malammu yang Paling Gelap</h2>
+
+    <p>Ada malam-malam di mana kamu merasa tidak ada yang melihat. Tidak ada yang tahu betapa keras kamu sudah berusaha. Tidak ada yang mengerti betapa lelahnya kamu menjaga prinsip di dunia yang tampaknya menghargai yang sebaliknya.</p>
+
+    <p>At-Thariq lahir di Mekah, di tengah gelap yang paling pekat dalam perjalanan Islam — ketika Nabi ﷺ dan para sahabat dimusuhi, diboikot, diancam. Tapi surat ini tidak menawarkan hiburan dangkal. Ia menawarkan sesuatu yang lebih kokoh: <em>kesadaran akan sistem yang tidak pernah tidur.</em></p>
+
+    <div class="divider-ice" style="margin: 36px auto;"></div>
+
+    <!-- Voice 1 -->
+    <div class="voice-block">
+      <span class="voice-label">✦ Untuk kamu yang berbuat baik tanpa ada yang tahu</span>
+      <p>Setiap tetes ketulusanmu sudah tercatat sebelum kamu selesai berniat. Hafizh-mu tidak butuh kamu mempostingnya untuk menyimpannya. Tidak ada amal yang jatuh ke tanah tanpa jejak — karena penjagamu tidak pernah absen, tidak pernah mengantuk, tidak pernah kehabisan ruang penyimpanan.</p>
+    </div>
+
+    <!-- Voice 2 -->
+    <div class="voice-block">
+      <span class="voice-label">✦ Untuk kamu yang lelah melihat ketidakadilan yang tidak tertuntaskan</span>
+      <p>Mereka memang punya rencana. Itu nyata. Itu diakui langsung dalam firman-Nya. Tapi <em>wa akidu kaydan</em> — dan Aku pun punya rencana. Kamu tidak sedang menunggu sesuatu yang mungkin terjadi. Kamu sedang menunggu sesuatu yang sudah pasti — hanya waktunya yang bukan milikmu untuk ditentukan.</p>
+    </div>
+
+    <!-- Voice 3 -->
+    <div class="voice-block">
+      <span class="voice-label">✦ Untuk kamu yang takut dengan apa yang tersimpan dalam dirimu</span>
+      <p>Hari ketika <em>tubla as-sara'ir</em> bukan untuk menghancurkanmu. Ia ada agar keadilan yang tidak bisa diselesaikan di dunia ini — termasuk keadilan untukmu, bukan hanya untukmu — akhirnya tuntas. Yang kamu perlukan bukan rekaman yang bersih sempurna, tapi arah yang jujur dan keberanian untuk terus bergerak ke sana.</p>
+    </div>
+
+    <!-- Voice 4 -->
+    <div class="voice-block">
+      <span class="voice-label">✦ Untuk kamu yang bertanya-tanya apakah hidupmu berarti</span>
+      <p>Kamu dimulai dari air yang terpancar — dan Dia yang merancang prosesmu dari awal adalah Dia yang <em>alaa raj'ihi laqadir</em> — sepenuhnya mampu menuntaskannya. Setiap napasmu ada penjaganya. Setiap langkahmu ada saksinya. Kamu bukan kecelakaan kosmik. Kamu adalah jiwa yang disengaja — dengan penjaga yang tidak pernah mundur dari tugasnya.</p>
+    </div>
+
+    <div class="divider-ice" style="margin: 40px auto;"></div>
+
+    <span class="arabic-line">ٱلنَّجۡمُ ٱلثَّاقِبُ</span>
+    <span class="latin-line">An-Najm ath-Thaqib — Bintang yang Membelah Kegelapan</span>
+    <p>Di langit malammu yang paling pekat, ada bintang yang sudah menempuh perjalanan ribuan tahun untuk tiba tepat di matamu malam ini. Ia tidak pernah berhenti. Ia tidak pernah menyerah di tengah jalan hanya karena jarak terasa terlalu jauh.</p>
+    <p>Cahayanya bukan sekadar indah — ia <em>thaqib</em>, ia membelah, ia menembus tirai kegelapan yang paling tebal.</p>
+    <p>Dan kamu — jiwa dengan penjaganya, dengan asal usulnya yang disengaja, dengan rencana yang lebih besar dari rencanamu sendiri — kamu pun memiliki kemampuan yang sama untuk membelah malam.</p>
+
+    <div class="closing">
+      Karena game ini memang diawasi dari langit.<br>
+      Tapi bukan oleh wasit yang menunggu kesalahanmu —<br>
+      melainkan oleh Penjaga yang sudah mencatatmu<br>
+      bahkan sebelum kamu tahu kamu sedang berjuang.<br><br>
+      <span class="ice-text" style="-webkit-text-fill-color: var(--ice);">Setiap pikiran terekam. Setiap rahasia tersimpan.</span><br>
+      Setiap skema sudah diketahui.<br><br>
+      <strong style="color: var(--ice); font-size: 1.1em;">Dan setiap jiwa yang berjuang dengan jujur — sudah dijaga sejak awal.</strong>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.ayat-section').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

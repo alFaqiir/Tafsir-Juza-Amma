@@ -1,0 +1,1073 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Insyiqaq: Ketika Langit Membuka Semua Rahasia</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:    #0b0907;
+    --ink2:   #100d0a;
+    --ink3:   #161210;
+    --card:   #120f0c;
+    --border: #2c2218;
+    --border2:#3a2e1e;
+    --text:   #e2d5bc;
+    --muted:  #8a7a5e;
+    --dim:    #5a4e38;
+
+    /* Accent palettes per section */
+    --amber1: #f0c060;
+    --amber2: #c88a20;
+    --amber3: #ffe8a0;
+    --amber4: #8a5c10;
+
+    --crimson1: #e86060;
+    --crimson2: #c03030;
+    --crimson3: #ffa0a0;
+
+    --jade1:  #60c898;
+    --jade2:  #309068;
+    --jade3:  #a0ffe0;
+
+    --ice1:   #80c8e0;
+    --ice2:   #4090b0;
+    --ice3:   #c0f0ff;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--ink);
+    color: var(--text);
+    line-height: 2;
+    font-size: 17px;
+  }
+
+  /* ══ GOLD GRADIENT ══ */
+  .gold {
+    background: linear-gradient(135deg, var(--amber2) 0%, var(--amber1) 40%, var(--amber3) 60%, var(--amber2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ══ HEADER ══ */
+  .header {
+    position: relative;
+    padding: 100px 40px 90px;
+    text-align: center;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  /* Starfield dots */
+  .header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(240,192,96,.18) 1px, transparent 1px),
+      radial-gradient(circle, rgba(240,192,96,.08) 1px, transparent 1px);
+    background-size: 60px 60px, 37px 37px;
+    background-position: 0 0, 30px 30px;
+    animation: starDrift 60s linear infinite;
+    pointer-events: none;
+  }
+
+  /* Horizon glow */
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent 5%, var(--amber2) 30%, var(--amber1) 50%, var(--amber2) 70%, transparent 95%);
+  }
+
+  @keyframes starDrift { to { background-position: 60px 60px, 90px 90px; } }
+
+  /* sky crack effect */
+  .sky-crack {
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 3px; height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(240,192,96,.3) 20%, rgba(240,192,96,.6) 50%, rgba(240,192,96,.3) 80%, transparent 100%);
+    filter: blur(2px);
+    animation: crackPulse 4s ease-in-out infinite;
+  }
+  @keyframes crackPulse {
+    0%,100% { opacity: .4; }
+    50% { opacity: 1; }
+  }
+
+  .header-bismillah {
+    font-family: 'Amiri', serif;
+    font-size: 2.2em;
+    color: var(--amber1);
+    opacity: .65;
+    margin-bottom: 28px;
+    letter-spacing: 3px;
+    position: relative; z-index: 1;
+  }
+
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.4em, 5.5vw, 3.8em);
+    font-weight: 700;
+    line-height: 1.15;
+    position: relative; z-index: 1;
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+  }
+
+  .header-sub {
+    font-family: 'EB Garamond', serif;
+    font-size: .95em;
+    color: var(--muted);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    position: relative; z-index: 1;
+    margin-bottom: 32px;
+  }
+
+  .divider-amber {
+    width: 140px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--amber2), var(--amber1), var(--amber2), transparent);
+    margin: 24px auto;
+    position: relative; z-index: 1;
+  }
+  .divider-amber::before {
+    content: '✦';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--amber1);
+    font-size: .7em;
+    background: var(--ink);
+    padding: 0 8px;
+  }
+
+  .tagline {
+    font-style: italic;
+    font-size: 1.2em;
+    color: #c8b070;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative; z-index: 1;
+    line-height: 1.8;
+  }
+
+  /* ══ CONTAINER ══ */
+  .container { max-width: 940px; margin: 0 auto; padding: 56px 24px 90px; }
+
+  /* ══ SECTION GROUP HEADER ══ */
+  .group-header {
+    text-align: center;
+    padding: 40px 0 10px;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .group-header .group-num {
+    font-family: 'Cinzel', serif;
+    font-size: .8em;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .group-header h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.3em, 3vw, 1.8em);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .group-header p {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 1em;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* ══ AYAT SECTION ══ */
+  .ayat-section {
+    position: relative;
+    background: linear-gradient(160deg, #140f0b, #0d0b09);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 52px 48px;
+    margin-bottom: 36px;
+    box-shadow: 0 6px 50px rgba(0,0,0,.7), inset 0 1px 0 rgba(200,160,50,.05);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .8s ease, transform .8s ease, box-shadow .3s;
+  }
+  .ayat-section.visible { opacity: 1; transform: translateY(0); }
+  .ayat-section:hover { box-shadow: 0 10px 60px rgba(0,0,0,.9), 0 0 0 1px rgba(200,160,60,.1); }
+
+  /* Accent bar variants */
+  .ayat-section.accent-amber { border-left: 3px solid var(--amber2); }
+  .ayat-section.accent-crimson { border-left: 3px solid var(--crimson2); }
+  .ayat-section.accent-jade { border-left: 3px solid var(--jade2); }
+  .ayat-section.accent-ice { border-left: 3px solid var(--ice2); }
+
+  /* Corner ornament */
+  .ayat-section::before {
+    content: '✦';
+    position: absolute; top: 20px; right: 24px;
+    opacity: .2; font-size: 1.3em;
+  }
+  .ayat-section.accent-amber::before { color: var(--amber1); }
+  .ayat-section.accent-crimson::before { color: var(--crimson1); }
+  .ayat-section.accent-jade::before { color: var(--jade1); }
+  .ayat-section.accent-ice::before { color: var(--ice1); }
+
+  /* ══ AYAT NUMBERS ══ */
+  .ayat-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .ayat-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 5px 14px;
+    border-radius: 30px;
+    font-family: 'Cinzel', serif;
+    font-size: .8em;
+    letter-spacing: 1px;
+    border: 1px solid;
+  }
+  .ayat-badge.amber  { border-color: var(--amber2);  color: var(--amber1);  background: rgba(200,138,32,.1); }
+  .ayat-badge.crimson{ border-color: var(--crimson2); color: var(--crimson1); background: rgba(192,48,48,.1); }
+  .ayat-badge.jade   { border-color: var(--jade2);   color: var(--jade1);   background: rgba(48,144,104,.1); }
+  .ayat-badge.ice    { border-color: var(--ice2);    color: var(--ice1);    background: rgba(64,144,176,.1); }
+
+  .ayat-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+
+  /* ══ ARABIC ══ */
+  .arabic-wrap {
+    text-align: center;
+    margin: 34px 0 12px;
+    padding: 30px 28px;
+    background: radial-gradient(ellipse at center, #1c1409 0%, #0c0a07 80%);
+    border-radius: 14px;
+    border: 1px solid #2e2210;
+    position: relative;
+    overflow: hidden;
+  }
+  .arabic-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(200,138,32,.06) 0%, transparent 70%);
+  }
+
+  .arabic {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: clamp(2.2em, 5.5vw, 3.4em);
+    line-height: 2.1;
+    direction: rtl;
+    position: relative;
+  }
+  .arabic.amber-text {
+    background: linear-gradient(135deg, var(--amber4) 0%, var(--amber1) 35%, var(--amber3) 55%, var(--amber2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .arabic.crimson-text {
+    background: linear-gradient(135deg, #8a1010 0%, var(--crimson1) 40%, var(--crimson3) 65%, var(--crimson2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .arabic.jade-text {
+    background: linear-gradient(135deg, #104030 0%, var(--jade1) 40%, var(--jade3) 65%, var(--jade2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .arabic.ice-text {
+    background: linear-gradient(135deg, #102840 0%, var(--ice1) 40%, var(--ice3) 65%, var(--ice2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  .transliteration {
+    text-align: center;
+    font-style: italic;
+    color: var(--dim);
+    font-size: .9em;
+    margin: 4px 0 6px;
+    letter-spacing: .5px;
+  }
+  .translation {
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.05em;
+    margin: 4px 0 30px;
+    line-height: 1.7;
+  }
+
+  /* ══ SECTION TITLES ══ */
+  h2.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05em;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 38px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h3.sub-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05em;
+    font-weight: 600;
+    font-style: italic;
+    margin: 24px 0 8px;
+    display: flex; align-items: center; gap: 10px;
+    color: #d4c090;
+  }
+  h3.sub-title::before {
+    content: '';
+    display: inline-block;
+    width: 20px; height: 1px;
+    background: currentColor;
+    opacity: .5;
+    flex-shrink: 0;
+  }
+
+  /* ══ ENERGI CHIP ══ */
+  .energi-chip {
+    display: inline-block;
+    padding: 7px 20px;
+    border-radius: 30px;
+    font-size: .88em;
+    font-weight: 600;
+    margin: 16px 0 8px;
+    letter-spacing: .5px;
+    font-family: 'Cinzel', serif;
+    border: 1px solid;
+  }
+  .energi-chip.amber  { border-color: var(--amber2);  color: var(--amber1);  background: rgba(200,138,32,.08); }
+  .energi-chip.crimson{ border-color: var(--crimson2); color: var(--crimson1); background: rgba(192,48,48,.08); }
+  .energi-chip.jade   { border-color: var(--jade2);   color: var(--jade1);   background: rgba(48,144,104,.08); }
+  .energi-chip.ice    { border-color: var(--ice2);    color: var(--ice1);    background: rgba(64,144,176,.08); }
+
+  /* ══ PARAGRAPHS ══ */
+  p { margin-bottom: 16px; color: #cec09a; text-align: justify; font-size: .97em; }
+  strong { color: var(--amber1); font-weight: 600; }
+  em { color: #c8b070; font-style: italic; }
+
+  /* ══ RELEVANCE BOX ══ */
+  .relevance-box {
+    border-radius: 0 12px 12px 0;
+    padding: 22px 26px;
+    margin: 26px 0;
+  }
+  .relevance-box.amber  { background: linear-gradient(160deg,#1a1208,#110e06); border-left: 2px solid var(--amber2); }
+  .relevance-box.crimson{ background: linear-gradient(160deg,#1a0c0c,#110808); border-left: 2px solid var(--crimson2); }
+  .relevance-box.jade   { background: linear-gradient(160deg,#0a1a10,#08110e); border-left: 2px solid var(--jade2); }
+  .relevance-box.ice    { background: linear-gradient(160deg,#0a1218,#081014); border-left: 2px solid var(--ice2); }
+
+  .relevance-label {
+    font-family: 'Cinzel', serif;
+    font-size: .75em;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .relevance-label.amber  { color: var(--amber2); }
+  .relevance-label.crimson{ color: var(--crimson2); }
+  .relevance-label.jade   { color: var(--jade2); }
+  .relevance-label.ice    { color: var(--ice2); }
+
+  /* ══ INTISARI ══ */
+  .intisari {
+    position: relative;
+    border-radius: 14px;
+    padding: 30px 34px 26px;
+    margin: 28px 0 0;
+    font-size: .98em;
+    line-height: 2;
+  }
+  .intisari.amber  { background: linear-gradient(160deg,#1c1508,#130f04); border: 1px solid #3a2a0e; color: #e0cc80; }
+  .intisari.crimson{ background: linear-gradient(160deg,#1c0e0e,#130808); border: 1px solid #3a1414; color: #e0c0c0; }
+  .intisari.jade   { background: linear-gradient(160deg,#0c1c10,#08130e); border: 1px solid #143a20; color: #c0e0cc; }
+  .intisari.ice    { background: linear-gradient(160deg,#0c1418,#081014); border: 1px solid #143060; color: #c0dce8; }
+
+  .intisari::before {
+    content: '"';
+    position: absolute; top: -18px; left: 24px;
+    font-size: 5em; line-height: 1;
+    font-family: 'Cinzel', serif;
+    opacity: .25;
+  }
+  .intisari.amber::before  { color: var(--amber1); }
+  .intisari.crimson::before{ color: var(--crimson1); }
+  .intisari.jade::before   { color: var(--jade1); }
+  .intisari.ice::before    { color: var(--ice1); }
+
+  .intisari-label {
+    font-family: 'Cinzel', serif;
+    font-size: .72em; letter-spacing: 2.5px; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .intisari-label.amber  { color: var(--amber2); }
+  .intisari-label.crimson{ color: var(--crimson2); }
+  .intisari-label.jade   { color: var(--jade2); }
+  .intisari-label.ice    { color: var(--ice2); }
+
+  /* ══ PENUTUP ══ */
+  .penutup {
+    background: linear-gradient(160deg,#110e0a,#0a0907);
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    padding: 56px 48px;
+    margin-bottom: 50px;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .penutup.visible { opacity: 1; transform: translateY(0); }
+
+  .langkah {
+    background: linear-gradient(160deg,#161208,#0e0c06);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amber2);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 26px;
+    margin: 16px 0;
+    color: #d0c090;
+    font-size: .96em;
+  }
+  .langkah .lnum {
+    display: block;
+    background: linear-gradient(135deg, var(--amber2), var(--amber1));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700; font-family: 'Cinzel', serif;
+    font-size: 1em; margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .langkah p { margin-bottom: 0; color: #c4b47e; }
+
+  /* ══ EPILOG ══ */
+  .epilog {
+    background: radial-gradient(ellipse at 50% 0%, #1e1608 0%, #080706 60%);
+    border: 1px solid var(--border2);
+    border-top: 2px solid var(--amber2);
+    border-radius: 20px;
+    padding: 70px 48px 60px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .9s ease, transform .9s ease;
+  }
+  .epilog.visible { opacity: 1; transform: translateY(0); }
+
+  .epilog-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.4em, 3vw, 2.2em);
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+  .epilog-sub {
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 50px;
+    font-size: 1.05em;
+  }
+
+  .epilog p {
+    max-width: 680px; margin: 0 auto 18px;
+    color: #c4b070; text-align: center; font-style: italic;
+    font-size: 1.02em; line-height: 1.9;
+  }
+  .epilog p.direct {
+    font-style: normal;
+    color: #d8c890;
+    font-size: 1.04em;
+    margin-top: 30px;
+  }
+
+  .epilog .arabic-line {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.6em, 4vw, 2.6em);
+    direction: rtl;
+    background: linear-gradient(135deg, var(--amber4), var(--amber1), var(--amber3), var(--amber2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block; margin: 30px auto 6px;
+    line-height: 1.8;
+  }
+  .epilog .latin-line {
+    font-style: italic; color: var(--amber1); font-size: 1.02em;
+    margin-bottom: 20px; display: block;
+    letter-spacing: .5px;
+  }
+
+  .reader-voice {
+    background: linear-gradient(160deg, #141008, #0e0c06);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 32px;
+    margin: 28px auto;
+    max-width: 620px;
+    text-align: left;
+  }
+  .reader-voice .voice-label {
+    font-family: 'Cinzel', serif;
+    font-size: .72em;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--amber2);
+    margin-bottom: 10px;
+  }
+  .reader-voice p {
+    text-align: left;
+    font-style: italic;
+    color: #ccc090;
+    margin-bottom: 0;
+    font-size: .97em;
+    line-height: 1.85;
+  }
+
+  .closing-statement {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1em, 2vw, 1.2em);
+    color: #e0cc80;
+    line-height: 2;
+    letter-spacing: .5px;
+  }
+
+  /* ══ SCROLL TOP ══ */
+  #scrollTop {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--amber4), var(--amber2));
+    color: #0a0700; font-size: 1.1em; font-weight: 700;
+    border: none; border-radius: 50%;
+    cursor: pointer; display: none; align-items: center; justify-content: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,.6);
+    transition: transform .2s, box-shadow .2s;
+    z-index: 999;
+    font-family: 'Cinzel', serif;
+  }
+  #scrollTop:hover { transform: scale(1.1); box-shadow: 0 6px 30px rgba(200,138,32,.3); }
+
+  /* ══ RESPONSIVE ══ */
+  @media(max-width:680px){
+    .header { padding: 70px 20px 60px; }
+    .ayat-section, .penutup, .epilog { padding: 32px 18px; }
+    .container { padding: 32px 14px 70px; }
+    .reader-voice { padding: 20px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="sky-crack"></div>
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <h1 class="gold">Al-Insyiqāq</h1>
+  <p class="header-sub">Surat 84 · 25 Ayat · Makkiyyah</p>
+  <div class="divider-amber"></div>
+  <p class="tagline">Ketika seluruh alam semesta berlutut dalam ketaatan — apa yang masih kita sembunyikan dari Pemilik segalanya?</p>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════════════════
+     KELOMPOK I — LANGIT DAN BUMI TUNDUK (AYAT 1–5)
+     Aksen: Emas/Amber — Keagungan Kosmis
+══════════════════════════════════════════════════ -->
+<div class="group-header">
+  <div class="group-num">Kelompok I · Ayat 1–5</div>
+  <h2 class="gold">Ketika Langit Menganga dan Bumi Meratakan Diri</h2>
+  <p>Alam semesta tidak punya pilihan selain tunduk. Apakah kita memilih ketundukan itu, atau menunggu tidak punya pilihan?</p>
+</div>
+
+<!-- AYAT 1 -->
+<div class="ayat-section accent-amber">
+  <div class="ayat-label">
+    <span class="ayat-badge amber">Ayat ١</span>
+    <span class="ayat-title gold">Langit yang Terbelah</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic amber-text">إِذَا ٱلسَّمَآءُ ٱنشَقَّتۡ</div>
+  </div>
+  <p class="transliteration">Idzas samā-un syaqqat</p>
+  <p class="translation">"Apabila langit terbelah."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+
+  <div class="energi-chip amber">انْشَقَّتْ — Inshaqqa</div>
+  <p>Kata ini berasal dari akar <em>syaqqa</em> yang berarti membelah, merobek, atau meretakkan sesuatu yang semula utuh dan kokoh. Bukan sekadar terbuka atau berlubang kecil—ini adalah retakan yang fundamental, seperti kain yang terkoyak dari ujung ke ujung, seperti bumi yang terbelah oleh gempa. Bentuk <em>infi'āl</em>-nya menunjukkan bahwa langit seolah membelah <em>dirinya sendiri</em>—bukan dipaksa dari luar, melainkan karena ia memang harus tunduk.</p>
+  <p>Bandingkan dengan <em>fataha</em> (terbuka) yang lebih lembut, atau <em>khasafa</em> (amblas) yang ke bawah. <em>Inshaqqa</em> memiliki nuansa yang lebih dramatis dan menyeluruh—langit yang selama ini tampak tak tertandingi, tak bisa disentuh, tiba-tiba menjadi rapuh di hadapan perintah-Nya.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Langit sejak awal peradaban manusia adalah simbol keabadian. Bangsa Yunani percaya cakrawala adalah "atap dunia" yang tak berubah. Bangsa Babilonia menyembah bintang-bintang karena menganggapnya abadi. Bahkan hari ini, kita berbicara tentang "luar angkasa" dengan nada yang penuh dengan rasa tak terjangkau. Langit adalah metafora untuk hal-hal yang melampaui batas kemampuan manusia.</p>
+  <p>Ayat ini menghancurkan ilusi itu dengan satu kata: <em>terbelah</em>. Yang paling kokoh pun bisa retak. Yang paling jauh pun bisa runtuh. Yang paling abadi pun akan berakhir jika Pemiliknya menghendakinya.</p>
+
+  <div class="relevance-box amber">
+    <div class="relevance-label amber">✦ Relevansi Kekinian</div>
+    <p>Ada hal-hal dalam hidup kita yang terasa seperti "langit"—tak tergoyahkan, tak terjangkau, seperti sudah menjadi bagian tetap dari kenyataan kita. Kesehatan yang baik bertahun-tahun sehingga kita lupa itu titipan. Pekerjaan yang stabil sehingga kita merasa itu sudah jatah kita selamanya. Hubungan yang terasa kokoh sehingga kita berhenti bersyukur dan mulai menganggapnya pasti ada.</p>
+    <p>Kemudian satu hari, langit itu terbelah. Diagnosis medis yang tak terduga. PHK di industri yang tadinya kita anggap aman. Perpisahan yang kita tidak pernah bayangkan. Dan kita terpana bukan karena kejadiannya, tapi karena kita lupa bahwa langit itu bukan milik kita—hanya pinjaman yang bisa ditarik kapan saja.</p>
+  </div>
+
+  <div class="intisari amber">
+    <div class="intisari-label amber">✦ Intisari</div>
+    Yang paling kokoh dalam hidupmu pun hanyalah pinjaman. Bukan karena hidup ini rapuh dan tak berarti—justru sebaliknya: karena hidup ini terlalu berharga untuk disia-siakan dengan asumsi bahwa segalanya akan selalu ada. Ketika langit terbelah dalam hidupmu, itu bukan sinyal kegagalan; itu adalah pengingat paling jujur bahwa ada Pemilik yang lebih besar dari semua yang kita banggakan.
+  </div>
+</div>
+
+<!-- AYAT 2 -->
+<div class="ayat-section accent-amber">
+  <div class="ayat-label">
+    <span class="ayat-badge amber">Ayat ٢</span>
+    <span class="ayat-title gold">Langit yang Mendengarkan</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic amber-text">وَأَذِنَتۡ لِرَبِّهَا وَحُقَّتۡ</div>
+  </div>
+  <p class="transliteration">Wa adzinат lirrabbihā wa huqqat</p>
+  <p class="translation">"Dan patuh kepada Tuhannya, dan sudah seharusnya patuh."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+
+  <div class="energi-chip amber">أَذِنَتْ — Adzina (Mendengar lalu Menaati)</div>
+  <p>Ini bukan sekadar "menurut" atau "tunduk secara pasif". Kata <em>adzina</em> berasal dari akar yang sama dengan <em>udzun</em> (telinga). Ia mengandung makna: <em>mendengar dengan penuh perhatian</em>, kemudian bergerak sesuai dengan apa yang didengar. Ada unsur kerelaan di sini—bukan keterpaksaan buta, melainkan ketaatan yang lahir dari pemahaman bahwa perintah itu benar.</p>
+
+  <div class="energi-chip amber">وَحُقَّتْ — Wa Huqqat (Dan Memang Sudah Seharusnya)</div>
+  <p>Kata ini seperti sebuah konfirmasi kosmis. Bentuk pasifnya (<em>huqqat</em>) berarti "dibenarkan", "layak", "sudah semestinya". Langit tidak hanya taat—ketaatannya itu memang <em>layak</em> dan <em>tepat</em>. Ini bukan pujian berlebihan; ini pernyataan tentang kewajaran alam semesta dalam hubungannya dengan Penciptanya.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Ada sesuatu yang sangat indah dalam dua kata terakhir ayat ini: <em>wa huqqat</em>. Al-Quran tidak sekadar berkata bahwa langit taat—ia seolah berkata: "Tentu saja langit taat. Memangnya apa lagi yang seharusnya dilakukan?"</p>
+  <p>Ini seperti menyaksikan seseorang melakukan hal yang paling natural, paling tepat, paling sesuai dengan hakikat keberadaannya—dan setelah melihatnya, kita hanya bisa berkata, "Ya, memang begitulah seharusnya." Langit yang taat kepada Penciptanya adalah langit yang sedang menjadi langit sesungguhnya.</p>
+
+  <div class="relevance-box amber">
+    <div class="relevance-label amber">✦ Relevansi Kekinian</div>
+    <p>Kita sering mengalami "ketaatan yang mahal"—saat kita melakukan sesuatu yang benar tapi merasa berat, dipaksa, atau kehilangan sesuatu. Mengapa? Karena kita belum sampai pada titik di mana kepatuhan itu terasa natural, seperti langit yang memang sudah seharusnya merespons perintah Tuhannya.</p>
+    <p>Ada orang yang taat beribadah tapi terus merasa terbebani karena ia belum <em>mendengar</em> (adzina) dengan benar—ia hanya menjalani rutinitas tanpa koneksi. Ketaatan yang sungguh adalah ketika kita bisa berkata kepada diri sendiri: "Ya, ini memang sudah seharusnya aku lakukan. Bukan karena terpaksa, tapi karena aku tahu ini benar."</p>
+  </div>
+
+  <div class="intisari amber">
+    <div class="intisari-label amber">✦ Intisari</div>
+    Ketaatan yang paling bebas adalah ketaatan yang sudah kamu pahami alasannya—bukan sekadar mengikuti aturan, melainkan karena kamu sudah mendengar cukup dalam sehingga kamu tahu bahwa inilah jalan yang paling tepat dengan hakikat keberadaanmu. Langit taat bukan karena tak punya pilihan; ia taat karena itulah cara menjadi langit sesungguhnya.
+  </div>
+</div>
+
+<!-- AYAT 3–5 -->
+<div class="ayat-section accent-amber">
+  <div class="ayat-label">
+    <span class="ayat-badge amber">Ayat ٣–٥</span>
+    <span class="ayat-title gold">Bumi yang Meratakan Diri</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic amber-text">وَإِذَا ٱلۡأَرۡضُ مُدَّتۡ ﴿٣﴾ وَأَلۡقَتۡ مَا فِيهَا وَتَخَلَّتۡ ﴿٤﴾ وَأَذِنَتۡ لِرَبِّهَا وَحُقَّتۡ ﴿٥﴾</div>
+  </div>
+  <p class="transliteration">Wa idzal ardhu muddat · wa alqat mā fīhā wa takhallat · wa adzinат lirrabbihā wa huqqat</p>
+  <p class="translation">"Dan apabila bumi diratakan, dan memuntahkan apa yang ada di dalamnya dan menjadi kosong, dan patuh kepada Tuhannya, dan sudah seharusnya patuh."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+
+  <div class="energi-chip amber">مُدَّتْ — Muddat (Diratakan/Dibentangkan)</div>
+  <p>Dari akar <em>madda</em>—menarik, meregangkan, membentangkan sejauh mungkin. Bumi yang selama ini berbukit-bukit, berlembah, berlapis rahasia di dalam perutnya—kini diratakan seperti kulit yang direntangkan. Tidak ada lagi tempat bersembunyi. Tidak ada lagi lipatan di mana sesuatu bisa tersembunyi.</p>
+
+  <div class="energi-chip amber">أَلۡقَتۡ وَتَخَلَّتۡ — Memuntahkan dan Mengosongkan Diri</div>
+  <p><em>Alqat</em> (melempar keluar) dikombinasikan dengan <em>takhallat</em> (mengosongkan diri, melepaskan sepenuhnya). Bumi tidak hanya mengeluarkan isinya—ia secara aktif melepas, merelakan, menanggalkan semua yang tersimpan di dalamnya. Ada nuansa kerelaan total di sini.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Tiga ayat ini melukiskan bumi dalam gerakan ketaatan total yang bisa kita bayangkan: diratakan, dikosongkan, tunduk. Bumi yang kita kenal sebagai tempat penyimpanan—tempat manusia, harta, rahasia, dosa, dan kenangan—kini melepas semuanya tanpa sisa.</p>
+  <p>Para ulama tafsir menyebutkan bahwa <em>mā fīhā</em> (apa yang ada di dalamnya) mencakup semua: orang-orang yang dikubur di dalam bumi sejak Adam hingga manusia terakhir, semua harta karun, semua benda, dan mungkin juga—secara metaforis—semua rahasia yang pernah dikuburkan oleh manusia di dalam diri mereka sendiri.</p>
+
+  <div class="relevance-box amber">
+    <div class="relevance-label amber">✦ Relevansi Kekinian</div>
+    <p>Kita adalah "bumi" yang menyimpan banyak hal. Di permukaan, kita tampil rapi, teratur, fungsional. Tapi di dalam: ada luka yang belum sembuh yang kita kubur dengan kesibukan. Ada dosa yang kita tutupi dengan citra baik. Ada ketakutan yang kita sembunyikan di balik keberanian yang kita paksakan. Ada versi diri yang paling jujur yang tidak pernah benar-benar kita tunjukkan kepada siapa pun.</p>
+    <p>Bayangkan seorang pemimpin yang dengan tenang menerima jabatan baru, sementara di dalam dirinya menyimpan keraguan yang ia tak pernah akui. Atau seseorang yang memposting hidup bahagia di media sosial, sementara di rumah ia menangis sendirian. Suatu hari, "bumi" dalam diri kita pun akan diratakan—semua yang tersimpan akan terungkap.</p>
+  </div>
+
+  <div class="intisari amber">
+    <div class="intisari-label amber">✦ Intisari</div>
+    Bumi yang mengeluarkan semua rahasianya bukan sedang dihukum—ia sedang dibebaskan. Ada kemungkinan bahwa pengungkapan total bukan akhir yang mengerikan, melainkan pelepasan yang paling murni. Pertanyaannya bagi kita: apa yang kita simpan terlalu lama di dalam, yang mungkin justru lebih baik dikeluarkan sekarang, dengan cara yang kita pilih sendiri?
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     KELOMPOK II — PERJALANAN MANUSIA (AYAT 6–15)
+     Aksen: Krimson — Realita Perjuangan
+══════════════════════════════════════════════════ -->
+<div class="group-header" style="margin-top:40px;">
+  <div class="group-num">Kelompok II · Ayat 6–15</div>
+  <h2 style="color:var(--crimson1);">Kerja Keras Tanpa Jeda, Hingga Berjumpa Tuhan</h2>
+  <p>Hidup adalah perjalanan yang tidak pernah berhenti—dan setiap langkahnya dicatat.</p>
+</div>
+
+<!-- AYAT 6 -->
+<div class="ayat-section accent-crimson">
+  <div class="ayat-label">
+    <span class="ayat-badge crimson">Ayat ٦</span>
+    <span class="ayat-title" style="color:var(--crimson1);">Kamu Sedang Berjalan Menuju-Nya</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic crimson-text">يَٰٓأَيُّهَا ٱلۡإِنسَٰنُ إِنَّكَ كَادِحٌ إِلَىٰ رَبِّكَ كَدۡحٗا فَمُلَٰقِيهِ</div>
+  </div>
+  <p class="transliteration">Yā ayyuhal insānu innaka kādiḥun ilā rabbika kadḥan fa mulāqīh</p>
+  <p class="translation">"Hai manusia, sesungguhnya kamu telah bekerja dengan sungguh-sungguh menuju Tuhanmu, maka pasti kamu akan menemui-Nya."</p>
+
+  <h2 class="section-title" style="color:var(--crimson1);">Energi Kata</h2>
+
+  <div class="energi-chip crimson">كَادِحٌ — Kādih (Bekerja Keras dengan Penuh Peluh)</div>
+  <p>Ini bukan sekadar "bekerja" (<em>amila</em>) atau "berjalan" (<em>masya</em>). <em>Kadaha</em> mengandung nuansa kerja yang berat, melelahkan, yang meninggalkan bekas—seperti tanda-tanda kerja keras di tangan seorang petani, atau lelah yang terasa hingga ke tulang setelah seharian berjuang. Kata ini diulang dalam dua bentuk (kata kerja aktif + kata kerja nomina): <em>kādiḥun kadḥan</em>—menegaskan betapa nyata dan beratnya perjalanan ini.</p>
+
+  <div class="energi-chip crimson">فَمُلَاقِيهِ — Fa Mulāqīh (Maka Pasti Bertemu dengan-Nya)</div>
+  <p>Huruf <em>fa</em> di sini adalah <em>fa' al-wāqi'ah</em>—menunjukkan kepastian yang akan terjadi. Ini bukan ancaman; ini fakta. Dan <em>mulāqī</em> bukan sekadar "sampai" atau "tiba"—tapi benar-benar "bertemu", "berjumpa", face to face. Tujuan perjalananmu bukan sekadar surga atau neraka—tujuannya adalah pertemuan dengan Tuhan itu sendiri.</p>
+
+  <h2 class="section-title" style="color:var(--crimson1);">Tafsir Mendalam</h2>
+  <p>Ayat ini adalah salah satu pernyataan paling komprehensif tentang hakikat hidup manusia dalam Al-Quran. Dalam satu kalimat, ia menyatakan tiga hal sekaligus: pertama, manusia selalu dalam kondisi berjuang (<em>kādiḥ</em>); kedua, perjuangan itu ada arahnya (<em>ilā rabbika</em>—menuju Tuhanmu); ketiga, perjalanan itu pasti berakhir dengan pertemuan (<em>fa mulāqīh</em>).</p>
+  <p>Yang paling menggerakkan hati para ulama adalah kata <em>kādiḥ</em>—Allah mengakui bahwa hidup manusia itu memang berat. Allah tidak berkata "kamu berjalan dengan ringan" atau "kamu berjalan dengan santai". Allah berkata: kamu berjuang keras, dengan penuh peluh dan usaha. Dan itu bukan kesalahan—itu memang kondisi manusia di dunia ini.</p>
+
+  <div class="relevance-box crimson">
+    <div class="relevance-label crimson">✦ Relevansi Kekinian</div>
+    <p>Kita hidup di era di mana kelelahan menjadi epidemic diam-diam. <em>Burnout</em> bukan lagi istilah eksklusif para profesional—pelajar yang baru duduk di kelas pun bisa merasakannya. Orang tua muda yang mengurus bayi sambil kerja dari rumah. Perantau yang berjuang sendirian di kota asing. Semua sedang <em>kadaha</em>—berjuang keras.</p>
+    <p>Tapi ayat ini tidak berkata: "Berhentilah berjuang dan istirahat." Ia berkata: "Perjuanganmu ada arahnya." Kelelahan yang tidak tahu ke mana akan berakhir adalah kelelahan yang paling menyiksa. Tapi kelelahan dalam perjalanan menuju suatu tujuan yang pasti? Itu bisa ditanggung. Bahkan bisa menjadi bermakna.</p>
+  </div>
+
+  <div class="intisari crimson">
+    <div class="intisari-label crimson">✦ Intisari</div>
+    Hidupmu yang berat itu bukan pertanda kamu salah jalan. Justru sebaliknya: ayat ini mengakui bahwa hidup manusia memang berat, dan di akhir semua itu ada pertemuan dengan Tuhan. Bukan sebagai hukuman, tapi sebagai tujuan. Maka ketika kamu kelelahan, jangan tanya "mengapa hidupku seberat ini?"—tanya: "ke mana semua perjuangan ini sedang membawaku?"
+  </div>
+</div>
+
+<!-- AYAT 7–12 -->
+<div class="ayat-section accent-crimson">
+  <div class="ayat-label">
+    <span class="ayat-badge crimson">Ayat ٧–١٢</span>
+    <span class="ayat-title" style="color:var(--crimson1);">Dua Catatan, Dua Nasib</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic crimson-text" style="font-size:clamp(1.6em,4vw,2.6em);">فَأَمَّا مَنۡ أُوتِيَ كِتَٰبَهُۥ بِيَمِينِهِۦ ﴿٧﴾ فَسَوۡفَ يُحَاسَبُ حِسَابٗا يَسِيرٗا ﴿٨﴾ وَيَنقَلِبُ إِلَىٰٓ أَهۡلِهِۦ مَسۡرُورٗا ﴿٩﴾ وَأَمَّا مَنۡ أُوتِيَ كِتَٰبَهُۥ وَرَآءَ ظَهۡرِهِۦ ﴿١٠﴾ فَسَوۡفَ يَدۡعُواْ ثُبُورٗا ﴿١١﴾ وَيَصۡلَىٰ سَعِيرًا ﴿١٢﴾</div>
+  </div>
+  <p class="translation">"Adapun orang yang diberikan catatannya dari sebelah kanan, maka ia akan diperiksa dengan pemeriksaan yang mudah, dan ia akan kembali kepada keluarganya (yang sama-sama beriman) dengan gembira. Adapun orang yang diberikan catatannya dari belakang punggungnya, maka ia akan berteriak 'celakalah aku', dan ia akan masuk ke dalam api yang menyala-nyala."</p>
+
+  <h2 class="section-title" style="color:var(--crimson1);">Energi Kata</h2>
+
+  <div class="energi-chip crimson">حِسَابًا يَسِيرًا — Hisāban Yasīrā (Hisab yang Mudah)</div>
+  <p>Ini adalah ungkapan yang sangat menyentuh hati. <em>Yasīr</em> artinya mudah, ringan, tidak memberatkan. Para ulama menjelaskan bahwa hisab yang mudah bukan berarti tanpa pengecekan—tapi berarti hanya "diperlihatkan" catatan amalnya tanpa perlu perdebatan atau pembuktian yang melelahkan. Lawan dari hisab yang mudah adalah hisab yang berat, di mana setiap detail diperdebatkan, setiap kesalahan dipaparkan panjang lebar.</p>
+
+  <div class="energi-chip crimson">وَرَاءَ ظَهۡرِهِ — Warā'a Zhahrihi (di Belakang Punggungnya)</div>
+  <p>Detail yang sangat visual dan kuat. Bukan di tangan kiri (seperti yang disebutkan surah lain), tapi di belakang punggung—posisi yang paling sulit dijangkau, yang memaksa seseorang memuntir tubuhnya dalam kesakitan. Ini gambaran tentang seseorang yang dengan cara paling canggung dan menyakitkan terpaksa menerima catatan yang tidak mau ia lihat.</p>
+
+  <h2 class="section-title" style="color:var(--crimson1);">Tafsir Mendalam</h2>
+  <p>Dua gambaran yang sangat kontras. Yang pertama: menerima catatan dari kanan, hisab ringan, pulang ke keluarga dengan gembira. Yang kedua: catatan dari belakang punggung, berteriak "celakalah aku", masuk ke api.</p>
+  <p>Yang menarik adalah detail <em>masyūrā</em>—"gembira". Bukan sekadar "lega" atau "selamat". Gembira adalah emosi yang aktif, yang meluap. Dan ia kembali kepada keluarganya—menunjukkan bahwa kebahagiaan akhirat itu bukan soliter, melainkan bersama mereka yang kita cintai dan yang juga beriman.</p>
+
+  <div class="relevance-box crimson">
+    <div class="relevance-label crimson">✦ Relevansi Kekinian</div>
+    <p>Kita hidup di era transparansi digital yang paradoks: kita paling suka mengontrol narasi tentang diri kita sendiri. Kita pilih foto mana yang diposting, cerita mana yang dibagikan, versi mana dari diri kita yang "diizinkan" untuk dilihat orang. Bahkan dalam hubungan intim pun, ada bagian dari diri kita yang kita sembunyikan.</p>
+    <p>Tapi catatan amal tidak bisa di-edit sebelum di-posting. Tidak ada fitur "delete" untuk apa yang sudah dilakukan. Tidak ada opsi "archive" untuk dosa-dosa yang kita anggap sudah kita lupakan. Yang ada adalah kebenaran mentah—dan gambaran "di belakang punggung" menggambarkan betapa tidak nyamannya seseorang yang terpaksa berhadapan dengan kebenaran yang selama ini ia hindari.</p>
+  </div>
+
+  <div class="intisari crimson">
+    <div class="intisari-label crimson">✦ Intisari</div>
+    Ada dua cara menghadapi catatan hidupmu: terbuka, atau terpaksa. Mereka yang menerima catatan dari kanan adalah mereka yang selama hidup tidak banyak menyembunyikan sesuatu dari Tuhan—mereka hidup dengan transparansi yang lahir dari kesadaran bahwa semua tercatat. Setiap hari yang kamu jalani dengan integritas adalah persiapan untuk hari di mana kamu tidak perlu menutup mata saat catatanmu dibuka.
+  </div>
+</div>
+
+<!-- AYAT 13–15 -->
+<div class="ayat-section accent-crimson">
+  <div class="ayat-label">
+    <span class="ayat-badge crimson">Ayat ١٣–١٥</span>
+    <span class="ayat-title" style="color:var(--crimson1);">Akar dari Kealpaan</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic crimson-text">إِنَّهُۥ كَانَ فِيٓ أَهۡلِهِۦ مَسۡرُورًا ﴿١٣﴾ إِنَّهُۥ ظَنَّ أَن لَّن يَحُورَ ﴿١٤﴾ بَلَىٰٓ إِنَّ رَبَّهُۥ كَانَ بِهِۦ بَصِيرًا ﴿١٥﴾</div>
+  </div>
+  <p class="translation">"Sesungguhnya dia dahulu (di dunia) merasa gembira di tengah keluarganya. Sesungguhnya dia mengira bahwa dia tidak akan kembali (kepada Tuhannya). Tidak demikian, sesungguhnya Tuhannya selalu melihatnya."</p>
+
+  <h2 class="section-title" style="color:var(--crimson1);">Energi Kata</h2>
+
+  <div class="energi-chip crimson">ظَنَّ أَن لَّن يَحُورَ — Menyangka Tidak Akan Kembali</div>
+  <p><em>Hāra</em> berarti kembali, berbalik arah. Kata ini juga memiliki resonansi dengan <em>al-hawār</em>—perputaran, siklus. Seseorang yang menyangka "lan yahūra" pada dasarnya percaya bahwa hidupnya adalah garis lurus yang tidak akan pernah berhadapan dengan titik pertanggungjawaban. Tidak ada putaran balik. Tidak ada "nanti".</p>
+
+  <div class="energi-chip crimson">بَلَىٰ — Balā (Tidak Begitu! / Justru Sebaliknya)</div>
+  <p>Ini adalah kata bantahan Al-Quran yang paling tegas. Dalam bahasa Arab, <em>balā</em> digunakan untuk membantah pernyataan negatif—artinya "tidak, kenyataannya justru sebaliknya dari yang kamu sangka". Satu kata ini membalikkan seluruh kepercayaan diri manusia yang salah tempat.</p>
+
+  <h2 class="section-title" style="color:var(--crimson1);">Tafsir Mendalam</h2>
+  <p>Tiga ayat ini menggambarkan pola psikologis yang mengerikan: seseorang yang gembira, sosial, tampak bahagia dalam lingkungan keluarga dan pergaulan—tapi di balik kegembiraan itu tersimpan keyakinan bahwa tidak ada pertanggungjawaban. Ia menikmati hidup sepenuhnya, tapi tanpa bintang utara dalam hatinya.</p>
+  <p>Dan jawaban Allah sangat singkat tapi menghancurkan: <em>balā</em>—tidak. Kamu salah. Dan buktinya? <em>Inna rabbahū kāna bihī baṣīrā</em>—Tuhannya selalu melihatnya. Bukan "akan melihat"—tapi "selalu sudah melihat" (<em>kāna</em> menunjukkan kontinuitas di masa lampau).</p>
+
+  <div class="relevance-box crimson">
+    <div class="relevance-label crimson">✦ Relevansi Kekinian</div>
+    <p>Di dunia yang semakin terhubung namun semakin dangkal secara spiritual, ada generasi yang tumbuh dengan keyakinan implisit bahwa yang penting adalah apa yang terlihat. Sukses berarti viral. Kebahagiaan berarti foto yang dapat banyak suka. Reputasi adalah apa yang orang pikirkan tentang kita.</p>
+    <p>Dalam ekosistem itu, mudah sekali mengembangkan <em>ẓanna an lan yahūra</em>—ilusi bahwa tidak ada pertanggungjawaban yang sesungguhnya. Selama tidak ada yang tahu, selama tidak ada yang screenshot, selama tidak ada yang mempermasalahkan—seolah tidak ada konsekuensi. Tapi <em>baṣīr</em> tidak membutuhkan screenshot. Ia tidak perlu dibuktikan dengan video. Ia melihat—dan selalu sudah melihat.</p>
+  </div>
+
+  <div class="intisari crimson">
+    <div class="intisari-label crimson">✦ Intisari</div>
+    Sumber dari banyak kerusakan moral bukan kejahatan yang disengaja—tapi kenaifan yang dipelihara: keyakinan bahwa tidak ada yang benar-benar melihat, tidak ada yang benar-benar mencatat, tidak ada yang benar-benar peduli. Satu kata <em>balā</em> menghancurkan ilusi itu. Dan di balik kehancuran ilusi itu, ada undangan: hiduplah seolah selalu ada yang melihat—bukan karena takut, tapi karena itulah satu-satunya cara hidup yang jujur.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     KELOMPOK III — SUMPAH KOSMIS (AYAT 16–19)
+     Aksen: Jade — Keajaiban Siklus Alam
+══════════════════════════════════════════════════ -->
+<div class="group-header" style="margin-top:40px;">
+  <div class="group-num">Kelompok III · Ayat 16–19</div>
+  <h2 style="color:var(--jade1);">Sumpah demi Senja, Malam, dan Fajar</h2>
+  <p>Sebelum menyatakan kebenaran besar, alam semesta dipanggil menjadi saksi.</p>
+</div>
+
+<!-- AYAT 16–19 -->
+<div class="ayat-section accent-jade">
+  <div class="ayat-label">
+    <span class="ayat-badge jade">Ayat ١٦–١٩</span>
+    <span class="ayat-title" style="color:var(--jade1);">Saksi Kosmis</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic jade-text" style="font-size:clamp(1.6em,4vw,2.6em);">فَلَآ أُقۡسِمُ بِٱلشَّفَقِ ﴿١٦﴾ وَٱلَّيۡلِ وَمَا وَسَقَ ﴿١٧﴾ وَٱلۡقَمَرِ إِذَا ٱتَّسَقَ ﴿١٨﴾ لَتَرۡكَبُنَّ طَبَقًا عَن طَبَقٍ ﴿١٩﴾</div>
+  </div>
+  <p class="translation">"Maka Aku bersumpah demi cahaya merah di ufuk barat, dan demi malam serta apa yang dikumpulkannya, dan demi bulan apabila telah purnama, sungguh, kamu akan melalui tingkat demi tingkat (dalam kehidupan)."</p>
+
+  <h2 class="section-title" style="color:var(--jade1);">Energi Kata</h2>
+
+  <div class="energi-chip jade">الشَّفَقِ — Asy-Syafaq (Cahaya Senja)</div>
+  <p>Kata yang sangat kaya. <em>Syafaq</em> adalah cahaya kemerahan di langit barat setelah matahari terbenam—saat siang berakhir tapi malam belum benar-benar tiba. Ini adalah momen transisi yang paling indah dan paling singkat; hanya hitungan menit. Para sufi sering memaknai syafaq sebagai metafora untuk momen antara—ketika satu fase berakhir dan yang lain belum dimulai.</p>
+
+  <div class="energi-chip jade">وَمَا وَسَقَ — Wa Mā Wasaqa (dan Apa yang Dikumpulkannya)</div>
+  <p><em>Wasiqa</em> berarti mengumpulkan, merangkul, menghimpun. Malam mengumpulkan segalanya ke dalam pelukannya—manusia, hewan, bintang, rahasia, yang lelah, yang tidur, yang menangis sendirian. Ada nuansa perlindungan di sini; malam bukan hanya kegelapan, tapi juga "pengumpul" yang merangkul semua yang ada.</p>
+
+  <div class="energi-chip jade">طَبَقًا عَن طَبَقٍ — Ṭabaqan 'an Ṭabaq (Tingkat demi Tingkat)</div>
+  <p><em>Ṭabaqa</em> berasal dari kata yang berarti lapisan, tingkatan, kondisi bertahap. Pengulangan <em>'an ṭabaq</em> menambah nuansa "dari satu tingkat ke tingkat lain"—bahwa perjalanan manusia adalah proses yang berlapis, yang terus bergerak maju melalui fase-fase yang berbeda.</p>
+
+  <h2 class="section-title" style="color:var(--jade1);">Tafsir Mendalam</h2>
+  <p>Tiga sumpah dipilih Allah dalam ayat-ayat ini: senja, malam, dan bulan purnama. Ketiganya adalah fenomena transisi dan perubahan. Senja adalah peralihan siang ke malam. Malam adalah masa pengumpulan dan ketenangan. Bulan purnama adalah puncak dari siklus dua mingguan yang terus berulang.</p>
+  <p>Lalu jawaban sumpah itu: <em>la-tarkabunna ṭabaqan 'an ṭabaq</em>—sungguh, kalian akan menaiki/melalui tingkatan demi tingkatan. Para ulama memahami ini dalam tiga lapisan: pertama, perjalanan manusia dari lahir ke mati ke akhirat; kedua, perjalanan jiwa dari keadaan ke keadaan (susah, senang, ujian, nikmat); ketiga, perjalanan bumi dari satu kondisi ke kondisi lain menuju hari kiamat.</p>
+
+  <div class="relevance-box jade">
+    <div class="relevance-label jade">✦ Relevansi Kekinian</div>
+    <p>Salah satu krisis mental yang paling umum hari ini adalah krisis "stuck"—perasaan bahwa hidup tidak bergerak, bahwa kita terjebak di satu kondisi yang tidak berubah. Mereka yang depresi sering merasakannya sebagai keabadian dari kesedihan. Mereka yang gagal merasakannya sebagai takdir yang tidak bisa diubah.</p>
+    <p>Tapi alam semesta yang dipilih sebagai saksi dalam ayat ini—senja, malam, bulan—semuanya adalah simbol perubahan yang konstan. Senja tidak pernah tetap menjadi senja. Malam selalu berakhir. Bulan selalu bersiklus. Dan Allah bersumpah demi semua ini untuk menyatakan bahwa kamu juga sedang bergerak, meski tidak terasa. Tingkat yang kamu jalani hari ini bukanlah akhir perjalananmu.</p>
+  </div>
+
+  <div class="intisari jade">
+    <div class="intisari-label jade">✦ Intisari</div>
+    Senja dipilih sebagai saksi karena ia adalah bukti paling nyata bahwa tidak ada kondisi yang permanen. Bahkan langit yang terang paling terang pun berubah menjadi ungu, lalu merah, lalu gelap—dan kemudian fajar datang lagi. Kamu yang sedang di tengah malam terpanjang dalam hidupmu: ini bukan kondisi terakhirmu. Ini adalah salah satu tingkatan yang akan kamu lewati, bukan tempat yang akan kamu huni selamanya.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     KELOMPOK IV — MENGAPA MEREKA TIDAK SUJUD? (AYAT 20–25)
+     Aksen: Es/Ice — Pertanyaan yang Menohok
+══════════════════════════════════════════════════ -->
+<div class="group-header" style="margin-top:40px;">
+  <div class="group-num">Kelompok IV · Ayat 20–25</div>
+  <h2 style="color:var(--ice1);">Di Hadapan Bukti yang Jelas, Mengapa Menolak?</h2>
+  <p>Al-Quran menutup dengan pertanyaan yang paling tajam: setelah semua ini, apa yang masih menghalangi?</p>
+</div>
+
+<!-- AYAT 20–25 -->
+<div class="ayat-section accent-ice">
+  <div class="ayat-label">
+    <span class="ayat-badge ice">Ayat ٢٠–٢٥</span>
+    <span class="ayat-title" style="color:var(--ice1);">Penutup yang Menelanjangi</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic ice-text" style="font-size:clamp(1.4em,3.5vw,2.2em);">فَمَا لَهُمۡ لَا يُؤۡمِنُونَ ﴿٢٠﴾ وَإِذَا قُرِئَ عَلَيۡهِمُ ٱلۡقُرۡءَانُ لَا يَسۡجُدُونَ ﴿٢١﴾ بَلِ ٱلَّذِينَ كَفَرُواْ يُكَذِّبُونَ ﴿٢٢﴾ وَٱللَّهُ أَعۡلَمُ بِمَا يُوعُونَ ﴿٢٣﴾ فَبَشِّرۡهُم بِعَذَابٍ أَلِيمٍ ﴿٢٤﴾ إِلَّا ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ لَهُمۡ أَجۡرٌ غَيۡرُ مَمۡنُونٍ ﴿٢٥﴾</div>
+  </div>
+  <p class="translation">"Maka mengapa mereka tidak mau beriman? Dan apabila Al-Quran dibacakan kepada mereka, mereka tidak mau sujud? Bahkan orang-orang kafir itu mendustakan (Al-Quran). Dan Allah lebih mengetahui apa yang mereka sembunyikan (dalam hati mereka). Maka sampaikanlah kepada mereka (ancaman) azab yang pedih, kecuali orang-orang yang beriman dan mengerjakan kebajikan; bagi mereka pahala yang tidak putus-putusnya."</p>
+
+  <h2 class="section-title" style="color:var(--ice1);">Energi Kata</h2>
+
+  <div class="energi-chip ice">فَمَا لَهُمۡ — Fa Mā Lahum (Lalu Ada Apa Gerangan dengan Mereka?)</div>
+  <p>Ini adalah ekspresi keheranan yang dalam. Bukan kemarahan yang menggelegar—tapi rasa heran yang tulus. Setelah semua tanda yang disebutkan (langit terbelah, bumi meratakan diri, perjalanan manusia, sumpah kosmis)—masih ada yang tidak mau beriman? <em>Fa mā lahum</em> adalah pertanyaan diagnostik: ada apa sebenarnya dengan mereka?</p>
+
+  <div class="energi-chip ice">يُوعُونَ — Yū'ūna (Menyimpan/Mengumpulkan dalam Hati)</div>
+  <p>Dari akar <em>wa'ā</em>—menyimpan, mengemas, menaruh sesuatu di dalam wadah. Yang Allah ketahui bukan sekadar pikiran atau ucapan—tapi apa yang mereka "simpan" jauh di dalam: semua pertimbangan yang tidak pernah diucapkan, semua keraguan yang dipelihara, semua keputusan yang dibuat di dalam kegelapan hati.</p>
+
+  <div class="energi-chip ice">أَجۡرٌ غَيۡرُ مَمۡنُونٍ — Pahala yang Tidak Terputus</div>
+  <p><em>Ghayru mamnūn</em> berarti tidak terputus, tidak dikurangi, tidak disebabkan oleh belas kasihan semata (karena <em>manna</em> juga bisa berarti mengungkit-ungkit pemberian). Pahala ini bukan cicilan yang bisa terhenti; bukan hadiah yang sewaktu-waktu bisa ditarik kembali. Ia mengalir tanpa jeda.</p>
+
+  <h2 class="section-title" style="color:var(--ice1);">Tafsir Mendalam</h2>
+  <p>Penutup surah ini sangat berbeda dari penutup kebanyakan surah-surah pendek. Ia tidak menutup dengan azab yang menakutkan, bukan juga dengan janji surga yang manis. Ia menutup dengan pertanyaan—dan pertanyaan itu jauh lebih menohok dari pernyataan mana pun.</p>
+  <p><em>Fa mā lahum lā yu'minūn</em>—lalu apa yang menghalangi mereka untuk beriman? Pertanyaan ini tidak ditujukan kepada orang-orang di luar sana; ia ditujukan kepada pembaca. Kepada kita. Setelah semua ayat ini, setelah semua gambaran tentang langit yang terbelah, bumi yang terbuka, perjalanan manusia yang pasti bertemu Tuhan—<em>fa mā laka?</em> Lalu ada apa gerangan denganmu?</p>
+
+  <div class="relevance-box ice">
+    <div class="relevance-label ice">✦ Relevansi Kekinian</div>
+    <p>Kita adalah generasi yang paling banyak terpapar informasi tentang agama—kajian online, podcast ustadz, konten Quran di media sosial, seminar yang bisa diakses gratis. Pengetahuan tentang Islam belum pernah sepraktis dan semurah ini dalam sejarah. Tapi paradoksnya, banyak yang justru merasa semakin jauh secara spiritual.</p>
+    <p>Masalahnya bukan kurangnya informasi—masalahnya adalah apa yang kita <em>yū'ūna</em>, yang kita simpan di dalam hati. Ada yang menyimpan kesombongan intelektual ("aku sudah tahu semua itu"). Ada yang menyimpan trauma agama yang belum sembuh. Ada yang menyimpan keasyikan dengan kehidupan dunia yang terasa terlalu enak untuk diganggu dengan pertanyaan-pertanyaan besar. Allah tidak hanya melihat perilaku kita—Ia melihat apa yang paling dalam kita simpan.</p>
+  </div>
+
+  <div class="intisari ice">
+    <div class="intisari-label ice">✦ Intisari</div>
+    Pertanyaan penutup surah ini adalah cermin, bukan tuduhan. Ia mengundang kita untuk duduk dengan pertanyaan: apa yang sebenarnya ada di antara kita dan keimanan yang lebih dalam? Bukan untuk dihakimi, tapi untuk dijawab dengan jujur kepada diri sendiri—dan kepada Tuhan yang sudah mengetahui jawabannya, dan tetap menunggu dengan pintu yang terbuka, dan tetap menjanjikan pahala yang tidak terputus bagi mereka yang mau kembali.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PENUTUP — REFLEKSI & LANGKAH NYATA
+══════════════════════════════════════════════════ -->
+<div class="penutup">
+  <h2 class="section-title gold" style="margin-top:0; font-size:1.1em;">Refleksi: Pola yang Bisa Diambil</h2>
+
+  <div class="langkah">
+    <span class="lnum">Pola 1 — Hidup Sebagai Perjalanan, Bukan Kepemilikan</span>
+    <p>Al-Insyiqaq mengajarkan bahwa semua yang kita anggap permanen—langit, bumi, kondisi kita hari ini—adalah sementara dan dinamis. Coba identifikasi satu hal yang selama ini kamu anggap "pasti ada" dan jadikan itu sebagai latihan syukur harian. Bukan karena ia akan hilang—tapi karena ia berharga justru karena tidak abadi.</p>
+  </div>
+
+  <div class="langkah">
+    <span class="lnum">Pola 2 — Kesadaran bahwa Ada yang Selalu Melihat</span>
+    <p>Kembangkan apa yang disebut para ulama sebagai <em>murāqabah</em>—kesadaran bahwa Allah selalu menyaksikan, bukan sebagai polisi yang mencari kesalahan, tapi sebagai Tuhan yang peduli dengan setiap detail hidupmu. Coba satu minggu ini: sebelum membuat keputusan apa pun, tanyakan, "Apakah ini sesuai dengan siapa aku sesungguhnya di hadapan-Nya?"</p>
+  </div>
+
+  <div class="langkah">
+    <span class="lnum">Pola 3 — Bersahabat dengan Perubahan</span>
+    <p>Sumpah Allah demi senja, malam, dan bulan mengajarkan bahwa siklus adalah bagian dari rancangan. Ketika kamu sedang di "malam" hidupmu, ingat bahwa bahkan malam yang dipilih Allah sebagai saksi kebenaran pun selalu berakhir. Praktikkan untuk tidak melabeli kondisi sementara sebagai identitas permanen: bukan "aku orang yang gagal", tapi "aku sedang melalui fase yang sulit".</p>
+  </div>
+
+  <h2 class="section-title gold">Langkah Nyata</h2>
+
+  <div class="langkah">
+    <span class="lnum">Langkah 1 — Audit "Catatan" Harianmu</span>
+    <p>Selama satu minggu, sebelum tidur, luangkan tiga menit untuk menuliskan jawaban jujur dari satu pertanyaan: "Apa satu hal hari ini yang ingin aku pertanggungjawabkan dengan baik, dan satu hal yang perlu aku perbaiki?" Ini bukan jurnal dosa—ini adalah latihan kesadaran yang melatihmu untuk tidak menyimpan terlalu banyak hal yang perlu diselesaikan.</p>
+  </div>
+
+  <div class="langkah">
+    <span class="lnum">Langkah 2 — Temukan Maknamu dalam Perjuangan</span>
+    <p>Kata <em>kādiḥ</em> mengingatkan kita bahwa berjuang keras adalah kondisi manusia yang diakui Allah. Tapi perjuangan itu bermakna hanya kalau ada arahnya. Tuliskan satu kalimat: "Semua perjuanganku hari ini bergerak menuju ___." Isi titik-titik itu dengan sesuatu yang lebih besar dari sekadar target dunia. Lakukan ini setidaknya seminggu sekali untuk menjaga arah ketika badai datang.</p>
+  </div>
+
+  <div class="langkah">
+    <span class="lnum">Langkah 3 — Satu Tindakan "Transparansi Batiniah"</span>
+    <p>Pilih satu hal yang selama ini kamu "yū'ū"—simpan dalam hati dan tidak pernah diakui, bahkan kepada diri sendiri. Bisa berupa rasa bersalah lama, keyakinan yang mulai goyah, atau doa yang terus ditunda. Bawa itu ke permukaan—dalam shalat, dalam jurnal, dalam percakapan jujur dengan seseorang yang dipercaya. Bumi yang mengeluarkan isinya bukan sedang dihancurkan; ia sedang dibebaskan.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     EPILOG
+══════════════════════════════════════════════════ -->
+<div class="epilog">
+  <h2 class="epilog-title gold">Kepada Kamu yang Merasa Tersembunyi</h2>
+  <p class="epilog-sub">— sebuah surat dari Al-Insyiqaq —</p>
+
+  <p>Pernah tidak kamu duduk di tengah keramaian, dikelilingi orang-orang yang tampaknya baik-baik saja, dan merasa bahwa hanya kamu yang menyimpan sesuatu yang terlalu berat untuk dibagikan?</p>
+
+  <p>Bahwa ada bagian dari hidupmu yang tidak akan pernah ada yang benar-benar tahu. Ada luka yang terlalu rumit untuk dijelaskan. Ada pertanyaan yang terlalu besar untuk disuarakan. Ada kesalahan yang kamu pikir sudah terlanjur terlalu lama untuk diakui.</p>
+
+  <p>Kamu menyimpannya rapat-rapat. Seperti bumi yang menyimpan semua rahasianya di dalam.</p>
+
+  <div class="divider-amber" style="margin: 36px auto;"></div>
+
+  <div class="reader-voice">
+    <div class="voice-label">✦ Untuk kamu yang merasa terlalu lelah</div>
+    <p>Ayat 6 tidak berkata hidupmu seharusnya ringan. Ia berkata hidupmu berat—dan itulah yang diakui Allah tentangmu. Kamu tidak lemah karena kelelahan. Kamu sedang <em>kadaha</em>—berjuang keras dalam perjalanan menuju-Nya. Dan perjalanan itu pasti sampai.</p>
+  </div>
+
+  <div class="reader-voice">
+    <div class="voice-label">✦ Untuk kamu yang merasa tidak terlihat</div>
+    <p>Ada satu hal yang perlu kamu tahu: <em>inna rabbahū kāna bihī baṣīrā</em>. Tuhannya selalu melihatnya. Kata ini dalam surah ini memang ditujukan sebagai peringatan—tapi ia juga adalah janji. Yang melihatmu bukan hanya ketika kamu melakukan kesalahan. Ia melihatmu ketika kamu menangis sendirian di tengah malam. Ketika kamu mencoba untuk kesekian kalinya meski sudah sering gagal. Ketika kamu berbuat baik yang tidak akan pernah diketahui siapa pun.</p>
+  </div>
+
+  <div class="reader-voice">
+    <div class="voice-label">✦ Untuk kamu yang merasa terjebak</div>
+    <p>Langit yang paling kokoh pun terbelah. Bumi yang paling diam pun bergerak. Senja yang paling indah pun berlalu. Kamu tidak sedang terjebak—kamu sedang di salah satu tingkatan dari perjalanan yang terus bergerak. <em>Ṭabaqan 'an ṭabaq</em>. Tingkat demi tingkat. Ini bukan akhir ceritamu.</p>
+  </div>
+
+  <div class="reader-voice">
+    <div class="voice-label">✦ Untuk kamu yang merasa catatannya terlalu penuh dengan kesalahan</div>
+    <p>Surah ini tidak berakhir dengan azab. Ia berakhir dengan <em>ajrun ghayru mamnūn</em>—pahala yang tidak terputus—untuk mereka yang beriman dan beramal baik. Tidak ada syarat "bersih dari masa lalu". Tidak ada klausul "hanya berlaku untuk yang belum pernah salah besar". Yang ada adalah pintu yang masih terbuka, dan Tuhan yang lebih mengetahui apa yang kamu simpan—dan tetap menunggu.</p>
+  </div>
+
+  <div class="divider-amber" style="margin: 44px auto;"></div>
+
+  <span class="arabic-line">إِذَا ٱلسَّمَآءُ ٱنشَقَّتۡ</span>
+  <span class="latin-line">Idzas samā-un syaqqat</span>
+  <p>Ketika langit terbelah dan semua rahasia terbuka—yang paling siap bukan yang paling sempurna. Yang paling siap adalah yang paling jujur: dengan diri sendiri, dengan Tuhannya, dengan perjalanan hidupnya yang berat sekalipun.</p>
+
+  <p>Langit tidak terbelah untuk menakut-nakuti. Ia terbelah untuk membuktikan bahwa tidak ada yang tersembunyi selamanya—dan justru di situlah kebebasan sesungguhnya dimulai.</p>
+
+  <div class="closing-statement gold">
+    Karena ketika kamu berhenti berpura-pura,<br>
+    ketika kamu berhenti menyimpan terlalu banyak,<br>
+    ketika kamu berhenti hidup seolah tidak ada yang melihat—<br><br>
+    <span style="font-size:1.1em; -webkit-text-fill-color: var(--amber1); background: none; color: var(--amber1);">kamu mulai hidup seperti langit yang patuh:</span><br>
+    terbuka, jujur, dan dalam ketaatannya—<br>
+    menjadi dirinya yang paling sesungguhnya.
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // scroll top button
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  // fade-in on scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.ayat-section, .penutup, .epilog').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

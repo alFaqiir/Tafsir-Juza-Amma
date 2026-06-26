@@ -1,0 +1,1545 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tafsir Al-Ma'un — Surat ke-107</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8860B;
+    --gold-light: #D4A017;
+    --gold-pale: #F5E6C8;
+    --gold-ultra: #FDF6E3;
+    --teal: #1A6B5A;
+    --teal-dark: #0D4A3D;
+    --teal-light: #E0F0EB;
+    --teal-mid: #2A8A74;
+    --ink: #1C1C1C;
+    --ink-soft: #333333;
+    --ink-muted: #555555;
+    --cream: #FEFBF3;
+    --cream-warm: #F9F2E4;
+    --red-deep: #7A1A1A;
+    --red-pale: #FAE8E8;
+    --purple-deep: #3D1558;
+    --purple-pale: #EFE8FA;
+    --white: #FFFFFF;
+    --shadow: rgba(13,74,61,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(160deg, var(--teal-dark) 0%, #0A3A2D 40%, #061E17 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 30%, rgba(184,134,11,0.12) 0%, transparent 70%),
+      radial_gradient(ellipse 80% 60% at 20% 80%, rgba(26,107,90,0.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cover-ornament {
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 32px;
+    animation: fadeIn 1.2s ease both;
+  }
+
+  .cover-label {
+    font-family: 'Source Serif 4', serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.9;
+    margin-bottom: 20px;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+
+  .cover-arabic {
+    font-family: 'Amiri', serif;
+    font-size: clamp(56px, 10vw, 96px);
+    color: var(--gold);
+    line-height: 1.3;
+    margin-bottom: 16px;
+    animation: fadeUp 1s ease 0.4s both;
+    text-shadow: 0 4px 24px rgba(184,134,11,0.3);
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 12px;
+    animation: fadeUp 1s ease 0.5s both;
+  }
+
+  .cover-subtitle {
+    font-family: 'Source Serif 4', serif;
+    font-size: clamp(15px, 2.5vw, 20px);
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 40px;
+    animation: fadeUp 1s ease 0.6s both;
+  }
+
+  .cover-divider {
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184,134,11,0.6), transparent);
+    margin: 0 auto 32px;
+    animation: fadeIn 1.2s ease 0.7s both;
+  }
+
+  .cover-tagline {
+    max-width: 480px;
+    animation: fadeUp 1s ease 0.8s both;
+  }
+
+  .cover-tagline-main {
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 8px;
+  }
+
+  .cover-tagline-bold {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(16px, 2.5vw, 21px);
+    font-weight: 700;
+    color: #F4A261;
+    line-height: 1.4;
+  }
+
+  .cover-meta {
+    margin-top: 48px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    animation: fadeIn 1.5s ease 1s both;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.3);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: bounce 2s ease infinite 2s;
+  }
+
+  .scroll-hint::before {
+    content: '';
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+  }
+
+  /* ── MAIN CONTAINER ── */
+  .main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .chapter {
+    margin-top: 80px;
+  }
+
+  .chapter-header {
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .chapter-header::before,
+  .chapter-header::after {
+    content: '';
+    position: absolute;
+    bottom: -16px;
+    height: 1px;
+  }
+
+  .chapter-header::before {
+    left: 0; right: 0;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .chapter-eyebrow {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    color: var(--teal-dark);
+    line-height: 1.2;
+  }
+
+  /* ── PROSE ── */
+  .prose p {
+    margin-bottom: 20px;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-left: 4px solid var(--teal);
+    background: var(--teal-light);
+    padding: 20px 24px;
+    border-radius: 0 8px 8px 0;
+    margin: 28px 0;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.8;
+  }
+
+  .callout.gold {
+    border-left-color: var(--gold);
+    background: var(--gold-pale);
+  }
+
+  .callout.purple {
+    border-left-color: var(--purple-deep);
+    background: var(--purple-pale);
+    color: var(--purple-deep);
+  }
+
+  /* ── INFO TABLE ── */
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px var(--shadow);
+  }
+
+  .info-table tr {
+    border-bottom: 1px solid rgba(184,134,11,0.15);
+  }
+
+  .info-table tr:last-child { border-bottom: none; }
+
+  .info-table td {
+    padding: 14px 20px;
+    font-size: 15px;
+    vertical-align: top;
+  }
+
+  .info-table td:first-child {
+    background: var(--gold-pale);
+    font-weight: 600;
+    color: var(--gold);
+    width: 34%;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+  }
+
+  .info-table td:last-child {
+    background: var(--white);
+    color: var(--ink-soft);
+  }
+
+  /* ── AYAT SECTION ── */
+  .ayat-section {
+    margin: 72px 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px var(--shadow);
+  }
+
+  .ayat-banner {
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ayat-banner-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .ayat-banner-num {
+    font-family: 'Amiri', serif;
+    font-size: 28px;
+    color: var(--gold);
+  }
+
+  .arabic-box {
+    background: var(--gold-ultra);
+    padding: 36px 40px;
+    text-align: center;
+    border-bottom: 1px solid rgba(184,134,11,0.2);
+  }
+
+  .arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: clamp(28px, 5vw, 44px);
+    color: var(--gold);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    direction: rtl;
+  }
+
+  .latin-text {
+    font-style: italic;
+    color: var(--ink-muted);
+    font-size: 14px;
+    margin-bottom: 10px;
+    letter-spacing: 0.3px;
+  }
+
+  .terjemah-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--teal-dark);
+    line-height: 1.5;
+  }
+
+  .ayat-body {
+    background: var(--white);
+    padding: 36px 40px;
+  }
+
+  /* ── SUB SECTION LABEL ── */
+  .sub-label {
+    display: inline-block;
+    background: var(--teal-dark);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+
+  .sub-label.gold {
+    background: var(--gold);
+    color: var(--white);
+  }
+
+  /* ── ENERGI KATA CARD ── */
+  .energi-kata {
+    border: 1px solid rgba(184,134,11,0.25);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(184,134,11,0.08);
+  }
+
+  .ek-header {
+    background: linear-gradient(135deg, var(--gold-pale), var(--gold-ultra));
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(184,134,11,0.2);
+  }
+
+  .ek-kata {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.3;
+  }
+
+  .ek-kata small {
+    font-family: 'Amiri', serif;
+    font-size: 18px;
+    color: var(--ink-muted);
+    font-weight: 400;
+    margin-left: 8px;
+  }
+
+  .ek-grid {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+  }
+
+  .ek-row {
+    display: contents;
+  }
+
+  .ek-row:not(:last-child) .ek-label,
+  .ek-row:not(:last-child) .ek-val {
+    border-bottom: 1px solid rgba(184,134,11,0.1);
+  }
+
+  .ek-label {
+    background: var(--gold-pale);
+    padding: 11px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 13px;
+  }
+
+  .ek-val {
+    background: var(--white);
+    padding: 11px 20px;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  .ek-val.nuansa {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  /* ── TAFSIR SECTIONS ── */
+  .tafsir-section { margin-top: 36px; }
+
+  .tafsir-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin-bottom: 14px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--teal-light);
+  }
+
+  /* ── QUESTION ── */
+  .question {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    background: var(--teal-light);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-style: italic;
+    color: var(--teal-dark);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .question::before {
+    content: '❓';
+    font-size: 15px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* ── INTISARI ── */
+  .intisari {
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+    border-radius: 12px;
+    padding: 36px 40px;
+    text-align: center;
+    margin: 36px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intisari::before {
+    content: '\201C';
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 140px;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+  }
+
+  .intisari-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(17px, 3vw, 22px);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.65;
+    position: relative;
+    z-index: 1;
+  }
+
+  .intisari-deco {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .intisari-deco span {
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.3);
+  }
+
+  .intisari-deco em {
+    font-family: 'Source Serif 4', serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* ── REFLEKSI ── */
+  .refleksi {
+    background: linear-gradient(160deg, var(--cream-warm), var(--white));
+    border: 1px solid rgba(184,134,11,0.2);
+    border-radius: 16px;
+    padding: 48px;
+    margin: 64px 0;
+    box-shadow: 0 8px 40px var(--shadow);
+  }
+
+  .action-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px dashed rgba(184,134,11,0.2);
+  }
+
+  .action-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .action-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 40px;
+    margin-top: 4px;
+  }
+
+  .action-body {}
+  .action-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--teal-dark);
+    margin-bottom: 8px;
+  }
+
+  .action-desc {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .action-note {
+    margin-top: 10px;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--ink-muted);
+    padding-left: 16px;
+    border-left: 2px solid var(--gold-pale);
+  }
+
+  /* ── CLOSING ── */
+  .closing-box {
+    background: linear-gradient(160deg, var(--teal-dark), #061E17);
+    border-radius: 16px;
+    padding: 40px 48px;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .closing-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 80% 20%, rgba(184,134,11,0.12), transparent 60%);
+    pointer-events: none;
+  }
+
+  .closing-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .closing-text {
+    color: rgba(255,255,255,0.82);
+    font-size: 15.5px;
+    line-height: 1.9;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+  }
+
+  .closing-text p { margin-bottom: 16px; }
+  .closing-text p:last-child { margin-bottom: 0; }
+
+  /* ── EPILOG ── */
+  .epilog {
+    margin: 80px 0;
+  }
+
+  .epilog-header {
+    text-align: center;
+    padding: 48px 40px 40px;
+    background: linear-gradient(160deg, var(--teal-dark), #061E17);
+    border-radius: 16px 16px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .epilog-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(184,134,11,0.1), transparent);
+  }
+
+  .epilog-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .epilog-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    position: relative;
+  }
+
+  .epilog-sub {
+    font-style: italic;
+    color: rgba(255,255,255,0.4);
+    font-size: 14px;
+    margin-top: 8px;
+    position: relative;
+  }
+
+  .epilog-body {
+    background: var(--cream-warm);
+    border: 1px solid rgba(184,134,11,0.15);
+    border-top: none;
+    border-radius: 0 0 16px 16px;
+    padding: 48px 48px 40px;
+  }
+
+  .epilog-opening {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 3vw, 23px);
+    font-weight: 600;
+    color: var(--teal-dark);
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .epilog-break {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(17px, 2.5vw, 21px);
+    font-weight: 700;
+    color: var(--red-deep);
+    margin: 32px 0 16px;
+  }
+
+  .epilog-turn {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(17px, 2.5vw, 21px);
+    font-weight: 700;
+    color: var(--teal);
+    margin: 32px 0 16px;
+  }
+
+  .epilog-body p {
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 18px;
+    font-weight: 300;
+  }
+
+  .epilog-addressing {
+    margin: 28px 0;
+    padding: 20px 28px;
+    background: var(--white);
+    border-radius: 10px;
+    border-left: 4px solid var(--teal);
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  .epilog-closing-box {
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+    border-radius: 14px;
+    padding: 36px 40px;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .ecb-line {
+    font-family: 'Source Serif 4', serif;
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.9;
+    font-style: italic;
+  }
+
+  .ecb-question {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.5;
+    margin: 20px 0;
+  }
+
+  .ecb-answer {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  .ecb-bold {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    margin-top: 8px;
+  }
+
+  .aamiin {
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  .aamiin-word {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--teal-dark);
+  }
+
+  .aamiin-sub {
+    font-size: 13px;
+    color: var(--ink-muted);
+    letter-spacing: 2px;
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  /* ── ORNAMENTS & DIVIDERS ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 48px 0;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(184,134,11,0.3), transparent);
+  }
+
+  .divider-ornament {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 8px;
+  }
+
+  .stars {
+    text-align: center;
+    font-size: 16px;
+    color: var(--gold);
+    letter-spacing: 12px;
+    margin: 40px 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 40px 24px 60px;
+    border-top: 1px solid rgba(184,134,11,0.15);
+    margin-top: 40px;
+  }
+
+  .footer-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 28px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .footer-text {
+    font-size: 13px;
+    color: var(--ink-muted);
+    letter-spacing: 1px;
+    font-style: italic;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: linear-gradient(160deg, var(--teal-dark) 0%, #0A3A2D 100%);
+    padding: 56px 48px;
+    margin: 64px 0;
+    border-radius: 16px;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.12);
+  }
+
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .toc-list {
+    list-style: none;
+  }
+
+  .toc-list li {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 10px 0;
+  }
+
+  .toc-list li:last-child { border-bottom: none; }
+
+  .toc-list a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+  }
+
+  .toc-list a:hover { color: var(--gold); }
+
+  .toc-list .toc-num {
+    font-family: 'Amiri', serif;
+    font-size: 18px;
+    color: var(--gold);
+    opacity: 0.7;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .ayat-body { padding: 24px 20px; }
+    .arabic-box { padding: 28px 20px; }
+    .refleksi { padding: 32px 24px; }
+    .epilog-body { padding: 32px 24px; }
+    .closing-box { padding: 32px 24px; }
+    .intisari { padding: 28px 24px; }
+    .ek-grid { grid-template-columns: 100px 1fr; }
+    .info-table td { padding: 12px 14px; }
+    .info-table td:first-child { width: 38%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="cover" id="top">
+  <div class="cover-ornament"></div>
+  <div class="cover-label">Tafsir Mendalam</div>
+  <div class="cover-arabic">سورة الماعون</div>
+  <h1 class="cover-title">Surat Al-Ma'un</h1>
+  <p class="cover-subtitle">"Hal-Hal Kecil yang Dipandang Sepele"</p>
+  <div class="cover-divider"></div>
+  <div class="cover-tagline">
+    <p class="cover-tagline-main">Ritual tanpa empati =</p>
+    <p class="cover-tagline-bold">bug paling besar dalam sistem kehidupan</p>
+  </div>
+  <div class="cover-meta">Surat ke-107 &nbsp;·&nbsp; 7 Ayat &nbsp;·&nbsp; Makkiyah</div>
+  <div class="scroll-hint">Gulir ke bawah</div>
+</section>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- PENDAHULUAN -->
+  <div class="chapter" id="pendahuluan">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">Pembuka</div>
+      <h2 class="chapter-title">Pendahuluan</h2>
+    </div>
+    <div class="prose">
+      <p>Ada surat dalam Al-Quran yang panjangnya hanya tujuh ayat, bisa dibaca dalam waktu kurang dari satu menit, namun isinya sanggup mengguncang cara kita memandang diri sendiri selama berhari-hari. Itulah Surat Al-Ma'un.</p>
+      <p>Kata 'ma'un' sendiri berarti 'barang-barang sepele' atau 'bantuan kecil.' Tapi jangan tertipu oleh ukurannya. Justru di sinilah letak jebakannya: surat ini bicara tentang hal-hal yang kita anggap remeh, padahal di situlah karakter sejati kita tersimpan.</p>
+      <p>Al-Ma'un adalah cermin. Dan cermin yang jujur terkadang memang membuat tidak nyaman.</p>
+    </div>
+    <div class="callout">
+      <strong>Pertanyaan awal yang perlu kita bawa masuk ke dalam surat ini:</strong><br><br>
+      Bagaimana kondisi hati kita saat tidak ada yang melihat? Apa yang kita rasakan ketika ada orang yang membutuhkan pertolongan kecil, lalu kita enggan memberikannya?
+    </div>
+    <div class="prose">
+      <p>Surat ini turun di Mekah, di tengah masyarakat yang sibuk membangun citra dan status sosial. Namun pesannya melampaui zaman. Ia berbicara langsung kepada kita hari ini, di era di mana performa keagamaan mudah ditampilkan di media sosial, namun empati terhadap tetangga sendiri semakin menipis.</p>
+    </div>
+  </div>
+
+  <!-- GAMBARAN UMUM -->
+  <div class="chapter" id="gambaran">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">Informasi Dasar</div>
+      <h2 class="chapter-title">Gambaran Umum Surat</h2>
+    </div>
+    <table class="info-table">
+      <tr><td>Nama Surat</td><td>Al-Ma'un (الماعون) — Hal-hal Kecil / Barang Berguna</td></tr>
+      <tr><td>Nama Lain</td><td>As-Saa'ah, Ad-Din, Al-Yatim</td></tr>
+      <tr><td>Golongan</td><td>Makkiyah (turun di Mekah)</td></tr>
+      <tr><td>Urutan Wahyu</td><td>Ke-17 dalam urutan turunnya wahyu</td></tr>
+      <tr><td>Urutan Mushaf</td><td>Ke-107 dalam Al-Quran</td></tr>
+      <tr><td>Jumlah Ayat</td><td>7 (tujuh) ayat</td></tr>
+      <tr><td>Tema Utama</td><td>Kritik terhadap kemunafikan sosial dan ritual hampa</td></tr>
+      <tr><td>Tokoh yang Dituju</td><td>Para pendusta agama dan orang sombong di Mekah</td></tr>
+      <tr><td>Relevansi Kekinian</td><td>Performa vs substansi, ritual vs empati, agama vs kemanusiaan</td></tr>
+    </table>
+  </div>
+
+  <!-- DAFTAR ISI -->
+  <div class="toc">
+    <div class="toc-title">Daftar Isi</div>
+    <ul class="toc-list">
+      <li><a href="#ayat1">Ayat 1 — Siapakah Pendusta Agama? <span class="toc-num">١</span></a></li>
+      <li><a href="#ayat23">Ayat 2–3 — Yatim dan Miskin, Ukuran Keimanan <span class="toc-num">٢–٣</span></a></li>
+      <li><a href="#ayat45">Ayat 4–5 — Ancaman untuk Orang yang Sholat <span class="toc-num">٤–٥</span></a></li>
+      <li><a href="#ayat6">Ayat 6 — Riya, Penyakit yang Tersembunyi <span class="toc-num">٦</span></a></li>
+      <li><a href="#ayat7">Ayat 7 — Hal Paling Kecil, Ujian Paling Jujur <span class="toc-num">٧</span></a></li>
+      <li><a href="#refleksi">Refleksi Penutup &amp; Langkah Nyata</a></li>
+      <li><a href="#epilog">Epilog — Sajadah yang Berbicara</a></li>
+    </ul>
+  </div>
+
+  <!-- ══════════ AYAT 1 ══════════ -->
+  <div class="ayat-section" id="ayat1">
+    <div class="ayat-banner">
+      <span class="ayat-banner-label">Ayat 1</span>
+      <span class="ayat-banner-num">١</span>
+    </div>
+    <div class="arabic-box">
+      <div class="arabic-text">أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ</div>
+      <div class="latin-text">Ara-aital ladzi yukazzibu bid-diin</div>
+      <div class="terjemah-text">"Tahukah kamu orang yang mendustakan agama?"</div>
+    </div>
+    <div class="ayat-body">
+
+      <div class="sub-label gold">A. Energi Kata</div>
+
+      <div class="energi-kata">
+        <div class="ek-header">
+          <div class="ek-kata">Ara-aita <small>أَرَأَيْتَ</small> — Tahukah kamu?</div>
+        </div>
+        <div class="ek-grid">
+          <div class="ek-row"><div class="ek-label">Akar Kata</div><div class="ek-val">Dari fi'il ra-a (رأى) = melihat dengan mata. Ketika ditambah hamzah istifham di depannya, menjadi pertanyaan yang menggugah: 'Sudahkah kamu benar-benar melihat?'</div></div>
+          <div class="ek-row"><div class="ek-label">Makna</div><div class="ek-val">Bukan sekadar tahu secara informasi, tapi melihat dengan kesadaran penuh. Allah seolah menegur: 'Kamu sudah hidup lama, sudah banyak melihat, tapi apakah kamu BENAR-BENAR melihat?'</div></div>
+          <div class="ek-row"><div class="ek-label">Sinonim</div><div class="ek-val">Hal-atadruk (apakah kamu mengerti), memiliki kesadaran akan</div></div>
+          <div class="ek-row"><div class="ek-label">Antonim</div><div class="ek-val">Jahila (tidak tahu sama sekali), tidak peduli, abai</div></div>
+          <div class="ek-row"><div class="ek-label">Nuansa</div><div class="ek-val nuansa">Kata ini mengandung undangan untuk merenung sebelum menghakimi. Allah mengajak kita jadi saksi yang jujur terlebih dahulu.</div></div>
+        </div>
+      </div>
+
+      <div class="energi-kata">
+        <div class="ek-header">
+          <div class="ek-kata">Yukadzdzibu <small>يُكَذِّبُ</small> — Mendustakan</div>
+        </div>
+        <div class="ek-grid">
+          <div class="ek-row"><div class="ek-label">Akar Kata</div><div class="ek-val">Dari kadzaba (كذب) = berbohong. Bentuk tasydid (penggandaan) menunjukkan intensitas: bukan sekali dusta, tapi pola yang terus berulang — pendustaan yang sudah menjadi karakter.</div></div>
+          <div class="ek-row"><div class="ek-label">Makna</div><div class="ek-val">Mendustakan bukan hanya dengan lisan. Bisa dengan sikap, tindakan, bahkan dengan diam saat kebenaran butuh disuarakan. Yukadzdzibu berarti 'terus-menerus mendustakan' — bukan salah satu kali, tapi kebiasaan.</div></div>
+          <div class="ek-row"><div class="ek-label">Sinonim</div><div class="ek-val">Yajhadu (mengingkari), yanfii (menolak)</div></div>
+          <div class="ek-row"><div class="ek-label">Antonim</div><div class="ek-val">Yushaddiq (membenarkan), yu'minu (beriman), yaqbal (menerima)</div></div>
+          <div class="ek-row"><div class="ek-label">Nuansa</div><div class="ek-val nuansa">Pendustaan dalam surat ini bukan tentang mengucapkan 'saya tidak percaya Tuhan', tapi tentang cara hidup yang bertentangan dengan nilai-nilai agama.</div></div>
+        </div>
+      </div>
+
+      <div class="energi-kata">
+        <div class="ek-header">
+          <div class="ek-kata">Ad-Diin <small>الدِّينِ</small> — Agama / Hari Pembalasan</div>
+        </div>
+        <div class="ek-grid">
+          <div class="ek-row"><div class="ek-label">Akar Kata</div><div class="ek-val">Dari daana-yadiinu. Punya dua makna sekaligus: (1) Agama sebagai sistem nilai dan jalan hidup, (2) Hari Pembalasan (yaumud-diin). Para mufassir menyebut keduanya relevan di sini.</div></div>
+          <div class="ek-row"><div class="ek-label">Makna</div><div class="ek-val">Diin bermakna 'ketaatan yang menghasilkan balasan.' Mendustakan diin = mendustakan sistem nilai Ilahi DAN konsekuensi dari setiap tindakan. Hidup seolah tidak ada akuntabilitas.</div></div>
+          <div class="ek-row"><div class="ek-label">Sinonim</div><div class="ek-val">Millah (ajaran), syariah (hukum), minhaj (jalan)</div></div>
+          <div class="ek-row"><div class="ek-label">Antonim</div><div class="ek-val">Kufr (pengingkaran total), ilhad (penyimpangan)</div></div>
+          <div class="ek-row"><div class="ek-label">Nuansa</div><div class="ek-val nuansa">Kata diin di sini juga bisa dipahami sebagai 'prinsip keteraturan semesta' — bahwa ada sebab-akibat moral dalam kehidupan.</div></div>
+        </div>
+      </div>
+
+      <div class="tafsir-section">
+        <div class="sub-label">B. Tafsir Mendalam</div>
+        <div class="tafsir-heading">Konteks dan Filosofi</div>
+        <div class="prose">
+          <p>Surat Al-Ma'un dibuka dengan pertanyaan retorik yang langsung menusuk: 'Tahukah kamu siapa pendusta agama itu?' Sebelum Al-Quran menjawab, kita diberi jeda sejenak untuk menebak sendiri. Banyak orang mungkin berpikir: pendusta agama itu adalah orang yang terang-terangan menolak Tuhan. Tapi jawaban Al-Quran mengejutkan.</p>
+          <p>Ayat pertama ini adalah pembuka dari sebuah 'pengungkapan identitas.' Allah tidak langsung menyebutkan nama atau kelompok. Ia mengajak kita untuk jadi detektif moral: perhatikan, amati, kenali tanda-tandanya.</p>
+          <p>Secara historis, banyak ulama menyebut surat ini turun berkaitan dengan Abu Jahal atau Abu Sufyan — tokoh-tokoh Mekah yang secara ritual sangat menjaga kehormatan sosial, tapi tidak pernah benar-benar peduli pada orang miskin dan anak yatim. Mereka 'religius' di mata masyarakat, tapi hampa di hadapan Allah.</p>
+        </div>
+
+        <div class="tafsir-heading">Relevansi Kekinian</div>
+        <div class="callout">
+          Pertanyaan reflektif: Kalau Allah mengajukan pertanyaan 'Tahukah kamu siapa pendusta agama itu?' hari ini, dan kita jujur menjawab berdasarkan cara hidup kita sehari-hari — apa yang akan kita temukan?
+        </div>
+        <div class="prose">
+          <p>Di zaman sekarang, fenomena 'dusta terhadap agama' hadir dalam wajah yang jauh lebih halus:</p>
+          <p><strong>Contoh 1:</strong> Seorang pegawai kantoran yang rajin sholat Jumat, tapi di hari-hari biasa ia berkata kasar kepada bawahan, sering mempersulit pelayanan, dan tidak pernah memperhatikan satpam atau OB yang kelaparan. Secara ritual ia 'taat', tapi substansi agamanya — yaitu kepedulian terhadap sesama — tidak hadir.</p>
+          <p><strong>Contoh 2:</strong> Seorang influencer yang aktif berbagi konten islami, mengisi ceramah, tapi di balik layar tidak pernah menyisihkan satu pun untuk donasi, bahkan menutup mata dari tetangga yang sedang kesulitan. Ia menggunakan 'citra religius' sebagai modal sosial, bukan sebagai panduan hidup.</p>
+        </div>
+        <div class="question">Apakah kita pernah merasa 'sudah cukup beragama' hanya karena rajin beribadah ritual, padahal kita hampir tidak pernah bertanya: siapa di sekitar kita yang butuh bantuan hari ini?</div>
+      </div>
+
+      <div class="sub-label">C. Intisari</div>
+      <div class="intisari">
+        <div class="intisari-text">Mendustakan agama bukan hanya soal kata-kata, tapi soal cara hidup.<br>Orang yang tidak peduli pada sesama adalah pendusta yang paling tersembunyi.</div>
+        <div class="intisari-deco"><span></span><em>Ayat 1</em><span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ AYAT 2-3 ══════════ -->
+  <div class="ayat-section" id="ayat23">
+    <div class="ayat-banner">
+      <span class="ayat-banner-label">Ayat 2–3</span>
+      <span class="ayat-banner-num">٢–٣</span>
+    </div>
+    <div class="arabic-box">
+      <div class="arabic-text">فَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ ۝ وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ</div>
+      <div class="latin-text">Fa dzalikal ladzi yadu'ul yatiim · Wa laa yahudhdhu 'alaa tha'aamil miskiin</div>
+      <div class="terjemah-text">"Itulah orang yang menghardik anak yatim,<br>dan tidak mendorong memberi makan orang miskin."</div>
+    </div>
+    <div class="ayat-body">
+
+      <div class="sub-label gold">A. Energi Kata</div>
+
+      <div class="energi-kata">
+        <div class="ek-header">
+          <div class="ek-kata">Yadu''u <small>يَدُعُّ</small> — Menghardik/Mendorong Kasar</div>
+        </div>
+        <div class="ek-grid">
+          <div class="ek-row"><div class="ek-label">Akar Kata</div><div class="ek-val">Dari da-'a-da'a (دعع) = mendorong dengan kekerasan. Bukan sekadar mengusir, tapi mendorong dengan penuh kehinaan. Ada nuansa penghinaan aktif di dalamnya.</div></div>
+          <div class="ek-row"><div class="ek-label">Makna</div><div class="ek-val">Kata ini dipilih bukan kata 'menolak' yang lebih netral. Allah ingin kita tahu bahwa perlakuan terhadap yatim ini bukan sekadar abai, tapi aktif merendahkan. Ada niat, ada energi buruk yang disalurkan kepada yang paling rentan.</div></div>
+          <div class="ek-row"><div class="ek-label">Sinonim</div><div class="ek-val">Yathrud (mengusir), yarfudh (menolak)</div></div>
+          <div class="ek-row"><div class="ek-label">Antonim</div><div class="ek-val">Yukrim (memuliakan), yarham (menyayangi), yaqbal (menerima dengan baik)</div></div>
+          <div class="ek-row"><div class="ek-label">Nuansa</div><div class="ek-val nuansa">Kata ini juga dipakai untuk 'mendorong kepada neraka' — ada lapisan makna: menghardik yatim adalah langkah menuju kehancuran moral.</div></div>
+        </div>
+      </div>
+
+      <div class="energi-kata">
+        <div class="ek-header">
+          <div class="ek-kata">Yahudhdhu <small>يَحُضُّ</small> — Mendorong/Menganjurkan</div>
+        </div>
+        <div class="ek-grid">
+          <div class="ek-row"><div class="ek-label">Akar Kata</div><div class="ek-val">Dari hadhdha (حضض) = memotivasi orang lain untuk melakukan kebaikan. Ini bukan soal dirinya sendiri memberi, tapi tentang apakah ia mendorong orang lain untuk peduli.</div></div>
+          <div class="ek-row"><div class="ek-label">Makna</div><div class="ek-val">Allah tidak hanya meminta kita memberi makan orang miskin secara langsung. Ia meminta kita menjadi penggerak kepedulian sosial. Orang yang tidak mau menganjurkan, tidak mau menyuarakan — juga masuk dalam kategori ini.</div></div>
+          <div class="ek-row"><div class="ek-label">Sinonim</div><div class="ek-val">Yuhammis (menyemangati), yahdzu (mendorong)</div></div>
+          <div class="ek-row"><div class="ek-label">Antonim</div><div class="ek-val">Yazhur (melarang), yathhab (diam saja, tidak berbuat)</div></div>
+          <div class="ek-row"><div class="ek-label">Nuansa</div><div class="ek-val nuansa">Mengandung tanggung jawab kolektif: bukan hanya soal 'aku sudah memberi', tapi 'apakah aku sudah membangun budaya kepedulian di komunitasku?'</div></div>
+        </div>
+      </div>
+
+      <div class="tafsir-section">
+        <div class="sub-label">B. Tafsir Mendalam</div>
+        <div class="tafsir-heading">Konteks dan Filosofi</div>
+        <div class="prose">
+          <p>Setelah membuka dengan pertanyaan, Al-Quran langsung menjawab: inilah tanda-tandanya. Dan uniknya, dua tanda pertama ini bukan soal keyakinan teologis — bukan soal apakah ia sholat atau tidak. Tandanya adalah: bagaimana ia memperlakukan anak yatim dan sikap sosialnya terhadap kemiskinan.</p>
+          <p>Ini adalah pergeseran perspektif yang luar biasa. Dalam banyak tradisi keagamaan, 'pendusta agama' diidentifikasi dari ritual atau keyakinan. Tapi Al-Ma'un mengidentifikasinya dari perilaku sosial. Agama diukur bukan dari pengakuan verbal, tapi dari perlakuan terhadap yang lemah.</p>
+          <p>Kata 'yatim' dalam konteks Arab pra-Islam memiliki beban yang berat. Yatim adalah kelompok yang paling rentan: tidak punya perlindungan ekonomi, tidak punya suara, mudah diperlakukan semena-mena. Menghardik yatim berarti menggunakan kekuasaan untuk meremehkan yang tidak berdaya.</p>
+        </div>
+
+        <div class="tafsir-heading">Relevansi Kekinian</div>
+        <div class="prose">
+          <p><strong>Contoh 1:</strong> Di era digital, 'yatim modern' bisa berarti siapa saja yang tidak punya akses, tidak punya suara, tidak punya pelindung. Anak jalanan yang diusir dari trotoar bukan karena melanggar hukum, tapi karena dianggap mengganggu pemandangan. Pekerja migran yang dipersulit hak-haknya karena tidak punya koneksi.</p>
+          <p><strong>Contoh 2:</strong> Ayat ketiga lebih dalam lagi — ia bukan soal memberi langsung, tapi soal 'mendorong.' Di era di mana kita punya platform media sosial dengan ribuan pengikut, apakah kita pernah menggunakan platform itu untuk menganjurkan kepedulian pada yang membutuhkan? Atau kita lebih sibuk memposting konten personal yang tidak berkontribusi pada kesadaran sosial?</p>
+        </div>
+        <div class="question">Kapan terakhir kali kita benar-benar memperhatikan seseorang yang lebih lemah dari kita, bukan sekadar dari jarak aman — tapi dengan koneksi yang nyata dan tindakan yang konkret?</div>
+        <div class="question">Apakah ada orang di lingkaran terdekat kita yang sedang 'kelaparan' — baik kelaparan makanan, kelaparan perhatian, atau kelaparan pertolongan — yang kita abaikan karena terlalu sibuk?</div>
+      </div>
+
+      <div class="sub-label">C. Intisari</div>
+      <div class="intisari">
+        <div class="intisari-text">Agama yang sejati diukur dari cara kita memperlakukan<br>yang paling tidak berdaya di sekitar kita.<br>Bukan dari seberapa khusyuk kita di atas sajadah.</div>
+        <div class="intisari-deco"><span></span><em>Ayat 2–3</em><span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ AYAT 4-5 ══════════ -->
+  <div class="ayat-section" id="ayat45">
+    <div class="ayat-banner">
+      <span class="ayat-banner-label">Ayat 4–5</span>
+      <span class="ayat-banner-num">٤–٥</span>
+    </div>
+    <div class="arabic-box">
+      <div class="arabic-text">فَوَيْلٌ لِّلْمُصَلِّينَ ۝ الَّذِينَ هُمْ عَن صَلَاتِهِمْ سَاهُونَ</div>
+      <div class="latin-text">Fa waylul lil mushalliin · Alladziina hum 'an sholaatihim saahun</div>
+      <div class="terjemah-text">"Maka celakalah orang-orang yang sholat,<br>(yaitu) orang yang lalai dari sholatnya."</div>
+    </div>
+    <div class="ayat-body">
+
+      <div class="sub-label gold">A. Energi Kata</div>
+
+      <div class="energi-kata">
+        <div class="ek-header">
+          <div class="ek-kata">Waylun <small>وَيْلٌ</small> — Kecelakaan / Kehancuran</div>
+        </div>
+        <div class="ek-grid">
+          <div class="ek-row"><div class="ek-label">Akar Kata</div><div class="ek-val">Kata yang sangat keras dalam bahasa Arab. Para ulama menyebutnya sebagai lembah di neraka, atau sebagai ekspresi ancaman terberat. Dalam Al-Quran, kata ini biasanya ditujukan kepada orang-orang kafir. Tapi di sini ditujukan kepada... orang yang sholat.</div></div>
+          <div class="ek-row"><div class="ek-label">Makna</div><div class="ek-val">Inilah kejutan terbesar dalam surat ini. Bukan kepada orang yang tidak sholat, tapi kepada mushalliin — orang-orang yang sholat. Kenapa? Karena sholat bisa menjadi tempat persembunyian yang paling nyaman dari kritik sosial.</div></div>
+          <div class="ek-row"><div class="ek-label">Sinonim</div><div class="ek-val">Halak (kehancuran), 'adzab (siksaan)</div></div>
+          <div class="ek-row"><div class="ek-label">Antonim</div><div class="ek-val">Falah (keberuntungan), najah (keselamatan)</div></div>
+          <div class="ek-row"><div class="ek-label">Nuansa</div><div class="ek-val nuansa">'Wayl' bukan sekadar 'celakalah', tapi mengandung rasa ngeri dan kehancuran total. Ini bukan peringatan ringan.</div></div>
+        </div>
+      </div>
+
+      <div class="energi-kata">
+        <div class="ek-header">
+          <div class="ek-kata">Saahun <small>سَاهُونَ</small> — Lalai / Terlena</div>
+        </div>
+        <div class="ek-grid">
+          <div class="ek-row"><div class="ek-label">Akar Kata</div><div class="ek-val">Dari sahaa (سها) = lupa, terlena, abai. Berbeda dengan naasii (نسي) yang berarti lupa sepenuhnya. Sahaa berarti masih tahu, masih ingat, tapi pikirannya ke mana-mana.</div></div>
+          <div class="ek-row"><div class="ek-label">Makna</div><div class="ek-val">Ini bukan soal orang yang lupa sholat karena benar-benar amnesia. Ini tentang orang yang sholat tapi pikirannya tidak hadir, hatinya tidak terlibat, dan yang paling penting — sholatnya tidak mengubah perilakunya di luar sholat.</div></div>
+          <div class="ek-row"><div class="ek-label">Sinonim</div><div class="ek-val">Ghoofil (lalai), naasii (lupa)</div></div>
+          <div class="ek-row"><div class="ek-label">Antonim</div><div class="ek-val">Khaasyi' (khusyuk), muqbil (menghadap sepenuhnya)</div></div>
+          <div class="ek-row"><div class="ek-label">Nuansa</div><div class="ek-val nuansa">Para ulama membedakan: sholat yang terlupakan (dosa kecil) vs sholat yang dilakukan dengan kebiasaan tanpa kesadaran dan tanpa pengaruh pada hidup (masalah yang lebih dalam).</div></div>
+        </div>
+      </div>
+
+      <div class="tafsir-section">
+        <div class="sub-label">B. Tafsir Mendalam</div>
+        <div class="tafsir-heading">Konteks dan Filosofi</div>
+        <div class="prose">
+          <p>Di sinilah Al-Ma'un mengeluarkan jurus terkuatnya. Selama ini kita mungkin berpikir: 'Yang penting sholat, yang lain bisa menyusul.' Tapi ayat ini mematahkan logika itu. Wayl — ancaman paling keras dalam Al-Quran — ditujukan kepada orang yang sholat, dengan syarat tertentu.</p>
+          <p>Syaratnya adalah: mereka lalai dari sholatnya. Kata 'dari' ('an) di sini sangat penting. Bukan 'lalai dalam sholatnya', tapi 'lalai dari sholatnya' — artinya sholat tidak memberi dampak apa pun pada kehidupan mereka. Tidak ada perubahan, tidak ada transformasi, tidak ada kepedulian yang tumbuh.</p>
+          <p>Sholat secara harfiah berarti 'koneksi' — menghubungkan diri dengan Yang Maha Segalanya. Orang yang saahun adalah orang yang melakukan gerakan koneksi tapi tidak pernah benar-benar terhubung. Seperti orang yang membuka aplikasi video call tapi tidak pernah menyalakan kamera dan mikrofon.</p>
+        </div>
+
+        <div class="tafsir-heading">Relevansi Kekinian</div>
+        <div class="prose">
+          <p><strong>Contoh 1:</strong> Seseorang sholat lima waktu dengan disiplin, bahkan tidak pernah melewatkan satu pun. Tapi setelah sholat, ia kembali berbohong dalam bisnis, kembali mempersulit orang, kembali tidak peduli pada lingkungan sosialnya. Sholatnya tidak 'mengalir' ke dalam hidupnya. Ini adalah gambaran saahun yang paling nyata di era modern.</p>
+          <p><strong>Contoh 2:</strong> Fenomena 'Ramadan Mode' — di bulan Ramadan, orang-orang tiba-tiba menjadi sangat religius, rajin berderma, rajin mengaji. Tapi begitu Ramadan selesai, kembali ke mode sebelumnya. Kepedulian sosial itu tidak tertanam, tidak berbekas, tidak mengubah pola pikir.</p>
+        </div>
+        <div class="callout purple">
+          <strong>Renungan:</strong> Sholat yang benar seharusnya seperti filter air. Setiap kali kita melewatinya, ada kotoran yang tersaring. Ada keangkuhan yang berkurang, ada kepedulian yang bertambah, ada kesombongan yang mengecil. Kalau kita sholat berkali-kali tapi kotorannya tidak berkurang — mungkin filternya perlu diperiksa.
+        </div>
+        <div class="question">Jika kita jujur mengevaluasi: apakah sholat kita hari ini mengubah cara kita memperlakukan orang lain, atau ia hanya jadi ritual penghapus rasa bersalah yang kita lakukan lagi besok tanpa perubahan?</div>
+      </div>
+
+      <div class="sub-label">C. Intisari</div>
+      <div class="intisari">
+        <div class="intisari-text">Sholat yang benar meninggalkan jejak di luar sajadah.<br>Jika setelah sholat kita masih tidak peduli, tidak berubah, tidak peka —<br>maka kita sedang membangun cangkang tanpa isi.</div>
+        <div class="intisari-deco"><span></span><em>Ayat 4–5</em><span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ AYAT 6 ══════════ -->
+  <div class="ayat-section" id="ayat6">
+    <div class="ayat-banner">
+      <span class="ayat-banner-label">Ayat 6</span>
+      <span class="ayat-banner-num">٦</span>
+    </div>
+    <div class="arabic-box">
+      <div class="arabic-text">الَّذِينَ هُمْ يُرَاءُونَ</div>
+      <div class="latin-text">Alladziina hum yuraa-uun</div>
+      <div class="terjemah-text">"(Yaitu) orang-orang yang berbuat riya."</div>
+    </div>
+    <div class="ayat-body">
+
+      <div class="sub-label gold">A. Energi Kata</div>
+
+      <div class="energi-kata">
+        <div class="ek-header">
+          <div class="ek-kata">Yuraa-uun <small>يُرَاءُونَ</small> — Berbuat Riya</div>
+        </div>
+        <div class="ek-grid">
+          <div class="ek-row"><div class="ek-label">Akar Kata</div><div class="ek-val">Dari ra-a (رأى) = melihat. Riya berarti melakukan sesuatu agar dilihat orang. Bentuk wazan yang dipakai (yufa'ilun) menunjukkan tindakan yang berulang dan disengaja — bukan sekali-kali, tapi menjadi pola.</div></div>
+          <div class="ek-row"><div class="ek-label">Makna</div><div class="ek-val">Riya adalah lawan dari ikhlas. Ikhlas artinya melakukan sesuatu karena Allah saja. Riya artinya melakukan sesuatu karena ingin terlihat oleh manusia. Yang mengerikan dari riya adalah: ia bisa hadir dalam amal terbaik sekalipun.</div></div>
+          <div class="ek-row"><div class="ek-label">Sinonim</div><div class="ek-val">Sum'ah (unjuk-unjukan pendengaran), takabbur (sombong)</div></div>
+          <div class="ek-row"><div class="ek-label">Antonim</div><div class="ek-val">Ikhlas (tulus), sirr (tersembunyi/tidak pamer)</div></div>
+          <div class="ek-row"><div class="ek-label">Nuansa</div><div class="ek-val nuansa">Riya disebut dalam hadis sebagai 'syirik kecil' — karena ia menyekutukan Allah dengan penilaian manusia dalam urusan ibadah. Pelakunya beribadah untuk dua 'tuhan' sekaligus.</div></div>
+        </div>
+      </div>
+
+      <div class="tafsir-section">
+        <div class="sub-label">B. Tafsir Mendalam</div>
+        <div class="tafsir-heading">Konteks dan Filosofi</div>
+        <div class="prose">
+          <p>Riya adalah penyakit hati yang paling sulit dideteksi karena ia bersembunyi di balik amal baik. Seseorang yang mencuri mudah diidentifikasi. Tapi seseorang yang bersedekah karena riya terlihat seperti dermawan yang mulia — bahkan mungkin mendapat pujian dan penghargaan sosial.</p>
+          <p>Yang membuat ayat ini begitu tajam adalah: riya disebutkan bukan sebagai alasan seseorang tidak beramal, tapi sebagai kontaminan dari amal yang sudah dilakukan. Mereka sholat — tapi dengan riya. Bentuk luarnya sempurna, isinya kosong.</p>
+          <p>Para ulama membagi riya menjadi dua: riya jali (terang-terangan) dan riya khafi (tersembunyi, misal: ibadah yang dilakukan tapi hati berharap ada yang mengetahui). Yang kedua jauh lebih berbahaya karena pelakunya sendiri sering tidak menyadarinya.</p>
+        </div>
+
+        <div class="tafsir-heading">Relevansi Kekinian</div>
+        <div class="prose">
+          <p><strong>Contoh 1:</strong> Di era media sosial, riya mendapat lahan subur yang belum pernah ada sebelumnya. Posting foto sedekah dengan tagar, mengunggah momen sholat berjamaah, membagikan foto buka puasa bersama anak yatim — semua ini bisa benar-benar tulus, tapi juga bisa menjadi performa riya yang sangat canggih. Pertanyaannya bukan 'apakah boleh posting kebaikan?', tapi 'apa motivasi terdalam saat kita menekan tombol bagikan?'</p>
+          <p><strong>Contoh 2:</strong> Di dunia kerja, seseorang yang mengerjakan tugas dengan sangat baik saat ada atasan yang memperhatikan, tapi biasa-biasa saja saat tidak ada yang melihat — ini adalah manifestasi riya dalam konteks profesional. Kualitas ditentukan oleh penonton, bukan oleh nilai intrinsik pekerjaan itu sendiri.</p>
+        </div>
+        <div class="question">Coba bayangkan: jika tidak ada satu pun orang yang akan tahu tentang kebaikan yang akan kita lakukan — apakah kita masih akan melakukannya dengan cara yang sama?</div>
+      </div>
+
+      <div class="sub-label">C. Intisari</div>
+      <div class="intisari">
+        <div class="intisari-text">Amal yang dilakukan karena mata manusia<br>adalah bangunan di atas pasir — terlihat kokoh<br>hingga banjir pertama datang.</div>
+        <div class="intisari-deco"><span></span><em>Ayat 6</em><span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ AYAT 7 ══════════ -->
+  <div class="ayat-section" id="ayat7">
+    <div class="ayat-banner">
+      <span class="ayat-banner-label">Ayat 7</span>
+      <span class="ayat-banner-num">٧</span>
+    </div>
+    <div class="arabic-box">
+      <div class="arabic-text">وَيَمْنَعُونَ الْمَاعُونَ</div>
+      <div class="latin-text">Wa yamna'uunal maa'uun</div>
+      <div class="terjemah-text">"Dan enggan (memberikan) bantuan."</div>
+    </div>
+    <div class="ayat-body">
+
+      <div class="sub-label gold">A. Energi Kata</div>
+
+      <div class="energi-kata">
+        <div class="ek-header">
+          <div class="ek-kata">Yamna'uun <small>يَمْنَعُونَ</small> — Menahan / Menghalangi</div>
+        </div>
+        <div class="ek-grid">
+          <div class="ek-row"><div class="ek-label">Akar Kata</div><div class="ek-val">Dari mana-a (منع) = menahan, mencegah, menghalangi. Bukan sekadar 'tidak memberi', tapi ada aspek aktif dari penolakan ini. Ada usaha untuk mempertahankan apa yang dimiliki dari orang lain.</div></div>
+          <div class="ek-row"><div class="ek-label">Makna</div><div class="ek-val">Kata ini bermakna lebih dari sekadar kikir. Ada unsur keangkuhan: 'ini milikku, kamu tidak berhak.' Ini berbeda dari orang yang tidak mampu memberi — ini adalah orang yang mampu tapi sengaja menahan.</div></div>
+          <div class="ek-row"><div class="ek-label">Sinonim</div><div class="ek-val">Yabkhalu (kikir/pelit), yamsiku (menggenggam erat)</div></div>
+          <div class="ek-row"><div class="ek-label">Antonim</div><div class="ek-val">Yu'thii (memberi), yajiid (bermurah hati)</div></div>
+          <div class="ek-row"><div class="ek-label">Nuansa</div><div class="ek-val nuansa">Dipakai dalam konteks 'mencegah sesuatu yang seharusnya mengalir' — seperti bendungan yang menahan air dari ladang yang haus.</div></div>
+        </div>
+      </div>
+
+      <div class="energi-kata">
+        <div class="ek-header">
+          <div class="ek-kata">Al-Ma'un <small>الْمَاعُونَ</small> — Barang Kecil / Bantuan Sepele</div>
+        </div>
+        <div class="ek-grid">
+          <div class="ek-row"><div class="ek-label">Akar Kata</div><div class="ek-val">Dari 'aana-yu'iin (عانيعين) = membantu, menolong. Ma'un adalah kata benda instrumen: sesuatu yang digunakan untuk membantu. Para ulama mendefinisikannya sebagai peralatan rumah tangga yang dipinjamkan, bantuan sehari-hari, hal-hal kecil yang sebenarnya mudah diberikan.</div></div>
+          <div class="ek-row"><div class="ek-label">Makna</div><div class="ek-val">Inilah klimaks dari surat ini. Setelah berbicara tentang anak yatim, orang miskin, sholat, dan riya — surat ini berakhir dengan sesuatu yang paling kecil dan sepele. Bukan tentang tidak memberi harta berlimpah, tapi tentang enggan meminjamkan panci, ember, atau garam sekalipun.</div></div>
+          <div class="ek-row"><div class="ek-label">Sinonim</div><div class="ek-val">Al-'aun (pertolongan), al-musa'adah (bantuan)</div></div>
+          <div class="ek-row"><div class="ek-label">Antonim</div><div class="ek-val">Al-bukhl (kekikiran), al-istikbaar (kesombongan)</div></div>
+          <div class="ek-row"><div class="ek-label">Nuansa</div><div class="ek-val nuansa">Ma'un bisa berarti air dalam beberapa tafsir — elemen paling dasar kehidupan. Menahan air dari yang haus adalah gambaran paling gelap dari keengganan berbagi.</div></div>
+        </div>
+      </div>
+
+      <div class="tafsir-section">
+        <div class="sub-label">B. Tafsir Mendalam</div>
+        <div class="tafsir-heading">Konteks dan Filosofi</div>
+        <div class="prose">
+          <p>Surat Al-Ma'un berakhir dengan cara yang tidak terduga: bukan dengan ancaman besar, bukan dengan gambaran neraka yang mengerikan, tapi dengan... panci dan garam. Hal-hal rumahan. Hal-hal yang kita gunakan setiap hari dan mungkin tidak pernah kita pikirkan dua kali.</p>
+          <p>Mengapa surat yang dimulai dengan pertanyaan besar tentang 'pendusta agama' berakhir dengan barang-barang kecil? Karena inilah intinya: keimanan sejati diuji bukan di momen besar dan dramatis, tapi di momen kecil dan biasa. Siapa kamu saat tetangga mengetuk pintu minta pinjam sesuatu yang kecil — di situlah karakter sejatimu terungkap.</p>
+          <p>Para mufassir menjelaskan bahwa di zaman Nabi, 'ma'un' merujuk pada hal-hal seperti: kapak yang dipinjam untuk menebang pohon, ember untuk mengambil air, jarum untuk menjahit. Benda-benda yang penggunaannya tidak mengurangi milikmu secara permanen, tapi manfaatnya bagi yang meminjam bisa sangat besar.</p>
+        </div>
+
+        <div class="tafsir-heading">Relevansi Kekinian</div>
+        <div class="prose">
+          <p><strong>Contoh 1:</strong> Seseorang yang tidak mau meminjamkan charger ponsel kepada teman yang baterainya habis dalam kondisi darurat, padahal ia punya cadangan. Atau orang yang tidak mau berbagi informasi penting yang ia miliki karena takut orang lain juga sukses. Atau yang tidak mau meluangkan 10 menit waktunya untuk membantu rekan yang kebingungan.</p>
+          <p><strong>Contoh 2:</strong> Di skala komunitas, 'ma'un modern' bisa berarti: akses informasi, koneksi jaringan, rekomendasi kerja, atau bahkan sekadar dukungan moral. Orang yang sudah berhasil tapi tidak mau 'membuka pintu' bagi yang masih berjuang di belakangnya — ia sedang menahan ma'un dalam bentuknya yang paling modern.</p>
+        </div>
+        <div class="question">Adakah seseorang dalam hidup kita yang pernah meminta bantuan kecil yang sebetulnya mudah kita berikan, tapi kita tolak karena alasan yang sejujurnya tidak terlalu kuat?</div>
+        <div class="question">Apa yang bisa kita pinjamkan hari ini — waktu, pengetahuan, koneksi, atau benda — kepada seseorang yang membutuhkan?</div>
+      </div>
+
+      <div class="sub-label">C. Intisari</div>
+      <div class="intisari">
+        <div class="intisari-text">Keimanan yang sesungguhnya justru terlihat<br>dari seberapa mudah kita memberi dan berbagi<br>hal-hal yang kecil dan sepele.</div>
+        <div class="intisari-deco"><span></span><em>Ayat 7</em><span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ REFLEKSI PENUTUP ══════════ -->
+  <div class="chapter" id="refleksi">
+    <div class="chapter-header">
+      <div class="chapter-eyebrow">Penutup</div>
+      <h2 class="chapter-title">Refleksi &amp; Langkah Nyata</h2>
+    </div>
+
+    <div class="prose">
+      <p>Setelah melewati tujuh ayat Al-Ma'un, satu pola besar terlihat dengan sangat jelas: ada jarak yang berbahaya antara penampilan luar dan kondisi dalam. Antara ritual yang dikerjakan dan nilai yang sungguh dihayati. Antara label agama yang kita sandang dan cara kita memperlakukan manusia di sekitar kita.</p>
+      <p>Surat ini tidak menyerang orang yang tidak beragama. Ia menyerang kita yang beragama tapi kehilangan rohnya. Dan itulah yang membuatnya relevan sepanjang zaman.</p>
+    </div>
+
+    <div class="refleksi">
+      <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--teal-dark);margin-bottom:32px;">Langkah Nyata yang Bisa Dimulai Hari Ini</div>
+
+      <div class="action-item">
+        <div class="action-num">1</div>
+        <div class="action-body">
+          <div class="action-title">Audit Empati Mingguan</div>
+          <div class="action-desc">Luangkan 5 menit setiap minggu untuk bertanya jujur kepada diri sendiri: 'Siapa yang aku abaikan minggu ini? Apakah ada yang membutuhkan bantuanku tapi aku memilih diam?' Bukan untuk menyalahkan diri sendiri, tapi untuk mengkalibrasi ulang kepekaan sosial yang mungkin tumpul karena kesibukan.</div>
+          <div class="action-note">Bisa dilakukan setiap malam Jumat sebagai bagian dari muhasabah. Tulis satu nama, satu situasi, dan satu tindakan konkret yang bisa dilakukan minggu depan.</div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">2</div>
+        <div class="action-body">
+          <div class="action-title">Transformasi Pasca-Sholat</div>
+          <div class="action-desc">Setelah sholat, sebelum melipat sajadah, ambil 60 detik untuk bertanya: 'Apa satu hal nyata yang akan aku lakukan hari ini sebagai perpanjangan dari sholat ini?' Ini bisa sesederhana: mengirim pesan kepada teman yang sedang susah, menyapa tetangga yang sudah lama tidak terlihat, atau membantu pekerjaan seseorang yang kewalahan.</div>
+          <div class="action-note">Sholat seharusnya menjadi bahan bakar, bukan tujuan akhir. Ia mengisi tangki, tapi kemudian kita harus melaju.</div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">3</div>
+        <div class="action-body">
+          <div class="action-title">Detoksifikasi Riya Digital</div>
+          <div class="action-desc">Evaluasi konten yang kita bagikan di media sosial selama sebulan ke depan. Tanya sebelum memposting: 'Kalau tidak ada yang akan melihat ini, apakah aku masih akan melakukan hal ini?' Bukan berarti tidak boleh berbagi kebaikan. Tapi pastikan motivasi terdalamnya bukan tentang citra.</div>
+          <div class="action-note">Cobalah satu bulan melakukan kebaikan yang benar-benar tidak diketahui siapa pun. Perhatikan bagaimana rasanya.</div>
+        </div>
+      </div>
+
+      <div class="action-item">
+        <div class="action-num">4</div>
+        <div class="action-body">
+          <div class="action-title">Inventarisasi Ma'un</div>
+          <div class="action-desc">Buat daftar: apa yang kita miliki yang bisa dengan mudah kita bagikan atau pinjamkan tanpa kehilangan? Bisa berupa: waktu, keahlian, koneksi, informasi, benda, atau dukungan moral. Lalu secara aktif tawarkan, jangan tunggu diminta.</div>
+          <div class="action-note">Orang yang paling dermawan dalam perspektif Al-Ma'un bukan yang memberi yang besar-besar, tapi yang paling mudah berbagi hal-hal kecil yang dimilikinya.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="closing-box">
+      <div class="closing-label">Closing Statement</div>
+      <div class="closing-text">
+        <p>Al-Ma'un mengajarkan bahwa agama adalah sistem yang terintegrasi — dari bagaimana kita menghubungkan diri dengan Allah hingga bagaimana kita menghubungkan diri dengan sesama manusia. Keduanya tidak bisa dipisahkan.</p>
+        <p>Ritual yang tidak menghasilkan empati adalah mesin yang mengonsumsi bahan bakar tanpa menghasilkan kerja. Indah secara estetika, tapi tidak berguna.</p>
+        <p>Bukan tentang menjadi sempurna. Tapi tentang terus bergerak ke arah yang benar: dari sholat yang mengubah, dari kepedulian yang tulus, dari kerelaan berbagi yang tumbuh dari kelimpahan batin — bukan dari keterpaksaan sosial.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ EPILOG ══════════ -->
+  <div class="epilog" id="epilog">
+    <div class="epilog-header">
+      <div class="epilog-eyebrow">Epilog</div>
+      <h2 class="epilog-title">Sajadah yang Berbicara</h2>
+      <div class="epilog-sub">— sebuah narasi reflektif —</div>
+    </div>
+    <div class="epilog-body">
+
+      <p class="epilog-opening">Ada pagi-pagi ketika kita bangun dengan perasaan bersih.</p>
+
+      <p>Wudhu yang dingin menyentuh wajah, sajadah tergelar menghadap kiblat, dan kita berdiri dalam keheningan yang terasa seperti privilege — karena tidak semua orang punya ketenangan itu di pagi hari yang sama.</p>
+      <p>Kita sholat. Dan itu adalah hal yang indah.</p>
+
+      <p class="epilog-break">Tapi kemudian.</p>
+
+      <p>Kita melipat sajadah, dan sesuatu dalam diri kita juga ikut terlipat.</p>
+      <p>Kepekaan itu terlipat kembali. Kerendahan hati itu terlipat kembali. Kesadaran bahwa ada manusia di luar sana yang sedang berjuang — juga terlipat, rapi, tersimpan di lemari pikiran yang jarang kita buka.</p>
+      <p>Kita melangkah keluar, dan dunia berjalan seperti biasa. Kita terganggu oleh kemacetan, kesal karena koneksi internet lambat, sibuk dengan pertemuan yang tidak produktif, lelah dengan ekspektasi orang lain. Dan di antara semua itu — seseorang mengetuk pintu hati kita meminta hal kecil, dan kita bilang tidak.</p>
+
+      <p class="epilog-turn">Al-Ma'un tidak menghakimi kita atas semua itu.</p>
+
+      <p>Ia hanya mengajukan pertanyaan yang sangat sederhana, dan sangat mengena:</p>
+
+      <div class="callout gold">
+        "Apa yang tersisa dari sholatmu ketika kamu keluar dari sajadah itu?"<br>
+        "Siapa yang merasakan kehadiran keimananmu hari ini — selain kamu sendiri?"
+      </div>
+
+      <div class="epilog-addressing">
+        Kepada kalian yang hari ini merasa lelah dengan tuntutan agama yang terasa berat dan tidak relevan — Al-Ma'un mengajak kalian untuk melihat ke arah lain: agama bukan tentang beban ritual yang semakin banyak, tapi tentang hati yang semakin luas. Semakin mudah peduli, semakin ringan berbagi, semakin kecil ego yang menghalangi empati.
+      </div>
+
+      <div class="epilog-addressing" style="border-left-color:var(--gold);">
+        Kepada kalian yang hari ini merasa sudah cukup baik karena tidak pernah absen sholat — Al-Ma'un mengajak kalian untuk memeriksa apa yang terjadi di antara sholat-sholat itu. Di sanalah kehidupan sesungguhnya berlangsung. Di sanalah karakter diuji tanpa pengamat.
+      </div>
+
+      <div class="epilog-addressing" style="border-left-color:var(--purple-deep);">
+        Kepada kalian yang hari ini berjuang dengan riya, yang tahu bahwa sebagian dari amal kalian diwarnai keinginan untuk dilihat — Al-Ma'un tidak meminta kalian untuk berhenti beramal. Ia mengundang kalian untuk terus beramal, tapi pelan-pelan bersihkan motivasinya. Satu tindakan tulus, kemudian dua, kemudian tiga. Keikhlasan bukan bawaan lahir, ia dilatih.
+      </div>
+
+      <div class="epilog-addressing" style="border-left-color:var(--red-deep);">
+        Kepada kalian yang hari ini merasa susah berbagi hal kecil — karena hidup sudah terlalu melelahkan, karena kalian sendiri juga kekurangan, karena tidak ada yang pernah memberikan kepada kalian ketika kalian butuh — Al-Ma'un tidak mengabaikan rasa sakit itu. Ia hanya mengingatkan: rantai kekikiran dan rantai kepedulian keduanya bisa diputus oleh satu tindakan sadar.
+      </div>
+
+      <div class="epilog-closing-box">
+        <div class="ecb-line">Surat ini pendek. Tujuh ayat.</div>
+        <div class="ecb-line">Tapi ia membawa pertanyaan yang bisa menemani kita seumur hidup:</div>
+        <div class="ecb-question">"Apakah agamaku hidup — atau hanya bernapas?"</div>
+        <div class="ecb-answer">Dan jawabannya tersimpan bukan di atas sajadah.</div>
+        <div class="ecb-answer">Tapi di dalam cara kita memperlakukan seseorang</div>
+        <div class="ecb-bold">yang tidak bisa membalas kebaikan kita dengan apa pun.</div>
+      </div>
+
+      <div class="stars">★ ★ ★</div>
+
+      <div class="aamiin">
+        <div class="aamiin-word">Aamiin.</div>
+        <div class="aamiin-sub">Semoga kita semua diberi kekuatan untuk menjadi agama yang berjalan —<br>yang terasa kehadirannya, yang hangat sentuhannya, yang nyata manfaatnya.</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-arabic">الماعون</div>
+  <div class="footer-text">Tafsir Al-Ma'un · Surat ke-107 · Semoga memberi manfaat dan cahaya</div>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.ayat-section, .chapter, .refleksi, .epilog, .toc').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(28px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
+  });
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

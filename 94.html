@@ -1,0 +1,795 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tafsir Al-Insyirah: Ketika Dada Sesak Adalah Undangan Lapang</title>
+    <link href="https://fonts.googleapis.com/css2?family=Traditional+Arabic&family=Playfair+Display:wght@700;900&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            color: #e0e0e0;
+            font-family: 'Lora', serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background: #d4af37;
+            opacity: 0.3;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.15) 0%, rgba(0, 0, 0, 0) 100%);
+            border-bottom: 2px solid #d4af37;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            transform: translateX(-50%);
+        }
+
+        h1 {
+            font-family: 'Traditional Arabic', serif;
+            font-size: 3.5em;
+            color: #d4af37;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            animation: slideDown 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: #d4af37;
+            margin: 40px 0 20px;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 15px;
+        }
+
+        h3 {
+            font-family: 'Traditional Arabic', serif;
+            font-size: 1.5em;
+            color: #c9a961;
+            margin: 25px 0 15px;
+        }
+
+        .tagline {
+            font-family: 'Lora', serif;
+            font-size: 1.3em;
+            color: #b8860b;
+            font-style: italic;
+            margin: 20px 0;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1.5s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quran-ayah {
+            font-family: 'Traditional Arabic', serif;
+            font-size: 1.8em;
+            color: #d4af37;
+            margin: 20px 0 10px;
+            text-align: center;
+            text-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+        }
+
+        .ayah-translation {
+            font-size: 1.1em;
+            color: #b8860b;
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ayat-section {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
+            border-left: 4px solid #d4af37;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .ayat-section:hover {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);
+            border-left-color: #ffd700;
+            transform: translateX(10px);
+        }
+
+        .energi-kata {
+            background: rgba(212, 175, 55, 0.08);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-right: 3px solid #d4af37;
+        }
+
+        .kata-kunci {
+            font-family: 'Traditional Arabic', serif;
+            font-size: 1.3em;
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .tafsir-mendalam {
+            margin: 20px 0;
+            line-height: 2;
+        }
+
+        .relevansi {
+            background: rgba(184, 134, 11, 0.08);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #b8860b;
+        }
+
+        .relevansi strong {
+            color: #d4af37;
+        }
+
+        .intisari {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(184, 134, 11, 0.05) 100%);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #d4af37;
+            border-top: 2px solid #d4af37;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        /* Refleksi */
+        .refleksi-section {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0.5) 100%);
+            padding: 40px;
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            margin: 50px 0;
+        }
+
+        .langkah {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #d4af37;
+            border-radius: 3px;
+        }
+
+        .langkah strong {
+            color: #ffd700;
+        }
+
+        /* Epilog */
+        .epilog-section {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(0, 0, 0, 0.6) 100%);
+            padding: 40px;
+            border: 2px dashed #d4af37;
+            border-radius: 8px;
+            margin: 50px 0;
+            font-size: 1.1em;
+            line-height: 2.2;
+        }
+
+        .epilog-title {
+            font-family: 'Traditional Arabic', serif;
+            font-size: 2em;
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .epilog-section p {
+            margin-bottom: 20px;
+            color: #e0e0e0;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(212, 175, 55, 0.1) 100%);
+            border-top: 2px solid #d4af37;
+            padding: 40px 20px;
+            text-align: center;
+            color: #b8860b;
+            font-style: italic;
+        }
+
+        /* Download Button */
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+            color: #0a0a0a;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+        }
+
+        .button-container {
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            .ayat-section {
+                padding: 20px;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #d4af37;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Link styling */
+        a {
+            color: #ffd700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        a:hover {
+            color: #d4af37;
+            border-bottom-color: #d4af37;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <header>
+        <h1>سورة الإنشراح</h1>
+        <h2 style="border: none; margin-top: 20px;">Tafsir Al-Insyirah</h2>
+        <p class="tagline">Ketika Dada Sesak Adalah Undangan Lapang</p>
+        <p class="tagline">Satu kalimat yang menohok dan relatable: <em>"Setiap kesempitan yang kau rasakan adalah jalan Allah membukakan ruang yang lebih luas—kalau saja kita tahu cara membacanya."</em></p>
+    </header>
+
+    <div class="container">
+        <!-- AYAT 1 -->
+        <div class="ayat-section">
+            <div class="quran-ayah">أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ</div>
+            <div class="ayah-translation">"Bukankah Kami telah melapangkan dadamu (wahai Muhammad)?"</div>
+
+            <h3>ENERGI KATA</h3>
+            <div class="energi-kata">
+                <div class="kata-kunci">نَشْرَحْ (Nashrah) - Melapangkan</div>
+                <p>Kata "syarah" dalam bahasa Arab bukan sekadar "membuka", tapi lebih dalam: membedah, mengurai, menerangkan hingga ke inti. Bayangkan seorang ahli bedah yang membuka dada untuk memperbaiki jantung—bukan untuk merusak, tapi untuk menyembuhkan.</p>
+                <p style="margin-top: 15px;">Berbeda dengan "fataha" (membuka) yang bermakna membuka pintu atau gerbang, "syarah" mengandung nuansa <strong>membuka dengan tujuan memperluas ruang dan memberikan pemahaman</strong>.</p>
+            </div>
+
+            <div class="energi-kata">
+                <div class="kata-kunci">صَدْرَكَ (Shadraka) - Dadamu</div>
+                <p>Dalam tradisi Arab, "shadr" adalah pusat dari segala sesuatu: keputusan, perasaan, kebijaksanaan. Ketika kita bilang "dadaku sesak", kita sebenarnya bicara tentang <strong>ruang batin yang terkompresi oleh beban</strong>—kecemasan, keraguan, ketakutan, atau kekecewaan yang menumpuk.</p>
+            </div>
+
+            <div class="tafsir-mendalam">
+                <h3 style="margin-top: 0;">TAFSIR MENDALAM</h3>
+                <p>Ayat pembuka ini adalah <strong>sapaan langsung Allah kepada Nabi Muhammad ﷺ</strong>, tapi juga kepada setiap orang yang membacanya. Pertanyaan retoris "Bukankah Kami telah..." mengandung penegasan: <em>ini sudah terjadi, ini adalah kenyataan</em>.</p>
+
+                <p style="margin-top: 15px;">Filosofinya sederhana tapi revolusioner: Allah tidak berjanji menghilangkan semua beban dari punggung kita, tapi Dia berjanji <strong>memperluas ruang batin kita</strong> sehingga beban itu terasa lebih ringan. Seperti menambah RAM pada komputer—bukan mengurangi program yang berjalan, tapi meningkatkan kemampuan untuk menjalankannya.</p>
+
+                <div class="relevansi">
+                    <strong style="color: #ffd700; display: block; margin-bottom: 10px;">RELEVANSI KEKINIAN:</strong>
+                    <p>Pernahkah kalian merasa seperti ini: pagi bangun sudah lelah duluan, scroll media sosial justru bikin tambah anxious, ingin produktif tapi otak seperti penuh kabut? Itu adalah <strong>dada yang menyempit</strong>—bukan karena masalahnya terlalu besar, tapi karena ruang batin kita terlalu penuh dengan sampah digital, perbandingan sosial, dan ekspektasi yang tak realistis.</p>
+
+                    <p style="margin-top: 15px;"><strong>Contoh Aplikasi Praktis:</strong></p>
+                    <p>1. <strong>Saat overthinking menjelang deadline:</strong> Alih-alih panik dengan daftar to-do yang menggunung, luangkan 5 menit untuk bernapas dan bertanya, "Apa satu hal paling penting yang bisa aku selesaikan sekarang?" Pelapangan dada dimulai dari menyederhanakan fokus.</p>
+
+                    <p style="margin-top: 10px;">2. <strong>Ketika gagal mendapat pekerjaan impian:</strong> Alih-alih terus menyalahkan diri, renungkan: "Apa yang sebenarnya aku pelajari dari proses ini? Keahlian apa yang sekarang aku punya yang tidak aku miliki sebelumnya?" Pelapangan dada adalah tentang melihat ruang pertumbuhan di balik kegagalan.</p>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <strong>INTISARI:</strong> Dada yang lapang bukan berarti hidup tanpa masalah, tapi hidup dengan kapasitas yang terus diperluas oleh Allah. Ketika kita merasa sesak, itu sebenarnya adalah <strong>undangan untuk memperlebar ruang batin</strong>—lewat zikir, lewat refleksi, lewat melepaskan apa yang tidak perlu kita kendalikan.
+            </div>
+        </div>
+
+        <!-- AYAT 2 -->
+        <div class="ayat-section">
+            <div class="quran-ayah">وَوَضَعْنَا عَنكَ وِزْرَكَ</div>
+            <div class="ayah-translation">"Dan Kami pun telah menurunkan bebanmu darimu"</div>
+
+            <h3>ENERGI KATA</h3>
+            <div class="energi-kata">
+                <div class="kata-kunci">وَضَعْنَا (Wadha'na) - Menurunkan/Meringankan</div>
+                <p>"Wadha'a" secara literal berarti "meletakkan ke bawah" atau "menurunkan". Ada <strong>momen pelepasan, ada napas lega</strong> yang keluar begitu beban itu tidak lagi menempel di tubuh.</p>
+                <p style="margin-top: 15px;">Berbeda dengan kata "raffa'a" (mengangkat), "wadha'a" fokus pada <strong>aksi menurunkan tekanan</strong>. Ini bukan tentang membuang beban, tapi tentang memindahkannya dari tempat yang salah (punggung kita) ke tempat yang benar (tanah, atau dalam makna spiritual: kepada Allah).</p>
+            </div>
+
+            <div class="energi-kata">
+                <div class="kata-kunci">وِزْرَكَ (Wizraka) - Bebanmu</div>
+                <p>"Wizr" dalam Al-Quran sering merujuk pada <strong>beban dosa atau kesalahan masa lalu</strong> yang membuat seseorang berjalan tertunduk. Tapi maknanya lebih luas: segala sesuatu yang membuat kita berjalan lambat—trauma, penyesalan, rasa bersalah, atau bahkan ekspektasi yang kita bebankan pada diri sendiri.</p>
+            </div>
+
+            <div class="tafsir-mendalam">
+                <h3 style="margin-top: 0;">TAFSIR MENDALAM</h3>
+                <p>Filosofinya: <strong>Banyak beban yang kita pikul sebenarnya bukan untuk kita pikul</strong>. Ada beban yang memang tanggung jawab kita, tapi ada juga beban yang kita ambil sendiri—beban perfeksionisme, beban harus disukai semua orang, beban menjadi versi ideal yang tidak realistis. Allah, lewat ayat ini, mengajak kita untuk <strong>meletakkan beban yang bukan milik kita</strong>.</p>
+
+                <div class="relevansi">
+                    <strong style="color: #ffd700; display: block; margin-bottom: 10px;">RELEVANSI KEKINIAN:</strong>
+                    <p>Pernahkah kalian merasa harus jadi "anak sempurna" di mata orangtua, "karyawan teladan" di kantor, "teman yang selalu ada" buat semua orang, sekaligus "versi terbaik diri sendiri" di media sosial? Itu adalah <strong>wizr</strong>—beban yang tidak disuruh Tuhan untuk kita pikul, tapi kita ambil sendiri karena takut tidak cukup.</p>
+
+                    <p style="margin-top: 15px;">Generasi sekarang punya beban unik: <strong>beban untuk selalu terlihat baik-baik saja</strong>.</p>
+
+                    <p style="margin-top: 15px;"><strong>Contoh Aplikasi Praktis:</strong></p>
+                    <p>1. <strong>Tuliskan semua beban yang kau rasakan:</strong> Ambil kertas, tulis semua hal yang bikin kau merasa berat—dari yang besar (hutang, pekerjaan) sampai yang kecil (pesan belum dibalas, kamar berantakan). Lalu <strong>beri tanda</strong> pada hal-hal yang memang tanggung jawabmu, dan mana yang sebenarnya bukan. Lepaskan yang bukan.</p>
+
+                    <p style="margin-top: 10px;">2. <strong>Praktikkan "imperfect action":</strong> Alih-alih menunggu sampai sempurna baru bertindak (yang ujung-ujungnya tidak jadi apa-apa), lakukan saja dengan versi 70%. Kalian akan heran betapa banyak beban yang hilang ketika kita berhenti mengejar kesempurnaan.</p>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <strong>INTISARI:</strong> Beban yang Allah turunkan dari kita bukan hanya beban dosa, tapi juga beban ekspektasi, beban perfeksionisme, beban masa lalu yang terus kita gendong. Melepaskan beban adalah bentuk keberanian—keberanian untuk mengakui bahwa kita tidak harus mengendalikan segalanya.
+            </div>
+        </div>
+
+        <!-- AYAT 3 -->
+        <div class="ayat-section">
+            <div class="quran-ayah">الَّذِي أَنقَضَ ظَهْرَكَ</div>
+            <div class="ayah-translation">"Yang memberatkan punggungmu?"</div>
+
+            <h3>ENERGI KATA</h3>
+            <div class="energi-kata">
+                <div class="kata-kunci">أَنقَضَ (Anqadha) - Memberatkan hingga Hampir Patah</div>
+                <p>Ini kata yang sangat visual dan dramatis. "Anqadha" berasal dari akar kata yang berarti <strong>"membuat suara retak"</strong>—seperti suara tulang belakang yang hampir patah karena beban terlalu berat.</p>
+                <p style="margin-top: 15px;">Kata ini tidak digunakan untuk beban biasa. Ini untuk <strong>beban yang nyaris melampaui batas kapasitas</strong>—beban yang membuat seseorang merasa, "Aku tidak kuat lagi."</p>
+            </div>
+
+            <div class="tafsir-mendalam">
+                <h3 style="margin-top: 0;">TAFSIR MENDALAM</h3>
+                <p>Filosofi di baliknya: <strong>Allah tidak menyangkal bahwa beban itu berat</strong>. Dia tidak bilang, "Ah, itu tidak seberat itu kok." Sebaliknya, Dia mengakui: <em>Ya, itu memang berat. Sangat berat. Sampai hampir mematahkan punggungmu. Dan karena itulah Aku turunkan.</em></p>
+
+                <p style="margin-top: 15px;">Ini penting: <strong>validasi atas beban yang kita rasakan</strong>. Allah tidak meremehkan penderitaan kita. Dia tahu persis seberapa berat, dan justru karena Dia tahu, Dia turun tangan untuk meringankan.</p>
+
+                <div class="relevansi">
+                    <strong style="color: #ffd700; display: block; margin-bottom: 10px;">RELEVANSI KEKINIAN:</strong>
+                    <p>Ada fenomena yang disebut "toxic positivity"—di mana kita dipaksa untuk selalu "berpikir positif" dan "bersyukur", seolah-olah mengakui bahwa kita sedang tidak baik-baik saja adalah dosa. Ayat ini <strong>mendobrak itu</strong>. Allah sendiri mengakui: <em>Bebanmu itu berat. Sangat berat.</em></p>
+
+                    <p style="margin-top: 15px;">Kadang yang kita butuhkan bukan nasihat "yang sabar ya", tapi pengakuan: "Iya, ini memang berat."</p>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <strong>INTISARI:</strong> Beban yang hampir mematahkan punggung adalah beban yang nyata, yang valid, yang diakui oleh Allah sendiri. Kita tidak perlu menyangkal atau meminimalkan kesulitan yang kita rasakan.
+            </div>
+        </div>
+
+        <!-- AYAT 4-5 -->
+        <div class="ayat-section">
+            <div class="quran-ayah">فَإِنَّ مَعَ الْعُسْرِ يُسْرًا / إِنَّ مَعَ الْعُسْرِ يُسْرًا</div>
+            <div class="ayah-translation">"Maka sesungguhnya bersama kesulitan ada kemudahan" / "Sesungguhnya bersama kesulitan ada kemudahan"</div>
+
+            <h3>ENERGI KATA</h3>
+            <div class="energi-kata">
+                <div class="kata-kunci">مَعَ (Ma'a) - Bersama</div>
+                <p>Kata "ma'a" adalah preposisi yang berarti "bersama" atau "bersamaan dengan". Ini bukan "ba'da" (setelah) atau "qabla" (sebelum)—tapi <strong>"bersama"</strong>.</p>
+                <p style="margin-top: 15px;">Artinya, kemudahan itu <strong>tidak datang setelah kesulitan selesai</strong>, tapi <strong>hadir bersamaan dengan kesulitan itu sendiri</strong>.</p>
+            </div>
+
+            <div class="tafsir-mendalam">
+                <h3 style="margin-top: 0;">TAFSIR MENDALAM</h3>
+                <p>Inilah ayat yang paling sering dikutip, tapi juga paling sering disalahpahami. Banyak yang mengira: "Setelah susah, pasti ada senang." Tapi <strong>Allah tidak bilang "setelah"—Allah bilang "bersama"</strong>.</p>
+
+                <p style="margin-top: 15px;">Filosofinya revolusioner: <strong>Di dalam kesulitan itu sendiri, sudah ada benih-benih kemudahan</strong>. Ketika kau kehilangan pekerjaan (kesulitan), kau mendapat waktu untuk menemukan panggilan hidup yang sebenarnya (kemudahan). Ketika kau patah hati (kesulitan), kau belajar tentang dirimu yang tidak pernah kau sadari sebelumnya (kemudahan).</p>
+
+                <div class="relevansi">
+                    <strong style="color: #ffd700; display: block; margin-bottom: 10px;">RELEVANSI KEKINIAN:</strong>
+                    <p>Di era media sosial, kita sering hanya melihat "highlight reel" orang lain. Ketika kita menghadapi kesulitan, kita merasa <strong>sendirian dan tertinggal</strong>. Ayat ini mengingatkan: <strong>kesulitan itu universal, tapi kemudahan juga selalu ada</strong>.</p>
+
+                    <p style="margin-top: 15px;"><strong>Contoh Aplikasi Praktis:</strong></p>
+                    <p>1. <strong>Praktikkan "gratitude in hardship":</strong> Setiap kali kau merasa kesulitan, coba tulis satu hal kecil yang ternyata membaik atau memudahkan di situasi yang sama.</p>
+
+                    <p style="margin-top: 10px;">2. <strong>Ubah framing dari "kenapa ini terjadi padaku?" menjadi "apa yang bisa aku pelajari dari ini?":</strong> Pengakuan itu sendiri adalah bentuk kekuatan.</p>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <strong>INTISARI:</strong> Kesulitan dan kemudahan bukan dua fase yang terpisah, tapi dua realitas yang hidup berdampingan. Kuncinya adalah mengubah cara pandang dari melihat kesulitan sebagai akhir dari segalanya, menjadi melihatnya sebagai <strong>konteks di mana kemudahan Allah sedang bekerja</strong>.
+            </div>
+        </div>
+
+        <!-- AYAT 6 -->
+        <div class="ayat-section">
+            <div class="quran-ayah">فَإِذَا فَرَغْتَ فَانصَبْ</div>
+            <div class="ayah-translation">"Maka apabila engkau telah selesai (dari sesuatu urusan), tetaplah bekerja keras (untuk urusan yang lain)"</div>
+
+            <h3>ENERGI KATA</h3>
+            <div class="energi-kata">
+                <div class="kata-kunci">فَرَغْتَ (Faraghta) - Selesai/Kosong/Lapang</div>
+                <p>"Faragha" berasal dari akar kata yang berarti <strong>"kosong" atau "lapang"</strong>. Ketika kau selesai dari satu urusan, ada <strong>momen kekosongan</strong>—waktu jeda antara satu fase dengan fase berikutnya.</p>
+            </div>
+
+            <div class="energi-kata">
+                <div class="kata-kunci">فَانصَبْ (Fansab) - Bekerja Keras/Bersungguh-sungguh</div>
+                <p>"Nashaba" berarti <strong>"berdiri tegak" atau "bersungguh-sungguh dalam usaha"</strong>. Ini bukan tentang bekerja asal-asalan, tapi tentang <strong>dedikasi penuh, fokus, dan keseriusan</strong>.</p>
+            </div>
+
+            <div class="tafsir-mendalam">
+                <h3 style="margin-top: 0;">TAFSIR MENDALAM</h3>
+                <p>Setelah lima ayat yang membahas tentang <strong>rahmat Allah dalam melapangkan dada dan meringankan beban</strong>, ayat keenam ini adalah <strong>panggilan untuk bertindak</strong>. Ini adalah bagian yang sering dilupakan: Allah memberi kemudahan bukan agar kita duduk diam, tapi agar kita punya energi untuk bergerak maju.</p>
+
+                <p style="margin-top: 15px;">Filosofinya: <strong>Hidup adalah siklus dari satu usaha ke usaha berikutnya</strong>. Tidak ada "titik akhir" di mana kita bisa benar-benar berhenti sampai ajal menjemput.</p>
+
+                <div class="relevansi">
+                    <strong style="color: #ffd700; display: block; margin-bottom: 10px;">RELEVANSI KEKINIAN:</strong>
+                    <p>Zaman sekarang punya dua ekstrem: ada yang <strong>burnout</strong> karena tidak pernah berhenti bekerja, dan ada yang <strong>stuck</strong> karena terlalu lama di zona nyaman setelah mencapai satu pencapaian.</p>
+
+                    <p style="margin-top: 15px;"><strong>Contoh Aplikasi Praktis:</strong></p>
+                    <p>1. <strong>Selesai project? Jangan langsung ambil project baru:</strong> Luangkan 1-2 hari untuk evaluasi. Momen "faraghta" ini adalah <strong>waktu emas untuk growth</strong>.</p>
+
+                    <p style="margin-top: 10px;">2. <strong>Isi kekosongan dengan ibadah yang berkualitas:</strong> Gunakan waktu itu untuk shalat yang lebih khusyuk, baca Quran dengan tadabbur.</p>
+
+                    <p style="margin-top: 10px;">3. <strong>Bangun momentum, jangan biarkan diri terlalu lama idle:</strong> Setelah istirahat sejenak, bangun lagi sebelum kenyamanan berubah jadi kemalasan.</p>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <strong>INTISARI:</strong> Hidup bukan tentang berhenti setelah mencapai satu tujuan, tapi tentang bergerak dari satu fase ke fase berikutnya dengan kesadaran dan kesungguhan. <strong>Produktivitas sejati adalah yang berkelanjutan, bukan yang membuat kita burnout.</strong>
+            </div>
+        </div>
+
+        <!-- AYAT 7 -->
+        <div class="ayat-section">
+            <div class="quran-ayah">وَإِلَىٰ رَبِّكَ فَارْغَب</div>
+            <div class="ayah-translation">"Dan hanya kepada Tuhanmulah engkau berharap"</div>
+
+            <h3>ENERGI KATA</h3>
+            <div class="energi-kata">
+                <div class="kata-kunci">فَارْغَب (Farghab) - Berharap/Berkeinginan dengan Sungguh-sungguh</div>
+                <p>"Raghiba" bukan sekadar "berharap" dalam artian pasif, tapi <strong>"berkeinginan kuat dan aktif mencarinya"</strong>. Ini mengandung nuansa <strong>kerinduan yang dalam</strong>, seperti orang yang sangat haus mencari air.</p>
+            </div>
+
+            <div class="tafsir-mendalam">
+                <h3 style="margin-top: 0;">TAFSIR MENDALAM</h3>
+                <p>Ini adalah <strong>penutup sempurna</strong> dari surat Al-Insyirah. Setelah Allah mengingatkan tentang rahmat-Nya dan memberi arahan untuk terus bekerja keras, ayat terakhir ini adalah <strong>orientasi akhir dari segala usaha</strong>: kembalikan semuanya kepada Allah.</p>
+
+                <p style="margin-top: 15px;">Filosofinya sederhana tapi revolusioner: <strong>Bekerja keraslah, tapi jangan jadikan hasil sebagai tuhanmu</strong>. Berharaplah pada Allah, bukan pada manusia, bukan pada sistem, bukan pada usahamu sendiri.</p>
+
+                <div class="relevansi">
+                    <strong style="color: #ffd700; display: block; margin-bottom: 10px;">RELEVANSI KEKINIAN:</strong>
+                    <p>Zaman sekarang penuh dengan "tuhan-tuhan palsu": uang, jabatan, likes di media sosial, persetujuan orang lain. Ayat ini adalah <strong>realignment: pulangkan orientasimu</strong>.</p>
+
+                    <p style="margin-top: 15px;"><strong>Contoh Aplikasi Praktis:</strong></p>
+                    <p>1. <strong>Audit orientasi hatimu:</strong> Tanya pada diri sendiri: "Aku paling takut kehilangan apa? Aku paling berharap pada apa?" Kalau jawabannya adalah sesuatu selain Allah, itu tanda orientasimu perlu diperbaiki.</p>
+
+                    <p style="margin-top: 10px;">2. <strong>Ubah doa dari "minta hasil" menjadi "minta kekuatan":</strong> Alih-alih hanya berdoa, "Ya Allah, beri aku pekerjaan ini," ubah menjadi, "Ya Allah, aku berharap hanya kepada-Mu."</p>
+
+                    <p style="margin-top: 10px;">3. <strong>Praktikkan "detachment with effort":</strong> Bekerjalah sekeras mungkin, tapi lepaskan hasil dari genggamanmu. Kalau berhasil, syukuri. Kalau gagal, terima sebagai jalan Allah yang berbeda.</p>
+                </div>
+            </div>
+
+            <div class="intisari">
+                <strong>INTISARI:</strong> Berharap kepada Allah bukan berarti tidak berusaha, tapi berarti <strong>tidak menjadikan usaha dan hasilnya sebagai tuhan</strong>. Segala yang kita lakukan, dan segala yang kita harapkan, dikembalikan kepada-Nya yang tidak pernah mengecewakan.
+            </div>
+        </div>
+
+        <!-- REFLEKSI PENUTUP -->
+        <div class="refleksi-section">
+            <h2 style="margin-top: 0;">REFLEKSI PENUTUP</h2>
+            
+            <h3>POLA YANG BISA DIAMBIL</h3>
+            <p>Surat Al-Insyirah memberi kita pola yang jelas tentang <strong>bagaimana menghadapi kesulitan dengan kesadaran spiritual</strong>:</p>
+
+            <div class="langkah">
+                <p><strong>1. Pelapangan dimulai dari dalam (ayat 1):</strong> Sebelum situasi eksternal berubah, Allah melapangkan ruang batin kita dulu. Artinya, <strong>perspektif berubah lebih dulu sebelum kondisi berubah</strong>.</p>
+            </div>
+
+            <div class="langkah">
+                <p><strong>2. Beban turun ketika kita siap melepasnya (ayat 2-3):</strong> Allah tidak paksa kita untuk melepaskan beban. Dia menawarkan, dan kita yang harus bersedia. <strong>Melepaskan beban adalah pilihan sadar untuk tidak mengendalikan apa yang di luar kendali kita</strong>.</p>
+            </div>
+
+            <div class="langkah">
+                <p><strong>3. Kesulitan dan kemudahan koeksisten (ayat 4-5):</strong> Ini bukan tentang menunggu kesulitan berakhir, tapi tentang <strong>melatih mata untuk melihat kemudahan yang sudah ada di tengah kesulitan</strong>. Perspektif adalah segalanya.</p>
+            </div>
+
+            <div class="langkah">
+                <p><strong>4. Produktivitas dimulai setelah fase refleksi (ayat 6):</strong> Ada momen penting untuk <strong>bersyukur, merenung, lalu bangkit lagi dengan energi yang diperbarui</strong>.</p>
+            </div>
+
+            <div class="langkah">
+                <p><strong>5. Orientasi akhir menentukan kualitas perjalanan (ayat 7):</strong> Kalau harapan kita pada Allah, maka apapun yang terjadi—sukses atau gagal—<strong>kita tetap tenang karena tahu ada Yang Maha Mengatur yang tidak pernah lalai</strong>.</p>
+            </div>
+
+            <h3 style="margin-top: 40px;">LANGKAH NYATA</h3>
+
+            <div class="langkah">
+                <p><strong>1. Mulai Jurnal "Syukur di Tengah Sesak"</strong></p>
+                <p style="margin-top: 10px;">Setiap malam, sebelum tidur, tulis tiga hal:
+                <ul style="margin-top: 10px; margin-left: 20px; color: #e0e0e0;">
+                    <li>Satu kesulitan yang kau rasakan hari ini (jujur, tanpa menyangkal)</li>
+                    <li>Satu kemudahan kecil yang ternyata ada di tengah kesulitan itu</li>
+                    <li>Satu doa harapan kepada Allah, bukan kepada hasil</li>
+                </ul>
+                </p>
+                <p style="margin-top: 15px;">Lakukan ini selama 30 hari. Kau akan heran betapa banyak kemudahan yang selama ini tidak kau sadari.</p>
+            </div>
+
+            <div class="langkah">
+                <p><strong>2. Praktikkan "Pause Ritual" Setelah Setiap Pencapaian</strong></p>
+                <p style="margin-top: 10px;">Setiap kali kau selesai dari satu urusan besar, luangkan <strong>minimal 1 jam untuk ritual ini</strong>:
+                <ul style="margin-top: 10px; margin-left: 20px; color: #e0e0e0;">
+                    <li>15 menit pertama: Shalat syukur dua rakaat</li>
+                    <li>30 menit berikutnya: Tulis refleksi—apa yang aku pelajari, apa yang aku syukuri</li>
+                    <li>15 menit terakhir: Doa untuk fase berikutnya</li>
+                </ul>
+                </p>
+            </div>
+
+            <div class="langkah">
+                <p><strong>3. Set "Allah Anchor" untuk Momen Cemas</strong></p>
+                <p style="margin-top: 10px;">Pilih satu frasa dari surat ini dan <strong>jadikan anchor mental</strong>. Setiap kali kau merasa cemas, gelisah, atau sesak—ucapkan frasa itu perlahan sambil bernapas dalam.</p>
+            </div>
+
+            <h3 style="margin-top: 40px;">CLOSING STATEMENT</h3>
+            <p style="font-style: italic; font-size: 1.1em; margin-top: 20px;">Al-Insyirah bukan tentang hidup tanpa kesulitan—tapi tentang <strong>hidup dengan kapasitas yang terus diperluas oleh Allah</strong>. Dada yang lapang, beban yang turun, kemudahan yang hadir bersamaan dengan kesulitan, produktivitas yang berkelanjutan, dan harapan yang tertambat pada-Nya—<strong>ini adalah formula untuk hidup yang penuh makna di tengah dunia yang penuh tantangan</strong>.</p>
+        </div>
+
+        <!-- EPILOG -->
+        <div class="epilog-section">
+            <div class="epilog-title">Surat untuk Jiwa yang Sesak</div>
+
+            <p>Kepada kau yang pagi ini bangun dengan beban di dada,<br>Yang napasnya pendek karena terlalu banyak yang dipikirkan,<br>Yang scrolling mencari jawaban tapi malah dapat perbandingan—</p>
+
+            <p><strong style="font-size: 1.15em;">Dengar.</strong></p>
+
+            <p>Dada yang sesak bukan tanda kau lemah. Itu tanda <strong>ruang batinmu sedang diperluas</strong>—seperti rumah yang direnovasi: berantakan dulu, baru tertata. Allah tidak melapangkan dadamu dengan cara yang kau harapkan, tapi dengan cara yang kau butuhkan.</p>
+
+            <p style="margin-top: 30px;">Kepada kau yang merasa beban di punggung hampir mematahkanmu, yang setiap hari bangun sudah lelah duluan—</p>
+
+            <p><strong style="font-size: 1.15em;">Dengar.</strong></p>
+
+            <p>Beban yang kau pikul, sebagian besar <strong>bukan milikmu</strong>. Beban harus sempurna, harus disukai semua orang, harus cepat sukses—itu beban yang kau ambil sendiri. Allah hanya memberimu beban yang sesuai kapasitasmu. Sisanya? Letakkan. Dia sudah siap mengambilnya.</p>
+
+            <p style="margin-top: 30px;">Kepada kau yang di tengah badai dan tidak melihat ujung—</p>
+
+            <p><strong style="font-size: 1.15em;">Dengar.</strong></p>
+
+            <p>Kemudahan itu <strong>sudah ada di tanganmu</strong>, kau hanya belum menyadari. Bukan kemudahan dalam bentuk yang kau bayangkan—bukan tiba-tiba dapat pekerjaan impian, bukan langsung bertemu jodoh. Tapi kemudahan dalam bentuk: <strong>kau masih bernafas hari ini</strong>. Kau masih diberi kesempatan untuk mencoba lagi. Kau masih diberi hati yang bisa merasakan.</p>
+
+            <p style="margin-top: 30px;">Kepada kau yang lelah berharap pada manusia dan terus dikecewakan—</p>
+
+            <p><strong style="font-size: 1.15em;">Dengar.</strong></p>
+
+            <p><strong>Allah selalu dengar.</strong> Tapi Dia tidak selalu jawab sesuai permintaanmu. Karena Dia tahu apa yang kau butuhkan, lebih dari yang kau tahu. Kalau Dia belum beri apa yang kau minta, itu karena <strong>Dia sedang siapkan yang lebih baik</strong>, atau karena <strong>kau belum siap menerimanya</strong>.</p>
+
+            <p style="margin-top: 30px;">Kepada kau yang membaca ini di tengah malam yang panjang, dengan air mata yang mengering di pipi—</p>
+
+            <p><strong style="font-size: 1.15em; color: #ffd700;">Dengar, dengan sepenuh hati:</strong></p>
+
+            <p style="color: #ffd700; font-size: 1.15em; font-weight: bold;">Giliranmu sudah datang.</p>
+
+            <p>Bukan dalam bentuk yang kau bayangkan, tapi dalam bentuk <strong>lapang yang sedang diukir di dadamu</strong>, dalam bentuk <strong>beban yang perlahan turun dari pundakmu</strong>, dalam bentuk <strong>kemudahan kecil yang hadir setiap hari</strong>—kalau saja kau mau melihat.</p>
+
+            <p style="margin-top: 30px;">Kau tidak perlu menjadi versi sempurna dari dirimu untuk layak bahagia. Kau tidak perlu menunggu sampai semua masalah selesai untuk mulai bersyukur. <strong>Kau layak lapang, hari ini, dengan semua kekuranganmu.</strong></p>
+
+            <p style="margin-top: 30px;">Jadi bernapaslah.<br>Satu tarikan napas panjang.<br>Rasakan dadamu mengembang—<strong>itulah pelapangan yang Allah janjikan</strong>.<br>Rasakan beban di pundakmu—<strong>lalu bayangkan Allah perlahan mengangkatnya</strong>.<br>Lihat kesulitan yang ada di depanmu—<strong>lalu carilah satu kemudahan kecil yang tersembunyi di dalamnya</strong>.</p>
+
+            <p style="margin-top: 30px; font-size: 1.15em; color: #ffd700;"><strong>Kau tidak sendiri.<br>Kau tidak tertinggal.<br>Kau tidak gagal.</strong></p>
+
+            <p style="font-style: italic; margin-top: 20px;">Ila Rabbika farghab. Kembalikan harapanmu kepada-Nya.<br>Karena Dia tidak pernah, tidak akan pernah, mengecewakan jiwa yang berharap kepada-Nya.</p>
+
+            <p style="margin-top: 40px; font-size: 1.1em; color: #b8860b;"><strong>Dengan cinta, dari surat yang diturunkan untuk hati yang sesak—termasuk hatimu.</strong></p>
+        </div>
+
+        <!-- Download Button -->
+        <div class="button-container">
+            <button class="download-btn" onclick="downloadHTML()">📥 DOWNLOAD FILE HTML</button>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Semoga surat ini menjadi pelita kecil di tengah gelapmu, dan pengingat bahwa Allah tidak pernah meninggalkan hamba-hamba-Nya yang sedang berjuang.</p>
+        <p style="margin-top: 20px; font-size: 0.9em;">Tafsir Al-Insyirah | Dikurasi dengan sepenuh hati 💛</p>
+    </footer>
+
+    <script>
+        // Generate random stars
+        function generateStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Download function
+        function downloadHTML() {
+            const element = document.documentElement;
+            const filename = 'Tafsir_Al_Insyirah.html';
+            
+            const html = '<!DOCTYPE html>\n' + element.outerHTML;
+            const blob = new Blob([html], {type: 'text/html'});
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            // Show confirmation
+            alert('✨ File berhasil didownload! Silakan cek folder Downloads kamu.');
+        }
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({behavior: 'smooth'});
+                }
+            });
+        });
+
+        // Initialize
+        generateStars();
+
+        // Add click animation
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('download-btn')) {
+                e.target.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    e.target.style.transform = '';
+                }, 200);
+            }
+        });
+    </script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

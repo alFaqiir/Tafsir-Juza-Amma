@@ -1,0 +1,1513 @@
+﻿cat > /mnt/user-data/outputs/Al-Ghasyiyah__Ketika_Hidup_Menagih_Semua_yang_Pernah_Kamu_Pilih.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Ghasyiyah: Ketika Hidup Menagih Semua yang Pernah Kamu Pilih</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold1: #f5d67b;
+    --gold2: #c9922a;
+    --gold3: #fff0a0;
+    --gold4: #a0620a;
+    --amber: #e8a030;
+    --bg:    #080808;
+    --bg2:   #0d0d0d;
+    --card:  #0f0f0f;
+    --text:  #e8dcc8;
+    --muted: #9a8a6a;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.95;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .gold {
+    background: linear-gradient(135deg, var(--gold2) 0%, var(--gold1) 45%, var(--gold3) 60%, var(--gold2) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .crimson-text {
+    background: linear-gradient(135deg, #8b1a1a 0%, #d94040 45%, #ff7070 60%, #c83030 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .jade-text {
+    background: linear-gradient(135deg, #1a6a4a 0%, #3ab87a 45%, #80f0b0 60%, #2a9a60 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+
+  /* HEADER */
+  .header {
+    position: relative; padding: 90px 40px 80px;
+    text-align: center; overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, #1a0800 0%, #080808 65%);
+    border-bottom: 1px solid #2a1808;
+  }
+  .header::before {
+    content:''; position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle, rgba(197,100,30,.10) 1px, transparent 1px),
+      radial-gradient(circle, rgba(197,147,42,.06) 1px, transparent 1px);
+    background-size: 44px 44px, 22px 22px;
+    background-position: 0 0, 11px 11px;
+    animation: drift 50s linear infinite; pointer-events:none;
+  }
+  .header::after {
+    content:''; position:absolute;
+    top:-100px; left:50%; transform:translateX(-50%);
+    width:700px; height:400px;
+    background: radial-gradient(ellipse, rgba(140,60,10,.20) 0%, transparent 65%);
+    pointer-events:none;
+  }
+  @keyframes drift { to { background-position: 44px 44px, 55px 55px; } }
+  .header-horizon {
+    position:absolute; bottom:0; left:0; right:0; height:1px;
+    background: linear-gradient(to right, transparent, rgba(180,80,20,.5), rgba(200,140,40,.7), rgba(180,80,20,.5), transparent);
+  }
+  .header-surah-label {
+    font-family:'Playfair Display',serif; font-size:.85em; color:var(--amber);
+    letter-spacing:5px; text-transform:uppercase; opacity:.7;
+    margin-bottom:18px; position:relative; z-index:1;
+  }
+  .header-bismillah {
+    font-family:'Traditional Arabic','Scheherazade New',serif;
+    font-size:2.1em; color:var(--gold1); opacity:.55;
+    margin-bottom:28px; letter-spacing:4px;
+    position:relative; z-index:1;
+    animation: fadeDown .8s ease both;
+  }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-10px)} to{opacity:.55;transform:translateY(0)} }
+  .header h1 {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.4em,5.5vw,3.8em);
+    font-weight:700; line-height:1.15;
+    position:relative; z-index:1; margin-bottom:10px;
+    animation: fadeUp .9s ease .1s both;
+  }
+  .header-sub {
+    font-size:.9em; color:var(--muted); letter-spacing:4px;
+    text-transform:uppercase; position:relative; z-index:1;
+    margin-bottom:30px; animation: fadeUp .9s ease .2s both;
+  }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+  .divider-gold {
+    width:130px; height:2px;
+    background:linear-gradient(to right,transparent,var(--gold4),var(--gold2),var(--gold1),var(--gold2),var(--gold4),transparent);
+    margin:22px auto; position:relative; z-index:1;
+  }
+  .divider-gold::before,.divider-gold::after {
+    content:'◆'; position:absolute; top:50%; transform:translateY(-50%);
+    font-size:.5em; color:var(--gold2); opacity:.7;
+  }
+  .divider-gold::before{left:-14px} .divider-gold::after{right:-14px}
+  .tagline {
+    font-style:italic; font-size:1.2em; color:#c8a878;
+    max-width:700px; margin:0 auto;
+    position:relative; z-index:1; line-height:1.75;
+    animation: fadeUp .9s ease .3s both;
+  }
+
+  /* INTRO BAND */
+  .intro-band {
+    background:linear-gradient(135deg,#100800,#0a0600);
+    border-top:1px solid #2a1808; border-bottom:1px solid #2a1808;
+    padding:40px 24px; text-align:center;
+  }
+  .intro-band p {
+    max-width:780px; margin:0 auto; color:#b8a478;
+    font-size:1em; line-height:1.95; font-style:italic;
+  }
+
+  /* CONTAINER */
+  .container { max-width:940px; margin:0 auto; padding:56px 24px 80px; }
+
+  /* GROUP LABEL */
+  .group-label {
+    display:flex; align-items:center; gap:18px;
+    margin:64px 0 30px;
+    opacity:0; transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .group-label.visible{opacity:1;transform:translateY(0)}
+  .group-label-line { flex:1; height:1px; background:linear-gradient(to right,transparent,#3a2810); }
+  .group-label-line.right { background:linear-gradient(to left,transparent,#3a2810); }
+  .group-label-text {
+    font-family:'Playfair Display',serif; font-size:.8em;
+    letter-spacing:3px; text-transform:uppercase;
+    padding:6px 18px; border:1px solid #3a2810; border-radius:30px;
+    color:var(--gold2); background:#0d0900; white-space:nowrap;
+  }
+
+  /* AYAT SECTION */
+  .ayat-section {
+    position:relative;
+    background:linear-gradient(160deg,#131008,#0e0c07);
+    border:1px solid #2a1c10; border-radius:18px;
+    padding:50px 46px; margin-bottom:32px;
+    box-shadow:0 4px 50px rgba(0,0,0,.7),inset 0 1px 0 rgba(200,140,40,.05);
+    opacity:0; transform:translateY(30px);
+    transition:opacity .75s ease,transform .75s ease,box-shadow .35s;
+  }
+  .ayat-section.visible{opacity:1;transform:translateY(0)}
+  .ayat-section:hover{box-shadow:0 10px 60px rgba(0,0,0,.85),0 0 0 1px rgba(180,110,30,.15)}
+  .ayat-section.tone-warning{border-color:#3a1808;border-left:3px solid #8b2020}
+  .ayat-section.tone-promise{border-color:#0f2a18;border-left:3px solid #1a6a3a}
+  .ayat-section.tone-neutral{border-left:3px solid var(--gold4)}
+  .ayat-section::before {
+    content:'✦'; position:absolute; top:20px; right:24px;
+    color:var(--gold2); opacity:.2; font-size:1.5em;
+  }
+
+  /* AYAT HEADER */
+  .ayat-number {
+    font-family:'Playfair Display',serif; font-size:1.5em; font-weight:700;
+    margin-bottom:30px; display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  .ayat-num-badge {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:40px; height:40px; border:1px solid var(--gold2); border-radius:50%;
+    font-size:.72em; background:linear-gradient(135deg,#1e1200,#140c00);
+    color:var(--gold1); flex-shrink:0; font-family:'Playfair Display',serif;
+  }
+  .ayat-range-badge {
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:4px 14px; border:1px solid var(--gold4); border-radius:20px;
+    font-size:.62em; background:linear-gradient(135deg,#1e1200,#140c00);
+    color:var(--muted); flex-shrink:0; letter-spacing:1px;
+  }
+
+  /* SECTION TITLES */
+  h2.section-title {
+    font-family:'Playfair Display',serif; font-size:1.28em; font-weight:700;
+    margin:38px 0 15px; padding-bottom:11px; border-bottom:1px solid #2a1c10;
+    display:flex; align-items:center; gap:10px;
+  }
+  h2.section-title::after {
+    content:''; flex:1; height:1px;
+    background:linear-gradient(to right,#2a1c10,transparent); margin-left:8px;
+  }
+  h3.sub-title {
+    font-family:'Lora',serif; font-size:1.03em; font-weight:600;
+    margin:28px 0 10px; display:flex; align-items:center; gap:10px;
+  }
+  h3.sub-title::before {
+    content:''; display:inline-block; width:20px; height:2px;
+    background:linear-gradient(to right,var(--gold2),var(--gold1)); flex-shrink:0;
+  }
+
+  /* ARABIC */
+  .arabic-wrap {
+    text-align:center; margin:32px 0 12px; padding:30px 24px;
+    background:radial-gradient(ellipse at center,#160e00 0%,#090808 80%);
+    border-radius:14px; border:1px solid #301e08; position:relative; overflow:hidden;
+  }
+  .arabic-wrap::before,.arabic-wrap::after {
+    content:'❧'; position:absolute; top:50%; transform:translateY(-50%);
+    color:var(--gold2); opacity:.22; font-size:1.3em;
+  }
+  .arabic-wrap::before{left:20px} .arabic-wrap::after{right:20px;transform:translateY(-50%) scaleX(-1)}
+  .arabic {
+    font-family:'Traditional Arabic','Scheherazade New','KFGQPC Uthmanic Script HAFS',serif;
+    font-size:clamp(2.2em,5.5vw,3.3em); line-height:2.1;
+    background:linear-gradient(135deg,var(--gold4) 0%,var(--gold1) 40%,var(--gold3) 60%,var(--gold2) 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    direction:rtl; position:relative; z-index:1;
+  }
+  .ayat-num-inline {
+    font-family:'Playfair Display',serif; font-size:.42em;
+    color:var(--gold2); opacity:.65; vertical-align:super; direction:ltr;
+  }
+  .translation {
+    text-align:center; font-style:italic; color:var(--muted);
+    font-size:1.03em; margin:10px 0 34px; line-height:1.7;
+  }
+
+  /* ENERGI CHIP */
+  .energi-chip {
+    display:inline-flex; align-items:center; gap:8px;
+    background:linear-gradient(135deg,#1e1200 0%,#2a1800 100%);
+    border:1px solid var(--gold4); color:var(--gold1);
+    padding:8px 22px; border-radius:32px; font-size:.91em; font-weight:600;
+    margin:18px 4px 10px 0; letter-spacing:.4px;
+  }
+  .energi-chip.warning {
+    border-color:#6a2020; background:linear-gradient(135deg,#1e0800,#2a1010); color:#ff9090;
+  }
+  .energi-chip.promise {
+    border-color:#1a5a30; background:linear-gradient(135deg,#001a0e,#002a16); color:#80e0a0;
+  }
+
+  /* PARAGRAPHS */
+  p { margin-bottom:16px; color:#d4c49e; text-align:justify; font-size:.97em; line-height:1.95; }
+  strong{color:var(--gold1);font-weight:600}
+  em{color:#c8b478;font-style:italic}
+
+  /* RELEVANCE BOX */
+  .relevance-box {
+    background:linear-gradient(160deg,#0f0a05,#0b0905);
+    border-left:3px solid var(--amber); border-radius:0 12px 12px 0;
+    padding:22px 26px; margin:26px 0;
+  }
+  .relevance-label {
+    font-size:.77em; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--amber); margin-bottom:12px;
+    font-family:'Playfair Display',serif;
+    display:flex; align-items:center; gap:8px;
+  }
+  .relevance-label::after {
+    content:''; flex:1; height:1px;
+    background:linear-gradient(to right,rgba(200,120,30,.3),transparent);
+  }
+
+  /* AKAR KATA BOX */
+  .akar-box {
+    background:linear-gradient(160deg,#0e0c08,#0a0a06);
+    border:1px solid #2a2010; border-radius:10px;
+    padding:16px 22px; margin:14px 0 20px;
+    font-size:.92em; color:#c8b478;
+  }
+  .akar-label {
+    font-size:.72em; letter-spacing:2px; text-transform:uppercase;
+    color:var(--gold4); margin-bottom:8px;
+    font-family:'Playfair Display',serif;
+  }
+
+  /* TWO-COL */
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0; }
+  @media(max-width:600px){.two-col{grid-template-columns:1fr}}
+  .contrast-box { border-radius:12px; padding:20px 22px; font-size:.93em; }
+  .contrast-box.dark-side { background:linear-gradient(160deg,#200808,#150606); border:1px solid #4a1212; }
+  .contrast-box.light-side { background:linear-gradient(160deg,#081808,#061210); border:1px solid #1a5a28; }
+  .contrast-title { font-size:.77em; letter-spacing:2px; text-transform:uppercase; margin-bottom:10px; font-family:'Playfair Display',serif; font-weight:700; }
+  .contrast-box.dark-side .contrast-title{color:#d04040}
+  .contrast-box.light-side .contrast-title{color:#50c870}
+
+  /* INTISARI */
+  .intisari {
+    position:relative;
+    background:linear-gradient(160deg,#1a1200,#120e00);
+    border:1px solid #3a2a10; border-radius:14px;
+    padding:32px 36px 28px; margin:30px 0 0;
+    color:#e0cc90; font-size:.98em; line-height:1.95;
+  }
+  .intisari::before {
+    content:'"'; position:absolute; top:-18px; left:26px;
+    font-size:4.5em; line-height:1;
+    background:linear-gradient(to bottom,var(--gold1),var(--gold2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    font-family:'Playfair Display',serif;
+  }
+  .intisari-label {
+    font-size:.72em; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--gold2); margin-bottom:13px;
+    font-family:'Playfair Display',serif;
+    display:flex; align-items:center; gap:8px;
+  }
+  .intisari-label::after {
+    content:''; flex:1; height:1px;
+    background:linear-gradient(to right,rgba(180,120,20,.4),transparent);
+  }
+
+  /* PENUTUP */
+  .penutup {
+    background:linear-gradient(160deg,#0f0c07,#0a0905);
+    border:1px solid #2a2010; border-radius:18px;
+    padding:56px 46px; margin-bottom:40px;
+  }
+  .langkah {
+    background:linear-gradient(160deg,#151008,#0e0c06);
+    border:1px solid #2a1c10; border-left:3px solid var(--gold2);
+    border-radius:0 12px 12px 0; padding:22px 26px; margin:18px 0;
+    color:#d4c49e; font-size:.96em;
+  }
+  .langkah .lnum {
+    display:inline-block;
+    background:linear-gradient(135deg,var(--gold2),var(--gold1));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    font-weight:700; font-family:'Playfair Display',serif;
+    font-size:1.05em; margin-bottom:6px; letter-spacing:.5px;
+  }
+  .langkah p{margin-bottom:0}
+  .aksi-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0; }
+  @media(max-width:600px){.aksi-grid{grid-template-columns:1fr}}
+  .aksi-item {
+    background:linear-gradient(160deg,#130f07,#0d0b05);
+    border:1px solid #2a1c0a; border-radius:12px; padding:20px 22px;
+  }
+  .aksi-num {
+    width:28px; height:28px; border-radius:50%;
+    background:linear-gradient(135deg,var(--gold4),var(--gold2));
+    display:inline-flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display',serif; font-size:.85em; font-weight:700;
+    color:#0a0600; margin-bottom:10px;
+  }
+  .aksi-item p{font-size:.93em;margin-bottom:0}
+
+  /* EPILOG */
+  .epilog {
+    background:radial-gradient(ellipse at 50% 0%,#180e00 0%,#060606 55%);
+    border:1px solid #2a1808; border-top:2px solid var(--gold2);
+    border-radius:18px; padding:66px 46px;
+    text-align:center; position:relative; overflow:hidden;
+  }
+  .epilog::before {
+    content:''; position:absolute; inset:0;
+    background-image:radial-gradient(circle,rgba(255,220,120,.10) 1px,transparent 1px);
+    background-size:60px 60px; opacity:.3; pointer-events:none;
+  }
+  .epilog-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.5em,3.2vw,2.2em); font-weight:700;
+    margin-bottom:44px; position:relative;
+  }
+  .epilog p {
+    max-width:680px; margin:0 auto 20px;
+    color:#c8b078; text-align:center; font-style:italic; position:relative;
+  }
+  .epilog .arabic-line {
+    font-family:'Traditional Arabic','Scheherazade New',serif;
+    font-size:clamp(1.6em,3.8vw,2.4em); direction:rtl;
+    background:linear-gradient(135deg,var(--gold4),var(--gold1),var(--gold3),var(--gold2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    display:block; margin:30px auto 6px; position:relative;
+  }
+  .epilog .latin-line {
+    font-style:italic; color:var(--gold1); font-size:1em;
+    margin-bottom:22px; display:block; letter-spacing:.5px; position:relative;
+  }
+  .epilog-divider {
+    width:80px; height:1px;
+    background:linear-gradient(to right,transparent,var(--gold2),transparent);
+    margin:36px auto; position:relative;
+  }
+  .reader-type {
+    background:linear-gradient(160deg,#130e06,#0d0a04);
+    border:1px solid #2a1c08; border-radius:12px;
+    padding:26px 30px; margin:20px auto; max-width:680px;
+    text-align:left; position:relative;
+  }
+  .reader-label {
+    font-size:.77em; letter-spacing:2px; text-transform:uppercase;
+    color:var(--gold2); margin-bottom:12px; font-family:'Playfair Display',serif;
+  }
+  .reader-type p{font-style:normal;text-align:justify;color:#cdb888;font-size:.95em}
+  .epilog .closing {
+    margin-top:50px; font-style:normal;
+    font-family:'Playfair Display',serif;
+    font-size:1.1em; color:#e0cc90; line-height:1.9; position:relative;
+  }
+  .closing-highlight {
+    display:inline-block;
+    background:linear-gradient(135deg,var(--gold4) 0%,var(--gold1) 45%,var(--gold3) 60%,var(--gold2) 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    font-size:1.15em; font-weight:700;
+  }
+
+  /* SCROLL TOP */
+  #scrollTop {
+    position:fixed; bottom:30px; right:30px;
+    width:48px; height:48px;
+    background:linear-gradient(135deg,var(--gold4),var(--gold2));
+    color:#0a0600; font-size:1.3em; font-weight:700;
+    border:none; border-radius:50%;
+    cursor:pointer; display:none; align-items:center; justify-content:center;
+    box-shadow:0 4px 24px rgba(0,0,0,.6);
+    transition:transform .2s,box-shadow .2s; z-index:999;
+  }
+  #scrollTop:hover{transform:scale(1.1);box-shadow:0 6px 30px rgba(0,0,0,.8)}
+
+  @media(max-width:640px){
+    .header{padding:60px 20px 55px}
+    .ayat-section,.penutup,.epilog{padding:32px 20px}
+    .container{padding:30px 14px 60px}
+    .intisari{padding:28px 22px}
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <p class="header-surah-label">Surat Al-Ghasyiyah · Juz 30 · Makkiyah</p>
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <h1 class="gold">Al-Ghasyiyah</h1>
+  <p class="header-sub">Surat 88 · 26 Ayat · Hari yang Menyelimuti</p>
+  <div class="divider-gold"></div>
+  <p class="tagline">Ketika Hidup Menagih Semua yang Pernah Kamu Pilih.</p>
+  <div class="header-horizon"></div>
+</div>
+
+<div class="intro-band">
+  <p>Al-Ghasyiyah — Hari yang Menyelimuti, yang datang tanpa bisa dihindari — adalah cermin bagi siapa yang masih punya waktu untuk melihat dirinya sendiri. Surah ini berbicara tentang dua ujung: kesengsaraan yang lahir dari pilihan yang salah, dan kedamaian yang mekar dari pilihan yang benar. Di antara keduanya ada kamu — yang masih di tengah perjalanan, yang masih punya kesempatan. Ini bukan sekadar gambaran akhirat. Ini undangan untuk memeriksa apa yang sedang kamu bangun hari ini.</p>
+</div>
+
+<div class="container">
+
+<!-- ═══ BAGIAN I ═══ -->
+<div class="group-label">
+  <div class="group-label-line"></div>
+  <div class="group-label-text">Bagian I — Pertanyaan yang Membekukan · Ayat 1</div>
+  <div class="group-label-line right"></div>
+</div>
+
+<!-- AYAT 1 -->
+<div class="ayat-section tone-neutral">
+  <div class="ayat-number">
+    <span class="ayat-num-badge">١</span>
+    <span class="gold">Ayat Pertama</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">هَلۡ أَتَىٰكَ حَدِيثُ ٱلۡغَٰشِيَةِ <span class="ayat-num-inline">١</span></div>
+  </div>
+  <p class="translation">"Sudahkah sampai kepadamu berita tentang hari yang menyelimuti (hari Kiamat)?"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+
+  <div class="energi-chip">هَلۡ أَتَاكَ — Sudahkah Sampai Kepadamu</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Pola <em>hal atāka</em> dalam retorika Arab klasik bukan pertanyaan informasi biasa — ia adalah gaya pembuka yang disebut <em>istifhām taqrīrī</em>: pertanyaan untuk memastikan perhatian penuh. Bedakan dengan <em>a-'alimta?</em> (apakah kamu tahu?) yang meminta konfirmasi pengetahuan. <em>Hal atāka</em> mengguncang: bukan soal apakah kamu sudah <em>mendengar</em>, tapi apakah kamu sudah benar-benar <em>merasakannya</em> hingga ke dalam dada.
+  </div>
+  <p>Bayangkan seseorang yang memegang bahumu dan berbisik tepat di depan wajahmu: "Apakah kamu benar-benar sadar tentang ini?" Itu adalah energi ayat pertama ini. Ia menghentikan autopilot harian. Memaksa berhenti sejenak. Sebelum isi berita itu disampaikan, Allah memastikan dulu: <em>apakah kamu siap menerima?</em></p>
+
+  <div class="energi-chip">ٱلۡغَاشِيَةِ — Yang Menyelimuti</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari akar <em>ghasyiya — yaghsyā</em>: menutupi, menyelimuti, datang menghantam dari segala arah sekaligus. Berbeda dengan <em>al-qiyāmah</em> (yang berdiri tegak) atau <em>as-sā'ah</em> (jam yang tiba) — <em>al-ghāsyiyah</em> menekankan sifat menyelimutinya: tidak ada sudut yang luput, tidak ada tempat bersembunyi, tidak ada celah untuk mengelak. Ia datang melingkupi seperti ombak yang tidak bisa kamu hindari dengan berlari ke arah mana pun.
+  </div>
+  <p>Nama ini dipilih bukan kebetulan. Ia menyiratkan sebuah kebenaran tentang hari itu: ia tidak memberi peringatan khusus, tidak menunggu kesiapanmu. Ia <em>datang menyelimuti</em> — dan satu-satunya cara menghadapinya adalah sudah siap sebelum ia tiba.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Ayat pembuka ini adalah momen jeda paksa. Dalam ritme kesibukan sehari-hari — notifikasi, deadline, tagihan, drama, rencana — Allah menginterupsi: <strong>Sudahkah sampai kepadamu?</strong></p>
+  <p>Pertanyaan ini bukan untuk menakut-nakuti. Ini adalah undangan untuk berpindah dari mode autopilot ke mode sadar penuh. Banyak dari kita menjalani hari seolah hidup tidak punya batas waktu — seolah kita punya jatah tak terbatas untuk menunda pertobatan, menunda kebaikan, menunda kehadiran yang sungguh bermakna.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Scroll tiga jam, tapi tidak sempat lima menit merenung ke mana arah hidup ini. Menghabiskan energi memikirkan liburan tahun depan, tapi tidak sempat memikirkan apa yang akan dipertanggungjawabkan setelah mati. Kita hidup dalam era yang secara sistematis merancang kita untuk <em>lupa</em> — lupa bahwa ada hari yang tidak bisa dinegosiasi, tidak bisa dipostpon.</p>
+    <p>Al-Ghasyiyah membuka dengan pertanyaan yang membekukan autopilot itu. Bukan dengan ancaman. Hanya dengan pertanyaan sederhana yang menyelipkan jari di antara kesibukan dan kesadaran: <em>Sudahkah sampai kepadamu?</em></p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Terlalu banyak yang kita "tahu" tapi tidak benar-benar "rasakan" — termasuk kepastian bahwa ada hari di mana semua yang pernah kita pilih akan dihadapkan kembali kepada kita. Pertanyaan ini bukan soal informasi; ini soal apakah hatimu sudah benar-benar siap menerima kenyataan itu.
+  </div>
+</div>
+
+<!-- ═══ BAGIAN II ═══ -->
+<div class="group-label">
+  <div class="group-label-line"></div>
+  <div class="group-label-text">Bagian II — Wajah-Wajah yang Menanggung · Ayat 2–7</div>
+  <div class="group-label-line right"></div>
+</div>
+
+<!-- AYAT 2 -->
+<div class="ayat-section tone-warning">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#8b2020;color:#ff9090;">٢</span>
+    <span class="crimson-text">Ayat Kedua</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">وُجُوهٌ يَوۡمَئِذٍ خَٰشِعَةٌ <span class="ayat-num-inline">٢</span></div>
+  </div>
+  <p class="translation">"Banyak muka pada hari itu tertunduk hina."</p>
+
+  <h2 class="section-title crimson-text">Energi Kata</h2>
+
+  <div class="energi-chip warning">وُجُوهٌ — Wajah-Wajah</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Wujūh</em> adalah bentuk jamak dari <em>wajh</em> — wajah, permukaan, tetapi juga berarti "arah" dan "identitas seseorang". Dalam bahasa Arab, wajah bukan sekadar bagian tubuh; ia adalah cerminan siapa kamu sesungguhnya. Al-Quran menggunakan <em>wujūh</em> — jamak tanpa nama, tanpa identitas — untuk menggambarkan bahwa pada hari itu, individu-individu yang tadinya punya nama dan jabatan, kini hanya menjadi bagian dari dua kelompok besar: yang tertunduk atau yang berseri.
+  </div>
+
+  <div class="energi-chip warning">خَاشِعَةٌ — Tertunduk Hina</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari akar <em>khasha'a</em>: tunduk, merendah karena tekanan yang tak bisa dilawan. Bedakan dengan <em>khāshi'</em> dalam shalat yang artinya khusyu' — ketundukan yang mulia, yang dipilih secara sadar karena penghormatan. <em>Khāsyi'ah</em> di sini adalah ketundukan yang berbeda: bukan pilihan, tapi kekalahan. Ketundukan yang lahir dari rasa malu yang tidak bisa disembunyikan, dari penyesalan yang tidak bisa lagi diperbaiki.
+  </div>
+  <p>Wajah adalah hal paling pertama yang orang lihat darimu. Di hari itu, wajah menjadi saksi yang tidak bisa berbohong. Semua yang pernah kamu banggakan di hadapan orang lain — status, pencapaian, citra — tidak lagi relevan. Yang tersisa hanyalah kondisi batin yang selama ini kamu simpan.</p>
+
+  <h2 class="section-title crimson-text">Tafsir Mendalam</h2>
+  <p>Al-Quran membuka deskripsi kelompok pertama bukan dari amal perbuatannya, tapi dari <em>wajahnya</em>. Ini bukan kebetulan. Wajah adalah ekspresi paling jujur dari keadaan jiwa. Kamu bisa memilih kata-kata dengan hati-hati, bisa mengatur postur, bisa memakai pakaian terbaik — tapi wajahmu susah payah menyembunyikan apa yang sebenarnya ada di dalam.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita hidup di era di mana wajah dimanipulasi habis-habisan: filter, pencahayaan, angle terbaik. Kita sudah sangat terampil menyajikan versi wajah yang paling diinginkan. Tapi Al-Ghasyiyah mengingatkan: ada hari di mana tidak ada filter yang cukup kuat. Di sana, wajah akan menceritakan segalanya — bukan tentang seberapa bagus kamu terlihat, tapi tentang bagaimana kondisi jiwamu sesungguhnya.</p>
+    <p>Pertanyaan reflektifnya bukan "seperti apa wajahku di kamera?" melainkan: "jika wajahku pada hari itu adalah cermin langsung dari kondisi batinku hari ini — seperti apa ia akan terlihat?"</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Wajah tidak bisa berbohong ketika tidak ada lagi yang perlu diperjuangkan. Yang dipersiapkan sejak hari ini bukan citra yang tampak di luar, melainkan kondisi jiwa yang akan terpancar dari dalam — pada hari ketika semua topeng sudah tidak lagi berguna.
+  </div>
+</div>
+
+<!-- AYAT 3 -->
+<div class="ayat-section tone-warning">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#8b2020;color:#ff9090;">٣</span>
+    <span class="crimson-text">Ayat Ketiga</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">عَامِلَةٌ نَّاصِبَةٌ <span class="ayat-num-inline">٣</span></div>
+  </div>
+  <p class="translation">"Bekerja keras lagi kepayahan."</p>
+
+  <h2 class="section-title crimson-text">Energi Kata</h2>
+
+  <div class="energi-chip warning">عَامِلَةٌ — Aktif Bekerja</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari akar <em>'amila</em>: bekerja, beramal, beraktivitas. <em>'Āmilah</em> adalah kata sifat aktif — bukan orang yang diam, bukan yang pasif, bukan yang tidak berbuat apa-apa. Ini orang yang <em>benar-benar bekerja keras</em>. Memilih kata ini adalah bagian penting dari pesan ayat: kelompok ini bukan orang yang malas. Mereka punya energi, punya usaha, punya dedikasi.
+  </div>
+
+  <div class="energi-chip warning">نَّاصِبَةٌ — Terkuras, Kepayahan Total</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari akar <em>nashaba</em>: melelahkan, menguras, berjuang hingga habis tenaga. <em>Nāshibah</em> bukan sekadar "capek" — ini adalah kelelahan yang menandakan bahwa semua sumber daya sudah terkuras. Kombinasi <em>'āmilah nāshibah</em> (dua kata sifat yang berjajar tanpa kata sambung) dalam bahasa Arab menciptakan kesan yang sangat kuat: bekerja keras <em>sekaligus</em> terkuras total. Bukan karena sedikit usaha, tapi karena seluruh energi dihabiskan — namun ke arah yang tidak membawa makna.
+  </div>
+  <p>Paradoks paling menyakitkan dalam ayat ini: orang-orang ini sudah bekerja keras. Mereka bukan pemalas. Mereka bukan orang yang tidak peduli. Tapi semua kerja keras itu — di akhirat — tidak membawa hasil yang berarti. Mengapa? Karena arahnya salah, atau karena niatnya tidak benar, atau karena semua usahanya hanya diarahkan untuk dunia tanpa bekal untuk hari ini.</p>
+
+  <h2 class="section-title crimson-text">Tafsir Mendalam</h2>
+  <p>Ini adalah ayat yang paling menghantam generasi produktivitas. Kita diajarkan bahwa kerja keras adalah jawaban untuk segalanya — bahwa jika kamu cukup keras berusaha, kamu akan berhasil. Dan itu benar, <em>dalam konteks yang tepat</em>. Tapi Al-Ghasyiyah menambahkan dimensi yang sering dilupakan: kerja keras tanpa arah yang benar, tanpa niat yang lurus, tanpa tujuan yang melampaui diri sendiri, bisa berakhir sebagai <em>'āmilah nāshibah</em> — lelah total, tapi tanpa makna abadi.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Ada istilah yang sedang populer: <em>productive exhaustion</em> — kelelahan yang dibingkai sebagai tanda kesuksesan. "Hustle culture" mengajarkan bahwa sibuk adalah identitas, bahwa lelah adalah bukti kerja keras, bahwa mengorbankan segalanya untuk karir adalah bentuk tertinggi dari dedikasi. Tapi berapa banyak dari kita yang, di puncak kesibukan itu, justru merasa paling kosong?</p>
+    <p>Ada pula yang bekerja keras dalam urusan ibadah, tapi dengan riya' atau tanpa keikhlasan — sibuk menampilkan kesalehan, tapi jauh dari ketulusan. Keduanya bisa masuk dalam kategori <em>'āmilah nāshibah</em>: banyak usaha, tapi tidak ke arah yang benar.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Kelelahan bukan masalah — arah yang salah adalah masalah. Ada kehidupan yang dihabiskan dalam kerja keras yang sungguh-sungguh, tapi tidak satu pun dari energi itu yang diarahkan pada sesuatu yang melampaui kepentingan diri sendiri dan batas fana dunia. Bertanya "seberapa keras aku bekerja?" saja tidak cukup — yang lebih penting: "untuk apa?"
+  </div>
+</div>
+
+<!-- AYAT 4 -->
+<div class="ayat-section tone-warning">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#8b2020;color:#ff9090;">٤</span>
+    <span class="crimson-text">Ayat Keempat</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">تَصۡلَىٰ نَارًا حَامِيَةً <span class="ayat-num-inline">٤</span></div>
+  </div>
+  <p class="translation">"Memasuki api yang sangat panas."</p>
+
+  <h2 class="section-title crimson-text">Energi Kata</h2>
+
+  <div class="energi-chip warning">تَصۡلَىٰ — Memasuki, Dipanggang Di Dalamnya</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari akar <em>shalā</em>: dipanggang, masuk ke dalam api hingga terasa dari segala sisi. Berbeda dengan <em>dukhūl</em> (masuk secara netral), <em>tashlā</em> mengandung makna bahwa panasnya menyelimuti dari semua arah — seperti sesuatu yang dipanggang di dalam api, bukan sekadar melewatinya. Kata ini muncul berulang dalam Al-Quran untuk menggambarkan azab yang tidak sekadar "hadir di dekat api" tapi benar-benar <em>terbenam di dalamnya</em>.
+  </div>
+
+  <div class="energi-chip warning">حَامِيَةً — Sangat Panas, Membara</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari <em>hamā, yahmī</em>: membara, memanas sampai titik tertinggi. <em>Hāmiyah</em> bukan api biasa yang masih bisa diukur suhunya dengan standar manusia — ini adalah kata yang menekankan intensitas panas yang melampaui batas nalar. Penambahan kata sifat ini setelah <em>nāran</em> (api) bukan pengulangan; ia adalah penekanan yang disengaja untuk menegaskan bahwa panas yang dimaksud adalah panas yang benar-benar di luar kapasitas manusia untuk membayangkan.
+  </div>
+
+  <h2 class="section-title crimson-text">Tafsir Mendalam</h2>
+  <p>Setelah menggambarkan kondisi batin (wajah tertunduk) dan kondisi amal (kerja keras yang sia-sia), Al-Quran kini menggambarkan konsekuensinya. Tapi perhatikan urutannya: <em>kondisi jiwa dulu baru akibatnya</em>. Ini bukan sekadar hukuman yang dijatuhkan dari luar — ini adalah hasil yang tumbuh dari pilihan-pilihan yang telah diambil.</p>
+  <p>Para ulama tafsir seperti Ibn Katsir menjelaskan bahwa urutan ayat 2–4 ini saling terhubung sebagai sebab-akibat: karena wajah tertunduk hina (kondisi iman yang rapuh), karena kerja keras yang sia-sia (amal tanpa arah yang benar), maka akibatnya adalah api yang sangat panas. Satu mengalir ke yang berikutnya.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Ada pola psikologis yang disebut "burnout spiritual" — ketika seseorang sudah terlalu lama menjalankan rutinitas kehidupan (termasuk ibadah) tanpa koneksi batin yang nyata. Dingin dari dalam. Gerakan tanpa jiwa. Ini bukan tentang menghakimi siapa pun — tapi tentang sebuah peringatan: ada perbedaan antara yang <em>tampak</em> beragama dan yang <em>benar-benar tersambung</em> dengan Tuhannya.</p>
+    <p>Ayat ini mengundang pertanyaan jujur: apakah yang aku lakukan sehari-hari membawa aku lebih dekat, atau justru semakin jauh dalam diam?</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Akibat selalu punya akarnya. Api yang sangat panas bukan datang tiba-tiba — ia adalah hasil yang matang perlahan dari pilihan-pilihan yang terus-menerus mengabaikan sesuatu yang jauh lebih penting dari sekadar kesibukan duniawi.
+  </div>
+</div>
+
+<!-- AYAT 5 -->
+<div class="ayat-section tone-warning">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#8b2020;color:#ff9090;">٥</span>
+    <span class="crimson-text">Ayat Kelima</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">تُسۡقَىٰ مِنۡ عَيۡنٍ ءَانِيَةٍ <span class="ayat-num-inline">٥</span></div>
+  </div>
+  <p class="translation">"Diberi minum dari sumber mata air yang sangat panas."</p>
+
+  <h2 class="section-title crimson-text">Energi Kata</h2>
+
+  <div class="energi-chip warning">تُسۡقَىٰ — Diberi Minum (Secara Paksa)</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari <em>saqā, yasqī</em>: memberi minum. Dalam bentuk pasif <em>tusqā</em>, maknanya menjadi "dipaksa minum" atau "dijatahkan minum" — bukan memilih sendiri. Kontrasnya sangat tajam dengan ayat 12 yang akan datang tentang surga: <em>'aynun jāriyah</em> (mata air yang mengalir bebas, tersedia). Di sini, minuman diberikan secara paksa dari sumber yang justru menyakitkan. Ada ironi yang dalam: yang seharusnya menjadi pelepas dahaga justru menjadi sumber siksaan.
+  </div>
+
+  <div class="energi-chip warning">ءَانِيَةٍ — Mendidih, Mencapai Puncak Panasnya</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari <em>anā, ya'nī</em>: mencapai titik puncak, matang sempurna dalam kepanasan. <em>Āniyah</em> bukan sekadar "panas" — ia adalah air yang sudah mendidih hingga mencapai puncak suhunya, tidak bisa lagi bertambah panas. Kata ini dalam bahasa Arab juga mengandung nuansa "yang sudah lama dipanaskan" — seolah sudah menunggu, sudah dipersiapkan, sudah mencapai intensitas maksimalnya.
+  </div>
+
+  <h2 class="section-title crimson-text">Tafsir Mendalam</h2>
+  <p>Air adalah kebutuhan paling dasar. Dahaga adalah salah satu penderitaan paling menyiksa. Ketika di dunia kita haus, kita mencari air — dan air memberikan kesembuhan. Di sini, yang tersedia adalah air yang seharusnya melepaskan dahaga, tapi justru menjadi sumber siksaan. Dipaksa meminum sesuatu yang seharusnya menyembuhkan, tapi justru menyakitkan.</p>
+  <p>Ada dimensi simbolis yang dalam: selama di dunia, banyak yang "minum" dari sumber yang salah untuk melepaskan dahaga batin mereka. Meminum pengakuan sosial untuk mengobati rasa tidak berharga. Meminum kesibukan untuk menghindari kesunyian. Meminum materi untuk mengisi kekosongan. Sumber-sumber itu di dunia tampak melepaskan dahaga — tapi di akhirat, konsekuensi dari ketergantungan pada sumber yang salah itu nyata.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita hidup dalam budaya yang menjual ribuan "minuman" untuk dahaga batin: hiburan instan, validasi digital, gratifikasi cepat. Semuanya terasa seperti air di tengah gurun — dan kita meminumnya habis-habisan. Tapi berapa sering kita perhatikan bahwa setelah selesai, dahaganya tidak hilang? Bahkan sering kali, kita justru lebih haus dari sebelumnya?</p>
+    <p>Ayat ini adalah peringatan: pastikan kamu tahu dari mana kamu minum. Karena tidak semua yang tampak seperti air, sungguh-sungguh melepaskan dahaga.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Penyiksaan yang paling halus bukan ketiadaan — melainkan ilusi pemenuhan. Ada yang kelihatannya memberi, tapi sebenarnya hanya menambah luka. Dan ini berlaku di dunia maupun di akhirat: pilih dengan bijak dari mana kamu "minum" untuk memenuhi kebutuhan batinmu yang paling dalam.
+  </div>
+</div>
+
+<!-- AYAT 6 -->
+<div class="ayat-section tone-warning">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#8b2020;color:#ff9090;">٦</span>
+    <span class="crimson-text">Ayat Keenam</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">لَّيۡسَ لَهُمۡ طَعَامٌ إِلَّا مِن ضَرِيعٍ <span class="ayat-num-inline">٦</span></div>
+  </div>
+  <p class="translation">"Tidak ada makanan bagi mereka selain dari pohon yang berduri."</p>
+
+  <h2 class="section-title crimson-text">Energi Kata</h2>
+
+  <div class="energi-chip warning">لَّيۡسَ لَهُمۡ — Tidak Ada Bagi Mereka</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Konstruksi <em>laysa lahum</em> adalah penafian mutlak dalam bahasa Arab — tidak sekadar "sedikit" atau "jarang", tapi "sama sekali tidak". Tidak ada ruang untuk pengecualian kecil, tidak ada sumber alternatif tersembunyi. Seluruh pilihan yang ada hanya satu: <em>dharī'</em>. Betapa sempitnya ruang gerak, betapa terbatasnya pilihan — sebuah cerminan dari kondisi jiwa yang selama hidup tidak mau membuka diri pada kebenaran.
+  </div>
+
+  <div class="energi-chip warning">ضَرِيعٍ — Tanaman Beracun yang Menjijikkan</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Dharī'</em> adalah jenis tanaman padang pasir yang dalam bahasa Arab klasik dikenal dengan tiga sifat: berduri tajam, berbau busuk, dan beracun. Ia memang "ada" — dalam arti bisa dilihat, bisa disentuh, bisa dimasukkan ke mulut — tapi di situlah ironinya yang menyakitkan: tersedia, tapi tidak bisa dimakan. Ada, tapi bukan makanan yang sesungguhnya.
+  </div>
+
+  <h2 class="section-title crimson-text">Tafsir Mendalam</h2>
+  <p>Perhatikan betapa sulitnya keadaan kelompok ini: mereka tidak diberi kekosongan total (tidak ada sama sekali), tapi diberi sesuatu yang jauh lebih menyiksa — ada, tapi tidak bisa memenuhi kebutuhan. Pilihan yang ada hanya pilihan yang menyakitkan. Tidak ada jalan keluar lain.</p>
+  <p>Di sini ada cerminan halus untuk kehidupan di dunia: betapa banyak "makanan" yang kita konsumsi yang kelihatannya mengenyangkan tapi sebenarnya kosong nutrisi — konten yang menghibur tapi tidak mencerdaskan, hubungan yang ramai tapi tidak bermakna, kesibukan yang terlihat produktif tapi tidak membuahkan apa-apa yang benar-benar penting.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita hidup dalam era kelimpahan — kelimpahan konten, kelimpahan pilihan, kelimpahan distraksi. Tapi paradoks yang muncul adalah banyak orang yang merasa lebih kelaparan dari sebelumnya: kelaparan makna, kelaparan kedamaian, kelaparan koneksi yang sungguh nyata. Kita "makan" sepanjang waktu — scrolling, menonton, mengonsumsi — tapi jiwa tetap lapar.</p>
+    <p><em>Dharī'</em> bisa menjadi metafora untuk semua yang tampak seperti makanan tapi sebenarnya hanya melukai: perbandingan sosial yang terus-menerus, validasi yang tidak pernah cukup, pencapaian yang tidak disertai kedamaian.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Ketersediaan tidak sama dengan kebaikan. Ada yang ada di depan mata tapi justru menyakitkan jika dikonsumsi. Pertanyaan yang perlu diajukan bukan hanya "apakah ini ada?" tapi "apakah ini benar-benar memenuhi sesuatu yang penting, atau hanya mengisi ruang kosong sementara?"
+  </div>
+</div>
+
+<!-- AYAT 7 -->
+<div class="ayat-section tone-warning">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#8b2020;color:#ff9090;">٧</span>
+    <span class="crimson-text">Ayat Ketujuh</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">لَّا يُسۡمِنُ وَلَا يُغۡنِي مِن جُوعٍ <span class="ayat-num-inline">٧</span></div>
+  </div>
+  <p class="translation">"(Makanan itu) tidak menggemukkan dan tidak pula menghilangkan lapar."</p>
+
+  <h2 class="section-title crimson-text">Energi Kata</h2>
+
+  <div class="energi-chip warning">لَّا يُسۡمِنُ — Tidak Menggemukkan / Tidak Menguatkan</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari <em>samuna</em>: gemuk, berisi, kuat. <em>Yusminu</em> berarti memberi kekuatan fisik, membangun tubuh, memberi energi untuk aktivitas. Fungsi pertama makanan adalah memberikan kekuatan — dan ini tidak terpenuhi. Tidak ada nutrisi, tidak ada energi, tidak ada pembangunan.
+  </div>
+
+  <div class="energi-chip warning">وَلَا يُغۡنِي مِن جُوعٍ — Tidak Menghilangkan Lapar</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari <em>aghnā</em>: mencukupkan, membebaskan dari kekurangan. <em>Lā yughnī min jū'</em> — tidak mencukupkan dari rasa lapar. Ini adalah kegagalan fungsi dasar yang kedua: jika tidak menguatkan, setidaknya hilangkan laparnya. Tapi tidak. Keduanya gagal. Ada dalam lambung, tapi tidak memberi apa-apa. Ini adalah puncak dari gambaran sia-sia: makanan yang tidak berfungsi sebagai makanan.</p>
+  </div>
+
+  <h2 class="section-title crimson-text">Tafsir Mendalam</h2>
+  <p>Ayat ini menutup gambaran kelompok pertama dengan detail yang sangat spesifik. Seolah Allah ingin memastikan kita benar-benar memahami: bukan hanya keadaannya buruk, tapi tidak ada sedikitpun celah kelegaan. Satu-satunya yang ada tidak memberi kekuatan, tidak menghilangkan lapar. Ketidakberdayaan yang sempurna.</p>
+  <p>Dua kata kerja yang berjajar — <em>lā yusminu wa lā yughnī</em> — bukan pengulangan. Keduanya mengisi dua dimensi kegagalan yang berbeda: gagal secara fisik (tidak menguatkan) dan gagal secara fungsi sosial (tidak membebaskan dari kebutuhan). Semua aspek dari apa yang seharusnya diberikan oleh makanan, tidak ada satupun yang terpenuhi.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Ada kondisi yang dalam psikologi modern disebut "anhedonia" — ketidakmampuan untuk merasakan kesenangan dari hal-hal yang seharusnya menyenangkan. Kamu makan tapi tidak menikmati. Kamu berhasil tapi tidak merasa puas. Kamu dikelilingi orang tapi tetap kesepian. Ini bukan kondisi klinis semata — ini juga bisa menjadi tanda bahwa jiwa sedang "memakan dharī'" — sesuatu yang ada tapi tidak sungguh-sungguh memenuhi.</p>
+    <p>Pertanyaan jujurnya: apakah semua yang kamu kejar hari ini — jika kamu berhasil mendapatkannya — benar-benar akan menguatkan dan memuaskan, atau hanya akan menjadi <em>lā yusminu wa lā yughnī</em> versi dunia?</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Tidak semua yang masuk ke dalam diri memberi sesuatu yang berarti. Ada yang dikonsumsi habis-habisan — waktu, energi, perhatian, harapan — tapi tidak memberi kekuatan dan tidak menghilangkan kelaparan yang sesungguhnya. Gambaran akhirat ini adalah cermin untuk hari ini: pastikan apa yang kamu "makan" benar-benar memenuhi, bukan hanya mengisi.
+  </div>
+</div>
+
+<!-- ═══ BAGIAN III ═══ -->
+<div class="group-label">
+  <div class="group-label-line"></div>
+  <div class="group-label-text">Bagian III — Wajah-Wajah yang Berseri · Ayat 8–16</div>
+  <div class="group-label-line right"></div>
+</div>
+
+<!-- AYAT 8 -->
+<div class="ayat-section tone-promise">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#1a6a3a;color:#80e0a0;">٨</span>
+    <span class="jade-text">Ayat Kedelapan</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">وُجُوهٌ يَوۡمَئِذٍ نَّاعِمَةٌ <span class="ayat-num-inline">٨</span></div>
+  </div>
+  <p class="translation">"Banyak muka pada hari itu berseri-seri."</p>
+
+  <h2 class="section-title jade-text">Energi Kata</h2>
+
+  <div class="energi-chip promise">نَّاعِمَةٌ — Berseri, Memancarkan Kenikmatan dari Dalam</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari <em>na'ima</em>: merasakan nikmat, dalam kondisi sejahtera yang sempurna. <em>Nā'imah</em> bukan sekadar "senang" atau "lega" — ini adalah kondisi jiwa yang benar-benar sejahtera, yang terpancar ke luar secara alami. Bedakan dengan <em>farihah</em> (gembira karena sesuatu dari luar) atau <em>masrūrah</em> (terhibur). <em>Nā'imah</em> adalah pancaran dari dalam — bukan respons terhadap sesuatu yang baru saja terjadi, tapi kondisi dasar jiwa itu sendiri yang sudah dalam keadaan nikmat.
+  </div>
+  <p>Ada orang yang tersenyum karena situasinya sedang baik. Ada yang tersenyum karena harus. Dan ada yang wajahnya bercahaya karena kondisi batinnya memang sungguh terang — bukan karena tidak pernah susah, tapi karena ada kedamaian yang mengakar jauh di dalam. Inilah <em>nā'imah</em>.</p>
+
+  <h2 class="section-title jade-text">Tafsir Mendalam</h2>
+  <p>Kontras yang dibangun Al-Quran di sini sangat disengaja. Ayat 2 membuka dengan <em>wujūhun yawma'idzin khāsyi'ah</em> — wajah-wajah tertunduk hina. Ayat 8 membuka dengan konstruksi yang identik: <em>wujūhun yawma'idzin nā'imah</em> — wajah-wajah berseri. Sama-sama wajah, sama-sama hari itu, tapi kondisi yang sepenuhnya berbeda. Perbedaannya bukan nasib yang jatuh dari langit — perbedaannya adalah pilihan-pilihan yang telah dibuat sepanjang hidup.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Di era di mana kita sudah sangat terlatih untuk <em>menampilkan</em> kebahagiaan — foto terbaik, caption terkuat, highlight reel yang sempurna — ada ironi menyedihkan: kita semakin tidak familiar dengan wajah yang benar-benar berseri dari dalam. Kita tahu cara terlihat bahagia. Tapi apakah kita tahu cara <em>menjadi</em> orang yang batinnya sungguh-sungguh tenang dan sejahtera?</p>
+    <p>Gambaran <em>nā'imah</em> ini adalah undangan untuk bertanya: apa yang perlu aku bangun dari sekarang agar wajahku pada hari itu benar-benar bercahaya dari dalam — bukan dari filter, tapi dari kondisi jiwa yang sesungguhnya?</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Wajah yang berseri-seri pada hari itu bukan hasil dari makeup atau pencahayaan terbaik — melainkan hasil dari jiwa yang selama hidupnya dirawat dengan baik, yang diarahkan pada sesuatu yang benar, yang memilih dengan sadar apa yang layak diletakkan di dalamnya.
+  </div>
+</div>
+
+<!-- AYAT 9 -->
+<div class="ayat-section tone-promise">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#1a6a3a;color:#80e0a0;">٩</span>
+    <span class="jade-text">Ayat Kesembilan</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">لِسَعۡيِهَا رَاضِيَةٌ <span class="ayat-num-inline">٩</span></div>
+  </div>
+  <p class="translation">"Merasa senang karena usahanya (sendiri)."</p>
+
+  <h2 class="section-title jade-text">Energi Kata</h2>
+
+  <div class="energi-chip promise">لِسَعۡيِهَا — Karena Usahanya Sendiri</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Sa'y</em> berasal dari akar <em>sa'ā, yas'ā</em>: berjalan cepat, berusaha, berupaya dengan sungguh-sungguh. Berbeda dengan <em>'amal</em> (pekerjaan secara umum) atau <em>kasb</em> (usaha yang berorientasi hasil), <em>sa'y</em> menekankan <em>proses perjalanan dan upaya</em> itu sendiri. Kata ganti <em>-hā</em> di akhir (usahanya) sangat penting: ini adalah kepuasan atas usaha <em>diri sendiri</em>, bukan atas warisan, bukan atas keberuntungan, bukan atas pertolongan yang tidak diperoleh dengan wajar.
+  </div>
+
+  <div class="energi-chip promise">رَاضِيَةٌ — Ridha, Puas yang Mendalam</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari <em>radhiya</em>: ridha, puas, menerima dengan sepenuh hati. <em>Rādhiyah</em> jauh lebih dalam dari sekadar "senang" (<em>masrūr</em>) atau "lega" (<em>murtāh</em>). Ridha adalah kondisi jiwa yang menerima sepenuhnya, tanpa sisa penyesalan, tanpa ada yang masih ingin diubah. Kepuasan yang tidak membutuhkan tambahan apa pun untuk merasa cukup. Ini adalah kondisi puncak dari kepuasan batin yang bisa dicapai seseorang.
+  </div>
+
+  <h2 class="section-title jade-text">Tafsir Mendalam</h2>
+  <p>Ayat ini menjawab pertanyaan yang paling dalam tentang makna hidup: kapan seseorang bisa benar-benar merasa puas? Jawabannya: ketika ia melihat kembali usahanya sendiri — dan menemukan bahwa usaha itu sudah cukup, sudah tepat, sudah sesuai dengan apa yang seharusnya dilakukan.</p>
+  <p>Kontrasnya dengan ayat 3 (<em>'āmilah nāshibah</em>) begitu tajam: keduanya bekerja keras. Tapi yang satu bekerja keras tanpa arah yang benar, dan hasilnya adalah kelelahan sia-sia. Yang satunya bekerja keras dengan <em>sa'y</em> yang bermakna, dan hasilnya adalah kepuasan yang sungguh-sungguh. Perbedaannya bukan pada seberapa keras — tapi pada <em>untuk apa</em> dan <em>dengan hati seperti apa</em>.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Di era perbandingan sosial yang brutal, kita sudah kehilangan kemampuan untuk merasa cukup dengan apa yang kita kerjakan. Selalu ada yang lebih sukses, lebih cepat, lebih banyak pencapaian. Kita tidak pernah benar-benar bisa duduk dengan hasil usaha sendiri dan berkata: <em>ini cukup, ini baik</em>. Kita selalu dalam perlombaan tanpa garis finis yang jelas.</p>
+    <p><em>Rādhiyah li-sa'yihā</em> adalah gambaran kondisi yang berlawanan total dengan itu: puas karena usahanya <em>sendiri</em>. Bukan karena mengalahkan orang lain. Bukan karena mendapat pengakuan terbanyak. Tapi karena usaha itu sungguh-sungguh dan diarahkan pada sesuatu yang benar.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Kepuasan sejati hanya bisa lahir dari usaha yang sungguh-sungguh dan diarahkan dengan benar — bukan dari perbandingan dengan orang lain, bukan dari pengakuan eksternal, tapi dari kesadaran bahwa apa yang sudah dikerjakan adalah yang terbaik dari diri sendiri, dengan niat yang paling jujur yang bisa dimiliki.
+  </div>
+</div>
+
+<!-- AYAT 10 -->
+<div class="ayat-section tone-promise">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#1a6a3a;color:#80e0a0;">١٠</span>
+    <span class="jade-text">Ayat Kesepuluh</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">فِي جَنَّةٍ عَالِيَةٍ <span class="ayat-num-inline">١٠</span></div>
+  </div>
+  <p class="translation">"Dalam surga yang tinggi."</p>
+
+  <h2 class="section-title jade-text">Energi Kata</h2>
+
+  <div class="energi-chip promise">جَنَّةٍ — Surga, Taman yang Tertutup dan Lebat</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari akar <em>janna, yajinnu</em>: menutupi, menyembunyikan karena lebatnya. <em>Jannah</em> secara harfiah adalah taman yang begitu lebat pepohonannya hingga tanah di bawahnya tertutup, tersembunyi dari terik matahari. Ini bukan taman biasa yang terbuka dan gersang — ini adalah taman yang penuh, yang menaungi, yang sejuk karena kerimbunannya. Gambaran ini sangat bermakna bagi pendengar Arab di padang pasir: tempat yang teduh, yang hijau, yang penuh dengan kehidupan adalah gambaran kemewahan tertinggi.
+  </div>
+
+  <div class="energi-chip promise">عَالِيَةٍ — Tinggi, Mulia, Megah</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari <em>'alā, ya'lū</em>: tinggi, mulia, melampaui. <em>'Āliyah</em> memiliki dua dimensi: tinggi secara fisik (di tempat yang tertinggi, dengan pemandangan terbaik) dan tinggi secara kedudukan (mulia, bergengsi). Para ulama menafsirkan <em>jannatin 'āliyah</em> sebagai surga yang tinggi martabatnya — bukan sekadar lokasi geografis, tapi kualitas dan kemuliaan tempat itu sendiri yang jauh melampaui apa yang bisa dibayangkan.
+  </div>
+
+  <h2 class="section-title jade-text">Tafsir Mendalam</h2>
+  <p>Setelah gambaran kondisi batin (wajah berseri, puas dengan usaha), kini digambarkan kondisi tempat tinggalnya. Dan kata yang dipilih adalah <em>'āliyah</em> — tinggi, mulia. Ini bukan kebetulan: orang yang selama hidup meninggikan apa yang seharusnya ditinggikan — nilai-nilai yang benar, hubungan dengan Tuhannya, kebaikan yang tulus — akan ditempatkan di tempat yang tinggi pula.</p>
+  <p>Ada juga dimensi tentang <em>perspektif</em>: dari tempat yang tinggi, kamu bisa melihat gambaran yang lebih luas. Di dunia, kita sering terlalu dekat dengan masalah sehingga tidak bisa melihat gambaran besarnya. Di surga yang tinggi itu, seluruh perjalanan hidup bisa dilihat dari sudut pandang yang sempurna.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita sering mengukur "ketinggian" dengan hal yang salah: jabatan tertinggi, follower terbanyak, lantai tertinggi gedung tempat kita bekerja. Tapi <em>jannatin 'āliyah</em> mengingatkan bahwa ketinggian yang sesungguhnya bukan diukur dari seberapa tinggi kamu di mata orang lain — melainkan dari seberapa tinggi kamu memosisikan nilaimu, seberapa mulia cara kamu menjalani hidup, seberapa tegak prinsip yang kamu pegang.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Tempat yang tinggi adalah hasil dari jiwa yang selama hidupnya memilih untuk meninggikan sesuatu yang memang layak ditinggikan. Bukan jabatan atau status di mata manusia — tapi nilai, prinsip, dan ketulusan yang menjadi landasan setiap pilihan.
+  </div>
+</div>
+
+<!-- AYAT 11 -->
+<div class="ayat-section tone-promise">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#1a6a3a;color:#80e0a0;">١١</span>
+    <span class="jade-text">Ayat Kesebelas</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">لَّا تَسۡمَعُ فِيهَا لَٰغِيَةً <span class="ayat-num-inline">١١</span></div>
+  </div>
+  <p class="translation">"Di dalamnya tidak terdengar perkataan yang sia-sia."</p>
+
+  <h2 class="section-title jade-text">Energi Kata</h2>
+
+  <div class="energi-chip promise">لَّا تَسۡمَعُ — Tidak Akan Kamu Dengar</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Kata kerja dalam bentuk <em>mudhāri'</em> (sedang/akan berlangsung) — bukan hanya "tidak ada" sebagai fakta statis, tapi "tidak akan pernah kamu dengar" sebagai jaminan yang terus berlaku. Penggunaan kata ganti orang kedua (<em>tasma'u</em> — kamu mendengar) membuat ayat ini terasa personal: bukan hanya deskripsi tempat, tapi jaminan langsung kepada pembaca.
+  </div>
+
+  <div class="energi-chip promise">لَٰغِيَةً — Kata Sia-Sia, Memecah-Belah, Melukai</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari <em>laghā, yalghū</em>: berbicara tanpa makna, bicara yang tidak berguna bahkan merusak. <em>Lāghiyah</em> mencakup spektrum luas: obrolan kosong yang menghabiskan waktu, gosip yang merusak reputasi, kata-kata yang menyakiti, perdebatan yang tidak perlu, konten yang memecah-belah. Semua yang masuk ke telinga dan hanya meninggalkan kerusakan, kebisingan, atau kekosongan. Tidak ada satupun dari itu di sana.
+  </div>
+
+  <h2 class="section-title jade-text">Tafsir Mendalam</h2>
+  <p>Ini adalah salah satu gambaran surga yang paling jarang dibicarakan, tapi paling bermakna bagi orang yang benar-benar memahami betapa merusaknya kebisingan kata-kata dalam kehidupan. Di antara semua kenikmatan surga yang disebutkan — makanan, minuman, tempat tinggal, permadani — Allah memilih untuk menyebutkan <em>ketiadaan kata-kata sia-sia</em> sebagai salah satu kemewahan utama.</p>
+  <p>Ini mengatakan sesuatu yang dalam tentang betapa lelahnya manusia dari kebisingan yang tidak bermakna — dan betapa dalamnya kedamaian yang lahir dari ketenangan yang sesungguhnya.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Coba hitung berapa banyak <em>lāghiyah</em> yang masuk ke dalam dirimu dalam satu hari: berita yang membuat marah tanpa memberikan solusi, komentar yang memotong semangat, konten yang membuatmu membandingkan dirimu dan merasa kurang, gosip yang kamu konsumsi meski tidak ada manfaatnya, notifikasi yang menginterupsi fokusmu setiap beberapa menit.</p>
+    <p>Kita sudah sangat terbiasa dengan kebisingan ini sehingga keheningan yang sebenarnya terasa asing dan bahkan tidak nyaman. Ayat ini adalah undangan untuk mulai mencicipi, dari sekarang, versi kecil dari surga itu: kurangi <em>lāghiyah</em> yang masuk, dan rasakan bedanya.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Salah satu kemewahan terbesar yang dijanjikan bukan emas atau istana — melainkan ketenangan dari tiada kata sia-sia. Ini mengatakan sesuatu yang penting: jiwa yang terluka paling dalam oleh kebisingan yang tidak bermakna akan menemukan pemulihan terdalam dalam keheningan yang penuh makna.
+  </div>
+</div>
+
+<!-- AYAT 12 -->
+<div class="ayat-section tone-promise">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#1a6a3a;color:#80e0a0;">١٢</span>
+    <span class="jade-text">Ayat Keduabelas</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">فِيهَا عَيۡنٌ جَارِيَةٌ <span class="ayat-num-inline">١٢</span></div>
+  </div>
+  <p class="translation">"Di dalamnya ada mata air yang mengalir."</p>
+
+  <h2 class="section-title jade-text">Energi Kata</h2>
+
+  <div class="energi-chip promise">عَيۡنٌ جَارِيَةٌ — Mata Air yang Terus Mengalir</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>'Ayn</em>: mata air, sumber — bukan air yang ditampung atau yang harus dihemat, tapi yang terus muncul dari sumbernya. <em>Jāriyah</em> dari <em>jarā, yajrī</em>: mengalir terus-menerus, tidak pernah berhenti. Kontrasnya dengan ayat 5 (<em>'aynin āniyah</em> — mata air yang mendidih) begitu tajam: sumber airnya sama-sama ada, tapi kondisinya berlawanan total. Satu mengalir segar dan terus-menerus; yang lain mendidih dan dipaksakan. Pilihan selama hiduplah yang menentukan dari sumber mana seseorang akhirnya minum.
+  </div>
+
+  <h2 class="section-title jade-text">Tafsir Mendalam</h2>
+  <p>Air yang terus mengalir adalah simbol universal untuk sesuatu yang paling berharga: kelimpahan yang tidak pernah habis. Di padang pasir Arab, sumber air yang mengalir terus-menerus adalah tanda kehidupan, kemakmuran, dan keamanan. Ia tidak perlu dihemat, tidak perlu diperebutkan, tidak perlu ditakutkan akan habis.</p>
+  <p>Ini juga kontras dengan kondisi dunia yang penuh keterbatasan: sumber daya habis, tenaga terkuras, kesabaran tipis, kebahagiaan sesaat. Di sana, ada sumber yang mengalir terus — dan kamu tidak perlu khawatir bahwa ia akan berhenti.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita hidup dalam mentalitas kelangkaan yang konstan: takut tidak cukup, takut ketinggalan, takut sumber daya habis. Baik itu uang, perhatian, pengakuan, cinta, kesempatan — semua terasa seperti harus diperebutkan karena tidak akan cukup untuk semua orang. Mentalitas ini menguras jiwa.</p>
+    <p>Gambaran <em>'aynin jāriyah</em> — mata air yang terus mengalir — adalah bayangan tentang kondisi jiwa yang paling merdeka: tidak takut kehabisan, karena sumbernya tidak pernah habis. Dan menariknya, orang-orang yang paling dekat dengan kondisi ini di dunia adalah mereka yang sudah belajar untuk tidak menggantungkan kedamaiannya pada sumber-sumber yang terbatas.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Kelimpahan yang sesungguhnya bukan tentang memiliki banyak — tapi tentang sumber yang tidak pernah habis. Dan sumber yang tidak pernah habis hanya bisa ditemukan ketika kita tahu ke mana seharusnya kita kembali untuk mengisi ulang: bukan ke pengakuan manusia yang terbatas, tapi ke sumber yang tidak pernah kering.
+  </div>
+</div>
+
+<!-- AYAT 13-16 -->
+<div class="ayat-section tone-promise">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#1a6a3a;color:#80e0a0;">١٣</span>
+    <span class="jade-text">Ayat 13–16 · Kemewahan yang Disiapkan</span>
+    <span class="ayat-range-badge">Kelompok</span>
+  </div>
+
+  <div class="arabic-wrap">
+    <div class="arabic">فِيهَا سُرُرٌ مَّرۡفُوعَةٌ <span class="ayat-num-inline">١٣</span></div>
+  </div>
+  <p class="translation">"Di dalamnya ada dipan-dipan yang ditinggikan."</p>
+
+  <div class="arabic-wrap">
+    <div class="arabic">وَأَكۡوَابٌ مَّوۡضُوعَةٌ <span class="ayat-num-inline">١٤</span></div>
+  </div>
+  <p class="translation">"Dan gelas-gelas yang tersedia (siap dipegang)."</p>
+
+  <div class="arabic-wrap">
+    <div class="arabic">وَنَمَارِقُ مَصۡفُوفَةٌ <span class="ayat-num-inline">١٥</span></div>
+  </div>
+  <p class="translation">"Dan bantal-bantal sandaran yang tersusun rapi."</p>
+
+  <div class="arabic-wrap">
+    <div class="arabic">وَزَرَابِيُّ مَبۡثُوثَةٌ <span class="ayat-num-inline">١٦</span></div>
+  </div>
+  <p class="translation">"Dan permadani-permadani yang terhampar."</p>
+
+  <h2 class="section-title jade-text">Energi Kata</h2>
+
+  <div class="energi-chip promise">سُرُرٌ مَّرۡفُوعَةٌ — Dipan yang Ditinggikan</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Sururun</em> (jamak dari <em>sarīr</em>): tempat duduk atau berbaring yang nyaman, singgasana kemewahan. <em>Marfū'ah</em> dari <em>rafa'a</em>: ditinggikan, diangkat. Bukan hanya nyaman — tapi nyaman dari posisi yang tinggi, yang terhormat. Di budaya Arab, dipan yang tinggi adalah simbol kedudukan mulia dan perspektif yang lebih luas.
+  </div>
+
+  <div class="energi-chip promise">أَكۡوَابٌ مَّوۡضُوعَةٌ — Gelas Siap di Tangan</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Akwāb</em>: gelas-gelas tanpa pegangan (berbeda dengan kendi), digunakan untuk minum langsung. <em>Mawdhu'ah</em> dari <em>wadha'a</em>: diletakkan, tersedia, siap pakai. Tidak perlu meminta, tidak perlu menunggu, tidak perlu mencari — sudah tersedia tepat di tempatnya. Ini adalah simbol dari pelayanan sempurna: semua yang dibutuhkan sudah disiapkan sebelum kamu bahkan sempat merasa membutuhkannya.
+  </div>
+
+  <div class="energi-chip promise">نَمَارِقُ مَصۡفُوفَةٌ — Bantal Tersusun Rapi</div>
+  <p>Dari <em>namāriq</em> (bantal mewah) dan <em>mashfūfah</em> (tersusun rapi berderet). Detail ini kecil tapi bermakna: bukan hanya ada, tapi tertata. Ada perhatian pada kenyamanan, ada keindahan dalam keteraturan. Bukan kekacauan yang ada seadanya, tapi susunan yang menunjukkan bahwa seseorang memperhatikan dan menyiapkannya untukmu.</p>
+
+  <div class="energi-chip promise">زَرَابِيُّ مَبۡثُوثَةٌ — Permadani Terhampar Luas</div>
+  <p><em>Zarābiyy</em>: permadani mewah berbulu tebal. <em>Mabtsūtsah</em>: tersebar, terhampar ke mana-mana. Tidak terbatas pada satu sudut — merata ke seluruh penjuru. Gambaran kemewahan yang bukan terbatas dan dikurung, tapi lapang dan terbuka.</p>
+
+  <h2 class="section-title jade-text">Tafsir Mendalam</h2>
+  <p>Ada pola yang sangat menarik dalam deskripsi surga di ayat 13–16 ini: semuanya dalam kondisi <em>sudah disiapkan</em>. Dipan sudah ditinggikan. Gelas sudah tersedia. Bantal sudah tersusun. Permadani sudah terhampar. Tidak ada yang harus dicari, tidak ada yang harus diminta, tidak ada yang harus diusahakan lagi. Semua sudah ada — lebih dari cukup, lebih dari yang dibutuhkan, tersedia bahkan sebelum diminta.</p>
+  <p>Ini adalah gambaran tentang istirahat yang sempurna — istirahat yang lahir bukan dari kemalasan, tapi dari selesainya perjuangan. Setelah perjalanan panjang yang penuh usaha di dunia, akhirnya ada tempat di mana kamu benar-benar bisa beristirahat tanpa ada yang perlu dikerjakan lagi.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita hidup dalam budaya yang tidak memberi izin untuk beristirahat dengan tenang. Liburan pun harus produktif. Tidur pun harus "dioptimalkan". Ada rasa bersalah yang mengikuti setiap momen istirahat: <em>seharusnya aku menggunakan waktu ini untuk...</em> Istirahat yang benar-benar tuntas — tanpa guilty pleasure, tanpa kekhawatiran, tanpa pikiran yang masih berlarian — sudah terasa seperti hal yang mustahil.</p>
+    <p>Gambaran ayat 13–16 adalah tentang istirahat yang paling sempurna yang bisa dibayangkan: semua sudah disiapkan, semua sudah tersedia, dan kamu tidak perlu melakukan apa-apa selain menikmatinya sepenuhnya. Ini adalah hadiah bagi mereka yang sudah berjuang dengan sungguh-sungguh selama hidupnya.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Istirahat yang sesungguhnya bukan pelarian dari tanggung jawab — melainkan hadiah bagi mereka yang sudah menunaikan tanggung jawabnya dengan sungguh-sungguh. Dan gambaran surga yang "sudah disiapkan" ini adalah janji: semua perjuangan yang dilakukan dengan benar di dunia tidak akan sia-sia — ada tempat yang sudah menunggu, sudah tertata, sudah tersedia untukmu.
+  </div>
+</div>
+
+<!-- ═══ BAGIAN IV ═══ -->
+<div class="group-label">
+  <div class="group-label-line"></div>
+  <div class="group-label-text">Bagian IV — Tanda-Tanda di Depan Matamu · Ayat 17–20</div>
+  <div class="group-label-line right"></div>
+</div>
+
+<!-- AYAT 17 -->
+<div class="ayat-section tone-neutral">
+  <div class="ayat-number">
+    <span class="ayat-num-badge">١٧</span>
+    <span class="gold">Ayat Ketujuhbelas</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">أَفَلَا يَنظُرُونَ إِلَى ٱلۡإِبِلِ كَيۡفَ خُلِقَتۡ <span class="ayat-num-inline">١٧</span></div>
+  </div>
+  <p class="translation">"Maka apakah mereka tidak memperhatikan unta bagaimana diciptakan?"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+
+  <div class="energi-chip">أَفَلَا يَنظُرُونَ — Apakah Mereka Tidak Melihat?</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Nadzara</em>: melihat dengan penuh perhatian, mengamati, merenungkan — bukan sekadar melihat secara pasif (<em>ra'ā</em>). Huruf <em>hamzah</em> di awal (<em>a-</em>) ditambah <em>falā</em> menciptakan pertanyaan retoris yang bernuansa heran sekaligus menggugah: <em>masa iya tidak ada satu pun dari mereka yang benar-benar memperhatikan?</em> Ini bukan pertanyaan informasi — ini adalah ajakan paksa untuk berhenti dan melihat dengan sungguh-sungguh.
+  </div>
+
+  <div class="energi-chip">ٱلۡإِبِلِ — Unta</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Pilihan yang Mengejutkan</div>
+    Kenapa unta, bukan burung yang indah, atau singa yang megah? Unta adalah hewan yang paling dekat dengan kehidupan sehari-hari masyarakat Arab — paling sering dilihat, paling sering digunakan, paling sering dianggap biasa. Dan itulah justru intinya: Allah tidak memilih yang eksotis dan jauh. Ia memilih yang biasa dan dekat, untuk mengajarkan bahwa tanda-tanda kebesaran-Nya bukan hanya di tempat-tempat istimewa — tapi di hal-hal yang sudah kita lewati setiap hari tanpa benar-benar memperhatikannya.
+  </div>
+
+  <div class="energi-chip">كَيۡفَ خُلِقَتۡ — Bagaimana Ia Diciptakan</div>
+  <p><em>Kaifa</em> (bagaimana) bukan bertanya <em>apakah</em> unta ada — itu sudah jelas. Yang ditanya adalah <em>proses dan keajaiban di baliknya</em>: tubuh yang bisa menyimpan air berminggu-minggu, kaki yang dirancang untuk padang pasir, kemampuan untuk menanggung beban berat dalam panas terik. Semuanya hadir dalam satu makhluk yang tampak biasa.</p>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Setelah gambaran dahsyat tentang hari kiamat dan nasib dua kelompok, tiba-tiba surah ini berbelok ke unta, ke langit, ke gunung, ke bumi. Bukan perubahan topik — ini adalah strategi pedagogis yang brilian. Allah seolah berkata: <em>jika gambaran akhirat belum cukup menggerakkan hatimu, lihat dulu apa yang sudah ada di depan matamu.</em></p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Kita hidup di era di mana kita tahu banyak fakta tentang alam semesta tapi semakin jarang terpukau olehnya. Kita tahu bahwa DNA dalam setiap sel tubuh kita panjangnya dua meter jika direntangkan — tapi informasi itu lewat begitu saja di timeline tanpa sempat membuat kita berhenti dan takjub. Kita tahu bahwa otak manusia memproses 11 juta bit informasi per detik — tapi kita tidak sempat bertanya: <em>siapa yang merancang sistem ini?</em></p>
+    <p>Ganti "unta" dengan objek terdekat yang paling kamu anggap biasa hari ini — dan ajukan pertanyaan yang sama: <em>bagaimana ia diciptakan, bagaimana ia bekerja, siapa yang memikirkan semua detailnya?</em></p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Tanda-tanda kebesaran Allah tidak selalu datang dalam bentuk yang dramatis dan jauh. Ia paling sering hadir dalam hal-hal yang sudah terlalu dekat sehingga kita berhenti memperhatikannya. Seni spiritualitas yang sesungguhnya adalah kemampuan untuk kembali takjub pada hal-hal biasa.
+  </div>
+</div>
+
+<!-- AYAT 18 -->
+<div class="ayat-section tone-neutral">
+  <div class="ayat-number">
+    <span class="ayat-num-badge">١٨</span>
+    <span class="gold">Ayat Kedelapanbelas</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">وَإِلَى ٱلسَّمَاءِ كَيۡفَ رُفِعَتۡ <span class="ayat-num-inline">١٨</span></div>
+  </div>
+  <p class="translation">"Dan langit, bagaimana ia ditinggikan?"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+
+  <div class="energi-chip">كَيۡفَ رُفِعَتۡ — Bagaimana Ia Ditinggikan</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Rufi'at</em> dari <em>rafa'a</em>: diangkat, ditinggikan — dalam bentuk kata kerja pasif. Langit tidak menopang dirinya sendiri, tidak "terbang" atas kekuatannya sendiri — ia <em>ditinggikan</em> oleh sesuatu di luar dirinya. Pertanyaan <em>kaifa</em> (bagaimana) di sini menekankan keajaiban mekanismenya: tanpa tiang, tanpa penyangga yang bisa dilihat, langit yang begitu luas terbentang di atas kepala kita — dan ia tetap di sana. Setiap hari. Tanpa jatuh.
+  </div>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Dari yang paling dekat (unta di depan mata) ke yang paling luas (langit di atas kepala). Urutan ini disengaja: mulai dari skala yang personal, lalu membuka ke skala yang kosmis. Tujuannya satu: membuat kita merasakan betapa kecilnya kita, betapa besarnya yang menciptakan semuanya, dan betapa keteraturan di semua skala itu tidak bisa terjadi begitu saja tanpa Pengatur yang Maha Sempurna.</p>
+  <p>Langit yang ditinggikan tanpa tiang adalah salah satu keajaiban paling konstan dalam hidup kita — dan justru karena terlalu konstan, kita tidak lagi memperhatikannya. Kita hanya melihat ke atas ketika ada yang luar biasa: gerhana, meteor, badai. Tapi langit sehari-hari yang biru, yang ditinggikan sempurna, yang menopang atmosfer yang memungkinkan kita bernapas — itu juga adalah mukjizat yang bekerja diam-diam setiap detik.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Ilmu pengetahuan modern memberi kita banyak jawaban tentang <em>bagaimana</em> langit bekerja secara fisika. Tapi semakin banyak kita tahu tentang mekanismenya, semakin besar seharusnya rasa takjub kita — bukan semakin kecil. Gravitasi, tekanan atmosfer, lapisan ozon, siklus cuaca — semua bekerja dalam keseimbangan yang sangat presisi. Sedikit saja bergeser, dan kehidupan di bumi tidak mungkin ada.</p>
+    <p>Pengetahuan sains seharusnya menambah rasa takjub, bukan menggantikan rasa syukur. <em>Kaifa rufi'at</em> — bagaimana ia ditinggikan — adalah pertanyaan yang relevan baik bagi yang tidak tahu fisika, maupun bagi yang sangat tahu fisika.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Semakin banyak yang kita ketahui tentang bagaimana sesuatu bekerja, semakin besar seharusnya kekaguman kita kepada yang merancangnya. Ilmu yang membesarkan ego adalah ilmu yang salah jalan; ilmu yang menumbuhkan rasa takjub dan syukur adalah ilmu yang menemukan arahnya.
+  </div>
+</div>
+
+<!-- AYAT 19 -->
+<div class="ayat-section tone-neutral">
+  <div class="ayat-number">
+    <span class="ayat-num-badge">١٩</span>
+    <span class="gold">Ayat Kesembilanbelas</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">وَإِلَى ٱلۡجِبَالِ كَيۡفَ نُصِبَتۡ <span class="ayat-num-inline">١٩</span></div>
+  </div>
+  <p class="translation">"Dan gunung-gunung bagaimana ia ditegakkan?"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+
+  <div class="energi-chip">كَيۡفَ نُصِبَتۡ — Bagaimana Ia Ditegakkan</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Nushibat</em> dari <em>nashaba</em>: ditegakkan, dipancangkan, ditancapkan secara tegak. Kata ini mengandung kesan kuat dan kokoh — seperti sesuatu yang dipancangkan dengan sengaja, bukan yang tumbuh begitu saja. Gunung bukan hanya besar — ia <em>ditegakkan</em>, dipasang di tempatnya dengan fungsi tertentu. Al-Quran di tempat lain menyebut gunung sebagai <em>awwād</em> (pasak bumi) — yang menjaga bumi tidak terguncang terlalu keras. Fungsi yang jauh lebih penting dari sekadar pemandangan yang indah.
+  </div>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Dari langit yang luas ke gunung yang kokoh — dari yang di atas ke yang ada di antara langit dan bumi. Gunung dalam Al-Quran bukan sekadar objek geografis; ia adalah simbol keteguhan, kestabilan, dan kekuatan yang tidak mudah goyah. Dan pertanyaan <em>kaifa nushibat</em> — bagaimana ditegakkan — mengajak kita melihat gunung bukan sekadar sebagai latar belakang pemandangan, tapi sebagai desain yang sengaja, yang berfungsi, yang ada alasannya.</p>
+  <p>Ada juga dimensi metafora: seperti gunung yang ditegakkan untuk menjaga kestabilan bumi, ada hal-hal yang perlu "ditegakkan" dalam diri kita — nilai-nilai, prinsip, keimanan — agar jiwa tidak mudah terguncang oleh badai kehidupan.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Di era yang penuh perubahan cepat dan ketidakpastian, kita membutuhkan "gunung" dalam hidup — sesuatu yang tetap kokoh ketika semuanya berguncang. Orang yang tidak punya nilai yang ditegakkan dengan kuat akan mudah terseret arus: arus opini publik, arus tren, arus tekanan sosial. Mereka tidak punya <em>nushibat</em> — pancang yang kokoh — dalam batinnya.</p>
+    <p>Pertanyaan <em>kaifa nushibat</em> bisa menjadi undangan untuk bertanya: apa yang menjadi "gunung" dalam hidupku? Apa yang tetap berdiri ketika semuanya bergerak?</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Gunung ditegakkan bukan untuk dipajang, tapi untuk berfungsi menjaga kestabilan. Demikian pula prinsip dan nilai yang benar dalam diri seseorang: bukan hiasan identitas untuk ditampilkan, tapi fondasi yang menjaga jiwa tetap stabil ketika kehidupan berguncang.
+  </div>
+</div>
+
+<!-- AYAT 20 -->
+<div class="ayat-section tone-neutral">
+  <div class="ayat-number">
+    <span class="ayat-num-badge">٢٠</span>
+    <span class="gold">Ayat Keduapuluh</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">وَإِلَى ٱلۡأَرۡضِ كَيۡفَ سُطِحَتۡ <span class="ayat-num-inline">٢٠</span></div>
+  </div>
+  <p class="translation">"Dan bumi bagaimana ia dihamparkan?"</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+
+  <div class="energi-chip">كَيۡفَ سُطِحَتۡ — Bagaimana Ia Dihamparkan</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Suttihat</em> dari <em>sataha</em>: dihamparkan, diratakan, dibentangkan luas. Kata ini digunakan untuk menggambarkan bumi sebagai tempat yang <em>dapat didiami</em> — tidak terlalu curam, tidak terlalu bergelombang untuk ditinggali, dilengkapi dengan segala kebutuhan untuk kehidupan. Para ulama klasik menjelaskan bahwa ini bukan klaim bahwa bumi datar secara ilmiah, tapi bahwa Allah menjadikan bumi <em>layak dan nyaman</em> untuk didiami — seperti hamparan yang bisa ditinggali.
+  </div>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Keempat objek dalam ayat 17–20 membentuk urutan yang bermakna: unta (hewan yang paling dekat), langit (yang paling luas di atas), gunung (yang paling kokoh di antara), bumi (yang paling mendasar di bawah). Dari yang hidup ke yang mati, dari yang bergerak ke yang diam, dari yang kecil ke yang kosmis — semuanya adalah tanda. Dan semuanya menunjuk ke arah yang sama: ada yang merancang, ada yang mengatur, ada yang memelihara semua ini dengan keteraturan yang tidak bisa terjadi begitu saja.</p>
+  <p>Bumi yang dihamparkan adalah tempat tinggal kita — sesuatu yang paling kita anggap sudah pasti ada, sudah pasti akan terus ada, tidak perlu dipikirkan. Tapi bayangkan sejenak jika bumi tidak "dihamparkan" — jika tidak ada tanah untuk dipijak, tidak ada permukaan yang bisa didiami. Bahkan hal yang paling kita anggap sepele adalah hadiah yang sudah disiapkan dengan sangat cermat.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Ada ingratitude epidemic — wabah ketidakbersyukuran — yang lahir dari terlalu banyaknya hal yang kita anggap sudah pasti. Udara yang tersedia gratis setiap napas, bumi yang kokoh di bawah kaki, gravitasi yang menjaga kita tidak terbang ke luar angkasa — semua itu begitu pasti sehingga kita bahkan tidak sempat bersyukur atasnya.</p>
+    <p>Ayat ini adalah undangan untuk memperluas definisi syukur kita: bukan hanya bersyukur atas yang luar biasa dan baru, tapi juga — terutama — atas yang biasa dan sudah ada sejak selalu.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Hal yang paling sering terlupakan dalam syukur adalah hal yang paling konsisten hadir: tanah yang dipijak, udara yang dihirup, bumi yang menopang. Rasa syukur yang paling dalam bukan untuk kejutan — tapi untuk kesetiaan yang tidak pernah absen, yang ada bahkan sebelum kita sadar membutuhkannya.
+  </div>
+</div>
+
+<!-- ═══ BAGIAN V ═══ -->
+<div class="group-label">
+  <div class="group-label-line"></div>
+  <div class="group-label-text">Bagian V — Tugasmu Hanyalah Mengingatkan · Ayat 21–26</div>
+  <div class="group-label-line right"></div>
+</div>
+
+<!-- AYAT 21 -->
+<div class="ayat-section tone-neutral">
+  <div class="ayat-number">
+    <span class="ayat-num-badge">٢١</span>
+    <span class="gold">Ayat Keduapuluh Satu</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">فَذَكِّرۡ إِنَّمَآ أَنتَ مُذَكِّرٌ <span class="ayat-num-inline">٢١</span></div>
+  </div>
+  <p class="translation">"Maka berilah peringatan, karena sesungguhnya kamu hanyalah pemberi peringatan."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+
+  <div class="energi-chip">فَذَكِّرۡ — Maka Ingatkanlah</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari <em>dzakkara, yudzakkiru</em>: mengingatkan — bukan mengajarkan dari awal sesuatu yang tidak diketahui, tapi mengingatkan sesuatu yang sudah ada dalam diri manusia. <em>Tadzakkur</em> adalah mengaktifkan kembali pengetahuan yang sudah tersimpan. Ini adalah pandangan Al-Quran tentang fitrah: manusia pada dasarnya sudah tahu tentang kebenaran, tapi sering lupa karena kesibukan dan godaan dunia. Tugas pengingat bukan menanamkan sesuatu baru — tapi membangunkan yang sudah ada.
+  </div>
+
+  <div class="energi-chip">إِنَّمَآ أَنتَ مُذَكِّرٌ — Hanyalah Seorang Pengingat</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Innamā</em> adalah kata pembatas yang sangat kuat dalam bahasa Arab: hanya ini, tidak lebih dari ini. "Kamu <em>hanyalah</em> seorang pengingat" — bukan hakim, bukan pemaksa, bukan penjaga yang bertanggung jawab atas hasil akhir. Penetapan batas ini adalah pembebasan sekaligus tanggung jawab: bebaskan dirimu dari beban mengubah hati orang, tapi tunaikan dengan sungguh-sungguh tugas yang memang menjadi milikmu.
+  </div>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Ini adalah salah satu ayat paling membebaskan dalam Al-Quran — sekaligus paling berat untuk diterima oleh siapa pun yang benar-benar peduli. Membebaskan karena ia menetapkan batas yang jelas: tugasmu adalah mengingatkan, bukan mengubah hati. Berat karena kita sering tidak bisa menerima bahwa orang yang kita sayangi tidak berubah meski sudah kita coba berbagai cara.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Berapa banyak orang yang kelelahan bukan karena tugasnya sendiri yang berat, tapi karena memikul beban yang bukan miliknya? Orang tua yang merasa gagal karena anaknya memilih jalan yang berbeda. Pasangan yang hancur karena tidak bisa "menyembuhkan" yang dicintai. Sahabat yang frustrasi karena nasihatnya tidak didengar. Ayat ini berbicara langsung kepada kelelahan itu: <em>tugasmu adalah mengingatkan dengan sungguh-sungguh, bukan memikul akibat dari pilihan mereka.</em></p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Ada batas antara tanggung jawab dan kendali — dan kita sering melangkahinya tanpa sadar, lalu menderita atasnya. Tugasmu adalah menyampaikan dengan tulus, mengingatkan dengan kasih, berbuat baik dengan sungguh-sungguh. Hasilnya ada di tangan yang lebih besar dari tanganmu.
+  </div>
+</div>
+
+<!-- AYAT 22 -->
+<div class="ayat-section tone-neutral">
+  <div class="ayat-number">
+    <span class="ayat-num-badge">٢٢</span>
+    <span class="gold">Ayat Keduapuluh Dua</span>
+  </div>
+  <div class="arabic-wrap">
+    <div class="arabic">لَّسۡتَ عَلَيۡهِم بِمُصَيۡطِرٍ <span class="ayat-num-inline">٢٢</span></div>
+  </div>
+  <p class="translation">"Kamu bukanlah orang yang berkuasa atas mereka."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+
+  <div class="energi-chip">بِمُصَيۡطِرٍ — Pengontrol, Penguasa yang Memaksa</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Musaythir</em> dari <em>saythara</em>: menguasai sepenuhnya, mengontrol hingga ke dalam, memiliki otoritas mutlak atas sesuatu. Ini bukan sekadar "tidak berhak memaksa" — ini adalah peniadaan total dari kekuasaan jenis itu. Tidak ada satu pun manusia yang punya <em>musaytharah</em> (kekuasaan penuh) atas hati dan pilihan orang lain. Hanya Allah yang memiliki itu. Dan dengan menegaskannya, Allah sekaligus melepaskan beban yang tidak seharusnya dipikul oleh seorang manusia.
+  </div>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Ayat 21 menegaskan tugasmu: mengingatkan. Ayat 22 menegaskan batasmu: bukan pengontrol. Keduanya bekerja bersama sebagai sistem yang sehat. Tanpa ayat 21, kita bisa jadi pasif dan tidak peduli. Tanpa ayat 22, kita bisa jadi manipulatif dan memaksa atas nama kebaikan. Keduanya dibutuhkan untuk membentuk cara berdakwah, cara mendidik, cara mengasihi yang benar: sungguh-sungguh dalam menyampaikan, tapi ikhlas dalam melepaskan hasilnya.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Ada bentuk kasih sayang yang secara tidak sadar menjadi kontrol: ketika kita begitu ingin seseorang "selamat" atau "berhasil" sehingga kita mulai memaksa, memanipulasi, atau menghukum ketika mereka tidak mengikuti arah yang kita inginkan untuk mereka. Ini bukan kasih sayang yang sehat — ini adalah kebutuhan kita sendiri yang dibalut dengan nama kasih sayang.</p>
+    <p><em>Lasta 'alayhim bi-musaythir</em> adalah pengingat yang membebaskan: kamu tidak berkuasa atas mereka. Dan itu bukan kegagalanmu — itu adalah desain yang sengaja, karena manusia diciptakan dengan kehendak bebas yang harus dihormati.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Mengakui bahwa kamu tidak berkuasa atas pilihan orang lain bukan tanda lemah atau tidak peduli — itu adalah kedewasaan spiritual tertinggi. Karena hanya dengan menerima batas ini, kamu bisa benar-benar mengasihi tanpa membelenggu, mengingatkan tanpa memaksa, dan akhirnya — beristirahat dari beban yang bukan milikmu.
+  </div>
+</div>
+
+<!-- AYAT 23–24 -->
+<div class="ayat-section tone-warning">
+  <div class="ayat-number">
+    <span class="ayat-num-badge" style="border-color:#8b2020;color:#ff9090;">٢٣</span>
+    <span class="crimson-text">Ayat 23–24 · Akibat dari Berpaling</span>
+    <span class="ayat-range-badge">Kelompok</span>
+  </div>
+
+  <div class="arabic-wrap">
+    <div class="arabic">إِلَّا مَن تَوَلَّىٰ وَكَفَرَ <span class="ayat-num-inline">٢٣</span></div>
+  </div>
+  <p class="translation">"Tetapi orang yang berpaling dan kafir."</p>
+
+  <div class="arabic-wrap">
+    <div class="arabic">فَيُعَذِّبُهُ ٱللَّهُ ٱلۡعَذَابَ ٱلۡأَكۡبَرَ <span class="ayat-num-inline">٢٤</span></div>
+  </div>
+  <p class="translation">"Maka Allah akan mengazabnya dengan azab yang paling besar."</p>
+
+  <h2 class="section-title crimson-text">Energi Kata</h2>
+
+  <div class="energi-chip warning">تَوَلَّىٰ — Berpaling, Memunggungi</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    Dari <em>tawallā</em>: berpaling, memunggungi, menjauh secara aktif. Bukan ketidaktahuan — bukan orang yang belum pernah dengar kebenaran. Ini adalah orang yang sudah mendengar, sudah tahu, tapi <em>memilih untuk berpaling</em>. Ada kesengajaan di sini. <em>Tawallā</em> bukan "tidak sampai" tapi "sudah sampai lalu pergi menjauh".
+  </div>
+
+  <div class="energi-chip warning">ٱلۡعَذَابَ ٱلۡأَكۡبَرَ — Azab yang Paling Besar</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Al-'adzāb al-akbar</em>: azab yang terbesar, yang melampaui semua bentuk azab lainnya. Penggunaan <em>akbar</em> (bentuk superlatif dari "besar") bukan sekadar penekanan, tapi kualifikasi: ini bukan hanya azab yang besar, tapi azab yang paling besar — tidak ada yang lebih berat dari ini. Dan ini diperuntukkan spesifik bagi mereka yang sudah tahu, sudah dengar, tapi dengan sadar memilih untuk berpaling.
+  </div>
+
+  <h2 class="section-title crimson-text">Tafsir Mendalam</h2>
+  <p>Dua ayat ini menjelaskan siapa yang menjadi tanggung jawab Allah (bukan tanggung jawab pengingat): mereka yang berpaling setelah kebenaran sudah sampai kepada mereka. Ini penting karena menutup argumen bahwa "aku tidak tahu" — setelah peringatan sudah disampaikan, hujjah sudah tegak. Tanggung jawab berpindah sepenuhnya kepada yang mendengar.</p>
+  <p>Dan azab yang paling besar ini kontras langsung dengan <em>jannatin 'āliyah</em> di ayat 10: surga yang paling tinggi vs azab yang paling besar. Dua ujung yang paling jauh — dan pemisahnya hanyalah pilihan: berpaling atau menghadap.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Di era informasi ini, argumen "aku tidak tahu" semakin sulit dipertahankan. Kebenaran sudah tersebar, hikmah sudah bisa diakses, peringatan sudah disampaikan dalam ribuan bentuk. Yang menjadi pertanyaan bukan lagi soal akses informasi, tapi soal kemauan untuk jujur: apakah kita memilih untuk menghadap atau berpaling?</p>
+    <p>Dan berpaling bukan selalu dalam bentuk yang dramatis. Kadang ia hadir dalam bentuk yang halus: terus menunda, terus sibuk, terus mencari alasan lain untuk tidak berubah — padahal dalam hati kecil sudah tahu bahwa ada yang harus diubah.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Yang paling berat pertanggungjawabannya bukan yang tidak pernah tahu — melainkan yang sudah tahu, sudah dengar, sudah paham, tapi dengan sadar memilih untuk berpaling. Karena setelah kebenaran sampai, tidak ada lagi alasan yang bisa menutupi pilihan itu.
+  </div>
+</div>
+
+<!-- AYAT 25–26 -->
+<div class="ayat-section tone-neutral">
+  <div class="ayat-number">
+    <span class="ayat-num-badge">٢٥</span>
+    <span class="gold">Ayat 25–26 · Kepastian yang Tak Bisa Dihindari</span>
+    <span class="ayat-range-badge">Penutup Surah</span>
+  </div>
+
+  <div class="arabic-wrap">
+    <div class="arabic">إِنَّ إِلَيۡنَا إِيَابَهُمۡ <span class="ayat-num-inline">٢٥</span></div>
+  </div>
+  <p class="translation">"Sesungguhnya kepada Kami-lah kembali mereka."</p>
+
+  <div class="arabic-wrap">
+    <div class="arabic">ثُمَّ إِنَّ عَلَيۡنَا حِسَابَهُمۡ <span class="ayat-num-inline">٢٦</span></div>
+  </div>
+  <p class="translation">"Kemudian sesungguhnya kewajiban Kami-lah menghisab mereka."</p>
+
+  <h2 class="section-title gold">Energi Kata</h2>
+
+  <div class="energi-chip">إِيَابَهُمۡ — Kepulangan Mereka yang Mutlak</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Iyāb</em> dari <em>āba, ya'ūbu</em>: kembali ke tempat asal — dengan nuansa yang lebih kuat dan lebih pasti dari sinonim-sinonimnya (<em>ruju'</em>, <em>'awdah</em>). <em>Iyāb</em> menekankan kepulangan ke sumber, ke asal, ke yang paling fundamental. Dan kata ini didahului oleh <em>ilaynā</em> (kepada Kami) yang diletakkan di awal kalimat — dalam tata bahasa Arab, ini disebut taqdīm (mendahulukan) untuk penekanan: <em>kepada Kami, bukan yang lain — kepulangan itu berlangsung</em>. Tidak ada pilihan lain, tidak ada tujuan alternatif.
+  </div>
+
+  <div class="energi-chip">حِسَابَهُمۡ — Perhitungan yang Menjadi Kewajiban-Nya</div>
+  <div class="akar-box">
+    <div class="akar-label">✦ Akar &amp; Nuansa</div>
+    <em>Hisāb</em>: perhitungan, pertanggungjawaban. Dan kata yang mendahuluinya — <em>'alaynā</em> (kewajiban Kami) — sangat kuat maknanya: Allah <em>mewajibkan diri-Nya sendiri</em> untuk menghisab mereka. Ini bukan ancaman dari luar — ini adalah jaminan dari dalam diri-Nya: tidak ada yang akan lolos, tidak ada yang akan dilupakan, tidak ada yang tidak akan diperhitungkan. Setiap detail akan diperhatikan oleh Yang Maha Teliti.
+  </div>
+
+  <h2 class="section-title gold">Tafsir Mendalam</h2>
+  <p>Dua ayat penutup ini menutup seluruh surah dengan dua kepastian yang saling melengkapi: kepastian kembali (<em>iyāb</em>) dan kepastian hisab (<em>hisāb</em>). Keduanya menegaskan bahwa tidak ada yang benar-benar selesai di sini — semua perjalanan hidup bermuara pada dua hal ini.</p>
+  <p>Dan menariknya, kedua ayat ini justru mengandung ketenangan bagi yang beriman: karena hisabnya ada pada Allah — bukan pada manusia yang tidak adil, bukan pada sistem yang bisa dimanipulasi, bukan pada opini publik yang berubah-ubah. Yang menghisab adalah Yang Maha Tahu, Yang Maha Adil, Yang tidak pernah salah menimbang satu dzarrah pun.</p>
+
+  <div class="relevance-box">
+    <div class="relevance-label">✦ Relevansi Kekinian</div>
+    <p>Bagi mereka yang pernah diperlakukan tidak adil — diperlakukan salah, difitnah, usahanya tidak diakui, kebaikannya tidak dihargai — ayat ini adalah penghiburan terdalam: perhitungannya ada pada Allah, bukan pada manusia yang menghakimimu. Kamu tidak perlu membuktikan apa-apa kepada siapa pun selain kepada yang benar-benar tahu.</p>
+    <p>Dan bagi mereka yang merasa bisa lolos karena berkuasa, karena kaya, karena terlindungi — <em>inna 'alaynā hisābahum</em> adalah peringatan yang tidak bisa dibeli: kewajiban menghisab ada pada Allah. Tidak ada koneksi yang cukup kuat untuk meloloskan dari itu.</p>
+  </div>
+
+  <div class="intisari">
+    <div class="intisari-label">✦ Intisari</div>
+    Semua kembali kepada-Nya, dan semua perhitungan ada pada-Nya. Inilah keadilan tertinggi: tidak ada yang terlupakan, tidak ada yang disembunyikan, tidak ada yang bisa dibeli. Bagi yang berlaku adil, ini adalah jaminan. Bagi yang berlaku curang, ini adalah peringatan. Bagi semua — ini adalah pengingat bahwa ada satu Hakim yang benar-benar tidak bisa salah.
+  </div>
+</div>
+
+<!-- PENUTUP -->
+<div class="penutup">
+  <h2 class="section-title gold" style="margin-top:0;font-size:1.5em;">Refleksi: Pola yang Bisa Diambil</h2>
+  <p style="margin-bottom:28px;">Al-Ghasyiyah adalah surah tentang dua pilihan, dua ujung, dan satu kepastian yang tidak bisa dihindari. Dari 26 ayatnya, ada pola-pola yang bisa mulai diterapkan hari ini:</p>
+
+  <div class="langkah">
+    <div class="lnum">Pola 1 — Periksa Arah, Bukan Hanya Kecepatan</div>
+    <p>Dua kelompok di surah ini sama-sama "bekerja" — tapi salah satunya bekerja keras tanpa arah yang benar. Sebelum menambah produktivitas, tanya dulu: <em>ke mana semua ini diarahkan?</em> Hidup yang sibuk belum tentu hidup yang bermakna. Diam sejenak, periksa arah, baru lanjutkan.</p>
+  </div>
+
+  <div class="langkah">
+    <div class="lnum">Pola 2 — Diet Kata, Bukan Hanya Diet Makanan</div>
+    <p>Gambaran surga yang bebas dari <em>lāghiyah</em> adalah undangan untuk memfilter apa yang masuk ke dalam dirimu hari ini. Tidak perlu menutup diri dari dunia — tapi mulai bertanya: <em>apakah ini memberi nutrisi atau hanya mengisi kebisingan?</em> Kurangi satu sumber kebisingan yang tidak perlu, dan rasakan bedanya dalam seminggu.</p>
+  </div>
+
+  <div class="langkah">
+    <div class="lnum">Pola 3 — Praktik Takjub Harian</div>
+    <p>Ayat 17–20 mengundang kita untuk benar-benar melihat hal-hal biasa. Satu momen setiap hari: lihat langit, perhatikan tanaman, amati bagaimana tanganmu bergerak — dan biarkan diri merasa takjub, bukan sekadar tahu. Ini cara terbaik menjaga hati tetap hidup dan tidak mengeras terhadap keajaiban.</p>
+  </div>
+
+  <div class="langkah">
+    <div class="lnum">Pola 4 — Batas yang Membebaskan</div>
+    <p>Tugasmu adalah mengingatkan, bukan mengontrol. Untuk setiap orang dalam hidupmu yang kamu cemas karena pilihan mereka — ingatkan dirimu: sudah kamu sampaikan, sudah kamu tunjukkan, sudah kamu doakan. Sisanya ada di tangan yang lebih besar. Lepaskan beban yang memang bukan milikmu.</p>
+  </div>
+
+  <h2 class="section-title gold" style="font-size:1.3em;">Langkah Nyata</h2>
+
+  <div class="aksi-grid">
+    <div class="aksi-item">
+      <div class="aksi-num">1</div>
+      <p><strong style="color:var(--gold1);">Audit 15 Menit Mingguan</strong><br>Seminggu sekali, 15 menit tanpa gadget. Tanya: <em>Apa yang aku kejar minggu ini?</em> dan <em>Apakah itu mendekatkanku pada sesuatu yang benar-benar bermakna?</em> Tidak perlu jawaban sempurna — cukup jujur.</p>
+    </div>
+    <div class="aksi-item">
+      <div class="aksi-num">2</div>
+      <p><strong style="color:var(--gold1);">Satu Sumber Lāghiyah Dikurangi</strong><br>Identifikasi satu saluran yang paling banyak menyumbang kata-kata sia-sia dalam hidupmu — notifikasi, akun, percakapan. Kurangi satu. Lihat apa yang berubah dalam seminggu.</p>
+    </div>
+    <div class="aksi-item">
+      <div class="aksi-num">3</div>
+      <p><strong style="color:var(--gold1);">Satu Momen Terpukau per Hari</strong><br>Pilih satu objek biasa dan habiskan 60 detik benar-benar melihatnya. Tanpa dokumentasi. Tanpa caption. Hanya hadir dan takjub. Lakukan tujuh hari berturut-turut.</p>
+    </div>
+    <div class="aksi-item">
+      <div class="aksi-num">4</div>
+      <p><strong style="color:var(--gold1);">Lepaskan Satu Beban yang Bukan Milikmu</strong><br>Identifikasi satu hal yang kamu pikul atas nama "tanggung jawab" terhadap pilihan orang lain. Tulis: <em>Aku sudah melakukan tugasku: menyampaikan dan mendoakan. Sisanya bukan milikku untuk dipikul.</em></p>
+    </div>
+  </div>
+</div>
+
+<!-- EPILOG -->
+<div class="epilog">
+  <h2 class="epilog-title gold">Sebelum Hari Itu Datang Menyelimuti</h2>
+
+  <p>Ada hari-hari ketika kamu merasa seperti sedang berlari di atas treadmill — bergerak terus, mengeluarkan energi terus, tapi tidak ke mana-mana yang berarti. Kamu lelah tapi tidak bisa berhenti, karena berhenti terasa seperti kalah. Dan di tengah semua kebisingan itu, ada suara kecil yang bertanya: <em>untuk apa semua ini?</em></p>
+
+  <p>Suara itu bukan gangguan. Itu suaramu yang paling jujur — suara yang Al-Ghasyiyah datang untuk mengkonfirmasi.</p>
+
+  <div class="epilog-divider"></div>
+
+  <span class="arabic-line">وُجُوهٌ يَوۡمَئِذٍ خَٰشِعَةٌ · عَامِلَةٌ نَّاصِبَةٌ</span>
+  <span class="latin-line">Wujūhun yawma'idzin khāsyi'ah · 'āmilatun nāshibah</span>
+  <p>Ada yang bekerja keras seumur hidup — tapi ke arah yang salah. Bukan karena tidak berusaha, bukan karena tidak berbakat, bukan karena tidak cerdas. Tapi karena tidak pernah benar-benar berhenti untuk bertanya: <em>ke mana semua ini menuju?</em></p>
+
+  <div class="reader-type">
+    <div class="reader-label">✦ Untuk Kamu yang Sedang Kelelahan</div>
+    <p>Jika kamu membaca ini dalam keadaan lelah — lelah bekerja keras, lelah menjaga semua orang, lelah berpura-pura semuanya baik-baik saja — kelelahan itu nyata dan tidak perlu dipermalukan. Tapi ada pertanyaan yang perlu dijawab dengan jujur: apakah kamu lelah karena sudah memberikan yang terbaik pada arah yang benar, atau karena energimu tersebar ke semua arah kecuali arah yang benar-benar penting? Perbedaan jawabannya adalah perbedaan antara kelelahan yang bermakna dan kelelahan yang sia-sia.</p>
+  </div>
+
+  <span class="arabic-line">وُجُوهٌ يَوۡمَئِذٍ نَّاعِمَةٌ · لِسَعۡيِهَا رَاضِيَةٌ</span>
+  <span class="latin-line">Wujūhun yawma'idzin nā'imah · li-sa'yihā rādhiyah</span>
+  <p>Dan ada yang wajahnya berseri — bukan karena hidup mereka mudah, bukan karena tidak pernah terluka, bukan karena tidak pernah gagal. Tapi karena mereka tahu apa yang mereka perjuangkan. Setiap langkah — bahkan yang paling melelahkan — terasa bermakna karena diarahkan dengan benar.</p>
+
+  <div class="reader-type">
+    <div class="reader-label">✦ Untuk Kamu yang Sedang di Persimpangan</div>
+    <p>Jika kamu sedang di antara dua pilihan — yang nyaman atau yang benar, yang diakui orang atau yang sesungguhnya bermakna — Al-Ghasyiyah tidak memberimu jawaban yang mudah. Ia hanya mengingatkan bahwa setiap pilihan punya berat, dan suatu hari kamu akan berjumpa kembali dengan berat pilihan itu. Yang membebaskan: kamu masih punya hari ini. Masih ada waktu untuk memilih dengan lebih bijak dari kemarin.</p>
+  </div>
+
+  <span class="arabic-line">أَفَلَا يَنظُرُونَ · إِلَى مَا حَوۡلَهُمۡ</span>
+  <span class="latin-line">Afalā yandzurūn · ilā mā hawlahum</span>
+  <p>Dan di tengah semua pertanyaan besar tentang akhirat, surah ini mengajakmu untuk melihat ke hal yang paling sederhana: unta, langit, gunung, bumi. Semua sudah berbicara. Semua sudah bersaksi. Kamu hanya perlu berhenti sejenak — dan benar-benar <em>melihat</em>.</p>
+
+  <div class="reader-type">
+    <div class="reader-label">✦ Untuk Kamu yang Sudah Terlalu Lama Lupa untuk Takjub</div>
+    <p>Ada sesuatu yang hilang perlahan ketika kita terlalu dewasa, terlalu sibuk, terlalu tahu: kemampuan untuk terpukau. Seorang anak bisa berdiri di tepi pantai selama satu jam hanya memandangi ombak. Kita terlalu sibuk mengambil foto. Al-Ghasyiyah mengundangmu untuk kembali ke kemampuan itu — bukan sebagai nostalgia masa kecil, tapi sebagai praktik spiritual yang paling menyehatkan: berhenti, lihat, dan biarkan diri merasa kecil di hadapan sesuatu yang jauh lebih besar.</p>
+  </div>
+
+  <div class="epilog-divider"></div>
+
+  <span class="arabic-line">إِنَّ إِلَيۡنَا إِيَابَهُمۡ · ثُمَّ إِنَّ عَلَيۡنَا حِسَابَهُمۡ</span>
+  <span class="latin-line">Inna ilaynā iyābahum · tsumma inna 'alaynā hisābahum</span>
+  <p>Semua kembali kepada-Nya. Semua perhitungan ada pada-Nya. Bukan pada atasan yang tidak adil, bukan pada sistem yang bisa dimanipulasi, bukan pada opini publik yang terus berubah. Pada-Nya — yang Maha Tahu apa yang kamu sembunyikan dan apa yang kamu tampilkan, apa yang kamu niatkan dan apa yang berhasil kamu wujudkan.</p>
+  <p>Dan dalam kepastian itu, ada sesuatu yang justru membebaskan. Karena Hakim yang Maha Adil tidak perlu dibujuk, tidak bisa dibeli, tidak akan pernah salah menimbang. Kamu tidak perlu membuktikan apa-apa kepada siapa pun — cukup berikan yang terbaik dari yang bisa kamu lakukan, dengan niat yang paling jujur yang bisa kamu miliki.</p>
+
+  <div class="epilog-divider" style="margin:44px auto"></div>
+
+  <p class="closing">
+    Al-Ghasyiyah tidak datang untuk menakutkan.<br>
+    Ia datang untuk <em>membangunkan</em>.<br><br>
+    Sebelum hari yang menyelimuti itu tiba —<br>
+    selagi masih ada pagi untuk memilih,<br>
+    selagi masih ada napas untuk berubah arah,<br>
+    selagi wajahmu masih bisa diarahkan menuju terang —<br><br>
+    <span class="closing-highlight">Pilih dengan sadar. Hidup dengan arah. Kembalilah dengan membawa sesuatu yang berharga.</span><br><br>
+    <span style="color:var(--muted);font-size:.9em;font-style:italic;">Karena suatu hari, wajahmu akan menceritakan segalanya —<br>apakah ia tertunduk hina, atau berseri karena benar-benar pernah hidup dengan sepenuhnya.</span>
+  </p>
+</div>
+
+</div><!-- /container -->
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 500 ? 'flex' : 'none';
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.ayat-section, .group-label').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>
+HTMLEOF
+echo "Done: $(wc -l < /mnt/user-data/outputs/Al-Ghasyiyah__Ketika_Hidup_Menagih_Semua_yang_Pernah_Kamu_Pilih.html) lines"
+Selesai

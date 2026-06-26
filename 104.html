@@ -1,0 +1,1613 @@
+﻿<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Humazah — Ilusi Harta dan Ejekan Yang Membakar Jiwa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:       #080808;
+    --black-mid:   #0f0f0f;
+    --black-light: #161616;
+    --black-card:  #111111;
+    --gold:        #C8961E;
+    --gold-light:  #E8B84B;
+    --gold-dim:    #8B6510;
+    --gold-pale:   #F5DFA0;
+    --gold-subtle: #2A200A;
+    --green-deep:  #0D2B1A;
+    --green-mid:   #1A4A2E;
+    --green-light: #2D6A4F;
+    --green-pale:  #52B788;
+    --cream:       #F0E6CE;
+    --cream-dim:   #C8B896;
+    --cream-muted: #7A6A50;
+    --text-body:   #D4C8B0;
+    --text-muted:  #8A7A62;
+    --text-dim:    #5A4E3A;
+    --red-dim:     #6B2020;
+    --border:      rgba(200,150,30,0.15);
+    --border-mid:  rgba(200,150,30,0.3);
+    --border-bright: rgba(200,150,30,0.6);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text-body);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.85;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE TEXTURE ─────────────────────────────────────────────────── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ─── SCROLL PROGRESS ───────────────────────────────────────────────── */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold), var(--gold-light));
+    z-index: 999;
+    transition: width 0.1s linear;
+  }
+
+  /* ─── COVER ─────────────────────────────────────────────────────────── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 80px 40px;
+    overflow: hidden;
+  }
+
+  .cover-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 40%, rgba(13,43,26,0.6) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(200,150,30,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 50% at 80% 20%, rgba(200,150,30,0.04) 0%, transparent 60%),
+      var(--black);
+  }
+
+  .cover-geo {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    opacity: 0.06;
+  }
+
+  .cover-geo svg {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    animation: spin-slow 120s linear infinite;
+  }
+
+  @keyframes spin-slow { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+  .cover-ornament-top {
+    position: absolute;
+    top: 40px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+    letter-spacing: 8px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .cover-sura-num {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+
+  .cover-arabic {
+    font-family: 'Traditional Arabic', 'Scheherazade New', 'Noto Naskh Arabic', serif;
+    font-size: clamp(64px, 10vw, 110px);
+    color: var(--gold);
+    line-height: 1.3;
+    margin-bottom: 16px;
+    text-shadow: 0 0 60px rgba(200,150,30,0.3), 0 0 120px rgba(200,150,30,0.1);
+    opacity: 0;
+    animation: fadeUp 1s ease 0.7s forwards;
+    direction: rtl;
+  }
+
+  .cover-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 4px;
+    text-align: center;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+    text-shadow: 0 0 40px rgba(200,150,30,0.4);
+  }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-style: italic;
+    color: var(--cream-dim);
+    text-align: center;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.1s forwards;
+  }
+
+  .cover-divider {
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 40px;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.3s forwards;
+  }
+
+  .cover-tagline {
+    max-width: 560px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(14px, 2vw, 18px);
+    font-style: italic;
+    color: var(--cream-muted);
+    line-height: 1.9;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.5s forwards;
+  }
+
+  .cover-meta {
+    position: absolute;
+    bottom: 40px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s ease 2s forwards;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 70px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeIn 1s ease 2.5s forwards;
+    cursor: pointer;
+  }
+
+  .scroll-hint span {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold-dim);
+  }
+
+  .scroll-hint-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--gold-dim), transparent);
+    animation: pulse-line 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-line {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* ─── NAV ────────────────────────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 2px; left: 0; right: 0;
+    height: 52px;
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 900;
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
+  }
+
+  nav.visible { transform: translateY(0); }
+
+  .nav-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ─── MAIN WRAPPER ───────────────────────────────────────────────────── */
+  main { max-width: 860px; margin: 0 auto; padding: 0 32px; }
+
+  /* ─── PENGANTAR ─────────────────────────────────────────────────────── */
+  .section-intro {
+    padding: 100px 0 60px;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-mid), transparent);
+  }
+
+  h2.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 40px;
+    line-height: 1.4;
+  }
+
+  .body-text {
+    font-size: 17px;
+    line-height: 1.95;
+    color: var(--text-body);
+    margin-bottom: 20px;
+    text-align: justify;
+  }
+
+  .reflective-q {
+    margin: 32px 0;
+    padding: 20px 28px;
+    border-left: 3px solid var(--gold);
+    background: rgba(200,150,30,0.04);
+    font-style: italic;
+    color: var(--gold-pale);
+    font-size: 16px;
+    line-height: 1.9;
+  }
+
+  .tagline-box {
+    margin: 48px 0;
+    padding: 36px 48px;
+    border-top: 1px solid var(--border-bright);
+    border-bottom: 1px solid var(--border-bright);
+    text-align: center;
+    background: linear-gradient(135deg, rgba(13,43,26,0.3) 0%, rgba(8,8,8,0) 100%);
+  }
+
+  .tagline-box p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 21px);
+    font-style: italic;
+    color: var(--green-pale);
+    line-height: 1.9;
+  }
+
+  /* ─── AYAT SECTION ───────────────────────────────────────────────────── */
+  .ayat-section {
+    padding: 80px 0 40px;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  .ayat-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .ayat-num {
+    width: 64px;
+    height: 64px;
+    border: 1px solid var(--border-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(200,150,30,0.06);
+    position: relative;
+  }
+
+  .ayat-num::before, .ayat-num::after {
+    content: '';
+    position: absolute;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+  .ayat-num::before { top: -3px; left: -3px; }
+  .ayat-num::after  { bottom: -3px; right: -3px; }
+
+  .ayat-num span {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  .ayat-header-text { flex: 1; }
+
+  .ayat-header-text .label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .ayat-header-text h3 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1.3;
+  }
+
+  /* ─── ARABIC VERSE DISPLAY ───────────────────────────────────────────── */
+  .verse-display {
+    text-align: center;
+    padding: 48px 32px;
+    margin: 0 0 48px;
+    background: linear-gradient(135deg, var(--green-deep), rgba(8,8,8,0.8));
+    border: 1px solid var(--border-mid);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .verse-display::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .verse-display::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .verse-corner {
+    position: absolute;
+    width: 24px; height: 24px;
+    border-color: var(--gold-dim);
+    border-style: solid;
+    opacity: 0.5;
+  }
+  .verse-corner.tl { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
+  .verse-corner.tr { top: 8px; right: 8px; border-width: 1px 1px 0 0; }
+  .verse-corner.bl { bottom: 8px; left: 8px; border-width: 0 0 1px 1px; }
+  .verse-corner.br { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
+
+  .arabic-text {
+    font-family: 'Traditional Arabic', 'Scheherazade New', 'Noto Naskh Arabic', 'Arabic Typesetting', serif;
+    font-size: clamp(28px, 4.5vw, 46px);
+    color: var(--gold);
+    line-height: 1.8;
+    direction: rtl;
+    margin-bottom: 20px;
+    text-shadow: 0 0 40px rgba(200,150,30,0.2);
+  }
+
+  .transliteration {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: var(--gold-dim);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .translation {
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    color: var(--cream);
+    font-style: italic;
+  }
+
+  /* ─── SUB HEADERS ────────────────────────────────────────────────────── */
+  .sub-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 48px 0 20px;
+  }
+
+  .sub-header-bar {
+    width: 3px;
+    height: 22px;
+    background: linear-gradient(180deg, var(--gold), var(--gold-dim));
+    flex-shrink: 0;
+  }
+
+  .sub-header h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+  }
+
+  /* ─── KEYWORD CARDS ──────────────────────────────────────────────────── */
+  .keyword-grid {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .keyword-card {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .keyword-card:hover {
+    border-color: var(--border-bright);
+  }
+
+  .keyword-arabic-col {
+    background: var(--green-deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 12px;
+    border-right: 1px solid var(--border-mid);
+    gap: 6px;
+  }
+
+  .keyword-arabic-col .arabic-word {
+    font-family: 'Traditional Arabic', 'Scheherazade New', 'Noto Naskh Arabic', serif;
+    font-size: 28px;
+    color: var(--gold);
+    direction: rtl;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .keyword-body {
+    background: var(--black-card);
+    padding: 18px 22px;
+  }
+
+  .keyword-akar {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .keyword-akar span {
+    color: var(--gold-dim);
+    font-style: italic;
+  }
+
+  .keyword-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--text-body);
+  }
+
+  /* ─── RELEVANSI SECTION ──────────────────────────────────────────────── */
+  .relevansi-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 40px 0 20px;
+  }
+
+  .relevansi-header::before {
+    content: '◈';
+    color: var(--green-pale);
+    font-size: 14px;
+  }
+
+  .relevansi-header h4 {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--green-pale);
+    text-transform: uppercase;
+  }
+
+  .example-card {
+    margin: 20px 0;
+    padding: 20px 24px;
+    background: var(--black-card);
+    border: 1px solid rgba(82,183,136,0.12);
+    border-left: 3px solid var(--green-pale);
+  }
+
+  .example-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--green-pale);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    opacity: 0.8;
+  }
+
+  .example-text {
+    font-size: 15px;
+    line-height: 1.85;
+    color: var(--text-body);
+  }
+
+  /* ─── INTISARI BOX ────────────────────────────────────────────────────── */
+  .intisari-box {
+    margin: 48px 0;
+    padding: 40px 48px;
+    background: linear-gradient(135deg, rgba(13,43,26,0.4) 0%, var(--black-card) 100%);
+    border: 1px solid var(--border-mid);
+    position: relative;
+    text-align: center;
+  }
+
+  .intisari-box::before {
+    content: '✦  INTISARI  ✦';
+    position: absolute;
+    top: -10px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--black);
+    padding: 0 16px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--gold);
+  }
+
+  .intisari-box p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-style: italic;
+    color: var(--green-pale);
+    line-height: 2;
+    font-weight: 500;
+  }
+
+  /* ─── REFLEKSI PENUTUP ───────────────────────────────────────────────── */
+  .refleksi-section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .action-list { list-style: none; margin: 24px 0; }
+
+  .action-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(200,150,30,0.08);
+  }
+
+  .action-item:last-child { border-bottom: none; }
+
+  .action-num {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1.5;
+  }
+
+  .action-text {
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--text-body);
+  }
+
+  .closing-box {
+    margin-top: 60px;
+    padding: 48px;
+    background: var(--green-deep);
+    border: 1px solid rgba(82,183,136,0.2);
+    text-align: center;
+    position: relative;
+  }
+
+  .closing-box .ornament {
+    font-size: 20px;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: block;
+    letter-spacing: 8px;
+  }
+
+  .closing-box p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-style: italic;
+    color: var(--cream-dim);
+    line-height: 2;
+    margin-bottom: 12px;
+  }
+
+  .closing-box p:last-child { margin-bottom: 0; }
+
+  /* ─── EPILOG ─────────────────────────────────────────────────────────── */
+  .epilog-section {
+    padding: 80px 0 120px;
+    border-top: 1px solid var(--border);
+  }
+
+  .epilog-section h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .epilog-section .epilog-subtitle {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 60px;
+  }
+
+  .epilog-rule {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+    margin: 40px auto;
+  }
+
+  .epilog-line {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.2vw, 19px);
+    font-style: italic;
+    color: var(--text-body);
+    line-height: 1.9;
+    margin-bottom: 8px;
+  }
+
+  .epilog-line.conflict { color: var(--cream-muted); font-size: clamp(15px, 2vw, 17px); }
+  .epilog-line.question { color: var(--red-dim); font-size: clamp(16px, 2.2vw, 19px); }
+  .epilog-line.wisdom   { color: var(--green-pale); }
+
+  .epilog-address {
+    margin: 48px 0 20px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 2.5vw, 21px);
+    font-weight: 600;
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .epilog-end {
+    margin-top: 60px;
+    text-align: center;
+  }
+
+  .epilog-end .final-line {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 600;
+    margin-top: 16px;
+    display: block;
+  }
+
+  .epilog-arabic-end {
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    font-size: 32px;
+    color: var(--gold-dim);
+    direction: rtl;
+    margin: 24px 0 8px;
+    display: block;
+    text-align: center;
+  }
+
+  .epilog-arabic-trans {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-dim);
+    text-align: center;
+    display: block;
+    margin-bottom: 40px;
+  }
+
+  /* ─── DOWNLOAD BUTTON ────────────────────────────────────────────────── */
+  .download-area {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 800;
+  }
+
+  .download-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 24px rgba(200,150,30,0.3);
+  }
+
+  .download-btn:hover {
+    background: var(--gold-light);
+    box-shadow: 0 6px 32px rgba(200,150,30,0.5);
+    transform: translateY(-2px);
+  }
+
+  .download-btn svg {
+    width: 16px; height: 16px;
+    fill: var(--black);
+  }
+
+  /* ─── TABLE OF CONTENTS ──────────────────────────────────────────────── */
+  .toc {
+    margin: 60px 0;
+    padding: 40px;
+    border: 1px solid var(--border);
+    background: var(--black-card);
+  }
+
+  .toc-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(200,150,30,0.06);
+    text-decoration: none;
+    transition: color 0.2s;
+    gap: 12px;
+  }
+
+  .toc-item:hover { color: var(--gold); }
+  .toc-item:hover .toc-dots { background: var(--gold-dim); }
+
+  .toc-item-left {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex: 1;
+  }
+
+  .toc-num {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--gold-dim);
+    flex-shrink: 0;
+    width: 24px;
+  }
+
+  .toc-name {
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    color: var(--text-body);
+    transition: color 0.2s;
+  }
+
+  .toc-item:hover .toc-name { color: var(--gold-light); }
+
+  .toc-dots {
+    flex: 1;
+    height: 1px;
+    background: rgba(200,150,30,0.1);
+    margin: 0 8px;
+    transition: background 0.2s;
+  }
+
+  .toc-ayat {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  /* ─── RESPONSIVE ─────────────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    main { padding: 0 20px; }
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .keyword-card { grid-template-columns: 90px 1fr; }
+    .download-area { bottom: 16px; right: 16px; }
+    .download-btn { padding: 12px 16px; font-size: 10px; }
+    .intisari-box { padding: 32px 24px; }
+    .closing-box { padding: 32px 24px; }
+    .ayat-header { gap: 14px; }
+    .ayat-num { width: 52px; height: 52px; }
+    .toc { padding: 28px 20px; }
+  }
+
+  /* ─── PRINT ──────────────────────────────────────────────────────────── */
+  @media print {
+    nav, .download-area, #progress-bar, .scroll-hint { display: none !important; }
+    body { font-size: 14px; }
+    .cover { min-height: auto; padding: 40px; }
+    .ayat-section { page-break-before: always; }
+  }
+
+  /* ─── REVEAL ANIMATIONS ──────────────────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#cover" class="nav-brand">Al-Humazah</a>
+  <ul class="nav-links">
+    <li><a href="#pengantar">Pengantar</a></li>
+    <li><a href="#ayat1">Ayat 1</a></li>
+    <li><a href="#ayat23">Ayat 2–3</a></li>
+    <li><a href="#ayat45">Ayat 4–5</a></li>
+    <li><a href="#ayat67">Ayat 6–7</a></li>
+    <li><a href="#ayat89">Ayat 8–9</a></li>
+    <li><a href="#refleksi">Refleksi</a></li>
+    <li><a href="#epilog">Epilog</a></li>
+  </ul>
+</nav>
+
+<!-- DOWNLOAD BUTTON -->
+<div class="download-area">
+  <button class="download-btn" onclick="downloadHTML()" title="Unduh file HTML ini">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 16l-5-5 1.4-1.4 2.6 2.6V4h2v8.2l2.6-2.6L17 11l-5 5zm-6 4v-2h12v2H6z"/>
+    </svg>
+    Unduh
+  </button>
+</div>
+
+<!-- ═══════════════ COVER ═══════════════ -->
+<section class="cover" id="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-geo">
+    <svg viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="400" cy="400" r="300" stroke="#C8961E" stroke-width="0.5"/>
+      <circle cx="400" cy="400" r="250" stroke="#C8961E" stroke-width="0.3"/>
+      <circle cx="400" cy="400" r="200" stroke="#C8961E" stroke-width="0.5"/>
+      <polygon points="400,120 680,560 120,560" stroke="#C8961E" stroke-width="0.5" fill="none"/>
+      <polygon points="400,680 120,240 680,240" stroke="#C8961E" stroke-width="0.5" fill="none"/>
+      <polygon points="400,150 630,515 170,515" stroke="#C8961E" stroke-width="0.3" fill="none" transform="rotate(15 400 400)"/>
+      <polygon points="400,650 170,285 630,285" stroke="#C8961E" stroke-width="0.3" fill="none" transform="rotate(15 400 400)"/>
+      <line x1="400" y1="100" x2="400" y2="700" stroke="#C8961E" stroke-width="0.2"/>
+      <line x1="100" y1="400" x2="700" y2="400" stroke="#C8961E" stroke-width="0.2"/>
+      <line x1="188" y1="188" x2="612" y2="612" stroke="#C8961E" stroke-width="0.2"/>
+      <line x1="612" y1="188" x2="188" y2="612" stroke="#C8961E" stroke-width="0.2"/>
+    </svg>
+  </div>
+
+  <div class="cover-ornament-top">Tafsir Mendalam · Surat ke-104 · Makkiyah · Juz 30</div>
+  <div class="cover-sura-num">— Surat Al-Humazah —</div>
+  <div class="cover-arabic">الهُمَزَة</div>
+  <div class="cover-title">AL-HUMAZAH</div>
+  <div class="cover-subtitle">Ilusi Harta dan Ejekan Yang Membakar Jiwa</div>
+  <div class="cover-divider"></div>
+  <div class="cover-tagline">
+    "Apakah kita sedang meraih harta atau justru digenggam oleh harta yang menggerus kemanusiaan kita?"
+  </div>
+
+  <div class="scroll-hint" onclick="document.getElementById('pengantar').scrollIntoView({behavior:'smooth'})">
+    <span>GULIR</span>
+    <div class="scroll-hint-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════ PENGANTAR ═══════════════ -->
+<main>
+<section class="section-intro reveal" id="pengantar">
+  <div class="section-label">Pengantar</div>
+  <h2 class="section-title">Cermin Yang Tidak Bisa Kita Abaikan</h2>
+
+  <p class="body-text">Surat Al-Humazah adalah tamparan halus dari langit, tapi rasanya seperti guncangan nyata. Hanya sembilan ayat—namun setiap kata melesatkan cermin tepat ke hadapan kita: cermin tentang mulut yang suka mencela, tangan yang menghitung harta, dan jiwa yang percaya bahwa kekayaan adalah tameng abadi.</p>
+
+  <p class="body-text">Surat ini turun di Mekah, di tengah masyarakat yang suka mengolok-olok orang miskin, membanggakan silsilah, dan menimbun emas seolah itu adalah identitas. Tapi jangan terburu meletakkan cermin itu untuk orang lain. Bacalah ulang—perlahan. Karena wajah di cermin itu mungkin adalah wajah kita sendiri, dalam berbagai wujud modern yang lebih halus dan sulit dikenali.</p>
+
+  <div class="reflective-q">Pernahkah kita meremehkan seseorang dalam hati, lalu menyebutnya 'sekadar penilaian jujur'? Pernahkah kita merasa lebih aman karena punya tabungan, asuransi, atau investasi yang terus bertumbuh?</div>
+
+  <p class="body-text">Kalau jawabannya ya—bahkan jika hanya sedikit—maka surat ini berbicara kepada kita.</p>
+
+  <div class="tagline-box reveal">
+    <p>Ketika lidah menjadi senjata dan harta menjadi tuhan, surat ini hadir untuk mengingatkan: tidak ada yang abadi kecuali amal, dan tidak ada yang merusak jiwa lebih cepat dari rasa merasa lebih.</p>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc reveal">
+    <div class="toc-title">Daftar Isi</div>
+    <a href="#ayat1" class="toc-item">
+      <div class="toc-item-left">
+        <span class="toc-num">01</span>
+        <span class="toc-name">Dua Luka Yang Satu Jiwa</span>
+        <span class="toc-dots"></span>
+      </div>
+      <span class="toc-ayat">Ayat 1</span>
+    </a>
+    <a href="#ayat23" class="toc-item">
+      <div class="toc-item-left">
+        <span class="toc-num">02</span>
+        <span class="toc-name">Tuhan Palsu Bernama Harta</span>
+        <span class="toc-dots"></span>
+      </div>
+      <span class="toc-ayat">Ayat 2–3</span>
+    </a>
+    <a href="#ayat45" class="toc-item">
+      <div class="toc-item-left">
+        <span class="toc-num">03</span>
+        <span class="toc-name">Neraka Yang Menghancurkan Segalanya</span>
+        <span class="toc-dots"></span>
+      </div>
+      <span class="toc-ayat">Ayat 4–5</span>
+    </a>
+    <a href="#ayat67" class="toc-item">
+      <div class="toc-item-left">
+        <span class="toc-num">04</span>
+        <span class="toc-name">Api Yang Berbeda Dari Semua Api</span>
+        <span class="toc-dots"></span>
+      </div>
+      <span class="toc-ayat">Ayat 6–7</span>
+    </a>
+    <a href="#ayat89" class="toc-item">
+      <div class="toc-item-left">
+        <span class="toc-num">05</span>
+        <span class="toc-name">Terkurung Tanpa Jalan Keluar</span>
+        <span class="toc-dots"></span>
+      </div>
+      <span class="toc-ayat">Ayat 8–9</span>
+    </a>
+    <a href="#refleksi" class="toc-item">
+      <div class="toc-item-left">
+        <span class="toc-num">06</span>
+        <span class="toc-name">Refleksi Penutup</span>
+        <span class="toc-dots"></span>
+      </div>
+      <span class="toc-ayat">Pola & Langkah Nyata</span>
+    </a>
+    <a href="#epilog" class="toc-item" style="border-bottom:none">
+      <div class="toc-item-left">
+        <span class="toc-num">07</span>
+        <span class="toc-name">Epilog — Cermin Yang Tidak Bisa Kita Palingkan</span>
+        <span class="toc-dots"></span>
+      </div>
+      <span class="toc-ayat">Puisi</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════ AYAT 1 ═══════════════ -->
+<section class="ayat-section reveal" id="ayat1">
+  <div class="ayat-header">
+    <div class="ayat-num"><span>١</span></div>
+    <div class="ayat-header-text">
+      <div class="label">Ayat Pertama</div>
+      <h3>Dua Luka Yang Satu Jiwa</h3>
+    </div>
+  </div>
+
+  <div class="verse-display">
+    <div class="verse-corner tl"></div><div class="verse-corner tr"></div>
+    <div class="verse-corner bl"></div><div class="verse-corner br"></div>
+    <div class="arabic-text">وَيْلٌ لِّكُلِّ هُمَزَةٍ لُّمَزَةٍ</div>
+    <div class="transliteration">Waylun likulli humazatin lumazah</div>
+    <div class="translation">"Celakalah bagi setiap pengumpat dan pencela"</div>
+  </div>
+
+  <div class="sub-header"><div class="sub-header-bar"></div><h4>1. Energi Kata</h4></div>
+  <div class="keyword-grid">
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">وَيْلٌ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>و ي ل — Wail</span></div>
+        <div class="keyword-desc">Bukan sekadar 'celaka' biasa. Kata "wail" dalam tradisi Arab klasik merujuk pada kesengsaraan yang berlapis: kehancuran lahir dan batin secara bersamaan. Sebagian mufasir menyebutnya sebagai nama sebuah lembah di neraka yang penuh dengan kepedihan. Ini bukan ancaman kosong—ini gambaran tentang konsekuensi yang nyata dan total.</div>
+      </div>
+    </div>
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">هُمَزَةٍ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>ه م ز — Hamaza</span></div>
+        <div class="keyword-desc">Bermakna: menusuk, menekan, melukai dengan tindakan—seperti menusuk dengan siku, mengedipkan mata sinis, atau merendahkan lewat ekspresi fisik. Ini adalah penghinaan yang terlihat, berbeda dengan bisikan jahat yang tersembunyi.</div>
+      </div>
+    </div>
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">لُّمَزَةٍ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>ل م ز — Lamaza</span></div>
+        <div class="keyword-desc">Bermakna: mencela, mencibir, menyakiti lewat kata-kata, sindiran, atau omongan di belakang. Lebih halus dari hamz, namun sama mematikannya. Kombinasi keduanya menggambarkan seseorang yang mencela dari semua arah: di depan dan di belakang, dengan tindakan dan kata-kata.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header reveal"><div class="sub-header-bar"></div><h4>2. Tafsir Mendalam</h4></div>
+  <p class="body-text reveal">Ayat pertama langsung menghantam tanpa basa-basi. Allah memulai surat ini bukan dengan kalimat lembut, melainkan dengan kata "waylun"—sebuah kutukan keras yang langsung menunjuk pada pelakunya: "setiap" (kulli) pengumpat dan pencela.</p>
+  <p class="body-text reveal">Kata "kulli" (setiap) adalah kunci penting. Tidak ada pengecualian. Tidak peduli seberapa kaya, seberapa berpengaruh, atau seberapa dihormati seseorang—jika ia suka merendahkan orang lain, ia masuk dalam kategori yang dimaksud ayat ini.</p>
+  <p class="body-text reveal">Para ulama berbeda pendapat tentang perbedaan antara humazah dan lumazah: apakah keduanya merujuk pada satu jenis perilaku yang diperkuat, atau dua jenis yang berbeda? Imam Al-Qurtubi menyebutkan bahwa humazah adalah cercaan dengan perbuatan (isyarat, ekspresi, tatapan menghina), sementara lumazah adalah cercaan dengan lisan (omongan, sindiran, gosip). Keduanya bisa hidup dalam diri satu orang sekaligus.</p>
+
+  <div class="relevansi-header reveal"><h4>Relevansi Kekinian</h4></div>
+  <div class="example-card reveal">
+    <div class="example-label">Contoh 1 — Kolom Komentar &amp; Quote Tweet</div>
+    <div class="example-text">Seseorang memposting pencapaiannya, lalu akun anonim berkomentar: "Wah, akhirnya jadi juga ya. Kirain nggak bakal berhasil." Atau me-retweet dengan kalimat: "Ini yang dimaksud overrated." Itulah humazah dan lumazah modern—terasa kecil, tapi menghujam dalam.</div>
+  </div>
+  <div class="example-card reveal">
+    <div class="example-label">Contoh 2 — Grup Chat Kantor atau Keluarga</div>
+    <div class="example-text">Obrolan sampingan yang dimulai dengan: "Eh, tahu nggak si X? Aneh banget deh dia." lalu disertai emoji tawa atau stiker mengejek. Tidak ada yang merasa bersalah karena "hanya bercanda"—padahal itulah lamz yang paling umum.</div>
+  </div>
+
+  <div class="reflective-q reveal">Berapa kali dalam sepekan terakhir kita membicarakan seseorang dengan nada yang tidak akan berani kita ucapkan langsung di hadapannya?</div>
+
+  <div class="intisari-box reveal">
+    <p>Mencela seseorang—bahkan sekali, bahkan dalam hati—<br>adalah langkah pertama menuju kerusakan jiwa.<br>Mulut yang suka melukai orang lain<br>pada akhirnya hanya melukai dirinya sendiri.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ AYAT 2–3 ═══════════════ -->
+<section class="ayat-section reveal" id="ayat23">
+  <div class="ayat-header">
+    <div class="ayat-num"><span>٢–٣</span></div>
+    <div class="ayat-header-text">
+      <div class="label">Ayat Kedua &amp; Ketiga</div>
+      <h3>Tuhan Palsu Bernama Harta</h3>
+    </div>
+  </div>
+
+  <div class="verse-display">
+    <div class="verse-corner tl"></div><div class="verse-corner tr"></div>
+    <div class="verse-corner bl"></div><div class="verse-corner br"></div>
+    <div class="arabic-text">الَّذِي جَمَعَ مَالًا وَعَدَّدَهُ ﴿٢﴾ يَحْسَبُ أَنَّ مَالَهُ أَخْلَدَهُ</div>
+    <div class="transliteration">Alladzii jama'a maalaw wa'addadah · Yahsabu anna maalahu akhladah</div>
+    <div class="translation">"Yang mengumpulkan harta dan menghitung-hitungnya, ia mengira hartanya bisa mengekalkannya"</div>
+  </div>
+
+  <div class="sub-header"><div class="sub-header-bar"></div><h4>1. Energi Kata</h4></div>
+  <div class="keyword-grid">
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">جَمَعَ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>ج م ع — Jama'a</span></div>
+        <div class="keyword-desc">Mengumpulkan secara aktif dan terus-menerus—bukan sekadar menerima warisan atau rezeki yang datang. Ada unsur kesengajaan, upaya, bahkan obsesi. Ini bukan tentang orang kaya yang bersyukur; ini tentang orang yang hidupnya berpusat pada akumulasi.</div>
+      </div>
+    </div>
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">عَدَّدَهُ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>ع د د — 'Addada</span></div>
+        <div class="keyword-desc">Menghitung berulang-ulang. Kata ini mengandung nuansa seseorang yang duduk menghitung hartanya bukan untuk keperluan praktis, tapi karena kepuasan psikologis dari angka yang bertambah. Ini adalah potret batin seseorang yang harta menjadi sumber rasa amannya.</div>
+      </div>
+    </div>
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">أَخْلَدَهُ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>خ ل د — Khalada</span></div>
+        <div class="keyword-desc">Dari akar kata yang sama dengan "khuld" (keabadian). Kata ini mengandung keyakinan batin yang keliru: bahwa harta adalah jaminan kelangsungan hidup, status, bahkan keselamatan. Sebuah ilusi yang sangat manusiawi—dan sangat berbahaya.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header reveal"><div class="sub-header-bar"></div><h4>2. Tafsir Mendalam</h4></div>
+  <p class="body-text reveal">Ayat kedua dan ketiga ini merupakan satu kesatuan yang membedah psikologi seseorang yang jatuh cinta pada hartanya sendiri. Ada dua tahap yang disebutkan Allah: pertama, tindakan (mengumpulkan dan menghitung); kedua, keyakinan keliru yang tumbuh dari tindakan itu ("harta akan membuatku abadi").</p>
+  <p class="body-text reveal">Yang menarik, ayat ini tidak mengatakan ia "percaya" harta akan membuatnya abadi secara sadar. Kata "yahsabu" lebih dekat pada "mengira" atau "menyangka"—sebuah asumsi yang terpendam dalam bawah sadar, tidak selalu diakui secara lisan, tapi terasa jelas dalam perilaku.</p>
+  <p class="body-text reveal">Ini adalah sindrom yang dikenal dalam psikologi modern: semakin besar aset seseorang, semakin ia merasa "terlindungi" dari kematian, sakit, atau ketidakpastian. Padahal semua itu adalah ilusi yang sangat halus.</p>
+
+  <div class="relevansi-header reveal"><h4>Relevansi Kekinian</h4></div>
+  <div class="example-card reveal">
+    <div class="example-label">Contoh 1 — Obsesi Portofolio &amp; Net Worth</div>
+    <div class="example-text">Seseorang yang mengecek portofolio investasinya berkali-kali sehari, bukan karena ada keputusan penting yang harus dibuat, tapi karena melihat angka yang naik memberinya rasa tenang. Ketika pasar turun, ia panik—bukan karena uangnya habis, tapi karena ilusi keamanannya goyah.</div>
+  </div>
+  <div class="example-card reveal">
+    <div class="example-label">Contoh 2 — "Passive Income" Sebagai Tuhan</div>
+    <div class="example-text">Narasi populer yang mengatakan: "Kalau sudah punya passive income sekian juta, kamu bebas." Bebas dari apa? Dari kekhawatiran, dari ketidakpastian, dari ketakutan akan masa depan. Tanpa disadari, ini adalah ekspresi modern dari keyakinan bahwa harta bisa "mengabadikan" rasa aman.</div>
+  </div>
+
+  <div class="reflective-q reveal">Berapa angka di rekening yang kita butuhkan agar merasa 'aman'? Dan apakah angka itu pernah benar-benar tercapai—atau selalu bergeser menjadi lebih tinggi?</div>
+
+  <div class="intisari-box reveal">
+    <p>Menghitung harta adalah kegiatan; mengabdikan diri pada harta adalah penyakit.<br>Tidak ada jumlah yang cukup bagi jiwa yang lapar—<br>karena yang dibutuhkan bukan lebih banyak harta,<br>melainkan cukupnya hati.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ AYAT 4–5 ═══════════════ -->
+<section class="ayat-section reveal" id="ayat45">
+  <div class="ayat-header">
+    <div class="ayat-num"><span>٤–٥</span></div>
+    <div class="ayat-header-text">
+      <div class="label">Ayat Keempat &amp; Kelima</div>
+      <h3>Neraka Yang Menghancurkan Segalanya</h3>
+    </div>
+  </div>
+
+  <div class="verse-display">
+    <div class="verse-corner tl"></div><div class="verse-corner tr"></div>
+    <div class="verse-corner bl"></div><div class="verse-corner br"></div>
+    <div class="arabic-text">كَلَّا لَيُنبَذَنَّ فِي الْحُطَمَةِ ﴿٤﴾ وَمَا أَدْرَاكَ مَا الْحُطَمَةُ</div>
+    <div class="transliteration">Kallaa layunbadhanna fil-huthamah · Wa maa adraaka mal-huthamah</div>
+    <div class="translation">"Sekali-kali tidak! Sungguh dia akan dilemparkan ke dalam Al-Huthamah. Dan tahukah kamu apa Al-Huthamah itu?"</div>
+  </div>
+
+  <div class="sub-header"><div class="sub-header-bar"></div><h4>1. Energi Kata</h4></div>
+  <div class="keyword-grid">
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">كَلَّا</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>ك ل — Kalla</span></div>
+        <div class="keyword-desc">Kata yang sangat kuat dalam Al-Quran—sebuah bantahan total, penolakan keras, sekaligus peringatan. "Kalla" seolah mengatakan: "Berhenti! Kamu salah besar. Jangan teruskan jalan itu." Ini bukan sekadar penolakan logis, melainkan seruan kepada jiwa untuk berbalik sebelum terlambat.</div>
+      </div>
+    </div>
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">لَيُنبَذَنَّ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>ن ب ذ — Nabadha</span></div>
+        <div class="keyword-desc">Dilemparkan dengan cara yang menghinakan—seperti melempar sesuatu yang tidak berharga, sampah yang dibuang jauh-jauh. Ada ironi yang menyakitkan: orang yang dulu merasa tinggi karena hartanya, kini "dilempar" seperti sesuatu yang tidak berguna.</div>
+      </div>
+    </div>
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">الْحُطَمَةِ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>ح ط م — Hatama</span></div>
+        <div class="keyword-desc">Dari kata "hatm": menghancurkan hingga berkeping-keping. Al-Huthamah bukan sekadar api—ia adalah kekuatan yang menghancurkan semua keangkuhan, semua ilusi, semua yang pernah dibanggakan. Sebuah nama yang menyimpan makna tentang akhir dari segala kesombongan.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header reveal"><div class="sub-header-bar"></div><h4>2. Tafsir Mendalam</h4></div>
+  <p class="body-text reveal">Transisi dari ayat 3 ke ayat 4 adalah salah satu momen paling dramatis dalam Al-Quran. Setelah menggambarkan keyakinan keliru si pelaku, Allah langsung membantahnya: "Kalla!"—Tidak! Sekali-kali tidak seperti yang kamu kira!</p>
+  <p class="body-text reveal">Penggunaan pertanyaan retoris di ayat 5—"Tahukah kamu apa Al-Huthamah?"—bukan pertanyaan yang butuh jawaban. Ini adalah teknik naratif yang membangun rasa takjub dan gentar sebelum jawabannya diberikan di ayat berikutnya.</p>
+  <p class="body-text reveal">Yang perlu kita renungkan lebih dalam: mengapa justru pemuja harta yang mendapat konsekuensi sepedih ini? Karena mereka bukan hanya merusak diri sendiri—sikap sombong dan meremehkan orang lain merusak tatanan sosial, menghancurkan martabat orang-orang yang direndahkan, dan menciptakan dunia di mana manusia diukur hanya dari apa yang mereka miliki.</p>
+
+  <div class="relevansi-header reveal"><h4>Relevansi Kekinian</h4></div>
+  <div class="example-card reveal">
+    <div class="example-label">Contoh 1 — Kejatuhan yang Tiba-tiba</div>
+    <div class="example-text">Berapa banyak kisah nyata tentang orang yang hartanya berlimpah, statusnya tinggi, suaranya didengar—lalu dalam semalam, semuanya runtuh? Skandal finansial, kesehatan yang tiba-tiba ambruk, atau reputasi yang hancur karena satu unggahan viral. Dunia ini memiliki cara sendiri untuk berkata "kalla" kepada keangkuhan.</div>
+  </div>
+  <div class="example-card reveal">
+    <div class="example-label">Contoh 2 — Kehampaan di Puncak Keberhasilan</div>
+    <div class="example-text">Banyak yang mencapai puncak karier atau kekayaan, lalu merasa kosong. Bukan karena kurang harta, tapi karena harta tidak pernah bisa mengisi kekosongan yang sebenarnya spiritual. Ini adalah "huthamah" dalam bentuk lain: kehancuran dari dalam, jauh sebelum akhirat.</div>
+  </div>
+
+  <div class="reflective-q reveal">Apakah kita pernah menyaksikan—atau mengalami sendiri—momen di mana sesuatu yang kita andalkan ternyata tidak bisa memberikan apa yang kita harapkan?</div>
+
+  <div class="intisari-box reveal">
+    <p>Setiap keangkuhan menyimpan tanggal kedaluwarsanya sendiri.<br>"Kalla" dari langit adalah pengingat bahwa<br>tidak ada ilusi yang cukup kuat untuk mengalahkan kenyataan.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ AYAT 6–7 ═══════════════ -->
+<section class="ayat-section reveal" id="ayat67">
+  <div class="ayat-header">
+    <div class="ayat-num"><span>٦–٧</span></div>
+    <div class="ayat-header-text">
+      <div class="label">Ayat Keenam &amp; Ketujuh</div>
+      <h3>Api Yang Berbeda Dari Semua Api</h3>
+    </div>
+  </div>
+
+  <div class="verse-display">
+    <div class="verse-corner tl"></div><div class="verse-corner tr"></div>
+    <div class="verse-corner bl"></div><div class="verse-corner br"></div>
+    <div class="arabic-text">نَارُ اللَّهِ الْمُوقَدَةُ ﴿٦﴾ الَّتِي تَطَّلِعُ عَلَى الْأَفْئِدَةِ</div>
+    <div class="transliteration">Naarul-laahil-muuqadah · Allatii tathtali'u 'alal-af-idah</div>
+    <div class="translation">"(Yaitu) api Allah yang dinyalakan, yang (membakar) sampai ke hati"</div>
+  </div>
+
+  <div class="sub-header"><div class="sub-header-bar"></div><h4>1. Energi Kata</h4></div>
+  <div class="keyword-grid">
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">الْمُوقَدَةُ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>و ق د — Waqada</span></div>
+        <div class="keyword-desc">Api yang telah dinyalakan, terus menyala, tidak padam. Ini bukan api yang menyala secara kebetulan—ini adalah api yang sengaja disiapkan, dengan tujuan yang spesifik. Ada dimensi kesengajaan ilahi yang mengerikan dalam kata ini.</div>
+      </div>
+    </div>
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">تَطَّلِعُ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>ط ل ع — Tathalla'a</span></div>
+        <div class="keyword-desc">Kata yang luar biasa kompleks: "naik hingga menembus", "menjangkau masuk ke dalam", "muncul dari bawah ke atas". Api ini tidak membakar dari luar ke dalam—ia naik dari bawah, menembus lapisan demi lapisan, hingga menjangkau inti yang paling dalam.</div>
+      </div>
+    </div>
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">الْأَفْئِدَةِ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>ف أ د — Fu'ad</span></div>
+        <div class="keyword-desc">Bentuk jamak dari "fu'ad"—kata yang merujuk pada bagian terdalam hati, pusat kesadaran emosional dan spiritual. Bukan sekadar organ fisik jantung, tapi tempat di mana niat lahir, keyakinan bersemayam, dan keputusan moral dibuat.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header reveal"><div class="sub-header-bar"></div><h4>2. Tafsir Mendalam</h4></div>
+  <p class="body-text reveal">Ini adalah ayat yang paling filosofis dalam surat ini—dan paling menggetarkan. Allah tidak hanya menggambarkan api yang membakar tubuh; Ia menggambarkan api yang menembus hingga ke inti kesadaran.</p>
+  <p class="body-text reveal">Mengapa hati yang dibakar? Karena di sanalah asal muasal semua dosa yang disebutkan dalam surat ini. Rasa sombong lahir di hati. Keyakinan bahwa harta bisa mengekalkan hidup tertanam di hati. Kepuasan saat merendahkan orang lain dirasakan di hati. Maka api pun menjangkau sumbernya.</p>
+  <p class="body-text reveal">Ada pesan teologis yang dalam di sini: hukuman bukan hanya fisik—ia sebanding dengan sifat pelanggaran. Pelanggaran yang bersifat batin mendapat balasan yang menyentuh batin. Ini adalah keadilan yang sempurna.</p>
+
+  <div class="relevansi-header reveal"><h4>Relevansi Kekinian</h4></div>
+  <div class="example-card reveal">
+    <div class="example-label">Contoh 1 — Pelaku Bully Yang Merasa Kosong</div>
+    <div class="example-text">Studi psikologi menunjukkan bahwa pelaku perundungan sering kali adalah mereka yang paling tidak aman secara emosional. Merendahkan orang lain adalah upaya mengisi kekosongan di dalam diri—tapi kekosongan itu tidak pernah benar-benar terisi. Inilah "api yang membakar hati" dalam versi dunia.</div>
+  </div>
+  <div class="example-card reveal">
+    <div class="example-label">Contoh 2 — Anxiety di Balik Kemewahan</div>
+    <div class="example-text">Banyak yang memiliki semua yang "seharusnya" membuat bahagia—rumah mewah, karier cemerlang, tabungan melimpah—namun tidurnya tidak nyenyak. Hati yang dibangun di atas fondasi salah akan selalu gelisah, karena fondasinya tidak bisa menopang beban yang sebenarnya.</div>
+  </div>
+
+  <div class="reflective-q reveal">Apakah ada kegelisahan yang kita rasakan tapi sulit dijelaskan sumbernya? Mungkin saatnya menoleh ke dalam, bukan ke luar.</div>
+
+  <div class="intisari-box reveal">
+    <p>Api yang paling menyakitkan bukan yang membakar kulit,<br>tapi yang membakar kesadaran—<br>karena di situlah tempat kita benar-benar hidup.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ AYAT 8–9 ═══════════════ -->
+<section class="ayat-section reveal" id="ayat89">
+  <div class="ayat-header">
+    <div class="ayat-num"><span>٨–٩</span></div>
+    <div class="ayat-header-text">
+      <div class="label">Ayat Kedelapan &amp; Kesembilan</div>
+      <h3>Terkurung Tanpa Jalan Keluar</h3>
+    </div>
+  </div>
+
+  <div class="verse-display">
+    <div class="verse-corner tl"></div><div class="verse-corner tr"></div>
+    <div class="verse-corner bl"></div><div class="verse-corner br"></div>
+    <div class="arabic-text">إِنَّهَا عَلَيْهِم مُّؤْصَدَةٌ ﴿٨﴾ فِي عَمَدٍ مُّمَدَّدَةٍ</div>
+    <div class="transliteration">Innahaa 'alaihim mu'shadah · Fii 'amadim mumaddadah</div>
+    <div class="translation">"Sesungguhnya api itu ditutup rapat atas mereka, dalam tiang-tiang yang panjang"</div>
+  </div>
+
+  <div class="sub-header"><div class="sub-header-bar"></div><h4>1. Energi Kata</h4></div>
+  <div class="keyword-grid">
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">مُّؤْصَدَةٌ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>أ ص د — Ashada</span></div>
+        <div class="keyword-desc">Ditutup rapat, dikunci, disegel—tanpa celah, tanpa retakan, tanpa harapan keluar. Kata ini mengandung nuansa akhir yang total. Berbeda dengan "tertutup" yang bisa dibuka, "mu'shadah" menyiratkan penutupan yang permanen dan sempurna.</div>
+      </div>
+    </div>
+    <div class="keyword-card reveal">
+      <div class="keyword-arabic-col"><div class="arabic-word">عَمَدٍ مُّمَدَّدَةٍ</div></div>
+      <div class="keyword-body">
+        <div class="keyword-akar">Akar kata: <span>ع م د — 'Amad</span></div>
+        <div class="keyword-desc">Tiang-tiang yang diperpanjang, ditarik, dibentangkan. Para mufasir berbeda pendapat: apakah ini tiang yang mengurung dari luar, atau rantai yang mengikat dari dalam? Kedua tafsir sama-sama menggambarkan keterpenjaraan yang total—tidak ada gerakan, tidak ada kebebasan.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-header reveal"><div class="sub-header-bar"></div><h4>2. Tafsir Mendalam</h4></div>
+  <p class="body-text reveal">Dua ayat terakhir ini memberikan gambaran penutup yang sangat simbolis. Setelah api yang menembus hati, sekarang ada dimensi lain: keterkungkungan. Tidak ada jalan keluar. Api di dalam, penutup di luar, tiang-tiang yang mengurung—sebuah gambaran tentang keputusasaan yang total.</p>
+  <p class="body-text reveal">Ada paralelisme yang menakjubkan: di dunia, ia memilih penjara keangkuhan. Di akhirat, penjara itu menjadi nyata dan abadi. Ini bukan kekejaman—ini adalah konsekuensi yang konsisten dengan pilihan.</p>
+
+  <div class="relevansi-header reveal"><h4>Relevansi Kekinian</h4></div>
+  <div class="example-card reveal">
+    <div class="example-label">Contoh 1 — Lingkaran Yang Menyempit</div>
+    <div class="example-text">Orang yang sering merendahkan orang lain biasanya lambat laun kehilangan teman-teman sejatinya. Yang tersisa hanyalah orang-orang yang takut kepadanya atau yang mengharapkan sesuatu darinya. Ini adalah "tiang-tiang" yang mengurungnya di dunia: kesepian di tengah keramaian.</div>
+  </div>
+  <div class="example-card reveal">
+    <div class="example-label">Contoh 2 — Harta Sebagai Penjara</div>
+    <div class="example-text">Ada orang-orang kaya yang tidak bisa meninggalkan kota, tidak bisa mengambil cuti, tidak bisa bersantai—karena "aset harus dijaga, bisnis harus diawasi". Harta yang seharusnya membebaskan malah menjadi penjara. Inilah ironi yang paling menyedihkan dari obsesi harta.</div>
+  </div>
+
+  <div class="reflective-q reveal">Apakah pilihan-pilihan yang kita buat selama ini sedang membangun kebebasan atau justru membangun penjara kita sendiri?</div>
+
+  <div class="intisari-box reveal">
+    <p>Orang yang menutup hatinya dari sesama<br>pada akhirnya akan menemukan hatinya tertutup dari rahmat.<br>Kebebasan sejati bukan tentang apa yang kita miliki,<br>tapi tentang apa yang kita lepaskan.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ REFLEKSI PENUTUP ═══════════════ -->
+<section class="refleksi-section reveal" id="refleksi">
+  <div class="section-label">Refleksi Penutup</div>
+  <h2 class="section-title">Pola, Langkah Nyata &amp; Closing Statement</h2>
+
+  <p class="body-text">Surat Al-Humazah menggambarkan sebuah lingkaran yang saling menguatkan: keangkuhan melahirkan perilaku merendahkan orang lain, perilaku itu diperkuat oleh keyakinan bahwa harta adalah jaminan keamanan, dan keyakinan itu pada akhirnya membutakan hati dari realitas yang sesungguhnya. Tiga unsur ini—lidah yang melukai, tangan yang menghitung, dan hati yang tertipu—adalah tiga wajah dari satu penyakit yang sama: lupa diri.</p>
+  <p class="body-text">Yang menarik, surat ini tidak menyebutkan dosa-dosa besar yang mencolok. Yang dibahas adalah dosa-dosa yang terasa kecil: satu komentar merendahkan, kebiasaan menghitung harta, keyakinan bahwa "saya lebih aman karena saya lebih kaya". Justru di situlah bahayanya—karena mudah diabaikan.</p>
+
+  <div class="sub-header reveal"><div class="sub-header-bar"></div><h4>Langkah Nyata</h4></div>
+  <ul class="action-list">
+    <li class="action-item reveal">
+      <div class="action-num">1</div>
+      <div class="action-text"><strong style="color:var(--gold-light)">Audit Lisan Mingguan.</strong> Setiap akhir pekan, luangkan lima menit untuk mengingat: apakah ada seseorang yang kita bicarakan dengan nada merendahkan minggu ini? Akui, sesali, dan niatkan untuk berbeda pekan depan.</div>
+    </li>
+    <li class="action-item reveal">
+      <div class="action-num">2</div>
+      <div class="action-text"><strong style="color:var(--gold-light)">Reframe Hubungan dengan Harta.</strong> Cobalah berlatih membedakan antara dua pertanyaan: "Untuk apa saya membutuhkan ini?" dan "Apa yang saya takuti jika tidak memiliki ini?" Terapi terbaik untuk obsesi harta adalah kedermawanan yang disengaja—berikan sebelum terasa mudah.</div>
+    </li>
+    <li class="action-item reveal">
+      <div class="action-num">3</div>
+      <div class="action-text"><strong style="color:var(--gold-light)">Latih Pandangan yang Memanusiakan.</strong> Setiap kali muncul dorongan untuk menilai seseorang, tanya: "Apa yang mungkin sedang ia alami yang tidak saya ketahui?" Ini melatih hati agar tidak cepat melompat ke penilaian yang mendehumanisasi.</div>
+    </li>
+    <li class="action-item reveal">
+      <div class="action-num">4</div>
+      <div class="action-text"><strong style="color:var(--gold-light)">Bangun Kekayaan yang Tidak Bisa Dibakar.</strong> Investasikan waktu pada hubungan, ilmu, amal, dan karakter—hal-hal yang tidak bisa runtuh dalam semalam, tidak bisa dicuri pasar, tidak bisa didevaluasi inflasi. Karaktermu adalah hartamu yang sesungguhnya.</div>
+    </li>
+  </ul>
+
+  <div class="closing-box reveal">
+    <span class="ornament">— ❖ —</span>
+    <p>Al-Humazah bukan hanya tentang orang jahat di luar sana.</p>
+    <p>Ia adalah undangan untuk memeriksa sudut-sudut yang paling sunyi dalam diri kita:</p>
+    <p>di mana kita diam-diam merasa lebih, di mana kita diam-diam takut kehilangan,</p>
+    <p style="color:var(--gold-pale)">dan di mana kita diam-diam lupa bahwa semua yang kita miliki adalah titipan.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ EPILOG ═══════════════ -->
+<section class="epilog-section reveal" id="epilog">
+  <div class="section-label">Epilog</div>
+  <h2>Cermin Yang Tidak Bisa Kita Palingkan</h2>
+  <div class="epilog-subtitle">— Narasi Puitis Penutup —</div>
+
+  <div class="epilog-rule"></div>
+
+  <div class="epilog-line reveal">Ada sebuah kota yang tidak pernah tidur,</div>
+  <div class="epilog-line reveal">di mana setiap orang berlomba menjadi lebih—</div>
+  <div class="epilog-line reveal">lebih kaya, lebih terkenal, lebih dihormati,</div>
+  <div class="epilog-line reveal">lebih aman dari ketidakpastian yang menghantui setiap malam.</div>
+
+  <div class="epilog-rule"></div>
+
+  <div class="epilog-line conflict reveal">Di kota itu, kata-kata dijual murah:</div>
+  <div class="epilog-line conflict reveal">"Dia sih cuma beruntung."</div>
+  <div class="epilog-line conflict reveal">"Masa depan saya aman, tabungan saya cukup."</div>
+  <div class="epilog-line conflict reveal">"Orang seperti itu memang tidak akan ke mana-mana."</div>
+
+  <br>
+  <div class="epilog-line reveal">Dan setiap malam, si pemilik kata-kata itu tidur</div>
+  <div class="epilog-line reveal">dengan punggung yang lebih berat dari yang ia akui,</div>
+  <div class="epilog-line reveal">dengan kegelisahan yang tidak tahu dari mana datangnya,</div>
+  <div class="epilog-line reveal">dengan hati yang diam-diam bertanya:</div>
+  <div class="epilog-line question reveal">"Apakah semua ini cukup? Apakah aku sudah cukup?"</div>
+
+  <div class="epilog-rule"></div>
+
+  <div class="epilog-line wisdom reveal">Al-Humazah datang bukan untuk menghakimi.</div>
+  <div class="epilog-line wisdom reveal">Ia datang untuk menjawab pertanyaan itu.</div>
+
+  <br>
+  <div class="epilog-line reveal">Kamu tidak akan pernah cukup</div>
+  <div class="epilog-line reveal">dengan cara yang selama ini kamu kejar,</div>
+  <div class="epilog-line reveal">karena yang kosong di dalam dirimu</div>
+  <div class="epilog-line reveal">tidak berbentuk uang, tidak berbentuk pujian,</div>
+  <div class="epilog-line reveal">tidak berbentuk angka di layar ponselmu.</div>
+
+  <div class="epilog-rule"></div>
+
+  <div class="epilog-address reveal">Kepada kamu yang lelah menghitung,</div>
+  <div class="epilog-line wisdom reveal">surat ini berkata: berhentilah sejenak.</div>
+  <div class="epilog-line reveal">Bukan untuk menyerah, tapi untuk menyadari</div>
+  <div class="epilog-line reveal">bahwa apa yang paling kamu butuhkan</div>
+  <div class="epilog-line reveal">tidak bisa dibeli, tidak bisa ditimbun,</div>
+  <div class="epilog-line reveal">dan tidak akan pernah habis jika dibagikan.</div>
+
+  <br>
+
+  <div class="epilog-address reveal">Kepada kamu yang pernah melukai dengan kata,</div>
+  <div class="epilog-line wisdom reveal">surat ini bukan hukuman—ia adalah undangan.</div>
+  <div class="epilog-line reveal">Undangan untuk memilih berbeda hari ini:</div>
+  <div class="epilog-line reveal">satu kata yang mengangkat alih-alih merendahkan,</div>
+  <div class="epilog-line reveal">satu momen diam alih-alih komentar yang melukai,</div>
+  <div class="epilog-line reveal">satu pandangan penuh kemanusiaan</div>
+  <div class="epilog-line reveal">pada orang yang biasanya kita abaikan.</div>
+
+  <br>
+
+  <div class="epilog-address reveal">Kepada kamu yang takut kehilangan segalanya,</div>
+  <div class="epilog-line wisdom reveal">ketahuilah: yang paling berharga dalam dirimu</div>
+  <div class="epilog-line reveal">tidak bisa dirampas pasar yang jatuh,</div>
+  <div class="epilog-line reveal">tidak bisa dihapus inflasi yang melambung,</div>
+  <div class="epilog-line reveal">tidak bisa diambil usia yang bertambah.</div>
+  <div class="epilog-line reveal">Karaktermu adalah hartamu yang sesungguhnya.</div>
+  <div class="epilog-line reveal">Dan harta itu bertambah setiap kali kamu memilih</div>
+  <div class="epilog-line reveal">untuk menjadi lebih baik, bukan sekadar lebih besar.</div>
+
+  <div class="epilog-rule"></div>
+
+  <div class="epilog-end reveal">
+    <div class="epilog-line">Cermin Al-Humazah tidak bisa kita palingkan.</div>
+    <div class="epilog-line">Tapi kita bisa memilih apa yang kita lakukan</div>
+    <div class="epilog-line">setelah melihat wajah kita di dalamnya.</div>
+    <br>
+    <div class="epilog-line wisdom">Dan pilihan itu—sekecil apapun—</div>
+    <span class="final-line">adalah awal dari segalanya.</span>
+    <br><br>
+    <span class="epilog-arabic-end">وَاللَّهُ أَعْلَمُ بِالصَّوَابِ</span>
+    <span class="epilog-arabic-trans">Dan Allah lebih mengetahui kebenaran yang sesungguhnya.</span>
+    <div style="letter-spacing:12px;color:var(--gold);font-size:24px;margin-top:8px">— ❖ —</div>
+  </div>
+</section>
+</main>
+
+<script>
+// ── SCROLL PROGRESS ──
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('progress-bar').style.width = (scrolled / total * 100) + '%';
+
+  // NAV
+  const nav = document.getElementById('main-nav');
+  if (scrolled > window.innerHeight * 0.8) nav.classList.add('visible');
+  else nav.classList.remove('visible');
+});
+
+// ── REVEAL ON SCROLL ──
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ── DOWNLOAD ──
+function downloadHTML() {
+  const html = document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'tafsir-al-humazah.html';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

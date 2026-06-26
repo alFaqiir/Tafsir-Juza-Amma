@@ -1,0 +1,1297 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>At-Takwir: Ketika Langit Operating System Mulai Dimatikan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --c1: #e8c97a;   /* saffron gold */
+    --c2: #b87d2a;   /* amber deep */
+    --c3: #f5e4a8;   /* pale cream gold */
+    --c4: #7a4a10;   /* dark amber */
+    --cyan: #4fc3d4; /* cosmic teal — signature accent */
+    --cyan2: #2a8a96;
+    --cyan3: #9ee8f0;
+    --red:  #c84040; /* apocalypse crimson */
+    --red2: #8a1a1a;
+    --bg:   #070a0f; /* deep space black */
+    --bg2:  #0c1018;
+    --bg3:  #101520;
+    --card: #0d1119;
+    --border: #1a2230;
+    --text: #d8e0ec;
+    --muted: #6a7a90;
+    --accent-group-1: #4fc3d4; /* cosmic teal */
+    --accent-group-2: #c84040; /* crimson judgment */
+    --accent-group-3: #e8c97a; /* saffron revelation */
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'EB Garamond', Georgia, serif;
+    background: var(--bg);
+    color: #d8e0ec;
+    line-height: 1.95;
+    min-height: 100vh;
+  }
+
+  /* ── GOLD TEXT ── */
+  .gold {
+    color: #e8c97a;
+    background: linear-gradient(135deg, var(--c2) 0%, var(--c1) 45%, var(--c3) 60%, var(--c2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: unset;
+    background-clip: text;
+  }
+  .cyan-text {
+    color: #4fc3d4;
+  }
+  .crimson-text {
+    color: #e08080;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: relative;
+    padding: 90px 40px 80px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% -10%, #081828 0%, #070a0f 65%);
+    border-bottom: 1px solid #1a2230;
+  }
+
+  /* star field */
+  .header::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle, rgba(79,195,212,.18) 1px, transparent 1px),
+      radial-gradient(circle, rgba(232,201,122,.10) 1px, transparent 1px);
+    background-size: 60px 60px, 37px 37px;
+    background-position: 0 0, 30px 30px;
+    animation: starDrift 80s linear infinite;
+    pointer-events:none;
+  }
+
+  /* cosmic glow */
+  .header::after {
+    content:'';
+    position:absolute;
+    top:-100px; left:50%; transform:translateX(-50%);
+    width:800px; height:400px;
+    background: radial-gradient(ellipse, rgba(40,120,160,.12) 0%, rgba(200,64,64,.06) 50%, transparent 70%);
+    pointer-events:none;
+  }
+
+  @keyframes starDrift { to { background-position: 60px 60px, 90px 90px; } }
+
+  .header-bismillah {
+    font-family: 'Scheherazade New', 'Amiri', 'Traditional Arabic', serif;
+    font-size: 2.1em;
+    color: #e8c97a;
+    opacity: .75;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    display: block;
+  }
+
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.4em, 5.5vw, 3.8em);
+    font-weight: 700;
+    line-height: 1.15;
+    position: relative; z-index:1;
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+  }
+
+  .header-sub {
+    font-family: 'Cinzel', serif;
+    font-size: .85em;
+    color: #6a7a90 !important; -webkit-text-fill-color: #6a7a90 !important;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    position: relative; z-index:1;
+    margin-bottom: 32px;
+  }
+
+  .divider-cosmic {
+    width: 160px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--cyan), var(--c1), var(--cyan), transparent);
+    margin: 24px auto;
+    position:relative; z-index:1;
+  }
+
+  .tagline {
+    font-style: italic;
+    font-size: 1.2em;
+    color: #b0c0d8 !important;
+    -webkit-text-fill-color: #b0c0d8 !important;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative; z-index:1;
+    line-height: 1.75;
+  }
+
+  .header-meta {
+    font-family: 'Cinzel', serif;
+    font-size: .78em;
+    letter-spacing: 3px;
+    color: #6a7a90 !important; -webkit-text-fill-color: #6a7a90 !important;
+    margin-top: 28px;
+    position: relative; z-index:1;
+  }
+  .header-meta span {
+    color: #4fc3d4 !important;
+    -webkit-text-fill-color: #4fc3d4 !important;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 940px; margin: 0 auto; padding: 56px 24px 90px; }
+
+  /* ── GROUP HEADER ── */
+  .group-header {
+    display: flex; align-items: center; gap: 20px;
+    margin: 60px 0 32px;
+    position: relative;
+  }
+  .group-header::after {
+    content:'';
+    flex:1;
+    height:1px;
+    background: linear-gradient(to right, var(--border), transparent);
+  }
+  .group-label {
+    font-family: 'Cinzel', serif;
+    font-size: .78em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border: 1px solid;
+    border-radius: 30px;
+    white-space: nowrap;
+    -webkit-text-fill-color: initial !important;
+  }
+  .group-label.teal   { border-color: #2a8a96; color: #4fc3d4 !important; background: rgba(79,195,212,.08); }
+  .group-label.crimson{ border-color: #8a1a1a;  color: #e08080 !important; background: rgba(200,64,64,.08); }
+  .group-label.gold   { border-color: #7a4a10;    color: #e8c97a !important; background: rgba(232,201,122,.08); }
+
+  /* ── AYAT CARD ── */
+  .ayat-section {
+    position: relative;
+    background: linear-gradient(160deg, var(--bg3), var(--bg2));
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 48px 46px;
+    margin-bottom: 36px;
+    box-shadow: 0 4px 40px rgba(0,0,0,.7), inset 0 1px 0 rgba(79,195,212,.04);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .75s ease, transform .75s ease, box-shadow .3s;
+  }
+  .ayat-section.visible { opacity:1; transform:translateY(0); }
+  .ayat-section:hover { box-shadow: 0 10px 60px rgba(0,0,0,.9), 0 0 0 1px rgba(79,195,212,.1); }
+
+  /* left accent per group */
+  .ayat-section.teal   { border-left: 3px solid var(--cyan2); }
+  .ayat-section.crimson{ border-left: 3px solid var(--red2); }
+  .ayat-section.gold-g { border-left: 3px solid var(--c2); }
+
+  /* corner star */
+  .ayat-section::before {
+    content: '✦';
+    position:absolute; top:20px; right:24px;
+    font-size:1.2em; opacity:.18;
+  }
+  .ayat-section.teal::before   { color: #4fc3d4; }
+  .ayat-section.crimson::before{ color: #c84040; }
+  .ayat-section.gold-g::before { color: #e8c97a; }
+
+  /* ── AYAT NUMBER ── */
+  .ayat-number {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 30px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .ayat-badge {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:40px; height:40px;
+    border-radius:50%;
+    font-size:.72em;
+    flex-shrink:0;
+    border:1px solid;
+  }
+  .teal   .ayat-badge { border-color:#2a8a96; color:#4fc3d4 !important; -webkit-text-fill-color:#4fc3d4 !important; background:rgba(79,195,212,.08); }
+  .crimson .ayat-badge{ border-color:#8a1a1a;  color:#e08080 !important; -webkit-text-fill-color:#e08080 !important; background:rgba(200,64,64,.08); }
+  .gold-g .ayat-badge { border-color:#7a4a10;    color:#e8c97a !important; -webkit-text-fill-color:#e8c97a !important; background:rgba(232,201,122,.08); }
+
+  /* ── SECTION TITLES ── */
+  h2.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    margin: 38px 0 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .teal    h2.section-title { color: #4fc3d4 !important; -webkit-text-fill-color: #4fc3d4 !important; background: none !important; }
+  .crimson h2.section-title { color: #e08080 !important; -webkit-text-fill-color: #e08080 !important; background: none !important; }
+  .gold-g  h2.section-title { color: #e8c97a !important; -webkit-text-fill-color: #e8c97a !important; background: none !important; }
+  h3.sub-title {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05em;
+    font-weight: 600;
+    color: #d8e0ec !important;
+    -webkit-text-fill-color: #d8e0ec !important;
+    margin: 26px 0 10px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  h3.sub-title::before {
+    content:'';
+    display:inline-block;
+    width:20px; height:1px;
+    flex-shrink:0;
+  }
+  .teal   h3.sub-title::before { background: linear-gradient(to right, var(--cyan2), var(--cyan)); }
+  .crimson h3.sub-title::before{ background: linear-gradient(to right, var(--red2), var(--red)); }
+  .gold-g h3.sub-title::before { background: linear-gradient(to right, var(--c4), var(--c1)); }
+
+  /* ── ARABIC ── */
+  .arabic-wrap {
+    text-align: center;
+    margin: 34px 0 10px;
+    padding: 30px 24px;
+    background: rgba(10, 21, 32, 0.8);
+    border-radius: 14px;
+    border: 1px solid #2a3a4a;
+    position: relative;
+    overflow: visible;
+    min-height: 80px;
+  }
+  .arabic-wrap::before, .arabic-wrap::after {
+    content: '◈';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1em;
+    opacity: .2;
+    color: #4fc3d4 !important;
+    -webkit-text-fill-color: #4fc3d4 !important;
+    pointer-events: none;
+  }
+  .arabic-wrap::before { left: 18px; }
+  .arabic-wrap::after  { right: 18px; }
+
+  .arabic {
+    font-family: 'Scheherazade New', 'Amiri', 'Traditional Arabic', 'Arial Unicode MS', serif;
+    font-size: clamp(2em, 5vw, 3.2em);
+    line-height: 2.2;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    color: #e8c97a;
+    display: block;
+    width: 100%;
+  }
+
+  .translation {
+    text-align: center;
+    font-style: italic;
+    color: #6a7a90 !important; -webkit-text-fill-color: #6a7a90 !important;
+    font-size: 1.05em;
+    margin: 10px 0 34px;
+    line-height: 1.6;
+  }
+
+  /* ── CHIP ── */
+  .energi-chip {
+    display: inline-block;
+    padding: 8px 22px;
+    border-radius: 30px;
+    font-family: 'Cinzel', serif;
+    font-size: .82em;
+    font-weight: 600;
+    letter-spacing: .8px;
+    margin: 18px 0 10px;
+  }
+  .teal   .energi-chip { background: rgba(79,195,212,.08); border:1px solid var(--cyan2); color:#9ee8f0 !important; -webkit-text-fill-color:#9ee8f0 !important; }
+  .crimson .energi-chip{ background: rgba(200,64,64,.08);  border:1px solid var(--red2);  color:#e08080 !important; -webkit-text-fill-color:#e08080 !important; }
+  .gold-g .energi-chip { background: rgba(232,201,122,.08);border:1px solid var(--c4);    color:#e8c97a !important; -webkit-text-fill-color:#e8c97a !important; }
+
+  /* ── PARAGRAPHS ── */
+  p {
+    margin-bottom: 16px;
+    color: #c0ccd8 !important;
+    text-align: justify;
+    font-size: 1em;
+  }
+  strong { color: #e8c97a !important; -webkit-text-fill-color: #e8c97a !important; font-weight:600; }
+  em { color: #a0b8c8 !important; -webkit-text-fill-color: #a0b8c8 !important; font-style: italic; }
+
+  /* ── RELEVANCE BOX ── */
+  .relevance-box {
+    border-radius: 0 12px 12px 0;
+    padding: 22px 26px;
+    margin: 26px 0;
+    border-left: 3px solid;
+  }
+  .teal   .relevance-box { background: rgba(79,195,212,.04);  border-color: #2a8a96; }
+  .crimson .relevance-box { background: rgba(200,64,64,.04);   border-color: #8a1a1a; }
+  .gold-g .relevance-box  { background: rgba(232,201,122,.04); border-color: #7a4a10; }
+
+  .relevance-label {
+    font-family: 'Cinzel', serif;
+    font-size: .75em;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .teal   .relevance-label { color: #4fc3d4 !important; -webkit-text-fill-color: #4fc3d4 !important; }
+  .crimson .relevance-label{ color: #e08080 !important; -webkit-text-fill-color: #e08080 !important; }
+  .gold-g .relevance-label { color: #e8c97a !important; -webkit-text-fill-color: #e8c97a !important; }
+
+  /* ── INTISARI ── */
+  .intisari {
+    position:relative;
+    border-radius: 12px;
+    padding: 30px 36px;
+    margin: 30px 0 0;
+    font-size: 1em;
+    line-height: 2;
+    border: 1px solid;
+  }
+  .teal   .intisari { background: rgba(79,195,212,.03);  border-color: rgba(79,195,212,.15);  color: #b8d8e0 !important; -webkit-text-fill-color: #b8d8e0 !important; }
+  .crimson .intisari { background: rgba(200,64,64,.03);   border-color: rgba(200,64,64,.15);   color: #d8b0b0 !important; -webkit-text-fill-color: #d8b0b0 !important; }
+  .gold-g .intisari  { background: rgba(232,201,122,.03); border-color: rgba(232,201,122,.15); color: #e0d0a8 !important; -webkit-text-fill-color: #e0d0a8 !important; }
+
+  .intisari::before {
+    content: '"';
+    position:absolute; top:-20px; left:24px;
+    font-size:4.5em; line-height:1;
+    font-family:'Cinzel',serif;
+  }
+  .teal   .intisari::before { color: #4fc3d4;  opacity:.3; }
+  .crimson .intisari::before{ color: #c84040;   opacity:.3; }
+  .gold-g .intisari::before { color: #e8c97a;    opacity:.3; }
+
+  .intisari-label {
+    font-family: 'Cinzel', serif;
+    font-size: .72em;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .teal   .intisari-label { color: #4fc3d4 !important; -webkit-text-fill-color: #4fc3d4 !important; }
+  .crimson .intisari-label{ color: #e08080 !important; -webkit-text-fill-color: #e08080 !important; }
+  .gold-g .intisari-label { color: #e8c97a !important; -webkit-text-fill-color: #e8c97a !important; }
+
+  /* ── PENUTUP ── */
+  .penutup {
+    background: linear-gradient(160deg, var(--bg3), var(--bg2));
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 56px 48px;
+    margin: 60px 0 48px;
+  }
+
+  .langkah {
+    background: rgba(255,255,255,.02);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--cyan2);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 28px;
+    margin: 18px 0;
+    color: #c0ccd8 !important;
+    -webkit-text-fill-color: #c0ccd8 !important;
+    font-size:.97em;
+  }
+  .langkah .lnum {
+    font-family: 'Cinzel', serif;
+    font-size: .85em;
+    letter-spacing: 1px;
+    color: #4fc3d4 !important;
+    -webkit-text-fill-color: #4fc3d4 !important;
+    margin-bottom: 6px;
+    display:block;
+  }
+  .langkah p { margin-bottom:0; }
+
+  /* ── EPILOG ── */
+  .epilog {
+    background: radial-gradient(ellipse at 50% 0%, #081020 0%, #070a0f 60%);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--cyan2);
+    border-radius: 18px;
+    padding: 70px 48px;
+    text-align: center;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* ambient cosmic glow in epilog */
+  .epilog::before {
+    content:'';
+    position:absolute;
+    top:-60px; left:50%; transform:translateX(-50%);
+    width:600px; height:300px;
+    background: radial-gradient(ellipse, rgba(79,195,212,.06) 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  .epilog .epilog-title {
+    font-family:'Cinzel',serif;
+    font-size:clamp(1.4em,3vw,2em);
+    font-weight:700;
+    color: #e8c97a !important;
+    -webkit-text-fill-color: #e8c97a !important;
+    margin-bottom: 44px;
+    position:relative;
+  }
+
+  .epilog p {
+    max-width: 680px;
+    margin: 0 auto 20px;
+    color: #a0b4c8 !important;
+    -webkit-text-fill-color: #a0b4c8 !important;
+    text-align: center;
+    font-style: italic;
+    font-size:1.05em;
+    line-height:1.9;
+  }
+
+  .epilog .arabic-line {
+    font-family: 'Scheherazade New', 'Amiri', 'Traditional Arabic', serif;
+    font-size: clamp(1.6em, 4vw, 2.6em);
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    color: #e8c97a;
+    display: block;
+    margin: 30px auto 6px;
+    line-height: 1.9;
+  }
+
+  .epilog .latin-line {
+    font-family: 'Cinzel', serif;
+    font-size:.88em;
+    letter-spacing:2px;
+    color: #4fc3d4 !important;
+    -webkit-text-fill-color: #4fc3d4 !important;
+    margin-bottom: 22px;
+    display:block;
+    opacity:.7;
+  }
+
+  .epilog .voice-block {
+    max-width: 680px;
+    margin: 0 auto 32px;
+    text-align: left;
+    padding: 24px 28px;
+    border-left: 2px solid;
+    border-radius: 0 10px 10px 0;
+    font-style: italic;
+    color: #a0b4c8 !important;
+    -webkit-text-fill-color: #a0b4c8 !important;
+    font-size:1.03em;
+    line-height:1.9;
+  }
+  .epilog .voice-block.teal   { border-color:#2a8a96; background:rgba(79,195,212,.03); }
+  .epilog .voice-block.crimson{ border-color:#8a1a1a;  background:rgba(200,64,64,.03); }
+  .epilog .voice-block.gold   { border-color:#7a4a10;    background:rgba(232,201,122,.03); }
+
+  .epilog .voice-label {
+    font-family: 'Cinzel', serif;
+    font-size:.7em;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:10px;
+    font-style:normal;
+  }
+  .teal  .voice-label  { color:#4fc3d4 !important; -webkit-text-fill-color:#4fc3d4 !important; }
+  .crimson .voice-label{ color:#e08080 !important; -webkit-text-fill-color:#e08080 !important; }
+  .gold .voice-label   { color:#e8c97a !important; -webkit-text-fill-color:#e8c97a !important; }
+
+  .epilog .closing {
+    margin-top: 50px;
+    font-style: normal;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.15em;
+    color: #c0ccd8 !important;
+    -webkit-text-fill-color: #c0ccd8 !important;
+    line-height: 2;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+    position:relative;
+  }
+
+  .divider-cosmic-sm {
+    width: 100px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--cyan), transparent);
+    margin: 36px auto;
+  }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position:fixed; bottom:28px; right:28px;
+    width:48px; height:48px;
+    background: linear-gradient(135deg, var(--cyan2), var(--cyan));
+    color: #070a0f;
+    font-size:1.2em; font-weight:700;
+    border:none; border-radius:50%;
+    cursor:pointer; display:none; align-items:center; justify-content:center;
+    box-shadow:0 4px 24px rgba(79,195,212,.3);
+    transition:transform .2s;
+    z-index:999;
+  }
+  #scrollTop:hover { transform:scale(1.1); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:640px){
+    .header { padding:70px 20px 60px; }
+    .ayat-section, .penutup, .epilog { padding:32px 20px; }
+    .container { padding:30px 14px 60px; }
+    .group-header { margin: 40px 0 20px; }
+  }
+
+  /* GLOBAL VISIBILITY OVERRIDE */
+  body, p, div, span, h1, h2, h3, h4, li, blockquote {
+    -webkit-text-fill-color: unset;
+  }
+  .epilog p, .epilog .closing, .voice-block, .langkah p,
+  .intisari, .relevance-box p, .ayat-section p, .translation,
+  .tagline, .penutup p {
+    color: inherit !important;
+    -webkit-text-fill-color: currentColor !important;
+  }
+
+  /* ═══ NUCLEAR TEXT VISIBILITY ═══ */
+  .ayat-section p, .ayat-section li, .ayat-section span:not(.ayat-badge):not(.energi-chip),
+  .penutup p, .epilog p, .epilog .closing, .voice-block,
+  .intisari, .langkah p, .relevance-box p, .translation {
+    color: #c0ccd8 !important;
+    -webkit-text-fill-color: #c0ccd8 !important;
+    background: none !important;
+    background-clip: unset !important;
+    -webkit-background-clip: unset !important;
+  }
+  .ayat-section strong, .penutup strong, .epilog strong { 
+    color: #e8c97a !important; 
+    -webkit-text-fill-color: #e8c97a !important; 
+  }
+  .ayat-section em, .penutup em, .epilog em { 
+    color: #a0b8c8 !important; 
+    -webkit-text-fill-color: #a0b8c8 !important; 
+  }
+  .translation {
+    color: #6a7a90 !important;
+    -webkit-text-fill-color: #6a7a90 !important;
+    font-style: italic !important;
+  }
+  .voice-block {
+    color: #a0b4c8 !important;
+    -webkit-text-fill-color: #a0b4c8 !important;
+  }
+  .epilog .closing {
+    color: #c0ccd8 !important;
+    -webkit-text-fill-color: #c0ccd8 !important;
+  }
+  .langkah p {
+    color: #c0ccd8 !important;
+    -webkit-text-fill-color: #c0ccd8 !important;
+  }
+  .lnum {
+    color: #4fc3d4 !important;
+    -webkit-text-fill-color: #4fc3d4 !important;
+  }
+  .header-meta { color: #6a7a90 !important; -webkit-text-fill-color: #6a7a90 !important; }
+  .header-meta span { color: #4fc3d4 !important; -webkit-text-fill-color: #4fc3d4 !important; }
+  .tagline { color: #b0c0d8 !important; -webkit-text-fill-color: #b0c0d8 !important; }
+  .header-sub { color: #6a7a90 !important; -webkit-text-fill-color: #6a7a90 !important; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <h1 class="gold">At-Takwir</h1>
+  <p class="header-sub">Surat 81 · 29 Ayat · Makkiyyah</p>
+  <div class="divider-cosmic"></div>
+  <p class="tagline">Sebelum hari kiamat menutup sistem semesta, ia membuat kita bertanya lebih dulu: <em>sudahkah kita hidup dengan sadar, atau hanya menjadi penonton di drama yang tak pernah kita mengerti?</em></p>
+  <p class="header-meta">Tema Besar: <span>Ketika Langit Operating System Mulai Dimatikan</span></p>
+</div>
+
+<div class="container">
+
+  <!-- ═══════════════════════════════════════════════
+       KELOMPOK 1: COSMIC SHUTDOWN (Ayat 1–7)
+  ═══════════════════════════════════════════════ -->
+  <div class="group-header">
+    <div class="group-label teal">Bagian Pertama · Ayat 1–7</div>
+  </div>
+  <div style="margin-bottom:28px; padding:0 4px;">
+    <p style="color:#6a7a90; font-style:italic; font-size:.95em;">Gambaran kosmik: semua sistem alam semesta yang kita anggap permanen mulai dipadamkan satu per satu.</p>
+  </div>
+
+  <!-- AYAT 1 -->
+  <div class="ayat-section teal">
+    <div class="ayat-number">
+      <div class="ayat-badge">١</div>
+      <span class="cyan-text">Ayat Pertama</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">إِذَا ٱلشَّمۡسُ كُوِّرَتۡ</div>
+    </div>
+    <p class="translation">"Apabila matahari digulung."</p>
+
+    <h2 class="section-title cyan-text">Energi Kata</h2>
+
+    <div class="energi-chip">كُوِّرَتۡ — DIGULUNG / DIKUBUR CAHAYANYA</div>
+    <p>Akar kata <em>kawwara</em> berasal dari gambaran menggulung surban — melipatnya rapi, mengakhiri fungsinya. Ini bukan ledakan dramatis, ini adalah <strong>penutupan terstruktur</strong>. Matahari tidak hancur berantakan; ia dipadamkan dengan cara yang teratur, seperti sistem yang di-shutdown dari dalam, bukan dirusak dari luar.</p>
+    <p>Sinonim: <em>inkasat</em> (redup perlahan), <em>akhmadat</em> (dipadamkan). Tapi <em>kuwwirat</em> lebih kuat — ia mengandung makna penggulungan yang tuntas, tidak meninggalkan sisa cahaya.</p>
+
+    <h2 class="section-title cyan-text">Tafsir Mendalam</h2>
+    <p>Matahari adalah referensi paling fundamental manusia untuk waktu, arah, musim, kehidupan tanaman, dan peradaban. Peradaban pertanian, navigasi laut, arsitektur kuno, kalender — semuanya dibangun di atas asumsi bahwa matahari akan selalu terbit. Ketika ayat pertama langsung menohok dengan "matahari digulung", Al-Quran sedang menyatakan sesuatu yang lebih dari sekadar fakta eskatologis: ia mempertanyakan semua yang kita jadikan fondasi.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup dalam peradaban yang membangun kepercayaan di atas <strong>kestabilan yang dianggap permanen</strong>. Pasar saham pasti akan selalu bisa diakses besok. Teknologi yang kita andalkan akan terus berjalan. Kesehatan yang kita miliki akan terus bertahan. Hubungan yang kita punya akan selalu ada.</p>
+      <p>Ayat ini adalah reset button bagi kesadaran kita: <em>apa yang kamu andalkan sebagai "matahari" dalam hidupmu — dan sudahkah kamu mempersiapkan diri jika suatu hari ia digulung?</em> Bukan untuk membuat kita paranoid, tapi agar kita tidak membangun seluruh hidup di atas sesuatu yang bersifat sementara.</p>
+      <p><strong>Contoh 1:</strong> Seorang karyawan yang seluruh rasa amannya bergantung pada satu perusahaan — ketika PHK massal terjadi, "matahari"nya digulung dalam semalam. <strong>Contoh 2:</strong> Seseorang yang kebahagiaannya sepenuhnya bersumber dari satu hubungan — ketika hubungan itu berakhir, hidupnya terasa berhenti total.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Yang terasa paling permanen justru yang paling perlu kita pertanyakan. Bukan untuk tidak mempercayainya, tapi agar kita tidak menjadikannya satu-satunya fondasi. Matahari digulung — dan kita baru sadar betapa banyak yang kita sandarkan padanya tanpa pernah berterima kasih, tanpa pernah mempertimbangkan alternatif, tanpa pernah menengok kepada Sang Pemilik Cahaya itu sendiri.
+    </div>
+  </div>
+
+  <!-- AYAT 2 -->
+  <div class="ayat-section teal">
+    <div class="ayat-number">
+      <div class="ayat-badge">٢</div>
+      <span class="cyan-text">Ayat Kedua</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَإِذَا ٱلنُّجُومُ ٱنكَدَرَتۡ</div>
+    </div>
+    <p class="translation">"Dan apabila bintang-bintang berjatuhan."</p>
+
+    <h2 class="section-title cyan-text">Energi Kata</h2>
+
+    <div class="energi-chip">ٱنكَدَرَتۡ — BERJATUHAN / MEMUDAR DAN GUGUR</div>
+    <p>Dari akar <em>kadara</em> yang berarti keruh, mendung, tidak lagi jernih. Kata ini memiliki dua lapisan: pertama, cahayanya memudar menjadi keruh; kedua, ia jatuh dari tempatnya. Bintang-bintang tidak sekadar padam — mereka kehilangan tempat dan fungsinya sekaligus.</p>
+    <p>Selama ribuan tahun, bintang adalah <em>GPS</em> para pelaut dan kafilah gurun. Ketika bintang jatuh, sistem navigasi peradaban manusia ikut runtuh bersama mereka.</p>
+
+    <h2 class="section-title cyan-text">Tafsir Mendalam</h2>
+    <p>Bintang adalah simbol panduan — sesuatu yang kita jadikan titik orientasi ketika gelap. Dalam budaya Arab, bintang adalah ilmu praktis: nama-nama bintang dihafal, posisinya dipelajari, maknanya ditafsirkan. Ketika bintang berjatuhan, bukan hanya langit yang kosong — seluruh sistem orientasi manusia ikut hilang.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita masing-masing punya "bintang panduan" dalam hidup — sesuatu yang kita gunakan sebagai referensi arah. Bisa berupa tokoh yang kita idolakan, ideologi yang kita pegang, atau sistem kepercayaan yang kita ikuti.</p>
+      <p><strong>Contoh 1:</strong> Ketika seorang mentor atau figur panutan tiba-tiba melakukan sesuatu yang mengecewakan, "bintang panduan" kita jatuh — dan banyak yang tidak tahu harus menghadap ke mana. <strong>Contoh 2:</strong> Ketika sistem ideologi atau gerakan yang kita percaya mulai retak dari dalam, orientasi hidup kita ikut goyah. Ayat ini mengingatkan: <em>panduan yang sejati tidak akan pernah jatuh.</em></p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Semua sistem navigasi buatan manusia — termasuk tokoh, ideologi, dan institusi — suatu hari akan mengalami keruntuhan. Yang tidak akan pernah jatuh adalah panduan yang berasal dari Yang menciptakan bintang-bintang itu sendiri. Saat bintang demi bintang mulai padam, hanya mereka yang orientasinya tertanam ke dalam — bukan ke langit yang fana — yang akan tetap tahu ke mana melangkah.
+    </div>
+  </div>
+
+  <!-- AYAT 3 -->
+  <div class="ayat-section teal">
+    <div class="ayat-number">
+      <div class="ayat-badge">٣</div>
+      <span class="cyan-text">Ayat Ketiga</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَإِذَا ٱلۡجِبَالُ سُيِّرَتۡ</div>
+    </div>
+    <p class="translation">"Dan apabila gunung-gunung dihancurkan."</p>
+
+    <h2 class="section-title cyan-text">Energi Kata</h2>
+
+    <div class="energi-chip">سُيِّرَتۡ — DIGERAKKAN / DILENYAPKAN KEBERADAANNYA</div>
+    <p>Kata <em>suyyirat</em> dari akar <em>saara</em> berarti bergerak, berjalan, dilenyapkan. Gunung tidak meledak — ia <strong>digerakkan seolah berjalan</strong>, kemudian lenyap. Al-Quran di tempat lain menggambarkan gunung seperti awan yang berjalan (27:88). Ini lebih menggetarkan dari ledakan: sesuatu yang masif dan kokoh, bergerak seperti ia ringan.</p>
+
+    <h2 class="section-title cyan-text">Tafsir Mendalam</h2>
+    <p>Gunung adalah simbol universal keteguhan dan permanen. Dalam budaya mana pun, gunung dipakai sebagai metafora stabilitas: "sekokoh gunung", "tidak bergeming seperti gunung". Ketika gunung dilenyapkan, Al-Quran sedang mengatakan bahwa tidak ada satu simbol permanen pun yang benar-benar permanen.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p><strong>Contoh 1:</strong> Institusi yang tampak "terlalu besar untuk jatuh" — bank, pemerintahan, perusahaan raksasa — berulang kali terbukti bisa runtuh dalam hitungan hari. <strong>Contoh 2:</strong> Keyakinan yang kita pegang "sekokoh gunung" tentang diri kita sendiri — "aku tidak akan pernah bisa memaafkan orang itu", "aku tidak akan pernah berubah" — terbukti bisa digerakkan oleh satu peristiwa yang tepat, satu pertemuan yang mengubah perspektif.</p>
+      <p>Gunung dihancurkan bukan untuk menakut-nakuti kita, tapi untuk membebaskan kita dari ilusi bahwa ada yang benar-benar abadi di dunia ini selain Dia yang menggerakkan gunung tersebut.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Gunung yang digerakkan bukan hanya fenomena akhir zaman — ia adalah pengingat yang bekerja sekarang: apa pun yang kamu anggap "terlalu kokoh untuk bergerak" sudah memiliki batas waktunya. Yang membuatmu tetap berdiri bukan fondasi fisik yang kokoh, tapi kepercayaan pada Dia yang tidak pernah memerlukan fondasi apa pun untuk tetap ada.
+    </div>
+  </div>
+
+  <!-- AYAT 4 -->
+  <div class="ayat-section teal">
+    <div class="ayat-number">
+      <div class="ayat-badge">٤</div>
+      <span class="cyan-text">Ayat Keempat</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَإِذَا ٱلۡعِشَارُ عُطِّلَتۡ</div>
+    </div>
+    <p class="translation">"Dan apabila unta-unta bunting ditinggalkan."</p>
+
+    <h2 class="section-title cyan-text">Energi Kata</h2>
+
+    <div class="energi-chip">ٱلۡعِشَارُ — UNTA BUNTING SEPULUH BULAN</div>
+    <div class="energi-chip">عُطِّلَتۡ — DIABAIKAN / DITELANTARKAN</div>
+    <p><em>Al-'isyar</em> adalah unta betina yang sedang bunting sepuluh bulan — harta paling berharga dalam kebudayaan Arab. Unta bunting tidak hanya berharga secara material; ia adalah simbol harapan, masa depan, kelangsungan hidup suku. <em>Uththilat</em>: ditelantarkan, tidak diurus, dibiarkan pergi.</p>
+
+    <h2 class="section-title cyan-text">Tafsir Mendalam</h2>
+    <p>Bayangkan: harta yang paling kamu jaga, investasi terbesar dalam hidupmu, sesuatu yang kamu rawat dengan sangat hati-hati — tiba-tiba ditinggalkan begitu saja. Bukan dicuri, bukan dirampas — tapi <em>kamu sendiri yang tidak lagi peduli</em>. Mengapa? Karena ada yang jauh lebih besar yang sedang terjadi sehingga harta terindah pun menjadi tidak relevan.</p>
+    <p>Ini adalah gambaran psikologis yang luar biasa: ketika dahsyatnya Hari Kiamat membuat semua prioritas dunia secara otomatis luruh dari genggaman.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p><strong>Contoh 1:</strong> Orang yang sedang sangat sakit atau kehilangan orang yang dicintai tiba-tiba tidak peduli lagi dengan proyek, karir, atau konten media sosialnya — sesuatu yang sebelumnya terasa sangat penting. Perspektif besar otomatis meluluhlantakkan skala prioritas kecil. <strong>Contoh 2:</strong> Di tengah bencana, orang meninggalkan rumah mewah dan mobil mahalnya tanpa menoleh — karena ancaman yang lebih besar membuat semua itu tidak berarti.</p>
+      <p>Ayat ini mengingatkan: <em>kita sering terlalu terikat pada "unta bunting" kita hari ini.</em> Apa harta atau obsesi yang jika hari ini ada sesuatu yang jauh lebih penting, akan langsung kita tinggalkan?</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Manusia tidak pernah benar-benar menguasai prioritasnya sampai sesuatu yang besar mengguncang hidupnya. Yang selama ini tampak urgent ternyata hanya mendesak karena tidak ada yang lebih penting. Hari Kiamat adalah saat ketika seluruh skala prioritas manusia direkonstruksi ulang secara paksa — dan ayat ini mengundang kita untuk melakukan rekonstruksi itu sekarang, sebelum dipaksa.
+    </div>
+  </div>
+
+  <!-- AYAT 5 -->
+  <div class="ayat-section teal">
+    <div class="ayat-number">
+      <div class="ayat-badge">٥</div>
+      <span class="cyan-text">Ayat Kelima</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَإِذَا ٱلۡوُحُوشُ حُشِرَتۡ</div>
+    </div>
+    <p class="translation">"Dan apabila binatang-binatang liar dikumpulkan."</p>
+
+    <h2 class="section-title cyan-text">Energi Kata</h2>
+
+    <div class="energi-chip">ٱلۡوُحُوشُ — BINATANG BUAS / YANG LIAR DAN SOLITER</div>
+    <div class="energi-chip">حُشِرَتۡ — DIKUMPULKAN / DIHIMPUN BERSAMA</div>
+    <p><em>Al-wuhusyh</em> adalah hewan liar yang secara naluri menghindari satu sama lain — serigala dan rusa, elang dan kelinci. <em>Hushirat</em>: dikumpulkan paksa ke satu tempat. Hewan yang biasanya saling memangsa, kini berdiri berdampingan — bukan karena kedamaian telah tiba, tapi karena ketakutan kosmik mengalahkan instingt predator mereka.</p>
+
+    <h2 class="section-title cyan-text">Tafsir Mendalam</h2>
+    <p>Ini adalah gambaran yang sangat psikologis: ketika ancaman cukup besar, bahkan musuh bebuyutan pun bisa berdiri di sisi yang sama. Hukum rimba — siapa kuat dialah yang menang — sepenuhnya runtuh. Yang tersisa hanya satu realitas: semua makhluk, kuat dan lemah, predator dan mangsa, tunduk pada kuasa yang sama.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p><strong>Contoh 1:</strong> Dalam bencana besar — tsunami, gempa, pandemi — sekat kelas sosial, suku, dan status seketika runtuh. Yang kaya dan miskin mengungsi di tenda yang sama. Persaingan bisnis tidak relevan lagi. <strong>Contoh 2:</strong> Ketika dua perusahaan raksasa yang biasanya saling berperang harga terpaksa berkolaborasi dalam krisis industri — "predator" dan "mangsa" berdiri di tempat yang sama karena ancaman eksternal lebih besar dari persaingan internal mereka.</p>
+      <p>Ayat ini mengingatkan kita tentang kesetaraan fundamental semua makhluk di hadapan Sang Pencipta: <em>ketika sistem kosmik dimatikan, tidak ada lagi hierarki duniawi yang relevan.</em></p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Ego kita baru benar-benar menyerah ketika bertemu dengan sesuatu yang jauh lebih besar dari dirinya. Bukan karena kita lemah, tapi karena ada satu kuasa yang membuat semua kekuatan relatif menjadi setara. Di hari ketika binatang buas pun berkumpul dalam ketundukan yang sama, manusia yang paling berkuasa sekalipun akan menyadari: selama ini mereka hanya "binatang buas" yang belum bertemu ancaman yang cukup besar.
+    </div>
+  </div>
+
+  <!-- AYAT 6 -->
+  <div class="ayat-section teal">
+    <div class="ayat-number">
+      <div class="ayat-badge">٦</div>
+      <span class="cyan-text">Ayat Keenam</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَإِذَا ٱلۡبِحَارُ سُجِّرَتۡ</div>
+    </div>
+    <p class="translation">"Dan apabila lautan dipanaskan/meluap."</p>
+
+    <h2 class="section-title cyan-text">Energi Kata</h2>
+
+    <div class="energi-chip">سُجِّرَتۡ — DINYALAKAN / DIJEBOL HINGGA MELUAP</div>
+    <p>Kata <em>sujjirat</em> memiliki dua tafsir utama: <strong>(1)</strong> lautan dijadikan menyala seperti api — air berubah menjadi lautan api; atau <strong>(2)</strong> lautan meluap hingga menjadi satu samudra raksasa karena sekat-sekat dasar laut hancur. Kedua tafsir menggambarkan hal yang sama: sesuatu yang biasanya menjadi pemisah dan batas — lautan — justru menjadi bencana itu sendiri.</p>
+
+    <h2 class="section-title cyan-text">Tafsir Mendalam</h2>
+    <p>Lautan dalam peradaban manusia adalah perbatasan, sekaligus penghubung. Ia membatasi, tapi juga menghubungkan. Ketika lautan "dinyalakan" atau "meluap", bukan hanya fisiknya yang berubah — seluruh sistem pemisahan dan penghubungan dunia runtuh. Tidak ada lagi batas antar wilayah, tidak ada lagi "di sini" dan "di sana".</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p><strong>Contoh 1:</strong> Internet sebagai "lautan digital" — pada awalnya menjanjikan kebebasan dan koneksi tanpa batas, kini dalam banyak konteks justru menjadi sumber kebakaran informasi yang tidak bisa dipadamkan: disinformasi, kebencian, dan kecanduan yang menyala tidak terkendali. <strong>Contoh 2:</strong> Perubahan iklim sedang mengubah lautan dari batas pelindung menjadi ancaman nyata — gletser mencair, permukaan laut naik, ekosistem pesisir terancam. Yang seharusnya menjaga justru mulai mengancam.</p>
+      <p>Ini mengundang refleksi: <em>apa "lautan" dalam hidupmu yang seharusnya menjadi batas pelindung, tapi mulai dinyalakan oleh pilihan-pilihan yang kamu buat?</em></p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Yang paling berbahaya bukan api yang menyala di darat — tapi lautan yang mulai terbakar. Ketika penyangga justru menjadi ancaman, ketika batas justru runtuh, ketika sistem yang seharusnya melindungi justru meluap tak terkendali — itulah tanda bahwa sesuatu yang fundamental telah bergeser dari tempatnya. Dan pergeseran itu selalu dimulai jauh sebelum terlihat.
+    </div>
+  </div>
+
+  <!-- AYAT 7 -->
+  <div class="ayat-section teal">
+    <div class="ayat-number">
+      <div class="ayat-badge">٧</div>
+      <span class="cyan-text">Ayat Ketujuh</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَإِذَا ٱلنُّفُوسُ زُوِّجَتۡ</div>
+    </div>
+    <p class="translation">"Dan apabila jiwa-jiwa dipertemukan (dengan pasangan golongannya)."</p>
+
+    <h2 class="section-title cyan-text">Energi Kata</h2>
+
+    <div class="energi-chip">ٱلنُّفُوسُ — JIWA-JIWA / DIRI YANG PALING DALAM</div>
+    <div class="energi-chip">زُوِّجَتۡ — DIPASANGKAN / DIKUMPULKAN BERSAMA JENISNYA</div>
+    <p><em>Zuwwijat</em> bukan hanya "dipertemukan dengan pasangan romantis" — tapi <em>dikumpulkan bersama golongan yang serupa</em>. Jiwa yang serupa dikumpulkan: yang beriman bersama yang beriman, yang lalai bersama yang lalai, yang zalim bersama yang zalim. Ini adalah ayat tentang <strong>seleksi alami akhirat</strong>.</p>
+
+    <h2 class="section-title cyan-text">Tafsir Mendalam</h2>
+    <p>Dunia memungkinkan pencampuran yang tidak alami: orang baik dan jahat bisa bekerja di perusahaan yang sama, tinggal di lingkungan yang sama, bahkan tampak serupa dari luar. Tapi di hari itu, yang tersembunyi menjadi jelas — dan semua jiwa menemukan "pasangan golongannya" secara otomatis, berdasarkan apa yang benar-benar ada di dalam, bukan tampilan luarnya.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p><strong>Contoh 1:</strong> Filter bubble di media sosial sudah mulai melakukan "zuwwijat" versi digital — algoritma mengumpulkan kita bersama orang-orang yang pikiran, keyakinan, dan kecenderungannya serupa. Ruang gema (echo chamber) ini adalah bayangan kecil dari penggolongan jiwa yang lebih besar. <strong>Contoh 2:</strong> Lingkungan pergaulan jangka panjang cenderung memilih sendiri — tanpa disengaja, kita akhirnya benar-benar "dipasangkan" dengan orang-orang yang frekuensinya sama dengan kita. Nilai-nilai yang kita pegang menentukan siapa yang bertahan di sekitar kita.</p>
+      <p>Pertanyaan reflektif: <em>jika hari ini jiwamu "dipasangkan" dengan golongan yang benar-benar mencerminkan dirimu, bersama siapa kamu akan dikumpulkan?</em></p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kita tidak bisa selamanya menjadi satu hal di dalam dan hal lain di luar. Pada akhirnya, jiwa menemukan golongannya — bukan berdasarkan pengakuan, bukan berdasarkan jabatan spiritual, bukan berdasarkan penampilan — tapi berdasarkan apa yang benar-benar tersimpan di dalam. Hari kiamat bukan tentang pengadilan yang menilai penampilan; ia adalah momen ketika identitas sejati setiap jiwa akhirnya tidak bisa lagi disembunyikan.
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       KELOMPOK 2: KEADILAN YANG TERTUNDA (Ayat 8–14)
+  ═══════════════════════════════════════════════ -->
+  <div class="group-header">
+    <div class="group-label crimson">Bagian Kedua · Ayat 8–14</div>
+  </div>
+  <div style="margin-bottom:28px; padding:0 4px;">
+    <p style="color:#6a7a90; font-style:italic; font-size:.95em;">Keadilan-keadilan yang ditunda di dunia akhirnya diselesaikan — termasuk dosa-dosa yang paling dianggap "kecil".</p>
+  </div>
+
+  <!-- AYAT 8-9 -->
+  <div class="ayat-section crimson">
+    <div class="ayat-number">
+      <div class="ayat-badge">٨–٩</div>
+      <span class="crimson-text">Ayat Kedelapan–Kesembilan</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَإِذَا ٱلۡمَوۡءُودَةُ سُئِلَتۡ ۝ بِأَيِّ ذَنۢبٍ قُتِلَتۡ</div>
+    </div>
+    <p class="translation">"Dan apabila bayi perempuan yang dikubur hidup-hidup ditanya, (dengan dosa apa ia dibunuh?)"</p>
+
+    <h2 class="section-title crimson-text">Energi Kata</h2>
+
+    <div class="energi-chip">ٱلۡمَوۡءُودَةُ — YANG DIKUBUR HIDUP-HIDUP</div>
+    <p>Dari akar <em>wa'ada</em> — menimpa dengan beban berat hingga mati. Secara historis, ini merujuk pada praktik Arab Jahiliyah mengubur bayi perempuan hidup-hidup karena dianggap membawa aib. Tapi yang membuat ayat ini mengguncang adalah: <strong>yang ditanya bukan pelakunya, tapi korbannya</strong>. Allah tidak bertanya pada si pembunuh — Dia bertanya pada si bayi: "Dengan dosa apa kamu dibunuh?" Sebuah retorika yang menanggung amarah dan kasih sayang sekaligus.</p>
+
+    <h2 class="section-title crimson-text">Tafsir Mendalam</h2>
+    <p>Ini adalah ayat yang paling menohok dalam urutan surat ini. Di tengah gambaran kosmik yang megah — matahari padam, gunung bergerak, lautan terbakar — tiba-tiba Al-Quran berhenti pada satu sosok kecil yang paling tidak berdaya: seorang bayi perempuan. Dan seluruh semesta berhenti untuk mendengar pertanyaan itu.</p>
+    <p>Ini adalah pernyataan nilai yang sangat tegas: di hadapan Allah, satu jiwa yang paling kecil dan tidak berdaya sekalipun memiliki berat yang sama dengan fenomena kosmik. Bahkan lebih: semesta bisa dihancurkan, tapi satu jiwa yang terzalimi tidak akan pernah dilupakan.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Praktik mengubur bayi perempuan mungkin sudah tidak ada, tapi versi modernnya masih hidup dalam bentuk lain: <strong>Contoh 1:</strong> Kekerasan pada anak-anak yang tidak berdaya — di rumah, di institusi, di sistem yang seharusnya melindungi — sering tidak mendapat pertanggungjawaban di dunia. Ayat ini menjamin: pertanyaan itu akan ditanyakan. <strong>Contoh 2:</strong> Setiap bentuk ketidakadilan yang "terlalu kecil untuk dilaporkan", setiap suara yang "terlalu lemah untuk didengar", setiap kezaliman yang lolos dari sistem hukum manusia — semuanya tersimpan dalam daftar yang akan dibuka di hari itu.</p>
+      <p>Ayat ini juga membuktikan bahwa Islam adalah agama yang pertama kali memberikan pernyataan tegas tentang hak perempuan — bukan sebagai wacana, tapi sebagai ayat yang dibacakan di hadapan seluruh umat.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Di hari ketika semesta digulung, pertanyaan terpenting yang Allah ajukan bukan tentang berapa banyak ibadahmu — tapi tentang berapa banyak jiwa yang terzalimi di sekitarmu sementara kamu diam. Satu bayi perempuan, satu suara terkecil, satu ketidakadilan yang dianggap terlalu kecil untuk dipedulikan — itu yang Allah angkat ke permukaan kosmik. Keadilan tidak pernah terlambat; ia hanya menunggu pengadilan yang tepat.
+    </div>
+  </div>
+
+  <!-- AYAT 10-11 -->
+  <div class="ayat-section crimson">
+    <div class="ayat-number">
+      <div class="ayat-badge">١٠–١١</div>
+      <span class="crimson-text">Ayat Kesepuluh–Kesebelas</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَإِذَا ٱلصُّحُفُ نُشِرَتۡ ۝ وَإِذَا ٱلسَّمَآءُ كُشِطَتۡ</div>
+    </div>
+    <p class="translation">"Dan apabila catatan-catatan (amal) dibuka, dan apabila langit dilenyapkan."</p>
+
+    <h2 class="section-title crimson-text">Energi Kata</h2>
+
+    <div class="energi-chip">ٱلصُّحُفُ نُشِرَتۡ — CATATAN DISEBARLUASKAN</div>
+    <div class="energi-chip">كُشِطَتۡ — DIKUPAS / DISINGKAPKAN SEPENUHNYA</div>
+    <p><em>Nushirat</em>: dibuka, disebarkan, dipublikasikan — bukan sekadar dibuka secara pribadi, tapi <em>disebarluaskan</em>. Bayangkan semua catatan hidupmu menjadi dokumen publik. <em>Kushitat</em>: dikupas seperti kulit dikupas dari daging, disingkapkan secara paksa hingga tidak ada yang tersisa tertutup.</p>
+
+    <h2 class="section-title crimson-text">Tafsir Mendalam</h2>
+    <p>Dua gambaran yang saling memperkuat: catatan amal dibuka untuk semua (transparansi total), dan langit dikupas (tidak ada lagi yang bisa menjadi "atap" perlindungan atau tempat bersembunyi). Privasi dalam artian "rahasia dari Tuhan" tidak pernah ada — tapi di dunia kita masih bisa menyembunyikan sesuatu dari sesama manusia. Di hari itu, kedua lapisan perlindungan itu sekaligus runtuh.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p><strong>Contoh 1:</strong> Era data dan digital membuat "nushirat" versi kecil sudah terjadi sekarang — email yang kita anggap pribadi tersimpan di server, percakapan yang kita anggap hilang tersimpan di cloud, jejak digital kita tersimpan lebih teliti dari ingatan kita sendiri. Ini adalah bayangan kecil dari catatan amal yang dibuka total. <strong>Contoh 2:</strong> Whistleblower dan investigasi jurnalistik berulang kali membuktikan bahwa rahasia yang dijaga bertahun-tahun bisa terbongkar dalam satu hari. "Langit" perlindungan reputasi seseorang dikupas dalam hitungan jam.</p>
+      <p>Pertanyaannya bukan "bisakah disembunyikan?" tapi "sudahkah kita hidup seolah catatan kita selalu terbuka?"</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kita membangun begitu banyak "langit" perlindungan: reputasi, narasi diri, riwayat yang dikurasi. Tapi semua itu adalah atap yang bisa dikupas. Yang benar-benar melindungi hanya satu: amal yang dikerjakan dengan jujur, bukan untuk dilihat manusia, justru karena tahu bahwa catatan itu sudah selalu terbuka di sisi Yang Maha Mengetahui.
+    </div>
+  </div>
+
+  <!-- AYAT 12-14 -->
+  <div class="ayat-section crimson">
+    <div class="ayat-number">
+      <div class="ayat-badge">١٢–١٤</div>
+      <span class="crimson-text">Ayat Keduabelas–Keempatbelas</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَإِذَا ٱلۡجَحِيمُ سُعِّرَتۡ ۝ وَإِذَا ٱلۡجَنَّةُ أُزۡلِفَتۡ ۝ عَلِمَتۡ نَفۡسٌ مَّآ أَحۡضَرَتۡ</div>
+    </div>
+    <p class="translation">"Dan apabila neraka Jahim dinyalakan, dan apabila surga didekatkan — maka setiap jiwa akan mengetahui apa yang telah ia hadirkan."</p>
+
+    <h2 class="section-title crimson-text">Energi Kata</h2>
+
+    <div class="energi-chip">سُعِّرَتۡ — DINYALAKAN SEHEBAT-HEBATNYA</div>
+    <div class="energi-chip">أُزۡلِفَتۡ — DIDEKATKAN / DIBAWA MENDEKAT</div>
+    <div class="energi-chip">أَحۡضَرَتۡ — APA YANG IA HADIRKAN / BAWA SERTA</div>
+    <p><em>Su'urat</em>: dinyalakan dengan nyala yang sempurna, tidak ada celah padam. <em>Uzlifat</em>: surga tidak harus "dicapai" — ia <em>didekatkan</em>, dibawa menghampiri. Dan klimaks dari seluruh rentetan gambaran kosmik ini adalah satu kalimat yang sangat personal: <em>'alimat nafsun ma ahdharat</em> — <strong>setiap jiwa akan tahu apa yang ia bawa serta</strong>.</p>
+
+    <h2 class="section-title crimson-text">Tafsir Mendalam</h2>
+    <p>Setelah dua belas gambaran kosmik yang megah — matahari, bintang, gunung, lautan, jiwa-jiwa — seluruh rentetan itu berakhir bukan dengan gambaran alam semesta, tapi dengan satu jiwa. Satu kata: <em>nafsun</em> — jiwa. Tunggal. Kamu. Semua kehancuran kosmik itu akhirnya mengerucut menjadi satu momen personal: tiap jiwa tahu apa yang ia bawa.</p>
+    <p>Dan kata <em>ahdharat</em> — "yang ia hadirkan" — sangat menarik. Kita tidak sekadar "dibawa ke pengadilan". Kita sendiri yang <em>menghadirkan</em> hasil amal kita. Kita adalah jaksa, sekaligus terdakwa, sekaligus saksi bagi diri sendiri.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p><strong>Contoh 1:</strong> Ketika seseorang menghadapi kematian atau diagnosis penyakit serius, yang pertama kali muncul di kepala bukan aset atau gelar — tapi pertanyaan "sudahkah aku hidup dengan benar?" Itu adalah <em>'alimat nafsun</em> versi kecil — jiwa mengetahui apa yang ia miliki. <strong>Contoh 2:</strong> Momen di mana seseorang menerima konsekuensi dari keputusan-keputusan hidupnya — entah berupa relasi yang hancur karena pengkhianatan, atau peluang yang tertutup karena pilihan yang salah — adalah saat jiwa "menghadirkan" hasil dari apa yang pernah ia tabur.</p>
+      <p>Kalimat terakhir ini adalah penutup yang paling menggetarkan: setelah semua dramaturgi kosmik, yang tersisa adalah kamu dan apa yang kamu bawa.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Surga tidak harus kamu kejar sampai nafas habis — ia didekatkan pada mereka yang layak. Dan neraka tidak harus dicari — ia sudah menyala. Yang menentukan adalah satu variabel: apa yang kamu hadirkan. Bukan apa yang kamu rencanakan. Bukan apa yang kamu niatkan tapi tidak dilakukan. Tapi apa yang benar-benar kamu bawa dalam genggaman saat hari itu tiba.
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       KELOMPOK 3: JIBRIL & KEPERCAYAAN (Ayat 15–25)
+  ═══════════════════════════════════════════════ -->
+  <div class="group-header">
+    <div class="group-label gold">Bagian Ketiga · Ayat 15–25</div>
+  </div>
+  <div style="margin-bottom:28px; padding:0 4px;">
+    <p style="color:#6a7a90; font-style:italic; font-size:.95em;">Pembuktian kebenaran Al-Quran dan sumber wahyu: siapa yang benar-benar berbicara?</p>
+  </div>
+
+  <!-- AYAT 15-18 -->
+  <div class="ayat-section gold-g">
+    <div class="ayat-number">
+      <div class="ayat-badge">١٥–١٨</div>
+      <span class="gold">Ayat 15–18</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">فَلَآ أُقۡسِمُ بِٱلۡخُنَّسِ ۝ ٱلۡجَوَارِ ٱلۡكُنَّسِ ۝ وَٱلَّيۡلِ إِذَا عَسۡعَسَ ۝ وَٱلصُّبۡحِ إِذَا تَنَفَّسَ</div>
+    </div>
+    <p class="translation">"Maka Aku bersumpah dengan bintang-bintang yang beredar dan bersembunyi, dengan malam saat ia berlalu, dan dengan fajar saat ia menghembuskan napasnya."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">ٱلۡخُنَّسِ — YANG BERSEMBUNYI / MUNDUR KE BALIK CAHAYA</div>
+    <div class="energi-chip">عَسۡعَسَ — MALAM YANG MULAI BERLALU</div>
+    <div class="energi-chip">تَنَفَّسَ — FAJAR YANG MENGHEMBUSKAN NAPAS</div>
+    <p><em>Al-khunnas</em>: planet-planet yang bergerak mundur dalam pandangan manusia (retrograde). <em>'As'asa</em>: malam yang mulai menarik diri, bergerak pergi. Dan yang paling indah: <em>tanaffasa</em> — fajar yang <strong>bernapas</strong>. Seolah fajar adalah makhluk hidup yang dengan lembut menghirup dan menghembuskan napas pertamanya.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Allah bersumpah — dan Dia tidak bersumpah sembarangan. Setiap sumpah dalam Al-Quran menunjuk pada sesuatu yang mengandung tanda. Di sini: bintang yang bersembunyi, malam yang berlalu, fajar yang bernapas. Ketiga sumpah ini memiliki kesamaan: <em>momen peralihan</em>. Bukan kondisi statis, tapi momen ketika sesuatu sedang berubah dari satu keadaan ke keadaan lain.</p>
+    <p>Peralihan adalah tanda — dan di dalam tanda-tanda peralihan itulah kebenaran wahyu hendak ditegakkan.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p><strong>Contoh 1:</strong> Ilmu astronomi modern membuktikan bahwa planet memang tampak "mundur" (retrograde) dari perspektif bumi — sesuatu yang ribuan tahun kemudian terbukti sebagai fenomena nyata, bukan mitologi. <strong>Contoh 2:</strong> Metafora "fajar yang bernapas" sangat relevan secara psikologis: dalam mindfulness dan meditasi, napas adalah titik fokus untuk kembali ke kesadaran. Al-Quran menggunakan metafora napas untuk menggambarkan kelahiran cahaya dari kegelapan — transisi yang paling fundamental dalam pengalaman manusia.</p>
+      <p>Setiap momen ketika kamu berada di titik peralihan — antara gelap dan terang, antara satu fase hidup dan fase berikutnya — itulah momen di mana sumpah Allah berlaku: <em>wahyu ini benar.</em></p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Allah bersumpah dengan momen-momen transisi — bukan kondisi puncak, bukan kondisi mapan. Fajar yang bernapas, bukan siang yang terang benderang. Malam yang berlalu, bukan kegelapan yang sempurna. Ini mengajarkan kita untuk menghormati momen-momen peralihan dalam hidup kita sendiri: ketika kita belum tiba tapi sudah tidak lagi di tempat lama — di situlah tanda-tanda kebenaran paling nyata terasa.
+    </div>
+  </div>
+
+  <!-- AYAT 19-21 -->
+  <div class="ayat-section gold-g">
+    <div class="ayat-number">
+      <div class="ayat-badge">١٩–٢١</div>
+      <span class="gold">Ayat 19–21</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">إِنَّهُۥ لَقَوۡلُ رَسُولٍ كَرِيمٍ ۝ ذِي قُوَّةٍ عِندَ ذِي ٱلۡعَرۡشِ مَكِينٍ ۝ مُّطَاعٍ ثَمَّ أَمِينٍ</div>
+    </div>
+    <p class="translation">"Sesungguhnya (Al-Quran) ini adalah firman yang dibawa oleh utusan yang mulia, yang memiliki kekuatan, berkedudukan tinggi di sisi Pemilik Arsy, yang ditaati di sana lagi terpercaya."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">كَرِيمٍ — MULIA / TERHORMAT DAN PEMURAH</div>
+    <div class="energi-chip">مَكِينٍ — BERKEDUDUKAN KUKUH / MEMILIKI TEMPAT YANG TEGUH</div>
+    <div class="energi-chip">أَمِينٍ — TERPERCAYA / TIDAK MENGUBAH SATU KATA PUN</div>
+    <p><em>Kariim</em>: mulia dalam karakter dan kedudukan. <em>Makiin</em>: bukan sekadar "dekat", tapi <em>berdiri kukuh</em> di posisi yang tidak bisa digoyahkan. <em>Amiin</em>: terpercaya secara absolut — Jibril tidak menambah, tidak mengurangi, tidak mengubah satu huruf pun dari wahyu yang disampaikannya.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Setelah serangkaian sumpah kosmik, Allah memberikan jaminan sumber: ini bukan kata-kata Muhammad yang dimanipulasi, bukan imajinasi, bukan syair penyair kesurupan. Ini adalah firman yang disampaikan oleh Jibril — malaikat yang paling dipercaya, yang kedudukannya tidak tergoyahkan, yang tidak pernah mengkhianati amanah satu pun dalam seluruh sejarah wahyu.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita hidup di era krisis kepercayaan: <em>siapa yang bisa dipercaya?</em> <strong>Contoh 1:</strong> Media, institusi, tokoh publik — semua pernah terbukti tidak sepenuhnya jujur. Algoritma yang memfilter informasi kita tidak netral. Narasi yang kita terima sudah melalui tangan banyak kepentingan. Di tengah kebisingan ini, ayat ini menegaskan: ada satu sumber yang rantai transmisinya sempurna. <strong>Contoh 2:</strong> Dalam dunia kerja, seseorang yang <em>amiin</em> — terpercaya, tidak membelokkan informasi untuk kepentingan sendiri — adalah aset yang sangat langka. Kejujuran dalam menyampaikan informasi adalah kualitas malaikat; kita dipanggil untuk mengusahakannya.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Di zaman di mana setiap informasi sudah difilter, diedit, dan dikurasi sebelum sampai ke kita, ada satu klaim radikal yang Al-Quran buat tentang dirinya: disampaikan oleh yang paling terpercaya, dari Sumber yang paling murni, tanpa satu huruf pun yang berubah dalam perjalanannya. Kepercayaan itu bukan soal buta — ia soal mengevaluasi kualitas rantai sumber secara jujur.
+    </div>
+  </div>
+
+  <!-- AYAT 22-25 -->
+  <div class="ayat-section gold-g">
+    <div class="ayat-number">
+      <div class="ayat-badge">٢٢–٢٥</div>
+      <span class="gold">Ayat 22–25</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">وَمَا صَاحِبُكُم بِمَجۡنُونٍ ۝ وَلَقَدۡ رَءَاهُ بِٱلۡأُفُقِ ٱلۡمُبِينِ ۝ وَمَا هُوَ عَلَى ٱلۡغَيۡبِ بِضَنِينٍ ۝ وَمَا هُوَ بِقَوۡلِ شَيۡطَٰنٍ رَّجِيمٍ</div>
+    </div>
+    <p class="translation">"Dan temanmu (Muhammad) bukanlah orang gila. Dan sungguh ia telah melihat Jibril di ufuk yang terang. Dan dia tidaklah bakhil dalam (menyampaikan) yang gaib. Dan (Al-Quran) ini bukanlah ucapan setan yang terkutuk."</p>
+
+    <h2 class="section-title gold">Energi Kata</h2>
+
+    <div class="energi-chip">بِضَنِينٍ — TIDAK BAKHIL / TIDAK MENYEMBUNYIKAN</div>
+    <p>Kata <em>dhaniin</em> — bakhil, pelit, menyembunyikan. Konstruksi negatifnya: Muhammad <em>tidak pelit</em> dalam menyampaikan wahyu. Ia tidak menyaring, tidak memilih mana yang "aman" untuk disampaikan, tidak menyimpan sebagian untuk dirinya sendiri. Semua yang diwahyukan, ia sampaikan — bahkan yang mengandung kritik pada dirinya sendiri.</p>
+
+    <h2 class="section-title gold">Tafsir Mendalam</h2>
+    <p>Empat pembelaan berturut-turut: bukan gila, melihat langsung dengan mata kepala, tidak menyembunyikan, bukan dari setan. Ini adalah respons atas tuduhan-tuduhan yang dilancarkan musuh Muhammad. Dan yang menarik: semua pembelaan ini bersifat <em>verifiable</em> — bisa diperiksa melalui karakter hidupnya, konsistensi ajarannya, dan integritas transmisinya.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p><strong>Contoh 1:</strong> Ketika seseorang menyampaikan kebenaran yang tidak nyaman, tuduhan "tidak waras" atau "ekstremis" adalah pola yang berulang sepanjang sejarah. Socrates dianggap merusak pemuda. Galileo dianggap sesat. Martin Luther King dianggap berbahaya. Pola ini mengajarkan kita untuk mengevaluasi ide berdasarkan argumen, bukan berdasarkan label. <strong>Contoh 2:</strong> Karakter "tidak bakhil dalam menyampaikan" adalah standar etika komunikasi yang tinggi — seorang dokter yang menyembunyikan diagnosis agar pasien tidak cemas, atau pemimpin yang menyaring informasi agar tim tidak panik, sedang melakukan bentuk kebakhilan informasi yang merugikan orang yang dipimpinnya.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kebenaran tidak membutuhkan rekayasa untuk terlihat benar. Yang benar pada akhirnya bisa diperiksa: dari konsistensinya, dari karakter pembawanya, dari dampak jangka panjangnya. Muhammad dibuktikan bukan gila — bukan dengan klaim, tapi dengan dua puluh tiga tahun hidup yang bisa diperiksa, disaksikan, dan diwariskan secara akurat.
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       KELOMPOK 4: KEHENDAK MANUSIA (Ayat 26–29)
+  ═══════════════════════════════════════════════ -->
+  <div class="group-header">
+    <div class="group-label teal">Bagian Keempat · Ayat 26–29</div>
+  </div>
+  <div style="margin-bottom:28px; padding:0 4px;">
+    <p style="color:#6a7a90; font-style:italic; font-size:.95em;">Penutup yang mempertanyakan kehendak manusia dan posisinya dalam kehendak Allah yang lebih besar.</p>
+  </div>
+
+  <!-- AYAT 26-29 -->
+  <div class="ayat-section teal">
+    <div class="ayat-number">
+      <div class="ayat-badge">٢٦–٢٩</div>
+      <span class="cyan-text">Ayat 26–29</span>
+    </div>
+
+    <div class="arabic-wrap">
+      <div class="arabic">فَأَيۡنَ تَذۡهَبُونَ ۝ إِنۡ هُوَ إِلَّا ذِكۡرٌ لِّلۡعَٰلَمِينَ ۝ لِمَن شَآءَ مِنكُمۡ أَن يَسۡتَقِيمَ ۝ وَمَا تَشَآءُونَ إِلَّآ أَن يَشَآءَ ٱللَّهُ رَبُّ ٱلۡعَٰلَمِينَ</div>
+    </div>
+    <p class="translation">"Maka ke mana kamu akan pergi? Ini tidak lain hanyalah peringatan bagi seluruh alam, bagi siapa di antara kamu yang mau berjalan lurus. Dan kamu tidak dapat berkehendak kecuali apabila dikehendaki Allah, Tuhan semesta alam."</p>
+
+    <h2 class="section-title cyan-text">Energi Kata</h2>
+
+    <div class="energi-chip">فَأَيۡنَ تَذۡهَبُونَ — MAKA KE MANA KALIAN AKAN PERGI?</div>
+    <div class="energi-chip">يَسۡتَقِيمَ — BERJALAN LURUS / MEMILIH ISTIQAMAH</div>
+    <p>Pertanyaan <em>fa-aina tadzhabun</em> adalah pertanyaan retoris yang sangat tajam — bukan tanya informasi, tapi tanya kesadaran. "Ke mana lagi kalian akan melarikan diri?" Setelah semua yang dijelaskan, setelah semua tanda yang ditunjukkan — ada di mana lagi tempat berpaling? <em>Yastaaqiim</em>: bukan sekadar "jalan benar", tapi memilih untuk lurus secara aktif dan terus-menerus.</p>
+
+    <h2 class="section-title cyan-text">Tafsir Mendalam</h2>
+    <p>Surat yang dibuka dengan gambaran kosmik yang menggetarkan ini ditutup dengan pertanyaan paling personal: <em>ke mana kamu akan pergi?</em> Seluruh drama alam semesta yang digulung, bintang yang jatuh, gunung yang lenyap, lautan yang terbakar — semua itu bermuara pada satu pertanyaan yang sederhana tapi tak bisa dijawab dengan kabur: mau ke mana?</p>
+    <p>Dan kemudian ayat terakhir menempatkan kehendak manusia dalam konteks yang benar: <em>kamu bisa memilih</em> — tapi pilihanmu sendiri adalah bagian dari kehendak Allah yang lebih besar. Ini bukan fatalis yang membuat manusia pasif, tapi fondasi yang membuatnya bebas tanpa sombong: kita memiliki kehendak nyata, tapi kehendak itu sendiri adalah anugerah yang bisa saja dicabut kapan saja.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p><strong>Contoh 1:</strong> Seseorang yang berulang kali mendengar "peringatan" — dari dokter tentang kesehatannya, dari orang-orang yang peduli tentang pilihan hidupnya — tapi terus menghindar, terus mencari pelarian. Pertanyaan "ke mana kamu akan pergi?" adalah pertanyaan yang perlu ditanyakan pada diri sendiri: dari apa sebenarnya aku lari? <strong>Contoh 2:</strong> Hubungan antara kehendak bebas dan takdir adalah pertanyaan filosofis yang terus diperdebatkan — tapi ayat ini memberikan jawaban yang sangat elegan: kamu memilih, dan pilihanmu nyata; tapi kemampuan untuk memilih itu sendiri bukan milikmu. Ini membuat kita serius dalam memilih, sekaligus rendah hati dalam menilai hasil.</p>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Setelah semua tanda diberikan, setelah semua bukti dihadirkan, setelah semua pertanyaan dijawab — yang tersisa adalah satu pilihan sederhana yang tidak bisa dikompromikan: mau istiqamah, atau terus mencari jalan melarikan diri? Dan kamu bebas memilih — tapi kebebasan itu sendiri adalah pemberian yang bisa dicabut kapan saja. Maka gunakanlah selagi masih ada.
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       PENUTUP
+  ═══════════════════════════════════════════════ -->
+  <div class="penutup">
+    <h2 class="section-title gold" style="margin-top:0; border-color: rgba(232,201,122,.2);">Refleksi: Pola yang Bisa Diambil dari At-Takwir</h2>
+
+    <div class="langkah">
+      <span class="lnum">Langkah 1 — Inventarisasi "Matahari" dalam Hidupmu</span>
+      <p>Identifikasi tiga hal yang paling kamu andalkan sebagai sumber rasa aman — entah itu pekerjaan, hubungan, kesehatan, atau reputasi. Bukan untuk melepaskannya, tapi untuk memastikan kamu tidak <em>hanya</em> bergantung padanya. Tanya: "Jika salah satunya digulung besok, apa yang tersisa?"</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">Langkah 2 — Audit Skala Prioritas</span>
+      <p>Buat dua kolom: "Yang terasa urgent sekarang" dan "Yang akan benar-benar berarti ketika catatan amal dibuka." Bandingkan. Seberapa banyak energimu hari ini masuk ke kolom pertama yang tidak akan masuk ke kolom kedua? Ini bukan untuk membuat kamu berhenti produktif — tapi untuk memastikan yang penting tidak terus-menerus dikalahkan oleh yang mendesak.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">Langkah 3 — Periksa Rantai Sumber Informasimu</span>
+      <p>Di era banjir informasi, terapkan prinsip <em>amiin</em>: sebelum meneruskan informasi, tanyakan — apakah sumbernya bisa diverifikasi? Apakah aku sedang menjadi penghubung yang jujur atau penghubung yang memperkeruh? Kejujuran dalam menyampaikan informasi adalah amal yang sering diremehkan tapi sangat berpengaruh.</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">Langkah 4 — Jawab Pertanyaan "Ke Mana Kamu Akan Pergi?"</span>
+      <p>Luangkan waktu untuk duduk dengan pertanyaan ini secara jujur: dari apa sebenarnya kamu lari dalam hidup ini? Bukan pertanyaan yang butuh jawaban langsung — tapi pertanyaan yang butuh ditemani. Karena banyak dari kita tidak tahu bahwa kita sedang lari, sampai kita berhenti sejenak untuk bertanya.</p>
+    </div>
+
+    <h2 class="section-title gold" style="border-color: rgba(232,201,122,.2);">Langkah Nyata</h2>
+
+    <div class="langkah">
+      <span class="lnum">Praktik Harian — "Napas Fajar"</span>
+      <p>Setiap pagi, sebelum membuka ponsel, beri dirimu satu menit untuk "bernapas seperti fajar" — transisi sadar dari tidur ke sadar, dari gelap ke terang. Gunakan momen itu untuk satu pertanyaan: <em>"Apa yang benar-benar akan aku hadirkan hari ini?"</em> bukan "apa yang akan aku selesaikan."</p>
+    </div>
+
+    <div class="langkah">
+      <span class="lnum">Praktik Mingguan — Evaluasi "Apa yang Aku Hadirkan"</span>
+      <p>Setiap akhir pekan, luangkan sepuluh menit untuk satu pertanyaan jujur: dari semua yang kamu lakukan minggu ini, apa yang benar-benar akan kamu <em>hadirkan</em> — dalam arti meninggalkan jejak kebaikan yang nyata pada orang lain? Bukan produktivitas, bukan pencapaian — tapi apa yang kamu bawa serta.</p>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       EPILOG
+  ═══════════════════════════════════════════════ -->
+  <div class="epilog">
+    <h2 class="epilog-title gold">Ketika Semesta Dipadamkan, Yang Tersisa Adalah Kamu</h2>
+
+    <p>Ada sebuah paradoks di jantung At-Takwir yang mungkin belum pernah kamu sadari.</p>
+    <p>Surat ini membuka dengan gambaran terbesar yang bisa dibayangkan pikiran manusia: matahari digulung, bintang jatuh, gunung lenyap, lautan terbakar — skala yang melampaui seluruh kemampuan imajinasi kita untuk benar-benar merasakannya. Dan kemudian, setelah dua puluh delapan ayat keagungan kosmik, surat ini menutup dengan sesuatu yang paling kecil.</p>
+    <p>Satu jiwa. Satu kata: <em>nafsun</em>. Kamu.</p>
+
+    <span class="arabic-line">عَلِمَتۡ نَفۡسٌ مَّآ أَحۡضَرَتۡ</span>
+    <span class="latin-line">'ALIMAT NAFSUN MA AHDHARAT</span>
+
+    <p>Maka seluruh kegagahan kosmik itu — semua drama alam semesta yang digulung — pada akhirnya hanyalah panggung untuk satu momen paling pribadi yang pernah ada: <em>jiwa mengetahui apa yang ia bawa.</em></p>
+
+    <div class="divider-cosmic-sm"></div>
+
+    <div class="voice-block teal epilog">
+      <span class="voice-label">Untuk kamu yang merasa hidupmu terlalu biasa untuk berarti —</span>
+      Perhatikan: Allah tidak bersumpah dengan gunung yang kokoh atau samudra yang dalam. Dia bersumpah dengan fajar yang bernapas. Dengan malam yang berlalu. Dengan momen peralihan yang hampir tidak terlihat. Keagungan Allah justru dinyatakan dalam hal-hal yang kita anggap "biasa". Tidak ada hidup yang terlalu kecil untuk menjadi saksi kebenaran-Nya.
+    </div>
+
+    <div class="voice-block crimson epilog">
+      <span class="voice-label">Untuk kamu yang merasa kezaliman dalam hidupmu tidak pernah diperhatikan —</span>
+      Di hari ketika matahari digulung dan langit dikupas, Allah berhenti sejenak untuk menanyakan satu bayi perempuan yang dikubur hidup-hidup berabad-abad sebelumnya. Satu jiwa yang tidak punya nama dalam sejarah manusia. Satu ketidakadilan yang sudah terlupakan selama berabad-abad. Dan Allah bertanya: "Dengan dosa apa kamu dibunuh?" Tidak ada yang terlupakan. Tidak satu pun.
+    </div>
+
+    <div class="voice-block gold epilog">
+      <span class="voice-label">Untuk kamu yang merasa sudah terlalu jauh dan tidak tahu harus pergi ke mana —</span>
+      Pertanyaan "ke mana kamu akan pergi?" bukan tuduhan — ia adalah undangan untuk berhenti. Bukan karena tidak ada tempat untuk dituju, tapi karena saat kamu berhenti lari, kamu bisa akhirnya melihat bahwa pintunya sudah selalu ada di hadapanmu. Wahyu ini adalah "peringatan bagi seluruh alam" — artinya, ia juga untukmu. Terutama untukmu.
+    </div>
+
+    <div class="divider-cosmic-sm"></div>
+
+    <span class="arabic-line">لِمَن شَآءَ مِنكُمۡ أَن يَسۡتَقِيمَ</span>
+    <span class="latin-line">LIMAN SYAA'A MINKUM AN YASTAQIIM</span>
+
+    <p>Bagi siapa di antara kamu yang mau berjalan lurus.</p>
+    <p>Bukan yang sudah sempurna. Bukan yang tidak pernah jatuh. Bukan yang sudah selesai bergumul. Tapi yang <em>mau</em> — yang memilih untuk tetap menghadap ke arah yang benar, meskipun langkahnya masih tertatih, meskipun "matahari"nya masih sering digulung oleh cobaan, meskipun bintang panduannya sesekali terasa jatuh.</p>
+
+    <div class="closing">
+      At-Takwir tidak diturunkan untuk menakut-nakuti kita dengan kiamat.<br>
+      Ia diturunkan agar kita <strong class="cyan-text">terbangun</strong> — dari tidur panjang kehidupan yang kita jalani tanpa benar-benar hadir di dalamnya.<br><br>
+      Matahari akan digulung — tapi sebelum itu terjadi,<br>
+      <em>ia masih terbit untukmu hari ini.</em><br><br>
+      Fajar masih bernapas.<br>
+      Malam masih berlalu.<br>
+      Dan kamu — masih punya pilihan tentang apa yang akan kamu <strong class="gold">hadirkan.</strong>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.ayat-section').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>

@@ -1,0 +1,1129 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>'Abasa: Ketika Nilai Tidak Ditentukan oleh Tampilan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Palette: Tanah liat + tembaga tua + krem langit malam */
+    --clay1:   #c9784a;   /* tembaga hangat */
+    --clay2:   #e8a96b;   /* terakota muda */
+    --clay3:   #f5dfc0;   /* krem hangat */
+    --clay4:   #7a3e1a;   /* coklat dalam */
+    --sage:    #8fa68a;   /* hijau sage redup */
+    --sage2:   #c4d4bf;   /* sage terang */
+    --bg:      #080806;
+    --bg2:     #0f0e0b;
+    --bg3:     #141210;
+    --card:    #110f0d;
+    --border:  #2a2218;
+    --text:    #e8dcc8;
+    --muted:   #9a8a6a;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    font-family:'EB Garamond', Georgia, serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.95;
+    min-height:100vh;
+  }
+
+  /* ── GRADIENT TEKS TEMBAGA ── */
+  .clay {
+    background: linear-gradient(135deg, var(--clay4) 0%, var(--clay1) 35%, var(--clay2) 60%, var(--clay3) 80%, var(--clay1) 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+
+  .sage-text {
+    background: linear-gradient(135deg, #4a6644 0%, var(--sage) 50%, var(--sage2) 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position:relative;
+    padding:90px 40px 80px;
+    text-align:center;
+    overflow:hidden;
+    background: radial-gradient(ellipse at 50% -10%, #1a0f06 0%, #080806 65%);
+    border-bottom:1px solid #241a0e;
+  }
+
+  /* pola tanah retak — tekstur organik */
+  .header::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(ellipse 2px 2px at 20% 30%, rgba(201,120,74,.08) 0%, transparent 100%),
+      radial-gradient(ellipse 1px 3px at 60% 70%, rgba(201,120,74,.06) 0%, transparent 100%),
+      radial-gradient(ellipse 3px 1px at 80% 20%, rgba(201,120,74,.07) 0%, transparent 100%);
+    background-size:60px 60px, 90px 90px, 45px 45px;
+    animation:breathe 20s ease-in-out infinite alternate;
+    pointer-events:none;
+  }
+
+  /* cahaya redup dari atas */
+  .header::after {
+    content:'';
+    position:absolute;
+    top:-100px; left:50%; transform:translateX(-50%);
+    width:700px; height:350px;
+    background:radial-gradient(ellipse, rgba(150,90,40,.15) 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  @keyframes breathe {
+    from { opacity:.6; }
+    to   { opacity:1; }
+  }
+
+  .header-bismillah {
+    font-family:'Amiri', serif;
+    font-size:2.1em;
+    color:var(--clay2);
+    opacity:.65;
+    margin-bottom:28px;
+    letter-spacing:3px;
+    position:relative; z-index:1;
+    direction:rtl;
+  }
+
+  .header h1 {
+    font-family:'Cinzel', serif;
+    font-size:clamp(2.4em, 5.5vw, 3.8em);
+    font-weight:700;
+    line-height:1.15;
+    position:relative; z-index:1;
+    margin-bottom:6px;
+    letter-spacing:2px;
+  }
+
+  .header-sub {
+    font-size:.9em;
+    color:var(--muted);
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-family:'Cinzel', serif;
+    position:relative; z-index:1;
+    margin-bottom:32px;
+  }
+
+  .divider-clay {
+    width:140px; height:1px;
+    background:linear-gradient(to right, transparent, var(--clay1), var(--clay2), var(--clay1), transparent);
+    margin:22px auto;
+    position:relative; z-index:1;
+  }
+
+  /* ornamen titik di divider */
+  .divider-clay::after {
+    content:'◆';
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    font-size:.6em; color:var(--clay2);
+    background:var(--bg);
+    padding:0 8px;
+  }
+
+  .tagline {
+    font-style:italic;
+    font-size:1.15em;
+    color:#c8a888;
+    max-width:700px;
+    margin:0 auto;
+    position:relative; z-index:1;
+    line-height:1.75;
+  }
+
+  /* label surah */
+  .surah-context {
+    display:inline-block;
+    border:1px solid #3a2a18;
+    color:var(--muted);
+    font-size:.8em;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-family:'Cinzel',serif;
+    padding:6px 20px;
+    border-radius:2px;
+    margin-bottom:32px;
+    position:relative; z-index:1;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width:940px; margin:0 auto; padding:56px 24px 90px; }
+
+  /* ── INTRO KONTEKS ── */
+  .intro-konteks {
+    background:linear-gradient(160deg,#14110d,#0e0c09);
+    border:1px solid #2a2010;
+    border-top:2px solid var(--clay1);
+    border-radius:12px;
+    padding:40px 44px;
+    margin-bottom:56px;
+    opacity:0;
+    transform:translateY(20px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .intro-konteks.visible { opacity:1; transform:translateY(0); }
+
+  .intro-label {
+    font-family:'Cinzel',serif;
+    font-size:.75em;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    color:var(--clay1);
+    margin-bottom:16px;
+  }
+
+  /* ── KELOMPOK TEMATIK ── */
+  .tema-header {
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin:60px 0 28px;
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .tema-header.visible { opacity:1; transform:translateY(0); }
+
+  .tema-line {
+    flex:1; height:1px;
+    background:linear-gradient(to right, transparent, var(--clay4), transparent);
+  }
+
+  .tema-badge {
+    font-family:'Cinzel',serif;
+    font-size:.78em;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--clay1);
+    padding:8px 22px;
+    border:1px solid var(--clay4);
+    border-radius:2px;
+    white-space:nowrap;
+    background:linear-gradient(135deg,#14100a,#0e0c08);
+  }
+
+  /* ── AYAT SECTION ── */
+  .ayat-section {
+    position:relative;
+    background:linear-gradient(160deg,#131109,#0e0d0a);
+    border:1px solid #241c10;
+    border-left:3px solid var(--clay1);
+    border-radius:14px;
+    padding:50px 46px;
+    margin-bottom:36px;
+    box-shadow:0 4px 40px rgba(0,0,0,.55), inset 0 1px 0 rgba(200,140,80,.05);
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .7s ease, transform .7s ease, box-shadow .3s;
+  }
+  .ayat-section.visible { opacity:1; transform:translateY(0); }
+  .ayat-section:hover { box-shadow:0 8px 50px rgba(0,0,0,.75), 0 0 0 1px rgba(201,120,74,.1); }
+
+  /* variasi warna aksen per kelompok tematik */
+  .ayat-section.aksen-sage  { border-left-color: var(--sage); }
+  .ayat-section.aksen-clay2 { border-left-color: var(--clay2); }
+  .ayat-section.aksen-clay3 { border-left-color: #b08040; }
+
+  /* ornamen sudut */
+  .ayat-section::before {
+    content:'✦';
+    position:absolute; top:20px; right:24px;
+    color:var(--clay1); opacity:.2; font-size:1.3em;
+  }
+
+  /* ── NOMOR AYAT ── */
+  .ayat-number {
+    font-family:'Cinzel', serif;
+    font-size:1.4em;
+    font-weight:700;
+    margin-bottom:30px;
+    display:flex; align-items:center; gap:16px;
+  }
+  .ayat-number .num {
+    display:inline-block;
+    width:40px; height:40px; line-height:38px; text-align:center;
+    border:1px solid var(--clay1);
+    border-radius:3px;
+    font-size:.72em;
+    background:linear-gradient(135deg,#1e1408,#140e04);
+    color:var(--clay2);
+    flex-shrink:0;
+    font-family:'Amiri',serif;
+  }
+
+  /* ── JUDUL SECTION ── */
+  h2.section-title {
+    font-family:'Cinzel', serif;
+    font-size:1.1em;
+    font-weight:600;
+    margin:38px 0 16px;
+    padding-bottom:12px;
+    border-bottom:1px solid #241c10;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+  }
+
+  h3.sub-title {
+    font-family:'EB Garamond', serif;
+    font-size:1.08em;
+    font-weight:600;
+    font-style:italic;
+    margin:26px 0 10px;
+    color:var(--clay2);
+  }
+
+  /* ── ARABIC ── */
+  .arabic-wrap {
+    text-align:center;
+    margin:32px 0 10px;
+    padding:30px 24px;
+    background:radial-gradient(ellipse at center, #1c1308 0%, #0a0906 80%);
+    border-radius:10px;
+    border:1px solid #2e2010;
+    position:relative;
+  }
+  .arabic-wrap::before {
+    content:'';
+    position:absolute; inset:0;
+    border-radius:10px;
+    background:linear-gradient(180deg, rgba(201,120,74,.04) 0%, transparent 50%);
+    pointer-events:none;
+  }
+
+  .arabic {
+    font-family:'Amiri', 'Traditional Arabic', serif;
+    font-size:clamp(2.2em, 5.5vw, 3.4em);
+    line-height:2.1;
+    background:linear-gradient(135deg, var(--clay4) 0%, var(--clay1) 30%, var(--clay2) 55%, var(--clay3) 75%, var(--clay1) 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    direction:rtl;
+  }
+
+  .translation {
+    text-align:center;
+    font-style:italic;
+    color:var(--muted);
+    font-size:1.05em;
+    margin:10px 0 32px;
+    line-height:1.7;
+  }
+
+  /* ── CHIP KATA ── */
+  .kata-chip {
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(135deg,#1c1409,#241a0b);
+    border:1px solid var(--clay4);
+    color:var(--clay2);
+    padding:8px 20px;
+    border-radius:3px;
+    font-size:.9em;
+    font-weight:600;
+    margin:18px 0 10px;
+    letter-spacing:.5px;
+    font-family:'Cinzel',serif;
+  }
+  .kata-chip::before {
+    content:'◆';
+    font-size:.6em;
+    color:var(--clay1);
+  }
+
+  .kata-chip.sage {
+    border-color:#4a6644;
+    color:var(--sage2);
+    background:linear-gradient(135deg,#0e1409,#121a0e);
+  }
+  .kata-chip.sage::before { color:var(--sage); }
+
+  /* ── PARAGRAF ── */
+  p {
+    margin-bottom:17px;
+    color:#d4c4a4;
+    text-align:justify;
+    font-size:1em;
+    line-height:1.95;
+  }
+
+  strong { color:var(--clay2); font-weight:600; }
+  em { color:#c8a870; font-style:italic; }
+
+  /* ── RELEVANSI BOX ── */
+  .relevance-box {
+    background:linear-gradient(160deg,#131009,#0e0c07);
+    border-left:3px solid var(--sage);
+    border-radius:0 10px 10px 0;
+    padding:22px 28px;
+    margin:26px 0;
+  }
+  .relevance-box.clay-border { border-left-color:var(--clay2); }
+
+  .relevance-label {
+    font-size:.75em;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--sage);
+    margin-bottom:12px;
+    font-family:'Cinzel',serif;
+  }
+  .relevance-label.clay { color:var(--clay1); }
+
+  .contoh-item {
+    display:flex;
+    gap:14px;
+    margin:14px 0;
+    align-items:flex-start;
+  }
+  .contoh-num {
+    flex-shrink:0;
+    width:24px; height:24px;
+    border:1px solid var(--clay4);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:.75em;
+    color:var(--clay2);
+    font-family:'Cinzel',serif;
+    margin-top:3px;
+    background:linear-gradient(135deg,#1e1408,#140e04);
+  }
+
+  /* ── INTISARI ── */
+  .intisari {
+    position:relative;
+    background:linear-gradient(160deg,#1a1408,#130f06);
+    border:1px solid #3a2810;
+    border-radius:10px;
+    padding:30px 36px 28px;
+    margin:30px 0 0;
+    color:#e0cc98;
+    font-size:1.02em;
+    line-height:2;
+  }
+  .intisari::before {
+    content:'"';
+    position:absolute; top:-20px; left:24px;
+    font-size:4.5em; line-height:1;
+    background:linear-gradient(to bottom, var(--clay2), var(--clay1));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-family:'Cinzel',serif;
+  }
+  .intisari-label {
+    font-size:.72em; letter-spacing:2.5px; text-transform:uppercase;
+    color:var(--clay1); margin-bottom:12px;
+    font-family:'Cinzel',serif;
+  }
+
+  /* ── PENUTUP / REFLEKSI ── */
+  .penutup {
+    background:linear-gradient(160deg,#100e0a,#0a0906);
+    border:1px solid #241c10;
+    border-radius:14px;
+    padding:56px 46px;
+    margin-bottom:48px;
+  }
+
+  .langkah {
+    background:linear-gradient(160deg,#161208,#0e0c07);
+    border:1px solid #241c10;
+    border-left:3px solid var(--clay1);
+    border-radius:0 10px 10px 0;
+    padding:22px 28px;
+    margin:18px 0;
+    color:#d4c4a4;
+    font-size:.97em;
+  }
+  .langkah.sage-l { border-left-color:var(--sage); }
+
+  .lnum {
+    display:inline-block;
+    background:linear-gradient(135deg, var(--clay1), var(--clay2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    font-weight:700; font-family:'Cinzel',serif;
+    font-size:1em; margin-bottom:6px;
+    letter-spacing:.5px;
+  }
+  .lnum.sage-n {
+    background:linear-gradient(135deg, var(--sage), var(--sage2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+
+  /* ── EPILOG ── */
+  .epilog {
+    background:radial-gradient(ellipse at 50% 0%, #1a1006 0%, #060604 60%);
+    border:1px solid #241c10;
+    border-top:2px solid var(--clay1);
+    border-radius:14px;
+    padding:68px 46px 60px;
+    text-align:center;
+  }
+  .epilog-title {
+    font-family:'Cinzel',serif;
+    font-size:clamp(1.3em,3vw,1.9em);
+    font-weight:700;
+    margin-bottom:44px;
+    line-height:1.4;
+  }
+
+  .epilog p {
+    max-width:680px; margin:0 auto 18px;
+    color:#c8b080; text-align:center; font-style:italic;
+    font-size:1.02em;
+  }
+
+  .epilog .arabic-line {
+    font-family:'Amiri','Traditional Arabic',serif;
+    font-size:clamp(1.7em,4vw,2.6em);
+    direction:rtl;
+    background:linear-gradient(135deg,var(--clay4),var(--clay1),var(--clay2),var(--clay3),var(--clay1));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    background-clip:text;
+    display:block; margin:32px auto 8px;
+    line-height:2;
+  }
+
+  .epilog .latin-line {
+    font-style:italic; color:var(--clay2); font-size:1.05em;
+    margin-bottom:18px; display:block;
+    font-family:'EB Garamond',serif;
+  }
+
+  /* sapaan langsung ke pembaca — highlight khusus */
+  .reader-voice {
+    max-width:680px;
+    margin:28px auto;
+    padding:24px 32px;
+    background:linear-gradient(160deg,#14110a,#0e0c08);
+    border-left:2px solid var(--clay1);
+    border-right:2px solid var(--clay1);
+    border-radius:2px;
+    color:#d4bc90;
+    text-align:left;
+    font-style:normal;
+    font-size:.97em;
+    line-height:1.95;
+  }
+
+  .reader-voice em {
+    display:block;
+    margin-bottom:6px;
+    color:var(--clay2);
+    font-style:italic;
+    font-family:'Cinzel',serif;
+    font-size:.78em;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+  }
+
+  .epilog .closing {
+    margin-top:48px; font-style:normal;
+    font-family:'EB Garamond',serif;
+    font-size:1.1em; color:#e0cc90;
+    line-height:2;
+  }
+
+  /* ── SCROLL TOP ── */
+  #scrollTop {
+    position:fixed; bottom:28px; right:28px;
+    width:46px; height:46px;
+    background:linear-gradient(135deg,var(--clay4),var(--clay1));
+    color:#0a0600; font-size:1.2em; font-weight:700;
+    border:none; border-radius:3px;
+    cursor:pointer; display:none; align-items:center; justify-content:center;
+    box-shadow:0 4px 20px rgba(0,0,0,.5);
+    transition:transform .2s;
+    z-index:999;
+    font-family:'Cinzel',serif;
+  }
+  #scrollTop:hover { transform:scale(1.08); }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:640px){
+    .header { padding:64px 20px 56px; }
+    .ayat-section, .penutup, .epilog { padding:32px 20px; }
+    .container { padding:32px 14px 64px; }
+    .intro-konteks { padding:30px 20px; }
+    .reader-voice { padding:18px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+  <div class="surah-context">Surat 80 · Makkiyyah · 42 Ayat</div>
+  <h1 class="clay">'Abasa</h1>
+  <p class="header-sub">Dia Bermuka Masam</p>
+  <div class="divider-clay"></div>
+  <p class="tagline">Yang paling berharga dalam permainan kehidupan sering kali datang dalam bentuk yang paling tidak dianggap — dan langit pun mencatat saat kita berpaling darinya.</p>
+</div>
+
+<div class="container">
+
+  <!-- INTRO KONTEKS HISTORIS -->
+  <div class="intro-konteks">
+    <div class="intro-label">✦ Latar Peristiwa</div>
+    <p>Nabi Muhammad ﷺ sedang dalam percakapan penting dengan beberapa pemimpin Quraisy — orang-orang yang bila masuk Islam, bisa mengubah peta kekuatan masyarakat Mekah. Di tengah percakapan itu, datanglah Abdullah bin Ummi Maktum: seorang buta, miskin, tanpa nama besar. Ia meminta diajarkan tentang Islam.</p>
+    <p>Nabi — bukan karena jahat, tapi karena pertimbangan strategis yang sangat manusiawi — merasa terganggu. Wajah beliau berkerut. Ia berpaling sejenak. Detik itu berlalu begitu cepat. Tapi Allah tidak membiarkannya berlalu begitu saja.</p>
+    <p><strong>Turunlah wahyu yang kemudian dibaca lebih dari seribu empat ratus tahun:</strong> sebuah teguran lembut yang sekaligus menjadi cermin paling jujur tentang bagaimana kita menilai manusia berdasarkan penampilannya.</p>
+  </div>
+
+  <!-- ==================== KELOMPOK 1: Ayat 1-10 ==================== -->
+  <div class="tema-header">
+    <div class="tema-line"></div>
+    <div class="tema-badge">Bagian I · Teguran dan Hikmah (Ayat 1–10)</div>
+    <div class="tema-line"></div>
+  </div>
+
+  <!-- AYAT 1-2 -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num">١–٢</span>
+      <span class="clay">Ayat 1 – 2</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">عَبَسَ وَتَوَلَّىٰٓ ۝ أَن جَآءَهُ ٱلْأَعْمَىٰ</div>
+    </div>
+    <p class="translation">"Dia (Muhammad) bermuka masam dan berpaling, karena seorang buta telah datang kepadanya."</p>
+
+    <h2 class="section-title clay">Energi Kata</h2>
+
+    <div class="kata-chip">عَبَسَ — Bermuka Masam</div>
+    <p>Akar katanya membawa gambar yang sangat fisik: <em>abasa</em> berasal dari ekspresi wajah yang mengeras, seperti kulit yang mengerut. Bukan sekadar tidak senang — ini adalah sinyal tubuh yang terbaca oleh siapa pun di sekitar. Antonimnya adalah <em>basysyara</em> (berseri-seri, menyambut dengan wajah cerah). Al-Quran memilih kata yang sangat konkret dan visual ini dengan sengaja: agar kita tidak bisa menyangkal betapa mudahnya kita memancarkan penolakan tanpa satu kata pun terucap.</p>
+
+    <div class="kata-chip">تَوَلَّى — Berpaling</div>
+    <p><em>Tawalla</em> bukan sekadar memalingkan wajah. Kata ini dalam Al-Quran sering kali membawa nuansa kepergian yang disengaja, penolakan yang aktif. Ini berbeda dari <em>a'radha</em> (mengabaikan secara pasif). <em>Tawalla</em> ada niat di dalamnya — sebuah pilihan untuk menjauh.</p>
+
+    <div class="kata-chip">الْأَعْمَى — Yang Buta</div>
+    <p>Perhatikan: Allah tidak menyebut nama Ibn Ummi Maktum di sini. Ia disebut dengan kondisinya: <em>al-a'maa</em>, yang buta. Ini bukan penghinaan — ini pengingat bahwa justru keterbatasan fisik inilah yang membuat penolakan itu terasa lebih menohok. Yang datang adalah seseorang yang bahkan tidak bisa melihat ekspresi wajah yang menolaknya. Ironisnya berlapis.</p>
+
+    <h2 class="section-title clay">Tafsir Mendalam</h2>
+    <p>Dua ayat pembuka ini tidak dimulai dengan nama Nabi. Al-Quran berkata <em>"ia bermuka masam"</em> — bukan <em>"Muhammad bermuka masam"</em>. Para ulama mencatat ini sebagai bentuk teguran yang halus sekaligus penjagaan kehormatan: Allah tidak ingin mempermalukan, hanya meluruskan.</p>
+    <p>Tapi yang lebih dalam: <strong>Al-Quran mengabadikan momen yang sangat manusiawi ini selama-lamanya</strong>. Momen ketika seseorang yang mulia pun bisa terjebak dalam logika sosial yang kita semua kenal: <em>yang lebih berpengaruh lebih diprioritaskan, yang penampilannya lebih menjanjikan lebih layak diperhatikan.</em></p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <p>Kita melakukan ini setiap hari — seringkali tanpa sadar:</p>
+      <div class="contoh-item">
+        <div class="contoh-num">1</div>
+        <p style="margin:0;">Di ruang rapat, ada bawahan yang mengangkat tangan dengan gagasan brilian — tapi kita lebih mendengarkan direktur yang baru saja masuk dengan pakaian mahal dan kepercayaan dirinya yang mengisi ruangan. Gagasan si bawahan tenggelam sebelum selesai diucapkan.</p>
+      </div>
+      <div class="contoh-item">
+        <div class="contoh-num">2</div>
+        <p style="margin:0;">Di platform media sosial, kita men-scroll melewati pertanyaan tulus seseorang yang followersnya sedikit — tapi langsung berhenti dan merespons komentar dari akun dengan ribuan pengikut. Padahal pertanyaannya lebih dalam, lebih jujur.</p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Wajah yang bermuka masam tidak perlu berkata apa-apa — ia sudah berbicara dengan keras. Kita hidup di zaman di mana orang semakin mahir membaca sinyal nonverbal, dan semakin sedikit dari kita yang sadar betapa sering kita memancarkan sinyal penolakan kepada orang-orang yang justru paling membutuhkan perhatian kita.
+    </div>
+  </div>
+
+  <!-- AYAT 3-4 -->
+  <div class="ayat-section aksen-sage">
+    <div class="ayat-number">
+      <span class="num">٣–٤</span>
+      <span class="clay">Ayat 3 – 4</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">وَمَا يُدْرِيكَ لَعَلَّهُۥ يَزَّكَّىٰٓ ۝ أَوْ يَذَّكَّرُ فَتَنفَعَهُ ٱلذِّكْرَىٰ</div>
+    </div>
+    <p class="translation">"Dan tahukah kamu, barangkali ia ingin menyucikan dirinya, atau dia (ingin) mendapatkan pengajaran, lalu pengajaran itu memberi manfaat kepadanya?"</p>
+
+    <h2 class="section-title clay">Energi Kata</h2>
+
+    <div class="kata-chip">وَمَا يُدْرِيكَ — Dan Apa yang Membuatmu Tahu?</div>
+    <p>Kalimat tanya retoris yang mengguncang. <em>Maa yudriika</em> — harfiahnya: <em>apa yang memberitahumu?</em> Ini adalah pertanyaan tentang batas pengetahuan. Kamu tidak tahu. Kamu tidak bisa tahu. Kamu hanya menebak berdasarkan tampilan luar. Dan tebakanmu ternyata keliru.</p>
+
+    <div class="kata-chip sage">يَزَّكَّى — Menyucikan Diri</div>
+    <p><em>Yazzakkaa</em> berasal dari akar <em>z-k-w</em> — pertumbuhan yang suci, pemurnian jiwa. Ini bukan sekadar belajar fakta agama. Ini tentang seseorang yang datang dengan niat yang paling murni: ingin tumbuh, ingin bersih, ingin menjadi lebih baik. Ironisnya, inilah niat yang paling langka dan paling berharga — dan ia datang dalam bungkus yang paling tidak menarik perhatian.</p>
+
+    <div class="kata-chip sage">يَذَّكَّرُ — Mendapat Pengingat</div>
+    <p><em>Yadzdzzakkaru</em> dari akar <em>dz-k-r</em> — mengingat kembali, kembali sadar. Ada yang datang bukan karena mereka tidak tahu, tapi karena mereka perlu seseorang yang mengingatkan apa yang sudah mereka tahu tapi terlupakan oleh beban kehidupan.</p>
+
+    <h2 class="section-title clay">Tafsir Mendalam</h2>
+    <p>Allah mengajukan dua kemungkinan: mungkin ia datang untuk menyucikan diri, atau mungkin ia datang untuk diingatkan. <strong>Keduanya adalah niat mulia. Keduanya lebih berharga dari sekadar strategi dakwah kalkulatif.</strong></p>
+    <p>Di sinilah filosofinya yang dalam: <em>kita cenderung menilai seseorang berdasarkan potensi output-nya kepada kita</em> — seberapa besar pengaruhnya, seberapa luas jaringannya, seberapa banyak yang bisa dia bawa masuk. Tapi Allah menilai dari arah yang berbeda: <em>seberapa sungguh-sungguh seseorang datang dengan kebutuhan sejatinya</em>.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label sage-text">✦ Relevansi Kekinian</div>
+      <div class="contoh-item">
+        <div class="contoh-num">1</div>
+        <p style="margin:0;">Seorang guru yang lebih antusias mengajar murid berbakat dan anak pejabat — sementara anak yang pendiam di pojok, yang justru paling haus belajar, jarang dipanggil. Bertahun kemudian, murid yang "tidak menarik" itulah yang mengingat sang guru sebagai orang yang mengubah hidupnya — kalau saja sang guru sempat memperhatikannya.</p>
+      </div>
+      <div class="contoh-item">
+        <div class="contoh-num">2</div>
+        <p style="margin:0;">Dalam komunitas atau majelis ilmu, kita sering lebih bersemangat melayani tamu undangan yang statusnya tinggi dibanding anggota biasa yang diam-diam paling konsisten hadir dan paling sungguh-sungguh menyerap. Yang "biasa" itu mungkin sedang dalam proses <em>yazzakkaa</em> — menyucikan diri — tanpa ada yang tahu.</p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kita tidak punya akses ke niat seseorang. Yang kita lihat hanya permukaan: pakaiannya, statusnya, nama yang disematkan pada dirinya. Tapi Allah melihat yang datang dengan hati yang ingin tumbuh — dan itulah ukuran yang sebenarnya. Pertanyaan <em>"dan tahukah kamu?"</em> adalah undangan untuk merendahkan seluruh sistem penilaian kita yang terlalu mengandalkan tampilan.
+    </div>
+  </div>
+
+  <!-- AYAT 5-7 -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num">٥–٧</span>
+      <span class="clay">Ayat 5 – 7</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">أَمَّا مَنِ ٱسْتَغْنَىٰ ۝ فَأَنتَ لَهُۥ تَصَدَّىٰ ۝ وَمَا عَلَيْكَ أَلَّا يَزَّكَّىٰ</div>
+    </div>
+    <p class="translation">"Adapun orang yang merasa dirinya serba cukup (pembesar-pembesar Quraisy), maka engkau (Muhammad) memberi perhatian kepadanya, padahal tidak ada (cela) atasmu kalau dia tidak menyucikan diri (beriman)."</p>
+
+    <h2 class="section-title clay">Energi Kata</h2>
+
+    <div class="kata-chip">اسْتَغْنَى — Merasa Serba Cukup</div>
+    <p><em>Istaghnaa</em> — akar <em>gh-n-y</em> — lebih dari sekadar kaya. Ini adalah kondisi batin seseorang yang merasa tidak membutuhkan. Ada keangkuhan tersembunyi di sini: orang yang merasa sudah punya segalanya, dan karenanya kedatangannya pun bukan dalam posisi murid yang rendah hati, melainkan sebagai pihak yang perlu diyakinkan, dibujuk, dimenangkan hatinya.</p>
+
+    <div class="kata-chip">تَصَدَّى — Memberi Perhatian Penuh</div>
+    <p><em>Tashadda</em> — menghadap dengan sepenuh perhatian, menempatkan diri sepenuhnya untuk melayani. Kata ini menggambarkan postur tubuh dan mental: condong ke depan, siap melayani. Kontrasnya dengan ayat sebelumnya sangat tajam — kepada yang buta itu ia berpaling (<em>tawalla</em>), tapi kepada yang kaya ini ia condong (<em>tashadda</em>).</p>
+
+    <h2 class="section-title clay">Tafsir Mendalam</h2>
+    <p>Ini adalah cermin paling jujur tentang <em>politik perhatian</em>. Allah tidak sedang mengkritik niat dakwah Nabi — beliau tulus ingin Islam tersebar luas. Yang disorot adalah asumsi di baliknya: <em>bahwa mereka yang kuat dan berpengaruhlah yang lebih layak mendapat perhatian utama</em>.</p>
+    <p>Lebih menohok lagi: <strong>"tidak ada cela atasmu kalau dia tidak menyucikan diri."</strong> Artinya, kamu tidak bertanggung jawab atas pilihan orang lain. Yang ada di tanganmu hanyalah bagaimana kamu merespons siapa yang datang kepadamu dengan sungguh-sungguh.</p>
+
+    <div class="relevance-box clay-border">
+      <div class="relevance-label clay">✦ Relevansi Kekinian</div>
+      <div class="contoh-item">
+        <div class="contoh-num">1</div>
+        <p style="margin:0;">Dalam dunia konten digital, kreator sering habiskan energi terbesar untuk memikat pembaca yang skeptis, kritikus yang vokal, atau tokoh berpengaruh yang belum tertarik — sementara komunitas yang sudah setia dan benar-benar mencari, justru jarang mendapat sapaan personal. Padahal, yang <em>istaghnaa</em> itu mungkin tidak akan pernah mau berubah bagaimanapun kerasnya kamu berusaha.</p>
+      </div>
+      <div class="contoh-item">
+        <div class="contoh-num">2</div>
+        <p style="margin:0;">Dalam relasi personal, kita terkadang menginvestasikan energi terbesar untuk meyakinkan satu orang yang tidak pernah benar-benar terbuka — orang tua yang mengabaikan, teman yang selalu meremehkan — sementara orang-orang yang sudah hadir dan menghargai kita justru kurang mendapat perhatian kita.</p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Kamu tidak bertanggung jawab atas pilihan orang lain untuk tumbuh atau tidak. Yang bisa kamu kendalikan adalah arah perhatianmu — dan arah itulah yang menentukan apakah kamu menjadi sumber cahaya bagi yang sungguh-sungguh mencari, atau sekadar cermin bagi yang sudah merasa cukup bercahaya.
+    </div>
+  </div>
+
+  <!-- AYAT 8-10 -->
+  <div class="ayat-section aksen-sage">
+    <div class="ayat-number">
+      <span class="num">٨–١٠</span>
+      <span class="clay">Ayat 8 – 10</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">وَأَمَّا مَن جَآءَكَ يَسْعَىٰ ۝ وَهُوَ يَخْشَىٰ ۝ فَأَنتَ عَنْهُ تَلَهَّىٰ</div>
+    </div>
+    <p class="translation">"Dan adapun orang yang datang kepadamu dengan bersegera (untuk mendapatkan pengajaran), sedangkan ia takut (kepada Allah), maka engkau mengabaikannya."</p>
+
+    <h2 class="section-title clay">Energi Kata</h2>
+
+    <div class="kata-chip">يَسْعَى — Bersegera / Berlari-lari</div>
+    <p><em>Yas'aa</em> — bergerak dengan cepat, dengan kesungguhan. Bukan jalan santai. Ibn Ummi Maktum datang dengan langkah yang tergesa — ia buta, ia tidak tahu medan, tapi ia berjalan sejauh yang ia bisa menuju sumber cahaya yang ia dengar. Kesungguhan dalam keterbatasan.</p>
+
+    <div class="kata-chip sage">يَخْشَى — Takut kepada Allah</div>
+    <p><em>Yakhsyaa</em> — bukan sekadar takut biasa (<em>khawf</em>). <em>Khashyah</em> adalah rasa takut yang lahir dari <em>ma'rifah</em>, pengetahuan yang dalam tentang kebesaran Allah. Ini adalah atribut yang Al-Quran berikan kepada para ulama: <em>"sesungguhnya yang paling takut kepada Allah di antara hamba-hamba-Nya adalah para ulama"</em>. Orang buta yang sederhana ini datang dengan modal spiritual yang paling tinggi.</p>
+
+    <div class="kata-chip">تَلَهَّى — Mengabaikan / Lalai</div>
+    <p><em>Talahha</em> — tersibukkan oleh hal lain, teralihkan perhatiannya. Ini lebih dari sekadar mengabaikan; ini tentang seseorang yang perhatiannya sudah terisi penuh oleh yang lain, sehingga tidak ada ruang tersisa untuk yang benar-benar membutuhkan.</p>
+
+    <h2 class="section-title clay">Tafsir Mendalam</h2>
+    <p>Tiga gambaran yang disandingkan: ia datang berlari-lari (<em>yas'aa</em>), ia datang dengan rasa takut yang tulus (<em>yakhsyaa</em>), ia datang sungguh-sungguh. Dan responsnya? <em>Engkau mengabaikannya</em> (<em>talahha</em>).</p>
+    <p>Al-Quran sedang menunjukkan jurang antara nilai yang kita ucapkan dan nilai yang kita praktikkan dalam alokasi perhatian kita. Kita bisa berkata bahwa kita menghargai ketulusan, kesungguhan, dan kerendahan hati — tapi kemudian melewatkan semua itu karena ia datang tanpa label yang kita kenali.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <div class="contoh-item">
+        <div class="contoh-num">1</div>
+        <p style="margin:0;">Dalam sesi tanya-jawab, ada mahasiswa yang mengangkat tangan berkali-kali — pertanyaannya mendalam, sungguh-sungguh — tapi pembicara terus memilih yang terlihat lebih "penting": para profesional berjas, wajah-wajah yang dikenali. Si mahasiswa yang <em>yas'aa</em> itu pulang dengan tangan hampa.</p>
+      </div>
+      <div class="contoh-item">
+        <div class="contoh-num">2</div>
+        <p style="margin:0;">Dalam pertemanan, ada satu teman yang selalu hadir, selalu menyemangati, selalu memberikan dukungan nyata — tapi kita justru menghabiskan energi emosional terbesar untuk teman yang "bergengsi" atau yang hubungannya terasa lebih dramatis. Yang sungguh-sungguh hadir itu akhirnya kelelahan, dan pergi tanpa kita sadari.</p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Ada orang-orang di sekitar kita yang sedang <em>yas'aa wa huwa yakhsyaa</em> — berjalan dengan sungguh-sungguh sambil membawa rasa takut yang tulus. Mereka tidak selalu bersuara keras. Mereka tidak selalu hadir dengan penampilan yang memukau. Tapi ketulusan mereka nyata — dan hanya bisa terbaca oleh mata yang tidak terlalu sibuk dengan kilau di depannya.
+    </div>
+  </div>
+
+  <!-- ==================== KELOMPOK 2: Ayat 11-23 ==================== -->
+  <div class="tema-header">
+    <div class="tema-line"></div>
+    <div class="tema-badge">Bagian II · Peringatan dan Asal-Usul Manusia (Ayat 11–23)</div>
+    <div class="tema-line"></div>
+  </div>
+
+  <!-- AYAT 11-16 -->
+  <div class="ayat-section aksen-clay2">
+    <div class="ayat-number">
+      <span class="num">١١–١٦</span>
+      <span class="clay">Ayat 11 – 16</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">كَلَّآ إِنَّهَا تَذْكِرَةٌ ۝ فَمَن شَآءَ ذَكَرَهُۥ ۝ فِى صُحُفٍ مُّكَرَّمَةٍ ۝ مَّرْفُوعَةٍ مُّطَهَّرَةٍ ۝ بِأَيْدِى سَفَرَةٍ ۝ كِرَامٍ بَرَرَةٍ</div>
+    </div>
+    <p class="translation">"Sekali-kali jangan (begitu)! Sungguh, (ayat-ayat Allah) itu adalah peringatan, maka barangsiapa menghendaki, niscaya dia mengambil pelajaran darinya, (yaitu tersimpan) dalam lembaran-lembaran yang dimuliakan, yang ditinggikan (dan) disucikan, di tangan para utusan (malaikat), yang mulia lagi berbakti."</p>
+
+    <h2 class="section-title clay">Energi Kata</h2>
+
+    <div class="kata-chip">كَلَّا — Sekali-kali Jangan</div>
+    <p><em>Kallaa</em> adalah salah satu kata paling tegas dalam Al-Quran — sebuah penolakan yang keras, koreksi yang tidak bisa ditawar. Di sini ia bukan hanya menghentikan perilaku, tapi juga membuka babak baru: <em>setelah teguran, sekarang mari kita bicara tentang apa yang sesungguhnya berharga</em>.</p>
+
+    <div class="kata-chip">تَذْكِرَةٌ — Peringatan / Pengingat</div>
+    <p><em>Tadzkirah</em> — sesuatu yang membuat ingat kembali. Bukan informasi baru yang asing, melainkan kebenaran yang sudah ada dalam fitrah kita tapi tertimbun oleh kebiasaan. Al-Quran bukan sekadar buku teks — ia adalah pengingat tentang siapa kita sebenarnya dan kepada siapa kita akan kembali.</p>
+
+    <div class="kata-chip">مُّكَرَّمَةٍ / مَّرْفُوعَةٍ / مُّطَهَّرَةٍ — Dimuliakan / Ditinggikan / Disucikan</div>
+    <p>Tiga sifat yang disandingkan untuk menggambarkan lembaran-lembaran wahyu. <em>Mukarramah</em> — diberi kemuliaan. <em>Marfuu'ah</em> — diangkat ke kedudukan tinggi. <em>Muthaharah</em> — dijaga dari segala noda. Kontras dengan manusia yang terkadang memperlakukan wahyu ini sebagai bacaan seremonial, pajangan rak buku, atau hafalan tanpa penghayatan.</p>
+
+    <h2 class="section-title clay">Tafsir Mendalam</h2>
+    <p>Setelah teguran kepada Nabi, Al-Quran seolah berkata: <em>berhentilah — dan lihat kembali apa yang sesungguhnya kamu bawa</em>. Wahyu ini bukan alat negosiasi dengan penguasa. Bukan kartu truf untuk memenangkan debat. Ia adalah <em>tadzkirah</em> — pengingat — yang tersimpan dalam lembaran paling mulia, dijaga oleh malaikat yang paling terpercaya.</p>
+    <p>Dan siapa yang akan mengambil manfaat darinya? <em>"Barangsiapa menghendaki."</em> Bukan siapa yang paling berpengaruh. Bukan siapa yang paling kaya. Siapa pun yang mau.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <div class="contoh-item">
+        <div class="contoh-num">1</div>
+        <p style="margin:0;">Kita sering menaruh Al-Quran di rak paling atas — secara harfiah maupun kiasan. Terhormat, tapi jauh. Dimuliakan secara seremonial, tapi tidak dibiarkan masuk ke dalam keputusan harian, konflik keluarga, krisis karier, atau kegelisahan malam. Ayat ini mengingatkan: ia tersimpan di lembaran yang mulia — tapi ia hanya menjadi <em>tadzkirah</em> bagi yang benar-benar mau mengingat.</p>
+      </div>
+      <div class="contoh-item">
+        <div class="contoh-num">2</div>
+        <p style="margin:0;">Dalam era konten berlimpah, kita justru semakin jarang benar-benar membaca dengan niat <em>tadzakkur</em> — ingin diingatkan dan berubah. Kita membaca untuk dapat informasi, untuk bahan postingan, untuk terlihat terpelajar. Tapi membaca dengan niat "aku ingin wahyu ini mengubah sesuatu dalam diriku" — itu menjadi kegiatan yang langka dan terasa mewah.</p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Al-Quran tidak memilih siapa yang berhak menerima cahayanya berdasarkan status atau tampilan. Ia hanya menunggu siapa yang benar-benar mau datang dengan niat untuk diingatkan. Kemuliaannya tidak berkurang walau diabaikan oleh yang besar — dan tidak bertambah karena dipuji oleh yang berkuasa. Ia tetap <em>mukarramah, marfuu'ah, muthaharah</em> — apapun yang manusia pikirkan tentangnya.
+    </div>
+  </div>
+
+  <!-- AYAT 17-23 -->
+  <div class="ayat-section">
+    <div class="ayat-number">
+      <span class="num">١٧–٢٣</span>
+      <span class="clay">Ayat 17 – 23</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">قُتِلَ ٱلْإِنسَـٰنُ مَآ أَكْفَرَهُۥ ۝ مِنْ أَىِّ شَىْءٍ خَلَقَهُۥ ۝ مِن نُّطْفَةٍ خَلَقَهُۥ فَقَدَّرَهُۥ ۝ ثُمَّ ٱلسَّبِيلَ يَسَّرَهُۥ ۝ ثُمَّ أَمَاتَهُۥ فَأَقْبَرَهُۥ ۝ ثُمَّ إِذَا شَآءَ أَنشَرَهُۥ ۝ كَلَّا لَمَّا يَقْضِ مَآ أَمَرَهُۥ</div>
+    </div>
+    <p class="translation">"Celakalah manusia! Alangkah kufurnya dia! Dari apakah Dia menciptakannya? Dari setetes mani, Dia menciptakannya dan menentukannya, kemudian Dia memudahkan jalannya, kemudian Dia mematikannya dan memasukkannya ke dalam kubur, kemudian apabila Dia menghendaki, Dia membangkitkannya kembali. Sekali-kali tidak! Manusia itu belum melaksanakan apa yang diperintahkan-Nya."</p>
+
+    <h2 class="section-title clay">Energi Kata</h2>
+
+    <div class="kata-chip">مَآ أَكْفَرَهُۥ — Alangkah Kufurnya Dia</div>
+    <p>Bentuk ungkapan kekagetan yang mengandung celaan: <em>betapa mengherankan kekufuran manusia ini</em>. Ini bukan sekadar pernyataan — ini adalah seruan yang menuntut refleksi. Kata <em>kafara</em> dalam akar terdalam berarti <em>menutupi</em> — manusia yang kufur adalah manusia yang menutup pandangannya terhadap kebenaran yang sudah sangat jelas.</p>
+
+    <div class="kata-chip">نُّطْفَةٍ — Setetes Air</div>
+    <p><em>Nuthfah</em> — setetes, sesuatu yang kecil dan tidak berharga secara kasat mata. Al-Quran sengaja memulai dari titik paling rendah dalam perjalanan manusia: engkau dimulai dari sesuatu yang bahkan tidak terlihat oleh mata telanjang. Ini bukan penghinaan — ini adalah fondasi kerendahan hati.</p>
+
+    <div class="kata-chip">يَسَّرَهُۥ — Memudahkan Jalannya</div>
+    <p><em>Yassara</em> — dimudahkan. Jalan kehidupan, kemampuan bernafas, kemampuan menelan, kemampuan berjalan, kemampuan berpikir — semua itu bukan sesuatu yang kamu rancang sendiri. Semuanya diberikan dan dimudahkan. Manusia yang sombong lupa bahwa bahkan kemampuannya untuk bersombong pun adalah pemberian.</p>
+
+    <h2 class="section-title clay">Tafsir Mendalam</h2>
+    <p>Setelah bicara tentang bagaimana manusia meremehkan orang lain (ayat 1-10), Al-Quran sekarang memukul dari arah yang berbeda: <em>lihat asal-usulmu sendiri</em>. Kamu yang bermuka masam kepada si buta — dari mana asalmu? Setetes air. Persis sama dengan semua manusia yang pernah kamu pandang sebelah mata.</p>
+    <p><strong>Enam tahapan manusia disebutkan berurutan</strong>: diciptakan (<em>khalaqahu</em>), ditentukan (<em>qaddarahu</em>), dimudahkan jalannya (<em>yassarahu</em>), dimatikan (<em>amatahu</em>), dikuburkan (<em>aqbarahu</em>), dibangkitkan (<em>ansyarahu</em>). Di semua tahap itu, manusia adalah objek — bukan subjek. Dan di akhir: <em>manusia belum melaksanakan apa yang diperintahkan-Nya</em>.</p>
+
+    <div class="relevance-box clay-border">
+      <div class="relevance-label clay">✦ Relevansi Kekinian</div>
+      <div class="contoh-item">
+        <div class="contoh-num">1</div>
+        <p style="margin:0;">Ada paradoks yang nyata di era pencitraan diri: semakin mudah seseorang menampilkan versi terbaik dirinya di layar, semakin mudah ia lupa dari mana ia berasal. Foto profil profesional yang dipoles, portofolio yang dikurasi, pencapaian yang dipamerkan — semua itu bisa membuat kita lupa bahwa kita semua dimulai dari <em>nuthfah</em> yang sama, dan semua akan berakhir di tanah yang sama.</p>
+      </div>
+      <div class="contoh-item">
+        <div class="contoh-num">2</div>
+        <p style="margin:0;">Frasa <em>"lamma yaqdi maa amarahu"</em> — belum melaksanakan apa yang diperintahkan — adalah evaluasi yang sangat relevan. Bukan soal ibadah ritual semata, tapi soal apakah kita sudah sungguh-sungguh menjalankan amanah kemanusiaan kita: adil, peka, hadir bagi yang membutuhkan. Banyak dari kita sibuk membangun citra kesalehan tapi melewatkan substansinya.</p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Asal-usul kita adalah tanah yang merendahkan dan kebangkitan yang memuliakan — keduanya ada di tangan yang sama, bukan di tangan kita. Manusia yang sungguh memahami ini tidak akan mudah bermuka masam kepada sesamanya, karena ia tahu: di mata yang menciptakan semuanya, permulaan kita sama. Dan pertanggungjawabannya pun akan sama.
+    </div>
+  </div>
+
+  <!-- ==================== KELOMPOK 3: Ayat 24-32 ==================== -->
+  <div class="tema-header">
+    <div class="tema-line"></div>
+    <div class="tema-badge">Bagian III · Rezeki dan Tanda Kebesaran (Ayat 24–32)</div>
+    <div class="tema-line"></div>
+  </div>
+
+  <!-- AYAT 24-32 -->
+  <div class="ayat-section aksen-sage">
+    <div class="ayat-number">
+      <span class="num">٢٤–٣٢</span>
+      <span class="clay">Ayat 24 – 32</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">فَلْيَنظُرِ ٱلْإِنسَـٰنُ إِلَىٰ طَعَامِهِۦٓ ۝ أَنَّا صَبَبْنَا ٱلْمَآءَ صَبًّا ۝ ثُمَّ شَقَقْنَا ٱلْأَرْضَ شَقًّا ۝ فَأَنۢبَتْنَا فِيهَا حَبًّا ۝ وَعِنَبًا وَقَضْبًا ۝ وَزَيْتُونًا وَنَخْلًا ۝ وَحَدَآئِقَ غُلْبًا ۝ وَفَـٰكِهَةً وَأَبًّا ۝ مَّتَـٰعًا لَّكُمْ وَلِأَنْعَـٰمِكُمْ</div>
+    </div>
+    <p class="translation">"Maka hendaklah manusia itu memperhatikan makanannya. Sungguh, Kami telah mencurahkan air (dari langit) dengan curahan yang deras, kemudian Kami belah bumi dengan sebaik-baiknya, lalu di sana Kami tumbuhkan biji-bijian, dan anggur serta sayur-sayuran, dan pohon zaitun dan pohon kurma, dan kebun-kebun yang lebat, dan buah-buahan serta rerumputan, sebagai kesenangan bagimu dan bagi hewan ternakmu."</p>
+
+    <h2 class="section-title clay">Energi Kata</h2>
+
+    <div class="kata-chip">فَلْيَنظُرِ — Maka Hendaklah Ia Memperhatikan</div>
+    <p><em>Falyanzhur</em> — perintah untuk melihat dengan sungguh-sungguh, bukan sekadar melirik. <em>Nazhar</em> adalah melihat yang disertai perenungan. Al-Quran tidak meminta kita membayangkan hal yang jauh dan abstrak — cukup perhatikan makananmu. Yang ada di piringmu setiap hari.</p>
+
+    <div class="kata-chip sage">صَبَبْنَا / شَقَقْنَا — Kami Curahkan / Kami Belah</div>
+    <p>Dua kata kerja aktif dengan subjek Allah — bukan alam, bukan proses semesta. <em>Shababnaa</em> (mencurahkan air) dan <em>shaqaqnaa</em> (membelah bumi) — keduanya menggambarkan tindakan yang terencana dan penuh perhatian. Air diturunkan. Bumi dibelah. Bukan terjadi begitu saja.</p>
+
+    <div class="kata-chip sage">مَّتَـٰعًا — Kesenangan / Manfaat</div>
+    <p><em>Mataa'</em> — sesuatu yang memberi kesenangan dan manfaat, namun sementara. Al-Quran memilih kata ini untuk mengingatkan: semua ini adalah fasilitas perjalanan, bukan tujuan akhir. Cukup untuk membuatmu bersyukur, tidak cukup untuk membuatmu lupa ke mana kamu pergi.</p>
+
+    <h2 class="section-title clay">Tafsir Mendalam</h2>
+    <p>Setelah bicara tentang kesombongan manusia (ayat 17-23), Al-Quran kini mengajak kita melihat hal yang paling sederhana: makanan. Ini bukan kebetulan. <strong>Makanan adalah jembatan antara kesombongan dan syukur</strong>. Setiap kali kita makan, kita sedang menerima hasil dari proses kosmis yang tidak pernah kita kendalikan: hujan, tanah, benih, sinar matahari, angin.</p>
+    <p>Tujuh jenis tanaman disebutkan secara spesifik, diakhiri dengan <em>abb</em> — rerumputan untuk ternak. Bahkan makanan hewanmu pun dirancang. Tidak ada celah di sini untuk klaim bahwa kamu berhasil sendiri.</p>
+
+    <div class="relevance-box">
+      <div class="relevance-label">✦ Relevansi Kekinian</div>
+      <div class="contoh-item">
+        <div class="contoh-num">1</div>
+        <p style="margin:0;">Kita hidup di era di mana makanan tinggal dipesan lewat aplikasi, tiba dalam kotak bersih, dan dimakan sambil menatap layar. Jarak antara kita dan proses produksi makanan semakin jauh — dan bersama itu, jarak antara kita dan rasa syukur juga semakin jauh. <em>Falyanzhur al-insaanu ila tha'amihi</em> terasa seperti latihan spiritual yang sangat dibutuhkan generasi ini.</p>
+      </div>
+      <div class="contoh-item">
+        <div class="contoh-num">2</div>
+        <p style="margin:0;">Ada tren "mindful eating" yang populer di komunitas kesehatan — makan dengan penuh kesadaran, tanpa distraksi. Ironisnya, latihan ini mengarah pada apa yang Al-Quran perintahkan 14 abad lalu: perhatikan makananmu. Bedanya, Al-Quran mengajak perhatian itu menuju syukur kepada Sang Pemberi — bukan sekadar sensasi rasa.</p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Setiap suap adalah rantai panjang yang tidak pernah kamu mulai dan tidak akan pernah kamu selesaikan sendiri. Di antara tetesan hujan dan biji yang membelah tanah, ada kehendak yang merawat hidupmu — bahkan di saat kamu terlalu sibuk untuk menyadarinya. Syukur bukan sekadar ucapan; ia adalah cara melihat yang mengubah segalanya.
+    </div>
+  </div>
+
+  <!-- ==================== KELOMPOK 4: Ayat 33-42 ==================== -->
+  <div class="tema-header">
+    <div class="tema-line"></div>
+    <div class="tema-badge">Bagian IV · Hari Perhitungan (Ayat 33–42)</div>
+    <div class="tema-line"></div>
+  </div>
+
+  <!-- AYAT 33-42 -->
+  <div class="ayat-section aksen-clay3">
+    <div class="ayat-number">
+      <span class="num">٣٣–٤٢</span>
+      <span class="clay">Ayat 33 – 42</span>
+    </div>
+    <div class="arabic-wrap">
+      <div class="arabic">فَإِذَا جَآءَتِ ٱلصَّآخَّةُ ۝ يَوْمَ يَفِرُّ ٱلْمَرْءُ مِنْ أَخِيهِ ۝ وَأُمِّهِۦ وَأَبِيهِ ۝ وَصَـٰحِبَتِهِۦ وَبَنِيهِ ۝ لِكُلِّ ٱمْرِئٍ مِّنْهُمْ يَوْمَئِذٍ شَأْنٌ يُغْنِيهِ ۝ وُجُوهٌ يَوْمَئِذٍ مُّسْفِرَةٌ ۝ ضَاحِكَةٌ مُّسْتَبْشِرَةٌ ۝ وَوُجُوهٌ يَوْمَئِذٍ عَلَيْهَا غَبَرَةٌ ۝ تَرْهَقُهَا قَتَرَةٌ ۝ أُو۟لَـٰٓئِكَ هُمُ ٱلْكَفَرَةُ ٱلْفَجَرَةُ</div>
+    </div>
+    <p class="translation">"Maka apabila datang suara yang memekakkan (tiupan sangkakala yang kedua), pada hari itu manusia lari dari saudaranya, dan dari ibu dan bapaknya, dan dari istri dan anak-anaknya. Setiap orang dari mereka pada hari itu mempunyai urusan yang menyibukkannya. Wajah-wajah pada hari itu berseri-seri, tertawa dan bergembira ria, dan wajah-wajah pada hari itu tertutup debu, dan ditutupi kegelapan. Mereka itulah orang-orang yang kafir lagi durhaka."</p>
+
+    <h2 class="section-title clay">Energi Kata</h2>
+
+    <div class="kata-chip">ٱلصَّآخَّةُ — Yang Memekakkan</div>
+    <p><em>Ash-shaakhkhah</em> — nama hari kiamat yang hanya muncul sekali dalam Al-Quran. Dari akar yang berarti suara yang memekakkan telinga. Bayangkan: suara yang begitu keras hingga semua lainnya tidak ada lagi. Tidak ada bisikan strategi, tidak ada bujukan sosial, tidak ada negosiasi identitas. Hanya satu suara, dan semua topeng runtuh.</p>
+
+    <div class="kata-chip">يَفِرُّ — Berlari Melarikan Diri</div>
+    <p><em>Yafirruu</em> — berlari dengan cepat, melarikan diri. Bukan berjalan. Bukan menjauh perlahan. Ini adalah pelarian penuh kepanikan. Dan dari siapa? Dari saudara, ibu, ayah, istri, anak. Ikatan yang paling kuat di dunia pun tidak cukup untuk menopang siapa pun di hari itu.</p>
+
+    <div class="kata-chip">وُجُوهٌ مُّسْفِرَةٌ / عَلَيْهَا غَبَرَةٌ — Wajah Berseri / Wajah Berdebu</div>
+    <p>Kontras yang sangat visual. <em>Musfira</em> — bersinar, bercahaya. <em>Ghabarah</em> — debu, suram. Persis seperti ayat pertama surah ini bermula dengan wajah yang berkerut — surah ini ditutup dengan gambaran dua jenis wajah di hari pembalasan. Lingkaran yang sempurna: bagaimana kamu memperlakukan wajahmu (dan wajahmu kepada orang lain) di dunia, akan tergambar di wajahmu di akhirat.</p>
+
+    <h2 class="section-title clay">Tafsir Mendalam</h2>
+    <p>Surah yang dibuka dengan wajah bermuka masam kepada seorang buta, ditutup dengan gambaran dua jenis wajah di hari kiamat. <strong>Ini bukan kebetulan sastrawi — ini adalah arsitektur tematik yang disengaja</strong>.</p>
+    <p>Di dunia, kita mengira wajah berseri adalah hak orang kaya dan berkuasa. Kita mengira wajah suram adalah nasib orang lemah dan tidak dianggap. Al-Quran membalik logika itu: <em>di hari yang benar-benar penting, wajah yang akan berseri adalah wajah yang dulu sungguh-sungguh mencari cahaya — bukan yang paling bercahaya di mata manusia</em>.</p>
+    <p>Dan detail yang paling menohok: <em>"setiap orang mempunyai urusan yang menyibukkannya"</em>. Di hari itu, tidak ada yang bisa dipinjam dari pengaruh orang lain. Tidak ada koneksi yang berguna. Tidak ada nama besar yang bisa disebutkan. Hanya kamu dan apa yang kamu bawa.</p>
+
+    <div class="relevance-box clay-border">
+      <div class="relevance-label clay">✦ Relevansi Kekinian</div>
+      <div class="contoh-item">
+        <div class="contoh-num">1</div>
+        <p style="margin:0;">Kita hidup di budaya yang membangun jaring pengaman sosial sebagai modal utama: siapa yang kamu kenal, jaringan apa yang kamu miliki, keluarga siapa yang membackingmu. Itu semua nyata dan berguna dalam kehidupan dunia. Tapi <em>likulli imri'in minhum yawma'idzin sya'nun yughniihi</em> adalah pengingat bahwa ada satu hari di mana semua jaringan itu tidak relevan — dan kesiapan untuk hari itu harus dibangun sendiri, hari demi hari.</p>
+      </div>
+      <div class="contoh-item">
+        <div class="contoh-num">2</div>
+        <p style="margin:0;">Gambaran dua wajah — berseri dan berdebu — adalah cermin untuk ditanyakan sekarang, bukan nanti: apakah cara hidupku hari ini sedang membentuk wajah yang mana? Bukan pertanyaan untuk direnungi sekali setahun di malam-malam khusuk, tapi pertanyaan yang dijawab setiap kali kita memilih bagaimana kita memperlakukan orang yang datang kepada kita.</p>
+      </div>
+    </div>
+
+    <div class="intisari">
+      <div class="intisari-label">✦ Intisari</div>
+      Di hari ketika semua pelarian tidak ada artinya dan setiap orang sibuk dengan urusannya sendiri, yang tersisa hanyalah apa yang sungguh-sungguh kamu kerjakan. Wajah yang berseri di hari itu adalah cermin dari hati yang tidak pernah berhenti mencari cahaya — bahkan saat dunia sedang mengalihkan perhatian ke tempat yang lebih berkilau.
+    </div>
+  </div>
+
+  <!-- ==================== REFLEKSI PENUTUP ==================== -->
+  <div class="penutup">
+    <h2 class="section-title clay" style="margin-top:0;">Refleksi: Pola yang Bisa Diambil</h2>
+
+    <div class="langkah">
+      <div class="lnum">1 — Audit Perhatianmu Selama Satu Minggu</div>
+      <p>Selama tujuh hari ke depan, perhatikan: kepada siapa atau apa kamu memberikan perhatian terbaikmu? Siapa yang sering kamu lewati karena tampak "tidak cukup penting"? Tuliskan tanpa dihakimi — ini bukan tentang merasa bersalah, tapi tentang melihat pola yang mungkin sudah berjalan otomatis tanpa kamu sadari.</p>
+    </div>
+
+    <div class="langkah sage-l">
+      <div class="lnum sage-n">2 — Latihan Melihat Niat, Bukan Tampilan</div>
+      <p>Ketika seseorang datang kepadamu — dalam apapun bentuknya — tanyakan satu pertanyaan sebelum menilai: <em>"apakah orang ini sedang dalam proses yazzakkaa — sedang benar-benar mencari?"</em> Jika jawabannya ya, berikan perhatian penuh, apapun penampilan luarnya. Latihan ini sederhana tapi mengubah banyak hal secara perlahan.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">3 — Satu Momen Syukur yang Benar-Benar Disadari</div>
+      <p>Sebelum makan hari ini, berhenti sebentar. Pikirkan satu rantai panjang yang harus terjadi agar makanan ini ada di hadapanmu: hujan yang turun entah di mana, tanah yang dibelah, tangan yang menanam, yang memanen, yang mengangkut. Biarkan rasa itu masuk — bukan sebagai ritual, tapi sebagai kesadaran nyata. Ini adalah bentuk <em>nazhar</em> yang Al-Quran minta.</p>
+    </div>
+
+    <div class="langkah sage-l">
+      <div class="lnum sage-n">4 — Pertanyaan Harian Sebelum Tidur</div>
+      <p>Sebelum tidur, tanyakan: <em>"Adakah seseorang yang datang kepadaku hari ini dengan sungguh-sungguh — dan aku mengabaikannya karena terlalu sibuk dengan yang tampak lebih penting?"</em> Bukan untuk menyiksa diri, tapi untuk melatih kepekaan yang terus diasah hari demi hari.</p>
+    </div>
+
+    <h2 class="section-title clay">Langkah Nyata</h2>
+
+    <div class="langkah">
+      <div class="lnum">Tingkat 1 — Hadir Penuh Selama Tiga Menit</div>
+      <p>Dalam percakapan berikutnya hari ini, berikan tiga menit pertama sepenuhnya kepada orang yang berbicara. Tidak ada ponsel, tidak ada pikiran ke agenda berikutnya. Tiga menit pertama menentukan seluruh nada percakapan — dan orang yang kamu berikan itu akan merasakannya, bahkan tanpa tahu mengapa.</p>
+    </div>
+
+    <div class="langkah">
+      <div class="lnum">Tingkat 2 — Hubungi Satu Orang yang Terlupakan</div>
+      <p>Siapa satu orang dalam hidupmu yang sudah lama datang dengan sungguh-sungguh — tapi kamu lalai merespons dengan sepadan? Kirimkan satu pesan hari ini. Bukan yang panjang dan sempurna. Cukup yang nyata dan tulus: <em>"Aku ingat kamu, dan aku menghargai kehadiranmu."</em></p>
+    </div>
+
+    <div class="langkah sage-l">
+      <div class="lnum sage-n">Tingkat 3 — Ubah Satu Kebiasaan Penilaian</div>
+      <p>Pilih satu konteks dalam hidupmu — tempat kerja, komunitas, keluarga — dan buat satu aturan yang kamu pegang sendiri: <em>siapa pun yang datang dengan niat belajar atau mencari, mendapat respons yang sama dariku, apapun latar belakang sosialnya</em>. Bukan untuk dipamerkan, tapi untuk dijalankan. Diam-diam. Konsisten.</p>
+    </div>
+  </div>
+
+  <!-- ==================== EPILOG ==================== -->
+  <div class="epilog">
+    <h2 class="epilog-title clay">Ketika yang Tidak Dianggap Ternyata Sedang Dinilai</h2>
+
+    <p>Ada momen dalam hidupmu ketika kamu adalah Ibn Ummi Maktum — datang dengan sungguh-sungguh, berjalan sejauh yang kamu bisa, membawa niat yang paling tulus. Dan kemudian kamu melihat wajah yang berkerut. Punggung yang berpaling. Mata yang sudah berada di tempat lain.</p>
+
+    <p>Kamu tidak melihatnya — persis seperti ia tidak melihat ekspresimu. Tapi kamu <em>merasakannya</em>. Dan itu cukup untuk membuatmu mempertanyakan apakah kamu cukup layak untuk datang.</p>
+
+    <div class="divider-clay" style="margin:36px auto;"></div>
+
+    <div class="reader-voice">
+      <em>◆ Kepada yang pernah merasa tidak cukup penting</em>
+      Kamu datang dengan sungguh-sungguh. Kamu datang dengan <em>yas'aa</em> — dengan langkah yang tidak sempurna tapi dengan niat yang lurus. Langit mencatat itu. Wahyu turun karena seseorang sepertimu datang dan diabaikan — dan Allah tidak membiarkannya berlalu begitu saja. Kehadiranmu yang tulus lebih berharga dari semua akses dan pengaruh yang tidak kamu miliki.
+    </div>
+
+    <div class="reader-voice">
+      <em>◆ Kepada yang pernah menjadi yang berpaling</em>
+      Kita semua pernah di sana. Kita semua pernah melihat seseorang datang di waktu yang salah, dengan tampilan yang tidak tepat, dengan kebutuhan yang terasa merepotkan. Dan kita memilih yang tampak lebih mendesak, lebih menjanjikan, lebih bergengsi. Al-Quran tidak menceritakan momen ini untuk mempermalukan — tapi untuk membebaskan: kamu bisa memilih berbeda mulai sekarang.
+    </div>
+
+    <div class="reader-voice">
+      <em>◆ Kepada yang kelelahan melayani tanpa diakui</em>
+      Ada yang kamu lakukan dengan tulus yang tidak ada yang melihat. Pertolongan yang kamu berikan kepada yang tidak bisa membalasnya. Waktu yang kamu investasikan pada orang yang tidak ada di papan peringkat siapapun. Kamu mungkin berpikir itu sia-sia. Tapi <em>fi shuhufin mukarramah, marfuu'atin muthaharah</em> — ada catatan yang lebih mulia dari semua pengakuan manusia. Itu dicatat.
+    </div>
+
+    <div class="reader-voice">
+      <em>◆ Kepada yang sedang mempertanyakan nilainya</em>
+      Kamu bukan <em>nuthfah</em> yang belum menjadi apa-apa. Kamu adalah <em>nuthfah</em> yang telah diubah, ditentukan, dimudahkan jalannya, oleh kehendak yang tidak pernah melupakanmu. Ukuranmu bukan followers, bukan jabatan, bukan nama keluarga yang kamu bawa. Ukuranmu adalah seberapa sungguh-sungguh kamu datang dengan hati yang mau tumbuh.
+    </div>
+
+    <div class="divider-clay" style="margin:40px auto;"></div>
+
+    <span class="arabic-line">عَبَسَ وَتَوَلَّىٰٓ</span>
+    <span class="latin-line">Abasa wa tawallaa</span>
+    <p>Tiga kata yang mengubah sejarah. Bukan karena ada yang mati karenanya. Bukan karena ada yang terluka secara fisik. Tapi karena Allah menunjukkan: bahkan momen seperti ini tidak luput dari pandangan-Nya.</p>
+
+    <p>Dan kalau momen sekecil itu — sekilas wajah berkerut, sejenak berpaling — tidak luput dari catatan, maka betapa lebih pentingnya setiap pilihan kita untuk melihat, mendengar, dan merespons mereka yang datang dengan sungguh-sungguh.</p>
+
+    <div class="divider-clay" style="margin:40px auto;"></div>
+
+    <p class="closing">
+      Karena pada akhirnya, penilaian yang paling menentukan<br>
+      bukan dari mereka yang punya pengaruh paling besar,<br>
+      bukan dari sorotan yang paling terang,<br>
+      bukan dari papan pengumuman mana pun yang ada.<br><br>
+      <span class="clay" style="-webkit-text-fill-color:unset; background:none; color:var(--clay2);">Yang paling menentukan adalah wajah yang akan kamu bawa</span><br>
+      pada hari ketika semua wajah terbuka apa adanya.<br><br>
+      Dan wajah itu dibentuk hari ini —<br>
+      dalam setiap keputusan kecil tentang<br>
+      kepada siapa kamu memilih untuk hadir,<br>
+      dan kepada siapa kamu memilih untuk berpaling.<br><br>
+      <strong style="color:var(--clay2); font-size:1.05em;">Semoga kita termasuk yang wajahnya berseri — bukan karena dunia mengakui kita, tapi karena kita tidak pernah berhenti mencari cahaya dengan sungguh-sungguh.</strong>
+    </p>
+  </div>
+
+</div><!-- /container -->
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    btn.style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.ayat-section, .intro-konteks, .tema-header').forEach(el => obs.observe(el));
+</script>
+<!-- ── BACK BUTTON ── -->
+<style>
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(7,8,15,0.85);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 30px;
+  color: #c8d0e8;
+  font-family: "Cinzel", "Georgia", serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.back-btn:hover {
+  border-color: rgba(79,195,212,0.5);
+  color: #4fc3d4;
+  transform: translateY(-1px);
+}
+.back-btn svg { transition: transform .2s; }
+.back-btn:hover svg { transform: translateX(-3px); }
+@media (max-width: 600px) {
+  .back-btn { top: 14px; left: 14px; padding: 8px 14px; font-size: 10px; }
+}
+</style>
+<a href="index.html" class="back-btn">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Daftar Surah
+</a>
+</body>
+</html>
